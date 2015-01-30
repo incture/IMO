@@ -33,7 +33,7 @@ module.exports = {
 
         if (!error && response.statusCode == 200) {
 
-          $ = cheerio.load(body)
+          var $ = cheerio.load(body)
 
           previewObject.baseUrl = url.split('/', 3).join('/')
           previewObject.title = $('title').text().trim() || ''
