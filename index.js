@@ -6,7 +6,7 @@ var re = /(((http|ftp|https):\/{2})+(([0-9a-z_-]+\.)+(aero|asia|biz|cat|com|coop
 
 module.exports = {
 
-  hasUrl: function (text) {
+  load: function (text) {
 
     var q = Q.defer()
 
@@ -27,8 +27,9 @@ module.exports = {
             baseUrl: url.split('/', 3).join('/'),
             title: $('title').text().trim(),
             preview: $('p').text().replace(/\s{2,}/g, '').substring(0, 100),
-            image: $('img').attr('src'),
-            url: url
+            image: $('img').attr('src') || '',
+            url: url,
+            text: text
           }
 
           q.resolve(o)
