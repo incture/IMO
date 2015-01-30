@@ -2,45 +2,137 @@ var expect = require('chai').expect
 var express = require('express')
 var urlPreview = require('../')
 
-describe('URL detection in text', function () {
 
+describe('Properties', function () {
 
-  it('should detect URL in text', function (done) {
-
-    var app = express()
-    app.use(express.static(__dirname + '/fixtures'))
-    var server = app.listen(function () {
-
-      //var testUrl = 'go get http://www.flipkart.com/women?otracker=nmenu_women jaj'
-      var testUrl = 'http://localhost:' + server.address().port + '/image.html'
-
-      var text = 'There is something cool here ' + testUrl + '. What do you say?'
-      console.log(text)
-      var preview = urlPreview.load(text)
-
-      preview.then(function (p) {
-
-        console.log(p)
-
-          // console.log('Title:', p.title)
-          // console.log('Preview:', p.preview)
-          // console.log('URL:', p.url)
-
-          done()
-
-        }, function () {
-          console.log('No URL detected')
-        }
-      )
-
-
-    })
-
-
-
+  it('should have title property', function (done) {
+    var preview = urlPreview.load('')
+    preview.then(function (p) {
+        expect(p).to.have.property('title')
+        done()
+      }, function (fail) {
+        throw new Error(fail)
+      }
+    )
   })
 
+  it('should have previewText property', function (done) {
+    var preview = urlPreview.load('')
+    preview.then(function (p) {
+        expect(p).to.have.property('previewText')
+        done()
+      }, function (fail) {
+        throw new Error(fail)
+      }
+    )
+  })
+
+  it('should have images property', function (done) {
+    var preview = urlPreview.load('')
+    preview.then(function (p) {
+        expect(p).to.have.property('images')
+        done()
+      }, function (fail) {
+        throw new Error(fail)
+      }
+    )
+  })
+
+  it('should have images as an array', function (done) {
+    var preview = urlPreview.load('')
+    preview.then(function (p) {
+        expect(p.images).to.be.an('array')
+        done()
+      }, function (fail) {
+        throw new Error(fail)
+      }
+    )
+  })
+
+  it('should have text property', function (done) {
+    var preview = urlPreview.load('')
+    preview.then(function (p) {
+        expect(p).to.have.property('text')
+        done()
+      }, function (fail) {
+        throw new Error(fail)
+      }
+    )
+  })
+
+  it('should have url property', function (done) {
+    var preview = urlPreview.load('')
+    preview.then(function (p) {
+        expect(p).to.have.property('url')
+        done()
+      }, function (fail) {
+        throw new Error(fail)
+      }
+    )
+  })
+
+  it('should have baseUrl property', function (done) {
+    var preview = urlPreview.load('')
+    preview.then(function (p) {
+        expect(p).to.have.property('baseUrl')
+        done()
+      }, function (fail) {
+        throw new Error(fail)
+      }
+    )
+  })
+
+})
 
 
+// NOTE: these tests are best written using local resources
+// external sites may be gone
+// using console.log() in the mean time
+describe('URLs', function () {
+
+  it('should recognize URL in text', function (done) {
+
+    var text = 'Hey ladies, check these out - http://www.flipkart.com/women!'
+    var preview = urlPreview.load(text)
+    preview.then(function (p) {
+        console.log(p)
+        done()
+      }, function (fail) {
+        throw new Error(fail)
+      }
+    )
+  })
+
+  it('should recognize a text which is a URL', function (done) {
+
+    var text = 'http://www.flipkart.com/men'
+    var preview = urlPreview.load(text)
+    preview.then(function (p) {
+        console.log(p)
+        done()
+      }, function (fail) {
+        throw new Error(fail)
+      }
+    )
+  })
+
+})
+
+
+describe('Title', function () {
+
+  // add more title specific tests
+
+})
+
+describe('Body', function () {
+
+  // add more body specific tests
+
+})
+
+describe('Images', function () {
+
+  // add more images specific tests
 
 })
