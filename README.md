@@ -17,7 +17,7 @@ $ npm install incture/cw-module-url-preview
 A preview object with the following properties:
 
 | Property       | Description |
---------------------------------
+|---------------|---------------
 | baseUrl       | The base URL of the website.
 | images        | Array of images found on the page. Limited to 5.
 | previewText   | Preview text. Limited to 200 characters.
