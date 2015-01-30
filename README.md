@@ -1,4 +1,4 @@
-CW URL Preview is a Node library for creating a preview object of URL. Pass a URL or a block of text containg a URL to the `load()` method of an instance of the library.
+Node library for creating a preview object of a URL. Pass a URL or a block of text containg a URL to the `load()` method of an instance of the library.
 
 ## Installation
 
