@@ -103,6 +103,85 @@ describe('URLs', function () {
     )
   })
 
+  it('should parse a common webpage', function (done) {
+
+    var text = 'http://yourstory.in'
+    var preview = urlPreview.load(text)
+    preview.then(function (p) {
+        console.log(p)
+        done()
+      }, function (fail) {
+        throw new Error(fail)
+      }
+    )
+  })
+
+  it('should igmore an invalid page', function (done) {
+
+    var text = 'http://iaskdajsldkjadlk.in'
+    var preview = urlPreview.load(text)
+    preview.then(function (p) {
+        console.log(p)
+        done()
+      }, function (fail) {
+        throw new Error(fail)
+      }
+    )
+  })
+
+  it('should parse a URL without http prefix', function (done) {
+
+    var text = 'www.wikipedia.com'
+    var preview = urlPreview.load(text)
+    preview.then(function (p) {
+        console.log(p)
+        done()
+      }, function (fail) {
+        throw new Error(fail)
+      }
+    )
+  })
+
+  it('should parse a page requiring authentication', function (done) {
+
+    var text = 'https://docs.google.com/a/incture.com/spreadsheets/d/1kfZZh59L99APd2GT3K_EGjk7tFzCt2vEyNUZP-EQi04/edit#gid=0'
+    var preview = urlPreview.load(text)
+    preview.then(function (p) {
+        console.log(p)
+        done()
+      }, function (fail) {
+        throw new Error(fail)
+      }
+    )
+  })
+
+
+  it('should follow temporary redirects', function (done) {
+
+    var text = 'http://www.iana.org/domains/example/'
+    var preview = urlPreview.load(text)
+    preview.then(function (p) {
+        console.log(p)
+        done()
+      }, function (fail) {
+        throw new Error(fail)
+      }
+    )
+  })
+
+  it('should follow permanent redirects', function (done) {
+
+    var text = 'http://www.cherrywork.in'
+    var preview = urlPreview.load(text)
+    preview.then(function (p) {
+        console.log(p)
+        done()
+      }, function (fail) {
+        throw new Error(fail)
+      }
+    )
+  })
+
   it('should recognize a text which is a URL', function (done) {
 
     var text = 'http://www.flipkart.com/men'
