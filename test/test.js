@@ -1,7 +1,6 @@
+var urlPreview = require('../')
 var expect = require('chai').expect
 var express = require('express')
-var urlPreview = require('../')
-
 
 describe('Properties', function () {
 
