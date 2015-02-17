@@ -4,6 +4,8 @@ var express = require('express')
 
 describe('Properties', function () {
 
+  this.timeout(10000)
+
   it('should have title property', function (done) {
     var preview = urlPreview.load('')
     preview.then(function (p) {
@@ -94,7 +96,7 @@ describe('URLs', function () {
     var text = 'Hey ladies, check these out - http://www.flipkart.com/women!'
     var preview = urlPreview.load(text)
     preview.then(function (p) {
-        console.log(p)
+        //console.log(p)
         done()
       }, function (fail) {
         throw new Error(fail)
@@ -107,7 +109,7 @@ describe('URLs', function () {
     var text = 'http://yourstory.in'
     var preview = urlPreview.load(text)
     preview.then(function (p) {
-        console.log(p)
+        //console.log(p)
         done()
       }, function (fail) {
         throw new Error(fail)
@@ -115,15 +117,15 @@ describe('URLs', function () {
     )
   })
 
-  it('should igmore an invalid page', function (done) {
+  it('should ignore an invalid page', function (done) {
 
     var text = 'http://iaskdajsldkjadlk.in'
     var preview = urlPreview.load(text)
     preview.then(function (p) {
-        console.log(p)
-        done()
+        //console.log(p)
+        done(p)
       }, function (fail) {
-        throw new Error(fail)
+        done()
       }
     )
   })
@@ -133,7 +135,7 @@ describe('URLs', function () {
     var text = 'www.wikipedia.com'
     var preview = urlPreview.load(text)
     preview.then(function (p) {
-        console.log(p)
+        //console.log(p)
         done()
       }, function (fail) {
         throw new Error(fail)
@@ -146,7 +148,7 @@ describe('URLs', function () {
     var text = 'https://docs.google.com/a/incture.com/spreadsheets/d/1kfZZh59L99APd2GT3K_EGjk7tFzCt2vEyNUZP-EQi04/edit#gid=0'
     var preview = urlPreview.load(text)
     preview.then(function (p) {
-        console.log(p)
+        //console.log(p)
         done()
       }, function (fail) {
         throw new Error(fail)
@@ -160,7 +162,7 @@ describe('URLs', function () {
     var text = 'http://www.iana.org/domains/example/'
     var preview = urlPreview.load(text)
     preview.then(function (p) {
-        console.log(p)
+        //console.log(p)
         done()
       }, function (fail) {
         throw new Error(fail)
@@ -173,7 +175,7 @@ describe('URLs', function () {
     var text = 'http://www.cherrywork.in'
     var preview = urlPreview.load(text)
     preview.then(function (p) {
-        console.log(p)
+        //console.log(p)
         done()
       }, function (fail) {
         throw new Error(fail)
@@ -186,7 +188,7 @@ describe('URLs', function () {
     var text = 'http://www.flipkart.com/men'
     var preview = urlPreview.load(text)
     preview.then(function (p) {
-        console.log(p)
+        //console.log(p)
         done()
       }, function (fail) {
         throw new Error(fail)

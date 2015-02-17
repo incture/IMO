@@ -42,12 +42,21 @@ module.exports = {
           var images = []
           var imageCount = 0
           $('img').each(function (i, image) {
+
             if (imageCount == imagesLimit) return false
             if ($(image).attr('src')) {
-              images.push($(image).attr('src').trim())
-              imageCount++
+
+              var src = $(image).attr('src').trim()
+              var ext = src.split('.').slice(-1)[0].toLowerCase()
+              //console.log(src, ext)
+              if (ext !== 'svg') {
+                images.push(src)
+                imageCount++
+              }
             }
+
           })
+
           previewObject.images = images
 
           previewObject.url = url
