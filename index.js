@@ -21,43 +21,43 @@ module.exports = {
       url: '',
       text: text
     }
-    youTubeUrl = URL.parse(text);
-    if(youTubeUrl['host'] == 'www.youtube.com' || youTubeUrl['host'] == 'youtube.com'){
-      //Handling a Youtube Url
-      _videoId = youTubeUrl['query'] && youTubeUrl['query'].split('&') && youTubeUrl['query'].split('&').slice(2);
-      if(_videoId){
-        _url = youtubeApi + _videoId;
-        request(_url, function (error, response, body) {
-          if (error) {
-            q.reject(error);
-          }
-          else {
-            var data = JSON.parse(body);
-            if (response.statusCode == 200) {
-              video = data.items[0].snippet;
-              previewObject.title = video.title;
-              previewObject.description = video.title;
-              previewObject.images.push("http://img.youtube.com/vi/"+data.items[0].id+"/default.jpg")
-              previewObject.preView = ["http://img.youtube.com/vi/"+data.items[0].id+"/1.jpg","http://img.youtube.com/vi/"+data.items[0].id+"/2.jpg","http://img.youtube.com/vi/"+data.items[0].id+"/3.jpg"];
-              q.resolve(previewObject);
+
+    // check if text has a url
+    var match = text.match(re)
+
+    if (match) {
+      var url = match[0]
+      youTubeUrl = URL.parse(url);
+      if(youTubeUrl['host'] == 'www.youtube.com' || youTubeUrl['host'] == 'youtube.com'){
+        //Handling a Youtube Url
+        _videoId = youTubeUrl['query'] && youTubeUrl['query'].split('&') && youTubeUrl['query'].split('&').slice(2);
+        if(_videoId){
+          _url = youtubeApi + _videoId;
+          request(_url, function (error, response, body) {
+            if (error) {
+              q.reject(error);
             }
             else {
-              q.reject(data.error);
+              var data = JSON.parse(body);
+              if (response.statusCode == 200) {
+                video = data.items[0].snippet;
+                previewObject.title = video.title;
+                previewObject.description = video.title;
+                previewObject.images.push("http://img.youtube.com/vi/"+data.items[0].id+"/default.jpg")
+                previewObject.preView = ["http://img.youtube.com/vi/"+data.items[0].id+"/1.jpg","http://img.youtube.com/vi/"+data.items[0].id+"/2.jpg","http://img.youtube.com/vi/"+data.items[0].id+"/3.jpg"];
+                q.resolve(previewObject);
+              }
+              else {
+                q.reject(data.error);
+              }
             }
-          }
-        });
+          });
+        }
+        else{
+          q.reject(new Error("Input Url is not pointing to a youtube video."));
+        }
       }
       else{
-        q.reject(new Error("Input Url is not pointing to a youtube video."));
-      }
-    }else{
-      // check if text has a url
-      var match = text.match(re)
-
-      if (match) {
-
-        var url = match[0]
-
         request(url, function (error, response, body) {
 
           if (!error && response.statusCode == 200) {
@@ -97,14 +97,11 @@ module.exports = {
             q.reject(error)
           }
         })
-
-      }
-      else {
-        q.resolve(previewObject)
       }
     }
+    else {
+      q.resolve(previewObject)
+    }
     return q.promise
-
   }
-
 }
