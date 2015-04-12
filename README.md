@@ -25,6 +25,17 @@ A preview object with the following properties:
 | text          | Text that was passed to the `load()` method.
 | title         | Title of the page.
 
+If the URL is pointing a youtube video then the preview object properties will be as below :
+
+| Property       | Description |
+|---------------|---------------
+| baseUrl       | The base URL of the website.
+| images        | Thumbnail of the video with the default size.
+| previewText   | Preview text. Limited to 200 characters.
+| url           | URL of the page.
+| text          | Description provided in the youtube.
+| title         | Title of the Video.
+
 
 ## Usage
 

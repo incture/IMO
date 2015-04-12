@@ -41,8 +41,9 @@ module.exports = {
               var data = JSON.parse(body);
               if (response.statusCode == 200) {
                 video = data.items[0].snippet;
+                previewObject.baseUrl = url;
                 previewObject.title = video.title;
-                previewObject.description = video.title;
+                previewObject.text = video.description;
                 previewObject.images.push("http://img.youtube.com/vi/"+data.items[0].id+"/default.jpg")
                 previewObject.preView = ["http://img.youtube.com/vi/"+data.items[0].id+"/1.jpg","http://img.youtube.com/vi/"+data.items[0].id+"/2.jpg","http://img.youtube.com/vi/"+data.items[0].id+"/3.jpg"];
                 q.resolve(previewObject);
