@@ -209,6 +209,20 @@ describe('URLs', function () {
     )
   })
 
+  it('should ignore an invalid youtube url', function (done) {
+
+    var text = 'https://www.youtube.com/watch'
+    var preview = urlPreview.load(text)
+    preview.then(function (p) {
+        console.log(p)
+        done(p)
+      }, function (fail) {
+        //console.log(fail)
+        done()
+      }
+    )
+  })
+
 })
 
 
