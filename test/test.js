@@ -196,6 +196,19 @@ describe('URLs', function () {
     )
   })
 
+  it('should recognize Youtube Url and get the details from the video', function (done) {
+
+    var text = 'https://www.youtube.com/watch?v=29XjUFmmdik'
+    var preview = urlPreview.load(text)
+    preview.then(function (p) {
+        //console.log(p)
+        done()
+      }, function (fail) {
+        throw new Error(fail)
+      }
+    )
+  })
+
 })
 
 
