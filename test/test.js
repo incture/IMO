@@ -221,21 +221,6 @@ describe('URLs', function () {
         done()
       }
     )
-  })
-
-  //http://www.storypick.com/last-year-of-college/\nSo much true !!!
-    it('should ignore an invalid youtube url', function (done) {
-
-    var text = 'http://www.storypick.com/last-year-of-college/\nSo much true !!!'
-    var preview = urlPreview.load(text)
-    preview.then(function (p) {
-        console.log(p)
-        done(p)
-      }, function (fail) {
-        //console.log(fail)
-        done()
-      }
-    )
   })  
 })
 
