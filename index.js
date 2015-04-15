@@ -27,12 +27,13 @@ module.exports = {
 
     if (match) {
       var url = match[0]
+
       var youTubeUrl = URL.parse(url);
       if(youTubeUrl['host'] == 'www.youtube.com' || youTubeUrl['host'] == 'youtube.com'){
         //Handling a Youtube Url
         //var _videoId = youTubeUrl['query'] && youTubeUrl['query'].split('&') && youTubeUrl['query'].split('&').slice(2);
         var _videoId = youTubeUrl['query'] && youTubeUrl['query'].split('&')[0] && youTubeUrl['query'].split('&')[0].slice(2);
-        if(_videoId){
+        if (_videoId) {
           //console.log(_videoId)
           var _url = youtubeApi + _videoId;
           request(_url, function (error, response, body) {
@@ -42,14 +43,13 @@ module.exports = {
             else {
               var data = JSON.parse(body);
               if (response.statusCode == 200) {
-                //console.log(data);
                 var video = data.items[0].snippet;
                 previewObject.baseUrl = url;
                 previewObject.title = video.title;
-                previewObject.text = video.description.slice(0, 200)
+                previewObject.previewText = video.description.slice(0, 200)
                 previewObject.text = video.description;
                 previewObject.images.push("http://img.youtube.com/vi/"+data.items[0].id+"/default.jpg")
-                //previewObject.preView = ["http://img.youtube.com/vi/"+data.items[0].id+"/1.jpg","http://img.youtube.com/vi/"+data.items[0].id+"/2.jpg","http://img.youtube.com/vi/"+data.items[0].id+"/3.jpg"];
+                previewObject.url = url;
                 q.resolve(previewObject);
               }
               else {
@@ -64,9 +64,9 @@ module.exports = {
       }
       else{
         request(url, function (error, response, body) {
-
+          console.log(url);
           if (!error && response.statusCode == 200) {
-
+            //console.log(body);
             var $ = cheerio.load(body)
 
             previewObject.baseUrl = url.split('/', 3).join('/')
