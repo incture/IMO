@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.murphy.iop</groupId>
+	<artifactId>Murphy_IOP</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.eclipse.persistence/eclipselink -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.7.26</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>2.14.0</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.sap.cloud/neo-java-web-sdk -->
+		<dependency>
+			<groupId>com.sap.cloud</groupId>
+			<artifactId>neo-java-web-sdk</artifactId>
+			<version>3.123.6.2</version>
+			<type>pom</type>
+		</dependency>
+
+	</dependencies>
+	<modules>
+		<module>TaskManagement_Services</module>
+		<module>TaskManagement_Rest</module>
+		<module>Integration_Services</module>
+		<module>DataMaintenance_Services</module>
+		<module>DowntimeCapture</module>
+		<module>WeatherServices</module>
+	</modules>
+</project>

@@ -1,0 +1,1082 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Energy_isolation" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="541738c1-813f-46e6-96e9-583472f27fb3">
+	<property name="ireport.zoom" value="0.90909090909091"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="New Dataset 1" uuid="05fd8f33-3f86-42d4-87c7-674584da96d3">
+		<field name="isolationDetail" class="java.lang.String"/>
+		<field name="location" class="java.lang.String"/>
+		<field name="isEnergyStored" class="java.lang.String"/>
+		<field name="isEquipmentTested" class="java.lang.String"/>
+		<field name="isolationDate" class="java.lang.String"/>
+		<field name="reInstateMentDate" class="java.lang.String"/>
+		<field name="isEnergyNotStored" class="java.lang.String"/>
+		<field name="isEquipmentNotTested" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="AffectedPersonnel" uuid="cb4517e9-0024-4424-b8b6-716ea2a09eac"/>
+	<subDataset name="Table Dataset 1" uuid="884ba3d3-8fa4-42fc-b0e3-59205d244346">
+		<field name="name" class="java.lang.String"/>
+		<field name="email" class="java.lang.String"/>
+		<field name="signature" class="java.lang.String"/>
+		<field name="contractorPerformingWork" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="reasonForIsolation" class="java.lang.String"/>
+	<parameter name="permitNo" class="java.lang.String"/>
+	<parameter name="plannedDateOfWork" class="java.lang.String"/>
+	<parameter name="facility" class="java.lang.String"/>
+	<parameter name="permitHolder" class="java.lang.String"/>
+	<parameter name="contractorPerforming" class="java.lang.String"/>
+	<parameter name="estimationOfCompletion" class="java.lang.String"/>
+	<parameter name="equipment" class="java.lang.String"/>
+	<parameter name="workOrderNo" class="java.lang.String"/>
+	<parameter name="otherHazards" class="java.lang.String"/>
+	<parameter name="JsaReviewedyes" class="java.lang.Object"/>
+	<parameter name="JsaReviewedNo" class="java.lang.Object"/>
+	<parameter name="LOTOIntentYes" class="java.lang.Object"/>
+	<parameter name="LOTOintentNo" class="java.lang.Object"/>
+	<parameter name="PreJobSafetyDate1" class="java.lang.String"/>
+	<parameter name="PreJobSafetyDate2" class="java.lang.String"/>
+	<parameter name="IsolationPermitHolder" class="java.lang.String"/>
+	<parameter name="IsolationPermitIssuer" class="java.lang.String"/>
+	<parameter name="PermitHolderDate" class="java.lang.String"/>
+	<parameter name="PermitHolderTime" class="java.lang.String"/>
+	<parameter name="PermitIssuerDate" class="java.lang.String"/>
+	<parameter name="PermmitIssuerTime" class="java.lang.String"/>
+	<parameter name="IsolationTable" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<parameter name="MurphyLogo" class="java.lang.Object"/>
+	<parameter name="ServicePermitHolder" class="java.lang.String"/>
+	<parameter name="ServicePermitIssuer" class="java.lang.String"/>
+	<parameter name="ServiceHolderDate" class="java.lang.String"/>
+	<parameter name="ServiceIssuerDate" class="java.lang.String"/>
+	<parameter name="ServiceHolderTime" class="java.lang.String"/>
+	<parameter name="ServiceIssuerTime" class="java.lang.String"/>
+	<parameter name="PreJobPermitIssuer" class="java.lang.String"/>
+	<parameter name="PreJobPermitHolder" class="java.lang.String"/>
+	<parameter name="LOTORemovalInfoYes" class="java.lang.Object"/>
+	<parameter name="LOTORemovalInfoNo" class="java.lang.Object"/>
+	<parameter name="affectLockRemovedYes" class="java.lang.Object"/>
+	<parameter name="affectLockRemovedNo" class="java.lang.Object"/>
+	<parameter name="workAreaInspectedYes" class="java.lang.Object"/>
+	<parameter name="workAreaInspectedNo" class="java.lang.Object"/>
+	<parameter name="AffectedPersonnel" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<parameter name="energyIsolatedType" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="555" splitType="Stretch">
+			<staticText>
+				<reportElement style="table" mode="Opaque" x="0" y="91" width="802" height="22" forecolor="#FFFFFF" backcolor="#A6A6A6" uuid="55962669-07c7-4658-bd5c-b154da5ed6ba"/>
+				<box>
+					<pen lineColor="#000000"/>
+					<topPen lineColor="#000000"/>
+					<leftPen lineColor="#000000"/>
+					<bottomPen lineColor="#000000"/>
+					<rightPen lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="16" isBold="true"/>
+					<paragraph firstLineIndent="5"/>
+				</textElement>
+				<text><![CDATA[ENERGY ISOLATION AUTHORIZATION FORM :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table" mode="Opaque" x="0" y="223" width="802" height="22" forecolor="#FFFFFF" backcolor="#A6A6A6" uuid="d0721d72-2b10-4b79-aae1-3948c92ba4ae"/>
+				<box>
+					<pen lineColor="#000000"/>
+					<topPen lineColor="#000000"/>
+					<leftPen lineColor="#000000"/>
+					<bottomPen lineColor="#000000"/>
+					<rightPen lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="16" isBold="true"/>
+					<paragraph firstLineIndent="5"/>
+				</textElement>
+				<text><![CDATA[TYPE OF ENERGY TO BE ISOLATED :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="5" y="189" width="127" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="beb06f58-629a-46a9-a867-f811dcd8633a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Permit Holder:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="5" y="168" width="127" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="72915a33-cb0a-4a39-8d6d-7e3b2c8b1d74"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Facility:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="5" y="122" width="127" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="1fec0dca-c36f-46f0-9cd5-ccb74dd0a7c2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Permit No:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="5" y="146" width="145" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="e2ec784a-a723-4f75-b053-fe1fdadf744d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Planned Date of Work:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="268" width="127" height="20" forecolor="#A6A6A6" uuid="7e636c72-dcfc-458a-8380-e6e99395cc4a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Reason for Isolation:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table" mode="Opaque" x="0" y="372" width="802" height="22" forecolor="#FFFFFF" backcolor="#A6A6A6" uuid="16653f0f-342e-498d-824c-a7d47e86c001"/>
+				<box>
+					<pen lineColor="#000000"/>
+					<topPen lineColor="#000000"/>
+					<leftPen lineColor="#000000"/>
+					<bottomPen lineColor="#000000"/>
+					<rightPen lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="16" isBold="true"/>
+					<paragraph firstLineIndent="5"/>
+				</textElement>
+				<text><![CDATA[REQUIRED PRE-JOB SAFETY :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="table 3_CH" mode="Opaque" x="0" y="289" width="802" height="63" backcolor="#E4EEF2" uuid="6bb761b3-034e-42c3-8d06-cb0b1dc320e3"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{reasonForIsolation}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="395" y="171" width="205" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="9a5cd8d8-2fb8-4afb-9838-283fe273b103"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Work Order No.(if applicable):]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="395" y="123" width="144" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="f6582e60-9d8a-45fa-b7f3-4189c380a0fc"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Est. Time of Completion	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="395" y="145" width="127" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="3ea0b180-b491-46e3-a040-75e9bccf4c77"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Equipment ID/Tag:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="4" y="464" width="90" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="6520874f-2dcc-4093-854a-62876b881ec8"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Permit Holder:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="420" width="284" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="d3cc96c4-1c22-46bd-a7e1-28985626e3a0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[All affected employees notified of LOTO intent :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="4" y="445" width="90" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="95a3c3e3-1a3c-49fd-8f9d-1970902d3c7d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Permit Issuer :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="399" width="127" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="94a2dd87-aadf-4c8e-a6d0-e8b6f6c35663"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[JSA Reviewed]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="491" width="179" height="20" uuid="d98d28e6-07ad-4ec6-a248-8b2214cf9295"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Other Hazards identified:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="table 3_CH" mode="Opaque" x="150" y="123" width="200" height="20" backcolor="#E4EEF2" uuid="6a3f0740-6ec5-43c9-8988-aad62197677f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{permitNo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="table 3_CH" mode="Opaque" x="150" y="146" width="200" height="20" backcolor="#E4EEF2" uuid="9ee99101-178c-4e79-9543-fcd84464818b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{plannedDateOfWork}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="table 3_CH" mode="Opaque" x="150" y="169" width="200" height="20" backcolor="#E4EEF2" uuid="03da622c-70f4-498c-94ef-0dcc980185e3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{facility}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="table 3_CH" mode="Opaque" x="150" y="191" width="200" height="20" backcolor="#E4EEF2" uuid="6830d9af-6a32-47a6-b81c-0d1dcfb418e2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{permitHolder}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="table 3_CH" mode="Opaque" x="600" y="122" width="200" height="20" backcolor="#E4EEF2" uuid="e84fd715-4965-43a2-84ce-f0ad9edc0ef7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{estimationOfCompletion}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="table 3_CH" mode="Opaque" x="600" y="145" width="200" height="20" backcolor="#E4EEF2" uuid="a1852fe0-48e9-4285-941c-fe1faee55752"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{equipment}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="table 3_CH" mode="Opaque" x="600" y="168" width="200" height="20" backcolor="#E4EEF2" uuid="add05245-288b-40dd-aa4d-290e00649ba3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{workOrderNo}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="table 3_CH" mode="Opaque" x="0" y="511" width="801" height="31" backcolor="#E4EEF2" uuid="8810e789-7cb1-425a-b0f7-397af40212fb"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$P{otherHazards}]]></textFieldExpression>
+			</textField>
+			<break>
+				<reportElement x="0" y="486" width="100" height="1" uuid="6e1710dc-a526-444e-b697-36dec4534802"/>
+			</break>
+			<staticText>
+				<reportElement mode="Opaque" x="543" y="397" width="34" height="18" forecolor="#000000" backcolor="#FFFFFF" uuid="1e22d9c4-4c12-4616-b064-6f4ab828e735"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Yes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="651" y="398" width="34" height="18" forecolor="#000000" backcolor="#FFFFFF" uuid="afa68120-441a-48ad-b87d-5ebb2aa79fa8"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="651" y="418" width="34" height="18" forecolor="#000000" backcolor="#FFFFFF" uuid="3ea0c836-424a-43f1-86e7-2664affd5269"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="543" y="419" width="34" height="18" forecolor="#000000" backcolor="#FFFFFF" uuid="86103f87-9c46-49af-8485-3674a07018c9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Yes]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="487" y="398" width="36" height="18" uuid="7e8fd372-e8c2-459c-8591-7310db49e49b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="487" y="421" width="36" height="18" uuid="90507ed4-0345-43c6-b015-812f6b83fb6b"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="600" y="397" width="36" height="18" uuid="e1b3c0b1-8f8d-49b1-92e6-b0892aa883f0"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="600" y="421" width="36" height="18" uuid="93b27fc9-8085-4f58-bdf3-6cfa07119c4f"/>
+			</rectangle>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="489" y="400" width="26" height="14" uuid="bdf61b61-c552-4344-b8e8-69849f5bab50"/>
+				<imageExpression><![CDATA[$P{JsaReviewedyes}]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="602" y="399" width="26" height="14" uuid="1b9bb535-fd2a-45c5-8bd0-2ca13c5b35ac"/>
+				<imageExpression><![CDATA[$P{JsaReviewedNo}]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="602" y="423" width="26" height="14" uuid="bda6a41b-81ac-4b8c-b88f-33f0d4192a86"/>
+				<imageExpression><![CDATA[$P{LOTOintentNo}]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="490" y="423" width="26" height="14" uuid="51d0003f-5873-4587-be75-b0ce6accbd37"/>
+				<imageExpression><![CDATA[$P{LOTOIntentYes}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Opaque" x="382" y="445" width="67" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="c7489d44-932a-4a1a-9c83-dc773b7a5bdf"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="382" y="467" width="67" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="c3cd38db-1e22-4ebb-9801-35d98731d69d"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Date:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="table 3_CH" mode="Opaque" x="459" y="445" width="241" height="20" backcolor="#E4EEF2" uuid="c9e06942-3d5e-4bfc-80d3-71dd4ee2161f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{PreJobSafetyDate1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="table 3_CH" mode="Opaque" x="459" y="469" width="241" height="20" backcolor="#E4EEF2" uuid="82efae0f-b084-4dc5-9dc2-5c9889572c63"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{PreJobSafetyDate2}]]></textFieldExpression>
+			</textField>
+			<image hAlign="Left" vAlign="Middle">
+				<reportElement x="23" y="0" width="255" height="72" uuid="26b85480-cfd4-4995-bb55-c6e6167000df"/>
+				<imageExpression><![CDATA[$P{MurphyLogo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Opaque" x="573" y="23" width="223" height="36" uuid="f6dda6e8-bd62-4bc9-a430-666025c2b05a"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Energy Isolation]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="table 3_CH" mode="Opaque" x="90" y="444" width="219" height="20" backcolor="#E4EEF2" uuid="de07aecc-e751-4788-a5f7-4deafe13574a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{PreJobPermitIssuer}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="table 3_CH" mode="Opaque" x="90" y="468" width="220" height="20" backcolor="#E4EEF2" uuid="bebc5b00-0412-4cdc-8d99-ad600f4f3149"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{PreJobPermitHolder}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement style="table" mode="Opaque" x="0" y="245" width="802" height="20" backcolor="#E4EEF2" uuid="4d96363e-d2ff-42c6-a259-d1701707ff77"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{energyIsolatedType}]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="507">
+			<staticText>
+				<reportElement style="table" mode="Opaque" x="0" y="3" width="802" height="22" forecolor="#FFFFFF" backcolor="#A6A6A6" uuid="4b039d8f-cef5-4cae-916c-07154efe8229"/>
+				<box>
+					<pen lineColor="#000000"/>
+					<topPen lineColor="#000000"/>
+					<leftPen lineColor="#000000"/>
+					<bottomPen lineColor="#000000"/>
+					<rightPen lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="16" isBold="true"/>
+					<paragraph firstLineIndent="5"/>
+				</textElement>
+				<text><![CDATA[RETURN TO SERVICE :]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="32" width="801" height="27" uuid="d9f33dbc-2797-40d3-a362-f17a58230034"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Opaque" x="4" y="36" width="429" height="20" uuid="702b14cc-0f12-4c42-b1d9-c69fa9226f62"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[All affected employees have been notified of intent to remove LOTO :]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="571" y="36" width="39" height="20" uuid="568f2591-4312-4804-9edd-53db0f507dc5"/>
+			</rectangle>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="573" y="38" width="35" height="16" uuid="4e178e47-1f07-4c28-b59d-7b1671ffebf7"/>
+				<imageExpression><![CDATA[$P{LOTORemovalInfoYes}]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="0" y="59" width="801" height="27" uuid="e4892065-4d3f-44b1-abb5-a9d04588b6a2"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Opaque" x="4" y="61" width="289" height="20" uuid="2c5b37af-d23b-4278-8957-6979a2a70dbf"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[All affected employees have removed their locks :]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="0" y="86" width="801" height="27" uuid="e217141a-284d-4685-9552-27532235207f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="113" width="801" height="27" uuid="1eb9e0c4-aa8d-4c86-9f9e-b31b0c60e261"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="139" width="801" height="27" uuid="ddf67da1-f972-4cd0-b24d-90f7ec4e8e2f"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="0" y="166" width="801" height="27" uuid="51eb874e-2586-4c21-bad3-8b883af3120e"/>
+			</rectangle>
+			<staticText>
+				<reportElement mode="Opaque" x="4" y="169" width="84" height="20" uuid="35761dc7-c1fd-410f-b9d2-18fe0c070df1"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Permit Issuer :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="4" y="142" width="85" height="20" uuid="529786ca-3289-4115-894c-d2c56ce893a9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Permit Holder:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="4" y="89" width="289" height="20" uuid="28265349-3ba5-4e4b-b5a2-9b002d53969c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Work area was inspected prior to removing LOTO :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="2" y="116" width="289" height="20" uuid="a17d43e6-e9f8-479f-84cc-c1c8a64e7e92"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[ I certify that specified isolations have been reinstated]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="88" y="142" width="174" height="20" backcolor="#E4EEF2" uuid="84b7091c-3634-4eaf-bdf4-9c99ce4ae5ce"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{ServicePermitHolder}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="88" y="170" width="174" height="20" backcolor="#E4EEF2" uuid="9245fb32-9af9-41e3-b823-ef6724d8ade8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{ServicePermitIssuer}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="322" y="170" width="51" height="20" uuid="8fd31b28-1067-47d7-9ec4-0b428932bfb2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[ Date :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="568" y="170" width="51" height="20" uuid="db3c61f2-1a81-4494-b079-602ba031d8d5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[ Time :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="568" y="143" width="51" height="20" uuid="acc20a1c-3fcf-4a7e-8e1e-58574b7d0a43"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[ Time :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="319" y="143" width="53" height="20" uuid="a3fd5c00-2860-48c9-86cc-d6bafa73dde9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[  Date :]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="369" y="143" width="174" height="20" backcolor="#E4EEF2" uuid="8b906502-d93a-4aaf-aed0-14107d11e6aa"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{ServiceHolderDate}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="368" y="169" width="174" height="20" backcolor="#E4EEF2" uuid="91a72b75-004e-470c-bfc5-16373250c948"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{ServiceIssuerDate}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="611" y="142" width="174" height="20" backcolor="#E4EEF2" uuid="459a30e5-5e9b-4d72-88a8-9e3cd81c1a5e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{ServiceHolderTime}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Opaque" x="612" y="170" width="174" height="20" backcolor="#E4EEF2" uuid="81be4151-8526-4ce7-9b62-345b846eb6fc"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{ServiceIssuerTime}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="677" y="35" width="39" height="20" uuid="5a935dd4-228f-401f-bc47-ab1a95687c16"/>
+			</rectangle>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="679" y="37" width="35" height="16" uuid="04bcb172-6826-456c-aec6-b936f82a98ca"/>
+				<imageExpression><![CDATA[$P{LOTORemovalInfoNo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement mode="Opaque" x="621" y="90" width="31" height="20" uuid="dbe77f57-cea7-4acb-99b2-33cf9e6ded11"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[ Yes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="727" y="89" width="31" height="20" uuid="5427f4f3-5517-445e-aba8-d83b13069316"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[ No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="620" y="35" width="31" height="20" uuid="a0e6e275-2477-426c-af4e-7629298fb89b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[ Yes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="727" y="35" width="31" height="20" uuid="102c0b3a-a11a-4bdf-805c-02eb1bc2b467"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[ No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="621" y="63" width="31" height="20" uuid="a216b7bc-61ea-43f8-86e5-c276b5df81a7"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[ Yes]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="727" y="63" width="31" height="20" uuid="879fea49-4003-44c5-8c96-8f0f014e07d8"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[ No]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="571" y="64" width="39" height="20" uuid="60866ddb-0f2b-48ea-9134-236eb5492fcd"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="571" y="90" width="39" height="20" uuid="c136777a-1b8b-488a-ad32-2167a05fa1d3"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="677" y="64" width="39" height="20" uuid="513a8eff-0c2e-4944-ac6e-b7dfbac93ae0"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="677" y="90" width="39" height="20" uuid="a3f8ac3e-9093-4bea-89e1-39a1e46784fe"/>
+			</rectangle>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="573" y="65" width="35" height="16" uuid="7ee5d03e-f8cf-4274-901e-b29f7e8483bb"/>
+				<imageExpression><![CDATA[$P{affectLockRemovedYes}]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="679" y="66" width="35" height="16" uuid="01ae5f51-ca3c-4362-845d-4497d3c7e76f"/>
+				<imageExpression><![CDATA[$P{affectLockRemovedNo}]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="679" y="92" width="35" height="16" uuid="29c43ded-9284-4dc3-9faf-3017ccfbf85f"/>
+				<imageExpression><![CDATA[$P{workAreaInspectedNo}]]></imageExpression>
+			</image>
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement x="574" y="92" width="35" height="16" uuid="793117b8-10dc-4bec-b869-b00abfb502fd"/>
+				<imageExpression><![CDATA[$P{workAreaInspectedYes}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="table" mode="Opaque" x="1" y="209" width="802" height="22" forecolor="#FFFFFF" backcolor="#A6A6A6" uuid="91b62ab6-473b-4a72-85af-b1acf95d392a"/>
+				<box>
+					<pen lineColor="#000000"/>
+					<topPen lineColor="#000000"/>
+					<leftPen lineColor="#000000"/>
+					<bottomPen lineColor="#000000"/>
+					<rightPen lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="16" isBold="true"/>
+					<paragraph firstLineIndent="5"/>
+				</textElement>
+				<text><![CDATA[ TYPE AND DESCRIPTION OF ISOLATIONS :]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement key="table 3" style="table 3" x="4" y="236" width="796" height="157" uuid="7698d470-ba8e-484f-be85-9f061a201f53"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" whenNoDataType="AllSectionsNoDetail">
+					<datasetRun subDataset="New Dataset 1" uuid="86696e36-9a6c-4b59-ac45-b44bd1f92597">
+						<dataSourceExpression><![CDATA[$P{IsolationTable}]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="130" uuid="534e102b-5714-4530-8267-81c8782482e5">
+						<jr:columnHeader style="table 3_CH" height="70" rowSpan="2">
+							<staticText>
+								<reportElement style="table 3_CH" x="0" y="0" width="130" height="70" backcolor="#E4EEF2" uuid="f1d8e6b9-790a-49e9-8388-377600fbece8"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[  Isolation Details]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 3_CH" height="0" rowSpan="1"/>
+						<jr:detailCell style="table 3_TD" height="49" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table" x="0" y="0" width="130" height="49" uuid="db001dc4-d5ed-4484-ba81-5038655e6c19"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{isolationDetail}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="152" uuid="cc3a06d1-16f8-4e67-bac5-0c36261fb829">
+						<jr:columnHeader style="table 3_CH" height="70" rowSpan="2">
+							<staticText>
+								<reportElement style="table 3_CH" x="0" y="0" width="152" height="70" backcolor="#E4EEF2" uuid="edef71fd-792a-4833-a7c2-8bde6c9c4290"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[ Location]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter style="table 3_CH" height="0" rowSpan="1"/>
+						<jr:detailCell style="table 3_TD" height="49" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table" x="0" y="0" width="152" height="49" backcolor="#FFFFFF" uuid="5f43932a-cf87-45c0-bf6b-8143eb26740d"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{location}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:columnGroup width="134" uuid="0fc8af9c-8a61-42d2-b402-40d9e0b0863b">
+						<jr:columnHeader style="table 3_CH" height="40" rowSpan="1">
+							<staticText>
+								<reportElement style="table 3_CH" x="0" y="0" width="134" height="40" backcolor="#E4EEF2" uuid="85f9e3d8-ff13-4870-97c6-47124ae65d53"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[ Stored Energy Released]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:column width="64" uuid="f4d5411e-b93a-472d-9601-bfdf2ea337ac">
+							<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+								<staticText>
+									<reportElement style="table 3_CH" x="0" y="0" width="64" height="30" backcolor="#E4EEF2" uuid="2cdd4a7b-cc0c-4906-b78d-e5e577f28e3b"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="12" isBold="true"/>
+									</textElement>
+									<text><![CDATA[ Yes]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell height="49" rowSpan="1">
+								<textField isBlankWhenNull="true">
+									<reportElement style="table" x="0" y="0" width="64" height="49" uuid="2e5f83c7-fb5f-45e5-940a-775dcf42ce99"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{isEnergyStored}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="70" uuid="d8661ad9-d8d8-4079-b6da-eb8d182ca3b3">
+							<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+								<staticText>
+									<reportElement style="table 3_CH" x="0" y="0" width="70" height="30" backcolor="#E4EEF2" uuid="e143492d-8a9d-444c-a1ee-3b3f10f190db"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="12" isBold="true"/>
+									</textElement>
+									<text><![CDATA[ No]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell height="49" rowSpan="1">
+								<textField isBlankWhenNull="true">
+									<reportElement style="table" x="0" y="0" width="70" height="49" uuid="87f503e6-86c6-45a3-a994-a23fab8717aa"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{isEnergyNotStored}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:columnGroup>
+					<jr:columnGroup width="134" uuid="a5b00df9-2e42-412a-b49f-85fe6bb4b64b">
+						<jr:columnHeader style="table 3_CH" height="40" rowSpan="1">
+							<staticText>
+								<reportElement style="table 3_CH" x="0" y="0" width="134" height="40" backcolor="#E4EEF2" uuid="f67e1b86-985d-4de1-917a-a264f5f57811"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[ Equipment tested to verify isolation]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:column width="64" uuid="f053086a-8042-4788-88dd-fa2a013a730d">
+							<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+								<staticText>
+									<reportElement style="table 3_CH" x="0" y="0" width="64" height="30" backcolor="#E4EEF2" uuid="f2c4a506-30dd-408d-b421-7d1fb1d435d1"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="12" isBold="true"/>
+									</textElement>
+									<text><![CDATA[ Yes]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell height="49" rowSpan="1">
+								<textField isBlankWhenNull="true">
+									<reportElement style="table" x="0" y="0" width="64" height="49" uuid="9ffd946c-cf6e-49cc-afdd-698a32112c25"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{isEquipmentTested}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="70" uuid="3932c9a9-33e2-42dc-975b-20166b5dca15">
+							<jr:columnHeader style="table 3_CH" height="30" rowSpan="1">
+								<staticText>
+									<reportElement style="table 3_CH" x="0" y="0" width="70" height="30" backcolor="#E4EEF2" uuid="1b826e70-ed6f-4a1d-8669-42cd151eb4d0"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle">
+										<font size="12" isBold="true"/>
+									</textElement>
+									<text><![CDATA[ No]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:detailCell height="49" rowSpan="1">
+								<textField isBlankWhenNull="true">
+									<reportElement style="table" x="0" y="0" width="70" height="49" uuid="513897e1-4990-4d57-bea3-ad681b4bbc5c"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{isEquipmentNotTested}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:columnGroup>
+					<jr:column width="129" uuid="a06338dc-7f2c-4f1c-9e6b-ec49c93328b0">
+						<jr:tableHeader height="0" rowSpan="1"/>
+						<jr:tableFooter height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 3_CH" height="70" rowSpan="2">
+							<staticText>
+								<reportElement style="table 3_CH" mode="Opaque" x="0" y="0" width="129" height="40" backcolor="#E4EEF2" uuid="b4a2d7b7-af4c-4a6e-a865-d7e4d5f132c2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[ Isolation]]></text>
+							</staticText>
+							<staticText>
+								<reportElement style="table 3_CH" mode="Opaque" x="0" y="40" width="129" height="30" backcolor="#E4EEF2" uuid="f7b10e8e-e1e7-4fa0-be6f-3bb00711e5e2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[ Date / Time]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="0" rowSpan="1"/>
+						<jr:detailCell height="49" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table" x="0" y="0" width="129" height="49" backcolor="#FFFFFF" uuid="1248aa07-93fb-43cf-a073-99934a17de47"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{isolationDate}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="124" uuid="3ce01061-d5dc-42e0-9ba7-b6b1e12533cf">
+						<jr:tableHeader height="0" rowSpan="1"/>
+						<jr:tableFooter height="0" rowSpan="1"/>
+						<jr:columnHeader style="table 3_CH" height="70" rowSpan="2">
+							<staticText>
+								<reportElement style="table 3_CH" mode="Opaque" x="0" y="0" width="124" height="40" backcolor="#E4EEF2" uuid="1d1919a1-5dd6-4bdb-80d9-a1d09f721a1b"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[ Reinstatement]]></text>
+							</staticText>
+							<staticText>
+								<reportElement style="table 3_CH" mode="Opaque" x="0" y="40" width="124" height="30" backcolor="#E4EEF2" uuid="2dcb5e08-f8d0-4843-b15b-db4f5e767287"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[ Date / Time]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="0" rowSpan="1"/>
+						<jr:detailCell height="49" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement style="table" x="0" y="0" width="124" height="49" backcolor="#FFFFFF" uuid="728ce422-2edc-4d8e-9696-abfe8a62ec8f"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{reInstateMentDate}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement style="table" positionType="Float" stretchType="RelativeToTallestObject" mode="Opaque" x="2" y="405" width="796" height="24" uuid="732ec1f1-bc35-4290-977f-4de09e85998b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[   I certified that all of the above isolations have been carried out as indicated]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="table" positionType="Float" stretchType="RelativeToTallestObject" mode="Opaque" x="2" y="429" width="796" height="24" uuid="e2f8ec7b-2c33-4ae2-a239-89d0c9dc8b9d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[   Permit Holder:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" mode="Opaque" x="92" y="432" width="174" height="18" backcolor="#E4EEF2" uuid="40010b72-38bb-45b3-ad28-9df3d7151b83"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{IsolationPermitHolder}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="table" positionType="Float" stretchType="RelativeToTallestObject" mode="Opaque" x="2" y="453" width="796" height="24" uuid="6bd0aa5e-5b85-4802-9272-9851d1c492ac"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[   Permit Issuer :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" mode="Opaque" x="344" y="431" width="181" height="20" backcolor="#E4EEF2" uuid="e2f43dfd-d06b-463f-a6a2-6ed85e2121b7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{PermitHolderDate}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" mode="Opaque" x="344" y="455" width="181" height="20" backcolor="#E4EEF2" uuid="93bae544-642f-4b77-ab67-47d04c4039b7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{PermitIssuerDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" mode="Opaque" x="290" y="454" width="45" height="20" uuid="2032fb11-aa6d-4d0f-86c5-0f6531cc99cf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[ Date :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" mode="Opaque" x="551" y="430" width="51" height="20" uuid="27342e38-98f9-4cd5-981b-ef1753bbc9f7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[ Time :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" mode="Opaque" x="602" y="431" width="174" height="20" backcolor="#E4EEF2" uuid="d1a05977-99e1-4962-be1c-0f0095c81fc0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{ServiceIssuerTime}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" mode="Opaque" x="600" y="455" width="176" height="20" backcolor="#E4EEF2" uuid="b74518de-9a9b-4241-b368-e2175a143a83"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{ServiceHolderTime}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" mode="Opaque" x="284" y="430" width="53" height="20" uuid="092d7c81-645d-41d5-8111-b8fb9e173187"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[  Date :]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" mode="Opaque" x="92" y="455" width="174" height="20" backcolor="#E4EEF2" uuid="838e2486-918c-498a-95d1-5fd56ed3333c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{IsolationPermitIssuer}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" mode="Opaque" x="551" y="455" width="51" height="20" uuid="be0d5e8b-ac7e-4dfd-9433-5bf48e64f217"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[ Time :]]></text>
+			</staticText>
+		</band>
+		<band height="403">
+			<staticText>
+				<reportElement style="table" positionType="Float" stretchType="RelativeToTallestObject" mode="Opaque" x="1" y="20" width="802" height="22" forecolor="#FFFFFF" backcolor="#A6A6A6" uuid="23df7991-8b7a-45b4-9e68-79435bc24ea5"/>
+				<box>
+					<pen lineColor="#000000"/>
+					<topPen lineColor="#000000"/>
+					<leftPen lineColor="#000000"/>
+					<bottomPen lineColor="#000000"/>
+					<rightPen lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="16" isBold="true"/>
+					<paragraph firstLineIndent="5"/>
+				</textElement>
+				<text><![CDATA[ ENERGY ISOLATION AUTHORIZATION FORM :]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement key="table 4" style="table 4" positionType="Float" stretchType="RelativeToTallestObject" x="5" y="79" width="796" height="157" uuid="d1952656-ff6d-4c54-9689-401fc0819fe9"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" whenNoDataType="AllSectionsNoDetail">
+					<datasetRun subDataset="Table Dataset 1" uuid="d3b333a0-708a-46b0-847d-e2f80b7b3caf">
+						<dataSourceExpression><![CDATA[$P{AffectedPersonnel}]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="187" uuid="f6a62d64-1e50-4e9c-9d5c-04fae785a9ff">
+						<jr:tableHeader style="table 4_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="187" height="30" uuid="058b127c-cc97-4d30-ac35-68decee004e0"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[ Name]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 4_TD" height="59" rowSpan="1">
+							<textField>
+								<reportElement style="table" x="0" y="0" width="187" height="59" uuid="b3a59539-6a1c-4734-950a-a9d9c7bb36f8"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="211" uuid="31f5965f-0b69-437b-be2b-aeaf9fa273ee">
+						<jr:tableHeader style="table 4_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="211" height="30" uuid="5c57a9fb-4250-465e-8c23-efc54464147a"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[ Email]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 4_TD" height="59" rowSpan="1">
+							<textField>
+								<reportElement style="table" x="0" y="0" width="211" height="59" uuid="a3777366-2bb1-4994-a5a9-53904a8f5ee2"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="219" uuid="93f0410c-a6c0-44a9-8af7-a7cc740e2f20">
+						<jr:tableHeader style="table 4_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="219" height="30" uuid="1b1f2230-4d06-4b7e-b102-1d5987f8d9ee"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[ Signature]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 4_TD" height="59" rowSpan="1">
+							<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
+								<reportElement style="table" x="0" y="0" width="219" height="59" uuid="f1b5bf11-1343-4045-884b-c67b5a2bf7e1"/>
+								<imageExpression><![CDATA[new java.io.ByteArrayInputStream(org.apache.commons.codec.binary.Base64.decodeBase64($F{signature}.getBytes()))]]></imageExpression>
+							</image>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="174" uuid="a7b81926-94e6-4dd8-b045-3f063263194d">
+						<jr:tableHeader style="table 4_TH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="174" height="30" uuid="378fc6ea-900c-4bb0-92e9-333ecb83d091"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[ Contractor Performing Work]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:detailCell style="table 4_TD" height="59" rowSpan="1">
+							<textField>
+								<reportElement style="table" x="0" y="0" width="174" height="59" uuid="74328df6-48b8-4cca-90bd-0d408f16b1fb"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{contractorPerformingWork}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement style="table" positionType="Float" stretchType="RelativeToTallestObject" mode="Opaque" x="1" y="48" width="802" height="22" forecolor="#FFFFFF" backcolor="#A6A6A6" uuid="147afe02-c465-4143-9f82-e0f1b62940e2"/>
+				<box>
+					<pen lineColor="#000000"/>
+					<topPen lineColor="#000000"/>
+					<leftPen lineColor="#000000"/>
+					<bottomPen lineColor="#000000"/>
+					<rightPen lineColor="#000000"/>
+				</box>
+				<textElement>
+					<font size="16" isBold="true"/>
+					<paragraph firstLineIndent="5"/>
+				</textElement>
+				<text><![CDATA[ Affected Personnel :]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	id="WebApp_ID" version="3.1">
+	<display-name>TaskManagement_Rest</display-name>
+	<servlet>
+		<servlet-name>spring</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>spring</servlet-name>
+		<url-pattern>/imo/*</url-pattern>
+	</servlet-mapping>
+	
+	<!-- <login-config>
+		<auth-method>FORM</auth-method>
+	</login-config>
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Protected Area</web-resource-name>
+			<url-pattern>/murphy/*</url-pattern>
+
+		</web-resource-collection>
+		<auth-constraint>
+
+			<role-name>Everyone</role-name>
+		</auth-constraint>
+	</security-constraint> 
+	 <security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Public Area</web-resource-name>
+			<url-pattern>/murphy/frachit/*</url-pattern>
+			<url-pattern>/murphy/EmpDetails/*</url-pattern>
+			<url-pattern>/murphy/ita/*</url-pattern>
+			<url-pattern>/murphy/tasks/getTasksByUser/*</url-pattern>
+			<url-pattern>/murphy/tasks/updateStatus/*</url-pattern>
+			<url-pattern>/murphy/collaboration/*</url-pattern>
+			<url-pattern>/murphy/rootCause/*</url-pattern>
+			<url-pattern>/murphy/piggingWO/*</url-pattern>
+			<url-pattern>/murphy/ShiftRegister/*</url-pattern>
+		</web-resource-collection>
+	</security-constraint>   -->
+ 	<resource-ref>
+		<res-ref-name>connectivityConfiguration</res-ref-name>
+		<res-type>com.sap.core.connectivity.api.configuration.ConnectivityConfiguration</res-type>
+	</resource-ref> 
+	
+	<resource-ref>
+	    <res-ref-name>tenantContext</res-ref-name>
+	    <res-type>com.sap.cloud.account.TenantContext</res-type>
+  </resource-ref> 
+</web-app>
