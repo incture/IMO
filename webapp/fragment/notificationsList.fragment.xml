@@ -1,0 +1,69 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:ui="sap.ui.table">
+	<Dialog title="{i18n>NOTIFICATION_LIST}" class="sapUiSizeCompact dialogHeader">
+		<content>
+			<Toolbar class="sapUiSmallMargin">
+				<content>
+					<ToolbarSpacer/>
+					<SearchField search="onSearchNotif" value="{oWorkOrderDetailViewModel>/notifSearchVal}" class="sapSearchFieldBorderClass"
+						placeholder="{i18n>NOTI_ID_OR_DESC}" tooltip="{i18n>NOTI_ID_OR_DESC}" width="15rem"/>
+				</content>
+			</Toolbar>
+			<ui:Table rows="{oWorkOrderDetailViewModel>/aNotificationsSet}" selectionMode="MultiToggle" visibleRowCount="8" id="WO_DETAIL_NOTIF_TBL"
+				class="sapUiSmallMargin tableCellNoBorder TableHeaderWhiteBG" enableSelectAll="false" rowSelectionChange="onSelectNotifications">
+				<ui:columns>
+					<ui:Column width="8rem">
+						<Label text="{i18n>NOTIFICATION}" class="tableHeaderText"/>
+						<ui:template>
+							<Text text="{oWorkOrderDetailViewModel>NotifNo}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Label text="{i18n>notifType}" class="tableHeaderText"/>
+						<ui:template>
+							<Select class="selectRadius" items="{mLookupModel>/aNotificationTypeSet}" selectedKey="{oWorkOrderDetailViewModel>NotifType}"
+								enabled="false">
+								<core:ListItem key="{mLookupModel>Qmart}" text="{mLookupModel>Qmart} - {mLookupModel>qmartx}"/>
+							</Select>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Label text="{i18n>DESCRIPTION}" class="tableHeaderText"/>
+						<ui:template>
+							<Text text="{oWorkOrderDetailViewModel>Descriptn}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column>
+						<Label text="{i18n>Sys_Status}" class="tableHeaderText"/>
+						<ui:template>
+							<Text text="{oWorkOrderDetailViewModel>SysStatus}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="8rem">
+						<Label text="{i18n>notifDate}" class="tableHeaderText"/>
+						<ui:template>
+							<DatePicker class="inputRadius" placeholder="dd-MM-yyyy" dateValue="{path:'oWorkOrderDetailViewModel>CreatedOn'}" displayFormat="dd-MM-yyyy"
+								valueFormat="yyyy-MM-ddTHH:mm:ss" enabled="false"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="8rem">
+						<Label text="{i18n>equip}" class="tableHeaderText"/>
+						<ui:template>
+							<Text text="{oWorkOrderDetailViewModel>Equipment}"/>
+						</ui:template>
+					</ui:Column>
+					<ui:Column width="8rem">
+						<Label text="{i18n>breakDown}" class="tableHeaderText"/>
+						<ui:template>
+							<Switch state="{oWorkOrderDetailViewModel>Breakdown}" enabled="false"></Switch>
+						</ui:template>
+					</ui:Column>
+				</ui:columns>
+			</ui:Table>
+		</content>
+		<buttons>
+			<Button text="{i18n>CANCEL}" press="onCloseNotificationPopup" class="transparentBtn createNotifClearBtn" icon="sap-icon://decline"
+				iconFirst="true"></Button>
+			<Button text="{i18n>ADD}" press="onAddNotifications" type="Emphasized"></Button>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

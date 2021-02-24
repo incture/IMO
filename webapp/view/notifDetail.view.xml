@@ -1,0 +1,75 @@
+<mvc:View controllerName="com.sap.incture.IMO_PM.controller.notifDetail" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:html="http://www.w3.org/1999/xhtml" displayBlock="true" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+	xmlns:tnt="sap.tnt" xmlns:u="sap.ui.unified" xmlns:c="sap.ui.core">
+	<Page showHeader="true" class="sapUiSizeCompact sapMPageBackground" floatingFooter="false" enableScrolling="false">
+		<tnt:ToolHeader class="headerBG headerShadow">
+			<Label design="Bold" class="sapUiSmallMarginBegin textColr" text="{i18n>notifDetails}" wrapping="true"/>
+			<ToolbarSpacer/>
+			<c:Icon src="sap-icon://grid" tooltip="Open Attachments" press="onPressAttachments" color="#142e5e" class="attachmentsIconSize"/>
+		</tnt:ToolHeader>
+		<content>
+			<Toolbar class="sapUiTinyMarginTop tableHeaderBG tableHeaderBg" height="3rem">
+				<Button text="{i18n>updatenot}" id="updateNotif" press="checkMandatoryFields" icon="sap-icon://save" iconFirst="true"
+					class="sapUiSmallMarginBegin"
+					visible="{path:'mLookupModel>/SysStatus', formatter:'com.sap.incture.IMO_PM.formatter.formatter.setBtnVisibleUpdate'}" type="Emphasized">
+					<customData>
+						<core:CustomData key="dateType" value="UPDATE"/>
+					</customData>
+				</Button>
+				<Button text="{i18n>close_notif}" id="idcloseNotif" press="fnSaveandCloseNotif" class="tableHeadertansparentBtn"
+					visible="{path:'mLookupModel>/SysStatus', formatter:'com.sap.incture.IMO_PM.formatter.formatter.setBtnVisibleClose'}"
+					icon="sap-icon://decline" iconFirst="true"/>
+				<Button text="{i18n>revert_Notif}" id="idrevertNotif" class="tableHeadertansparentBtn" press="onRevertNotif"
+					visible="{path:'mLookupModel>/SysStatus', formatter:'com.sap.incture.IMO_PM.formatter.formatter.setBtnVisibleRevert'}"/>
+				<!--<ToolbarSpacer/>-->
+				<Button text="{i18n>APPROVE}" id="releaseButton" class="tableHeadertansparentBtn" press="onPressRelease"
+					visible="{path:'mLookupModel>/SysStatus', formatter:'com.sap.incture.IMO_PM.formatter.formatter.setBtnVisibleRelease'}"/>
+				<Button text="{i18n>CREATEORDER}" id="idCreateOrder" class="tableHeadertansparentBtn" press="onCreateWODialogOpen"
+					visible="{path:'mLookupModel>/SysStatus', formatter:'com.sap.incture.IMO_PM.formatter.formatter.setBtnVisibleCreateOrder'}"/>
+				<customData>
+					<core:CustomData key="dateType" value="DETAIL_NOTIF"/>
+				</customData>
+			</Toolbar>
+			<VBox height="{mLookupModel>/notificationPanelHeight}" class="iopRightPanelContainer"
+				width="{= ${mLookupModel>/showTaskManagementPanel} === true ? '20rem' : '0' }">
+				<c:Fragment fragmentName="com.sap.incture.IMO_PM.fragment.RightAttachmentPanel" type="XML" id="idRightAttachmentPanel"></c:Fragment>
+			</VBox>
+			<OverflowToolbar class="sapUiTinyMarginTop sapUiTinyMarginEnd tableHeaderBg">
+				<Label text="Notification List" class="sapUiSmallMarginBegin" wrapping="true"/>
+				<core:Icon src="sap-icon://navigation-right-arrow" class="sapUiTinyMarginBegin iconSize1" color="#96999b"></core:Icon>
+				<Label text="Notification Number: " class="sapUiTinyMarginBegin murphyLabelColor"/>
+				<Text text="{oNotificationDataModel>/Notifid}" class="murphyLabelColor"/>
+				<ToolbarSpacer/>
+				<Label text="{i18n>NOTIF_STATUS} :" class="sapUiSmallMarginBegin panelTextColor1"></Label>
+				<Text text="{mLookupModel>/SysStatus}"></Text>
+				<Label text="{i18n>USER_STATUS} :" class="sapUiSmallMarginBegin panelTextColor1"></Label>
+				<Text text="{path:'mLookupModel>/Userstatus',formatter:'com.sap.incture.IMO_PM.formatter.formatter.fnNotifUserStatus'} "
+					class="sapUiSmallMarginEnd"></Text>
+				<!--<VBox class="gridPadding">-->
+				<!--		<Input value="{mLookupModel>/SysStatus}" class="inputRadius" width="90%" enabled="false"/>-->
+				<!--	</VBox>-->
+				<!--	<VBox class="gridPadding">-->
+				<!--		<Input value="{mLookupModel>/Userstatus}" class="inputRadius" width="90%" enabled="false"/>-->
+				<!--	</VBox>-->
+			</OverflowToolbar>
+			<ScrollContainer height="calc(100vh - 12rem)" vertical="true">
+				<l:Grid>
+					<l:content>
+						<VBox class="sapMParentGridBroder sapUiTinyMarginBeginEnd">
+							<core:Fragment fragmentName="com.sap.incture.IMO_PM.fragment.headerDetailsNotif" type="XML"/>
+							<layoutData>
+								<l:GridData span="XL12 L12 M12 S12"/>
+							</layoutData>
+						</VBox>
+						<VBox class="sapMParentGridBroder sapUiTinyMarginBeginEnd sapUiTinyMarginTopBottom">
+							<core:Fragment fragmentName="com.sap.incture.IMO_PM.fragment.notificationDetails" id="idOperationsMaterialPanelWO" type="XML"/>
+							<layoutData>
+								<l:GridData span="XL12 L12 M12 S12"/>
+							</layoutData>
+						</VBox>
+					</l:content>
+				</l:Grid>
+			</ScrollContainer>
+		</content>
+	</Page>
+</mvc:View>
