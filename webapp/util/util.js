@@ -644,7 +644,7 @@ com.sap.incture.IMO_PM.util.util = {
 		oNotificationDataModel.setProperty("/Assembly", "");
 		oNotificationDataModel.setProperty("/FunctLoc", "");
 		oNotificationDataModel.setProperty("/PlanPlant", userPlant);
-		oNotificationDataModel.setProperty("/Maintplant", userPlant);
+
 		oNotificationDataModel.setProperty("/Plangroup", "");
 		oNotificationDataModel.setProperty("/Startdate", new Date());
 		oNotificationDataModel.setProperty("/Enddate", new Date());
@@ -674,6 +674,7 @@ com.sap.incture.IMO_PM.util.util = {
 		oNotificationViewModel.setProperty("/EndTime", oCurrentTime);
 		oNotificationViewModel.setProperty("/EqIdDes", "");
 		oNotificationViewModel.setProperty("/TechId", "");
+		//oNotificationViewModel.setProperty("/Maintplant", userPlant);
 		oNotificationViewModel.refresh();
 
 		mLookupModel.setProperty("/aEquipmentsList", []);
@@ -725,7 +726,6 @@ com.sap.incture.IMO_PM.util.util = {
 		oNotificationDataModel.setProperty("/Assembly", sAssembly); // Data type of assembly is changed
 		oNotificationDataModel.setProperty("/FunctLoc", oSelectedRow.FunctLoc);
 		oNotificationDataModel.setProperty("/PlanPlant", oSelectedRow.Planplant);
-		oNotificationDataModel.setProperty("/Maintplant", oSelectedRow.Maintplant);
 		oNotificationDataModel.setProperty("/Plangroup", oSelectedRow.Plangroup);
 		oNotificationDataModel.setProperty("/Startdate", new Date(oSelectedRow.Strmlfndate));
 		oNotificationDataModel.setProperty("/Enddate", new Date(oSelectedRow.Endmlfndate));
@@ -815,8 +815,12 @@ com.sap.incture.IMO_PM.util.util = {
 		oNotificationViewModel.setProperty("/EqIdDes", "");
 		oNotificationViewModel.setProperty("/TechId", "");
 		oNotificationViewModel.setProperty("/BreakdownDur", oSelectedRow.Downtime);
+		//oNotificationViewModel.setProperty("/Maintplant", oSelectedRow.Maintplant);
 		oNotificationViewModel.setProperty("/attachmentSet", []); //Sunanda for attachments in notifDetail
 		oNotificationViewModel.refresh();
+		
+		var userPlant = oController.oUserDetailModel.getProperty("/userPlant");
+		mLookupModel.setProperty("/userPlant", userPlant);
 
 		mLookupModel.setProperty("/aEquipmentsList", []);
 		mLookupModel.refresh();

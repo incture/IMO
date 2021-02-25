@@ -67,7 +67,7 @@ sap.ui.define([
 			});
 		},
 		fnInitializeLaunchView: function () {
-			this.getNotifTileCount();
+			//this.getNotifTileCount();
 			this.getWOListTileCount();
 		},
 		//Function to get Work centers list
