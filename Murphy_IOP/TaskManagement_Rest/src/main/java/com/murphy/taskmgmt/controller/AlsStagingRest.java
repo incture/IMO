@@ -12,7 +12,6 @@ import com.murphy.integration.dto.UIResponseDto;
 import com.murphy.taskmgmt.dto.ResponseMessage;
 import com.murphy.taskmgmt.service.interfaces.AlsStagingFacadeLocal;
 
-
 @RestController
 @CrossOrigin
 @ComponentScan("com.murphy")
@@ -23,20 +22,18 @@ public class AlsStagingRest {
 	AlsStagingFacadeLocal facadeLocal;
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	ResponseMessage createAlsStaging(@RequestParam(value="muwi") String muwi){
+	ResponseMessage createAlsStaging(@RequestParam(value = "muwi") String muwi) {
 		return facadeLocal.stageALSData(muwi);
 	}
-	
-	
+
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	ResponseMessage deleteAls(@RequestParam(value ="muwi") String muwi) {
+	ResponseMessage deleteAls(@RequestParam(value = "muwi") String muwi) {
 		return facadeLocal.removeALSData(muwi);
 	}
-	
+
 	@RequestMapping(value = "/read", method = RequestMethod.GET)
-	UIResponseDto readAlsStaging(@RequestParam(value="uwiId") String uwiId){
+	UIResponseDto readAlsStaging(@RequestParam(value = "uwiId") String uwiId) {
 		return facadeLocal.getInvestigationDetails(uwiId);
 	}
-	
-}
 
+}
