@@ -1,0 +1,359 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:icon="sap.ui.core.Icon"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz="sap.viz.ui5.controls" xmlns:unified="sap.ui.unified"
+	xmlns:viz.data="sap.viz.ui5.data" xmlns:f="sap.f" xmlns:ui="sap.ui.table" xmlns:myCustom="com.sap.incture.Incture_IOP.util"
+	xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<IconTabBar select="onOBXTabSelected" id="idOBXIconTabBar" class="iopOBXIconTab iopwbInvIconTab iopOBXTabClass" expandable="false"
+		selectedKey="{dashBoardModel>/OBXSchedulingData/selectedKey}">
+		<items>
+			<IconTabFilter key="obxScheduling" text="OBX Scheduler">
+				<Panel expandable="false" expanded="true" class="iopFontClass iopAlarmListTextClass wellVisitConfigPanelPadding"
+					headerText="OBX Scheduler View" width="100%">
+					<headerToolbar>
+						<Toolbar height="3rem">
+							<ObjectStatus text="OBX Scheduler View" state="None"></ObjectStatus>
+						</Toolbar>
+					</headerToolbar>
+					<content>
+						<PlanningCalendar noDataText="Select an OBX from the list for scheduler view" startDate="{dashBoardModel>/OBXSchedulingData/startDate}"
+							busy="{dashBoardModel>/OBXSchedulingData/busyIndicator}" busyIndicatorDelay="0" showRowHeaders="false" appointmentsReducedHeight="true"
+							class="iopCalendarClass iopCalendarTitleClass sapUiSizeCompact" stickyHeader="true"
+							rows="{path: 'dashBoardModel>/OBXSchedulingData/scheduleData'}" appointmentsVisualization="Filled" showEmptyIntervalHeaders="false"
+							viewKey="A">
+							<views>
+								<PlanningCalendarView key="A" intervalType="Hour" intervalsS="{dashBoardModel>/OBXSchedulingData/view}"
+									intervalsM="{dashBoardModel>/OBXSchedulingData/view}" intervalsL="{dashBoardModel>/OBXSchedulingData/view}" showSubIntervals="true "></PlanningCalendarView>
+							</views>
+							<!--<toolbarContent>-->
+							<!--	<ToolbarSpacer/>-->
+							<!--	<HBox justifyContent="End" class="sapUiTinyMarginEnd"-->
+							<!--		visible="{= parseInt(${dashBoardModel>/OBXUserList/gainTime}.split('.')[0]) > 0 ? true : false}">-->
+							<!--<Title text="Total time gain till now :"></Title>-->
+							<!--<ObjectStatus class="obxGainHrDisplay" text='{dashBoardModel>/OBXUserList/gainTime}' state="Success"/>-->
+							<!--	</HBox>-->
+							<!--</toolbarContent>-->
+							<rows>
+								<PlanningCalendarRow enableAppointmentsDragAndDrop="false" class="sapUiSizeCompact" title="{dashBoardModel>taskOwner}"
+									text="{dashBoardModel>name}" appointments="{path : 'dashBoardModel>appointments', templateShareable: 'false'}">
+									<appointments>
+										<unified:CalendarAppointment
+											tooltip='{parts:["dashBoardModel>classification","dashBoardModel>subClassification","dashBoardModel>estResolveTime","dashBoardModel>travelTime","dashBoardModel>totalEstTime","dashBoardModel>createdAtDisplay","dashBoardModel>startTimeInString","dashBoardModel>endTimeInString"], formatter:"com.sap.incture.Incture_IOP.util.formatter.taskSchedulerAppointmentTooltip"}Location : {dashBoardModel>location}'
+											startDate='{path:"dashBoardModel>startTime", formatter:"com.sap.incture.Incture_IOP.util.formatter.taskSchedulerStartTime"}'
+											endDate='{path:"dashBoardModel>endTime", formatter:"com.sap.incture.Incture_IOP.util.formatter.taskSchedulerEndTime"}'
+											tentative="{=${dashBoardModel>status} === 'RESOLVED' || ${dashBoardModel>status} === 'COMPLETED'}"
+											title='{parts:["dashBoardModel>classification","dashBoardModel>subClassification"], formatter:"com.sap.incture.Incture_IOP.util.formatter.taskSchedulerTitle"}'
+											text="{dashBoardModel>location}"
+											type='{parts:["dashBoardModel>status","dashBoardModel>tier"], formatter:"com.sap.incture.Incture_IOP.util.formatter.taskSchedulerAppointmentType"}'></unified:CalendarAppointment>
+									</appointments>
+								</PlanningCalendarRow>
+							</rows>
+						</PlanningCalendar>
+					</content>
+				</Panel>
+				<ScrollContainer vertical="true" class="iopDowntimeTypeHeader iopWellVisitScrollBorder">
+					<l:VerticalLayout width="30.9%" class="iopOBXVLayoutBorder">
+						<ScrollContainer height="{dashBoardModel>/moduleWiseScrollSize/obxUsersScrollHeight}" vertical="true" class="sideBorder">
+							<Table id="obxppl" selectionChange="onOBXUserListSelection" sticky="ColumnHeaders,HeaderToolbar"
+								class="sapUiSizeCompact sapUiTinyMarginEnd iopFontClass obxSchedulingNewLayoutTableCellClass alarmListHeader alarmTableHeader iopCheckBoxFrac"
+								mode="SingleSelectMaster" alternateRowColors="false" width="100%" items="{dashBoardModel>/OBXSchedulingData/OBXUserList}"
+								busy="{dashBoardModel>/busyIndicators/OBXUserListData}">
+								<headerToolbar>
+									<Toolbar class="alarmListHeader">
+										<ObjectStatus text="OBX Operators" state="None"/>
+										<ToolbarSpacer/>
+										<SearchField width="10rem" class="iopFontClass iopOBXOPeratorSearchMargin" placeholder="Search" liveChange="onOBXSchedulerOperatorsTableSearch">
+											<tooltip class="iopFontClass" text="Search"></tooltip>
+										</SearchField>
+									</Toolbar>
+								</headerToolbar>
+								<columns>
+									<Column width="45%">
+										<HBox alignContent="Center" alignItems="Center">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="Name" text="Name"/>
+										</HBox>
+									</Column>
+									<Column >
+										<HBox alignContent="Center" alignItems="Center">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="Gain/Loss" text="Gain/Loss"/>
+										</HBox>
+									</Column>
+									<Column width="20%">
+										<HBox alignContent="Center" alignItems="Center">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="" text=""/>
+										</HBox>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<HBox alignItems="Center" alignContent="Center">
+												<f:Avatar initials="{parts:[{path:'dashBoardModel>taskOwnerDisplayName'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.getinitials'}"
+													displaySize="S" displayShape="Circle" class="sapUiTinyMarginEnd"/>
+												<Text text="{dashBoardModel>taskOwnerDisplayName}" class="iopFontClass iopAlarmListTextClass "/>
+											</HBox>
+											<Text text='{path:"dashBoardModel>gainTime", formatter:"com.sap.incture.Incture_IOP.util.formatter.formatObxMinHr"}'
+												class="iopFontClass iopAlarmListTextClass"/>
+											<core:Icon src="sap-icon://InctureIopv2/dispatch"
+												color="{parts:[{path:'dashBoardModel>gainTime'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.getGainColor'}"
+												class="sapUiTinyMarginBegin"
+												tooltip="{parts:[{path:'dashBoardModel>gainTime'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.getGainStatus'}"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</ScrollContainer>
+					</l:VerticalLayout>
+					<l:VerticalLayout width="69%">
+						<ScrollContainer height="{dashBoardModel>/moduleWiseScrollSize/obxRecommendedTaskListScrollHeight}" vertical="true">
+							<myCustom:Table busy="{dashBoardModel>/OBXSchedulingData/recommentedTasklistBusy}"
+								items="{dashBoardModel>/OBXSchedulingData/recommentedTaskList}" busyIndicatorDelay="0" id="obxsuggestions"
+								sticky="ColumnHeaders,HeaderToolbar" rightPress="onObxRecommendationRightPress"
+								class="sapUiSizeCompact sapUiTinyMarginEnd iopFontClass obxSchedulingNewLayoutTableCellClass alarmListHeader alarmTableHeader iopCheckBoxFrac"
+								alternateRowColors="false" width="100%" mode="SingleSelectMaster" noDataText="Recommended task list">
+								<myCustom:headerToolbar >
+									<Toolbar class="alarmListHeader">
+										<ObjectStatus text="Recommended Task List" state="None"></ObjectStatus>
+										<ToolbarSpacer/>
+										<SearchField width="10rem" class="iopFontClass iopOBXOPeratorSearchMargin" placeholder="Search" liveChange="onOBXSchedulerRecommendedTaskListTableSearch">
+											<tooltip class="iopFontClass" text="Search"></tooltip>
+										</SearchField>
+									</Toolbar>
+								</myCustom:headerToolbar>
+								<myCustom:columns>
+									<Column width="30%">
+										<HBox alignContent="Center" alignItems="Center">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="Task Description" text="Task Description"/>
+										</HBox>
+									</Column>
+									<Column >
+										<HBox alignContent="Center" alignItems="Center">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="Location" text="Location"/>
+										</HBox>
+									</Column>
+									<Column >
+										<HBox alignContent="Center" alignItems="Center">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="Est.Completion Time(mins)" text="Est.Completion Time (mins)"/>
+										</HBox>
+									</Column>
+									<Column>
+										<HBox alignContent="Center" alignItems="Center">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="Est.Travel Time(mins)" text="Est.Travel Time (mins)"/>
+										</HBox>
+									</Column>
+									<Column >
+										<HBox alignContent="Center" alignItems="Center">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="Total Duration(mins)" text="Total Duration (mins)"/>
+										</HBox>
+									</Column>
+									<Column width="20%">
+										<HBox alignContent="Center" alignItems="Center">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="Assignee" text="Assignee"/>
+										</HBox>
+									</Column>
+								</myCustom:columns>
+								<myCustom:items>
+									<ColumnListItem>
+										<cells>
+											<VBox>
+												<Text tooltip="{dashBoardModel>taskDescription}" text="{dashBoardModel>taskDescription}"
+													class="iopFontClass iopAlarmListTextClass iopwbInvSummaryClassWrap" wrapping="false"/>
+												<Link text="Read More" press="onPressReadMore"
+													visible='{parts:["dashBoardModel>taskDescription"], formatter:"com.sap.incture.Incture_IOP.util.formatter.showSummary"}'/>
+											</VBox>
+											<!--<Text text="{dashBoardModel>taskDescription}" class="iopFontClass iopAlarmListTextClass"/>-->
+											<Text text="{dashBoardModel>locationText}" class="iopFontClass iopAlarmListTextClass"/>
+											<Text text="{dashBoardModel>estimatedCompletionTime}" class="iopFontClass iopAlarmListTextClass"/>
+											<Text text="{dashBoardModel>estimatedTravelTime}" class="iopFontClass iopAlarmListTextClass"/>
+											<Text text="{dashBoardModel>estimatedTotalDuration}" class="iopFontClass iopAlarmListTextClass"/>
+											<Text text="{dashBoardModel>assigneeName}" class="iopFontClass sapUiTinyMarginEnd iopAlarmListTextClass"/>
+										</cells>
+									</ColumnListItem>
+								</myCustom:items>
+							</myCustom:Table>
+						</ScrollContainer>
+					</l:VerticalLayout>
+				</ScrollContainer>
+			</IconTabFilter>
+			<IconTabFilter key="obxEngine" text="OBX Engine" visible="true">
+				<Panel expandable="false" expanded="true" class="iopFontClass iopAlarmListTextClass wellVisitConfigPanelPadding"
+					headerText="OBX Engine Configurations" width="100%">
+					<headerToolbar>
+						<Toolbar height="3rem">
+							<ObjectStatus text="OBX Engine Configurations" state="None"></ObjectStatus>
+							<Label
+								text="{parts:['dashBoardModel>/OBXSchedulingData/obxEngine/config/LAST_UPDATED_DATE_TIME','dashBoardModel>/OBXSchedulingData/obxEngine/config/OBX_ENGINE_UPDATED_BY'],formatter:'com.sap.incture.Incture_IOP.util.formatter.formatOBXLastRun'}"
+								class="dopDateClass" design="Bold"/>
+							<ToolbarSpacer></ToolbarSpacer>
+							<Button text="Run OBX Engine" tooltip="Run OBX Engine" press="onRunOBXEngine" enabled="{dashBoardModel>/userData/isIOPAdmin}" visible="{= ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isOBXReadOnly} === false}"
+								class=" iopBtnClass iopClearBtn sapUiSmallMarginEnd"/>
+						</Toolbar>
+					</headerToolbar>
+					<content>
+						<VBox class="sapUiTinyMarginTop">
+							<l:Grid defaultSpan="L4 M4 S6" width="100%" vSpacing="0">
+								<l:content>
+									<VBox>
+										<Label text="Well Stop Duration (Mins)" design="Bold" required="true" class="iopFontClass iopwbLabelRequiredClass"/>
+										<Input class="sapUiSizeCompact iopInputClass iopDTInputClass" type="Number" cd:min="1" cd:max="9999" change="onOBXConfigInputChange"
+											value="{dashBoardModel>/OBXSchedulingData/obxEngine/config/DURATION_STOP_BY_WELLS}" enabled="{= ${dashBoardModel>/userData/isIOPAdmin} &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isOBXReadOnly} === false}"/>
+									</VBox>
+									<!--<VBox>-->
+									<!--	<Label text="Number of OBX Operators in EFS" design="Bold" required="true" class="iopFontClass iopwbLabelRequiredClass"/>-->
+									<!--	<Input class="sapUiSizeCompact iopInputClass iopDTInputClass"-->
+									<!--		value="{dashBoardModel>/OBXSchedulingData/obxEngine/config/NUM_OBX_OPERATOR_EFS}" type="Number" cd:min="1" cd:max="99"-->
+									<!--		change="onOBXConfigInputChange" enabled="{dashBoardModel>/userData/isIOPAdmin}"/>-->
+									<!--</VBox>-->
+									<VBox>
+										<Label text="Uplift for Workload - factor (%)" design="Bold" required="true" class="iopFontClass iopwbLabelRequiredClass"/>
+										<Input class="sapUiSizeCompact iopInputClass iopDTInputClass"
+											value="{dashBoardModel>/OBXSchedulingData/obxEngine/config/UPLOAD_WORKFACTOR_PERCENT}" type="Number" cd:min="-99" cd:max="99"
+											cd:label="workload" change="onOBXConfigInputChange" enabled="{= ${dashBoardModel>/userData/isIOPAdmin} &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isOBXReadOnly} === false}"/>
+									</VBox>
+									<VBox>
+										<Label text="Shift Duration (Hrs)" design="Bold" required="true" class="iopFontClass iopwbLabelRequiredClass"/>
+										<Input class="sapUiSizeCompact iopInputClass iopDTInputClass" value="{dashBoardModel>/OBXSchedulingData/obxEngine/config/SHIFT_DURATION}"
+											type="Number" cd:min="1" cd:max="24" cd:label="shiftDuration" change="onOBXConfigInputChange"
+											enabled="{= ${dashBoardModel>/userData/isIOPAdmin} &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isOBXReadOnly} === false}"/>
+									</VBox>
+								</l:content>
+							</l:Grid>
+						</VBox>
+					</content>
+				</Panel>
+				<ScrollContainer vertical="true" class="iopDowntimeTypeHeader iopWellVisitScrollBorder">
+					<l:VerticalLayout width="69%" class="iopOBXVLayoutBorder">
+						<ScrollContainer height="{dashBoardModel>/moduleWiseScrollSize/obxEngineScrollHeight}" vertical="true"
+							class="iopDowntimeTypeHeader iopWellVisitScrollBorder">
+							<Table id="idOBXOperatorAllocationTable" sticky="ColumnHeaders,HeaderToolbar,InfoToolbar"
+								class="iopFontClass alarmTableHeader iopWellVisitScrollBorder" width="100%" alternateRowColors="true"
+								items="{dashBoardModel>/OBXSchedulingData/obxEngine/obxAllocation}">
+								<headerToolbar >
+									<Toolbar class="alarmListHeader">
+										<ObjectStatus text="OBX Operator Allocation" state="None"/>
+										<ToolbarSpacer/>
+										<Label text="Field"></Label>
+										<Select id="idOBXFieldsSelect" change="onOBXFieldDaySelectChange" selectedKey="{dashBoardModel>/OBXSchedulingData/obxEngine/selOBXField}">
+											<items>
+												<core:Item key="Catarina" text="Catarina"/>
+												<core:Item key="Karnes" text="Karnes"/>
+												<core:Item key="Tilden" text="Tilden"/>
+												<core:Item key="All" text="All"/>
+											</items>
+										</Select>
+										<Label text="Day"></Label>
+										<Select change="onOBXFieldDaySelectChange" selectedKey="{dashBoardModel>/OBXSchedulingData/obxEngine/selOBXDay}">
+											<items>
+												<core:Item key="MONDAY" text="Monday"/>
+												<core:Item key="TUESDAY" text="Tuesday"/>
+												<core:Item key="WEDNESDAY" text="Wednesday"/>
+												<core:Item key="THURSDAY" text="Thursday"/>
+												<core:Item key="FRIDAY" text="Friday"/>
+												<core:Item key="All" text="All"/>
+											</items>
+										</Select>
+										<ToolbarSeparator></ToolbarSeparator>
+										<SearchField width="10rem" class="iopFontClass" placeholder="Search" liveChange="onOBXOperatorAllocationSearch">
+											<tooltip class="iopFontClass" text="Search"></tooltip>
+										</SearchField>
+										<Button icon="sap-icon://download" text="Export" class="fldtcktTblHdrBtnClass sapUiSizeCompact" press="onExportExcel"></Button>
+									</Toolbar>
+								</headerToolbar>
+								<infoToolbar>
+									<Toolbar class="obxEngineToolbar">
+										<Label text="Reassignment is allowed for your field between 12AM and 5:30AM."
+											visible="{= !${dashBoardModel>/OBXSchedulingData/obxEngine/isEditableOperators}}"/>
+										<!--<Label text="Number of Unassigned Wells- {dashBoardModel>/OBXSchedulingData/obxEngine/unAssignedWellsNum}"-->
+										<!--	visible="{= ${dashBoardModel>/OBXSchedulingData/obxEngine/isEditableOperators}}"/>-->
+										<Label text="{dashBoardModel>/OBXSchedulingData/obxEngine/obxEngineInfoToolBarText}"
+											visible="{= ${dashBoardModel>/OBXSchedulingData/obxEngine/isEditableOperators}}"/>
+									</Toolbar>
+								</infoToolbar>
+								<columns>
+									<Column width="50px">
+										<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Cluster Id"/>
+									</Column>
+									<Column width="100px">
+										<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Well"/>
+									</Column>
+									<Column width="70px">
+										<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Tier"/>
+									</Column>
+									<Column width="90px">
+										<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="OBX Operator"/>
+									</Column>
+									<!--<Column width="85px">-->
+									<!--	<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="PRO Operator"/>-->
+									<!--</Column>-->
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>clusterdId}"/>
+											<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>well}"/>
+											<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>tier}"/>
+											<Select forceSelection="false" width="170px" change="onOBXOperatorSelectChange"
+												items="{dashBoardModel>/OBXSchedulingData/obxEngine/obxOperatorList}"
+												enabled="{= ${dashBoardModel>/OBXSchedulingData/obxEngine/isEditableOperators} &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isOBXReadOnly} === false}" selectedKey="{dashBoardModel>obxOperatorEmail}">
+												<items>
+													<core:Item key="{dashBoardModel>userId}" text="{dashBoardModel>userName}"/>
+												</items>
+											</Select>
+											<!--<Select forceSelection="false" width="170px" change="onPROOperatorSelectChange"-->
+											<!--	items="{dashBoardModel>/OBXSchedulingData/obxEngine/proOperatorList}"-->
+											<!--	enabled="{dashBoardModel>/OBXSchedulingData/obxEngine/isEditableOperators}" selectedKey="{dashBoardModel>proOperatorEmail}">-->
+											<!--	<items>-->
+											<!--		<core:Item key="{dashBoardModel>userId}" text="{dashBoardModel>userName}"/>-->
+											<!--	</items>-->
+											<!--</Select>-->
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</ScrollContainer>
+					</l:VerticalLayout>
+					<l:VerticalLayout width="30.9%">
+						<ScrollContainer height="{dashBoardModel>/moduleWiseScrollSize/obxEngineScrollHeight}" vertical="true" class="iopDowntimeTypeHeader">
+							<Table id="idOBXOperatorsTable" sticky="ColumnHeaders,HeaderToolbar" class="iopFontClass alarmTableHeader" width="100%"
+								alternateRowColors="true" items="{dashBoardModel>/OBXSchedulingData/obxEngine/obxWorkLoadList}">
+								<headerToolbar>
+									<Toolbar class="alarmListHeader">
+										<ObjectStatus text="OBX Operators" state="None"/>
+										<ToolbarSpacer/>
+										<Button icon="sap-icon://hint" tooltip="Legend" press="onOperatorLegendPress" type="Transparent"/>
+										<ToolbarSeparator></ToolbarSeparator>
+										<SearchField width="10rem" class="iopFontClass iopOBXOPeratorSearchMargin" placeholder="Search" liveChange="onOBXOperatorsTableSearch">
+											<tooltip class="iopFontClass" text="Search"></tooltip>
+										</SearchField>
+									</Toolbar>
+								</headerToolbar>
+								<columns>
+									<Column width="80px">
+										<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Cluster Id"/>
+									</Column>
+									<Column width="150px">
+										<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Operator"/>
+									</Column>
+									<Column width="85px">
+										<HBox>
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Workload (%)"/>
+											<Button icon="sap-icon://sort" class=" iopBtnClass iopClearBtn obxSortBtn" press="onOBXOperatorSort"/>
+										</HBox>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<Text class="iopFontClass iopAlarmListTextClass" text="{dashBoardModel>clusterId}"/>
+											<Text class="iopFontClass iopAlarmListTextClass" text="{dashBoardModel>obxOperatorfullName}"/>
+											<ObjectStatus class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>workLoad}"
+												state="{path:'dashBoardModel>workLoad', formatter:'com.sap.incture.Incture_IOP.util.formatter.getWorkLoadColour' }"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</ScrollContainer>
+					</l:VerticalLayout>
+				</ScrollContainer>
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+</core:FragmentDefinition>

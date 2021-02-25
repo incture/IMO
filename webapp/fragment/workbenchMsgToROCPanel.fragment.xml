@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Dialog showHeader="false" contentWidth="100%" class="iopwbMsgDetailDialogClass iopwbMsgDetailDialogClass3 iopwbMsgDialogClass"
+		beforeOpen="onBeforeWorkbenchMsgToROCPanelOpen" afterOpen="onAfterWorkbenchMsgToROCPanelOpen"
+		busy="{dashBoardModel>/InsightToActionData/iopWBMsgInd}" busyIndicatorDelay="0" verticalScrolling="false">
+		<HBox>
+			<VBox width="100%">
+				<HBox justifyContent="End" height="0rem">
+					<Button visible="false" icon="sap-icon://sys-cancel" class="iopwbCloseBtnClass" type="Transparent" press="onWBMsgClose"/>
+				</HBox>
+				<core:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.workbenchMsgToROCDetailsPanel" type="XML" id="idWorkbenchMsgToROCDetailsPanel"></core:Fragment>
+			</VBox>
+			<!--<VBox width="25%" class="iopwbSplitBorderClass">-->
+			<!--	<HBox justifyContent="End" height="0rem">-->
+			<!--		<Button icon="sap-icon://sys-cancel" class="iopwbCloseBtnClass" type="Transparent" press="onWBMsgClose"/>-->
+			<!--	</HBox>-->
+			<!--	<core:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.workbenchMsgToROCDetailRightPanel" type="XML"-->
+			<!--		id="idWorkbenchMsgToROCDetailRightPanel"></core:Fragment>-->
+			<!--</VBox>-->
+		</HBox>
+		<buttons>
+			<!--<Button text="Forward To POT" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass" press="onPressWBMsgButtons"-->
+			<!--	visible="{= ${dashBoardModel>/userData/isROC} === true &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === false &amp;&amp; ${dashBoardModel>/InsightToActionData/msgDraftDetailData/status} !== 'RESOLVED' &amp;&amp; !${dashBoardModel>/InsightToActionData/msgDraftDetailData/hasDispatch} &amp;&amp; !${dashBoardModel>/InsightToActionData/msgDraftDetailData/hasInvestigation}}"/>-->
+			<!--<Button text="Investigate" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass" press="onPressWBMsgButtons"-->
+			<!--	visible="{= ${dashBoardModel>/userData/isPOT} === true &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === false &amp;&amp; ${dashBoardModel>/InsightToActionData/msgDraftDetailData/status} !== 'RESOLVED' &amp;&amp; !${dashBoardModel>/InsightToActionData/msgDraftDetailData/hasDispatch} &amp;&amp; !${dashBoardModel>/InsightToActionData/msgDraftDetailData/hasInvestigation}}"/>-->
+			<!--<Button text="Dispatch" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass" press="onPressWBMsgButtons"-->
+			<!--	visible="{= ${dashBoardModel>/userData/isROC} === true &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === false &amp;&amp; ${dashBoardModel>/InsightToActionData/msgDraftDetailData/status} !== 'RESOLVED' &amp;&amp; !${dashBoardModel>/InsightToActionData/msgDraftDetailData/hasDispatch} &amp;&amp; !${dashBoardModel>/InsightToActionData/msgDraftDetailData/hasInvestigation}}"/>-->
+			<!--<Button text="Reject" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass" press="onPressWBMsgButtons"-->
+			<!--	visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true) &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === false &amp;&amp; ${dashBoardModel>/InsightToActionData/msgDraftDetailData/status} !== 'RESOLVED' &amp;&amp; !${dashBoardModel>/InsightToActionData/msgDraftDetailData/hasDispatch} &amp;&amp; !${dashBoardModel>/InsightToActionData/msgDraftDetailData/hasInvestigation}}"/>-->
+			<Button text="Submit" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass" press="onPressWBMsgButtons" enabled="{dashBoardModel>/InsightToActionData/isSubmitEnabled}"
+				visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true) &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === false &amp;&amp; ${dashBoardModel>/InsightToActionData/msgDraftDetailData/status} !== 'RESOLVED' &amp;&amp; !${dashBoardModel>/InsightToActionData/msgDraftDetailData/hasDispatch} &amp;&amp; !${dashBoardModel>/InsightToActionData/msgDraftDetailData/hasInvestigation}}"/>
+			<Button text="Cancel" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass" press="onPressWBMsgButtons"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,413 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.f" xmlns:ui="sap.ui.table"
+	xmlns:grid="sap.ui.layout.cssgrid">
+	<Dialog showHeader="false" contentWidth="100%" class="iopPtwJsaForm sapUiSizeCompact iopPtwOverFlow ptwPrintMarginJsa"
+		verticalScrolling="false" horizontalScrolling="false">
+		<HBox justifyContent="End" class="iopLocationHistoryCloseButton" height="0rem">
+			<Button icon="sap-icon://sys-cancel" class="iopLocationHistoryPTWFormCloseBtnClass" type="Transparent" press="onFromClose"/>
+		</HBox>
+		<ScrollContainer vertical="true" horizontal="false" height="{dashBoardModel>/PTWFromHeight}">
+			<VBox class="VBoxId">
+				<HBox width="98.2%" alignContent="End" alignItems="End" justifyContent="End">
+					<Button icon="sap-icon://print" text="Print" class="sapUiTinyMarginEnd iopPtwPrintButton uoNoPrint" type="Default" press="onPrintJSA"/>
+				</HBox>
+				<VBox class="sapUiTinyMargin">
+					<HBox width="100%" class="ptwUpperBoxBorder">
+						<HBox width="20%" class="ptwBoxRightBorder" alignItems="Center" alignContent="Center" justifyContent="Center">
+							<Image src="{path:'i18n>murphy',formatter:'com.sap.incture.Incture_IOP.util.formatter.getImagePath'}" width="150px" height="50px"
+								tooltip="Murphy Logo" class="sapUiTinyMarginBegin"/>
+						</HBox>
+						<HBox width="46.66%" class="ptwBoxRightBorder" alignItems="Center" alignContent="Center" justifyContent="Center">
+							<Title class="sapUiTinyMarginBegin headerText" text="Job Safety Analysis(JSA)"></Title>
+						</HBox>
+						<HBox width="33.33%" alignItems="Center" alignContent="Center">
+							<Label class="sapUiTinyMarginBegin"
+								text="Date: {path:'dashBoardModel>/ptwJsaDetails/TOJSAREVIEW/createdDate',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDate'}"></Label>
+						</HBox>
+					</HBox>
+					<HBox width="100%" class="ptwBoxBorder" height="2.4rem">
+						<HBox width="33.33%" class="ptwBoxRightBorder" alignItems="Center" alignContent="Center">
+							<ObjectStatus text="Facility / Site: {dashBoardModel>/ptwJsaDetails/TOJSALOCATION/0/facilityOrSite}" class="sapUiTinyMarginBegin"></ObjectStatus>
+							<!--	<VBox width="75%">
+								<Input value="{dashBoardModel>/ptwJsaDetails/TOJSALOCATION/0/facilityOrSite}" class="ptwInputBoxForNoLine" editable="false"></Input>
+							</VBox>-->
+						</HBox>
+						<HBox width="33.33%" class="ptwBoxRightBorder" alignItems="Center" alignContent="Center">
+							<Label text="Permit No: {dashBoardModel>/ptwJsaDetails/TOJSAHEADER/permitNumber}" class="sapUiTinyMarginBegin"></Label>
+							<!--	<VBox width="80%">
+								<Input value="{dashBoardModel>/ptwJsaDetails/TOJSAHEADER/permitNumber}" class="ptwInputBoxForNoLine" editable="false"></Input>
+							</VBox>-->
+						</HBox>
+						<HBox width="33.33%" alignItems="Center" alignContent="Center">
+							<Label
+								text="Permit Type: {parts:[{path:'dashBoardModel>/ptwJsaDetails/TOJSAHEADER/hasCWP'},{path:'dashBoardModel>/ptwJsaDetails/TOJSAHEADER/hasHWP'},{path:'dashBoardModel>/ptwJsaDetails/TOJSAHEADER/hasCSE'}],formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwJSAPermitType'}"
+								class="sapUiTinyMarginBegin"></Label>
+							<!--<Input width="99%" editable="false" class="ptwInputBoxForNoLine"-->
+							<!--	value="{parts:[{path:'dashBoardModel>/ptwJsaDetails/TOJSAHEADER/hasCWP'},{path:'dashBoardModel>/ptwJsaDetails/TOJSAHEADER/hasHWP'},{path:'dashBoardModel>/ptwJsaDetails/TOJSAHEADER/hasCSE'}],formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwJSAPermitType'}"></Input>-->
+						</HBox>
+					</HBox>
+					<HBox width="100%" class="ptwBoxBorder " alignItems="Center" alignContent="Center">
+						<Label
+							text="Task Description: {path:'dashBoardModel>/ptwJsaDetails/TOJSAHEADER/taskDescription',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom"></Label>
+						<!--<VBox width="90%">
+							<Input editable="false" class="ptwInputBoxForNoLine" value="{dashBoardModel>/ptwJsaDetails/TOJSAHEADER/taskDescription}"></Input>
+						</VBox>-->
+					</HBox>
+					<HBox width="100%" class="ptwBoxBorder " alignItems="Center" alignContent="Center">
+						<ObjectStatus
+							text="Identify the most serious potential injury for the task being performed: {path:'dashBoardModel>/ptwJsaDetails/TOJSAHEADER/identifyMostSeriousPotentialInjury',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"
+							class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom"></ObjectStatus>
+						<!--	<VBox width="65%">
+							<Input editable="false" class="ptwInputBoxForNoLine" value="{dashBoardModel>/ptwJsaDetails/TOJSAHEADER/identifyMostSeriousPotentialInjury}"></Input>
+						</VBox>-->
+					</HBox>
+				</VBox>
+				<HBox width="100%">
+					<VBox width="50%" class="sapUiTinyMargin">
+						<HBox class="FormHeaderColor" alignItems="Center" justifyContent="Center">
+							<Title level="H2" titleStyle="H2" text="RISK ASSESSMENT" class="ptwFontColor textSize sapUiTinyMarginTop"/>
+						</HBox>
+						<HBox width="100%">
+							<HBox width="60%" class="ptwBoxBorder" alignContent="Center" alignItems="Center" justifyContent="Center">
+								<ObjectStatus text="Must existing work practices be modified to perform this work?" class="sapUiTinyMarginTop sapUiTinyMarginBegin"></ObjectStatus>
+							</HBox>
+							<HBox class="ptwBoxBottomRightBorder" width="20%" alignContent="Center" alignItems="Center" justifyContent="Center">
+								<!--  <RadioButtonGroup columns="2" width="100%" editable="false"
+selectedIndex="{path:'dashBoardModel>/ptwJsaDetails/TOJSARISKASS/mustModifyExistingWorkPractice', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSARiskAssessmentRadioButtons'}">
+<buttons>
+<RadioButton text="YES"/>
+<RadioButton text="NO"/>
+</buttons>
+</RadioButtonGroup>-->
+								<CheckBox text="Yes" selected="{= ${dashBoardModel>/ptwJsaDetails/TOJSARISKASS/mustModifyExistingWorkPractice}=== 1? true : false}"
+									editable="false"/>
+							</HBox>
+							<HBox width="21%" class="ptwBoxBottomRightBorder" alignContent="Center" alignItems="Center" justifyContent="Center">
+								<CheckBox text="No" selected="{= ${dashBoardModel>/ptwJsaDetails/TOJSARISKASS/mustModifyExistingWorkPractice}=== 0? true : false}"
+									editable="false"/>
+							</HBox>
+						</HBox>
+						<HBox width="100%">
+							<HBox width="60%" class="ptwBoxLeftBorder ptwBoxRightBorder" alignContent="Center" alignItems="Center" justifyContent="Center">
+								<ObjectStatus text="After mitigation, are there any hazards that continue to present a potentially significant risk?"
+									class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom sapUiTinyMarginEnd"></ObjectStatus>
+							</HBox>
+							<!--  <HBox class="ptwBoxLeftBorder ptwBoxRightBorder" width="25%">
+<RadioButtonGroup columns="2" width="100%" editable="false"
+selectedIndex="{path:'dashBoardModel>/ptwJsaDetails/TOJSARISKASS/hasContinuedRisk', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSARiskAssessmentRadioButtons'}">
+<buttons>
+<RadioButton text="YES"/>
+<RadioButton text="NO"/>
+</buttons>
+</RadioButtonGroup>
+</HBox>-->
+							<HBox width="20%" class="ptwBoxRightBorder" alignContent="Center" alignItems="Center" justifyContent="Center">
+								<CheckBox text="Yes" selected="{= ${dashBoardModel>/ptwJsaDetails/TOJSARISKASS/hasContinuedRisk}=== 1? true : false}" editable="false"/>
+							</HBox>
+							<HBox width="21%" class="ptwBoxRightBorder" alignContent="Center" alignItems="Center" justifyContent="Center">
+								<CheckBox text="No" selected="{= ${dashBoardModel>/ptwJsaDetails/TOJSARISKASS/hasContinuedRisk}=== 0? true : false}" editable="false"/>
+							</HBox>
+						</HBox>
+						<VBox class="border" alignItems="Center">
+							<ObjectStatus text="IF YES TO EITHER OF ABOVE, ATTACH MOC OR RISK" class="sapUiTinyMarginTop sapUiTinyMarginBegin textSize"></ObjectStatus>
+							<ObjectStatus text="ASSESSMENT BEFORE PROCEEDING" class=" sapUiTinyMarginBottom textSize"></ObjectStatus>
+						</VBox>
+						<VBox class="ptwBoxRightBorder ptwBoxLeftBorder" alignItems="Center">
+							<ObjectStatus title="PPE REQUIRED DURING THIS TASK" class="sapUiTinyMarginTop sapUiTinyMarginBegin textSize"></ObjectStatus>
+							<ObjectStatus text="(summarize PPE from Task Hazard Assessment) " class="sapUiTinyMarginBegin sapUiTinyMarginBottom"></ObjectStatus>
+						</VBox>
+						<HBox width="100%" class="ptwUpperBoxBorder">
+							<VBox width="50%" class="ptwBoxRightBorder">
+								<VBox width="100%" class="ptwBoxBottomBorder">
+									<CheckBox text="Hard Hat" editable="false"
+										selected="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/hardHat', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBox'}"/>
+								</VBox>
+								<VBox width="100%" class="ptwBoxBottomBorder">
+									<CheckBox text="Safety Shoes / Boots" editable="false"
+										selected="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/safetyBoot', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBox'}"/>
+								</VBox>
+								<VBox class="sapUiSizeCompact ptwBoxBottomBorder">
+									<ObjectStatus text="HEARING PROTECTION" class="sapUiTinyMarginBegin sapUiSmallMarginTop Textunderline"></ObjectStatus>
+									<CheckBox text="Single" editable="false"
+										selected="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/singleEar', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBox'}"/>
+									<CheckBox text="Double" class="sapUiSmallMarginBottom" editable="false"
+										selected="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/doubleEars', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBox'}"/>
+								</VBox>
+								<VBox width="100%" class="sapUiSizeCompact ptwBoxBottomBorder ptwPadding">
+									<HBox width="100%">
+										<VBox width="34%">
+											<ObjectStatus text="Respirator Type:" class="sapUiTinyMarginBegin sapUiSmallMarginTop"></ObjectStatus>
+										</VBox>
+										<VBox width="54%">
+											<Input class="sapUiTinyMarginBegin sapUiTinyMarginTop ptwBoxBottomBorder ptwInputBoxForNoLine"
+												value="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/respiratorTypeDescription',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"
+												editable="false"></Input>
+										</VBox>
+									</HBox>
+									<CheckBox text="SCBA" class="sapUiTinyMarginTop" editable="false"
+										selected="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/needSCBA', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBox'}"/>
+									<CheckBox text="Dust Mask" class="sapUiTinyMarginBottom" editable="false"
+										selected="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/needDustMask', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBox'}"/>
+								</VBox>
+								<VBox width="100%" class="sapUiSizeCompact ptwBoxBottomBorder">
+									<CheckBox text="Fall Protection" editable="false"
+										selected="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/fallProtection', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBox'}"/>
+									<CheckBox text="Fall Restraint" editable="false"
+										selected="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/fallRestraint', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBox'}"/>
+								</VBox>
+								<VBox width="100%" class="sapUiSizeCompact sapUiTinyMarginBottom">
+									<CheckBox text="Flame Resistant Clothing" class="sapUiTinyMarginTop" editable="false"
+										selected="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/flameResistantClothing', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBox'}"/>
+								</VBox>
+							</VBox>
+							<VBox width="50%">
+								<VBox width="100%" class="sapUiSizeCompact ptwBoxBottomBorder">
+									<ObjectStatus text="EYE PROTECTION:" class="sapUiTinyMarginBegin sapUiTinyMarginTop Textunderline"></ObjectStatus>
+									<CheckBox text="Safety Glasses" editable="false"
+										selected="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/safetyGlasses', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBox'}"/>
+									<CheckBox text="Face Shield" editable="false"
+										selected="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/faceShield', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBox'}"/>
+									<CheckBox text="Goggles" editable="false"
+										selected="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/goggles', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBox'}"/>
+								</VBox>
+								<VBox width="100%" class="sapUiSizeCompact ptwBoxBottomBorder">
+									<ObjectStatus text="GLOVES:" class="sapUiTinyMarginBegin Textunderline"></ObjectStatus>
+									<CheckBox text="Cotton" editable="false"
+										selected="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/cottonGlove', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBox'}"/>
+									<CheckBox text="Leather" editable="false"
+										selected="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/leatherGlove', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBox'}"/>
+									<CheckBox text="Impact Protection" editable="false"
+										selected="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/impactProtection', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBox'}"/>
+									<HBox width="100%">
+										<HBox width="42%">
+											<CheckBox text="Other" editable="false"
+												selected="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/gloveDescription', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBoxForDescription'}"/>
+										</HBox>
+										<HBox width="58%">
+											<Input width="95%" class="ptwInputBox" editable="false"
+												value="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/gloveDescription',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"></Input>
+										</HBox>
+									</HBox>
+									<HBox width="100%">
+										<HBox width="42%">
+											<CheckBox text="Chemical" editable="false"
+												selected="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/chemicalGloveDescription', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBoxForDescription'}"/>
+										</HBox>
+										<HBox width="52%">
+											<Input class="ptwInputBox" width="97.5%" editable="false"
+												value="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/chemicalGloveDescription',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"></Input>
+										</HBox>
+									</HBox>
+								</VBox>
+								<VBox width="100%" class="sapUiSizeCompact ptwBoxBottomBorder">
+									<CheckBox text="Chemical Suit" editable="false"
+										selected="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/chemicalSuit', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBox'}"/>
+									<CheckBox text="Apron" editable="false"
+										selected="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/apron', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBox'}"/>
+								</VBox>
+								<VBox width="100%" class="sapUiSizeCompact">
+									<CheckBox text="Foul Weather Gear" class="sapUiTinyMarginTop sapUiTinyMarginBottom" editable="false"
+										selected="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/needFoulWeatherGear', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBox'}"/>
+								</VBox>
+							</VBox>
+						</HBox>
+						<VBox width="100%" class="ptwBoxBorder">
+							<HBox width="100%" alignContent="Center" alignItems="Center">
+								<CheckBox text="Other PPE:" editable="false"
+									selected="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/otherPPEDescription', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBoxForDescription'}"/>
+								<VBox width="100%">
+									<TextArea class="sapUiTinyMarginBegin sapUiTinyMarginEnd sapUiTinyMarginTop sapUiTinyMarginBottom" width="97%" rows="2" editable="false"
+										value="{path:'dashBoardModel>/ptwJsaDetails/TOJSE_PPE/otherPPEDescription',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"></TextArea>
+								</VBox>
+							</HBox>
+						</VBox>
+					</VBox>
+					<VBox width="50%" class="sapUiTinyMarginTopBottom sapUiTinyMarginEnd">
+						<VBox width="100%" class="FormHeaderColor" alignItems="Center" justifyContent="Center">
+							<Title level="H2" titleStyle="H2" text="JSA REVIEW" class="ptwFontColor textSize sapUiTinyMarginTop"/>
+						</VBox>
+						<VBox width="100%" class="border">
+							<ObjectStatus
+								text="Pending confirmation by the Task Leader of site conditions, I agree that the attached JSA identifies significant Task Steps, Hazards and Controls"
+								class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginBottom"></ObjectStatus>
+						</VBox>
+						<VBox width="100%" class="ptwBoxBorder">
+							<ObjectStatus text="JSA REVIEWER (Supervisor or Designate):" class="sapUiTinyMarginTop sapUiTinyMarginBegin"></ObjectStatus>
+							<HBox width="100%">
+								<ObjectStatus text="Name / Signature:" class="sapUiTinyMarginTop sapUiTinyMarginBegin"></ObjectStatus>
+								<Input class="sapUiTinyMarginBegin sapUiTinyMarginBottom ptwInputBoxForNoLine"
+									value="{dashBoardModel>/ptwJsaDetails/TOJSAREVIEW/approvedBy}" editable="false"></Input>
+							</HBox>
+						</VBox>
+						<VBox class="FormHeaderColor" alignItems="Center" width="100%" justifyContent="Center">
+							<Title level="H2" titleStyle="H2" text="WORK SITE VERIFICATION" class="ptwFontColor textSize sapUiTinyMarginTop"/>
+						</VBox>
+						<VBox width="100%" class="ptwBoxBorder">
+							<ObjectStatus title="The Work Team has assessed the worksite conditions and confirms"
+								class="sapUiTinyMarginTop sapUiTinyMarginBegin HeaderText"></ObjectStatus>
+							<ObjectStatus text="* The JSA addresses the applicable hazards and necessary standards" class="sapUiTinyMarginTop sapUiTinyMarginBegin"></ObjectStatus>
+							<ObjectStatus text="* The Team has the appropriate resources (people and equipment) to do the job safely" class="sapUiTinyMarginBegin"></ObjectStatus>
+							<ObjectStatus text="* Others that could be affected by the work have been informed" class="sapUiTinyMarginBegin"></ObjectStatus>
+							<ObjectStatus text="* Energy isolation (if applicable) has been VERIFIED and DEMONSTRATED" class="sapUiTinyMarginBegin"></ObjectStatus>
+						</VBox>
+						<VBox class="FormHeaderColorYellow ptwBoxBorder" alignItems="Center" width="100%" justifyContent="Center">
+							<Title level="H2" titleStyle="H2" text="COMPLETE SECTION BELOW FOR JSA" class="textSize sapUiTinyMarginTop"/>
+						</VBox>
+						<VBox alignItems="Center" width="100%" justifyContent="Center" class="ptwBoxBorder">
+							<ObjectStatus
+								text="I acknowledge I have reviewed the JSA, I understand my roles and responsibilities and I will comply with the instructions for this task"
+								class="sapUiTinyMargin"/>
+						</VBox>
+						<VBox width="100%" class="ptwBoxBorder">
+							<ScrollContainer height="19.8rem" width="99%" class="ptwTableHeight" horizontal="false" vertical="true">
+								<Table width="98%" items="{dashBoardModel>/ptwJsaDetails/TOPTWPEOPLE}"
+									class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginEnd tableHeader">
+									<columns>
+										<Column hAlign="Center">
+											<Text text="Name (print)"/>
+										</Column>
+										<Column hAlign="Center">
+											<Text text="Contact Number"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<Text text="{dashBoardModel>firstName} {dashBoardModel>lastName}"/>
+												<Text text="{dashBoardModel>contactNumber}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</ScrollContainer>
+						</VBox>
+					</VBox>
+				</HBox>
+				<HBox width="98%" class="sapUiSmallMarginBegin sapUiTinyMarginEnd sapUiTinyMarginTop ptwUpperBoxBorder ptwPrintWidth">
+					<ObjectStatus
+						text=" HAZARDS are identified in the table below with an icon and description. Appropriate CONTROLS are listed in the check boxes below. Use this table to determine the HAZARDS that are present for the task and identify the CONTROLS to be implemented."
+						class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom"/>
+				</HBox>
+				<HBox width="98%" class="ptwBoxBorder sapUiSmallMarginBegin ptwPrintWidth">
+					<ObjectStatus
+						text="REMEMBER: THIS TABLE DOES NOT INCLUDE ALL POSSIBLE HAZARDS. IT IS EXPECTED THAT THE REQUIRED PPE FOR THE ACTIVITY AND WORK CONDITIONS WILL BE USED."
+						class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiTinyMarginBottom"/>
+				</HBox>
+				<!--  <l:Grid defaultSpan="L2 M3 S2" content="{dashBoardModel>/ptwJsaHazards/dataList}" class="sapUiSmallMarginTop">
+<l:content>
+<VBox class="sapUiSizeCompact border"
+height="{path:'dashBoardModel>/PTWFromHeight',formatter:'com.sap.incture.Incture_IOP.util.formatter.GridHeight'}">
+<HBox class="bottomBorder GridTile" width="99.5%" height="16%">
+<HBox width="20%" alignContent="Center" alignItems="Center">
+<Image src="{path:'dashBoardModel>icon',formatter:'com.sap.incture.Incture_IOP.util.formatter.getImagePath'}" width="3rem" height="3rem"/>
+</HBox>
+<HBox width="60%" alignContent="Center" alignItems="Center">
+<Title text="{dashBoardModel>header}" textAlign="Center" width="100%" class="sapUiTinyMarginTop sapUiTinyMarginBegin" wrapping="true"/>
+</HBox>
+<HBox width="19.5%" alignContent="Start" alignItems="Stretch" justifyContent="End">
+<VBox>
+<CheckBox selected="{path:'dashBoardModel>headerSelected', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBox'}" editable="false"
+class="checkBox"/>
+</VBox>
+</HBox>
+</HBox>
+<VBox items="{dashBoardModel>aList}" class="ptwBoxTopBorder">
+<HBox class="sapUiTinyMarginBottom">
+<CheckBox editable="false" selected="{path:'dashBoardModel>selected', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBox'}"/>
+<Text text="{dashBoardModel>Text}" wrapping="true" class="sapUiTinyMarginTop sapUiTinyMarginEnd"/>
+</HBox>
+</VBox>
+</VBox>
+</l:content>
+</l:Grid>-->
+				<f:GridList id="gridList" class="sapUiSmallMarginEnd sapUiSmallMarginBegin sapUiSmallMarginTop gridId"
+					items="{dashBoardModel>/ptwJsaHazards/dataList}" width="97%">
+					<CustomListItem>
+						<VBox class="sapUiSizeCompact border" height="100%">
+							<HBox class="bottomBorder GridTile" width="99%" height="16%">
+								<HBox width="20%" alignContent="Center" alignItems="Center">
+									<Image src="{path:'dashBoardModel>icon',formatter:'com.sap.incture.Incture_IOP.util.formatter.getImagePath'}" width="3rem" height="3rem"/>
+								</HBox>
+								<HBox width="60%" alignContent="Center" alignItems="Center">
+									<Title text="{dashBoardModel>header}" textAlign="Center" width="100%" class="sapUiTinyMarginTop sapUiTinyMarginBegin iopPtwTitleClass" wrapping="true"/>
+								</HBox>
+								<HBox width="20%">
+									<CheckBox selected="{path:'dashBoardModel>headerSelected', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBox'}" editable="false"
+										class="checkBox"/>
+								</HBox>
+							</HBox>
+							<VBox items="{dashBoardModel>aList}" class="ptwBoxTopBorder">
+								<HBox class="sapUiTinyMarginBottom">
+									<CheckBox editable="false" selected="{path:'dashBoardModel>selected', formatter:'com.sap.incture.Incture_IOP.util.formatter.JSACheckBox'}"/>
+									<Text text="{dashBoardModel>Text}" wrapping="true" class="sapUiTinyMarginTop sapUiTinyMarginEnd"/>
+								</HBox>
+							</VBox>
+						</VBox>
+					</CustomListItem>
+				</f:GridList>
+				<HBox class="border sapUiSmallMarginBegin sapUiSmallMarginEnd" alignContent="Center" justifyContent="Center" alignItems="Center">
+					<ObjectStatus
+						text="NOTE: If the work scope or conditions change significantly, STOP THE JOB. Revise the JSA to address all hazards before proceeding."
+						class="sapUiTinyMarginTop sapUiTinyMarginBottom"/>
+				</HBox>
+				<HBox alignContent="Center" justifyContent="Center" alignItems="Center">
+					<ObjectStatus text="Complete Task Steps / Potential Hazards / Hazard Controls PRIOR to the JSA Review" class="sapUiTinyMarginTop"/>
+				</HBox>
+				<l:HorizontalLayout class="sapUiSmallMargin border">
+					<ScrollContainer vertical="true" height="20rem" horizontal="false">
+						<Table items="{dashBoardModel>/ptwJsaDetails/TOJSASTEPS}" class="ptwTableBorderClass" sticky="ColumnHeaders">
+							<columns>
+								<Column hAlign="Center" vAlign="Middle">
+									<VBox alignContent="Center" alignItems="Center">
+										<Text text="TASK STEPS" class="ptwFontColor"/>
+										<Text text="(What are you doing?)" class="ptwFontColor"></Text>
+									</VBox>
+								</Column>
+								<Column hAlign="Center" vAlign="Middle">
+									<VBox alignContent="Center" alignItems="Center">
+										<Text text="POTENTIAL HAZARDS" class="ptwFontColor"/>
+										<Text text="(What could go wrong?)" class="ptwFontColor"></Text>
+									</VBox>
+								</Column>
+								<Column hAlign="Center" vAlign="Middle">
+									<VBox alignContent="Center" alignItems="Center">
+										<Text text="HAZARD CONTROLS" class="ptwFontColor"/>
+										<Text text="(How can harm be prevented?)" class="ptwFontColor"></Text>
+									</VBox>
+								</Column>
+								<Column hAlign="Center" vAlign="Middle">
+									<VBox alignContent="Center" alignItems="Center">
+										<Text text="PERSON RESPONSIBLE" class="ptwFontColor"/>
+										<Text text="Name" class="ptwFontColor"></Text>
+									</VBox>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{path:'dashBoardModel>taskSteps',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"/>
+										<Text text="{path:'dashBoardModel>potentialHazards',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"/>
+										<Text text="{path:'dashBoardModel>hazardControls',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"/>
+										<Text text="{path:'dashBoardModel>personResponsible',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</ScrollContainer>
+				</l:HorizontalLayout>
+				<HBox class="sapUiSmallMarginBegin">
+					<ObjectStatus text="STOP THE JOB" state="Error" class="textUndelineColor Textunderline"></ObjectStatus>
+					<Label text="Triggers – I / We will stop the job if any of the following occur:" class="sapUiTinyMarginBegin"></Label>
+				</HBox>
+				<VBox width="97.5%" class="sapUiSmallMargin border">
+					<ScrollContainer height="8rem" horizontal="false" vertical="true">
+						<VBox items="{dashBoardModel>/ptwJsaDetails/TOJSASTOP}">
+							<Input class="sapUiTinyMarginBegin sapUiTinyMarginEnd" width="98.8%" editable="false"
+								value="{path:'dashBoardModel>lineDescription',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"></Input>
+						</VBox>
+					</ScrollContainer>
+				</VBox>
+			</VBox>
+		</ScrollContainer>
+	</Dialog>
+</core:FragmentDefinition>

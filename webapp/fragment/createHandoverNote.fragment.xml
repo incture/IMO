@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Dialog contentWidth="40%" title="Create Handover Note">
+		<HBox class="sapUiSmallMargin">
+			<VBox class="sapUiSmallMargin"> 
+				<Label text="Date" class="iopFontClass iopwbTaskLabelClass iopProCountLabelClass iopwbLabelRequiredClass"/>
+				<DatePicker class="sapUiSizeCompact iopInputClass iopDTInputClass" displayFormat="MM/dd/yyyy" valueFormat="yyyy-MM-dd" placeholder="mm/dd/yyyy" change="onhanoverFromDateChange"
+					value="{dashBoardModel>/createHandoverNoteData/date}" minDate="{dashBoardModel>/handoverFilterData/handoverMinDate}" maxDate="{dashBoardModel>/handoverFilterData/handoverMaxDate}"/>
+			</VBox>
+			<VBox class="sapUiSmallMargin">
+				<Label text="Field" class="iopFontClass iopwbTaskLabelClass iopProCountLabelClass iopwbLabelRequiredClass"/>
+				<ComboBox id="createNoteField" class="sapUiSizeCompact iopInputClass iopDTInputClass"
+					items="{dashBoardModel>/createHandoverNoteData/fields}">
+					<core:ListItem key="{dashBoardModel>text}" text="{dashBoardModel>text}"/>
+				</ComboBox>
+			</VBox>
+			<VBox class="sapUiSmallMargin">
+				<Label text="Shift" class="iopFontClass iopwbTaskLabelClass iopProCountLabelClass iopwbLabelRequiredClass"/>
+				<ComboBox id="createNoteShift" class="sapUiSizeCompact iopInputClass iopDTInputClass" items="{dashBoardModel>/createHandoverNoteData/shift}">
+					<core:ListItem key="{dashBoardModel>text}" text="{dashBoardModel>text}"/>
+				</ComboBox>
+			</VBox>
+		</HBox>
+		<buttons>
+			<Button text="Create" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass" press="onConfirmCreateNote"/>
+			<Button text="Cancel" press="onConfirmCreateNote" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

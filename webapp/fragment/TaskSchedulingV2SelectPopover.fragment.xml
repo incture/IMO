@@ -1,0 +1,39 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.f">
+	<Popover class="sapUiSizeCompact" contentWidth="23rem" showHeader="true" placement="HorizontalPreferredLeft"
+		title="{dashBoardModel>/schedulingV2Data/currentClickContext/oContext/location}" contentHeight="auto" showArrow="true">
+		<content>
+			<VBox width="22rem">
+				<VBox>
+					<Text class="sapUiTinyMarginBegin sapUiTinyMarginBottom sapUiSmallMarginTop"
+						text='{parts:["dashBoardModel>/schedulingV2Data/currentClickContext/oContext/classification","dashBoardModel>/schedulingV2Data/currentClickContext/oContext/subClassification","dashBoardModel>/schedulingV2Data/currentClickContext/oContext/estResolveTime","dashBoardModel>/schedulingV2Data/currentClickContext/oContext/travelTime","dashBoardModel>/schedulingV2Data/currentClickContext/oContext/totalEstTime","dashBoardModel>/schedulingV2Data/currentClickContext/oContext/createdAtDisplay","dashBoardModel>/schedulingV2Data/currentClickContext/oContext/startTimeInString","dashBoardModel>/schedulingV2Data/currentClickContext/oContext/endTimeInString"], formatter:"com.sap.incture.Incture_IOP.util.formatter.taskSchedulerAppointmentTooltip"}'/>
+				</VBox>
+				<HBox>
+					<Text class="minWidth sapUiTinyMarginBegin sapUiTinyMarginTop" text="Start Date :"></Text>
+					<DateTimePicker
+						enabled="{=(${dashBoardModel>/schedulingV2Data/currentClickContext/oContext/status} !== 'IN PROGRESS')&amp;&amp;!(${dashBoardModel>/schedulingV2Data/currentClickContext/oContext/status} === 'RESOLVED' || ${dashBoardModel>/schedulingV2Data/currentClickContext/oContext/status} === 'COMPLETED' ) }"
+						value="{path:'dashBoardModel>/schedulingV2Data/currentClickContext/ChangableStartDateTime', type:'sap.ui.model.type.DateTime', formatOptions: { style: 'medium', strictParsing: true}}"
+						width="100%" class="sapUiTinyMarginBegin sapUiSizeCompact iopInputClass iopDTInputClass" displayFormat="medium"></DateTimePicker>
+				</HBox>
+				<HBox>
+					<Text class="minWidth sapUiTinyMarginBegin sapUiTinyMarginTop" text="Additional Time :"></Text>
+					<TimePicker
+						enabled="{= !(${dashBoardModel>/schedulingV2Data/currentClickContext/oContext/status} === 'RESOLVED' || ${dashBoardModel>/schedulingV2Data/currentClickContext/oContext/status} === 'COMPLETED' ) }"
+						value="{dashBoardModel>/schedulingV2Data/currentClickContext/additionalTime}" width="100%"
+						valueStateText="{= ${dashBoardModel>/schedulingV2Data/currentClickContext/additionalTimeState} === 'Error'? 'Maximum permissible time limit is 2hrs' :''}"
+						valueState="{dashBoardModel>/schedulingV2Data/currentClickContext/additionalTimeState}"
+						class="sapUiTinyMarginBegin sapUiSmallMarginBottom sapUiSizeCompact iopInputClass iopDTInputClass" valueFormat="HH:mm" displayFormat="HH:mm"
+						placeholder="HH:mm" change="handleChangeTaskSchedulerV2SelectPopover"/>
+				</HBox>
+			</VBox>
+		</content>
+		<footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button text="Ok"
+					visible="{= !(${dashBoardModel>/schedulingV2Data/currentClickContext/oContext/status} === 'RESOLVED' || ${dashBoardModel>/schedulingV2Data/currentClickContext/oContext/status} === 'COMPLETED' ) }"
+					press="onTaskScheduleV2PopoverOK"/>
+				<Button text="Cancel" press="onTaskScheduleV2PopoverCancel"/>
+			</Toolbar>
+		</footer>
+	</Popover>
+</core:FragmentDefinition>

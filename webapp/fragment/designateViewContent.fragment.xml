@@ -1,0 +1,72 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" id="TaskManagement">
+	<VBox width="100%">
+		<Label text="Downtime Codes" class="iopFontClass iopwbTaskLabelClass sapUiTinyMargin"/>
+		<HBox justifyContent="SpaceAround" class="sapUiTinyMarginBegin">
+			<VBox width="18%">
+				<Label required="true" text="{i18n>DC_DATE}" design="Bold" class="iopFontClass iopwbLabelRequiredClass"/>
+				<DatePicker enabled="{= ${dashBoardModel>/panelProperties/currentSelectKey} === 'alarms' || ${dashBoardModel>/showDesignateOnTaskDetails} === true}" change="onDesignateParamsChange"
+					class="sapUiSizeCompact iopInputClass" value="{dashBoardModel>/downTime/date}" placeholder="mm/dd/yyyy" displayFormat="MM/dd/yyyy"
+					valueFormat="yyyy-MM-dd"/>
+			</VBox>
+			<VBox width="19%">
+				<Label text="{i18n>durhr}" design="Bold" class="iopFontClass iopwbLabelRequiredClass"
+					required="false"/>
+				<Select change="onDTDesHourKeySelect" forceSelection="false" width="100%" selectedKey="{dashBoardModel>/downTime/hourkey}"
+					class="sapUiSizeCompact iopSelectClass">
+					<core:ListItem key="0" text="00"/>
+					<core:ListItem key="1" text="01"/>
+					<core:ListItem key="2" text="02"/>
+					<core:ListItem key="3" text="03"/>
+					<core:ListItem key="4" text="04"/>
+					<core:ListItem key="5" text="05"/>
+					<core:ListItem key="6" text="06"/>
+					<core:ListItem key="7" text="07"/> 
+					<core:ListItem key="8" text="08"/>
+					<core:ListItem key="9" text="09"/>
+					<core:ListItem key="10" text="10"/>
+					<core:ListItem key="11" text="11"/>
+					<core:ListItem key="12" text="12"/>
+					<core:ListItem key="13" text="13"/>
+					<core:ListItem key="14" text="14"/>
+					<core:ListItem key="15" text="15"/>
+					<core:ListItem key="16" text="16"/>
+					<core:ListItem key="17" text="17"/>
+					<core:ListItem key="18" text="18"/>
+					<core:ListItem key="19" text="19"/>
+					<core:ListItem key="19" text="19"/>
+					<core:ListItem key="21" text="21"/>
+					<core:ListItem key="22" text="22"/>
+					<core:ListItem key="23" text="23"/>
+					<core:ListItem key="24" text="24"/>
+				</Select>
+			</VBox>
+			<VBox width="19%">
+				<Label text="{i18n>durMin}" design="Bold" class="iopFontClass iopwbLabelRequiredClass"
+					required="false"/>
+				<Select enabled="{= ${dashBoardModel>/downTime/hourkey} !== '24'}" forceSelection="false" width="100%"
+					selectedKey="{dashBoardModel>/downTime/minuteKey}" class="sapUiSizeCompact iopSelectClass"
+					change="onDesignateParamsChange">
+					<core:ListItem key="0" text="00 min"/>
+					<core:ListItem key="15" text="15 min"/>
+					<core:ListItem key="30" text="30 min"/>
+					<core:ListItem key="45" text="45 min"/>
+				</Select>
+			</VBox>
+			<VBox width="19%">
+				<Label required="true" text="{i18n>DC_DOWNTCODES}" design="Bold" class="iopFontClass iopwbLabelRequiredClass"/>
+				<Select forceSelection="false" width="100%" change="onDownTimeParentSelect" selectedKey="{dashBoardModel>/downTime/downtimeParentKey}"
+					items="{dashBoardModel>/downtimeParentCodes}" class="sapUiSizeCompact iopSelectClass">
+					<core:ListItem key="{dashBoardModel>parentCode}" text="{dashBoardModel>parentCodeDescription}"/>
+				</Select>
+			</VBox>
+			<VBox width="19%" visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'EFS'?true:false }">
+				<Label required="true" text="Child Code" design="Bold" class="iopFontClass iopwbLabelRequiredClass"/>
+				<Select change="onDowntimeChildSelect" forceSelection="false" width="100%" busyIndicatorDelay="0"
+					busy="{dashBoardModel>/busyIndicators/downTimeChild}" selectedKey="{dashBoardModel>/downTime/downtimeChildKey}"
+					items="{dashBoardModel>/downtimeChildCodes}" class="sapUiSizeCompact iopSelectClass ">
+					<core:ListItem key="{dashBoardModel>childCode}" text="{dashBoardModel>childCodeDescription}"/>
+				</Select>
+			</VBox>
+		</HBox>
+	</VBox>
+</core:FragmentDefinition>

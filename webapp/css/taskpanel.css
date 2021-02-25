@@ -1,0 +1,1786 @@
+.iopNewBoldText,
+.iopwbAttachmentLinkClass.sapMLnk,
+.iopwbTextItalicClass,
+.iopwbTimeClass.sapMLabel {
+    white-space: pre-line;
+    word-wrap: break-word
+}
+
+.iopTaskManagementTextFont,
+.iopTaskManagementTextFontAvatar,
+.iopwbAdditionalItemTab .sapMITBTextOnly .sapMITBText,
+.iopwbAttachmentLinkClass.sapMLnk,
+.iopwbBreadCurmbClass .sapMLnk,
+.iopwbBreadCurmbClass .sapMText,
+.iopwbCollabIconTab .sapMITBTextOnly .sapMITBText,
+.iopwbCommentArea.sapMInputBase.sapMTextArea .sapMTextAreaInner,
+.iopwbLinkClass.sapMLnk,
+.statusHeaderTextStyle {
+    font-family: Open Sans!important
+}
+
+.iopwbListClass {
+    padding: 0!important;
+    margin-bottom: 1rem;
+    border-radius: 0
+}
+
+.iopwbListClass:hover {
+    box-shadow: 0 .175rem .3rem 0 rgba(0, 0, 0, .5)
+}
+
+.iopwbListClass .sapMLIBHighlight {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    top: 0
+}
+
+.iopwbHighlightChangedClass .sapMLIBHighlight {
+    top: 0
+}
+
+.iopwbListClass .sapMLIBHighlight+.sapMLIBContent,
+.sapMListHighlight .sapMLIBContent:first-child {
+    margin-left: 0
+}
+
+.iopwbListClass.sapMLIBHoverable:hover {
+    /*background: #fff*/
+    /*#Theme*/
+}
+
+.iopwbTimeClass {
+    border-bottom: solid .01rem #c3c3c3;
+    width: 100%
+}
+
+.iopwbTimeClass.sapMLabel {
+    /*color: #909090;*/
+    /*#Theme*/
+    font-size: .75rem
+}
+
+.iopwbStatusClass {
+    /*background: #74ce3d;*/
+    /*#Theme*/
+    padding: .15rem .65rem .2rem;
+    margin: .4rem 0 .6rem;
+    /*color: #fff!important;*/
+    /*#Theme*/
+    font-weight: 600;
+    border-radius: 4px
+}
+
+.iopwbOriginClass.sapMText {
+    position: sticky;
+    width: 10rem;
+    z-index: 3;
+    margin-top: 0!important;
+    font-size: .75rem;
+    /*color: #fff!important*/
+    /*#Theme*/
+}
+
+.iopwbOriginClass {
+    /*background: #fbc98b;*/
+    /*#Theme*/
+    padding: .15rem .5rem .2rem;
+    margin: .4rem 0 .6rem;
+    /*color: #132859!important;*/
+    /*#Theme*/
+    font-weight: 600;
+    border-radius: 4px
+}
+
+.iopwbStatusClass.sapMText {
+    font-size: .75rem
+}
+
+.iopwbMsgBoxClass {
+    border-top: solid .01rem #c3c3c3;
+    width: 100%
+}
+
+.iopwbDescClass {
+    font-weight: 600;
+    font-size: .8rem
+}
+
+.iopwbDescClass.sapMTitleStyleAuto {
+    font-size: .95rem
+}
+
+.iopwbAssignedLabelClass,
+.iopwbTextItalicClass {
+    padding-right: .2rem;
+    /*color: #888;*/
+    /*#Theme*/
+    font-size: .75rem;
+    font-weight: 600;
+    font-style: italic
+}
+
+.iopwbTransBtn .sapMBtnTransparent {
+    /*color: #949494;*/
+    /*#Theme*/
+    font-weight: 600;
+    font-size: .725rem
+}
+
+.iopwbCommentClass.sapMText,
+.iopwbLocationTextClass {
+    font-size: .8rem
+}
+
+.iopwbTransBtn:not(.sapMBtnDisabled) .sapMBtnTransparent>.sapMBtnIcon {
+    /*color: #949594*/
+    /*#Theme*/
+}
+
+.iopwbTransBtn.sapMBtn {
+    height: 2rem
+}
+
+.iopwbTabBarClass .sapMITBContent {
+    background-color: transparent!important
+}
+
+.iopwbTabBarClass .sapMITBScrollContainer {
+    width: 95%;
+    margin-left: .75rem!important;
+    margin-right: 0!important
+}
+
+.iopwbTabBarClass .sapMITBArrowScroll {
+    display: none
+}
+
+.iopwbTabBarClass .sapMITBTextOnly .sapMITBFilter {
+    margin: 0;
+    padding: 0 .5rem
+}
+
+.iopwbListHighlightGreyClass .sapMLIBHighlight {
+    background: #8e8e8e
+}
+
+.iopwbListHighlightOrangeClass .sapMLIBHighlight {
+    background: #ffbf5b
+}
+
+.iopwbBoxStyle.sapMVBox {
+    overflow-y: auto;
+    padding: 1rem
+}
+
+.iopwbBoxStyle.sapMVBox::-webkit-scrollbar {
+    width: .5rem!important
+}
+
+.iopwbBoxStyle.sapMHBox {
+    -webkit-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    height: 2.5rem
+}
+
+.iopwbBtnClass.sapMBtn {
+    height: 2rem
+}
+
+
+/*.iopwbBtnClass.sapUiSizeCompact .sapMBtnIcon,*/
+
+
+/*#Theme*/
+
+
+/*.iopwbBtnClass.sapUiSizeCompact .sapMBtnInner {*/
+
+
+/*    background-color: #02265a;*/
+
+
+/*    border-color: #02265a;*/
+
+
+/*    color: #fff*/
+
+
+/*}*/
+
+.iopwbAssignedToBoxClass {
+    margin-top: .2rem
+}
+
+.iopwbLocationValClass {
+    font-size: .8rem;
+    font-weight: 600
+}
+
+.iopwbLocationBoxStyle {
+    margin: .3rem 0
+}
+
+.iopwbNonDispatchCloseIcon {
+    margin-left: .5rem!important;
+    margin-right: .3rem!important;
+    cursor: pointer
+}
+
+.iopwbAddItemFragClass {
+    padding: .5rem
+}
+
+.iopwbAddItemBtnClass .sapMBtnInner {
+    border: none
+}
+
+.iopwbProductTextStyle {
+    margin-left: 1.55rem
+}
+
+.iopwbTaskItemTbl .sapMLIB {
+    border-bottom: none
+}
+
+.iopwbFlexBoxClass {
+    width: 97%!important
+}
+
+.iopwbCreatedByClass {
+    font-size: .75rem;
+    /*color: #4b8197;*/
+    font-weight: 700
+}
+
+.iopwbCreatedByNameClass {
+    font-size: .95rem;
+    /*color: #4b8197;*/
+    font-weight: bolder
+}
+
+.sapFAvatarS {
+    height: 2rem!important;
+    width: 2rem!important;
+    margin-top: .45rem
+}
+
+.sapFAvatarS .sapFAvatarInitialsHolder {
+    font-size: .8rem!important
+}
+
+.iopwbTaskLabelClass {
+    font-weight: 700;
+    /*color: #9a9a9a;*/
+    font-size: .85rem
+}
+
+.iopwbTaskBoderLightClass .sapMInputBaseInner,
+.iopwbTaskBoderLightClass .sapMMultiInputBorder,
+.iopwbTaskBoderLightClass.sapMSlt {
+    /*border: 1px solid #e0e0e0;*/
+    /*AN: #ThemeBug*/
+    border-radius: 3px
+}
+
+.iopwbCommentUser {
+    /*color: #828282;*/
+    font-weight: bolder;
+    font-size: .8rem
+}
+
+.iopwbCommentTime {
+    /*color: #9a9a9a;*/
+    font-style: italic;
+    font-weight: 700;
+    font-size: .725rem
+}
+
+.iopwbCommentArea::placeholder {
+    font-size: .8rem;
+    font-family: Open Sans!important;
+    font-style: normal;
+    /*color: #b9b9b9*/
+}
+
+.iopwbCommentArea .sapMInputBaseInner {
+    border: none
+}
+
+.iopwbCommentArea {
+    border: .05rem solid #d3d3d3;
+    border-bottom: none;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px
+}
+
+.iopwbCommentArea.sapMInputBase.sapMTextArea .sapMTextAreaInner {
+    padding: .3rem .8rem
+}
+
+.iopwbCommentArea .sapMInputDivWrapper {
+    width: 99%!important
+}
+
+.iopwbCommentsClass {
+    font-size: .8rem
+}
+
+.iopwbCommentBoxClass {
+    border-bottom: solid #d3d3d3 .05rem;
+    padding-bottom: .5rem
+}
+
+.iopwbCommentPostClass {
+    border: .05rem solid #d3d3d3;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    padding: .5rem;
+    height: 2.5rem;
+    align-items: center;
+    justify-content: flex-end
+}
+
+.iopwbSplitBorderClass {
+    /*border-left: solid #d3d3d3 .05rem*/
+}
+
+.iopwbCollabIconTab .sapMITBHead {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 1rem .75rem 0;
+    top: .9rem
+}
+
+.iopwbCollabIconTab .sapMITBTextOnly .sapMITBFilter {
+    margin: 0 .5rem;
+    padding: 0
+}
+
+.iopwbCollabIconTab .sapMITBContent {
+    padding: .75rem
+}
+
+.iopwbCollabIconTab .sapMITBTextOnly .sapMITBText {
+    font-size: .79rem
+}
+
+.iopwbCollabIconTab .sapMITBInLine .sapMITBFilter>.sapMITBText {
+    margin: 0
+}
+
+.iopwbCollabIconTab .sapMITBInLine.sapMITBTextOnly>.sapMITBVertical.sapMITBFilter>.sapMITBText+.sapMITBContentArrow {
+    height: .5rem
+}
+
+.iopwbCollabIconTab .sapMITBInLine.sapMITBTextOnly>.sapMITBVertical {
+    height: 1.65rem
+}
+
+.iopwbCollabIconTab .sapMITBArrowScroll {
+    padding: .1rem!important
+}
+
+.iopwbPostBtnClass .sapMBtnInner {
+    /*background: #02265a!important;*/
+    /*#Theme*/
+    /*color: #fff!important;*/
+    /*#Theme*/
+    padding-left: 1.2rem!important;
+    padding-right: 1.2rem!important;
+    font-size: 13px
+}
+
+.iopwbLocationTClass {
+    font-size: .75rem;
+    /*color: #0070b1*/
+    /*#Theme*/
+}
+
+.iopwbLinkClass.sapMLnk {
+    font-size: .8rem;
+    font-weight: 600
+}
+
+.iopwbDetailDialogClass.sapMDialog.sapMDialog-NoHeader:not(.sapMDialog-NoFooter):not(.sapMDialogWithSubHeader) {
+    height: 90%
+}
+
+.iopwbDetailDialogClass {
+    overflow: visible
+}
+
+.ipowbAttachmentTextClass {
+    font-size: .75rem
+}
+
+.iopwbThumbnailClass {
+    margin-top: .2rem
+}
+
+.iopwbAttachmentListClass {
+    padding: .5rem!important;
+    /*border: .05rem solid #e6e6e6;*/
+    /*#Theme*/
+    margin-bottom: .5rem
+}
+
+.iopwbAttachmentListClass .sapMLIBHighlight {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px
+}
+
+.iopwbAttachmentListClass .sapMLIBHighlight+.sapMLIBContent,
+.sapMListHighlight .sapMLIBContent:first-child {
+    margin-left: .6rem
+}
+
+.iopwbAdditionalItemTab .sapMITBHead,
+.iopwbAdditionalItemTab .sapMITBInLine .sapMITBFilter>.sapMITBText {
+    margin: 0
+}
+
+.iopwbFileUploaderClass.sapUiSizeCompact .sapMInputBaseInner {
+    width: 103%;
+    border-bottom-left-radius: 3px;
+    border-top-left-radius: 3px
+}
+
+.iopwbFileUploaderClass .sapMBtnInner {
+    /*background-color: #00a3ff;*/
+    /*#Theme*/
+    border: none;
+    border-radius: 0 .2rem .2rem 0;
+    /*color: #fff*/
+    /*#Theme*/
+}
+
+
+/*.iopwbFileUploaderClass .sapMBtnIcon {*/
+
+
+/*#Theme*/
+
+
+/*    color: #fff*/
+
+
+/*}*/
+
+.iopwbAttachmentLinkClass.sapMLnk {
+    font-size: .8rem;
+    font-weight: 600
+}
+
+.iopwbAttachmentLinkBoxClass {
+    top: .2rem;
+    width: 95%
+}
+
+.iopwbAttachmentLinkBoxClass .sapMFlexItem {
+    width: 99%
+}
+
+.iopwbAttTextBoxClass {
+    top: 0
+}
+
+.iopwbMultiInputClass.sapMMultiInput .sapMInputBaseInner {
+    border: 0;
+    padding-left: 0;
+    padding-right: .125rem;
+    height: 1.6rem
+}
+
+.iopwbMultiInputClass.sapMMultiInput {
+    max-width: 14rem
+}
+
+.iopwbSuggListClass.sapUiSizeCompact .sapMLIB>.sapMLIBSelectM:first-child,
+.iopwbSuggListClass.sapUiSizeCompact .sapMLIB>.sapMLIBSelectS:first-child {
+    margin-left: 0
+}
+
+.iopwbSuggListClass.sapMList {
+    min-width: 12.25rem
+}
+
+.iopwbTokenClass .sapMTokenText {
+    font-family: Open Sans!important
+}
+
+.iopwbFooterClass.sapMIBar {
+    position: fixed;
+    width: 100%;
+    bottom: 0
+}
+
+.iopwbComboBoxClass.sapMComboBoxTextField {
+    border: none
+}
+
+.iopwbAdditionalItemTab .sapMITBInLine.sapMITBTextOnly>.sapMITBVertical.sapMITBFilter>.sapMITBText+.sapMITBContentArrow {
+    height: .5rem
+}
+
+.iopwbAdditionalItemTab .sapMITBInLine.sapMITBTextOnly>.sapMITBVertical {
+    height: 1.65rem
+}
+
+.iopwbAdditionalItemTab .sapMITH {
+    box-shadow: none;
+    background-color: transparent;
+    border-bottom: none
+}
+
+.iopwbAdditionalItemTab .sapMITBContent {
+    border-bottom: none;
+    padding: 0 1rem
+}
+
+.iopwbAdditionalItemTab .sapMITBContainerContent {
+    margin-left: .3rem
+}
+
+.iopwbNewStatusColor {
+    color: grey;
+    font-weight: 700
+}
+
+.iopwbResolvedStatusColor {
+    color: #00b3e3;
+    font-weight: 700
+}
+
+.iopwbInProgressStatusColor {
+    color: #f68e56;
+    font-weight: 700
+}
+
+.iopwbDispatchedStatusColor {
+    color: #89c757;
+    font-weight: 700
+}
+
+.iopwbReturnedStatusColor {
+    color: #ff4451;
+    font-weight: 700
+}
+
+.iopwbReassignedStatusColor {
+    color: #1eab02;
+    font-weight: 700
+}
+
+.iopwbCompletedStatusColor {
+    color: #228B22;
+    font-weight: 700
+}
+
+.iopwbCancelledStatusColor {
+    color: #b00904;
+    font-weight: 700
+}
+
+b .iopwbLabelRequiredClass.sapMLabelRequired:before {
+    color: #c14646;
+    font-size: .8rem;
+    top: 0
+}
+
+.iopwbLocLabelClass {
+    font-weight: 700;
+    /*color: #313131;*/
+    font-size: .85rem
+}
+
+.iopwbCollabTitleClass {
+    font-size: 1rem;
+    font-weight: 700;
+    /*color: #3a5972*/
+}
+
+.iopwbCollabTitleBoxClass {
+    padding: .5rem;
+    /*background: #d6e4f5*/
+}
+
+.iopwbAddScrollContClass {
+    max-height: 7rem
+}
+
+.iopwbListNewStatusBgColor .sapMLIBHighlight,
+.iopwbNewStatusBgColor {
+    background: grey
+}
+
+.iopwbListResolvedStatusBgColor .sapMLIBHighlight,
+.iopwbResolvedStatusBgColor {
+    background: #00b3e3
+}
+
+.iopwbInProgressStatusBgColor,
+.iopwbListInProgressStatusBgColor .sapMLIBHighlight {
+    background: #f68e56
+}
+
+.iopwbDispatchedStatusBgColor,
+.iopwbListDispatchedStatusBgColor .sapMLIBHighlight {
+    background: #89c757
+}
+
+.iopwbListReturnedStatusBgColor .sapMLIBHighlight,
+.iopwbReturnedStatusBgColor {
+    background: #ff4451
+}
+
+.iopwbListSubmittedStatusBgColor .sapMLIBHighlight,
+.iopwbSubmittedStatusBgColor {
+    background: #998cf9
+}
+
+.iopwbListReAssignedStatusBgColor .sapMLIBHighlight,
+.iopwbReAssignedStatusBgColor {
+    background: #1eab02
+}
+
+.iopwbListCancelledStatusBgColor .sapMLIBHighlight,
+.iopwbCancelledStatusBgColor {
+    background: #b00904
+}
+
+.iopwbMultiComboBoxClass.sapMComboBoxTextField {
+    /*border-color: #dedcdc*/
+}
+
+.iopwbMultiComboBoxClass {
+    width: 14rem!important
+}
+
+.iopwbCloseBtnClass {
+    position: fixed;
+    z-index: 3;
+    top: -1.4rem;
+    right: -1rem
+}
+
+.iopwbCloseBtnIEClass {
+    position: fixed;
+    z-index: 3;
+    top: -.75rem;
+    right: .5rem
+}
+
+.iopwbCloseBtnClass .sapMBtnTransparent {
+    border-radius: 30px;
+    height: 1.5rem;
+    min-width: 1.5rem;
+    background-color: #fff
+}
+
+.iopwbCloseBtnClass .sapMBtnIcon {
+    font-size: 1.5rem;
+    line-height: 1.5rem;
+    width: 1.5rem
+}
+
+
+/*.iopwbCloseBtnClass.sapMBtn:hover>.sapMBtnTransparent.sapMBtnHoverable {*/
+
+
+/*#Theme*/
+
+
+/*    background-color: #fff*/
+
+
+/*}*/
+
+
+/*.sapContrast.sapMFooter-CTX .sapMBtnInner {*/
+
+
+/*#Theme*/
+
+
+/*    border-color: #b8c9da*/
+
+
+/*}*/
+
+.iopwbAssignedTextClass {
+    font-size: .8rem;
+    width: 12rem
+}
+
+.additionalTaskHeightClass {
+    max-height: 11rem
+}
+
+.iopwbDetailDialogClass.sapMDialog {
+    max-width: 97%;
+    max-height: 96%!important
+}
+
+.iopwbDetailDialogClass.sapMDialog>.sapMDialogSection {
+    height: 100%!important
+}
+
+.iopwbCommentArea.sapMInputBaseWidthPadding {
+    padding: .25rem .01rem
+}
+
+.completedIcon {
+    width: 25px;
+    padding-left: 1rem
+}
+
+.statusHeaderTextStyle {
+    /*color: #949494;*/
+    font-size: .85rem;
+    margin-top: .2rem;
+    margin-left: .5rem
+}
+
+.processFlowLineStyle {
+    padding-left: 1rem;
+    padding-bottom: .25rem
+}
+
+.taskSeperatorStyle {
+    border-bottom: 1px solid #cac9c7;
+    margin: 1rem 1rem .5rem 0
+}
+
+.timeLineDescrptionTextStyle {
+    margin-top: .2rem!important;
+    font-size: .75rem;
+    font-weight: 600;
+    color: grey!important;
+    padding-left: .2rem
+}
+
+.taskBoxStyle {
+    padding-left: .55rem
+}
+
+.iopPowerBiDialogClass.sapMDialog {
+    max-width: 100%
+}
+
+.iopProCountLabelClass {
+    margin-top: .4rem
+}
+
+.iopwbTaskTypeClass {
+    /*background: #c6dbe9*/
+}
+
+.suggestionListPanel .sapMPanelContent {
+    padding: 0
+}
+
+.iopwbRedTextStyle.sapMText {
+    /*color: #b00*/
+}
+
+.iopRightPanelTaskManagment {
+    z-index: 3
+}
+
+.iopRightPanelContainer {
+    height: 100%;
+    position: fixed;
+    z-index: 40;
+    right: 0;
+    /*background-color: #f7f7f7;*/
+    /*#Theme*/
+    overflow: hidden;
+    transition: .5s;
+    padding-top: 0;
+    box-shadow: 29px 28px 30px 22px rgba(63, 81, 97, .5607843137254902)
+}
+
+.iopNewBoldText {
+    /*color: #000;*/
+    font-size: .75rem;
+    font-wieght: 800
+}
+
+.iopTaskManagementBox {
+    border-bottom: solid .01rem #c3c3c3;
+    width: 100%;
+    cursor: pointer
+}
+
+.iopTaskManagementBox.sapMFlexBoxAlignItemsStretch {
+    align-items: center
+}
+
+.iopTaskManagementText.sapMText {
+    font-size: .7rem;
+    color: #8b8b8c;
+    font-weight: 900;
+    cursor: pointer;
+    text-align: center
+}
+
+.iopTaskManagementIcon.sapUiIcon {
+    font-size: 1.6rem;
+    color: #8b8b8c;
+    cursor: pointer
+}
+
+.iopTaskManagementBack.sapUiIcon {
+    padding: .3rem
+}
+
+.iopTaskmanagementGripButton .sapMBtnIcon {
+    font-size: 1rem;
+    line-height: 1rem
+}
+
+.iopTaskManagementButton {
+    /*background-color: #346187;*/
+    border-bottom-color: #427cac
+}
+
+.iopTaskManagementSegmentedButton .sapMSegBBtn {
+    height: 2rem;
+    line-height: 1.7rem;
+    /*background-color: #caced3;*/
+    /*color: #000*/
+}
+
+.iopTaskManagementSegmentedButton .sapMSegBBtn.sapMSegBBtnSel {
+    /*color: #000;*/
+    border-color: #b5bbc2;
+    /*background: #b5bbc2!important*/
+}
+
+.sapMSegBBtn.sapMSegBBtnSel {
+    /*background: #b5bbc2*/
+}
+
+.iopTaskManagementSearch.sapUiSizeCompact .sapMSFB {
+    color: #b5bbc2
+}
+
+.iopTaskManagementSearch {
+    padding-bottom: .5rem;
+    border-bottom: solid .01rem #b3c3d7;
+    width: 100%
+}
+
+.iopTaskHeaderBox {
+    /*AN: #taskFilter */
+    padding-bottom: 1.95rem;
+}
+
+.iopTaskFilter .sapMPanelWrappingDivTb.sapMPanelWrappingDivTbExpanded {
+    /*AN: #taskFilter */
+    border-bottom-width: 1px;
+}
+
+.taskFilterToolbar .sapMLnk {
+    /*AN: #taskFilter */
+    font-size: 17px;
+}
+
+.taskFilterToolbar .sapMBtnIcon {
+    /*AN: #taskFilter */
+    font-size: 1.5rem;
+}
+
+.taskFilterToolbar .sapMBtnInner {
+    /*AN: #taskFilter */
+    height: 1.8rem;
+    padding-right: 8px;
+    min-width: 2.3rem;
+}
+
+.iopTaskManagementSearch.sapUiSizeCompact .sapMSFF {
+    border-radius: .2rem
+}
+
+.iopTaskManagementSearch .sapMBtn.sapMBtnInner {
+    /*background-color: #0d1d5d*/
+}
+
+.iopTaskManagementSearch.sapUiSizeCompact .sapMBtnInner {
+    color: #e5eaef;
+    border: 0;
+    background-color: #0d1d5d
+}
+
+.iopTaskManagementSearch.sapUiSizeCompact .sapMBtnIcon {
+    color: #e8ebf1
+}
+
+
+/*.iopTaskOperationsPopOver.sapUiSizeCompact .sapMBtnInner {*/
+
+
+/*#Theme*/
+
+
+/*background-color: #fefefe;*/
+
+
+/*border: 0 solid #ababab;*/
+
+
+/*color: #0a0a0a*/
+
+
+/*}*/
+
+
+/*.iopTaskOperationsPopOver.sapUiSizeCompact .sapMBtnIcon {*/
+
+
+/*#Theme*/
+
+
+/*    color: #0a0a0a*/
+
+
+/*}*/
+
+
+/*.iopTaskManagementTextFont {*/
+
+
+/*#Theme*/
+
+
+/*    font-size: .75rem!important;*/
+
+
+/*    color: #55565a*/
+
+
+/*}*/
+
+
+/*.iopwbListClass.sapMLIBHoverable .sapMLIBHighlightWarning {*/
+
+
+/*#Theme*/
+
+
+/*    background: #fff*/
+
+
+/*}*/
+
+.iopwbAssignedToBoxClassStatus {
+    margin-top: .1rem
+}
+
+html:not([data-sap-ui-browser^=ie]):not([data-sap-ui-browser^=ed]) .sapUiIcon:focus {
+    outline-color: none!important
+}
+
+.iopTaskOperationsPopOver {
+    padding-left: 10px
+}
+
+.iopTaskManagementPopOver {
+    border-radius: 0
+}
+
+.iopTaskManagementTextFontAvatar {
+    font-size: .75rem!important;
+    /*color: #75767a*/
+}
+
+.iopTaskManagementVBoxStyle {
+    margin-top: .5rem!important;
+    margin-right: .5rem!important;
+    margin-left: .5rem!important
+}
+
+.iopVerticalGripIconClass {
+    outline-color: #fff!important;
+    font-size: 1.5rem!important
+}
+
+.iopwbTimeClassDesc {
+    border-bottom: none
+}
+
+.ioptaskwbDetailDialogClass.sapMDialog.sapMDialog-NoHeader:not(.sapMDialog-NoFooter):not(.sapMDialogWithSubHeader) {
+    height: 100%
+}
+
+.ioptaskwbDetailDialogClass {
+    overflow: visible
+}
+
+.ioptaskwbDetailDialogClass.sapMDialog {
+    max-width: 97%;
+    max-height: 96%!important
+}
+
+.iopwbListResolvedStatusBgColor .sapMLIBHighlight,
+.iopwbTaskResolvedStatusBgColor {
+    background: #00b3e3;
+    color: #fff!important;
+    width: 100%!important;
+    height: 1.3rem!important
+}
+
+.iopwbListInProgressStatusBgColor .sapMLIBHighlight,
+.iopwbTaskInProgressStatusBgColor {
+    background: #f68e56;
+    width: 100%!important;
+    /*height: 1.3rem!important*/
+    /*AN: #ThemeBug*/
+}
+
+.iopwbListDispatchedStatusBgColor .sapMLIBHighlight,
+.iopwbTaskDispatchedStatusBgColor {
+    background: #89c757;
+    width: 100%!important;
+    height: 1.3rem!important
+}
+
+.iopwbListReturnedStatusBgColor .sapMLIBHighlight,
+.iopwbTaskReturnedStatusBgColor {
+    background: #ff4451;
+    width: 100%!important;
+    height: 1.3rem!important
+}
+
+.iopwbListSubmittedStatusBgColor .sapMLIBHighlight,
+.iopwbTaskSubmittedStatusBgColor {
+    background: #998cf9;
+    width: 100%!important;
+    height: 1.3rem!important
+}
+
+.iopwbListSubmittedStatusBgColor .sapMLIBHighlight,
+.iopwbTaskCompletedStatusBgColor {
+    background: #228B22;
+    width: 100%!important;
+    height: 1.3rem!important
+}
+
+.iopTableStatusFontClass {
+    color: #fff!important;
+    font-weight: 200!important;
+    text-align: center!important
+}
+
+.iopCreateTaskPanelAlignment {
+    margin-top: -1rem!important
+}
+
+.iopCreateTaskIconAlignment .sapMPanelExpandableIcon {
+    margin-left: 95%!important
+}
+
+.iopCreateTaskIconAlignment .sapMBtnBase {
+    /*AN: #ThemeBug*/
+    margin-left: 95%!important
+}
+
+.iopCreateCalendarButtonAlignment .sapMBtnBase {
+    /*AN: #ThemeBug*/
+    margin-left: 0!important
+}
+
+.iopCreateTaskPanelClass .sapMPanelHdr {
+    /*margin-top: -.4rem!important;*/
+    /*AN: #ThemeBug*/
+    /*margin-bottom: -.3rem!important;*/
+    /*AN: #ThemeBug*/
+    height: 2.5rem;
+    line-height: 2.5rem;
+    margin-left: .5rem!important;
+    font-weight: 700!important;
+    font-size: 14px!important
+}
+
+.iopCreateTaskPanelClass .sapMPanelContent {
+    padding: 0;
+    /*background: #fff*/
+    /*#Theme*/
+}
+
+.iopCreateTaskClass {
+    padding-bottom: .5rem!important;
+    margin-top: -.1rem!important;
+    width: 100%
+}
+
+
+/*.iopCreateTaskPanelClass {*/
+
+
+/*#Theme*/
+
+
+/*background: #fff*/
+
+
+/*}*/
+
+.iopwbInquiryDetailDialogClass.sapMDialog {
+    max-width: 97%;
+    max-height: 50%!important
+}
+
+
+/*//RV: #Location History Css Start*/
+
+.iopLocationHistoryDetailsText .sapMText {
+    font-style: italic !important;
+    font-size: 0.8rem !important;
+}
+
+.iopLocationHistoryCloseBtnClass {
+    position: fixed !important;
+    z-index: 34;
+    top: -1.95rem;
+    right: -1.5rem;
+}
+
+.iopPtwOverFlow {
+    overflow: initial !important;
+}
+
+
+/*.iopLocationHistoryCloseButton .sapMBtnIcon {
+    color: #ffff !important;
+    background: none !important;
+}*/
+
+.iopLocationHistoryCloseBtnClass.sapMBtn:hover>.sapMBtnTransparent.sapMBtnHoverable {
+    background-color: transparent;
+    border: none;
+    text-shadow: none;
+}
+
+.iopLocationHistoryCloseBtnClass.sapMBtn:active>.sapMBtnTransparent.sapMBtnHoverable {
+    background-color: transparent;
+    border: none;
+    text-shadow: none;
+}
+
+.iopLocationHistoryCloseBtnClass .sapMBtn .sapMBtnIcon {
+    cursor: initial;
+}
+
+.iopLocationHistoryInputBox .sapMInputBaseContentWrapper {
+    border: none !important;
+    border-bottom: 1px solid #bfbfbf !important;
+    top: -0.5rem !important;
+    background: transparent !important;
+}
+
+.iopLocationHistoryInputBox .sapMInputBaseDisabledWrapper {
+    opacity: 1 !important;
+}
+
+.ioplocHisTitleBoxClass {
+    padding: .4rem;
+    border-bottom: 2px solid black;
+    /*background: #000066*/
+}
+
+.ioplocHisTitleFontClass {
+    font-size: 1rem;
+    font-weight: 700;
+    /*color: #fff*/
+}
+
+.ioplocHisBypassTitleFontClass {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 0.7rem !important;
+}
+
+.ioplocHistoryOriginClass.sapMText {
+    position: sticky;
+    height: 100% !important;
+    width: 10rem !important;
+    font-size: .75rem;
+    /*color: #fff!important;*/
+}
+
+.ioplocHistoryBypassLogOriginClass.sapMText {
+    position: sticky;
+    height: 100% !important;
+    width: 8rem !important;
+    font-size: .75rem;
+    /*color: #fff!important;*/
+}
+
+.ioplocHistoryBypassLogOriginClass {
+    background: #fbc98b;
+    padding: .15rem .5rem .2rem;
+    margin: .4rem 0 .6rem;
+    /*color: #132859!important;*/
+    font-weight: 600;
+    border-radius: 4px
+}
+
+.iopBypassformTextLabel.sapMText {
+    font-family: Open Sans!important;
+    font-weight: bold !important;
+}
+
+.ioplocHistoryOriginClass {
+    /*background: #fbc98b;*/
+    padding: .15rem .5rem .2rem;
+    margin: .4rem 0 .6rem;
+    /*color: #132859!important;*/
+    font-weight: 600;
+    border-radius: 4px
+}
+
+.iopPrintButtonCss {
+    margin-left: 76% !important;
+}
+
+.iopPrintButtonClass {
+    margin-top: -0.45rem !important;
+}
+
+.iopwbListSubmittedStatusBgColor .sapMLIBHighlight,
+.iopwbTaskCompletedStatusBgColor {
+    background: #228B22;
+    width: 100%!important;
+    height: 1.3rem!important
+}
+
+.iopLocHistoryDispatchedStatusBgColor,
+.iopLocHistoryListDispatchedStatusBgColor .sapMLIBHighlight {
+    background: #89c757
+}
+
+.iopwbListReleasedStatusBgColor .sapMLIBHighlight,
+.iopwbReleasedStatusBgColor {
+    background: grey
+}
+
+.iopLocHisInProgressStatusBgColor,
+.iopwbListInProgressStatusBgColor .sapMLIBHighlight {
+    background: #f68e56
+}
+
+.iopwbListResolvedStatusBgColor .sapMLIBHighlight,
+.iopLocHisResolvedStatusBgColor {
+    background: #00b3e3
+}
+
+.iopwbListReturnedStatusBgColor .sapMLIBHighlight,
+.iopLocHisReturnedStatusBgColor {
+    background: #ff4451
+}
+
+.iopwbListSubmittedStatusBgColor .sapMLIBHighlight,
+.iopLocHisSubmittedStatusBgColor {
+    background: #998cf9
+}
+
+.iopTextApprovedStatusFormat.sapMText {
+    color: #89c757 !important;
+}
+
+.iopTextDeniedStatusFormat.sapMText {
+    color: #ff4451 !important;
+}
+
+.iopTextPendingStatusFormat.sapMText {
+    color: #f68e56 !important;
+}
+
+.iopLocHisBypasToolbar .sapMITH {
+    /*background-color: #fff !important;*/
+    text-align: center !important;
+    box-shadow: none;
+    border-bottom: none;
+}
+
+.iopLocHisBypasToolbar .sapMITBHead {
+    margin: 0;
+}
+
+.iopLocationHistoryTextNonEditable {
+    width: 100% !important;
+    /*border-bottom: 1px solid #a5a1a1 !important;*/
+}
+
+.iopLocationHistoryNonEditableBorder {
+    border-bottom: 1px solid #a5a1a1 !important;
+}
+
+.iopLocationHistoryNonEditableBorderLongText {
+    margin-top: 0.8rem !important;
+    border-bottom: 1px solid #a5a1a1 !important;
+}
+
+.iopLocationHistoryLongTextNonEditable {
+    width: 100% !important;
+}
+
+.iopLocationHistoryLongLongTextNonEditable {
+    width: 100% !important;
+}
+
+.iopLocationHistoryLongLongAnotherTextNonEditable {
+    width: 100% !important;
+    /*border-bottom: 1px solid #a5a1a1 !important;*/
+    margin-top: 1.6rem !important;
+}
+
+.iopLocationHistoryLongTextEmocNonEditable {
+    width: 100% !important;
+    /*border-bottom: 1px solid #a5a1a1 !important;*/
+    margin-top: 0.7rem !important;
+}
+
+.iopLocationHistoryInputBoxLongText .sapMInputBaseContentWrapper {
+    border: none !important;
+    border-bottom: 1px solid #bfbfbf !important;
+}
+
+.iopLocationHistoryInputBoxLongText {
+    /*backgroud-color: #fff !important;*/
+}
+
+.iopLocHistoryBypassLogHeader .sapMText {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.iopLocHisCollabTitleBoxClass {
+    height: 3rem;
+    /*background: #d6e4f5*/
+}
+
+.iopLocHistoryNegVarianceText {
+    color: red !important;
+}
+
+.iopLocHistoryPositiveVarianceText {
+    color: green !important;
+}
+
+
+/* PRINT STYLES */
+
+@media print {
+    /*usage of !important hard overwrites, because UI5 uses inline style directives (style="width:990px")  */
+    /*define print page default settings */
+    @page {
+        size: portrait;
+        margin: 0.5cm 0cm;
+    }
+    /*scale content to fit print page */
+    html,
+    body {
+        width: 100% !important;
+        height: auto !important;
+    }
+    /*reset body */
+    body {
+        margin: 0;
+        padding: 0;
+        float: none;
+        color: #000;
+        -webkit-print-color-adjust: exact !important;
+    }
+    /*helper class to allow selective hiding elements from printing (ex print button)  */
+    .uoNoPrint {
+        display: none;
+    }
+    /*fix overflow scrolling */
+    * {
+        overflow-x: visible !important;
+        overflow-y: visible !important;
+    }
+    /*auto expand collapsed panel contents */
+    .sapMPanelExpandablePart {
+        display: block !important;
+    }
+    /*disable panel content border */
+    .sapMPanelContent {
+        border: 0 !important;
+    }
+    /*reset flexed textareas height */
+    .sapMTextArea>.sapMTextAreaInner {
+        height: auto !important;
+    }
+    .ptwPrintMargin {
+        margin-top: 1.5cm!important;
+    }
+    .ptwTableHeight {
+        height: 23.2rem!important;
+    }
+    .ptwPrintWidth {
+        width: 97%!important;
+    }
+    /*css for the tick mark for the check box which are checked */
+    .sapMCbMarkChecked::before {
+        content: "✔"!important;
+    }
+    /*custom css prototypes for addtional used containers */
+}
+
+
+/*//RV: #Location History Css End*/
+
+.iopNotifTaskResolvedStatusBgColor .sapMNLI-Details .sapMText.sapMNLI-Text {
+    /*AN: #Notif*/
+    background: #00b3e3;
+    color: #fff;
+    font-size: medium;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    border-radius: 0.3rem;
+}
+
+.iopNotifTaskResolvedStatusBgColor .sapMNLI-Body .sapMNLI-Details {
+    /*AN: #Notif*/
+    padding-bottom: 0.2rem;
+}
+
+.iopNotifTaskReturnedStatusBgColor .sapMNLI-Details .sapMText.sapMNLI-Text {
+    /*AN: #Notif*/
+    background: #ff4451;
+    color: #fff;
+    font-size: medium;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    border-radius: 0.3rem;
+}
+
+.iopNotifTaskReturnedStatusBgColor .sapMNLI-Body .sapMNLI-Details {
+    /*AN: #Notif*/
+    padding-bottom: 0.2rem;
+}
+
+.iopNotifTaskAssignedStatusBgColor .sapMNLI-Details .sapMText.sapMNLI-Text {
+    /*AN: #Notif*/
+    background: #89c757;
+    color: #fff;
+    font-size: medium;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    border-radius: 0.3rem;
+}
+
+.iopNotifTaskAssignedStatusBgColor .sapMNLI-Body .sapMNLI-Details {
+    /*AN: #Notif*/
+    padding-bottom: 0.2rem;
+}
+
+.iopNotifTaskInProgressStatusBgColor .sapMNLI-Details .sapMText.sapMNLI-Text {
+    /*AN: #Notif*/
+    background: #f68e56;
+    color: #fff;
+    font-size: medium;
+    padding-left: 2.3rem;
+    padding-right: 2.3rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    border-radius: 0.3rem;
+}
+
+.iopNotifTaskInProgressStatusBgColor .sapMNLI-Body .sapMNLI-Details {
+    /*AN: #Notif*/
+    padding-bottom: 0.2rem;
+    margin-top: 0.2rem;
+}
+
+.iopNotifTaskNewStatusBgColor .sapMNLI-Details .sapMText.sapMNLI-Text {
+    /*AN: #Notif*/
+    background: grey;
+    color: #fff;
+    font-size: medium;
+    text-align: center;
+    padding-left: 4.5rem;
+    padding-right: 4.5rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    border-radius: 0.3rem;
+}
+
+.iopNotifTaskNewStatusBgColor .sapMNLI-Body .sapMNLI-Details {
+    /*AN: #Notif*/
+    padding-bottom: 0.2rem;
+}
+
+.iopNotifTaskSubmittedStatusBgColor .sapMNLI-Details .sapMText.sapMNLI-Text {
+    /*AN: #Notif*/
+    background: #998cf9;
+    color: #fff;
+    font-size: medium;
+    padding: 0.2rem;
+    border-radius: 0.3rem;
+}
+
+.iopNotifTaskSubmittedStatusBgColor .sapMNLI-Body .sapMNLI-Details {
+    /*AN: #Notif*/
+    padding-bottom: 0.2rem;
+}
+
+.iopNotifTaskCompletedStatusBgColor .sapMNLI-Details .sapMText.sapMNLI-Text {
+    /*AN: #Notif*/
+    background: #228B22;
+    color: #fff;
+    font-size: medium;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    border-radius: 0.3rem;
+}
+
+.iopNotifTaskCompletedStatusBgColor .sapMNLI-Body .sapMNLI-Details {
+    /*AN: #Notif*/
+    padding-bottom: 0.2rem;
+}
+
+.iopTaskManagementNotifCount {
+    /*AN: #Notif*/
+    /*Anand #Bypass*/
+    position: relative;
+    bottom: 30%;
+    left: 42%;
+    color: #fff;
+    background: #d80707;
+    padding: 2px 3px;
+    height: 1.2rem;
+    min-width: 1.5rem;
+    border-radius: 1rem;
+    font-size: 12px;
+    text-align: center !important;
+}
+
+.iopInProgressBypassStatus {
+    /*Anand #Handover*/
+    background: #f68e56 !important;
+}
+
+.iopLocHistBypass .sapMITBArrowScroll {
+    padding: .1rem!important
+}
+
+.iopwbListNewStatusBgColor .sapMLIBHighlight,
+.iopwbTaskNewStatusBgColor {
+    background: grey;
+    width: 100%!important;
+    height: 1.3rem!important
+}
+
+.iopwbOriginClassBacklog.sapMText {
+    /*AN: #wbBacklog*/
+    position: sticky;
+    height: 100% !important;
+    width: 10rem !important;
+    font-size: .75rem;
+    /*color: #fff!important;*/
+}
+
+
+/*AN: New Notif panel*/
+
+.clIopNotifPanel.sapMPanel {
+    border: 1px solid lightgray;
+    border-radius: 0.25rem;
+    /*background: #fff;*/
+}
+
+.clIopNotifPanel .sapMPanelContent {
+    padding: 0;
+}
+
+.clIopNotifButton .sapMBtn.sapMBtnInner {
+    /*background-color: #0d1d5d*/
+}
+
+.clIopNotifPanelSubject.sapMTitle {
+    padding: 0.5rem;
+}
+
+.clIopNotifPanelSecondItem.sapMLabel {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.clIopNotifPanelLastItem.sapMFlexBox {
+    padding: 0.5rem;
+}
+
+.clIopNotifList .sapMLIBHighlightInformation {
+    background: #5E696E;
+}
+
+.clIopNotifLink.sapMLnk {
+    font-size: 15px;
+    /*color: #333;*/
+    font-weight: bold;
+}
+
+.clIopNotifClearAllButton .sapMBtnInner.sapMBtnAccept {
+    /*border-color: #000;*/
+    /*color: #000;*/
+}
+
+.clIopNotifVlayout .sapUiVltCell {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    padding-bottom: 0.4rem;
+}
+
+.clVBOXPadding.sapMFlexBox {
+    /*AN: #msgToROC*/
+    padding-top: 1rem;
+}
+
+
+/*SH: HandoverNotes*/
+
+.iopHandoverList .sapMLIBHoverable:hover {
+    background: #f5f5f5;
+    box-shadow: 0 0.175rem 0.3rem 0 rgba(0, 0, 0, .5);
+}
+
+.iopHandoverList .sapMLIB {
+    margin-bottom: 0.75rem!important;
+}
+
+.iopHandoverList .sapMLnkDsbl {
+    color: #0a6ed1!important;
+}
+
+.iopHandoverList .sapMFeedListItemImageInactive,
+.sapMLIBActive .sapMFeedListItem span.sapMFeedListItemImageInactive {
+    color: #0a6ed1!important;
+}
+
+.iopAllItemsLinkClass.sapMLnk {
+    margin-top: 0.2rem;
+}
+
+
+/*AN: #msgToROC*/
+
+.iopwbMsgDetailDialogClass.sapMDialog.sapMDialog-NoHeader:not(.sapMDialog-NoFooter):not(.sapMDialogWithSubHeader) {
+    height: 75%
+}
+
+
+/*AN: #msgToROC*/
+
+.iopwbMsgDetailDialogClass1.sapMDialog.sapMDialog-NoHeader:not(.sapMDialog-NoFooter):not(.sapMDialogWithSubHeader) {
+    height: 50%
+}
+
+
+/*AN: #msgToROC*/
+
+.iopwbMsgDetailDialogClass2.sapMDialog.sapMDialog-NoHeader:not(.sapMDialog-NoFooter):not(.sapMDialogWithSubHeader) {
+    height: 40%
+}
+
+
+/*AN: #msgToROC*/
+
+.iopwbMsgDetailDialogClass3 {
+    overflow: visible
+}
+
+
+/*AN: #msgToROC*/
+
+.iopwbMsgDetailDialogClass3.sapMDialog {
+    max-width: 97%;
+    max-height: 96%!important
+}
+
+
+/*AN: #msgToROC*/
+
+.iopwbMsgDetailDialogClass3.sapMDialog>.sapMDialogSection {
+    height: 100%!important
+}
+
+
+/*AN: #msgToROC*/
+
+.iopWbMsgGrid.sapUiRespGrid.sapUiRespGridHSpace1 {
+    padding: 0rem;
+}
+
+
+/*AN: #msgToROC*/
+
+.iopWbMsgGrid.sapUiRespGrid.sapUiRespGridHSpace1>div {
+    margin: 0rem;
+}
+
+
+/*AN: #msgToROC*/
+
+.iopWBMsgPanelClass .sapMPanelHdr {
+    height: 2.5rem;
+    line-height: 2.5rem;
+    margin-left: 2rem!important;
+    font-weight: 700!important;
+    font-size: 14px!important;
+}
+
+
+/*AN: #msgToROC*/
+
+.iopWBMsgPanelClass .sapMPanelContent {
+    padding: 0;
+}
+
+
+/*AN: #msgToROC*/
+
+.iopWBMsgRadioBtnClass .sapMRbBLabel {
+    font-weight: bold;
+}
+
+
+/*AN: #msgToROC*/
+
+.iopwbMsgDialogClass.sapMDialog {
+    max-width: 97%;
+    max-height: 80%!important
+}
+
+
+/*AN: #msgToROC*/
+
+.iopwbClass.sapMText {
+    position: sticky;
+    width: 10rem;
+    margin-top: 0!important;
+    font-size: .75rem;
+}
+
+
+/*AN: #msgToROC*/
+
+.iopwbClass {
+    padding: .15rem .5rem .2rem;
+    margin: .4rem 0 .6rem;
+    font-weight: 600;
+    border-radius: 4px
+}

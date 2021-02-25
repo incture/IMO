@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" id="fracAddwellFragment">
+	<SelectDialog contentHeight="70%"  class="sapUiSizeCompact" noDataText="No Well(s) Found" rememberSelections="true"
+		title="{i18n>FracwellSelectTitle}" showClearButton="true" liveChange="handleFracWellSearch" multiSelect="true" confirm="handleFracWellSelectConfirm"
+		cancel="handleFracWellSelectClose" items="{path:'oAllWellModel>/allWellData'}" growing="false">
+			<StandardListItem
+			title="{oAllWellModel>locationText}"
+			type="Active" />
+	</SelectDialog>
+</core:FragmentDefinition>

@@ -1,0 +1,93 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" id="powerBiDialogFragment"
+	xmlns:l="sap.ui.layout" xmlns:html="http://www.w3.org/1999/xhtml">
+	<Dialog class="sapUiSizeCompact iopPowerBiDialogClass" id="powerBiDialog" horizontalScrolling="false"
+		verticalScrolling="{dashBoardModel>/isFracMonitoring}" contentWidth="{dashBoardModel>/screenSize/powerBIWidth}" draggable="true"
+		stretch="false" afterOpen="afterPlotlyPopupOpen" showHeader="false">
+		<VBox width="100%">
+			<Toolbar visible="{= ${dashBoardModel>/isFracMonitoring} &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isFracReadOnly} === false}">
+				<Text class="sapUiTinyMarginBegin iopFontClass iopAlarmListTextClass" text="Frac Hit :"></Text>
+				<DateTimePicker
+					value="{path:'dashBoardModel>/fracMonitoringData/fracHitDate', type:'sap.ui.model.type.DateTime', formatOptions: { style: 'medium', strictParsing: true}}"
+					width="20rem" class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiSizeCompact iopInputClass" valueFormat="MMM dd, yyyy hh:mm:ss aaa"/>
+			</Toolbar>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Title text="{dashBoardModel>/plotlyGraphData/wellName}" level="H1"/>
+				<ToolbarSpacer/>
+				<Text class="sapUiTinyMarginBegin sapUiTinyMarginEnd iopFontClass sapUiTinyMarginTop iopAlarmListTextClass"
+					text="Refreshed On : {dashBoardModel>/plotlyRefDate}"></Text>
+			</Toolbar>
+			<HBox width="100%">
+				<!--<HBox class="sapUiTinyMarginBegin sapUiTinyMarginEnd sapUiTinyMarginBottom" width="100%">-->
+				<VBox id="idHBox" width="100%" justifyContent="Center" class="plotlyDivFlexWidth">
+					<Toolbar class="plotlyToolbar">
+						<ToolbarSpacer/>
+						<ToolbarSpacer/>
+						<Label visible="{dashBoardModel>/isFracMonitoring}" class="sapUiTinyMarginTop" design="Bold" text="Show Frac Hit"/>
+						<Switch visible="{dashBoardModel>/isFracMonitoring}" class="sapUiTinyMarginTop iconColor rtrSwitchSize rtrSwitchColor sapUiTinyMarginEnd"
+							state="{dashBoardModel>/fracHitPressed}" customTextOn=" " customTextOff=" " change="onToggleFracHit"></Switch>
+						<Button icon="sap-icon://menu2" class="sapUiTinyMarginTop sapUiTinyMarginEnd" press="plotlyHamPress" tooltip="Chart Options"></Button>
+					</Toolbar>
+					<core:HTML content="&lt;div class=&quot;custom_svg_single_graph&quot; id=&quot;idPlotlyDiv1&quot;&gt; &lt;/div&gt;"></core:HTML>
+					<Text visible="{= ${dashBoardModel>/noDataPlotlyTextVisibility} === true}" class="sapUiSmallMarginBottom" width="100%" textAlign="Center"
+						text="{dashBoardModel>/noDataPlotlyText}"></Text>
+				</VBox>
+				<!--<Button icon="sap-icon://menu2" class="sapUiTinyMarginTop sapUiTinyMarginEnd" press="plotlyHamPress" tooltip="Chart Options"></Button>-->
+				<!--</HBox>-->
+				<VBox
+					visible="{= ${dashBoardModel>/isFracMonitoring} === true || ${dashBoardModel>/isProve} === true || ${dashBoardModel>/plotlyIsAlarm} === true ? true : false }">
+					<VBox class="sapUiTinyMarginBegin">
+						<Label text="Start Date: " class="sapUiTinyMarginTop sapUiTinyMarginEnd"></Label><DatePicker width="90%" valueFormat="MMM dd,yyyy" change="onPlotlyFilterChange" dateValue="{dashBoardModel>/plotlyStartDate}"
+							minDate="{dashBoardModel>/plotlyMaxStartDate}" maxDate="{dashBoardModel>/plotlyEndDate}"/>
+						<Label text="End Date: " class="sapUiTinyMarginTop sapUiTinyMarginEnd"></Label><DatePicker width="90%" valueFormat="MMM dd,yyyy" change="onPlotlyFilterChange" dateValue="{dashBoardModel>/plotlyEndDate}"
+							maxDate="{dashBoardModel>/plotlyEndDate}" minDate="{dashBoardModel>/plotlyMaxStartDate}"/>
+					</VBox>
+					<HBox class="sapUiTinyMarginBegin sapUiTinyMarginEnd sapUiTinyMarginTop" alignContent="SpaceBetween" justifyContent="SpaceBetween">
+						<Button class="sapUiSmallMarginEnd" width="4rem" press="onPlotlyDurationBtnPress" text="3 D"
+							type="{path:'dashBoardModel>/plotlyDuration',formatter:'com.sap.incture.Incture_IOP.util.formatter.plotlyButtonType'}"></Button>
+						<Button class="sapUiSmallMarginEnd" width="4rem" press="onPlotlyDurationBtnPress" text="7 D"
+							type="{path:'dashBoardModel>/plotlyDuration',formatter:'com.sap.incture.Incture_IOP.util.formatter.plotlyButtonType'}"></Button>
+						<Button class="sapUiSmallMarginEnd" width="4rem" press="onPlotlyDurationBtnPress" text="30 D"
+							type="{path:'dashBoardModel>/plotlyDuration',formatter:'com.sap.incture.Incture_IOP.util.formatter.plotlyButtonType'}"></Button>
+					</HBox>
+					<HBox class="sapUiTinyMarginBegin sapUiTinyMarginEnd sapUiTinyMarginTop sapUiTinyMarginBottom">
+						<ScrollContainer horizontal="false" vertical="true">
+							<Table width="{= ${dashBoardModel>/isFracMonitoring} === true ? '13rem' : '18rem' }" class="sapUiTinyMarginEnd plotlyTable"
+								items="{ path: 'dashBoardModel>/plotlyTableData'}" alternateRowColors="true" sticky="ColumnHeaders"
+								visible="{= ${dashBoardModel>/isFracMonitoring} === true || ${dashBoardModel>/isProve} === true ? true : false }">
+								<columns>
+									<Column visible="{dashBoardModel>/isFracMonitoring}">
+										<Text text="Frac Hit At" class="plotlyTableFont"/>
+									</Column>
+									<Column visible="{dashBoardModel>/isProve}">
+										<Text text="Date" class="plotlyTableFont"/>
+									</Column>
+									<Column visible="{dashBoardModel>/isProve}" width="7rem">
+										<Text text="Event" class="plotlyTableFont"/>
+									</Column>
+									<Column visible="{dashBoardModel>/isProve}" width="4rem">
+										<Text text="Source" class="plotlyTableFont"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<Text text="{path:'dashBoardModel>fracHitTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.plotlyDateConv'}" class="plotlyTableFont"></Text>
+											<Text text="{path:'dashBoardModel>date',formatter:'com.sap.incture.Incture_IOP.util.formatter.plotlyDateConv2'}" class="plotlyTableFont"></Text>
+											<Text text="{dashBoardModel>reason}" class="plotlyTableFont"></Text>
+											<Text text="{dashBoardModel>source}" class="plotlyTableFont"></Text>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</ScrollContainer>
+					</HBox>
+				</VBox>
+			</HBox>
+		</VBox>
+		<buttons>
+			<Button text="Frac Hit" visible="{= ${dashBoardModel>/isFracMonitoring} &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isFracReadOnly} === false}" press="onFracHitPress"/>
+			<Button text="{i18n>cancel}" press="onPowerBiCancel"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

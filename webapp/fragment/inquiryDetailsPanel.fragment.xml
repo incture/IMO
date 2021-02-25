@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.f"
+	xmlns:table="sap.ui.table">
+	<HBox justifyContent="SpaceAround" class="iopwbCollabTitleBoxClass">
+		<Text text="Inquiry" class="iopFontClass iopwbCollabTitleClass"/>
+	</HBox>
+	<ScrollContainer vertical="true" height="{dashBoardModel>/taskPanelSize/taskPanelScrollHeight}">
+		<VBox class=" sapUiSmallMarginBegin iopwbTimeClass" width="97.5%">
+			<l:Grid id="idInquiryObservationGrid" defaultSpan="L3 M6 S12" vSpacing="0" class="sapUiTinyMarginTop"/>
+		</VBox>
+		<VBox class=" sapUiSmallMarginBegin sapUiTinyMarginTop iopwbTimeClassDesc" width="97.5%">
+			<VBox width="100%">
+				<Label text="Description" class="iopFontClass iopwbTaskLabelClass sapUiSmallMarginBegin iopwbLabelRequiredClass" required="true"/>
+				<TextArea value="{oTaskPanelDetailModel>/taskEventDto/description}" liveChange="onInquiryDescLiveChange"
+					enabled="{= ${oTaskPanelDetailModel>/taskEventDto/status} === 'NEW' &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false}" class="sapUiSmallMarginBegin iopInputClass" width="50%"
+					maxLength="1000"/>
+			</VBox>
+		</VBox>
+	</ScrollContainer>
+</core:FragmentDefinition>

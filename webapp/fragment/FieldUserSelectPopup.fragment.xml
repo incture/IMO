@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" id="FieldUserSelectPopup">
+	<Dialog class="sapUiSizeCompact" id="fldusrdlg" title="{i18n>usrslct}" draggable="true" resizable="true">
+		<SearchField liveChange="onFieldUserDialogSearch" placeholder="{i18n>search}" showSearchButton="true" visible="true"/>
+		<Table sticky="ColumnHeaders" id="FieldUserPopupTable" busyIndicatorDelay="0" busy="{dashBoardModel>/busyIndicators/FieldUserBsy}"
+			items="{dashBoardModel>/SchedulingFieldUsers/ownerList}" mode="MultiSelect" fixedLayout="false">
+			<columns>
+				<Column minScreenWidth="Tablet" demandPopin="true"></Column>
+			</columns>
+			<items>
+				<ColumnListItem type="Active">
+					<cells>
+						<Text text="{dashBoardModel>taskOwnerDisplayName}"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<buttons>
+			<Button text="{i18n>Okey}" class="iopBtnClass sapUiSizeCompact" press="onFielduserDialogItemSelect"/>
+			<Button text="{i18n>cancel}" class="iopBtnClass sapUiSizeCompact" press="onFieldUserPopupClose"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,130 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:icon="sap.ui.core.Icon" xmlns:f="sap.f">
+	<Dialog showHeader="false" verticalScrolling="false" contentWidth="90%" contentHeight="70%" busyIndicatorDelay="0"
+		busy="{dashBoardModel>/locationHistoryData/busyIndicator}" class="iopLocationHistoryCloseButton iopPtwOverFlow">
+		<HBox height="100%" width="100%">
+			<HBox justifyContent="End" height="0rem">
+				<Button icon="sap-icon://sys-cancel" class="iopwbCloseBtnClass" type="Transparent" press="onCloseDetailsFragment"/>
+			</HBox>
+			<!--<HBox justifyContent="End" class="iopLocationHistoryCloseButton">
+				<Button icon="sap-icon://sys-cancel" class="iopLocationHistoryPTWFormCloseBtnClass" type="Transparent" press="onCloseDetailsFragment"/>
+			</HBox>-->
+			<VBox width="49%">
+				<HBox justifyContent="SpaceAround" class="iopwbCollabTitleBoxClass">
+					<Text text="Task Details" class="iopFontClass iopwbCollabTitleClass"/>
+				</HBox>
+				<ScrollContainer height="91%" vertical="true">
+					<l:Grid id="idTaskDetailGrid" defaultSpan="L6 M6 S12" vSpacing="0" class="sapUiSmallMarginTop sapUiTinyMarginBottom">
+						<VBox>
+							<Label text="Location" class="iopFontClass iopwbTaskLabelClass"></Label>
+							<Input value="{dashBoardModel>/locationHistoryData/curreentTaskObject/location}"
+								class="sapUiSizeCompact iopInputClass iopwbTaskBoderLightClass" editable="false"></Input>
+						</VBox>
+						<VBox>
+							<Label text="Assign to person(s)" class="iopFontClass iopwbTaskLabelClass"></Label>
+							<Input value="{dashBoardModel>/locationHistoryData/curreentTaskObject/taskOwner}"
+								class="sapUiSizeCompact iopInputClass iopwbTaskBoderLightClass" editable="false"></Input>
+						</VBox>
+						<VBox>
+							<Label text="Task Classification" class="iopFontClass iopwbTaskLabelClass"></Label>
+							<!--<ComboBox value="b" enabled="false" class="sapUiSizeCompact iopSelectClass iopwbTaskBoderLightClass"></ComboBox>-->
+							<Input value="{dashBoardModel>/locationHistoryData/curreentTaskObject/taskClassification}"
+								class="sapUiSizeCompact iopInputClass iopwbTaskBoderLightClass" editable="false"></Input>
+						</VBox>
+						<VBox>
+							<Label text="Sub Classification" class="iopFontClass iopwbTaskLabelClass"></Label>
+							<!--<ComboBox value="b" enabled="false" class="sapUiSizeCompact iopSelectClass iopwbTaskBoderLightClass"></ComboBox>-->
+							<Input value="{dashBoardModel>/locationHistoryData/curreentTaskObject/subClassification}"
+								class="sapUiSizeCompact iopInputClass iopwbTaskBoderLightClass" editable="false"></Input>
+						</VBox>
+						<VBox>
+							<Label text="Root cause" class="iopFontClass iopwbTaskLabelClass"></Label>
+							<Input value="{dashBoardModel>/locationHistoryData/curreentTaskObject/rootCause}"
+								class="sapUiSizeCompact iopInputClass iopwbTaskBoderLightClass" editable="false"></Input>
+						</VBox>
+						<VBox class="sapUiTinymarginTop">
+							<Label text="Status"></Label>
+							<Text text="{dashBoardModel>/locationHistoryData/curreentTaskObject/status}"
+								visible='{path:"dashBoardModel>/locationHistoryData/curreentTaskObject/status", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnLocHisTaskDetailStatus"}'
+								class="sapUiTinyMarginTop sapUiSizeCompact iopFontClass sapUiMediumMarginBottom"></Text>
+						</VBox>
+						<VBox>
+							<Label text="Root cause Description" class="iopFontClass iopwbTaskLabelClass"/>
+							<TextArea value="{dashBoardModel>/locationHistoryData/curreentTaskObject/rootCauseDescription}" enabled="false"
+								class="sapUiSizeCompact iopInputClass iopwbTaskBoderLightClass" width="100%" rows="3"/>
+						</VBox>
+						<VBox>
+							<Label text="Task Description"></Label>
+							<TextArea enabled="false" value="{dashBoardModel>/locationHistoryData/curreentTaskObject/description}"
+								class="sapUiSizeCompact iopInputClass iopwbTaskBoderLightClass" width="100%" rows="3"></TextArea>
+						</VBox>
+					</l:Grid>
+				</ScrollContainer>
+			</VBox>
+			<VBox width="25.4%" class="iopwbSplitBorderClass">
+				<HBox justifyContent="SpaceAround" class="iopwbCollabTitleBoxClass">
+					<Text text="Comments" class="iopFontClass iopwbCollabTitleClass"/>
+				</HBox>
+				<ScrollContainer height="91%" vertical="true" horizontal="false">
+					<l:VerticalLayout content="{dashBoardModel>/locationHistoryData/taskDetailsData/CommentDto}" width="95%" class="processFlowMainStyleClass">
+						<l:content>
+							<VBox visible="true" width="100%">
+								<VBox width="95%" class="sapUiMediumMarginBegin sapUiMediumMarginTop iopwbTimeClass iopCreateTaskPanelAlignment">
+									<HBox width="100%" class="sapUiSmallMarginTop iopwbAvatarClass">
+										<f:Avatar initials="{parts:[{path:'dashBoardModel>userDisplayName'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.getinitials'}"
+											displaySize="S" displayShape="Circle" class="sapUiTinyMarginTop"/>
+										<VBox class=" sapUiSmallMargin iopTaskPanelAvatarMargin" width="100%">
+											<Text text="{dashBoardModel>userDisplayName}" class="iopFontClass iopwbCreatedByNameClass"/>
+											<!--<Text-->
+											<!--	text="Commented On {path:'dashBoardModel>createdAtDisplay',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateformatformStringDate'}"-->
+											<!--	class="iopFontClass iopSmallFontClass sapUiTinyMarginTop"/>-->
+											<Text text="Commented On {path:'dashBoardModel>createdAt',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateTime'}"
+												class="iopFontClass iopSmallFontClass sapUiTinyMarginTop"/>
+											<!--	<TextArea enabled="false" value="{dashBoardModel>message}" class="iopFontClass iopwbTextItalicClass" width="100%"/>-->
+										</VBox>
+									</HBox>
+									<Text class="iopFontClass iopLocationHistoryDetailsText" text="{dashBoardModel>message}"/>
+									<l:Grid id="idDynGrid" defaultSpan="L4 M6 S12" vSpacing="0" class="sapUiSmallMarginTop sapUiTinyMarginBottom"/>
+								</VBox>
+							</VBox>
+						</l:content>
+					</l:VerticalLayout>
+				</ScrollContainer>
+			</VBox>
+			<VBox width="25.4%" class="iopwbSplitBorderClass">
+				<!--<HBox justifyContent="End" height="0rem">
+					<Button icon="sap-icon://sys-cancel" class="iopwbCloseBtnClass" type="Transparent" press="onCloseDetailsFragment"/>
+				</HBox>-->
+				<HBox justifyContent="SpaceAround" class="iopwbCollabTitleBoxClass">
+					<Text text="Attachments" class="iopFontClass iopwbCollabTitleClass"/>
+				</HBox>
+				<VBox class="sapUiSmallMarginTop">
+					<l:VerticalLayout content="{dashBoardModel>/locationHistoryData/taskDetailsData/AttachmentDto}" width="95%"
+						class="processFlowMainStyleClass">
+						<l:content>
+							<VBox width="100%">
+								<HBox width="95%" class="sapUiMediumMarginBegin sapUiMediumMarginTop iopwbTimeClass iopCreateTaskPanelAlignment">
+									<HBox width="100%" class="sapUiSmallMarginTop iopwbAvatarClass">
+										<f:Avatar initials="{parts:[{path:'dashBoardModel>userDisplayName'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.getinitials'}"
+											displaySize="S" displayShape="Circle" class="sapUiTinyMarginTop"/>
+										<VBox class=" sapUiSmallMargin iopTaskPanelAvatarMargin" width="100%">
+											<Link text="{dashBoardModel>fileName}" press="onLinkPress"/>
+											<Text text="Uploaded by {dashBoardModel>userDisplayName}" class="iopFontClass iopSmallFontClass"/>
+											<!--<Text text="{path:'dashBoardModel>createdAtDisplay',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateformatformStringDate'}"-->
+											<!--	class="iopFontClass iopSmallFontClass sapUiTinyMarginTop"/>-->
+											<Text text="{path:'dashBoardModel>createdAt',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateTime'}"
+												class="iopFontClass iopSmallFontClass sapUiTinyMarginTop"/>
+										</VBox>
+									</HBox>
+									<l:Grid defaultSpan="L4 M6 S12" vSpacing="0" class="sapUiSmallMarginTop sapUiTinyMarginBottom"/>
+								</HBox>
+							</VBox>
+						</l:content>
+					</l:VerticalLayout>
+				</VBox>
+			</VBox>
+		</HBox>
+		<!--<buttons>
+			<Button text="Cancel" press="onCloseDetailsFragment" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass"/>
+		</buttons>-->
+	</Dialog>
+</core:FragmentDefinition>

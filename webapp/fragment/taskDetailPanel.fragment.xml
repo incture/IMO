@@ -1,0 +1,247 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.f"
+	xmlns:table="sap.ui.table" xmlns:viz="sap.viz.ui5.controls" xmlns:unified="sap.ui.unified"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz.data="sap.viz.ui5.data">
+	<HBox justifyContent="SpaceAround" class="iopwbCollabTitleBoxClass">
+		<Text text="Dispatch" class="iopFontClass iopwbCollabTitleClass"/>
+	</HBox>
+	<ScrollContainer vertical="true" height="{dashBoardModel>/taskPanelSize/taskPanelScrollHeight}">
+		<VBox id="idCreateDetailLeftPanel" class="sapUiTinyMarginTop">
+			<VBox visible="true">
+				<HBox width="95%" class="sapUiMediumMarginBegin sapUiMediumMarginTop iopwbTimeClass iopCreateTaskPanelAlignment">
+					<HBox width="14.65rem" class="sapUiLargeMarginTop iopwbAvatarClass">
+						<f:Avatar
+							initials="{parts:[{path:'oTaskPanelDetailModel>/taskEventDto/createdByDisplay'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.getinitials'}"
+							displaySize="S" displayShape="Circle" class="sapUiTinyMarginTop "/>
+						<VBox class=" sapUiSmallMargin iopTaskPanelAvatarMargin" width="100%">
+							<Text text="Created by" class="iopFontClass iopwbCreatedByClass" visible="{= ${dashBoardModel>/isCreateTask} === true}"/>
+							<Text text="{oTaskPanelDetailModel>/taskEventDto/createdByDisplay}" class="iopFontClass iopwbCreatedByNameClass"/>
+							<Text
+								text='{parts:["oTaskPanelDetailModel>/taskEventDto/createdAtInString", "i18n>CREATED_ON"], formatter:"com.sap.incture.Incture_IOP.util.formatter.getLocalDate"}'
+								visible="{= ${dashBoardModel>/isCreateTask} !== true}" class="iopFontClass iopwbTextItalicClass"/>
+						</VBox>
+					</HBox>
+					<l:Grid id="idDynGrid" defaultSpan="L4 M6 S12" vSpacing="0" class="sapUiSmallMarginTop sapUiTinyMarginBottom"/>
+				</HBox>
+				<Panel expandable="true" expanded="{dashBoardModel>/createTaskTitle}"
+					class="iopFontClass iopAlarmListTextClass iopCreateTaskPanelClass iopCreateTaskIconAlignment"
+					headerText="{= ${dashBoardModel>/createTaskTitle} === false?'Title of Task':'' }" width="100%">
+					<content>
+						<VBox class="sapUiSmallMarginTop sapUiMediumMarginBegin iopCreateTaskClass" width="90%">
+							<HBox>
+								<Label text="Title of Task" width="13.35rem" class="iopFontClass iopwbTaskLabelClass"/>
+								<Text text="{oTaskPanelDetailModel>/taskEventDto/subject}" class="sapUiSmallMarginBegin iopFontClass"
+									visible="{= ${dashBoardModel>/isCreateTask} !== true}"/>
+								<Text text="{dashBoardModel>/taskSubject1} / {dashBoardModel>/taskSubject2} {dashBoardModel>/taskSubject3}"
+									class="sapUiSmallMarginBegin iopFontClass" visible="{= ${dashBoardModel>/isCreateTask} === true}"/>
+							</HBox>
+							<HBox>
+								<Label text="Scheduled Start Date" width="13.35rem" class="iopFontClass iopwbTaskLabelClass"
+									visible="{dashBoardModel>/createTaskPanelVisible}"/>
+								<Text text='{path:"dashBoardModel>/startDateForUser/startTimeInString", formatter:"com.sap.incture.Incture_IOP.util.formatter.getLocalDate"}'
+									class="sapUiSmallMarginBegin iopFontClass" visible="{dashBoardModel>/createTaskPanelVisible}"/>
+							</HBox>
+							<HBox width="100%">
+								<Label text="Description" width="13rem" class="iopFontClass iopwbTaskLabelClass"/>
+								<TextArea value="{oTaskPanelDetailModel>/taskEventDto/description}" maxLength="1000" placeholder="Enter task description (Optional)"
+									enabled='{parts:["oTaskPanelDetailModel>/taskEventDto/status","dashBoardModel>/isWebReadOnlyRole","dashBoardModel>/moduleReadOnly", "dashBoardModel>/panelProperties/currentSelectKey"],formatter:"com.sap.incture.Incture_IOP.util.formatter.handleTextAreaEnbaleForModuleReadonly"}'
+									class="sapUiSmallMarginBegin iopwbTaskBoderLightClass" width="42rem"/>
+							</HBox>
+						</VBox>
+					</content>
+				</Panel>
+				<Panel expandable="true" expanded="{dashBoardModel>/createTaskScheduling}"
+					class=" iopFontClass iopAlarmListTextClass iopCreateTaskPanelClass iopCreateTaskIconAlignment" headerText="Operator Task View" width="100%"
+					visible="{dashBoardModel>/createTaskPanelVisible}">
+					<content>
+						<PlanningCalendar startDate="{dashBoardModel>/SchedulingData/startDate}" busy="{dashBoardModel>/createTaskSchedulingData/busyIndicator}"
+							busyIndicatorDelay="0" width="{dashBoardModel>/SchedulingData/widths}" appointmentsReducedHeight="true"
+							class="iopCalendarClass iopCalendarTitleClass sapUiSizeCompact iopCreateCalendarButtonAlignment" stickyHeader="true"
+							rows="{path: 'dashBoardModel>/SchedulingData/scheduleData'}" appointmentsVisualization="Filled" showEmptyIntervalHeaders="false" viewKey="A" startDateChange="getTaskSchedulingDataForUser">
+							<views>
+								<PlanningCalendarView key="A" intervalType="Hour" intervalsS="{dashBoardModel>/SchedulingData/view}"
+									intervalsM="{dashBoardModel>/SchedulingData/view}" intervalsL="{dashBoardModel>/SchedulingData/view}" showSubIntervals="true "></PlanningCalendarView>
+							</views>
+							<toolbarContent></toolbarContent>
+							<rows>
+								<PlanningCalendarRow enableAppointmentsDragAndDrop="false" class="sapUiSizeCompact" title="{dashBoardModel>taskOwner}"
+									text="{dashBoardModel>name}" appointments="{path : 'dashBoardModel>appointments', templateShareable: 'false'}">
+									<appointments>
+										<unified:CalendarAppointment
+											tooltip='{parts:["dashBoardModel>classification","dashBoardModel>subClassification","dashBoardModel>estResolveTime","dashBoardModel>travelTime","dashBoardModel>totalEstTime","dashBoardModel>createdAtDisplay","dashBoardModel>startTimeInString","dashBoardModel>endTimeInString"], formatter:"com.sap.incture.Incture_IOP.util.formatter.taskSchedulerAppointmentTooltip"}Location : {dashBoardModel>location}'
+											startDate='{path:"dashBoardModel>startTime", formatter:"com.sap.incture.Incture_IOP.util.formatter.taskSchedulerStartTime"}'
+											endDate='{path:"dashBoardModel>endTime", formatter:"com.sap.incture.Incture_IOP.util.formatter.taskSchedulerEndTime"}'
+											title='{parts:["dashBoardModel>classification","dashBoardModel>subClassification"], formatter:"com.sap.incture.Incture_IOP.util.formatter.taskSchedulerTitle"}'
+											text="{dashBoardModel>location}"
+											type='{parts:["dashBoardModel>status","dashBoardModel>tier"], formatter:"com.sap.incture.Incture_IOP.util.formatter.taskSchedulerAppointmentType"}'></unified:CalendarAppointment>
+									</appointments>
+								</PlanningCalendarRow>
+							</rows>
+						</PlanningCalendar>
+					</content>
+				</Panel>
+				<Panel expandable="true" expanded="{dashBoardModel>/createTaskHistory}"
+					class=" iopFontClass iopAlarmListTextClass iopCreateTaskPanelClass iopCreateTaskIconAlignment" headerText="Location Dispatch History"
+					width="100%" visible="{dashBoardModel>/createTaskPanelVisible}">
+					<content>
+						<Table sticky="ColumnHeaders" busyIndicatorDelay="0" busy="{dashBoardModel>/busyIndicators/createTaskHistoryTable}"
+							items="{dashBoardModel>/taskHistory}" class="iopFontClass alarmTableHeader sapUiSizeCompact" width="100%" alternateRowColors="true">
+							<columns>
+								<Column width="50px">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Assigned By"/>
+								</Column>
+								<Column width="50px">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Assigned To"/>
+								</Column>
+								<Column width="50px">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Start Date"/>
+								</Column>
+								<Column width="120px">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Description"/>
+								</Column>
+								<Column width="100px">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Root Cause"/>
+								</Column>
+								<Column width="50px">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Origin"/>
+								</Column>
+								<Column width="50px" hAlign="Center">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Status"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>createdBy}"/>
+										<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>taskOwner}"/>
+										<Text class="iopFontClass iopAlarmListTextClass "
+											text='{path:"dashBoardModel>createdAtInString", formatter:"com.sap.incture.Incture_IOP.util.formatter.getOnlyLocalDate"}'/>
+										<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>description}"/>
+										<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>rootCause}"/>
+										<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>origin}"/>
+										<Text class="iopFontClass iopTableStatusFontClass iopwbOriginClass" textAlign="Center" text="{dashBoardModel>status}"
+											visible='{parts:["dashBoardModel>/taskHistory","dashBoardModel>status"], formatter:"com.sap.incture.Incture_IOP.util.formatter.fnStatusBgColor"}'/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</content>
+				</Panel>
+				<VBox class="sapUiTinyMarginTop sapUiMediumMarginBegin" width="95%"
+					visible="{= ${oTaskPanelDetailModel>/taskEventDto/status} === 'RESOLVED' || ${oTaskPanelDetailModel>/taskEventDto/status} === 'RETURNED'}">
+					<HBox class=" sapUiTinyMarginBottom" visible="{= ${oTaskPanelDetailModel>/rootCauseList/0/rootCause} !== null}">
+						<Label text="Root Cause" width="13.35rem" class="iopFontClass iopwbTaskLabelClass"/>
+						<VBox items="{oTaskPanelDetailModel>/rootCauseList}">
+							<HBox>
+								<Text text="{oTaskPanelDetailModel>subClassification}" class="sapUiSmallMarginBegin iopFontClass"/>
+								<Text text="-" class="sapUiTinyMarginBegin iopFontClass"/>
+								<Text text="{oTaskPanelDetailModel>rootCause}" class="sapUiTinyMarginBegin iopFontClass"/>
+							</HBox>
+						</VBox>
+					</HBox>
+					<HBox width="100%" class="iopwbTimeClass">
+						<Label text="Description" width="13.35rem" class="iopFontClass iopwbTaskLabelClass"
+							visible="{= ${oTaskPanelDetailModel>/rootCauseList/0/rootCause} !== null}"/>
+						<Label text="Root Cause Description" width="13.35rem" class="iopFontClass iopwbTaskLabelClass"
+							visible="{= ${oTaskPanelDetailModel>/rootCauseList/0/rootCause} === null}"/>
+						<Text text="{oTaskPanelDetailModel>/rootCauseList/0/description}" class="sapUiSmallMarginBegin iopFontClass" width="97%"/>
+					</HBox>
+				</VBox>
+				<HBox
+					visible="{parts:[{path:'oTaskPanelDetailModel>/taskEventDto/status'}, {path:'dashBoardModel>/taskSubject1'}, {path:'oTaskPanelDetailModel>/muwiId'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.showDesignateBox'}"
+					class="sapUiSmallMarginBegin sapUiSmallMarginEnd">
+					<core:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.designateViewContent" type="XML" class="sapUiTinyMarginBegin"></core:Fragment>
+					<Button press="clearDownTime" class="sapUiTinyMarginBegin iopwbBtnClass sapUiSizeCompact iopBtnClass" icon="sap-icon://synchronize"
+						tooltip="Refresh"></Button>
+				</HBox>
+			</VBox>
+			<!--<Label text="Non Dispatch Items" class="sapUiMediumMarginBegin sapUiMediumMarginTop iopTaskLabel"></Label>-->
+			<VBox visible="true">
+				<HBox class=" sapUiMediumMarginBegin sapUiSmallMarginTop" width="95%">
+					<VBox>
+						<Label text="Non Dispatch Items" class="iopFontClass iopwbTaskLabelClass"/>
+						<HBox class="sapUiTinyMarginTop" visible="{= ${dashBoardModel>/isCreateTask} === true}">
+							<Label text="Location :" class="iopFontClass iopwbLocLabelClass"/>
+							<Text text="{dashBoardModel>/selectedLocation}" class="iopFontClass sapUiTinyMarginBegin iopwbLocationTextClass"/>
+						</HBox>
+					</VBox>
+					<IconTabBar expandable="false" select="onConfigSelection" backgroundDesign="Solid" class="iopwbAdditionalItemTab"
+						selectedKey="{dashBoardModel>/addItemsTabKey}" id="idAdditionalItemsTab">
+						<items>
+							<IconTabFilter text="All Items" key="All"
+								visible="{= ${dashBoardModel>/isCreateTask} === true || ${dashBoardModel>/isReturnedTask} === true}">
+								<HBox justifyContent="SpaceBetween" class="sapUiTinyMarginBeginEnd sapUiTinyMarginTop">
+									<HBox visible="{= ${dashBoardModel>/isCreateTask} === true}">
+										<Breadcrumbs links="{oTaskPanelDetailModel>/locHierarchy}" class="iopwbBreadCurmbClass">
+											<Link text="{oTaskPanelDetailModel>loc}" class="iopwbLinkClass" press="onHierarchyLinkPress"/>
+										</Breadcrumbs>
+										<Link text="{dashBoardModel>/hierarchyDetails/currentSelectedObject/0/locationText}" class="iopwbLinkClass" press="onHierarchyLinkPress"
+											visible="false"/>
+										<Link text="{dashBoardModel>/selectedLastLocation}" class="iopwbLinkClass iopAllItemsLinkClass" press="onHierarchyLinkPress"/>
+									</HBox>
+									<Link text="{dashBoardModel>/selectedLocation}" class="iopwbLinkClass" visible="{= ${dashBoardModel>/isReturnedTask} === true}"/>
+									<Text text="@Location" class="sapUiLargeMarginEnd iopFontClass iopwbLocationTClass"/>
+								</HBox>
+								<Table sticky="ColumnHeaders" id="idNDTaskTbl" mode='{parts:["dashBoardModel>/isWebReadOnlyRole","dashBoardModel>/moduleReadOnly", "dashBoardModel>/panelProperties/currentSelectKey"],formatter:"com.sap.incture.Incture_IOP.util.formatter.handleTableModeforModReadonly"}' 
+								items="{oAdditionalTaskModel>/taskList}"
+									class="sapUiSizeCompact iopwbTaskItemTbl" selectionChange="onOptionalTaskSelectionChange">
+									<columns>
+										<Column width="70%"></Column>
+										<Column></Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<Text text="{oAdditionalTaskModel>description}" class="iopFontClass"/>
+												<Text text="{oAdditionalTaskModel>location}" class="iopFontClass"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+								<HBox justifyContent="End">
+									<Button text="Add Items" press="onAddingItem" class="sapUiSizeCompact" visible='{parts:["dashBoardModel>/isWebReadOnlyRole","dashBoardModel>/moduleReadOnly", "dashBoardModel>/panelProperties/currentSelectKey"],formatter:"com.sap.incture.Incture_IOP.util.formatter.handleVisForModuleReadonly"}'/>
+								</HBox>
+							</IconTabFilter>
+							<IconTabFilter text="Selected Items" key="Selected">
+								<Table sticky="ColumnHeaders" items="{oTaskPanelDetailModel>/ndTaskList}" class="sapUiSizeCompact">
+									<columns>
+										<Column width="60%">
+											<Text text="Description" class="iopFontClass"/>
+										</Column>
+										<Column>
+											<Text text="@Location" class="iopFontClass"/>
+										</Column>
+										<Column
+											visible="{parts:[{path:'dashBoardModel>/isCreateTask'}, {path:'dashBoardModel>/isReturnedTask'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.showStatus'}"
+											width="5rem">
+											<Text text="Status" class="sapUiTinyMarginEnd iopFontClass iopwbLocationTClass"/>
+										</Column>
+										<Column visible="{= ${dashBoardModel>/isCreateTask} === true || ${dashBoardModel>/isReturnedTask} === true}"></Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<Text text="{oTaskPanelDetailModel>description}" class="iopFontClass"/>
+												<Text text="{oTaskPanelDetailModel>location}" class="iopFontClass"/>
+												<core:Icon src="{parts:[{path:'oTaskPanelDetailModel>status'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.fngetStatusIcon'}"
+													color="{= ${oTaskPanelDetailModel>status} === 'RESOLVED' ? 'Green' : 'Red' }"
+													visible="{parts:[{path:'dashBoardModel>/isCreateTask'}, {path:'dashBoardModel>/isReturnedTask'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.showStatus'}"
+													class="sapUiTinyMarginBegin" tooltip="{oTaskPanelDetailModel>status}"/>
+												<HBox
+													visible="{parts:[{path:'dashBoardModel>/isCreateTask'}, {path:'dashBoardModel>/isReturnedTask'}, {path:'oTaskPanelDetailModel>status'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.showDelBtn'}">
+													<Button icon="sap-icon://delete" press="onDeletingItem" type="Transparent" class="sapUiSizeCompact iopBtnClass"
+														visible="{= ${oTaskPanelDetailModel>status} !== 'RESOLVED'}"/>
+													<core:Icon src="sap-icon://sys-enter" color="Green" class="sapUiTinyMarginBegin"
+														visible="{= ${oTaskPanelDetailModel>status} === 'RESOLVED'}" tooltip="{oTaskPanelDetailModel>status}"/>
+												</HBox>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</HBox>
+			</VBox>
+		</VBox>
+	</ScrollContainer>
+</core:FragmentDefinition>

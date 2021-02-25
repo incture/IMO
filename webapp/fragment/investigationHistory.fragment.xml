@@ -1,0 +1,117 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<Dialog showHeader="true" title="History" contentWidth="100%" class="iopwbDetailDialogClass"
+		busy="{dashBoardModel>/busyIndicators/investigationHistoryBusy}" busyIndicatorDelay="0">
+		<HBox>
+			<VBox width="25%" class="iopwbSplitBorderClass">
+				<HBox justifyContent="End" height="0rem">
+					<Button icon="sap-icon://sys-cancel" class="iopwbCloseBtnClass" type="Transparent" press="onInvestigationHistoryClose"/>
+				</HBox>
+			</VBox>
+		</HBox>
+		<VBox class="sapUiTinyMarginBeginEnd">
+			<ScrollContainer vertical="true" height="{dashBoardModel>/screenSize/potInvHistHeight}">
+				<Table items="{oTaskPanelDetailModel>/investigationHistoryList}" class="sapUiSizeCompact sapUiTinyMarginTopBottom iopRepTableClass">
+					<columns>
+						<Column visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'CA'}">
+							<Text text="Job Start Date" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+						</Column>
+						<Column>
+							<Text text="Job Comp Date" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+						</Column>
+						<Column>
+							<Text text="Job Type" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+						</Column>
+						<Column>
+							<Text text="Source" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+						</Column>
+						<Column visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'EFS'}">
+							<Text text="Shut In Date - Reason" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+						</Column>
+						<Column visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'EFS'}">
+							<Text text="RTP Date - Comment" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+						</Column>
+						<Column visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'EFS'}">
+							<Text text="PWR Date - Failure" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+						</Column>
+						<Column visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'EFS'}">
+							<Text text="Summary" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+						</Column>
+						<Column visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'CA'}">
+							<Text text="Job Subtype" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+						</Column>
+						<Column visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'CA'}">
+							<Text text="Global Summary" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+						</Column>
+						<Column visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'CA'}">
+							<Text text="Operations Summary" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+						</Column>
+						<Column visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'CA'}">
+							<Text text="24 Hr Forecast" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+						</Column>
+						<Column visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'CA'}">
+							<Text text="Remarks" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{path: 'oTaskPanelDetailModel>jobStartDate', formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateProve'}" class="iopFontClass iopAlarmListTextClass"/>
+								<!--<Text text="{oTaskPanelDetailModel>jobCompleteionDate}" class="iopFontClass iopAlarmListTextClass"/>-->
+								<Text text="{path: 'oTaskPanelDetailModel>jobCompleteionDate', formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateProve'}" class="iopFontClass iopAlarmListTextClass"/>
+								<Text text="{oTaskPanelDetailModel>jobType}" class="iopFontClass iopAlarmListTextClass"/>
+								<Text text="{oTaskPanelDetailModel>source}" class="iopFontClass iopAlarmListTextClass"/>
+								<VBox>
+									<!--<Text text="{oTaskPanelDetailModel>shutInDate}" class="iopFontClass iopAlarmListTextClass"/>-->
+									<Text text="{path: 'oTaskPanelDetailModel>shutInDate', formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateProve'}" class="iopFontClass iopAlarmListTextClass"/>
+									<Text text="{oTaskPanelDetailModel>shutInReason}" class="iopFontClass iopAlarmListTextClass"
+										visible="{= ${oTaskPanelDetailModel>shutInDate} !== '-' || ${oTaskPanelDetailModel>shutInReason} !== '-' }"/>
+								</VBox>
+								<VBox>
+									<!--<Text text="{oTaskPanelDetailModel>rtpDate}" class="iopFontClass iopAlarmListTextClass"/>-->
+									<Text text="{path: 'oTaskPanelDetailModel>rtpDate', formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateProve'}" class="iopFontClass iopAlarmListTextClass"/>
+									<Text text="{oTaskPanelDetailModel>rtpComment}" class="iopFontClass iopAlarmListTextClass"
+										visible="{= ${oTaskPanelDetailModel>rtpDate} !== '-' &amp;&amp; ${oTaskPanelDetailModel>rtpComment} !== '-' }"/>
+								</VBox>
+								<VBox>
+									<!--<Text text="{oTaskPanelDetailModel>pwrDate}" class="iopFontClass iopAlarmListTextClass"/>-->
+									<Text text="{path: 'oTaskPanelDetailModel>pwrDate', formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateProve'}" class="iopFontClass iopAlarmListTextClass"/>
+									<Text text="{oTaskPanelDetailModel>suspectedFailure}" class="iopFontClass iopAlarmListTextClass"
+										visible="{= ${oTaskPanelDetailModel>pwrDate} !== '-' || ${oTaskPanelDetailModel>suspectedFailure} !== '-' }"/>
+								</VBox>
+								<VBox>
+									<Text text="{oTaskPanelDetailModel>jobSummary}" class="iopFontClass iopAlarmListTextClass iopwbInvSummaryClassWrap" wrapping="false"/>
+									<Link text="Read More" press="onPressReadMore"
+										visible='{parts:["oTaskPanelDetailModel>jobSummary"], formatter:"com.sap.incture.Incture_IOP.util.formatter.showSummary"}'/>
+								</VBox>
+								<Text text="{oTaskPanelDetailModel>jobSubtype}" class="iopFontClass iopAlarmListTextClass"/>
+								<VBox>
+									<Text text="{oTaskPanelDetailModel>globalSummary}" class="iopFontClass iopAlarmListTextClass iopwbInvSummaryClassWrap" wrapping="false"/>
+									<Link text="Read More" press="onPressReadMore"
+										visible='{parts:["oTaskPanelDetailModel>globalSummary"], formatter:"com.sap.incture.Incture_IOP.util.formatter.showSummary"}'/>
+								</VBox>
+								<VBox>
+									<Text text="{oTaskPanelDetailModel>operationsSummary}" class="iopFontClass iopAlarmListTextClass iopwbInvSummaryClassWrap" wrapping="false"/>
+									<Link text="Read More" press="onPressReadMore"
+										visible='{parts:["oTaskPanelDetailModel>operationsSummary"], formatter:"com.sap.incture.Incture_IOP.util.formatter.showSummary"}'/>
+								</VBox>
+								<VBox>
+									<Text text="{oTaskPanelDetailModel>twentyFourhrForecast}" class="iopFontClass iopAlarmListTextClass iopwbInvSummaryClassWrap" wrapping="false"/>
+									<Link text="Read More" press="onPressReadMore"
+										visible='{parts:["oTaskPanelDetailModel>twentyFourhrForecast"], formatter:"com.sap.incture.Incture_IOP.util.formatter.showSummary"}'/>
+								</VBox>
+								<VBox>
+									<Text text="{oTaskPanelDetailModel>remarks}" class="iopFontClass iopAlarmListTextClass iopwbInvSummaryClassWrap" wrapping="false"/>
+									<Link text="Read More" press="onPressReadMore"
+										visible='{parts:["oTaskPanelDetailModel>remarks"], formatter:"com.sap.incture.Incture_IOP.util.formatter.showSummary"}'/>
+								</VBox>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</ScrollContainer>
+		</VBox>
+		<buttons>
+			<Button text="Cancel" press="onInvestigationHistoryClose" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,10 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Popover placement="Left" offsetY="45px" offsetX="15px" showArrow="false" showHeader="false" afterClose="A" class="iopTaskManagementPopOver">
+		<VBox class="sapUiSizeCompact iopTaskOperationsPopOver">
+			<Button id="idCloseTaskBtn" icon="sap-icon://log" text="Close Task" width="100%" class="sapUiSizeCompact iopwbTimeClass" press="onCloseItem"
+				visible='{parts:["dashBoardModel>/userData/sGroup","dashBoardModel>/taskCardData/status","dashBoardModel>/taskCardData/creatorGroupId","dashBoardModel>/taskCardData/taskType", "dashBoardModel>/taskCardData/hasDispatch"], formatter:"com.sap.incture.Incture_IOP.util.formatter.showCloseFromTaskCardSuggestion"}'/>
+			<Button id="idAddCommentBtn" icon="sap-icon://notification-2" text="Add comment" width="100%" class="sapUiSizeCompact"
+				press="onPressTaskItem"/>
+		</VBox>
+	</Popover>
+</core:FragmentDefinition>

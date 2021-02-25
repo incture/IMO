@@ -1,0 +1,7 @@
+<mvc:View
+		controllerName="com.sap.incture.Incture_IOP.controller.App"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.m"
+		 busy="false" busyIndicatorDelay="0" >
+	<App id="idAppControl" /> 
+</mvc:View>

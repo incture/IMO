@@ -1,0 +1,18 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.f">
+	<CustomListItem class="iopwbAttachmentListClass">
+		<HBox>
+			<f:Avatar src='{path:"oTaskPanelDetailModel>/fileType", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnGetFileIcon"}'
+				 displayShape="Square" displaySize="S" class="iopwbThumbnailClass"/>
+			<VBox class="sapUiTinyMarginBegin" width="80%">
+				<HBox class="iopwbAttachmentLinkBoxClass">
+					<Link text="{oTaskPanelDetailModel>attachmentDetails/0/fileName}" 
+						class="iopwbAttachmentLinkClass" press="onClickDownloadLink"/>
+				</HBox>
+				<VBox class="iopwbAttTextBoxClass">
+					<Text text="uploaded by {oTaskPanelDetailModel>userDisplayName}" class="ipoFontClass ipowbAttachmentTextClass"/>
+					<Text text='{parts:["oTaskPanelDetailModel>createdAtDisplay","dashBoardModel>/none","dashBoardModel>/isCreateTask","oTaskPanelDetailModel>messageId","dashBoardModel>/isInvestigationCreate"], formatter:"com.sap.incture.Incture_IOP.util.formatter.getLocalDate"}' class="ipoFontClass ipowbAttachmentTextClass"/>
+				</VBox>
+			</VBox>
+		</HBox>
+	</CustomListItem>
+</core:FragmentDefinition>

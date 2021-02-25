@@ -1,0 +1,60 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:te="sap.ui.richtexteditor">
+	<Dialog showHeader="false" contentWidth="100%" class="iopwbDetailDialogClass" busyIndicatorDelay="0" beforeOpen="onTextEditorAfterOpen"
+		verticalScrolling="false" horizontalScrolling="false" afterClose="afterTextEdiotClose">
+		<HBox justifyContent="SpaceAround">
+			<Text text="Handover Notes" class="iopFontClass iopwbCollabTitleClass"/>
+		</HBox>
+		<IconTabBar class="iopDTTabBar handoverIconTab" expandable="false" select="onHandoverIconTabSelect" selectedKey="{dashBoardModel>/currentIconTabForHandoverNote}">
+			<items>
+				<IconTabFilter visible="true" key="SSVClose" text="SSV Close">
+					<l:VerticalLayout class="sapUiContentPadding"  width="100%">
+						<te:RichTextEditor class="textEditorReadOnly" width="100%" height="calc(100vh - 11rem)" value="{dashBoardModel>/currentHandoverNote/notesData/SSVClose}" editorType="TinyMCE4"
+							  showGroupFont="true" showGroupClipboard="false" editable="false"></te:RichTextEditor>
+					</l:VerticalLayout>
+				</IconTabFilter>
+				<IconTabFilter visible="true" key="Tasks" text="Tasks">
+					<l:VerticalLayout class="sapUiContentPadding"  width="100%">
+						<te:RichTextEditor class="textEditorReadOnly" width="100%" height="calc(100vh - 11rem)" value="{dashBoardModel>/currentHandoverNote/notesData/tasks}" editorType="TinyMCE4"
+							  showGroupFont="true" showGroupClipboard="false" editable="false"></te:RichTextEditor>
+					</l:VerticalLayout>
+				</IconTabFilter>
+				<IconTabFilter visible="true" key="Inquiry" text="Inquiry">
+					<l:VerticalLayout class="sapUiContentPadding"  width="100%">
+						<te:RichTextEditor class="textEditorReadOnly" width="100%" height="calc(100vh - 11rem)" value="{dashBoardModel>/currentHandoverNote/notesData/inquiry}" editorType="TinyMCE4"
+							  showGroupFont="true" showGroupClipboard="false" editable="false"></te:RichTextEditor>
+					</l:VerticalLayout>
+				</IconTabFilter>
+				<IconTabFilter visible="true" key="CFWalkthrough" text="CF Walkthrough">
+					<l:VerticalLayout class="sapUiContentPadding"  width="100%">
+						<te:RichTextEditor class="textEditorReadOnly" width="100%" height="calc(100vh - 11rem)" value="{dashBoardModel>/currentHandoverNote/notesData/CFWalkthrough}" editorType="TinyMCE4"
+							  showGroupFont="true" showGroupClipboard="false" editable="{path:'dashBoardModel>/enableNoteEdit',formatter:'com.sap.incture.Incture_IOP.util.formatter.handleHandoverNoteEdit'}"></te:RichTextEditor>
+					</l:VerticalLayout>
+				</IconTabFilter>
+				<IconTabFilter visible="true" key="HNForROC" text="Handover Notes for ROC Operator">
+					<l:VerticalLayout class="sapUiContentPadding"  width="100%">
+						<te:RichTextEditor class="textEditorReadOnly" width="100%" height="calc(100vh - 11rem)" value="{dashBoardModel>/currentHandoverNote/notesData/HNForROC}" editorType="TinyMCE4"
+							  showGroupFont="true" showGroupClipboard="false" editable="{path:'dashBoardModel>/enableNoteEdit',formatter:'com.sap.incture.Incture_IOP.util.formatter.handleHandoverNoteEdit'}"></te:RichTextEditor>
+					</l:VerticalLayout>
+				</IconTabFilter>
+				<IconTabFilter visible="true" key="HNForForeman" text="Handover Notes for Foreman">
+					<l:VerticalLayout class="sapUiContentPadding"  width="100%">
+						<te:RichTextEditor class="textEditorReadOnly" width="100%" height="calc(100vh - 11rem)" value="{dashBoardModel>/currentHandoverNote/notesData/HNForForeman}" editorType="TinyMCE4"
+							  showGroupFont="true" showGroupClipboard="false" editable="{path:'dashBoardModel>/enableNoteEdit',formatter:'com.sap.incture.Incture_IOP.util.formatter.handleHandoverNoteEdit'}"></te:RichTextEditor>
+					</l:VerticalLayout>
+				</IconTabFilter>
+				<IconTabFilter visible="true" key="HNForLeader" text="Handover Notes for Leadership">
+					<l:VerticalLayout class="sapUiContentPadding"  width="100%">
+						<te:RichTextEditor class="textEditorReadOnly" width="100%" height="calc(100vh - 11rem)" value="{dashBoardModel>/currentHandoverNote/notesData/HNForLeadership}" editorType="TinyMCE4"
+							  showGroupFont="true" showGroupClipboard="false" editable="{path:'dashBoardModel>/enableNoteEdit',formatter:'com.sap.incture.Incture_IOP.util.formatter.handleHandoverNoteEdit'}"></te:RichTextEditor>
+							  
+					</l:VerticalLayout>
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+		<buttons>
+			<Button icon="sap-icon://pdf-attachment" text="Save as PDF" press="onHandoverNotePrintToPDF" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass"/>
+			<Button text="{= ${dashBoardModel>/enableNoteEdit} === true? 'Save' : 'Edit'}" press="onTextEditorSave" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass" visible="{= ${dashBoardModel>/selectedHanoverNotesTab} === 'My Notes' &amp;&amp; ${dashBoardModel>/currentIconTabForHandoverNote} !== 'SSVClose' &amp;&amp; ${dashBoardModel>/currentIconTabForHandoverNote} !== 'Tasks' &amp;&amp; ${dashBoardModel>/currentIconTabForHandoverNote} !== 'Inquiry'}"/>
+			<Button text="Cancel" press="onTextEditorClose" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

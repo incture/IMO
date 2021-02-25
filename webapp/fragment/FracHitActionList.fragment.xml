@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Popover showArrow="true" showHeader="false">
+		<VBox class="sapUiTinyMargin">
+			<Button visible="{= ${dashBoardModel>/userData/isROC} === true &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isFracReadOnly} === false ?true:false}"
+				id="idDispatchBtn" icon="sap-icon://InctureIopv2/dispatch" text="Dispatch" width="100%"
+				class="sapUiSizeCompact iopBtnClass iopAlarmBtnClass" press="onPressFracDispatch"/>
+			<Button visible="{= ${dashBoardModel>/userData/isROC || dashBoardModel>/userData/isPOT} === true?true:false}"
+				icon="sap-icon://InctureIopv2/fracHit" text="Frac Hit" width="100%" class="sapUiSizeCompact iopBtnClass iopAlarmBtnClass iopv2fracHit"
+				press="onPressFracHit"/>
+			<Button visible="{= ${dashBoardModel>/userData/isROC || dashBoardModel>/userData/isPOT} === true?true:false}" icon="sap-icon://history"
+				text="Location History" width="100%" class="sapUiSizeCompact iopBtnClass iopAlarmBtnClass" press="onFracNavToLochistory"/>
+			<!--	<Button icon="sap-icon://edit" visible="{= ${dashBoardModel>/userData/isENG} === true?true:false}" text="Edit" width="100%"
+				class="sapUiSizeCompact iopBtnClass iopAlarmBtnClass" press="onFracEditPress"/>-->
+		</VBox>
+	</Popover>
+</core:FragmentDefinition>

@@ -1,0 +1,255 @@
+<core:FragmentDefinition xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.f"
+	xmlns:cust="com.sap.incture.Incture_IOP.util">
+	<ScrollContainer height="100%" vertical="true" horizontal="true" width="100%" busyIndicatorDelay="0">
+		<l:VerticalLayout class="clIopNotifVlayout" width="100%">
+			<l:content>
+				<Label text="No new notifications" class="sapUiTinyMargin"
+					visible='{path:"dashBoardModel>/webSocketProperty/data", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnNotifTotalCountLabel"}'/>
+				<!--<List>
+					<NotificationListGroup showCloseButton="false" busy="{dashBoardModel>/webSocketProperty/alarmsInd}" busyIndicatorDelay="0" collapsed="true"
+						visible='{parts:["dashBoardModel>/userData","dashBoardModel>/webSocketProperty/data/alarmNotificationDto"], formatter:"com.sap.incture.Incture_IOP.util.formatter.fnNotifListItem"}'
+						title="Alarms ( {dashBoardModel>/webSocketProperty/data/alarmNotificationDto/alarmCount} )"
+						items="{dashBoardModel>/webSocketProperty/data/alarmNotificationDto/alarmNotificationList}">
+						<NotificationListItem
+							title='{parts:["dashBoardModel>facilityDesc","dashBoardModel>locationText"], formatter:"com.sap.incture.Incture_IOP.util.formatter.fnAlarmsNotifTitle"}'
+							description='{parts:["dashBoardModel>facilityDesc","dashBoardModel>longDesc"], formatter:"com.sap.incture.Incture_IOP.util.formatter.fnAlarmsNotifDesc"}'
+							authorName="Well Status: {dashBoardModel>status}" showCloseButton="true" unread="true" priority="None" close="onAlarmAlertClose"
+							press="onAlarmListItemPress"></NotificationListItem>
+						<buttons>
+							<Button text="Clear All" type="Accept" press="onAcknowledgeAlarmsNotif"></Button>
+						</buttons>
+					</NotificationListGroup>
+					<NotificationListGroup busy="{dashBoardModel>/webSocketProperty/fracInd}" busyIndicatorDelay="0" collapsed="true"
+						visible='{parts:["dashBoardModel>/userData","dashBoardModel>/webSocketProperty/data/fracNotificationDto"], formatter:"com.sap.incture.Incture_IOP.util.formatter.fnNotifListItem"}'
+						title="Frac Monitoring ( {dashBoardModel>/webSocketProperty/data/fracNotificationDto/fracCount} )"
+						items="{dashBoardModel>/webSocketProperty/data/fracNotificationDto/fracNotificationList}" showCloseButton="false">
+						<NotificationListItem title="Frac ID: {dashBoardModel>fracId} : {dashBoardModel>wellName}"
+							description="Active Case Pressure: {dashBoardModel>activeCasePressure} , Active Tube Pressure: {dashBoardModel>activeTubePressure}"
+							showCloseButton="true" unread="true" priority="None" close="onFracAlertClose" press="onFracListItemPress"></NotificationListItem>
+						<buttons>
+							<Button text="Clear All" type="Accept" press="onAcknowledgeFracNotif"></Button>
+						</buttons>
+					</NotificationListGroup>
+					<NotificationListGroup busy="{dashBoardModel>/webSocketProperty/pwHopperInd}" busyIndicatorDelay="0" collapsed="true"
+						visible='{parts:["dashBoardModel>/userData","dashBoardModel>/webSocketProperty/data/pwHopperNotificationDto"], formatter:"com.sap.incture.Incture_IOP.util.formatter.fnNotifListItem"}'
+						title="PW Hopper ( {dashBoardModel>/webSocketProperty/data/pwHopperNotificationDto/hopperCount} )"
+						items="{dashBoardModel>/webSocketProperty/data/pwHopperNotificationDto/pwHopperNotificationList}" showCloseButton="false">
+						<NotificationListItem title="Location: {dashBoardModel>locationText}" showCloseButton="true" unread="true" priority="None"
+							close="onPwHopperAlertClose" press="onPwHopperListItemPress"></NotificationListItem>
+						<buttons>
+							<Button text="Clear All" type="Accept" press="onAcknowledgePwHopperNotif"></Button>
+						</buttons>
+					</NotificationListGroup>
+					<NotificationListGroup showCloseButton="false" title="Tasks ( {dashBoardModel>/webSocketProperty/data/taskNotificationDto/taskCount} )"
+						items="{dashBoardModel>/webSocketProperty/data/taskNotificationDto/taskNotificationList}"
+						busy="{dashBoardModel>/webSocketProperty/tasksInd}" busyIndicatorDelay="0" collapsed="true"
+						visible='{parts:["dashBoardModel>/userData","dashBoardModel>/webSocketProperty/data/taskNotificationDto"], formatter:"com.sap.incture.Incture_IOP.util.formatter.fnNotifListItem"}'>
+						<NotificationListItem title="{dashBoardModel>subject}"
+							description="Type: {dashBoardModel>module} , Assigned To: {dashBoardModel>assignedTo}"
+							authorName='{path:"dashBoardModel>status", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnTaskNotifStatus"}' showCloseButton="true"
+							unread="true" priority="None" close="onTaskAlertClose" press="onTaskListItemPress"></NotificationListItem>
+						<buttons>
+							<Button text="Clear All" type="Accept" press="onAcknowledgeTasksNotif"></Button>
+						</buttons>
+					</NotificationListGroup>
+					<NotificationListGroup busy="{dashBoardModel>/webSocketProperty/bypassLogInd}" busyIndicatorDelay="0" collapsed="true"
+						visible='{parts:["dashBoardModel>/userData","dashBoardModel>/webSocketProperty/data/byPassLogNotificationDto"], formatter:"com.sap.incture.Incture_IOP.util.formatter.fnNotifListItem"}'
+						title="Active Bypass Logs ( {dashBoardModel>/webSocketProperty/data/byPassLogNotificationDto/byPassLogCount} )"
+						items="{dashBoardModel>/webSocketProperty/data/byPassLogNotificationDto/byPassLogNotificationList}" showCloseButton="false">
+						<NotificationListItem title="Bypass No: {dashBoardModel>bypassNum} : {dashBoardModel>locationText}"
+							description="{dashBoardModel>safetyAppMsg}" authorName="Severity: {dashBoardModel>severity}" showCloseButton="true" unread="true"
+							priority="None" close="onBypassLogAlertClose" press="onBypassLogListItemPress"></NotificationListItem>
+						<buttons>
+							<Button text="Clear All" type="Accept" press="onAcknowledgeBypassLogNotif"></Button>
+						</buttons>
+					</NotificationListGroup>
+					<NotificationListGroup busy="{dashBoardModel>/webSocketProperty/energyIsoInd}" busyIndicatorDelay="0" collapsed="true"
+						visible='{parts:["dashBoardModel>/userData","dashBoardModel>/webSocketProperty/data/energyIsolationNotificationDto"], formatter:"com.sap.incture.Incture_IOP.util.formatter.fnNotifListItem"}'
+						title="Energy Isolation ( {dashBoardModel>/webSocketProperty/data/energyIsolationNotificationDto/energyIsolationCount} )"
+						items="{dashBoardModel>/webSocketProperty/data/energyIsolationNotificationDto/energyIsolationNotificationList}" showCloseButton="false">
+						<NotificationListItem title="Energy Isolation No: {dashBoardModel>bypassNum} : {dashBoardModel>locationText}"
+							description="{dashBoardModel>safetyAppMsg}" showCloseButton="true" unread="true" priority="None" close="onEnergyIsoAlertClose"
+							press="onEnergyIsoListItemPress"></NotificationListItem>
+						<buttons>
+							<Button text="Clear All" type="Accept" press="onAcknowledgeEnergyIsoNotif"></Button>
+						</buttons>
+					</NotificationListGroup>
+				</List>-->
+				<Panel expandable="true" class="clIopNotifPanel" busy="{dashBoardModel>/webSocketProperty/alarmsInd}" busyIndicatorDelay="0" width="auto"
+					visible='{parts:["dashBoardModel>/userData","dashBoardModel>/webSocketProperty/data/alarmNotificationDto"], formatter:"com.sap.incture.Incture_IOP.util.formatter.fnNotifListItem"}'>
+					<headerToolbar>
+						<Toolbar height="3rem">
+							<Link text="Alarms ( {dashBoardModel>/webSocketProperty/data/alarmNotificationDto/alarmCount} )" class="clIopNotifLink"></Link>
+							<ToolbarSpacer></ToolbarSpacer>
+							<Button press="onAcknowledgeAlarmsNotif" text="Clear All" tooltip="Clear All" type="Accept"
+								class="clIopNotifClearAllButton sapUiSmallMarginEnd"></Button>
+						</Toolbar>
+					</headerToolbar>
+					<content>
+						<List items="{dashBoardModel>/webSocketProperty/data/alarmNotificationDto/alarmNotificationList}" growing="true" growingThreshold="25"
+							class="clIopNotifList">
+							<CustomListItem highlight="Information" type="Active" press="onAlarmListItemPress">
+								<VBox justifyContent="SpaceBetween" class="iopTaskManagementVBoxStyle">
+									<HBox justifyContent="SpaceBetween">
+										<Title wrapping="true" class="clIopNotifPanelSubject"
+											text='{parts:["dashBoardModel>facilityDesc","dashBoardModel>locationText"], formatter:"com.sap.incture.Incture_IOP.util.formatter.fnAlarmsNotifTitle"}'></Title>
+										<Button icon="sap-icon://decline" type="Transparent" tooltip="Clear" press="onAlarmAlertClose"></Button>
+									</HBox>
+									<HBox justifyContent="SpaceBetween">
+										<Label wrapping="true" class="clIopNotifPanelSecondItem"
+											text='{parts:["dashBoardModel>facilityDesc","dashBoardModel>longDesc"], formatter:"com.sap.incture.Incture_IOP.util.formatter.fnAlarmsNotifDesc"}'></Label>
+									</HBox>
+									<HBox class="clIopNotifPanelLastItem">
+										<Text text="Well Status: {dashBoardModel>status}"></Text>
+									</HBox>
+								</VBox>
+							</CustomListItem>
+						</List>
+					</content>
+				</Panel>
+				<Panel expandable="true" class="clIopNotifPanel" busy="{dashBoardModel>/webSocketProperty/fracInd}" busyIndicatorDelay="0" width="auto"
+					visible='{parts:["dashBoardModel>/userData","dashBoardModel>/webSocketProperty/data/fracNotificationDto"], formatter:"com.sap.incture.Incture_IOP.util.formatter.fnNotifListItem"}'>
+					<headerToolbar>
+						<Toolbar height="3rem">
+							<Link text="Frac Monitoring ( {dashBoardModel>/webSocketProperty/data/fracNotificationDto/fracCount} )" class="clIopNotifLink"></Link>
+							<ToolbarSpacer></ToolbarSpacer>
+							<Button press="onAcknowledgeFracNotif" text="Clear All" tooltip="Clear All" type="Accept"
+								class="clIopNotifClearAllButton sapUiSmallMarginEnd"></Button>
+						</Toolbar>
+					</headerToolbar>
+					<content>
+						<List items="{dashBoardModel>/webSocketProperty/data/fracNotificationDto/fracNotificationList}" growing="true" growingThreshold="25"
+							class="clIopNotifList">
+							<CustomListItem highlight="Information" type="Active" press="onFracListItemPress">
+								<VBox justifyContent="SpaceBetween" class="iopTaskManagementVBoxStyle">
+									<HBox justifyContent="SpaceBetween">
+										<Title text="Frac ID: {dashBoardModel>fracId} : {dashBoardModel>wellName}" wrapping="true" class="clIopNotifPanelSubject"></Title>
+										<Button icon="sap-icon://decline" type="Transparent" tooltip="Clear" press="onFracAlertClose"></Button>
+									</HBox>
+									<HBox justifyContent="SpaceBetween">
+										<Label text="Active Case Pressure: {dashBoardModel>activeCasePressure} , Active Tube Pressure: {dashBoardModel>activeTubePressure}"
+											wrapping="true" class="clIopNotifPanelSecondItem"></Label>
+									</HBox>
+								</VBox>
+							</CustomListItem>
+						</List>
+					</content>
+				</Panel>
+				<Panel expandable="true" class="clIopNotifPanel" busy="{dashBoardModel>/webSocketProperty/pwHopperInd}" busyIndicatorDelay="0" width="auto"
+					visible='{parts:["dashBoardModel>/userData","dashBoardModel>/webSocketProperty/data/pwHopperNotificationDto"], formatter:"com.sap.incture.Incture_IOP.util.formatter.fnNotifListItem"}'>
+					<headerToolbar>
+						<Toolbar height="3rem">
+							<Link text="PW Hopper ( {dashBoardModel>/webSocketProperty/data/pwHopperNotificationDto/hopperCount} )" class="clIopNotifLink"></Link>
+							<ToolbarSpacer></ToolbarSpacer>
+							<Button press="onAcknowledgePwHopperNotif" text="Clear All" tooltip="Clear All" type="Accept"
+								class="clIopNotifClearAllButton sapUiSmallMarginEnd"></Button>
+						</Toolbar>
+					</headerToolbar>
+					<content>
+						<List items="{dashBoardModel>/webSocketProperty/data/pwHopperNotificationDto/pwHopperNotificationList}" growing="true" growingThreshold="25"
+							class="clIopNotifList">
+							<CustomListItem highlight="Information" type="Active" press="onPwHopperListItemPress">
+								<VBox justifyContent="SpaceBetween" class="iopTaskManagementVBoxStyle">
+									<HBox justifyContent="SpaceBetween">
+										<Title text="Location: {dashBoardModel>locationText}" wrapping="true" class="clIopNotifPanelSubject"></Title>
+										<Button icon="sap-icon://decline" type="Transparent" tooltip="Clear" press="onPwHopperAlertClose"></Button>
+									</HBox>
+								</VBox>
+							</CustomListItem>
+						</List>
+					</content>
+				</Panel>
+				<Panel expandable="true" class="clIopNotifPanel" width="auto" busy="{dashBoardModel>/webSocketProperty/tasksInd}" busyIndicatorDelay="0"
+					visible='{parts:["dashBoardModel>/userData","dashBoardModel>/webSocketProperty/data/taskNotificationDto"], formatter:"com.sap.incture.Incture_IOP.util.formatter.fnNotifListItem"}'>
+					<headerToolbar>
+						<Toolbar height="3rem">
+							<Link text="Tasks ( {dashBoardModel>/webSocketProperty/data/taskNotificationDto/taskCount} )" class="clIopNotifLink"></Link>
+							<ToolbarSpacer></ToolbarSpacer>
+							<Button press="onAcknowledgeTasksNotif" text="Clear All" tooltip="Clear All" type="Accept"
+								class="clIopNotifClearAllButton sapUiSmallMarginEnd"></Button>
+						</Toolbar>
+					</headerToolbar>
+					<content>
+						<List items="{dashBoardModel>/webSocketProperty/data/taskNotificationDto/taskNotificationList}" growing="true" growingThreshold="25"
+							class="clIopNotifList">
+							<CustomListItem highlight="Information" type="Active" press="onTaskListItemPress">
+								<VBox justifyContent="SpaceBetween" class="iopTaskManagementVBoxStyle">
+									<HBox justifyContent="SpaceBetween">
+										<Title text="{dashBoardModel>subject}" wrapping="true" class="clIopNotifPanelSubject"></Title>
+										<Button icon="sap-icon://decline" type="Transparent" tooltip="Clear" press="onTaskAlertClose"></Button>
+									</HBox>
+									<HBox justifyContent="SpaceBetween">
+										<Label text="Type: {dashBoardModel>module} , Assigned To: {dashBoardModel>assignedTo}" wrapping="true" class="clIopNotifPanelSecondItem"></Label>
+									</HBox>
+									<HBox class="clIopNotifPanelLastItem">
+										<Text textAlign="Center" text="{dashBoardModel>status}" class=" iopwbOriginClass iopTaskManagementTextFont"
+											visible='{path:"dashBoardModel>status", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnGetNotifStatusColor"}'/>
+									</HBox>
+								</VBox>
+							</CustomListItem>
+						</List>
+					</content>
+				</Panel>
+				<Panel expandable="true" expand="onByPassPanelExpand" class="clIopNotifPanel" busy="{dashBoardModel>/webSocketProperty/bypassLogInd}"
+					busyIndicatorDelay="0" width="auto"
+					visible='{parts:["dashBoardModel>/userData","dashBoardModel>/webSocketProperty/data/byPassLogNotificationDto"], formatter:"com.sap.incture.Incture_IOP.util.formatter.fnNotifListItem"}'>
+					<headerToolbar>
+						<Toolbar height="3rem">
+							<Link text="Active Bypass Logs ( {dashBoardModel>/webSocketProperty/data/byPassLogNotificationDto/byPassLogCount} )" class="clIopNotifLink"></Link>
+							<ToolbarSpacer></ToolbarSpacer>
+							<Button press="onAcknowledgeBypassLogNotif" text="Clear All" tooltip="Clear All" type="Accept"
+								class="clIopNotifClearAllButton sapUiSmallMarginEnd"></Button>
+						</Toolbar>
+					</headerToolbar>
+					<content>
+						<List items="{dashBoardModel>/webSocketProperty/data/byPassLogNotificationDto/byPassLogNotificationList}" growing="true"
+							growingThreshold="25" class="clIopNotifList">
+							<CustomListItem highlight="Information" type="Active" press="onBypassLogListItemPress">
+								<VBox justifyContent="SpaceBetween" class="iopTaskManagementVBoxStyle">
+									<HBox justifyContent="SpaceBetween">
+										<Title text="Bypass No: {dashBoardModel>bypassNum} : {dashBoardModel>locationText}" wrapping="true" class="clIopNotifPanelSubject"></Title>
+										<Button icon="sap-icon://decline" type="Transparent" tooltip="Clear" press="onBypassLogAlertClose"></Button>
+									</HBox>
+									<HBox justifyContent="SpaceBetween">
+										<Label text="{dashBoardModel>safetyAppMsg}" wrapping="true" class="clIopNotifPanelSecondItem"></Label>
+									</HBox>
+									<HBox class="clIopNotifPanelLastItem">
+										<Text text="Severity: {dashBoardModel>severity}"></Text>
+									</HBox>
+								</VBox>
+							</CustomListItem>
+						</List>
+					</content>
+				</Panel>
+				<Panel expandable="true" class="clIopNotifPanel" busy="{dashBoardModel>/webSocketProperty/energyIsoInd}" busyIndicatorDelay="0" width="auto"
+					visible='{parts:["dashBoardModel>/userData","dashBoardModel>/webSocketProperty/data/energyIsolationNotificationDto"], formatter:"com.sap.incture.Incture_IOP.util.formatter.fnNotifListItem"}'>
+					<headerToolbar>
+						<Toolbar height="3rem">
+							<Link text="Energy Isolation ( {dashBoardModel>/webSocketProperty/data/energyIsolationNotificationDto/energyIsolationCount} )"
+								class="clIopNotifLink"></Link>
+							<ToolbarSpacer></ToolbarSpacer>
+							<Button press="onAcknowledgeEnergyIsoNotif" text="Clear All" tooltip="Clear All" type="Accept"
+								class="clIopNotifClearAllButton sapUiSmallMarginEnd"></Button>
+						</Toolbar>
+					</headerToolbar>
+					<content>
+						<List items="{dashBoardModel>/webSocketProperty/data/energyIsolationNotificationDto/energyIsolationNotificationList}" growing="true"
+							growingThreshold="25" class="clIopNotifList">
+							<CustomListItem highlight="Information" type="Active" press="onEnergyIsoListItemPress">
+								<VBox justifyContent="SpaceBetween" class="iopTaskManagementVBoxStyle">
+									<HBox justifyContent="SpaceBetween">
+										<Title text="Energy Isolation No: {dashBoardModel>bypassNum} : {dashBoardModel>locationText}" wrapping="true" class="clIopNotifPanelSubject"></Title>
+										<Button icon="sap-icon://decline" type="Transparent" tooltip="Clear" press="onEnergyIsoAlertClose"></Button>
+									</HBox>
+									<HBox justifyContent="SpaceBetween">
+										<Label text="{dashBoardModel>safetyAppMsg}" wrapping="true" class="clIopNotifPanelSecondItem"></Label>
+									</HBox>
+								</VBox>
+							</CustomListItem>
+						</List>
+					</content>
+				</Panel>
+			</l:content>
+		</l:VerticalLayout>
+	</ScrollContainer>
+</core:FragmentDefinition>

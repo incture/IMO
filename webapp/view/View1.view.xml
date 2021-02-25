@@ -1,0 +1,12 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.sap.incture.Incture_IOP.controller.View1"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<Page title="Title" class="backgroundimgs">
+		<content>
+			<VBox class="ErrorPageMarginClass ErrorIconCenter">
+				<core:Icon src="sap-icon://warning" class="ErrorIconCenter"></core:Icon>
+				<Text text="OOPS! Something went wrong Please try to refresh the application" class="ErrorTextRed"></Text>
+			</VBox>
+			<Button text="refresh" press="refreshapp"></Button>
+		</content>
+	</Page>
+</mvc:View>

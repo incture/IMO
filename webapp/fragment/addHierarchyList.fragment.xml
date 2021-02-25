@@ -1,0 +1,24 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Popover showArrow="ture" showHeader="false" placement="Bottom" class="popOverBackGround" offsetX="-80px" offsetY="10px">
+		<!--<VBox alignItems="Start" items="{dashBoardModel>/selectedHrArryMore/}">-->
+		<VBox class="sapUiTinyMargin">
+			<l:VerticalLayout id="selectedHrTokens">
+				<Tokenizer tokenUpdate="onTokenUpdate" class="addHierarchyBarToken SelectedHrGrid tokenshifttoend nooutlineborder nooutlineborderbox SelectedHrHover" tokens="{dashBoardModel>/selectedHrArryMore/}">
+					<Token key="{dashBoardModel>location}" text="{dashBoardModel>locationText}" tooltip="{dashBoardModel>locationText}"/>
+				</Tokenizer>
+				<!--		<MultiComboBox-->
+				<!--	selectionChange="handleSelectionChange"-->
+				<!--	selectionFinish="handleSelectionFinish"-->
+				<!--	items="{dashBoardModel>/selectedHrArryMore/}">-->
+				<!--	<core:Item key="{dashBoardModel>location}" text="{dashBoardModel>locationText}"/>-->
+				<!--</MultiComboBox>-->
+			</l:VerticalLayout>
+			<!--<CheckBox text="{dashBoardModel>locationText}" selected="true" select="uncheckBox" class="testxyz"/>-->
+			<!--	<List mode="Delete" items="{dashBoardModel>/selectedHrArryMore/}" delete="uncheckBox">
+				<CustomListItem>
+					<Label text="{dashBoardModel>locationText}"/>
+				</CustomListItem>
+			</List>-->
+		</VBox>
+	</Popover>
+</core:FragmentDefinition>

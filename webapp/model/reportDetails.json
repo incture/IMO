@@ -1,0 +1,30 @@
+{
+	"workload": [{
+		"userName": "Mark",
+		"createdNo": "20",
+		"closedNo": "5"
+	}, {
+		"userName": "Jackson",
+		"createdNo": "10",
+		"closedNo": "5"
+	}, {
+		"userName": "Henry",
+		"createdNo": "20",
+		"closedNo": "9"
+	}, {
+		"userName": "Samuel",
+		"createdNo": "3",
+		"closedNo": "8"
+	}],
+	"taskCount":[{
+		"status": "Open",
+		"count": "10"
+	},{
+		"status": "Resolved",
+		"count": "20"
+	},{
+		"status": "Closed",
+		"count": "5"
+	}],
+	"text":{"downtime":"DT","nondowntime":"NDT"}
+}

@@ -1,0 +1,11 @@
+<core:FragmentDefinition
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+	<core:HTML visible="{= ${dashBoardModel>/isWebReadOnlyRole} === false
+						? ${dashBoardModel>/moduleReadOnly/isTaskSchedulerReadOnly} === false &amp;&amp; ${dashBoardModel>/panelProperties/currentSelectKey} === 'scheduler' ? true:
+						${dashBoardModel>/moduleReadOnly/isDOPReadOnly} === false &amp;&amp; ${dashBoardModel>/panelProperties/currentSelectKey} === 'DOP' ? true: 
+						${dashBoardModel>/moduleReadOnly/isPWHopperReadOnly} === false &amp;&amp; ${dashBoardModel>/panelProperties/currentSelectKey} === 'pwhopper' ? true:
+						${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === false &amp;&amp; ${dashBoardModel>/panelProperties/currentSelectKey} === 'workbench' ? true:false: false}"
+	id="test11" content="&lt;div class=&quot;ortext&quot; &gt;OR&lt;/div&gt;&lt;div id=&quot;pastearea&quot; class=&quot;editable&quot;  onpaste=&quot;com.sap.incture.Incture_IOP.util.formatter.callControllerFileFunc()&quot; onchange=&quot;com.sap.incture.Incture_IOP.util.formatter.callChangePasteArea()&quot; id=&quot;pastearea&quot; contentEditable=&quot;true&quot;&gt;Focus here and paste you snip content&lt;/div;&gt;">
+	</core:HTML>
+</core:FragmentDefinition>

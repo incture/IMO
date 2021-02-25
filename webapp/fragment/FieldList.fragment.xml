@@ -1,0 +1,26 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:t="com.sap.incture.Incture_IOP.util" xmlns:form="sap.ui.layout.form"
+	id="FieldList">
+	<VBox height="13%">
+		<core:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.FieldViewSearchNavBar" type="XML"></core:Fragment>
+	</VBox>
+	<NavContainer id="fieldListNavCon" width="100%" class="navContainerControl iopPageBckgrnd">
+		<ScrollContainer id="hirPage1" vertical="true" height="12rem" class="sapUiSmallMarginBottom navContainerControl">
+			<content>
+				<t:BoxContainer boxWidth="19%" class="sapUiSmallMarginTop sapUiSmallMarginEnd hrFontSize hrFontPadding boxMarginClass" id="hrList1"
+					boxSelectionChange="onHrItemSelectionChange" boxes="{ path: 'dashBoardModel>/hierarchyDetails/page1Data', factory: '.hirarchyFactory'}"></t:BoxContainer>
+			</content>
+		</ScrollContainer>
+		<ScrollContainer class="sapUiSmallMarginBottom navContainerControl" vertical="true" id="hirPage2" height="12rem">
+			<content>
+				<t:BoxContainer boxWidth="19%" class="sapUiSmallMarginTop sapUiSmallMarginEnd hrFontSize hrFontPadding boxMarginClass" id="hrList2"
+					boxSelectionChange="onHrItemSelectionChange" boxes="{ path: 'dashBoardModel>/hierarchyDetails/page2Data', factory: '.hirarchyFactory' }"></t:BoxContainer>
+			</content>
+		</ScrollContainer>
+		<ScrollContainer class="sapUiSmallMarginBottom navContainerControl" vertical="true" id="hirPage3" height="12rem">
+			<content>
+				<t:BoxContainer boxWidth="19%" id="hrList3" class=" sapUiSmallMarginTop sapUiSmallMarginEnd hrFontSize hrFontPadding boxMarginClass"
+					boxSelectionChange="onHrItemSelectionChange" boxes="{ path: 'dashBoardModel>/hierarchyDetails/page3Data', factory: '.hirarchyFactory' }"></t:BoxContainer>
+			</content>
+		</ScrollContainer>
+	</NavContainer>
+</core:FragmentDefinition>

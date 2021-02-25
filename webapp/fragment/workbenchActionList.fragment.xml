@@ -1,0 +1,8 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Popover showArrow="true" showHeader="false" afterClose="alarmActionListClose">
+		<VBox class="sapUiTinyMargin">
+			<Button icon="sap-icon://accept" tooltip="Accept" text="Accept" press="onAcceptWBTableTask" type="Default" class="sapUiSizeCompact iopBtnClass iopAlarmBtnClass" enabled="{= ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === false}"/>
+			<Button icon="sap-icon://decline" tooltip="Reject" text="Reject" press="onRejectWBTableTask" type="Default" class="sapUiSizeCompact iopBtnClass iopAlarmBtnClass" enabled="{= ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === false}"/>
+		</VBox>
+	</Popover>
+</core:FragmentDefinition>

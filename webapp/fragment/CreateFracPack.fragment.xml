@@ -1,0 +1,112 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" id="powerBiDialogFragment">
+	<Dialog contentWidth="97%" contentHeight="100%" class="sapUiSizeCompact iopPowerBiDialogClass" id="createFracPack"
+		horizontalScrolling="false" verticalScrolling="true" title="{i18n>createFracPack}" draggable="true" stretch="false">
+		<Table selectionChange="onFracCreateTableSelectionChange" width="100%" noDataText="Select well(s) to create a frac pack"
+			sticky="ColumnHeaders" rememberSelections="true"
+			class="sapUiSizeCompact sapUiTinyMarginEnd iopFontClass alarmListHeader alarmTableHeader iopCheckBoxFrac" mode="MultiSelect"
+			alternateRowColors="false" items="{path : 'dashBoardModel>/fracMonitoringData/selectedWells', templateShareable:false}">
+			<headerToolbar >
+				<Toolbar class="alarmListHeader">
+					<Button tooltip="Add a well" press="onFracAddWellPress" text="Add Well" icon="sap-icon://add"
+						class="sapUiSizeCompact sapUiTinyMarginBeginEnd"/>
+					<Button press="onFracItemDeletePress" enabled="{dashBoardModel>/fracMonitoringData/deleteEnabled}" tooltip="Delete Selected Items"
+						text="Delete" icon="sap-icon://delete" class="sapUiSizeCompact sapUiTinyMarginBeginEnd"/>
+					<Input placeholder="Enter the Frac Description(Mandatory)" value="{dashBoardModel>/fracMonitoringData/fracDescription}"></Input>
+					<ToolbarSpacer/>
+				</Toolbar>
+			</headerToolbar>
+			<columns>
+				<Column >
+					<HBox alignContent="Center" alignItems="Center">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Well"/>
+					</HBox>
+				</Column>
+				<Column width="13%">
+					<HBox alignContent="Center" alignItems="Center">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Scenario"/>
+					</HBox>
+				</Column>
+				<Column width="10%">
+					<HBox alignContent="Center" alignItems="Center">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Frac Date"/>
+					</HBox>
+				</Column>
+				<Column width="10%">
+					<HBox alignContent="Center" alignItems="Center">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Estimated BOL Date"/>
+					</HBox>
+				</Column>
+				<!--<Column >
+					<HBox alignContent="Center" alignItems="Center">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Prod Impact Gross (bbl)"/>
+					</HBox>
+				</Column>-->
+				<Column >
+					<HBox alignContent="Center" alignItems="Center">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="MAWP Tubing Pressure (psi)"/>
+					</HBox>
+				</Column>
+				<Column>
+					<HBox alignContent="Center" alignItems="Center">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="MAWP Casing Pressure (psi)"/>
+					</HBox>
+				</Column>
+				<Column >
+					<HBox alignContent="Center" alignItems="Center">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="BOED"/>
+					</HBox>
+				</Column>
+				<Column >
+					<HBox alignContent="Center" alignItems="Center">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Dist From Frac (ft.)"/>
+					</HBox>
+				</Column>
+				<Column width="10%">
+					<HBox alignContent="Center" alignItems="Center">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Orientation"/>
+					</HBox>
+				</Column>
+				<Column width="10%">
+					<HBox alignContent="Center" alignItems="Center">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Zone"/>
+					</HBox>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem>
+					<cells>
+						<Text text="{dashBoardModel>wellName}" class="iopFontClass iopAlarmListTextClass"/>
+						<Select tooltip="{dashBoardModel>scenario}" forceSelection="false" selectedKey="{dashBoardModel>scenario}"
+							items="{ path: 'dashBoardModel>/fracMonitoringData/scenarioDto',templateShareable:true }">
+							<core:Item key="{dashBoardModel>scenario}" text="{dashBoardModel>scenario}"/>
+						</Select>
+						<DatePicker tooltip="{= ${dashBoardModel>startAt}.toString()}"
+							value="{path:'dashBoardModel>startAt', type:'sap.ui.model.type.Date', formatOptions: { style: 'short', strictParsing: true}}" width="100%"
+							displayFormat="short"/>
+						<DatePicker tooltip="{= ${dashBoardModel>estBolDate}.toString()}"
+							value="{path:'dashBoardModel>estBolDate', type:'sap.ui.model.type.Date', formatOptions: { style: 'short', strictParsing: true}}"
+							width="100%" displayFormat="short"/>
+						<!--<Input value="{dashBoardModel>prodImpact}" type="Number" class="iopFontClass iopAlarmListTextClass"/>
+						-->
+						<Input value="{dashBoardModel>maxTubePressure}" type="Number" class="iopFontClass iopAlarmListTextClass"/>
+						<Input value="{dashBoardModel>maxCasePressure}" type="Number" class="iopFontClass iopAlarmListTextClass"/>
+						<Text text="{dashBoardModel>boed}" class="iopFontClass iopAlarmListTextClass"/>
+						<Input value="{dashBoardModel>distFrac}" type="Number" class="iopFontClass iopAlarmListTextClass"/>
+						<Select forceSelection="false" selectedKey="{dashBoardModel>orientation}" tooltip="{dashBoardModel>orientation}"
+							items="{ path: 'dashBoardModel>/fracMonitoringData/orientationDto',templateShareable:true }">
+							<core:Item key="{dashBoardModel>orientation}" text="{dashBoardModel>orientation}"/>
+						</Select>
+						<Select forceSelection="false" tooltip="{dashBoardModel>zone}" selectedKey="{dashBoardModel>zone}"
+							items="{ path: 'dashBoardModel>/fracMonitoringData/zoneDto',templateShareable:true }">
+							<core:Item key="{dashBoardModel>zone}" text="{dashBoardModel>zone}"/>
+						</Select>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<buttons>
+			<Button text="{i18n>create}" press="onFracCreatePress"/>
+			<Button text="Close" press="onFracCancelPress"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

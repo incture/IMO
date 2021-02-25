@@ -1,0 +1,208 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.f"
+	xmlns:table="sap.ui.table">
+	<HBox justifyContent="SpaceAround" class="iopwbCollabTitleBoxClass">
+		<Text text="Investigation" class="iopFontClass iopwbCollabTitleClass"/>
+	</HBox>
+	<ScrollContainer vertical="true" height="{dashBoardModel>/taskPanelSize/taskPanelScrollHeight}">
+		<VBox id="idCreateDetailLeftPanel">
+			<IconTabBar select="onInvestigationTabSelected" id="idInvestigationTab" class="iopwbInvIconTab" expandable="false">
+				<items>
+					<IconTabFilter key="invDetail" text="Investigation Details">
+						<VBox class=" sapUiSmallMarginBegin iopwbTimeClass" width="97.5%">
+							<Label text="Observations" width="13.35rem" class="iopFontClass iopwbInvTitleClass sapUiTinyMarginTop sapUiSmallMarginBegin"/>
+							<l:Grid id="idObservationGrid" defaultSpan="L3 M6 S12" vSpacing="0" class="sapUiTinyMarginTop"/>
+						</VBox>
+						<VBox width="97.5%" class="sapUiSmallMarginBegin sapUiTinyMarginTop iopwbTimeClass">
+							<HBox justifyContent="SpaceBetween" width="100%">
+								<Label text="Variance Data ({oTaskPanelDetailModel>/taskEventDto/taskMode} Days)" width="13.35rem"
+									class="iopFontClass iopwbInvTitleClass sapUiSmallMarginBegin"/>
+								<Button icon="sap-icon://business-objects-experience" text="Trends" class="sapUiSizeCompact iopBtnClass compactBtnClass sapUiSmallMarginEnd"
+									press="onTrendsPress"/>
+							</HBox>
+							<l:Grid id="idVarianceGrid" defaultSpan="L3 M6 S12" vSpacing="0" class="sapUiTinyMarginTop "/>
+						</VBox>
+						<VBox class=" sapUiSmallMarginBegin sapUiTinyMarginTop iopwbTimeClass" width="97.5%"
+							visible="{parts:['oTaskPanelDetailModel>/taskEventDto/status','dashBoardModel>/userData/isENG'], formatter:'com.sap.incture.Incture_IOP.util.formatter.showEngineerObservation'}">
+							<Label text="Engineering Observations" class="iopFontClass iopwbInvTitleClass sapUiSmallMarginBegin"/>
+							<HBox class=" sapUiSmallMarginBottom">
+								<VBox>
+									<Label text="Issue Classification" class="iopFontClass iopwbTaskLabelClass sapUiSmallMarginBegin iopwbLabelRequiredClass" required="true"/>
+									<Select class="iopSelectClass sapUiSizeCompact sapUiSmallMarginBegin" id="idEngIssueClass"
+										items="{oTaskPanelDetailModel>/newIssueList/issueList}" selectedKey="{oTaskPanelDetailModel>/rootCauseList/0/rootCause}"
+										change="onEnggClassChange"
+										enabled="{= ${dashBoardModel>/isWebReadOnlyRole} === false ? ${dashBoardModel>/moduleReadOnly/isPWHopperReadOnly} === false &amp;&amp; ${dashBoardModel>/panelProperties/currentSelectKey} === 'pwhopper'? true: ${dashBoardModel>/moduleReadOnly/isDOPReadOnly} === false &amp;&amp; ${dashBoardModel>/panelProperties/currentSelectKey} === 'DOP' ? true: false: false}">
+										<core:Item key="{oTaskPanelDetailModel>key}" text="{oTaskPanelDetailModel>key}" class="iopAlarmSelectClass"/>
+									</Select>
+								</VBox>
+								<VBox>
+									<Label text="Sub Classification" class="iopFontClass iopwbTaskLabelClass sapUiSmallMarginBegin iopwbLabelRequiredClass" required="true"/>
+									<Select class="iopSelectClass sapUiSizeCompact sapUiSmallMarginBegin" id="idEngSubClass"
+										enabled="{= ${dashBoardModel>/isWebReadOnlyRole} === false ? ${dashBoardModel>/moduleReadOnly/isPWHopperReadOnly} === false &amp;&amp; ${dashBoardModel>/panelProperties/currentSelectKey} === 'pwhopper'? true: ${dashBoardModel>/moduleReadOnly/isDOPReadOnly} === false &amp;&amp; ${dashBoardModel>/panelProperties/currentSelectKey} === 'DOP' ? true: false: false}"
+										items="{oTaskPanelDetailModel>/newIssueList/subList}" selectedKey="{oTaskPanelDetailModel>/rootCauseList/1/rootCause}">
+										<core:Item key="{oTaskPanelDetailModel>key}" text="{oTaskPanelDetailModel>key}" class="iopAlarmSelectClass"/>
+									</Select>
+								</VBox>
+							</HBox>
+						</VBox>
+						<VBox class=" sapUiSmallMarginBegin sapUiTinyMarginTop" width="97.5%" visible='false'>
+							<Label text="ALS/OPS/ENGG Observations" class="iopFontClass iopwbInvTitleClass sapUiSmallMarginBegin"/>
+							<Table sticky="ColumnHeaders" items="{oTaskPanelDetailModel>/taskSubmittedList}" class="sapUiSizeCompact">
+								<columns>
+									<Column>
+										<Text text="Date" class="iopFontClass"/>
+									</Column>
+									<Column>
+										<Text text="Team" class="iopFontClass"/>
+									</Column>
+									<Column>
+										<Text text="User" class="iopFontClass"/>
+									</Column>
+									<Column>
+										<Text text="Issue Catagory" class="iopFontClass"/>
+									</Column>
+									<Column>
+										<Text text="Details" class="iopFontClass"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<Text text="{oTaskPanelDetailModel>createdAtInString}" class="iopFontClass"/>
+											<Text text="{oTaskPanelDetailModel>team}" class="iopFontClass"/>
+											<Text text="{oTaskPanelDetailModel>user}" class="iopFontClass"/>
+											<Text text="{oTaskPanelDetailModel>issueCategory}" class="iopFontClass"/>
+											<Text text="{oTaskPanelDetailModel>description}" class="iopFontClass"/>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</VBox>
+						<VBox visible="{oTaskPanelDetailModel>/visibleChecklist}" class=" sapUiSmallMarginBegin iopwbTimeClass" width="97.5%">
+							<VBox id="idUserRoleChecklistVBox" class=" iopwbTimeClass" width="97.5%"/>
+						</VBox>
+						<!--#RV Proactive Enhacement Changes-->
+						<HBox class="sapUiSmallMargin"
+							visible="{= ${dashBoardModel>/showProActiveSwitch} === true &amp;&amp; ${dashBoardModel>/userData/isPOT} === true}"
+							id="idProactiveCandidateHBox">
+							<Switch state='{oTaskPanelDetailModel>/PWData/buttonState}' customTextOn="On" customTextOff="Off" change="onSwitchPWHopperProactive"
+								enabled='{parts:["oTaskPanelDetailModel>/PWData/buttonEnable", "dashBoardModel>/isWebReadOnlyRole", "dashBoardModel>/moduleReadOnly", "dashBoardModel>/panelProperties/currentSelectKey"], formatter:"com.sap.incture.Incture_IOP.util.formatter.handlePWHopperSwitchForReadOnly"}'/>
+							<Label class="sapUiSmallMargin" text="Proactive WorkOver Candidate"/>
+						</HBox>
+					</IconTabFilter>
+					<IconTabFilter key="invHistory" text="Investigation History">
+						<VBox class="sapUiTinyMarginBeginEnd">
+							<Table sticky="ColumnHeaders" items="{oTaskPanelDetailModel>/investigationHistoryList}"
+								class="sapUiSizeCompact sapUiTinyMarginTopBottom iopRepTableClass">
+								<columns>
+									<Column visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'CA'}">
+										<Text text="Job Start Date" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+									</Column>
+									<Column>
+										<Text text="Job Comp Date" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+									</Column>
+									<Column>
+										<Text text="Job Type" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+									</Column>
+									<Column>
+										<Text text="Source" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+									</Column>
+									<Column visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'EFS'}">
+										<Text text="Shut In Date - Reason" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+									</Column>
+									<Column visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'EFS'}">
+										<Text text="RTP Date - Comment" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+									</Column>
+									<Column visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'EFS'}">
+										<Text text="PWR Date - Failure" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+									</Column>
+									<Column visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'EFS'}">
+										<Text text="Summary" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+									</Column>
+									<Column visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'CA'}">
+										<Text text="Job Subtype" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+									</Column>
+									<Column visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'CA'}">
+										<Text text="Global Summary" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+									</Column>
+									<Column visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'CA'}">
+										<Text text="Operations Summary" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+									</Column>
+									<Column visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'CA'}">
+										<Text text="24 Hr Forecast" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+									</Column>
+									<Column visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'CA'}">
+										<Text text="Remarks" class="iopFontClass iopAlarmListTextClass iopRepTitleClass"/>
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<Text text="{path: 'oTaskPanelDetailModel>jobStartDate', formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateProve'}"
+												class="iopFontClass iopAlarmListTextClass"/>
+											<!--<Text text="{oTaskPanelDetailModel>jobCompleteionDate}" class="iopFontClass iopAlarmListTextClass"/>-->
+											<Text text="{path: 'oTaskPanelDetailModel>jobCompleteionDate', formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateProve'}"
+												class="iopFontClass iopAlarmListTextClass"/>
+											<Text text="{oTaskPanelDetailModel>jobType}" class="iopFontClass iopAlarmListTextClass"/>
+											<Text text="{oTaskPanelDetailModel>source}" class="iopFontClass iopAlarmListTextClass"/>
+											<VBox>
+												<!--<Text text="{oTaskPanelDetailModel>shutInDate}" class="iopFontClass iopAlarmListTextClass"/>-->
+												<Text text="{path: 'oTaskPanelDetailModel>shutInDate', formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateProve'}"
+													class="iopFontClass iopAlarmListTextClass"/>
+												<Text text="{oTaskPanelDetailModel>shutInReason}" class="iopFontClass iopAlarmListTextClass"
+													visible="{= ${oTaskPanelDetailModel>shutInDate} !== '-' || ${oTaskPanelDetailModel>shutInReason} !== '-' }"/>
+											</VBox>
+											<VBox>
+												<!--<Text text="{oTaskPanelDetailModel>rtpDate}" class="iopFontClass iopAlarmListTextClass"/>-->
+												<Text text="{path: 'oTaskPanelDetailModel>rtpDate', formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateProve'}"
+													class="iopFontClass iopAlarmListTextClass"/>
+												<Text text="{oTaskPanelDetailModel>rtpComment}" class="iopFontClass iopAlarmListTextClass"
+													visible="{= ${oTaskPanelDetailModel>rtpDate} !== '-' &amp;&amp; ${oTaskPanelDetailModel>rtpComment} !== '-' }"/>
+											</VBox>
+											<VBox>
+												<!--<Text text="{oTaskPanelDetailModel>pwrDate}" class="iopFontClass iopAlarmListTextClass"/>-->
+												<Text text="{path: 'oTaskPanelDetailModel>pwrDate', formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateProve'}"
+													class="iopFontClass iopAlarmListTextClass"/>
+												<Text text="{oTaskPanelDetailModel>suspectedFailure}" class="iopFontClass iopAlarmListTextClass"
+													visible="{= ${oTaskPanelDetailModel>pwrDate} !== '-' || ${oTaskPanelDetailModel>suspectedFailure} !== '-' }"/>
+											</VBox>
+											<VBox>
+												<Text text="{oTaskPanelDetailModel>jobSummary}" class="iopFontClass iopAlarmListTextClass iopwbInvSummaryClassWrap" wrapping="false"/>
+												<Link text="Read More" press="onPressReadMore"
+													visible='{parts:["oTaskPanelDetailModel>jobSummary"], formatter:"com.sap.incture.Incture_IOP.util.formatter.showSummary"}'/>
+											</VBox>
+											<Text text="{oTaskPanelDetailModel>jobSubtype}" class="iopFontClass iopAlarmListTextClass"/>
+											<VBox>
+												<Text text="{oTaskPanelDetailModel>globalSummary}" class="iopFontClass iopAlarmListTextClass iopwbInvSummaryClassWrap" wrapping="false"/>
+												<Link text="Read More" press="onPressReadMore"
+													visible='{parts:["oTaskPanelDetailModel>globalSummary"], formatter:"com.sap.incture.Incture_IOP.util.formatter.showSummary"}'/>
+											</VBox>
+											<VBox>
+												<Text text="{oTaskPanelDetailModel>operationsSummary}" class="iopFontClass iopAlarmListTextClass iopwbInvSummaryClassWrap" wrapping="false"/>
+												<Link text="Read More" press="onPressReadMore"
+													visible='{parts:["oTaskPanelDetailModel>operationsSummary"], formatter:"com.sap.incture.Incture_IOP.util.formatter.showSummary"}'/>
+											</VBox>
+											<VBox>
+												<Text text="{oTaskPanelDetailModel>twentyFourhrForecast}" class="iopFontClass iopAlarmListTextClass iopwbInvSummaryClassWrap"
+													wrapping="false"/>
+												<Link text="Read More" press="onPressReadMore"
+													visible='{parts:["oTaskPanelDetailModel>twentyFourhrForecast"], formatter:"com.sap.incture.Incture_IOP.util.formatter.showSummary"}'/>
+											</VBox>
+											<VBox>
+												<Text text="{oTaskPanelDetailModel>remarks}" class="iopFontClass iopAlarmListTextClass iopwbInvSummaryClassWrap" wrapping="false"/>
+												<Link text="Read More" press="onPressReadMore"
+													visible='{parts:["oTaskPanelDetailModel>remarks"], formatter:"com.sap.incture.Incture_IOP.util.formatter.showSummary"}'/>
+											</VBox>
+										</cells>
+									</ColumnListItem>
+								</items>
+							</Table>
+						</VBox>
+					</IconTabFilter>
+					<IconTabFilter visible="{oTaskPanelDetailModel>/visibleChecklist}" key="invPWCheckList" text="PW Check List">
+						<VBox id="idPWChecklistVBox" width="97.5%"/>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+		</VBox>
+	</ScrollContainer>
+</core:FragmentDefinition>

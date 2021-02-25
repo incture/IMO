@@ -1,0 +1,10 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.f">
+	<MultiInput showValueHelp="false" type="Text" placeholder="" liveChange="onLivechange"
+		editable="{dashBoardModel>/assignedToEditable}"
+		tokenUpdate="onTokenDeselect" tokens="{ path: 'dashBoardModel>/currentSelectedObjects'}"
+		class="sapUiSizeCompact iopwbMultiInputClass iopInputClass iopwbTaskBoderLightClass">
+		<tokens>
+			<Token editable="false" delete="onTokenDelete" key="{dashBoardModel>userId}" text="{dashBoardModel>firstName}" class="iopwbTokenClass" tooltip="{dashBoardModel>firstName}"/>
+		</tokens>
+	</MultiInput>
+</core:FragmentDefinition>

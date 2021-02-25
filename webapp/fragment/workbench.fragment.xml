@@ -1,0 +1,623 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:t="sap.tnt"
+	xmlns:f="sap.f" xmlns:grid="sap.ui.layout.cssgrid" xmlns:myCustom="com.sap.incture.Incture_IOP.util">
+	<!--Header Section-->
+	<IconTabBar select="onWBTabSelected" id="idWBIconTabBar" class="iopOBXIconTab iopwbInvIconTab iopOBXTabClass" expandable="false"
+		selectedKey="{dashBoardModel>/InsightToActionData/selectedKey}">
+		<items>
+			<IconTabFilter key="wbDraft" text="Workbench Draft"
+				visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === true}">
+				<Toolbar class="ipWBHdrToolbar sapUiSmallMarginBeginEnd">
+					<content>
+						<Title text="Showing List of Drafts"/>
+						<ToolbarSpacer/>
+						<Button tooltip="{dashBoardModel>/InsightToActionData/toggleViewDraft}" icon="{dashBoardModel>/InsightToActionData/toggleViewIconDraft}"
+							class="sapUiSizeCompact iopwbBtnClass" press="onWbDraftToggleViewPress"/>
+						<SearchField width="12.5rem" liveChange="onWBTasksSearch"/>
+						<Button tooltip="Sort/Group Drafts" icon="sap-icon://drop-down-list" class="sapUiSizeCompact iopwbBtnClass sapUiTinyMarginEnd"
+							press="onViewSettingsPress"/>
+					</content>
+				</Toolbar>
+				<!--End of Header Section -->
+				<ScrollContainer height="{= ${dashBoardModel>/HierarchyPanelOpen} === true?'calc(100vh - 16.75rem)':'calc(100vh - 29.65rem)' }"
+					vertical="true">
+					<f:GridList id="idWBGrid" class="sapUiSmallMarginTop iopWBGridList" sticky="InfoToolbar"
+						busy="{dashBoardModel>/InsightToActionData/iopWBBusyInd}" busyIndicatorDelay="0"
+						items="{path: 'dashBoardModel>/InsightToActionData/iTaDraftData' , sorter: { path: 'createdOn' , descending: true } }"
+						visible="{dashBoardModel>/InsightToActionData/draftGridView}">
+						<f:customLayout>
+							<grid:GridResponsiveLayout>
+								<grid:layoutS>
+									<grid:GridSettings gridTemplateColumns="repeat(auto-fit, 8rem)" gridGap="0.25rem 0.25rem"></grid:GridSettings>
+								</grid:layoutS>
+								<grid:layoutM>
+									<grid:GridSettings gridTemplateColumns="repeat(auto-fit, 12rem)" gridGap="0.5rem 0.5rem"></grid:GridSettings>
+								</grid:layoutM>
+								<grid:layoutL>
+									<grid:GridSettings gridTemplateColumns="repeat(auto-fit, 17rem)" gridGap="0.75rem 0.75rem"></grid:GridSettings>
+								</grid:layoutL>
+								<grid:layoutXL>
+									<grid:GridSettings gridTemplateColumns="repeat(auto-fit, 20rem)" gridGap="1rem 1rem"></grid:GridSettings>
+								</grid:layoutXL>
+							</grid:GridResponsiveLayout>
+						</f:customLayout>
+						<CustomListItem class="sapUiTinyMarginBegin sapUiTinyMarginEnd iopWBCustListItem"
+							type="{path:'dashBoardModel>taskType', formatter:'com.sap.incture.Incture_IOP.util.formatter.iopWBCustListItemActive'}" press="onWBCustListPress">
+							<VBox height="100%">
+								<VBox class="sapUiSmallMarginTop" justifyContent="SpaceBetween">
+									<layoutData>
+										<FlexItemData growFactor="1" shrinkFactor="0"/>
+									</layoutData>
+									<VBox class="sapUiSmallMarginBeginEnd sapUiTinyMarginBottom">
+										<HBox justifyContent="End" class="sapUiTinyMarginBottom">
+											<t:InfoLabel class="iopWBNewStatus" text="{dashBoardModel>status}"/>
+										</HBox>
+										<Title class="iopWBTitle" text="{dashBoardModel>taskLocationText}" wrapping="true"/>
+										<Label text="{dashBoardModel>taskSub}" tooltip="{dashBoardModel>taskSub}" wrapping="true" class="sapUiTinyMarginBottom"/>
+										<HBox justifyContent="SpaceBetween">
+											<Label text="Created By" class="iopTaskManagementTextFont"/>
+											<Label text="{dashBoardModel>createdBy}" class="sapUiLargeMarginBegin iopNewBoldText iopFontClass iopwbDescClass"/>
+										</HBox>
+										<HBox justifyContent="SpaceBetween">
+											<Label text="Task Type" class="iopTaskManagementTextFont"/>
+											<Label text="{dashBoardModel>taskType}" class="sapUiLargeMarginBegin iopNewBoldText iopFontClass iopwbDescClass"/>
+										</HBox>
+										<HBox justifyContent="SpaceBetween">
+											<Label text="{= ${dashBoardModel>locationType} === 'Well'? 'Tier' : 'Location Type'}" class="iopTaskManagementTextFont"/>
+											<Label
+												text='{parts:["dashBoardModel>locationType","dashBoardModel>tier"], formatter:"com.sap.incture.Incture_IOP.util.formatter.iopWBTierLocationType"}'
+												class="sapUiLargeMarginBegin iopNewBoldText iopFontClass iopwbDescClass"/>
+										</HBox>
+										<HBox justifyContent="SpaceBetween">
+											<Label text="Created On" class="iopTaskManagementTextFont"/>
+											<Label text="{path:'dashBoardModel>createdOn', formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime'}"
+												class="iopNewBoldText iopFontClass iopwbDescClass" textAlign="End"/>
+										</HBox>
+									</VBox>
+									<OverflowToolbar height="100%" design="Solid" class="sapContrast iopWBOverflowToolbar">
+										<Button icon="sap-icon://accept" tooltip="Accept" press="onAcceptWBTask" type="Default"
+											visible="{= ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === false}"/>
+										<ToolbarSpacer/>
+										<core:Icon visible="{dashBoardModel>hasInquiry}" src="sap-icon://InctureIopv2/inquire" tooltip="Inquiry" size="1.3rem"/>
+										<Image visible="{dashBoardModel>hasInvestigation}" height="0.88rem" width="1rem"
+											src="{path:'i18n>incognitoWB', formatter:'com.sap.incture.Incture_IOP.util.formatter.getImagePath'}" tooltip="Investigation"
+											class="iopwbInvIconClass"/>
+										<core:Icon visible="{dashBoardModel>hasDispatch}" src="sap-icon://InctureIopv2/dispatch" tooltip="Dispatch"/>
+										<Button icon="sap-icon://decline" tooltip="Reject" press="onRejectWBTask" type="Default"
+											visible="{= ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === false}"/>
+									</OverflowToolbar>
+								</VBox>
+							</VBox>
+						</CustomListItem>
+					</f:GridList>
+					<myCustom:Table busy="{dashBoardModel>/InsightToActionData/iopWBBusyInd}" id="idWbDraftTable"
+						visible="{= ${dashBoardModel>/InsightToActionData/draftGridView} === false}"
+						items="{path: 'dashBoardModel>/InsightToActionData/iTaDraftData' , sorter: { path: 'createdOn' , descending: true } }"
+						busyIndicatorDelay="0" sticky="ColumnHeaders" rightPress="onWBDraftRightPress"
+						class="sapUiSizeCompact sapUiTinyMarginEnd iopFontClass obxSchedulingNewLayoutTableCellClass alarmListHeader alarmTableHeader iopCheckBoxFrac"
+						alternateRowColors="false" width="100%">
+						<myCustom:columns>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="12%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Location"/>
+							</Column>
+							<Column vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" width="12%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Description"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Location Type"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="5%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Tier"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Created By"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Task Type"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="12%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Created On"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="12%" hAlign="Center">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Status"/>
+							</Column>
+							<Column width="2rem" visible="true"></Column>
+						</myCustom:columns>
+						<myCustom:items>
+							<ColumnListItem press="onWBCustListPress"
+								type="{path:'dashBoardModel>taskType', formatter:'com.sap.incture.Incture_IOP.util.formatter.iopWBCustListItemActive'}">
+								<cells>
+									<Text text="{dashBoardModel>taskLocationText}" class="iopFontClass iopAlarmListTextClass sapUiTinyMarginBegin"/>
+									<Text text="{dashBoardModel>taskSub}" class="iopFontClass iopAlarmListTextClass"/>
+									<Text text="{dashBoardModel>locationType}" class="iopFontClass iopAlarmListTextClass"/>
+									<Text text="{dashBoardModel>tier}" class="iopFontClass iopAlarmListTextClass"/>
+									<Text text="{dashBoardModel>createdBy}" class="iopFontClass iopAlarmListTextClass"/>
+									<Text text="{dashBoardModel>taskType}" class="iopFontClass iopAlarmListTextClass"/>
+									<Text text="{path:'dashBoardModel>createdOn', formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime'}"
+										class="iopFontClass sapUiTinyMarginEnd iopAlarmListTextClass"/>
+									<Text text="{dashBoardModel>status}"
+										visible='{path:"dashBoardModel>status", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnLocHisStatus"}'
+										class="iopwbClass iopwbOriginClassBacklog iopTaskManagementTextFont"/>
+									<HBox justifyContent="SpaceBetween" width="100%" height="50%">
+										<VBox width="40%" class="dopIndicatorVbox">
+											<core:Icon src="sap-icon://InctureIopv2/dispatch" tooltip="Dispatched" visible="{dashBoardModel>hasDispatch}"/>
+										</VBox>
+										<VBox width="60%" class="dopIndicatorVbox">
+											<Image src="{path:'i18n>incognito', formatter:'com.sap.incture.Incture_IOP.util.formatter.getImagePath'}" tooltip="Investigation"
+												class="iopInvestigationDopImg" visible="{dashBoardModel>hasInvestigation}"/>
+											<core:Icon src="sap-icon://InctureIopv2/inquire" size="1.3rem" class="iopInquiryIconDOP" tooltip="Inquiry"
+												visible="{dashBoardModel>hasInquiry}"/>
+										</VBox>
+									</HBox>
+								</cells>
+							</ColumnListItem>
+						</myCustom:items>
+					</myCustom:Table>
+				</ScrollContainer>
+			</IconTabFilter>
+			<IconTabFilter key="wbBacklog" text="Workbench Backlog"
+				visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === true}">
+				<Toolbar class="ipWBHdrToolbar sapUiSmallMarginBeginEnd">
+					<content>
+						<Title text="Showing List of Backlogs"/>
+						<ToolbarSpacer/>
+						<Button tooltip="{dashBoardModel>/InsightToActionData/toggleViewBacklog}" icon="{dashBoardModel>/InsightToActionData/toggleViewIconBacklog}"
+							class="sapUiSizeCompact iopwbBtnClass" press="onWbBacklogToggleViewPress"/>
+						<SearchField width="12.5rem" liveChange="onWBTasksSearch"/>
+						<Button tooltip="Sort/Group Backlogs" icon="sap-icon://drop-down-list" class="sapUiSizeCompact iopwbBtnClass sapUiTinyMarginEnd"
+							press="onViewSettingsBacklogPress"/>
+					</content>
+				</Toolbar>
+				<ScrollContainer height="{= ${dashBoardModel>/HierarchyPanelOpen} === true?'calc(100vh - 16.75rem)':'calc(100vh - 29.65rem)' }"
+					vertical="true">
+					<f:GridList id="idWBBacklogGrid" class="sapUiSmallMarginTop iopWBGridList" sticky="InfoToolbar"
+						busy="{dashBoardModel>/InsightToActionData/iopWBBusyInd}" busyIndicatorDelay="0"
+						items="{path: 'dashBoardModel>/InsightToActionData/iTaBacklogData' , sorter: { path: 'createdOn' , descending: true } }"
+						visible="{dashBoardModel>/InsightToActionData/backlogGridView}">
+						<f:customLayout>
+							<grid:GridResponsiveLayout>
+								<grid:layoutS>
+									<grid:GridSettings gridTemplateColumns="repeat(auto-fit, 8rem)" gridGap="0.25rem 0.25rem"></grid:GridSettings>
+								</grid:layoutS>
+								<grid:layoutM>
+									<grid:GridSettings gridTemplateColumns="repeat(auto-fit, 12rem)" gridGap="0.5rem 0.5rem"></grid:GridSettings>
+								</grid:layoutM>
+								<grid:layoutL>
+									<grid:GridSettings gridTemplateColumns="repeat(auto-fit, 17rem)" gridGap="0.75rem 0.75rem"></grid:GridSettings>
+								</grid:layoutL>
+								<grid:layoutXL>
+									<grid:GridSettings gridTemplateColumns="repeat(auto-fit, 20rem)" gridGap="1rem 1rem"></grid:GridSettings>
+								</grid:layoutXL>
+							</grid:GridResponsiveLayout>
+						</f:customLayout>
+						<CustomListItem class="sapUiTinyMarginBegin sapUiTinyMarginEnd iopWBCustListItem">
+							<VBox height="100%">
+								<VBox class="sapUiSmallMarginTop" justifyContent="SpaceBetween">
+									<layoutData>
+										<FlexItemData growFactor="1" shrinkFactor="0"/>
+									</layoutData>
+									<VBox class="sapUiSmallMarginBeginEnd sapUiTinyMarginBottom">
+										<HBox justifyContent="End" class="sapUiTinyMarginBottom">
+											<t:InfoLabel class="iopWBNewStatus" text="{dashBoardModel>status}"/>
+										</HBox>
+										<Title class="iopWBTitle" text="{dashBoardModel>taskLocationText}" wrapping="true"/>
+										<Label text="{dashBoardModel>taskSub}" tooltip="{dashBoardModel>taskSub}" wrapping="true" class="sapUiTinyMarginBottom"/>
+										<HBox justifyContent="SpaceBetween">
+											<Label text="Created By" class="iopTaskManagementTextFont"/>
+											<Label text="{dashBoardModel>createdBy}" class="sapUiLargeMarginBegin iopNewBoldText iopFontClass iopwbDescClass"/>
+										</HBox>
+										<HBox justifyContent="SpaceBetween">
+											<Label text="Task Type" class="iopTaskManagementTextFont"/>
+											<Label text="{dashBoardModel>taskType}" class="sapUiLargeMarginBegin iopNewBoldText iopFontClass iopwbDescClass"/>
+										</HBox>
+										<HBox justifyContent="SpaceBetween">
+											<Label text="{= ${dashBoardModel>locationType} === 'Well'? 'Tier' : 'Location Type'}" class="iopTaskManagementTextFont"/>
+											<Label
+												text='{parts:["dashBoardModel>locationType","dashBoardModel>tier"], formatter:"com.sap.incture.Incture_IOP.util.formatter.iopWBTierLocationType"}'
+												class="sapUiLargeMarginBegin iopNewBoldText iopFontClass iopwbDescClass"/>
+										</HBox>
+										<HBox justifyContent="SpaceBetween">
+											<Label text="Created On" class="iopTaskManagementTextFont"/>
+											<Label text="{path:'dashBoardModel>createdOn', formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime'}"
+												class="iopNewBoldText iopFontClass iopwbDescClass" textAlign="End"/>
+										</HBox>
+									</VBox>
+									<OverflowToolbar height="100%" design="Solid" class="sapContrast iopWBOverflowToolbar">
+										<Button text="ACCEPTED" type="Default" enabled="false"/>
+										<ToolbarSpacer/>
+										<core:Icon visible="{dashBoardModel>hasInquiry}" src="sap-icon://InctureIopv2/inquire" tooltip="Inquiry" size="1.3rem"/>
+										<Image visible="{dashBoardModel>hasInvestigation}" height="0.88rem" width="1rem"
+											src="{path:'i18n>incognitoWB', formatter:'com.sap.incture.Incture_IOP.util.formatter.getImagePath'}" tooltip="Investigation"
+											class="iopwbInvIconClass"/>
+										<core:Icon visible="{dashBoardModel>hasDispatch}" src="sap-icon://InctureIopv2/dispatch" tooltip="Dispatch"/>
+									</OverflowToolbar>
+								</VBox>
+							</VBox>
+						</CustomListItem>
+					</f:GridList>
+					<myCustom:Table busy="{dashBoardModel>/InsightToActionData/iopWBBusyInd}" id="idWbBacklogTable"
+						visible="{= ${dashBoardModel>/InsightToActionData/backlogGridView} === false}"
+						items="{path: 'dashBoardModel>/InsightToActionData/iTaBacklogData' , sorter: { path: 'createdOn' , descending: true } }"
+						busyIndicatorDelay="0" sticky="ColumnHeaders"
+						class="sapUiSizeCompact sapUiTinyMarginEnd iopFontClass obxSchedulingNewLayoutTableCellClass alarmListHeader alarmTableHeader iopCheckBoxFrac"
+						alternateRowColors="false" width="100%" noDataText="Drafts list">
+						<myCustom:columns>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="12%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Location"/>
+							</Column>
+							<Column vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" width="12%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Description"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Location Type"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="5%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Tier"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Created By"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Task Type"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="12%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Created On"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="12%" hAlign="Center">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Status"/>
+							</Column>
+							<Column width="2rem" visible="true"></Column>
+						</myCustom:columns>
+						<myCustom:items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{dashBoardModel>taskLocationText}" class="iopFontClass iopAlarmListTextClass sapUiTinyMarginBegin"/>
+									<Text text="{dashBoardModel>taskSub}" class="iopFontClass iopAlarmListTextClass"/>
+									<Text text="{dashBoardModel>locationType}" class="iopFontClass iopAlarmListTextClass"/>
+									<Text text="{dashBoardModel>tier}" class="iopFontClass iopAlarmListTextClass"/>
+									<Text text="{dashBoardModel>createdBy}" class="iopFontClass iopAlarmListTextClass"/>
+									<Text text="{dashBoardModel>taskType}" class="iopFontClass iopAlarmListTextClass"/>
+									<Text text="{path:'dashBoardModel>createdOn', formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime'}"
+										class="iopFontClass sapUiTinyMarginEnd iopAlarmListTextClass"/>
+									<Text text="{dashBoardModel>status}"
+										visible='{path:"dashBoardModel>status", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnLocHisStatus"}'
+										class="iopwbClass iopwbOriginClassBacklog iopTaskManagementTextFont"/>
+									<HBox justifyContent="SpaceBetween" width="100%" height="50%">
+										<VBox width="40%" class="dopIndicatorVbox">
+											<core:Icon src="sap-icon://InctureIopv2/dispatch" tooltip="Dispatched" visible="{dashBoardModel>hasDispatch}"/>
+										</VBox>
+										<VBox width="60%" class="dopIndicatorVbox">
+											<Image src="{path:'i18n>incognito', formatter:'com.sap.incture.Incture_IOP.util.formatter.getImagePath'}" tooltip="Investigation"
+												class="iopInvestigationDopImg" visible="{dashBoardModel>hasInvestigation}"/>
+											<core:Icon src="sap-icon://InctureIopv2/inquire" size="1.3rem" class="iopInquiryIconDOP" tooltip="Inquiry"
+												visible="{dashBoardModel>hasInquiry}"/>
+										</VBox>
+									</HBox>
+								</cells>
+							</ColumnListItem>
+						</myCustom:items>
+					</myCustom:Table>
+				</ScrollContainer>
+			</IconTabFilter>
+			<IconTabFilter key="obxtask" text="OBX Backlog"
+				visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === true}">
+				<Toolbar class="ipWBHdrToolbar sapUiSmallMarginBeginEnd">
+					<content>
+						<Title text="Showing List of Drafts"/>
+						<ToolbarSpacer/>
+						<Button tooltip="{dashBoardModel>/InsightToActionData/toggleViewDraft}" icon="{dashBoardModel>/InsightToActionData/toggleViewIconDraft}"
+							class="sapUiSizeCompact iopwbBtnClass" press="onWbDraftToggleViewPress"/>
+						<SearchField width="12.5rem" liveChange="onWBTasksSearch"/>
+						<Button tooltip="Sort/Group Drafts" icon="sap-icon://drop-down-list" class="sapUiSizeCompact iopwbBtnClass sapUiTinyMarginEnd"
+							press="onViewSettingsPress"/>
+					</content>
+				</Toolbar>
+				<!--End of Header Section -->
+				<ScrollContainer height="{= ${dashBoardModel>/HierarchyPanelOpen} === true?'calc(100vh - 16.75rem)':'calc(100vh - 29.65rem)' }"
+					vertical="true">
+					<f:GridList id="idWBObxGrid" class="sapUiSmallMarginTop iopWBGridList" sticky="InfoToolbar"
+						busy="{dashBoardModel>/InsightToActionData/iopWBBusyInd}" busyIndicatorDelay="0"
+						items="{path: 'dashBoardModel>/InsightToActionData/obxDraftData' , sorter: { path: 'createdOn' , descending: true } }"
+						visible="{dashBoardModel>/InsightToActionData/draftGridView}">
+						<f:customLayout>
+							<grid:GridResponsiveLayout>
+								<grid:layoutS>
+									<grid:GridSettings gridTemplateColumns="repeat(auto-fit, 8rem)" gridGap="0.25rem 0.25rem"></grid:GridSettings>
+								</grid:layoutS>
+								<grid:layoutM>
+									<grid:GridSettings gridTemplateColumns="repeat(auto-fit, 12rem)" gridGap="0.5rem 0.5rem"></grid:GridSettings>
+								</grid:layoutM>
+								<grid:layoutL>
+									<grid:GridSettings gridTemplateColumns="repeat(auto-fit, 17rem)" gridGap="0.75rem 0.75rem"></grid:GridSettings>
+								</grid:layoutL>
+								<grid:layoutXL>
+									<grid:GridSettings gridTemplateColumns="repeat(auto-fit, 20rem)" gridGap="1rem 1rem"></grid:GridSettings>
+								</grid:layoutXL>
+							</grid:GridResponsiveLayout>
+						</f:customLayout>
+						<CustomListItem class="sapUiTinyMarginBegin sapUiTinyMarginEnd iopWBCustListItem"
+							type="{path:'dashBoardModel>taskType', formatter:'com.sap.incture.Incture_IOP.util.formatter.iopWBCustListItemActive'}" press="onWBCustListPress">
+							<VBox height="100%">
+								<VBox class="sapUiSmallMarginTop" justifyContent="SpaceBetween">
+									<layoutData>
+										<FlexItemData growFactor="1" shrinkFactor="0"/>
+									</layoutData>
+									<VBox class="sapUiSmallMarginBeginEnd sapUiTinyMarginBottom">
+										<HBox justifyContent="End" class="sapUiTinyMarginBottom">
+											<t:InfoLabel class="iopWBReturnStatus" text="{dashBoardModel>status}"/>
+										</HBox>
+										<Title class="iopWBTitle" text="{dashBoardModel>taskLocationText}" wrapping="true"/>
+										<Label text="{dashBoardModel>taskSub}" tooltip="{dashBoardModel>taskSub}" wrapping="true" class="sapUiTinyMarginBottom"/>
+										<HBox justifyContent="SpaceBetween">
+											<Label text="Created By" class="iopTaskManagementTextFont"/>
+											<Label text="{dashBoardModel>createdBy}" class="sapUiLargeMarginBegin iopNewBoldText iopFontClass iopwbDescClass"/>
+										</HBox>
+										<HBox justifyContent="SpaceBetween">
+											<Label text="Task Type" class="iopTaskManagementTextFont"/>
+											<Label text="{dashBoardModel>taskType}" class="sapUiLargeMarginBegin iopNewBoldText iopFontClass iopwbDescClass"/>
+										</HBox>
+										<HBox justifyContent="SpaceBetween">
+											<Label text="{= ${dashBoardModel>locationType} === 'Well'? 'Tier' : 'Location Type'}" class="iopTaskManagementTextFont"/>
+											<Label
+												text='{parts:["dashBoardModel>locationType","dashBoardModel>tier"], formatter:"com.sap.incture.Incture_IOP.util.formatter.iopWBTierLocationType"}'
+												class="sapUiLargeMarginBegin iopNewBoldText iopFontClass iopwbDescClass"/>
+										</HBox>
+										<HBox justifyContent="SpaceBetween">
+											<Label text="Created On" class="iopTaskManagementTextFont"/>
+											<Label text="{path:'dashBoardModel>createdOn', formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime'}"
+												class="iopNewBoldText iopFontClass iopwbDescClass" textAlign="End"/>
+										</HBox>
+									</VBox>
+									<!--	<OverflowToolbar height="100%" design="Solid" class="sapContrast iopWBOverflowToolbar">
+										<Button icon="sap-icon://accept" tooltip="Accept" press="onAcceptWBTask" type="Default"/>
+										<ToolbarSpacer/>
+										<core:Icon visible="{dashBoardModel>hasInquiry}" src="sap-icon://InctureIopv2/inquire" tooltip="Inquiry" size="1.3rem"/>
+										<Image visible="{dashBoardModel>hasInvestigation}" height="0.88rem" width="1rem"
+											src="{path:'i18n>incognitoWB', formatter:'com.sap.incture.Incture_IOP.util.formatter.getImagePath'}" tooltip="Investigation"
+											class="iopwbInvIconClass"/>
+										<core:Icon visible="{dashBoardModel>hasDispatch}" src="sap-icon://InctureIopv2/dispatch" tooltip="Dispatch"/>
+										<Button icon="sap-icon://decline" tooltip="Reject" press="onRejectWBTask" type="Default"/>
+									</OverflowToolbar>-->
+								</VBox>
+							</VBox>
+						</CustomListItem>
+					</f:GridList>
+					<myCustom:Table busy="{dashBoardModel>/InsightToActionData/iopWBBusyInd}" id="idWbObxDraftTable"
+						visible="{= ${dashBoardModel>/InsightToActionData/draftGridView} === false}"
+						items="{path: 'dashBoardModel>/InsightToActionData/obxDraftData' , sorter: { path: 'createdOn' , descending: true } }"
+						busyIndicatorDelay="0" sticky="ColumnHeaders" rightPress="onWBDraftRightPress"
+						class="sapUiSizeCompact sapUiTinyMarginEnd iopFontClass obxSchedulingNewLayoutTableCellClass alarmListHeader alarmTableHeader iopCheckBoxFrac"
+						alternateRowColors="false" width="100%">
+						<myCustom:columns>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="12%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Location"/>
+							</Column>
+							<Column vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" width="12%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Description"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Location Type"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="5%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Tier"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Created By"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Task Type"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="12%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Created On"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="12%" hAlign="Center">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Status"/>
+							</Column>
+							<Column width="2rem" visible="true"></Column>
+						</myCustom:columns>
+						<myCustom:items>
+							<ColumnListItem press="onWBCustListPress"
+								type="{path:'dashBoardModel>taskType', formatter:'com.sap.incture.Incture_IOP.util.formatter.iopWBCustListItemActive'}">
+								<cells>
+									<Text text="{dashBoardModel>taskLocationText}" class="iopFontClass iopAlarmListTextClass sapUiTinyMarginBegin"/>
+									<Text text="{dashBoardModel>taskSub}" class="iopFontClass iopAlarmListTextClass"/>
+									<Text text="{dashBoardModel>locationType}" class="iopFontClass iopAlarmListTextClass"/>
+									<Text text="{dashBoardModel>tier}" class="iopFontClass iopAlarmListTextClass"/>
+									<Text text="{dashBoardModel>createdBy}" class="iopFontClass iopAlarmListTextClass"/>
+									<Text text="{dashBoardModel>taskType}" class="iopFontClass iopAlarmListTextClass"/>
+									<Text text="{path:'dashBoardModel>createdOn', formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime'}"
+										class="iopFontClass sapUiTinyMarginEnd iopAlarmListTextClass"/>
+									<Text text="{dashBoardModel>status}"
+										visible='{path:"dashBoardModel>status", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnLocHisStatus"}'
+										class="iopwbClass iopwbOriginClassBacklog iopTaskManagementTextFont"/>
+									<HBox justifyContent="SpaceBetween" width="100%" height="50%">
+										<VBox width="40%" class="dopIndicatorVbox">
+											<core:Icon src="sap-icon://InctureIopv2/dispatch" tooltip="Dispatched" visible="{dashBoardModel>hasDispatch}"/>
+										</VBox>
+										<VBox width="60%" class="dopIndicatorVbox">
+											<Image src="{path:'i18n>incognito', formatter:'com.sap.incture.Incture_IOP.util.formatter.getImagePath'}" tooltip="Investigation"
+												class="iopInvestigationDopImg" visible="{dashBoardModel>hasInvestigation}"/>
+											<core:Icon src="sap-icon://InctureIopv2/inquire" size="1.3rem" class="iopInquiryIconDOP" tooltip="Inquiry"
+												visible="{dashBoardModel>hasInquiry}"/>
+										</VBox>
+									</HBox>
+								</cells>
+							</ColumnListItem>
+						</myCustom:items>
+					</myCustom:Table>
+				</ScrollContainer>
+			</IconTabFilter>
+			<!--AN: Start of msgToROC-->
+			
+			<!--AN: Start of #prod-msgToROC 17-11-2020-->
+			<!--<IconTabFilter key="wbMessage" text="Message"
+				visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === true) &amp;&amp; ${dashBoardModel>/userData/hasUSRole} === true &amp;&amp; ${dashBoardModel>/userData/isENG} === false}">-->
+			<IconTabFilter key="wbMessage" text="Message" visible="false">
+			<!--AN: End of #prod-msgToROC 17-11-2020-->
+			
+				<Toolbar class="ipWBHdrToolbar sapUiSmallMarginBeginEnd">
+					<content>
+						<Title text="Showing List of Messages"/>
+						<ToolbarSpacer/>
+						<Button visible="false" tooltip="{dashBoardModel>/InsightToActionData/toggleViewDraft}"
+							icon="{dashBoardModel>/InsightToActionData/toggleViewIconDraft}" class="sapUiSizeCompact iopwbBtnClass" press="onWbDraftToggleViewPress"/>
+						<SearchField placeholder="Search by any column" width="14.5rem" liveChange="onWBTasksSearch"/>
+						<Button tooltip="Sort/Group Drafts" icon="sap-icon://drop-down-list" class="sapUiSizeCompact iopwbBtnClass sapUiTinyMarginEnd"
+							press="onViewSettingsMessagePress"/>
+					</content>
+				</Toolbar>
+				<!--End of Header Section -->
+				<ScrollContainer height="{= ${dashBoardModel>/HierarchyPanelOpen} === true?'calc(100vh - 16.75rem)':'calc(100vh - 29.65rem)' }"
+					vertical="true">
+					<f:GridList id="idWBMsgGrid" class="sapUiSmallMarginTop iopWBGridList" sticky="InfoToolbar"
+						busy="{dashBoardModel>/InsightToActionData/iopWBBusyInd}" busyIndicatorDelay="0"
+						items="{path: 'dashBoardModel>/InsightToActionData/msgDraftData' , sorter: { path: 'createdAt' , descending: true } }" visible="false">
+						<!--visible="{dashBoardModel>/InsightToActionData/draftGridView}"-->
+						<f:customLayout>
+							<grid:GridResponsiveLayout>
+								<grid:layoutS>
+									<grid:GridSettings gridTemplateColumns="repeat(auto-fit, 8rem)" gridGap="0.25rem 0.25rem"></grid:GridSettings>
+								</grid:layoutS>
+								<grid:layoutM>
+									<grid:GridSettings gridTemplateColumns="repeat(auto-fit, 12rem)" gridGap="0.5rem 0.5rem"></grid:GridSettings>
+								</grid:layoutM>
+								<grid:layoutL>
+									<grid:GridSettings gridTemplateColumns="repeat(auto-fit, 17rem)" gridGap="0.75rem 0.75rem"></grid:GridSettings>
+								</grid:layoutL>
+								<grid:layoutXL>
+									<grid:GridSettings gridTemplateColumns="repeat(auto-fit, 20rem)" gridGap="1rem 1rem"></grid:GridSettings>
+								</grid:layoutXL>
+							</grid:GridResponsiveLayout>
+						</f:customLayout>
+						<CustomListItem class="sapUiTinyMarginBegin sapUiTinyMarginEnd iopWBCustListItem" type="Active" press="onWBCustListPress">
+							<VBox height="100%">
+								<VBox class="sapUiSmallMarginTop" justifyContent="SpaceBetween">
+									<layoutData>
+										<FlexItemData growFactor="1" shrinkFactor="0"/>
+									</layoutData>
+									<VBox class="sapUiSmallMarginBeginEnd sapUiTinyMarginBottom">
+										<HBox justifyContent="End" class="sapUiTinyMarginBottom">
+											<t:InfoLabel text="{dashBoardModel>status}"
+												visible='{path:"dashBoardModel>status", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnWbStatus"}'/>
+										</HBox>
+										<Title class="iopWBTitle" text="{dashBoardModel>locationText}" wrapping="true"/>
+										<Label text="{dashBoardModel>message}" tooltip="{dashBoardModel>message}" wrapping="false" class="sapUiTinyMarginBottom"/>
+										<HBox justifyContent="SpaceBetween">
+											<Label text="Created By" class="iopTaskManagementTextFont"/>
+											<Label text="{dashBoardModel>createdBy}" class="sapUiLargeMarginBegin iopNewBoldText iopFontClass iopwbDescClass"/>
+										</HBox>
+										<!--<HBox justifyContent="SpaceBetween">
+											<Label text="{= ${dashBoardModel>locationType} === 'Well'? 'Tier' : 'Location Type'}" class="iopTaskManagementTextFont"/>
+											<Label
+												text='{parts:["dashBoardModel>locationType","dashBoardModel>tier"], formatter:"com.sap.incture.Incture_IOP.util.formatter.iopWBTierLocationType"}'
+												class="sapUiLargeMarginBegin iopNewBoldText iopFontClass iopwbDescClass"/>
+										</HBox>-->
+										<HBox justifyContent="SpaceBetween">
+											<Label text="Created On" class="iopTaskManagementTextFont"/>
+											<Label text="{path:'dashBoardModel>createdAt', formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime'}"
+												class="iopNewBoldText iopFontClass iopwbDescClass" textAlign="End"/>
+										</HBox>
+										<HBox justifyContent="SpaceBetween">
+											<Label text="Assigned To" class="iopTaskManagementTextFont"/>
+											<Label class="sapUiLargeMarginBegin iopNewBoldText iopFontClass iopwbDescClass"
+												text='{parts:["dashBoardModel>currentOwner","dashBoardModel>/userData/isROC","dashBoardModel>/userData/isPOT", "dashBoardModel>/userData/displayName"], formatter:"com.sap.incture.Incture_IOP.util.formatter.iopWbMsgAssignedTo"}'/>
+										</HBox>
+									</VBox>
+									<!--<OverflowToolbar height="100%" design="Solid" class="sapContrast iopWBOverflowToolbar">
+										<Button icon="sap-icon://accept" tooltip="Accept" press="onAcceptWBTask" type="Default" visible="{= ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === false}"/>
+										<ToolbarSpacer/>
+										<core:Icon visible="{dashBoardModel>hasInquiry}" src="sap-icon://InctureIopv2/inquire" tooltip="Inquiry" size="1.3rem"/>
+										<Image visible="{dashBoardModel>hasInvestigation}" height="0.88rem" width="1rem"
+											src="{path:'i18n>incognitoWB', formatter:'com.sap.incture.Incture_IOP.util.formatter.getImagePath'}" tooltip="Investigation"
+											class="iopwbInvIconClass"/>
+										<core:Icon visible="{dashBoardModel>hasDispatch}" src="sap-icon://InctureIopv2/dispatch" tooltip="Dispatch"/>
+										<Button icon="sap-icon://decline" tooltip="Reject" press="onRejectWBTask" type="Default" visible="{= ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === false}"/>
+									</OverflowToolbar>-->
+								</VBox>
+							</VBox>
+						</CustomListItem>
+					</f:GridList>
+					<myCustom:Table busy="{dashBoardModel>/InsightToActionData/iopWBBusyInd}" id="idWbMsgTable" visible="true"
+						items="{path: 'dashBoardModel>/InsightToActionData/msgDraftData' , sorter: { path: 'createdAt' , descending: true } }"
+						busyIndicatorDelay="0" sticky="ColumnHeaders"
+						class="sapUiSizeCompact sapUiTinyMarginEnd iopFontClass obxSchedulingNewLayoutTableCellClass alarmListHeader alarmTableHeader iopCheckBoxFrac"
+						alternateRowColors="false" width="100%">
+						<myCustom:columns>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="12%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="ID"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="12%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Location"/>
+							</Column>
+							<Column vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" width="12%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Description"/>
+							</Column>
+							<!--<Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Location Type"/>
+							</Column>-->
+							<!--<Column minScreenWidth="Tablet" demandPopin="true" width="5%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Tier"/>
+							</Column>-->
+							<Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Created By"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="12%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Created On"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Assigned To"/>
+							</Column>
+							<Column minScreenWidth="Tablet" demandPopin="true" width="12%" hAlign="Center">
+								<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Status"/>
+							</Column>
+							<Column width="2rem" visible="true"></Column>
+						</myCustom:columns>
+						<myCustom:items>
+							<ColumnListItem press="onWBCustListPress" type="Active">
+								<cells>
+									<Text text="{dashBoardModel>messageId}" class="iopFontClass iopAlarmListTextClass sapUiTinyMarginBegin"/>
+									<Text text="{dashBoardModel>locationText}" class="iopFontClass iopAlarmListTextClass sapUiTinyMarginBegin"/>
+									<VBox>
+										<Text class="iopFontClass iopAlarmListTextClass" wrapping="false"
+											tooltip="{path:'dashBoardModel>message', formatter:'com.sap.incture.Incture_IOP.util.formatter.iopWbMsgDescText'}"
+											text="{path:'dashBoardModel>message', formatter:'com.sap.incture.Incture_IOP.util.formatter.iopWbMsgDescText'}"/>
+										<Link text="Read More" press="onPressReadMore"
+											visible='{parts:["dashBoardModel>message"], formatter:"com.sap.incture.Incture_IOP.util.formatter.showSummary"}'/>
+									</VBox>
+									<!--<Text text="{dashBoardModel>locationType}" class="iopFontClass iopAlarmListTextClass"/>-->
+									<!--<Text text="{dashBoardModel>tier}" class="iopFontClass iopAlarmListTextClass"/>-->
+									<Text text="{dashBoardModel>createdBy}" class="iopFontClass iopAlarmListTextClass"/>
+									<Text text="{path:'dashBoardModel>createdAt', formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime'}"
+										class="iopFontClass sapUiTinyMarginEnd iopAlarmListTextClass"/>
+									<Text class="iopFontClass iopAlarmListTextClass"
+										text='{parts:["dashBoardModel>currentOwner","dashBoardModel>/userData/isROC","dashBoardModel>/userData/isPOT", "dashBoardModel>/userData/displayName"], formatter:"com.sap.incture.Incture_IOP.util.formatter.iopWbMsgAssignedTo"}'/>
+									<Text text="{dashBoardModel>status}"
+										visible='{path:"dashBoardModel>status", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnLocHisStatus"}'
+										class="iopwbClass iopwbOriginClassBacklog iopTaskManagementTextFont"/>
+									<HBox justifyContent="SpaceBetween" width="100%" height="50%">
+										<VBox width="40%" class="dopIndicatorVbox">
+											<core:Icon src="sap-icon://InctureIopv2/dispatch" tooltip="Dispatched" visible="{dashBoardModel>hasDispatch}" press="onWBIconPress"/>
+										</VBox>
+										<VBox width="60%" class="dopIndicatorVbox">
+											<Image src="{path:'i18n>incognito', formatter:'com.sap.incture.Incture_IOP.util.formatter.getImagePath'}" tooltip="Investigation"
+												class="iopInvestigationDopImg" visible="{dashBoardModel>hasInvestigation}" press="onWBIconPress"/>
+											<!--<core:Icon src="sap-icon://InctureIopv2/inquire" size="1.3rem" class="iopInquiryIconDOP" tooltip="Inquiry"
+												visible="{dashBoardModel>hasInquiry}"/>-->
+										</VBox>
+									</HBox>
+								</cells>
+							</ColumnListItem>
+						</myCustom:items>
+					</myCustom:Table>
+				</ScrollContainer>
+				<OverflowToolbar visible="false" class="alarmListOverflowToolbar iopv2pagination" id="idWBPageNumberDiv"
+					width="{= ${dashBoardModel>/panelProperties/showTaskManagementPanelIcon} === false ? '86%' : '100%' }">
+					<ToolbarSpacer/>
+					<Text id="idWbMsgRange"></Text>
+					<Button icon="sap-icon://navigation-left-arrow" id="idWbMsgNavLeftButton" press="onWbMsgScrollLeftPage"></Button>
+					<Button icon="sap-icon://navigation-right-arrow" id="idWbMsgNavRightButton" press="onWbMsgScrollRightPage"></Button>
+				</OverflowToolbar>
+			</IconTabFilter>
+			<!--AN: End of msgToROC-->
+		</items>
+	</IconTabBar>
+</core:FragmentDefinition>

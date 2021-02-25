@@ -1,0 +1,429 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" id="TaskManagement">
+	<VBox height="100%" width="100%">
+		<IconTabBar class="iopDTTabBar iopDownTimeTab" expandable="false" select="downtimeCaptureTabSelect"
+			selectedKey="{dashBoardModel>/downtimeCaptureTabKey}">
+			<items>
+				<IconTabFilter visible="true" key="Well" text="Well">
+					<Panel expandable="true" expanded="{dashBoardModel>/downtimePanelExpanded}" class="iopFontClass iopAlarmListTextClass iopDTPanelClass "
+						headerText="Manual Downtime Create/Update" width="100%" visible="{= ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isDowntimeReadOnly} === false}">
+						<content>
+							<VBox busy="{dashBoardModel>/busyIndicators/downTime}" busyIndicatorDelay="0">
+								<l:Grid defaultSpan="L3 M3 S6" width="100%" vSpacing="0">
+									<l:content>
+										<VBox>
+											<Label required="true" text="{i18n>DC_CF_WELL}" design="Bold" class="iopFontClass iopwbLabelRequiredClass"/>
+											<Input enabled="false" class="sapUiSizeCompact iopInputClass iopDTInputClass"
+												value='{parts:["dashBoardModel>/downTime/wellName","dashBoardModel>/hierarchyDetails/currentLocationType","dashBoardModel>/downTime/isReview"], formatter:"com.sap.incture.Incture_IOP.util.formatter.showWell"}'/>
+										</VBox>
+										<VBox>
+											<Label required="true" text="{i18n>DC_DATE}" design="Bold" class="iopFontClass iopwbLabelRequiredClass"/>
+											<DatePicker class="sapUiSizeCompact iopInputClass iopDTInputClass" value="{dashBoardModel>/downTime/date}" placeholder="mm/dd/yyyy"
+												displayFormat="MM/dd/yyyy" valueFormat="yyyy-MM-dd"/>
+										</VBox>
+										<VBox>
+											<Label required="true" text="{i18n>durhr}" design="Bold" class="iopFontClass iopwbLabelRequiredClass iopDTInputClass"/>
+											<Select change="onDTDesHourKeySelect" forceSelection="false" width="100%" selectedKey="{dashBoardModel>/downTime/hourkey}"
+												class="sapUiSizeCompact iopSelectClass">
+												<core:ListItem key="0" text="00"/>
+												<core:ListItem key="1" text="01"/>
+												<core:ListItem key="2" text="02"/>
+												<core:ListItem key="3" text="03"/>
+												<core:ListItem key="4" text="04"/>
+												<core:ListItem key="5" text="05"/>
+												<core:ListItem key="6" text="06"/>
+												<core:ListItem key="7" text="07"/>
+												<core:ListItem key="8" text="08"/>
+												<core:ListItem key="9" text="09"/>
+												<core:ListItem key="10" text="10"/>
+												<core:ListItem key="11" text="11"/>
+												<core:ListItem key="12" text="12"/>
+												<core:ListItem key="13" text="13"/>
+												<core:ListItem key="14" text="14"/>
+												<core:ListItem key="15" text="15"/>
+												<core:ListItem key="16" text="16"/>
+												<core:ListItem key="17" text="17"/>
+												<core:ListItem key="18" text="18"/>
+												<core:ListItem key="19" text="19"/>
+												<core:ListItem key="20" text="20"/>
+												<core:ListItem key="21" text="21"/>
+												<core:ListItem key="22" text="22"/>
+												<core:ListItem key="23" text="23"/>
+												<core:ListItem key="24" text="24"/>
+											</Select>
+										</VBox>
+										<VBox>
+											<Label text="{i18n>durMin}" design="Bold" class="iopFontClass iopwbLabelRequiredClass iopDTInputClass"/>
+											<Select enabled="{= ${dashBoardModel>/downTime/hourkey} !== '24'? true : false }"
+												forceSelection="false" width="100%" selectedKey="{dashBoardModel>/downTime/minuteKey}" class="sapUiSizeCompact iopSelectClass">
+												<core:ListItem key="0" text="00 min"/>
+												<core:ListItem key="15" text="15 min"/>
+												<core:ListItem key="30" text="30 min"/>
+												<core:ListItem key="45" text="45 min"/>
+											</Select>
+										</VBox>
+									</l:content>
+								</l:Grid>
+								<l:Grid defaultSpan="L3 M3 S6" width="100%" vSpacing="0">
+									<l:content>
+										<VBox>
+											<Label required="true" text="{i18n>DC_DOWNTCODES}" design="Bold" class="iopFontClass iopwbLabelRequiredClass"/>
+											<Select forceSelection="false" width="100%" change="onDownTimeParentSelect" selectedKey="{dashBoardModel>/downTime/downtimeParentKey}"
+												items="{dashBoardModel>/downtimeParentCodes}" class="sapUiSizeCompact iopSelectClass">
+												<core:ListItem key="{dashBoardModel>parentCode}" text="{dashBoardModel>parentCodeDescription}"/>
+											</Select>
+										</VBox>
+										<VBox visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'EFS'?true:false }">
+											<Label required="true" text="Child Code" design="Bold" class="iopFontClass iopwbLabelRequiredClass"/>
+											<Select change="onDowntimeChildSelect" forceSelection="false" width="100%" busyIndicatorDelay="0"
+												busy="{dashBoardModel>/busyIndicators/downTimeChild}" selectedKey="{dashBoardModel>/downTime/downtimeChildKey}"
+												items="{dashBoardModel>/downtimeChildCodes}" class="sapUiSizeCompact iopSelectClass ">
+												<core:ListItem key="{dashBoardModel>childCode}" text="{dashBoardModel>childCodeDescription}"/>
+											</Select>
+										</VBox>
+										<Text/>
+										<HBox class="sapUiSizeCompact iopBtnMarginClass" justifyContent="End">
+											<Button text="{i18n>CLEAR_BTN}" press="clearDownTime" class="iopBtnClass iopClearBtn sapUiTinyMarginEnd"/>
+											<Button text="{i18n>SAVE_BTN}" press="onDownTimeSavePress" class=" iopBtnClass iopSaveBtn"/>
+										</HBox>
+									</l:content>
+								</l:Grid>
+								<HBox visible="{dashBoardModel>/downTime/downtimeCodeVisible}" class="sapUiSmallMarginBegin" justifyContent="Start">
+									<Text class="sapUiSizeCompact iopFontClass" text="Last Downtime : {dashBoardModel>/downTime/downtimeCode}"/>
+								</HBox>
+								<HBox visible="true" justifyContent="Start">
+									<Text class="sapUiSizeCompact iopFontClass" text=""/>
+								</HBox>
+								<VBox class="sapUiSizeCompact sapUiSmallMarginEnd" width="100%" id="messageStripDowntime"></VBox>
+							</VBox>
+						</content>
+					</Panel>
+					<VBox height="99%">
+						<IconTabBar select="onDowntimeTableIconTabbarSelect" class="iopDTTabBar" expandable="false"
+							selectedKey="{dashBoardModel>/downtimeSubTabKey}">
+							<items>
+								<IconTabFilter visible="true" key="Designated" text="Designated"></IconTabFilter>
+								<IconTabFilter key="Submitted" text="Submitted"></IconTabFilter>
+								<IconTabFilter key="Review" text="Review"></IconTabFilter>
+							</items>
+							<content>
+								<Toolbar class="iopDCToolbar iopv2DTCHeader sapUiSmallMarginBegin" width="100%">
+									<content>
+										<Text class="iopFontClass" text="Showing List of Downtime Captured"></Text>
+										<ToolbarSpacer/>
+										<SearchField width="10rem" class="iopFontClass" placeholder="Search" liveChange="onDowntimeTblSearch">
+											<tooltip class="iopFontClass" text="Search on Downtime Table"></tooltip>
+										</SearchField>
+									</content>
+								</Toolbar>
+							</content>
+						</IconTabBar>
+					</VBox>
+				</IconTabFilter>
+				<IconTabFilter key="Compressor" text="Compressor" visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'EFS'?true:false }">
+					<Panel expandable="true" expanded="{dashBoardModel>/compressorDowntimePanelExpanded}"
+						class="iopFontClass iopAlarmListTextClass iopDTPanelClass " headerText="Manual Compressor Downtime Create/Update" width="100%"
+						visible="{= ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isDowntimeReadOnly} === false}">
+						<content>
+							<VBox busy="{dashBoardModel>/busyIndicators/downTime}" busyIndicatorDelay="0">
+								<l:Grid defaultSpan="L3 M3 S6" width="100%" vSpacing="0">
+									<l:content>
+										<VBox>
+											<Label required="true" text="{i18n>Location}" design="Bold" class="iopFontClass iopwbLabelRequiredClass"/>
+											<Input enabled="false" class="sapUiSizeCompact iopInputClass iopDTInputClass" value='{dashBoardModel>/compDownTime/locationText}'/>
+										</VBox>
+										<VBox>
+											<Label required="true" text="{i18n>DC_DATE}" design="Bold" class="iopFontClass iopwbLabelRequiredClass"/>
+											<DatePicker class="sapUiSizeCompact iopInputClass iopDTInputClass" value="{dashBoardModel>/compDownTime/date}" placeholder="mm/dd/yyyy"
+												displayFormat="MM/dd/yyyy" valueFormat="yyyy-MM-dd" change="onCompDateChange"/>
+										</VBox>
+										<VBox>
+											<Label required="true" text="{i18n>durhr}" design="Bold" class="iopFontClass iopwbLabelRequiredClass iopDTInputClass"/>
+											<Select change="onCompHourKeySelect" forceSelection="false" width="100%" selectedKey="{dashBoardModel>/compDownTime/hourkey}"
+												class="sapUiSizeCompact iopSelectClass">
+												<core:ListItem key="0" text="00"/>
+												<core:ListItem key="1" text="01"/>
+												<core:ListItem key="2" text="02"/>
+												<core:ListItem key="3" text="03"/>
+												<core:ListItem key="4" text="04"/>
+												<core:ListItem key="5" text="05"/>
+												<core:ListItem key="6" text="06"/>
+												<core:ListItem key="7" text="07"/>
+												<core:ListItem key="8" text="08"/>
+												<core:ListItem key="9" text="09"/>
+												<core:ListItem key="10" text="10"/>
+												<core:ListItem key="11" text="11"/>
+												<core:ListItem key="12" text="12"/>
+												<core:ListItem key="13" text="13"/>
+												<core:ListItem key="14" text="14"/>
+												<core:ListItem key="15" text="15"/>
+												<core:ListItem key="16" text="16"/>
+												<core:ListItem key="17" text="17"/>
+												<core:ListItem key="18" text="18"/>
+												<core:ListItem key="19" text="19"/>
+												<core:ListItem key="20" text="20"/>
+												<core:ListItem key="21" text="21"/>
+												<core:ListItem key="22" text="22"/>
+												<core:ListItem key="23" text="23"/>
+												<core:ListItem key="24" text="24"/>
+											</Select>
+										</VBox>
+										<VBox>
+											<Label text="{i18n>durMin}" design="Bold" class="iopFontClass iopwbLabelRequiredClass iopDTInputClass"/>
+											<Select enabled="{= ${dashBoardModel>/downTime/hourkey} !== '24'? true : false }"
+												forceSelection="false" width="100%" selectedKey="{dashBoardModel>/compDownTime/minuteKey}" class="sapUiSizeCompact iopSelectClass">
+												<core:ListItem key="0" text="00 min"/>
+												<core:ListItem key="15" text="15 min"/>
+												<core:ListItem key="30" text="30 min"/>
+												<core:ListItem key="45" text="45 min"/>
+											</Select>
+										</VBox>
+									</l:content>
+								</l:Grid>
+								<l:Grid defaultSpan="L3 M3 S6" width="100%" vSpacing="0">
+									<l:content>
+										<VBox>
+											<Label required="true" text="{i18n>Equipment}" design="Bold" class="iopFontClass iopwbLabelRequiredClass"/>
+											<Input enabled="false" class="sapUiSizeCompact iopInputClass iopDTInputClass" value='{dashBoardModel>/compDownTime/compName}'/>
+										</VBox>
+										<VBox>
+											<Label required="true" text="{i18n>DC_DOWNTCODES}" design="Bold" class="iopFontClass iopwbLabelRequiredClass"/>
+											<Select forceSelection="false" width="100%" change="onCompDowntimeCodeSelect" selectedKey="{dashBoardModel>/compDownTime/downtimeCode}"
+												items="{dashBoardModel>/CompressorDowntimeCodes}" class="sapUiSizeCompact iopSelectClass">
+												<core:ListItem key="{dashBoardModel>childCode}" text="{dashBoardModel>childText}"/>
+											</Select>
+										</VBox>
+										<Text/>
+										<HBox class="sapUiSizeCompact iopBtnMarginClass" justifyContent="End">
+											<Button text="{i18n>CLEAR_BTN}" press="clearDownTimeData" class="iopBtnClass iopClearBtn sapUiTinyMarginEnd"/>
+											<Button text="{i18n>SAVE_BTN}" press="onCreateCompressorDowntime" class=" iopBtnClass iopSaveBtn"/>
+										</HBox>
+									</l:content>
+								</l:Grid>
+								<HBox visible="{dashBoardModel>/compDownTime/downtimeCodeVisible}" class="sapUiSmallMarginBegin" justifyContent="Start">
+									<Text class="sapUiSizeCompact iopFontClass" text="Last Downtime : {dashBoardModel>/compDownTime/downtimeCode}"/>
+								</HBox>
+							</VBox>
+						</content>
+					</Panel>
+					<VBox height="99%">
+						<IconTabBar class="iopDTTabBar" select="onDowntimeTablesIconTabbarSelect" expandable="false"
+							selectedKey="{dashBoardModel>/compDowntimeSubTabKey}">
+							<items>
+								<IconTabFilter visible="true" key="Submitted" text="Submitted"></IconTabFilter>
+								<IconTabFilter visible="true" key="Review" text="Review"></IconTabFilter>
+							</items>
+							<content>
+								<Toolbar class="iopDCToolbar iopv2DTCHeader sapUiSmallMarginBegin" width="100%">
+									<content>
+										<Text class="iopFontClass" text="Showing List of Compressor Downtime Captured"></Text>
+										<ToolbarSpacer/>
+										<SearchField width="10rem" class="iopFontClass" placeholder="Search" liveChange="onDowntimeTblSearch">
+											<tooltip class="iopFontClass" text="Search on Compressor Downtime Table"></tooltip>
+										</SearchField>
+									</content>
+								</Toolbar>
+							</content>
+						</IconTabBar>
+					</VBox>
+				</IconTabFilter>
+				<IconTabFilter key="Flare" text="Flare" visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'EFS'?true:false }">
+					<Panel expandable="true" expanded="{dashBoardModel>/flareDowntimePanelExpanded}" class="iopFontClass iopAlarmListTextClass iopDTPanelClass "
+						headerText="Manual Flare Downtime Create/Update" width="100%" visible="{= ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isDowntimeReadOnly} === false}">
+						<content>
+							<VBox busy="{dashBoardModel>/busyIndicators/downTime}" busyIndicatorDelay="0">
+								<l:Grid defaultSpan="L3 M3 S6" width="100%" vSpacing="0">
+									<l:content>
+										<VBox>
+											<Label required="true" text="{i18n>Location}" design="Bold" class="iopFontClass iopwbLabelRequiredClass"/>
+											<Input enabled="false" class="sapUiSizeCompact iopInputClass iopDTInputClass" value='{dashBoardModel>/flareDownTime/meterText}'/>
+										</VBox>
+										<VBox>
+											<Label required="true" text="{i18n>DC_DATE}" design="Bold" class="iopFontClass iopwbLabelRequiredClass"/>
+											<DatePicker class="sapUiSizeCompact iopInputClass iopDTInputClass" value="{dashBoardModel>/flareDownTime/date}" placeholder="mm/dd/yyyy"
+												displayFormat="MM/dd/yyyy" valueFormat="yyyy-MM-dd"/>
+										</VBox>
+										<VBox>
+											<Label required="true" text="{i18n>flareVolume}(MCF)" design="Bold" class="iopFontClass iopwbLabelRequiredClass"/>
+											<Input value="{dashBoardModel>/flareDownTime/flareVolume}" width="100%" class="sapUiSizeCompact iopInputClass iopDTInputClass"></Input>
+										</VBox>
+										<VBox>
+											<Label required="true" text="{i18n>flareCode}" design="Bold" class="iopFontClass iopwbLabelRequiredClass iopDTInputClass"/>
+											<Select forceSelection="false" width="100%" selectedKey="{dashBoardModel>/flareDownTime/flareCode}" change="onflareDowntimeCodeSelect"
+												items="{dashBoardModel>/FlareDowntimeCodes}" class="sapUiSizeCompact iopSelectClass">
+												<core:ListItem key="{dashBoardModel>childCode}" text="{dashBoardModel>childText}"/>
+											</Select>
+										</VBox>
+									</l:content>
+								</l:Grid>
+								<l:Grid defaultSpan="L3 M3 S6" width="100%" vSpacing="0">
+									<l:content>
+										<VBox></VBox>
+										<VBox></VBox>
+										<Text/>
+										<HBox class="sapUiSizeCompact iopFDownTimeBtnMarginClass">
+											<Button text="{i18n>CLEAR_BTN}" press="clearDownTimeData" class="iopBtnClass iopClearBtn sapUiTinyMarginEnd"/>
+											<Button text="{i18n>SAVE_BTN}" press="onFlareDownTimeCreate" class=" iopBtnClass iopSaveBtn"/>
+										</HBox>
+									</l:content>
+								</l:Grid>
+								<HBox visible="{dashBoardModel>/downTime/downtimeCodeVisible}" class="sapUiSmallMarginBegin" justifyContent="Start">
+									<Text class="sapUiSizeCompact iopFontClass" text="Last Downtime : {dashBoardModel>/downTime/downtimeCode}"/>
+								</HBox>
+							</VBox>
+						</content>
+					</Panel>
+					<VBox height="99%">
+						<IconTabBar class="iopDTTabBar" expandable="false" selectedKey="{dashBoardModel>/flareDowntimeSubTabKey}"
+							select="onDowntimeTablesIconTabbarSelect">
+							<items>
+								<IconTabFilter visible="true" key="Submitted" text="Submitted"></IconTabFilter>
+								<IconTabFilter visible="true" key="Review" text="Review"></IconTabFilter>
+							</items>
+							<content>
+								<Toolbar class="iopDCToolbar iopv2DTCHeader sapUiSmallMarginBegin" width="100%">
+									<content>
+										<Text class="iopFontClass" text="Showing List of Flare Downtime Captured"></Text>
+										<ToolbarSpacer/>
+										<SearchField width="10rem" class="iopFontClass" placeholder="Search" liveChange="onDowntimeTblSearch">
+											<tooltip class="iopFontClass" text="Search on Flare Downtime Table"></tooltip>
+										</SearchField>
+									</content>
+								</Toolbar>
+							</content>
+						</IconTabBar>
+					</VBox>
+				</IconTabFilter>
+			</items>
+		</IconTabBar> 
+		<ScrollContainer height="{parts: ['dashBoardModel>/HierarchyPanelOpen', 'dashBoardModel>/downtimePanelExpanded', 'dashBoardModel>/isWebReadOnlyRole', 'dashBoardModel>/moduleReadOnly/isDowntimeReadOnly'],formatter:'com.sap.incture.Incture_IOP.util.formatter.handleScrollHeight'}" vertical="true"
+			class="iopDowntimeTypeHeader">
+			<Table sticky="ColumnHeaders" busyIndicatorDelay="0" busy="{dashBoardModel>/busyIndicators/downtimeTable}"
+				visible="{= ${dashBoardModel>/downtimeCaptureTabKey} === 'Well'?true:false }" items="{dashBoardModel>/downTimeTable/tableData}"
+				class="iopFontClass alarmTableHeader" id="downTimeCaptureTable" width="100%" alternateRowColors="true">
+				<columns>
+					<Column width="50px">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Well"/>
+					</Column>
+					<Column width="100px">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Downtime Code"/>
+					</Column>
+					<Column width="130px">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass childcodenoborder" text=""/>
+					</Column>
+					<Column width="50px">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Date"/>
+					</Column>
+					<Column width="70px">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Duration"/>
+					</Column>
+					<Column width="85px">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Recommended Cygnet Time"/>
+					</Column>
+					<Column hAlign="Center" width="50px">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass childcodenoborder" text=""/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>well}"/>
+							<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>downtimeText}"/>
+							<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>childText}"/>
+							<Text class="iopFontClass iopAlarmListTextClass "
+								text="{path:'dashBoardModel>createdAt',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateTime'}"/>
+							<Text class="iopFontClass iopAlarmListTextClass" text="{dashBoardModel>duration}"/>
+							<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>rcTime}"/>
+							<HBox justifyContent="End">
+								<Button type="Transparent" class="iopFontClass iopBtnClass iopSmallIconOnlyButton sapUiTinyMarginEnd" icon="sap-icon://write-new-document"
+									press="onDesignatePress" tooltip="Edit" visible="{= ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isDowntimeReadOnly} === false}"></Button>
+								<Button press="onReviewFwdPress" type="Transparent" class="iopFontClass iopBtnClass iopSmallIconOnlyButton" icon="sap-icon://action"
+									visible="{= ${dashBoardModel>/downtimeSubTabKey} === 'Review' &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isDowntimeReadOnly} === false}"
+									tooltip="Carry Forward"></Button>
+							</HBox>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<Table sticky="ColumnHeaders" id="compDownTimeCaptureTable" busyIndicatorDelay="0" busy="{dashBoardModel>/busyIndicators/compDowntimeTable}"
+				items="{dashBoardModel>/compDownTimeTable}" class="iopFontClass alarmTableHeader" width="100%" alternateRowColors="true"
+				visible="{= ${dashBoardModel>/downtimeCaptureTabKey} === 'Compressor'?true:false }">
+				<columns>
+					<Column width="50px">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Location"/>
+					</Column>
+					<Column width="100px">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Equipment"/>
+					</Column>
+					<Column width="70px">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Date"/>
+					</Column>
+					<Column width="70px">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Duration"/>
+					</Column>
+					<Column width="85px">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Downtime Code"/>
+					</Column>
+					<Column width="85px">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text=""/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>facility}"/>
+							<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>well}"/>
+							<Text class="iopFontClass iopAlarmListTextClass "
+								text="{path:'dashBoardModel>createdAt',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateTime'}"/>
+							<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>duration}"/>
+							<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>childText}"/>
+							<HBox justifyContent="End">
+								<Button press="onUpdatePress" type="Transparent" class="iopFontClass iopBtnClass iopSmallIconOnlyButton sapUiTinyMarginEnd"
+									icon="sap-icon://write-new-document"
+									visible="{= ${dashBoardModel>/compDowntimeSubTabKey} === 'Submitted' &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isDowntimeReadOnly} === false}"
+									tooltip="Edit"></Button>
+							</HBox>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<Table sticky="ColumnHeaders" id="flareDownTimeCaptureTable" busyIndicatorDelay="0"
+				busy="{dashBoardModel>/busyIndicators/flareDowntimeTable}" visible="{= ${dashBoardModel>/downtimeCaptureTabKey} === 'Flare'?true:false }"
+				items="{dashBoardModel>/flareDownTimeTable}" class="iopFontClass alarmTableHeader" width="100%" alternateRowColors="true">
+				<columns>
+					<Column width="50px">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Date"/>
+					</Column>
+					<Column width="100px">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Functional Location"/>
+					</Column>
+					<Column width="70px">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Flare Volume"/>
+					</Column>
+					<Column width="85px">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Flare Code"/>
+					</Column>
+					<Column width="85px">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text=""/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<Text class="iopFontClass iopAlarmListTextClass "
+								text="{path:'dashBoardModel>createdAt',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateTime'}"/>
+							<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>meter}"/>
+							<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>flareVolume} MCF"/>
+							<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>childText}"/>
+							<HBox justifyContent="End">
+								<Button press="onUpdatePress" type="Transparent" class="iopFontClass iopBtnClass iopSmallIconOnlyButton sapUiTinyMarginEnd"
+									icon="sap-icon://write-new-document"
+									visible="{= ${dashBoardModel>/flareDowntimeSubTabKey} === 'Submitted' &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isDowntimeReadOnly} === false}"
+									tooltip="Edit"></Button>
+							</HBox>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</ScrollContainer>
+	</VBox>
+</core:FragmentDefinition>

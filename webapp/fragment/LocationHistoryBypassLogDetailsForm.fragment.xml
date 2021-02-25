@@ -1,0 +1,298 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.f">
+	<Dialog showHeader="false" verticalScrolling="false" contentWidth="90%" contentHeight="80%"
+		class="iopLocationHistoryCloseButton iopPtwOverFlow">
+		<HBox justifyContent="End" height="0rem">
+			<Button icon="sap-icon://sys-cancel" class="iopwbCloseBtnClass" type="Transparent" press="onFromClose"/>
+		</HBox>
+		<HBox width="100%" class="iopLocHisCollabTitleBoxClass" justifyContent="SpaceBetween">
+			<Text class="iopFontClass sapUiSmallMarginTopBottom sapUiSmallMarginBegin ioplocHisBypassTitleFontClass"
+				text="{parts:['dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/ssdBypassNum','dashBoardModel>/locationHistoryData/byPassLogPersonRespEditable'], formatter:'com.sap.incture.Incture_IOP.util.formatter.ByPasslogDeatilPageHeader'}"
+				width="100%"/>
+			<HBox class="iopPrintButtonClass">
+				<Button type="Transparent" icon="sap-icon://print" text="Print" press="onPrintBypassLog"
+					class="sapUiTinyMarginTop sapUiSmallMarginEnd iopPtwPrintButton sapUiSizeCompact uoNoPrint"></Button>
+			</HBox>
+			<!--<Button icon="sap-icon://print" text="Print" class="sapUiTinyMarginBegin iopPtwPrintButton sapUiSizeCompact" type="Default" press="onPrintBypassLog"/>-->
+		</HBox>
+		<HBox width="100%">
+			<VBox width="72%">
+				<HBox class="sapUiSmallMarginTop sapUiSmallMarginBeginEnd ioplocHisTitleBoxClass" width="17%">
+					<Text text="{i18n>headerInfo}" class="iopBypassformTextLabel"/>
+				</HBox>
+				<ScrollContainer vertical="true" horizontal="false" height="{dashBoardModel>/BypassLogFromHeight}">
+					<VBox width="100%" class="sapUiMediumMarginBegin">
+						<HBox width="100%" class="sapUiSmallMarginTop">
+							<HBox width="25%">
+								<Text text="{i18n>startDateTime}" wrapping="true" class="iopBypassformTextLabel"/>
+							</HBox>
+							<HBox width="25%" class="iopLocationHistoryNonEditableBorder sapUiSmallMarginEnd">
+								<!--<Text width="100%"-->
+								<!--	text='{path:"dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/bypassStartTime", formatter:"com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime"}'-->
+								<!--	class="sapUiSizeCompact iopLocationHistoryTextNonEditable"></Text>-->
+								<Text width="100%"
+									text='{path:"dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/bypassStartTime", formatter:"com.sap.incture.Incture_IOP.util.formatter.epochToDateLocHistory"}'
+									class="sapUiSizeCompact iopLocationHistoryTextNonEditable"></Text>
+							</HBox>
+							<HBox width="25%">
+								<Text text="{i18n>deviceBypass}" wrapping="true" class="iopBypassformTextLabel"/>
+							</HBox>
+							<HBox width="25%" class="iopLocationHistoryNonEditableBorder sapUiSmallMarginEnd">
+								<Text width="100%" text="{dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/deviceBypassed}"
+									class="sapUiSizeCompact iopLocationHistoryTextNonEditable"></Text>
+							</HBox>
+						</HBox>
+						<!--SH: New fields for Canada start-->
+						<HBox width="100%" class="sapUiSmallMarginTop" visible="{path:'dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/locationCode',formatter:'com.sap.incture.Incture_IOP.util.formatter.handleByPassLogFieldVisibility'}">
+							<HBox width="25%">
+								<Text text="{i18n>bypassLog_Risk}" wrapping="true" class="iopBypassformTextLabel"/>
+							</HBox>
+							<HBox width="25%" class="iopLocationHistoryNonEditableBorder sapUiSmallMarginEnd">
+								<Text width="100%"
+									text="{dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/risk}"
+									class="sapUiSizeCompact iopLocationHistoryTextNonEditable"></Text>
+							</HBox>
+							<HBox width="25%">
+								<Text text="{i18n>bypassLog_Equipment}" wrapping="true" class="iopBypassformTextLabel"/>
+							</HBox>
+							<HBox width="25%" class="iopLocationHistoryNonEditableBorder sapUiSmallMarginEnd">
+								<Text width="100%" text="{dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/equipmentDesc}"
+									class="sapUiSizeCompact iopLocationHistoryTextNonEditable"></Text>
+							</HBox>
+						</HBox>
+						<!--SH: New fields for Canada ends-->
+						<HBox width="100%" class="sapUiSmallMarginTop">
+							<HBox width="25%">
+								<Text text="{i18n>reasonOfBypass}" wrapping="true" class="iopBypassformTextLabel"/>
+							</HBox>
+							<HBox height="auto" width="25%" class="iopLocationHistoryNonEditableBorder sapUiSmallMarginEnd">
+								<Text text="{dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/reasonForBypass}"
+									class="sapUiSizeCompact iopLocationHistoryTextNonEditable"></Text>
+							</HBox>
+							<HBox width="25%">
+								<Text text="{i18n>personResponsible}" wrapping="true" class="iopBypassformTextLabel"/>
+							</HBox>
+							<HBox width="25%" class="iopLocationHistoryNonEditableBorder sapUiSmallMarginEnd">
+									<Text text="{dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/assignedTo}"
+									class="sapUiSizeCompact iopLocationHistoryTextNonEditable"
+									visible="{=${dashBoardModel>/locationHistoryData/byPassLogPersonRespEditable}=== false}"></Text>
+								<ComboBox class="sapUiSizeCompact iopBypassComboBoxClass iopComboClass" items="{dashBoardModel>/bypassPersonRespList}"
+									visible="{dashBoardModel>/locationHistoryData/byPassLogPersonRespEditable}" change="onChangeBypassResp" selectedKey="">
+									<core:ListItem key="{dashBoardModel>emailId}" text="{dashBoardModel>firstName} {dashBoardModel>lastName}"/>
+								</ComboBox>
+							</HBox>
+						</HBox>
+						<HBox width="100%" class="sapUiSmallMarginTop">
+							<HBox width="25%">
+								<Text text="Location" wrapping="true" class="iopBypassformTextLabel"></Text>
+							</HBox>
+							<HBox width="25%" class="iopLocationHistoryNonEditableBorder sapUiSmallMarginEnd">
+								<Text text="{dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/location}"
+									class="sapUiSizeCompact iopLocationHistoryTextNonEditable"></Text>
+							</HBox>
+							<HBox width="25%">
+								<Text text="{i18n>lockbypasslogwhenneeded}" wrapping="true" class="iopBypassformTextLabel"></Text>
+							</HBox>
+							<HBox width="25%" class="iopLocationHistoryNonEditableBorder sapUiSmallMarginEnd">
+								<Text text="{= ${dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/isBypassTagAttached}?'Yes':'No'}"
+									class="sapUiSizeCompact iopLocationHistoryTextNonEditable"></Text>
+							</HBox>
+						</HBox>
+						<HBox width="100%" class="sapUiSmallMarginTop">
+							<HBox width="25%">
+								<Text text="{i18n>dcsOrPlcControlledDevice}" wrapping="true" class="iopBypassformTextLabel"/>
+							</HBox>
+							<HBox width="25%" class="iopLocationHistoryNonEditableBorder sapUiSmallMarginEnd">
+								<Text text="{= ${dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/isDcsPlcControlledDevice}?'Yes':'No'}"
+									class="sapUiSizeCompact iopLocationHistoryTextNonEditable"></Text>
+							</HBox>
+							<HBox width="25%">
+								<Text text="{i18n>affctedPersonelNotified}" wrapping="true" class="iopBypassformTextLabel"/>
+							</HBox>
+							<HBox width="25%" class="iopLocationHistoryNonEditableBorder sapUiSmallMarginEnd">
+								<Text text="{= ${dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/isAffectedPersonnelNotified}?'Yes':'No'}"
+									class="sapUiSizeCompact iopLocationHistoryTextNonEditable"></Text>
+							</HBox>
+						</HBox>
+						<HBox width="100%" class="sapUiSmallMarginTop">
+							<HBox width="25%">
+								<Text text="{i18n>operatorApprovedObtained}" wrapping="true" class="iopBypassformTextLabel"/>
+							</HBox>
+							<HBox width="25%" class="iopLocationHistoryNonEditableBorder sapUiSmallMarginEnd">
+								<Text text="{= ${dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/isOpApprovalObtained}?'Yes':'No'}"
+									class="sapUiSizeCompact iopLocationHistoryTextNonEditable"></Text>
+							</HBox>
+							<HBox width="25%">
+								<Text text="{i18n>deviceBackInServiceDateTime}" wrapping="true" class="iopBypassformTextLabel"/>
+							</HBox>
+							<HBox width="25%" class="iopLocationHistoryNonEditableBorder sapUiSmallMarginEnd" height="100%">
+								<!--<Text-->
+								<!--	text="{path:'dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/bypassCompleteTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime'}"-->
+								<!--	class="sapUiSizeCompact iopLocationHistoryLongTextNonEditable"></Text>-->
+								<Text
+									text="{path:'dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/bypassCompleteTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateLocHistory'}"
+									class="sapUiSizeCompact iopLocationHistoryLongTextNonEditable"></Text>
+							</HBox>
+						</HBox>
+						<HBox width="100%" class="sapUiSmallMarginTop">
+							<HBox width="25%">
+								<Text text="{i18n>firstLineSuprApp}" wrapping="true" class="iopBypassformTextLabel"/>
+							</HBox>
+							<HBox width="25%" class="iopLocationHistoryNonEditableBorderLongText sapUiSmallMarginEnd" height="100%">
+								<Text
+									visible="{path:'dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/firstLineSupvApprovalStatus',formatter:'com.sap.incture.Incture_IOP.util.formatter.locHisBypasslogApproverStatus'}"
+									text="{dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/firstLineSupvApprovalInitBy}"
+									class="sapUiSizeCompact iopLocationHistoryLongLongTextNonEditable"></Text>
+							</HBox>
+							<HBox width="25%">
+								<Text text="{i18n>fieldPlantSuptApproval}" wrapping="true" class="iopBypassformTextLabel"/>
+							</HBox>
+							<HBox width="25%" class="iopLocationHistoryNonEditableBorder sapUiSmallMarginEnd" height="100%">
+								<Text
+									visible="{path:'dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/fieldPlantSuptApprovalStatus',formatter:'com.sap.incture.Incture_IOP.util.formatter.locHisBypasslogApproverStatus'}"
+									text="{dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/fieldPlantSuptApprovalInitBy}"
+									class="sapUiSizeCompact iopLocationHistoryLongLongAnotherTextNonEditable"></Text>
+							</HBox>
+						</HBox>
+						<HBox width="100%" class="sapUiSmallMarginTop">
+							<HBox width="25%">
+								<Text text="{i18n>eMocCreated}" wrapping="true" class="iopBypassformTextLabel"/>
+							</HBox>
+							<HBox width="25%" class="iopLocationHistoryNonEditableBorder sapUiSmallMarginEnd">
+								<Text text="{= ${dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/isEmocCreated}?'Yes':'No'}"
+									class="sapUiSizeCompact iopLocationHistoryTextNonEditable"></Text>
+							</HBox>
+							<HBox width="25%">
+								<Text text="{i18n>emoc}" wrapping="true" class="iopBypassformTextLabel"/>
+							</HBox>
+							<HBox width="25%" class="iopLocationHistoryNonEditableBorder sapUiSmallMarginEnd">
+								<Text text="{dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/emocNumber}"
+									class="sapUiSizeCompact iopLocationHistoryTextNonEditable"></Text>
+							</HBox>
+						</HBox>
+						<!--<HBox width="25%">
+								<Text text="{i18n>opMgrApproval}" wrapping="true" class="iopBypassformTextLabel"/>
+							</HBox>
+							<HBox width="25%" class="iopLocationHistoryNonEditableBorder sapUiSmallMarginEnd">
+								<Text
+									visible="{path:'dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/opMgrApprovalStatus',formatter:'com.sap.incture.Incture_IOP.util.formatter.locHisBypasslogApproverStatus'}"
+									text="{dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassLogHeaderdto/opMgrApprovalInitBy}"
+									class="sapUiSizeCompact iopLocationHistoryLongTextEmocNonEditable"></Text>
+							</HBox>-->
+						<HBox width="100%" class="sapUiSmallMarginTop"></HBox>
+					</VBox>
+				</ScrollContainer>
+			</VBox>
+			<VBox width="28%" class="iopwbSplitBorderClass sapUiMediumMarginBegin">
+				<IconTabBar expandable="false" backgroundDesign="Solid" class="iopLocHisBypasToolbar sapUiSizeCompact iopLocHistBypass"
+					busy="{dashBoardModel>/busyIndicators/collabPanelBusy}" busyIndicatorDelay="0" id="idCollaborationTab" select="onTaskCollabTabSelect">
+					<items>
+						<IconTabFilter text="Comments" key="Comments">
+							<ScrollContainer vertical="true" horizontal="false" height="{dashBoardModel>/BypassLogFromHeight}">
+								<VBox class="sapUiTinyMarginBottom" visible="{dashBoardModel>/locationHistoryData/byPassLogPersonRespEditable}">
+									<TextArea placeholder="Enter your comments (optional)" rows="5" value="{dashBoardModel>/newByPassComment}"
+										class="iopwbTaskBoderLightClass iopFontClass iopwbCommentArea" width="100%" id="idBypassCommTextArea"/>
+									<HBox class="iopwbCommentPostClass">
+										<Button text="Post" class="iopwbPostBtnClass iopBtnClass sapUiSizeCompact" press="onPostShiftChangeComment"/>
+									</HBox>
+								</VBox>
+								<l:VerticalLayout content="{dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassCommentDtoList}" width="100%"
+									class="processFlowMainStyleClass">
+									<l:content>
+										<VBox visible="true" width="100%">
+											<HBox width="95%" class="sapUiMediumMarginBegin sapUiMediumMarginTop iopwbTimeClass iopCreateTaskPanelAlignment">
+												<HBox width="100%" class="sapUiSmallMarginTop iopwbAvatarClass">
+													<f:Avatar initials="{parts:[{path:'dashBoardModel>updatedBy'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.getinitials'}"
+														displaySize="S" displayShape="Circle" class="sapUiTinyMarginTop"/>
+													<VBox class=" sapUiSmallMargin iopTaskPanelAvatarMargin" width="100%">
+														<Label design="Bold" text="{dashBoardModel>updatedBy}" class="iopFontClass iopCommentClass iopSmallFontClass"/>
+														<!--<Text-->
+														<!--	text="Commented On: {path:'dashBoardModel>updatedAt',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime'}"-->
+														<!--	class="iopFontClass iopItalicClass iopSmallFontClass"/>-->
+														<Text
+															text="Commented On: {path:'dashBoardModel>updatedAt',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateLocHistory'}"
+															class="iopFontClass iopItalicClass iopSmallFontClass"/>
+														<Text text="{dashBoardModel>comment}" class="iopFontClass iopSmallFontClass" width="100%"/>
+													</VBox>
+												</HBox>
+												<l:Grid id="idDynGrid" defaultSpan="L4 M6 S12" vSpacing="0" class="sapUiSmallMarginTop sapUiTinyMarginBottom"/>
+											</HBox>
+										</VBox>
+									</l:content>
+								</l:VerticalLayout>
+							</ScrollContainer>
+						</IconTabFilter>
+						<IconTabFilter text="Attachments" key="Attachments">
+							<ScrollContainer vertical="true" horizontal="false" height="{dashBoardModel>/BypassLogFromHeight}">
+								<l:VerticalLayout content="{dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassAttachementDtoList}" width="100%"
+									class="processFlowMainStyleClass">
+									<l:content>
+										<VBox width="100%">
+											<HBox width="95%" class="sapUiMediumMarginBegin sapUiMediumMarginTop iopwbTimeClass iopCreateTaskPanelAlignment">
+												<HBox width="100%" class="sapUiSmallMarginTop iopwbAvatarClass">
+													<f:Avatar initials="{parts:[{path:'dashBoardModel>createdBy'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.getinitials'}"
+														displaySize="S" displayShape="Circle" class="sapUiTinyMarginTop"/>
+													<VBox class=" sapUiSmallMargin iopTaskPanelAvatarMargin" width="100%">
+														<Link text="{dashBoardModel>fileName}" press="onBypassLinkPress"/>
+														<Text text="Uploaded by: {dashBoardModel>createdBy}" class="iopFontClass iopSmallFontClass"/>
+														<!--<Text text="{path:'dashBoardModel>createdAt',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime'}"-->
+														<!--	class="iopFontClass iopSmallFontClass sapUiTinyMarginTop"/>-->
+														<Text text="{path:'dashBoardModel>createdAt',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateLocHistory'}"
+															class="iopFontClass iopSmallFontClass sapUiTinyMarginTop"/>
+													</VBox>
+												</HBox>
+												<l:Grid defaultSpan="L4 M6 S12" vSpacing="0" class="sapUiSmallMarginTop sapUiTinyMarginBottom"/>
+											</HBox>
+										</VBox>
+									</l:content>
+								</l:VerticalLayout>
+							</ScrollContainer>
+						</IconTabFilter>
+						<IconTabFilter text="Activity Log" key="ActivityLog">
+							<ScrollContainer vertical="true" horizontal="false" height="{dashBoardModel>/BypassLogFromHeight}">
+								<l:VerticalLayout content="{dashBoardModel>/locationHistoryData/bypassLogDetailsData/ssdBypassActivityLogDtoList}" width="100%"
+									class="processFlowMainStyleClass">
+									<l:content>
+										<VBox>
+											<HBox>
+												<core:Icon src="sap-icon://circle-task-2" class="completedIcon BypasslogActivityLogIcon"/>
+												<HBox justifyContent="SpaceBetween" width="100%">
+													<Label text="{path:'dashBoardModel>operatorType', formatter:'com.sap.incture.Incture_IOP.util.formatter.fnBypassLofActivityLogNameTitleCase'}"
+														class="iopFontClass timeLineDescrptionTextStyle"/>
+													<!--<Text-->
+													<!--	text='{parts:["dashBoardModel>bypassStatusReviewedAt"], formatter:"com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime"}'-->
+													<!--	class="iopFontClass iopActivityTimeClass sapUiTinyMarginEnd"/>-->
+													<Text
+														text='{parts:["dashBoardModel>bypassStatusReviewedAt"], formatter:"com.sap.incture.Incture_IOP.util.formatter.epochToDateLocHistory"}'
+														class="iopFontClass iopActivityTimeClass sapUiTinyMarginEnd"/>
+												</HBox>
+											</HBox>
+											<HBox id="processTaskBox" class="processFlowLineStyle">
+												<Image src="{path:'i18n>barImage', formatter:'com.sap.incture.Incture_IOP.util.formatter.getImagePath'}" width="100%" height="100%"/>
+												<VBox width="95%" class="taskBoxStyle">
+													<HBox justifyContent="SpaceBetween" visible="{= ${oTaskPanelDetailModel>user} !== undefined}">
+														<VBox>
+															<Text text="{dashBoardModel>personResponsible}" class="iopFontClass iopSmallFontClass"/>
+															<Text text="Approval Obtained: {= ${dashBoardModel>isApprovalObtained}?'Yes':'No'}"
+																class="iopFontClass iopSmallFontClass sapUiTinyMarginTop"/>
+														</VBox>
+														<f:Avatar initials="{parts:[{path:'dashBoardModel>personResponsible'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.getinitials'}"
+															displaySize="XS" displayShape="Circle" class="sapUiTinyMarginEnd" tooltip="{dashBoardModel>personResponsible}"/>
+													</HBox>
+													<HBox class="taskSeperatorStyle" width="100%"/>
+												</VBox>
+											</HBox>
+										</VBox>
+									</l:content>
+								</l:VerticalLayout>
+							</ScrollContainer>
+						</IconTabFilter>
+					</items>
+				</IconTabBar>
+			</VBox>
+		</HBox>
+		<buttons visible="{dashBoardModel>/locationHistoryData/byPassLogPersonRespEditable}">
+			<Button text="Change Shift" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass" press="onPressBypassLogButtons"
+				visible="{dashBoardModel>/locationHistoryData/byPassLogPersonRespEditable}"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

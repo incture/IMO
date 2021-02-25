@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.f">
+	<Popover placement="Bottom" showArrow="true" contentWidth="400px" showHeader="true" title="Settings" contentHeight="auto">
+		<content>
+			<List >
+				<InputListItem label="Display Hours">
+					<Slider width="100%" value="{dashBoardModel>/schedulingV2Data/view}" min="3" max="24" progress="true" change="onSliderChange"/>
+				</InputListItem>
+			</List>
+		</content>
+	</Popover>
+</core:FragmentDefinition>

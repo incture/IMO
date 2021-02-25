@@ -1,0 +1,24 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.f">
+	<HBox justifyContent="SpaceAround" class="iopwbCollabTitleBoxClass">
+		<Text text="Message Collaboration" class="iopFontClass iopwbCollabTitleClass"/>
+	</HBox>
+	<ScrollContainer vertical="true" id="idTdRightScrollCont" height="{dashBoardModel>/taskPanelSize/taskPanelScrollHeight}">
+		<IconTabBar expandable="false" backgroundDesign="Solid" class="iopwbCollabIconTab " busy="{dashBoardModel>/busyIndicators/collabPanelBusy}"
+			busyIndicatorDelay="0" select="onTaskCollabTabSelect">
+			<items>
+				<IconTabFilter text="Comments" key="Comments">
+					<VBox>
+						<VBox visible='{parts:["dashBoardModel>/isWebReadOnlyRole","dashBoardModel>/moduleReadOnly", "dashBoardModel>/panelProperties/currentSelectKey"],formatter:"com.sap.incture.Incture_IOP.util.formatter.handleVisForModuleReadonly"}'>
+							<TextArea placeholder="Enter your comments (optional)" rows="5" liveChange="onCommentLiveChnage" value="{dashBoardModel>/newComment}"
+								class="iopwbTaskBoderLightClass iopFontClass iopwbCommentArea" width="100%" id="idTMTextArea"/>
+							<HBox class="iopwbCommentPostClass">
+								<Button text="Post" class="iopwbPostBtnClass iopBtnClass sapUiSizeCompact" press="onPostComment"/>
+							</HBox>
+						</VBox>
+						<VBox items="{ path: 'oTaskPanelDetailModel>/collabrationDtos', factory: '.commentListFactory' }"/>
+					</VBox>
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+	</ScrollContainer>
+</core:FragmentDefinition>

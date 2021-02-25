@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified">
+	<u:Menu>
+		<u:MenuItem text="Download Plot" select="handleChartToolCapturePress" icon="sap-icon://camera"/>
+		<!--<u:MenuItem text="Zoom" select="handleChartToolZoomPress" icon="sap-icon://zoom-in"/>-->
+		<!--<u:MenuItem text="Pan" select="handleChartToolPanPress" icon="sap-icon://camera"/>-->
+		<!--<u:MenuItem text="Reset Axes" select= "handleChartToolResetPress" icon="sap-icon://home"/>-->
+		<!--<u:MenuItem text="Toggle Spike Lines" select="handleChartToolSpikePress" icon="sap-icon://camera"/>-->
+		<u:MenuItem text="Show closest data on hover" select="handleChartToolClosestPress" icon="sap-icon://chart-axis"/>
+		<u:MenuItem text="Compare data on hover" select="handleChartToolClosestPress($event, true)" icon="sap-icon://line-chart"/>
+		<u:MenuItem text="Toggle Legends" select="handleChartToolLegendsPress" icon="sap-icon://legend"/>
+	</u:Menu>
+</core:FragmentDefinition>

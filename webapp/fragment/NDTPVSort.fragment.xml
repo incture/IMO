@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Popover showArrow="true" showHeader="false" afterClose="DeSelectRadiobtn" placement="Bottom">
+		<VBox class="sapUiTinyMargin">
+			<RadioButton id="idAscending" text="Ascending" width="100%" class="sapUiSizeCompact iopBtnClass iopAlarmBtnClass" select="sortingFunc"/>
+			<RadioButton id="idDescending" text="Descending" width="100%" select="sortingFunc" class="sapUiSizeCompact iopBtnClass iopAlarmBtnClass"/>
+			<SearchField width="100%" placeholder="Search" id="__field0" liveChange="filterNDTPV"/>
+		</VBox>
+	</Popover>
+</core:FragmentDefinition>

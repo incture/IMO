@@ -1,0 +1,106 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" id="TaskManagement"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz="sap.viz.ui5.controls"
+	xmlns:viz.data="sap.viz.ui5.data">
+	<VBox class="iopRepOutboxClass">
+		<VBox visible="{= ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/userData/isENG} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isAnalyticsReadOnly} === true || ${dashBoardModel>/userData/isROC} === true}">
+			<HBox class="sapUiTinyMarginEnd sapUiTinyMarginBottom">
+				<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop potTileLayout" header="{i18n>investigation}" press="onPotFilterTilePress"
+					visible="{= ${dashBoardModel>/userData/isPOT} === true|| ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isAnalyticsReadOnly} === true|| ${dashBoardModel>/userData/isROC} === true}">
+					<TileContent footer="{i18n>potTeam}">
+						<content>
+							<NumericContent valueColor="Neutral" value="{dashBoardModel>/potData/tableData/potTaskCount}" icon="sap-icon://check-availability"/>
+						</content>
+					</TileContent>
+				</GenericTile>
+				<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop potTileLayout" header="{i18n>alsTech}" press="onPotFilterTilePress"
+					visible="{= ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isAnalyticsReadOnly} === true || ${dashBoardModel>/userData/isROC} === true}">
+					<TileContent footer="{i18n>alsTeam}">
+						<NumericContent valueColor="Neutral" value="{dashBoardModel>/potData/tableData/alsTaskCount}" icon="sap-icon://key-user-settings"/>
+					</TileContent>
+				</GenericTile>
+				<GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop potTileLayout" header="{i18n>engineering}" press="onPotFilterTilePress">
+					<TileContent footer="{i18n>engineeringTeam}">
+						<NumericContent valueColor="Neutral" value="{dashBoardModel>/potData/tableData/engTaskCount}" icon="sap-icon://dimension"/>
+					</TileContent>
+				</GenericTile>
+				<VBox class="sapUiTinyMarginBegin" id="idAnalyticsTableSearchBox" visible="{= ${dashBoardModel>/userData/isENG} === false || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isAnalyticsReadOnly} === true|| ${dashBoardModel>/userData/isROC} === true}">
+					<Button icon="sap-icon://clear-filter" tooltip="{i18n>clearFilter}"
+						class="sapUiSizeCompact iopBtnClass sapUiTinyMarginEnd sapUiTinyMarginTop" press="onPressClearPotFilter"/>
+				</VBox>
+			</HBox>
+		</VBox>
+		<VBox>
+			<HBox justifyContent="End"
+				visible="{= (${dashBoardModel>/userData/isROC} === true &amp;&amp; ${dashBoardModel>/userData/isPOT} === false &amp;&amp; ${dashBoardModel>/userData/isENG} === false) || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isAnalyticsReadOnly} === true}">
+				<Button text="Download Report" class="sapUiSizeCompact iopBtnClass sapUiSmallMarginBottom sapUiTinyMarginEnd" press="onPressDownloadReport"/>
+			</HBox>
+			<Toolbar class="sapUiSizeCompact iopv2DTCHeader"
+				visible="{= ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/userData/isENG} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isAnalyticsReadOnly} === true|| ${dashBoardModel>/userData/isROC} === true}">
+				<content>
+					<ToolbarSpacer/>
+					<SearchField width="10rem" liveChange="onAnalyticsTableSearch" class="sapUiSizeCompact sapUiTinyMarginEnd" id="idAnalyticsTableSearchField">
+						<tooltip class="iopFontClass" text="Search.."></tooltip>
+					</SearchField>
+					<Button tooltip="Table Sort" icon="sap-icon://drop-down-list" class="sapUiSizeCompact iopBtnClass iopwbBtnClass sapUiTinyMarginBeginEnd"
+						press="onAnalyticsTableSortClick"/>
+					<Button tooltip="Download Report" icon="sap-icon://download" class="sapUiSizeCompact iopBtnClass iopwbBtnClass sapUiTinyMarginBeginEnd"
+						press="onPressDownloadReport" visible="{= (${dashBoardModel>/userData/isROC} === true &amp;&amp; ${dashBoardModel>/userData/isPOT} === true) || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isAnalyticsReadOnly} === true}"/>
+				</content>
+			</Toolbar>
+			<ScrollContainer height="{= ${dashBoardModel>/HierarchyPanelOpen} === true?'18.5rem':'7rem' }" vertical="true"
+				visible="{= ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/userData/isENG} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isAnalyticsReadOnly} === true|| ${dashBoardModel>/userData/isROC} === true}">
+				<Table sticky="ColumnHeaders" class="sapUiSizeCompact iopFontClass alarmListHeader alarmTableHeader" mode="None" alternateRowColors="true"
+					id="idPotAnalyticsTable" busy="{dashBoardModel>/busyIndicators/detailReport}" items="{dashBoardModel>/potData/tableData/taskList}"
+					busyIndicatorDelay="0">
+					<columns>
+						<Column minScreenWidth="Tablet" demandPopin="true" width="6rem">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="{i18n>investigationID}"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="{i18n>createdDate}"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Location"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" visible="false">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="{i18n>field}"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="{i18n>varToFcstBoed}"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="{i18n>percentageVarToFcstBoed}"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="{i18n>milestoneStep}"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center"> <!--AN: #ThemeBug-->
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="{i18n>investigationStatus}"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" visible="false">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="{i18n>investigationStatus}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem >
+							<cells>
+								<Text text="{dashBoardModel>requestId}" class="iopFontClass iopAlarmListTextClass"/>
+								<Text text='{parts:["dashBoardModel>createdAtInString"], formatter:"com.sap.incture.Incture_IOP.util.formatter.getLocalDate"}'
+									class="iopFontClass iopAlarmListTextClass"/>
+								<Text text="{dashBoardModel>wellName}" class="iopFontClass iopAlarmListTextClass"/>
+								<Text text="{dashBoardModel>field}" class="iopFontClass iopAlarmListTextClass"/>
+								<Text text="{dashBoardModel>varToFcstBOED}" class="iopFontClass iopAlarmListTextClass"/>
+								<Text text="{dashBoardModel>perVarToFcstBOED}" class="iopFontClass iopAlarmListTextClass"/>
+								<Text text="{dashBoardModel>mileStoneStep}" class="iopFontClass iopAlarmListTextClass"/>
+								<!--<Text text="{dashBoardModel>status}" class="iopFontClass iopAlarmListTextClass"/>--> <!--AN: #ThemeBug-->
+								<Text class="ioplocHistoryOriginClass sapUiTinyMarginBegin iopTaskManagementTextFont" text="{dashBoardModel>status}"
+									visible='{path:"dashBoardModel>status", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnLocHisStatus"}'/> <!--AN: #ThemeBug-->
+								<Text text="{dashBoardModel>createdAt}" class="iopFontClass iopAlarmListTextClass"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</ScrollContainer>
+		</VBox>
+	</VBox>
+</core:FragmentDefinition>

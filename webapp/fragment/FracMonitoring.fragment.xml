@@ -1,0 +1,158 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:icon="sap.ui.core.Icon"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz="sap.viz.ui5.controls" xmlns:viz.data="sap.viz.ui5.data"
+	xmlns:ui="sap.ui.table" xmlns:myCustom="com.sap.incture.Incture_IOP.util">
+	<VBox class="sapUiSizeCompact" height="100%">
+		<!--	<ScrollContainer id="idfracScroll" height="{= ${dashBoardModel>/HierarchyPanelOpen} === true?'96%':'58%' }" vertical="true"-->
+		<!--<ScrollContainer id="idfracScroll"
+			height="{= ${dashBoardModel>/HierarchyPanelOpen} === true?'calc(100vh - 8.75rem)':'calc(100vh - 21rem)' }" vertical="true" horizontal="true"-->
+		<ScrollContainer id="idfracScroll" height="{dashBoardModel>/fracListHeight}" vertical="true" horizontal="true" width="100%"
+			busyIndicatorDelay="0">
+			<myCustom:Table id="fracMonitoringTableView" selectionChange="onFracMainTableSelectionChange" sticky="ColumnHeaders,HeaderToolbar"
+				class="sapUiSizeCompact sapUiTinyMarginEnd iopFontClass spotFireTblClass alarmListHeader alarmTableHeader iopCheckBoxFrac"
+				mode="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true ? ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isFracReadOnly} === false ? 'MultiSelect':'None': 'None'}"
+				alternateRowColors="false" width="100%" items="{path:'dashBoardModel>/fracMonitoringData/fracData',templateShareable:false}"
+				rightPress="onFracHitRightPress">
+				<myCustom:headerToolbar >
+					<Toolbar class="alarmListHeader">
+						<Title class="titlesize" text="Offset Frac Monitoring" textAlign="Center"/>
+						<ToolbarSpacer/>
+						<Button visible="{= ${dashBoardModel>/userData/isENG} &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isFracReadOnly} === false}"
+							press="onCreateFracEngButtonPress" tooltip="Create New Frac Pack" text="Create New Frac Pack" icon="sap-icon://InctureIopv2/addwell"
+							class="sapUiSizeCompact sapUiTinyMarginBeginEnd "/>
+						<Button
+							visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true ? ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isFracReadOnly} === false ? true:false:false}"
+							enabled="{dashBoardModel>/fracMonitoringData/markCompleteEnabled}" press="onFracMarkCompleted" tooltip="Mark Completed"
+							text="Mark Completed" icon="sap-icon://BusinessSuiteInAppSymbols/icon-completed" class="sapUiSizeCompact sapUiTinyMarginBeginEnd"/>
+					</Toolbar>
+				</myCustom:headerToolbar>
+				<myCustom:columns>
+					<Column mergeDuplicates="true" width="5%">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="Frac ID" text="Frac ID"/>
+						</HBox>
+					</Column>
+					<Column width="7%">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="Well" text="Well"/>
+						</HBox>
+					</Column>
+					<Column width="8%">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="Frac Date" text="Frac Date"/>
+						</HBox>
+					</Column>
+					<Column width="8%">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="Estimated BOL Date" text="Estimated BOL Date"/>
+						</HBox>
+					</Column>
+					<!--<Column width="6%">-->
+					<!--	<HBox alignContent="Center" alignItems="Center">-->
+					<!--		<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="Prod Impact Gross (bbl)" text="Prod Impact Gross (bbl)"/>-->
+					<!--	</HBox>-->
+					<!--</Column>-->
+					<Column width="5%">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="BOED" text="BOED"/>
+						</HBox>
+					</Column>
+					<Column width="8%">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="MAWP Tubing Pressure (psi)" text="MAWP Tubing Pressure (psi)"/>
+						</HBox>
+					</Column>
+					<Column width="6%">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="Active Tubing Pressure (psi)" text="Active Tubing Pressure (psi)"/>
+						</HBox>
+					</Column>
+					<Column width="8%">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="MAWP Casing Pressure (psi)" text="MAWP Casing Pressure (psi)"/>
+						</HBox>
+					</Column>
+					<Column width="6%">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="Active Casing Pressure (psi)" text="Active Casing Pressure (psi)"/>
+						</HBox>
+					</Column>
+					<Column width="8%">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="Max Casing Pressure Reached (psi)"
+								text="Max Casing Pressure Reached (psi)"/>
+						</HBox>
+					</Column>
+					<Column width="5%">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="Dist From Frac (ft.)" text="Dist From Frac (ft.)"/>
+						</HBox>
+					</Column>
+					<!--<Column width="7%">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="Frac SLA" text="Frac SLA"/>
+						</HBox>
+					</Column>-->
+					<Column visible="{dashBoardModel>/userData/isENG}">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="Frac Hit" text="Frac Hit"/>
+						</HBox>
+					</Column>
+					<Column width="7%">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="Time Stamp" text="Time Stamp"/>
+						</HBox>
+					</Column>
+					<Column visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true}">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="Well Status" text="Well Status"/>
+						</HBox>
+					</Column>
+					<Column visible="{= ${dashBoardModel>/userData/isENG} || ${dashBoardModel>/isWebReadOnlyRole} === true }">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="Well Status" text="Well Status"/>
+						</HBox>
+					</Column>
+					<Column>
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" tooltip="Scenario" text="Scenario"/>
+						</HBox>
+					</Column>
+				</myCustom:columns>
+				<myCustom:items>
+					<ColumnListItem highlight="Warning"
+						unread='{path:"dashBoardModel>fracNotification", formatter:"com.sap.incture.Incture_IOP.util.formatter.getHighlightColorforFracNotification"}'
+						visible='{path:"dashBoardModel>color", formatter:"com.sap.incture.Incture_IOP.util.formatter.getHighlightColorforFrac"}'>
+						<cells>
+							<Text text="{dashBoardModel>fracId}" class="iopFontClass iopAlarmListTextClass"/>
+							<Text text="{dashBoardModel>wellName}" class="iopFontClass iopAlarmListTextClass"/>
+							<Text text="{path:'dashBoardModel>fracDate',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopdateFormate'}"
+								class="iopFontClass iopAlarmListTextClass"/>
+							<Text text="{path:'dashBoardModel>estBolDate',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopdateFormate'}"
+								class="iopFontClass iopAlarmListTextClass"/>
+							<!--<Text text="{dashBoardModel>prodImpact}" class="iopFontClass iopAlarmListTextClass"/>-->
+							<Text text="{dashBoardModel>boed}" class="iopFontClass iopAlarmListTextClass"/>
+							<Text text="{ path:'dashBoardModel>maxTubePressure'}" class="iopFontClass iopAlarmListTextClass"/>
+							<Text text="{ path:'dashBoardModel>activeTubePressure'}" class="iopFontClass iopAlarmListTextClass"/>
+							<Text text="{ path:'dashBoardModel>maxCasePressure'}" class="iopFontClass iopAlarmListTextClass"/>
+							<Text text="{ path:'dashBoardModel>activeCasePressure'}" class="iopFontClass iopAlarmListTextClass"/>
+							<Text text="{ path:'dashBoardModel>maxPsi'}" class="iopFontClass iopAlarmListTextClass"/>
+							<Text text="{ path:'dashBoardModel>distFrac'}" class="iopFontClass iopAlarmListTextClass"/>
+							<!--<Text text="{dashBoardModel>fracSla}" class="iopFontClass iopAlarmListTextClass"/>-->
+							<Text visible="{dashBoardModel>/userData/isENG}" text="{dashBoardModel>fracHit}" class="iopFontClass iopAlarmListTextClass"/>
+							<!--	<Button text="Frac Hit" class="iopFontClass"/>-->
+							<Text text="{path:'dashBoardModel>timeStamp',formatter:'com.sap.incture.Incture_IOP.util.formatter.fracDateTimeDisplayFormat'}"
+								class="iopFontClass iopAlarmListTextClass"/>
+							<Select tooltip="{dashBoardModel>wellStatus}" change="onWellStatusChange" enabled="{= ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isFracReadOnly} === false}"
+								visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true}" forceSelection="false"
+								selectedKey="{dashBoardModel>wellStatus}" items="{ path: 'dashBoardModel>/fracMonitoringData/wellStatusDto',templateShareable:true }">
+								<core:Item key="{dashBoardModel>wellStatus}" text="{dashBoardModel>wellStatus}"/>
+							</Select>
+							<Text visible="{= ${dashBoardModel>/userData/isENG} || ${dashBoardModel>/isWebReadOnlyRole} === true}" text="{dashBoardModel>wellStatus}" class="iopFontClass iopAlarmListTextClass"/>
+							<Text text="{dashBoardModel>scenario}" class="iopFontClass iopAlarmListTextClass"/>
+						</cells>
+					</ColumnListItem>
+				</myCustom:items>
+			</myCustom:Table>
+		</ScrollContainer>
+	</VBox>
+</core:FragmentDefinition>

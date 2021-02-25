@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.f">
+	<VBox class="iopwbCommentBoxClass">
+		<HBox>
+			<f:Avatar initials="{parts:[{path:'oTaskPanelDetailModel>userDisplayName'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.getinitials'}"
+				displaySize="XS" displayShape="Circle" class="sapUiTinyMargin iopwbAvatarClass"/>
+			<VBox class="sapUiTinyMarginTop">
+				<Text text="{oTaskPanelDetailModel>userDisplayName}" class="iopFontClass iopwbCommentUser"/>
+				<HBox class="iopwbAttTextBoxClass">
+					<Text
+						text='{parts:["oTaskPanelDetailModel>createdAtDisplay","dashBoardModel>/none","dashBoardModel>/isCreateTask","oTaskPanelDetailModel>messageId","dashBoardModel>/isInvestigationCreate","dashBoardModel>/isInquiryCreate"], formatter:"com.sap.incture.Incture_IOP.util.formatter.getLocalDate"}'
+						class="iopFontClass iopwbCommentTime"/>
+				</HBox>
+			</VBox>
+		</HBox>
+		<Text class="iopFontClass sapUiTinyMarginBegin iopwbCommentsClass" text="{oTaskPanelDetailModel>message}"/>
+	</VBox>
+</core:FragmentDefinition>

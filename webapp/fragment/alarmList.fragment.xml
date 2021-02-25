@@ -1,0 +1,157 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" id="TaskManagement"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz="sap.viz.ui5.controls" xmlns:viz.data="sap.viz.ui5.data"
+	xmlns:ui="sap.ui.table" xmlns:myCustom="com.sap.incture.Incture_IOP.util">
+	<VBox height="100%">
+		<HBox visible="{dashBoardModel>/prograssBarVisible}" height="10%" class="sapUiTinyMarginBottom sapUiTinyMarginBegin"
+			justifyContent="{= ${dashBoardModel>/prograssBarVisible} === true?'SpaceBetween':'End' }">
+			<VBox visible="{dashBoardModel>/prograssBarVisible}">
+				<core:HTML id="progressBar" preferDOM="true"
+					content="&lt;div id=&quot;progressBar&quot;&gt; &lt;div class=&quot;bar&quot;&gt;&lt;/div&gt; &lt;/div&gt;"></core:HTML>
+				<ObjectStatus text="Next alarm refresh in {dashBoardModel>/alarmTimerTime}"
+					state="{path:'dashBoardModel>/alarmTimerTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.changeTextColor'}"/>
+			</VBox>
+		</HBox>
+		<!--	<ScrollContainer id="idAlarmsScroll" height="{= ${dashBoardModel>/HierarchyPanelOpen} === true?'90%':'55%' }" vertical="true">
+	-->
+		<!--	<ScrollContainer id="idAlarmsScroll"
+			height='{parts:["dashBoardModel>/HierarchyPanelOpen","dashBoardModel>/prograssBarVisible"], formatter:"com.sap.incture.Incture_IOP.util.formatter.setAlaramListHeight"}'
+			vertical="true">-->
+		<!--<ScrollContainer id="idAlarmsScroll" height="{dashBoardModel>/locationHistoryScrollPanelHeight}" vertical="true">-->
+		<ScrollContainer id="idAlarmsScroll"
+			height='{parts:["dashBoardModel>/alramListHeight","dashBoardModel>/prograssBarVisible"], formatter:"com.sap.incture.Incture_IOP.util.formatter.setAlaramListHeight"}'
+			vertical="true">
+			<HBox>
+				<VBox >
+					<myCustom:Table sticky="ColumnHeaders,HeaderToolbar"
+						class="sapUiSizeCompact sapUiTinyMarginEnd iopFontClass iopTableHeight iopCheckBox alarmListHeader alarmTableHeader"
+						mode="{= ${dashBoardModel>/alarmDetailKey} === 'All'?'MultiSelect':'None'}" items="{oReportDetailModel>/alarmList}"
+						alternateRowColors="false" id="idAlarmList" rightPress="onRightPress" busy="{dashBoardModel>/busyIndicators/alarmListBusy}"
+						busyIndicatorDelay="0" selectionChange="onAlarmSelectionChangeProgressTimer">
+						<myCustom:headerToolbar>
+							<Toolbar>
+								<Title text="Alarms" level="H2" textAlign="Begin" class="sapUiTinyMarginBegin"/>
+								<ToolbarSpacer/>
+								<ToolbarSpacer/>
+								<SegmentedButton class="sapUiMediumMarginEnd alarmListSegmentedButton" id="Classification" selectionChange="onAlarmSegmentBtnClick"
+									selectedKey="{dashBoardModel>/alarmDetailKey}">
+									<items>
+										<SegmentedButtonItem width="40%" id="ClassificationAll" text="All" key="All"/>
+										<SegmentedButtonItem width="70%" id="ClassificationAcknowledged" text="Acknowledged" key="Acknowledged"/>
+									</items>
+								</SegmentedButton>
+							</Toolbar>
+						</myCustom:headerToolbar>
+						<myCustom:columns>
+							<Column >
+								<HBox alignContent="Start" alignItems="Start">
+									<!--Start of AN: #TimeZone -->
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass"
+										text="Date Time {= ${dashBoardModel>/sSelectedTimeZone} === 'SYSTEM'? ${dashBoardModel>/sSystemTimeZone} : ''}"/>
+									<!--End of AN: #TimeZone -->
+								</HBox>
+							</Column>
+							<Column>
+								<HBox alignContent="Start" alignItems="Start">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Description "/>
+								</HBox>
+							</Column>
+							<Column>
+								<HBox alignContent="Start" alignItems="Start">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text=" Facility Description "/>
+								</HBox>
+							</Column>
+							<Column width="calc(7vw - 1px)">
+								<HBox alignContent="Start" alignItems="Start">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Tier Level "/>
+								</HBox>
+							</Column>
+							<Column width="calc(7vw - 1px)">
+								<HBox alignContent="Start" alignItems="Start">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Route "/>
+								</HBox>
+							</Column>
+							<Column width="calc(9vw - 1px)">
+								<HBox alignContent="Start" alignItems="Start">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Alarm Condition "/>
+								</HBox>
+							</Column>
+							<Column width="calc(7vw - 1px)">
+								<HBox alignContent="Start" alignItems="Start">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Value "/>
+								</HBox>
+							</Column>
+							<Column width="calc(7vw - 1px)">
+								<HBox alignContent="Start" alignItems="Start">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Classification "/>
+								</HBox>
+							</Column>
+							<Column width="4rem" visible="{= ${dashBoardModel>/alarmDetailKey} !== 'Acknowledged'}"></Column>
+							<!--AN: #ThemeBug-->
+						</myCustom:columns>
+						<myCustom:items>
+							<ColumnListItem highlight="Warning" tooltip="{= ${oReportDetailModel>alarmSeverity}.split('-').pop()}"
+								visible='{parts:["oReportDetailModel>alarmSeverity", "oReportDetailModel>alarmsNotification"], formatter:"com.sap.incture.Incture_IOP.util.formatter.getHighlightColor"}'>
+								<cells>
+									<HBox width="100%">
+										<!--<Text text="{path:'oReportDetailModel>timeStampAsString',formatter:'com.sap.incture.Incture_IOP.util.formatter.dateFormateForBypassLog'}"-->
+										<!--	class="iopFontClass iopAlarmListTextClass"/>-->
+										<Text
+											text='{parts:["oReportDetailModel>timeStamp", "oReportDetailModel>timeZone"],formatter:"com.sap.incture.Incture_IOP.util.formatter.epochToDateTimeRevised"}'
+											class="iopFontClass iopAlarmListTextClass"/>
+									</HBox>
+									<Label text="{oReportDetailModel>longDescription}" tooltip="{oReportDetailModel>longDescription}" class="iopFontClass iopAlarmListTextClass"/>
+									<Label text="{oReportDetailModel>facDescription}" tooltip="{oReportDetailModel>facDescription}" class="iopFontClass iopAlarmListTextClass"/>
+									<Text text="{oReportDetailModel>tier}" class="iopFontClass iopAlarmListTextClass"/>
+									<Text text="{oReportDetailModel>route}" class="iopFontClass iopAlarmListTextClass"/>
+									<Text text="{oReportDetailModel>alarmCondition}" class="iopFontClass iopAlarmListTextClass"/>
+									<Text text="{oReportDetailModel>alarmValue}" class="iopFontClass iopAlarmListTextClass"/>
+									<HBox width="100%" justifyContent="Start">
+										<Switch visible="{= ${dashBoardModel>/alarmDetailKey} !== 'Acknowledged'}"
+											enabled="{= ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isAlarmReadOnly} === false}"
+											state='{parts:["oReportDetailModel>downTimeClassifier"], formatter:"com.sap.incture.Incture_IOP.util.formatter.getClassificationIndex"}'
+											customTextOn="DT" customTextOff="NDT" class="iopAlarmSwitchClass iopAlarmBGColorNDT iopAlarmRBClass" change="onSelectAlarmClassification"/>
+										<Text text='{path:"oReportDetailModel>downTimeClassifier", formatter:"com.sap.incture.Incture_IOP.util.formatter.alarmClassification"}'
+											class="iopFontClass iopAlarmListTextClass" visible="{= ${dashBoardModel>/alarmDetailKey} === 'Acknowledged'}"/>
+									</HBox>
+									<VBox width="100%" visible="{= ${dashBoardModel>/alarmDetailKey} !== 'Acknowledged'}">
+										<HBox justifyContent="SpaceBetween" width="100%" height="50%">
+											<VBox width="60%" justifyContent="SpaceBetween" height="90%">
+												<core:Icon class="iopV2AlaramIconPadding iopBackgroundClass sapUiTinyMarginBegin" src="sap-icon://InctureIopv2/well" size="0.7rem"
+													tooltip="Well" visible='{path:"oReportDetailModel>muwi", formatter:"com.sap.incture.Incture_IOP.util.formatter.wellCheck"}'/>
+											</VBox>
+										</HBox>
+										<HBox justifyContent="SpaceBetween" height="90%">
+											<VBox width="60%">
+												<core:Icon class="iopV2AlaramIconPadding iopBackgroundClass sapUiTinyMarginBegin" src="sap-icon://InctureIopv2/dispatch" size="0.7rem"
+													tooltip="Dispatched" visible='{path:"oReportDetailModel>isDispatch", formatter:"com.sap.incture.Incture_IOP.util.formatter.showAlarmIcons"}'/>
+											</VBox>
+											<VBox width="60%" justifyContent="SpaceBetween" height="90%">
+												<core:Icon class=" iopV2AlaramIconPadding iopBackgroundClass sapUiTinyMarginBegin" src="sap-icon://InctureIopv2/designate" size="0.7rem"
+													tooltip="Designated" visible='{path:"oReportDetailModel>isDesignate", formatter:"com.sap.incture.Incture_IOP.util.formatter.showAlarmIcons"}'/>
+											</VBox>
+										</HBox>
+									</VBox>
+								</cells>
+							</ColumnListItem>
+						</myCustom:items>
+					</myCustom:Table>
+				</VBox>
+			</HBox >
+		</ScrollContainer>
+		<OverflowToolbar visible="false" class="alarmListOverflowToolbar iopv2pagination" id="idPageNumberDiv"
+			width="{= ${dashBoardModel>/panelProperties/showTaskManagementPanelIcon} === false ? '86%' : '100%' }">
+			<!--<SegmentedButton class="sapUiMediumMarginEnd iopv2ToolBarMargin" id="item" selectionChange="onSelectionPageSize" selectedKey="100">-->
+			<!--	<items>-->
+			<!--		<SegmentedButtonItem width="40%" id="idFirst25" key="25" text="25" enabled="false"/>-->
+			<!--		<SegmentedButtonItem width="40%" id="idFirst50" key="50" text="50" enabled="false"/>-->
+			<!--		<SegmentedButtonItem width="40%" id="idFirst100" key="100" text="100"/>-->
+			<!--	</items>-->
+			<!--</SegmentedButton>-->
+			<!--<Text text="Elements per page "></Text>-->
+			<ToolbarSpacer/>
+			<Text id="idPageRange"></Text>
+			<Button icon="sap-icon://navigation-left-arrow" id="idLeftButton" press="onScrollLeftPage"></Button>
+			<Button icon="sap-icon://navigation-right-arrow" id="idRightButton" press="onScrollRightPage"></Button>
+		</OverflowToolbar>
+	</VBox>
+</core:FragmentDefinition>

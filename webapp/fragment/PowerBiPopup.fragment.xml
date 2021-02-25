@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" id="powerBiDialogFragment">
+	<Dialog class="sapUiSizeCompact iopPowerBiDialogClass" id="powerBiDialog" horizontalScrolling="false" verticalScrolling="{dashBoardModel>/isFracMonitoring}"
+		contentWidth="{dashBoardModel>/screenSize/powerBIWidth}" title="Trends" draggable="true" stretch="false" afterOpen="afterPoweBiPopupOpen"
+		contentHeight="{dashBoardModel>/screenSize/powerBIHeight}">
+		<VBox>
+			<HBox visible="{dashBoardModel>/isFracMonitoring}">
+				<Text 	class="sapUiTinyMarginBegin iopFontClass sapUiTinyMarginTop iopAlarmListTextClass" text="Frac Hit :"></Text>
+				<DateTimePicker
+					value="{path:'dashBoardModel>/fracMonitoringData/fracHitDate', type:'sap.ui.model.type.DateTime', formatOptions: { style: 'medium', strictParsing: true}}"
+					width="100%" class="sapUiTinyMarginBegin sapUiSizeCompact iopInputClass iopDTInputClass" displayFormat="medium"
+				/>
+			</HBox>
+			<VBox >
+				<core:HTML content="&lt;div id=&quot;embedContainer&quot;width=&quot;100%&quot; height=&quot;100%&quot;&gt; &lt;/div&gt;"></core:HTML>
+			</VBox>
+		</VBox>
+		<buttons>
+			<Button text="Frac Hit" visible="{dashBoardModel>/isFracMonitoring}" press="onFracHitPress"/>
+			<Button text="{i18n>cancel}" press="onPowerBiCancel"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

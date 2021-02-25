@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Popover showArrow="true" showHeader="false" afterClose="alarmActionListClose">
+		<VBox class="sapUiTinyMargin">
+			<Button id="idHistoryBtn" icon="sap-icon://work-history" text="History" width="100%"
+				class="sapUiSizeCompact sapUiTinyMarginEnd iopBtnClass iopAlarmBtnClass" press="onPressProdVarianceAction"/>
+			<Button id="idInquiryBtn" icon="sap-icon://InctureIopv2/inquire" text="Inquiry" width="100%"
+				class="sapUiSizeCompact iopBtnClass iopAlarmBtnClass iopInquireicon" press="onPressProdVarianceAction"
+				visible="{= ${dashBoardModel>/potData/showInquire} &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isProveReadOnly} === false &amp;&amp; ${dashBoardModel>/currentLocationInHierarchy} === 'EFS' }"/>
+			<Button id="idInvestigateBtn" icon="sap-icon://search" text="Investigate" width="100%" class="sapUiSizeCompact iopBtnClass iopAlarmBtnClass"
+				press="onPressProdVarianceAction"
+				visible="{= ${dashBoardModel>/potData/showInvestigate} &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isProveReadOnly} === false }"/>
+			<Button id="idTrendsBtn" icon="sap-icon://business-objects-experience" text="Trends" width="100%"
+				class="sapUiSizeCompact iopBtnClass iopAlarmBtnClass" press="onPressProdVarianceAction"/>
+			<Button icon="sap-icon://comment" text="{= ${dashBoardModel>/currentLocationInHierarchy} === 'EFS' ? 'Procount': 'ProdView'}" width="100%" class="sapUiSizeCompact iopBtnClass iopAlarmBtnClass"
+				press="onPressProdVarianceAction"
+				visible="{= ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isProveReadOnly} === false}"/>
+			<Button icon="sap-icon://history" text="Location History" width="100%" class="sapUiSizeCompact iopBtnClass iopAlarmBtnClass"
+				press="onPressProdVarianceAction"/>
+		</VBox>
+	</Popover>
+</core:FragmentDefinition>

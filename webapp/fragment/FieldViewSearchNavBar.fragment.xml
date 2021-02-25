@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form" id="FieldViewSearchNavBar">
+	<Toolbar class="iopFLToolbar sapUiSizeCompact">
+		<HBox class=" sapUiTinyMarginBottom">
+			<Button
+				enabled="{path: 'dashBoardModel>/hierarchyDetails/currentLocationType', formatter:'com.sap.incture.Incture_IOP.util.formatter.navBackButtonEnable'}"
+				press="onFieldListNavBack" icon="sap-icon://nav-back" class="iopFLBackBtn"></Button>
+			<CheckBox selected="{dashBoardModel>/hierarchyDetails/selectall/checked}" select="onHirarcheySelectAll" class="iopCheckBoxAllClass"/>
+		</HBox>
+		<ToolbarSpacer></ToolbarSpacer>
+		<Title titleStyle="H4"
+			text="{= ${dashBoardModel>/hierarchyDetails/currentLocationType} === 'SEARCH' ? 'Search': ${dashBoardModel>/hierarchyDetails/currentLocationType} }"></Title>
+		<ToolbarSpacer></ToolbarSpacer>
+		<HBox class="sapUiTinyMarginBottom">
+			<core:Icon src="sap-icon://circle-task-2" class="flarecolor"/>
+			<Label class="sapUiTinyMarginBegin sapUiTinyMarginEnd" text="Flare"></Label>
+			<core:Icon src="sap-icon://circle-task-2" class="compcolor"/>
+			<Label class="sapUiTinyMarginBegin sapUiTinyMarginEnd" text="Compressor"></Label>
+			<core:Icon src="sap-icon://circle-task-2" class="otherHir"/>
+			<Label class="sapUiTinyMarginBegin sapUiTinyMarginEnd" text="Others"></Label>
+		</HBox>
+		<SearchField width="10rem" value="{dashBoardModel>/search}" liveChange="onfiledWellSearch" class="iopInputClass sapUiTinyMarginBottom"/>
+	</Toolbar>
+</core:FragmentDefinition>

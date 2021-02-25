@@ -1,0 +1,40 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" id="TaskManagement">
+	<Dialog title="Designate Selected Alarm" contentWidth="60%" class="designateDialogClass">
+		<HBox justifyContent="SpaceAround" class="sapUiTinyMargin" visible="{= ${dashBoardModel>/panelProperties/currentSelectKey} === 'alarms'}">
+			<VBox width="13.75%">
+				<Label text="Date Time" class="iopFontClass iopwbTaskLabelClass"/>
+				<Text  text="{dashBoardModel>/currAlarmObject/timeStampAsString}" class="iopFontClass iopwbDescClass"/>
+			</VBox>
+			<VBox width="22%">
+				<Label text="Description" class="iopFontClass iopwbTaskLabelClass"/>
+				<Text text="{dashBoardModel>/currAlarmObject/longDescription}" class="iopFontClass iopwbDescClass" wrapping="false"
+					tooltip="{dashBoardModel>/currAlarmObject/longDescription}"/>
+			</VBox>
+			<VBox width="8%">
+				<Label text="Tier Level" class="iopFontClass iopwbTaskLabelClass"/>
+				<Text text="{dashBoardModel>/currAlarmObject/tier}" class="iopFontClass iopwbDescClass"/>
+			</VBox>
+			<VBox width="5%">
+				<Label text="Route" class="iopFontClass iopwbTaskLabelClass"/>
+				<Text text="{dashBoardModel>/currAlarmObject/route}" class="iopFontClass iopwbDescClass"/>
+			</VBox>
+			<VBox width="16%">
+				<Label text="Alarm Condition" class="iopFontClass iopwbTaskLabelClass"/>
+				<Text text="{dashBoardModel>/currAlarmObject/alarmCondition}" class="iopFontClass iopwbDescClass"/>
+			</VBox>
+			<VBox width="25%">
+				<Label text="Recommended Cygnet Time" class="iopFontClass iopwbTaskLabelClass"/>
+				<Text text="{dashBoardModel>/currAlarmObject/cygnetRecomendedTime}" class="iopFontClass iopwbDescClass"/>
+			</VBox>
+		</HBox>
+		<core:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.designateViewContent" type="XML"></core:Fragment>
+		<Toolbar class="sapMFooter-CTX sapMTBNoBorders">
+			<ToolbarSpacer/>
+			<Button text="Cancel" press="onDesignateClose" class="sapUiSizeCompact iopBtnClass iopClearBtn"/>
+			<Button text="Save" press="onDesignateSave" class="sapUiSizeCompact iopBtnClass iopSaveBtn"
+				visible="{= ${dashBoardModel>/panelProperties/currentSelectKey} === 'alarms'}"/>
+			<Button text="Update" press="onDowntimeUpdate" class="sapUiSizeCompact iopBtnClass iopSaveBtn"
+				visible="{= ${dashBoardModel>/panelProperties/currentSelectKey} === 'downtime'}"/>
+		</Toolbar>
+	</Dialog>
+</core:FragmentDefinition>

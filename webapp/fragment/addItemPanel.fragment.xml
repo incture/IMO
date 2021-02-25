@@ -1,0 +1,28 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Dialog showHeader="false" >
+		<VBox class="iopwbAddItemFragClass sapUiContentPadding">
+			<Select forceSelection="false" items="{dashBoardModel>/nonDispatchItem/descTypes}" tooltip="{dashBoardModel>/nonDispatchItem/descTypeKey}"
+				selectedKey="{dashBoardModel>/nonDispatchItem/descTypeKey}" change="onLocationSelectionChange" width="100%">
+				<core:Item key="{dashBoardModel>value}" text="{dashBoardModel>value}"/>
+			</Select>
+			<TextArea placeholder="Description" valueState="{dashBoardModel>/nonDispatchItem/nonDispatchItemDecValueState}"
+				valueStateText="{dashBoardModel>/nonDispatchItem/nonDispatchItemDecValueStateText}"
+				value="{dashBoardModel>/nonDispatchItem/nonDispatchItemDesc}" width="100%"
+				visible="{= ${dashBoardModel>/nonDispatchItem/descTypeKey} === 'Other'}"/>
+			<Select forceSelection="false" items="{dashBoardModel>/nonDispatchItem/locationTypes}" visible="false"
+				selectedKey="{dashBoardModel>/nonDispatchItem/locTypeKey}" change="onLocationSelectionChange" width="100%">
+				<core:Item key="{dashBoardModel>key}" text="{dashBoardModel>value}"/>
+			</Select>
+			<ComboBox width="100%" placeholder="Location" valueState="{dashBoardModel>/nonDispatchItem/nonDispatchItemLocValueState}"
+				valueStateText="{dashBoardModel>/nonDispatchItem/nonDispatchItemLocValueStateText}"
+				selectedKey="{dashBoardModel>/nonDispatchItem/nonDispatchItemLoc}" items="{dashBoardModel>/locationSuggestions}"
+				>
+				<core:Item key="{dashBoardModel>locationText}" text="{dashBoardModel>locationText}" enabled="{= ${dashBoardModel>locationType} !== 'Compressor'}"/>
+			</ComboBox> 
+			<HBox class="sapMFlexBoxJustifyEnd">
+				<Button icon="sap-icon://sys-enter" type="Accept" class="iopwbAddItemBtnClass" press="onAddingAdditionalItem"/>
+				<Button icon="sap-icon://sys-cancel" type="Reject" class="iopwbAddItemBtnClass" press="onAddItemPanelClose"/>
+			</HBox>
+		</VBox>
+	</Dialog>
+</core:FragmentDefinition>

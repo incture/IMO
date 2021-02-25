@@ -1,0 +1,82 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.f"
+	xmlns:cust="com.sap.incture.Incture_IOP.util">
+	<Dialog class="sapUiSizeCompact iopTaskListFragment"
+		title='{path:"dashBoardModel>/InProgresstaskList", formatter:"com.sap.incture.Incture_IOP.util.formatter.TaskListHeading"}'
+		afterOpen="onTaskListDialogOpen" afterClose="onTaskListDialogClose">
+		<VBox height="100%">
+			<HBox justifyContent="End" height="0rem">
+				<Button icon="sap-icon://sys-cancel" class="iopCloseBtnClass" type="Transparent" tooltip="Close" press="onTaskListClose"/>
+			</HBox>
+			<HBox alignContent="Center" id="TaskListWarningText" class="sapUiSizeCompact">
+				<ObjectStatus icon="sap-icon://message-warning"
+					text='{path:"dashBoardModel>/InProgresstaskList", formatter:"com.sap.incture.Incture_IOP.util.formatter.TaskListWarning"}'
+					class="sapUiSmallMargin WarningIconColor"></ObjectStatus>
+			</HBox>
+			<ScrollContainer height="{dashBoardModel>/TaskListFragmentScrollHeight}" vertical="true">
+				<List busy="{dashBoardModel>/busyIndicators/rightPanelBusy}" busyIndicatorDelay="0" items="{dashBoardModel>/InProgresstaskList}"
+					id="idTaskHistoryList" sticky="InfoToolbar">
+					<infoToolbar>
+						<Toolbar>
+							<Label text='{path:"dashBoardModel>/InProgresstaskList", formatter:"com.sap.incture.Incture_IOP.util.formatter.TaskListCount"}'/>
+						</Toolbar>
+					</infoToolbar>
+					<CustomListItem highlight="Warning" class="iopwbListClass iopTaskManagementListSelectedBgColor" type="Active" press="onPressTaskListitem">
+						<VBox class="iopTaskManagementVBoxStyle">
+							<VBox class="sapUiTinyMargin sapUiSmallMarginBegin">
+								<HBox class="iopwbTimeClass" justifyContent="SpaceBetween">
+									<Text text="{dashBoardModel>description}" class="iopwbDescClass iopFontClass"/>
+									<core:Icon src="sap-icon://InctureIopv2/more" size="1rem" width="1.5rem" class="iopVerticalGripIconClass"
+										press="onOpenTaskOperationSuggestion"/>
+								</HBox>
+								<HBox class="iopwbAssignedToBoxClass">
+									<HBox
+										visible='{parts:["dashBoardModel>taskOwner","dashBoardModel>/userData/displayName"], formatter:"com.sap.incture.Incture_IOP.util.formatter.showTaskCardAssignedTo"}'>
+										<Label text="{i18n>ASSIGNED_TO}" class="iopTaskManagementTextFont"/>
+										<Label text="{dashBoardModel>taskOwner}" class="sapUiLargeMarginBegin iopNewBoldText iopFontClass iopwbDescClass"/>
+									</HBox>
+									<HBox
+										visible='{parts:["dashBoardModel>taskOwner","dashBoardModel>/userData/displayName"], formatter:"com.sap.incture.Incture_IOP.util.formatter.showTaskCardAssignedBy"}'>
+										<Label text="Assigned by" class="iopTaskManagementTextFont"/>
+										<Label text="{dashBoardModel>createdBy}" class="sapUiLargeMarginBegin iopNewBoldText iopFontClass iopwbDescClass"/>
+									</HBox>
+								</HBox>
+								<HBox class="iopwbAssignedToBoxClass">
+									<HBox>
+										<Label text="{i18n>CREATED_AT_STRING}" class="iopTaskManagementTextFont "/>
+										<Label text='{path:"dashBoardModel>createdAtInString", formatter:"com.sap.incture.Incture_IOP.util.formatter.getLocalDate"}'
+											class="sapUiLargeMarginBegin iopNewBoldText iopFontClass iopwbDescClass iopTaskManagementLabelAlign"/>
+									</HBox>
+								</HBox>
+								<HBox class="iopwbAssignedToBoxClassStatus" height="30px">
+									<Text text="Status" class="iopTaskManagementTextFont sapUiMediumMarginEnd"/>
+									<Text textAlign="Center" text="{dashBoardModel>status}"
+										class=" iopwbOriginClass sapUiLargeMarginBegin iopTaskManagementTextFont iopwbOriginClassTaskList"
+										visible='{path:"dashBoardModel>status", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnGetStatusBgColorforTaskList"}'/>
+								</HBox>
+								<HBox class="sapUiTinyMarginBottom">
+									<Text text="Type" class="iopTaskManagementTextFont sapUiLargeMarginEnd"/>
+									<Text text='{path:"dashBoardModel>origin", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnShowOrigin"}'
+										class="iopNewBoldText sapUiLargeMarginBegin iopFontClass iopwbDescClass iopTaskManagementTextAlign"/>
+								</HBox>
+								<HBox class="iopwbMsgBoxClass"
+									visible="{parts:[{path:'dashBoardModel>latestComment'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.fnShowTaskDetailsforTaskList'}">
+									<f:Avatar initials="{parts:[{path:'dashBoardModel>commentedByDisplay'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.getinitials'}"
+										displaySize="S" displayShape="Circle" class="sapUiTinyMarginEnd"/>
+									<VBox>
+										<Text text="{dashBoardModel>commentedByDisplay}" class="iopTaskManagementTextFontAvatar"/>
+										<Text text="{dashBoardModel>latestComment}" class="iopNewBoldText iopFontClass iopwbDescClass" maxLines="2"
+											tooltip="{dashBoardModel>latestComment}"/>
+									</VBox>
+								</HBox>
+							</VBox>
+						</VBox>
+					</CustomListItem>
+				</List>
+			</ScrollContainer>
+		</VBox>
+		<buttons>
+			<Button text="Proceed" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass" press="onProceedTask"/>
+			<Button text="Cancel" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass" press="onTaskListClose"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

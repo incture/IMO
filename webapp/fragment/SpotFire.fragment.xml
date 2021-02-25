@@ -1,0 +1,145 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:icon="sap.ui.core.Icon"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz="sap.viz.ui5.controls" xmlns:viz.data="sap.viz.ui5.data"
+	xmlns:ui="sap.ui.table" xmlns:myCustom="com.sap.incture.Incture_IOP.util" xmlns:chrt="sap.suite.ui.microchart">
+	<VBox id="idVboxMainProve" height="100%">
+		<HBox class="sapUiTinyMarginTop sapUiTinyMarginBottom sapUiSmallMarginBegin" justifyContent="SpaceBetween">
+			<VBox class="sapUiTinyMarginTop sapUiTinyMarginBegin sapUiTinyMarginEnd">
+				<ObjectStatus state="None" text="{dashBoardModel>/spotFireData/durationKey} Days Average Production By Well Gross 2-Stream"/>
+			</VBox>
+			<HBox>
+				<Switch state="{= ${dashBoardModel>/spotFireData/unit} === 'boed' ? true : false }" customTextOn="BOED"
+					class="proveSwitchWidth sapUiTinyMarginBeginEnd" customTextOff="E3m3" visible="{dashBoardModel>/spotFireData/unitVisible}"
+					change="onProveUnitChange">
+					<layoutData>
+						<FlexItemData growFactor="1"/>
+					</layoutData>
+				</Switch>
+				<Select class="iopSelectClass iopAlarmSelectClass sapUiSizeCompact sapUiTinyMarginEnd" change="onAlarmSegmentBtnClick"
+					selectedKey="{dashBoardModel>/spotFireData/durationKey}">
+					<core:Item key="7" text="7 Days Average" class="iopAlarmSelectClass"/>
+					<core:Item key="30" text="30 Days Average" class="iopAlarmSelectClass"/>
+				</Select>
+				<SearchField liveChange="onNDTPVTableSearch" class="sapUiSizeCompact sapUiTinyMarginEnd" id="idNDTPVTableSearchField" visible="false"/>
+				<Button tooltip="Table Sort" icon="sap-icon://drop-down-list" class="sapUiSizeCompact iopBtnClass iopwbBtnClass sapUiTinyMarginBeginEnd"
+					press="onNDTPVTableSortClick"/>
+			</HBox>
+		</HBox>
+		<ScrollContainer height="{dashBoardModel>/moduleWiseScrollSize/proveScrollHeight}" vertical="true"
+			busy="{dashBoardModel>/busyIndicators/spotFireTblBusy}" busyIndicatorDelay="0">
+			<myCustom:Table sticky="ColumnHeaders"
+				class="sapUiSizeCompact sapUiTinyMarginEnd iopFontClass spotFireTblClass iopv2HeaderMargin alarmTableHeader" mode="singleSelectMaster"
+				alternateRowColors="true" id="idSpotfireList" rightPress="onRightPressSpotFire" items="{dashBoardModel>/spotFireData/tableData}">
+				<myCustom:columns>
+					<Column width="calc(23.5vh - 1rem )">
+						<HBox alignContent="Center" alignItems="Center" class="sapUiTinyMarginEnd">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Location "/>
+						</HBox>
+					</Column>
+					<Column width="calc(15.5vh - 1rem )">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Actual vs Fcst"/>
+						</HBox>
+					</Column>
+					<Column width="calc(15vh - 1rem )">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Var to Fcst"/>
+						</HBox>
+					</Column>
+					<Column width="calc(14vh - 1rem )">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="% Var to Fcst"/>
+						</HBox>
+					</Column>
+					<Column width="calc(14vh - 1rem )">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Actual"/>
+						</HBox>
+					</Column>
+					<Column width="calc(14vh - 1rem )">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Forecast"/>
+						</HBox>
+					</Column>
+					<Column width="calc(12vh - 1rem )">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Oil"/>
+						</HBox>
+					</Column>
+					<Column width="calc(12vh - 1rem )">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Water"/>
+						</HBox>
+					</Column>
+					<Column width="calc(12vh - 1rem )">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Gas"/>
+						</HBox>
+					</Column>
+					<Column width="calc(14vh - 1rem )">
+						<HBox alignContent="Center" alignItems="Center">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Last Prod Date"/>
+						</HBox>
+					</Column>
+					<Column minScreenWidth="Tablet" width="5%">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text=""/>
+					</Column>
+				</myCustom:columns>
+				<myCustom:items>
+					<ColumnListItem>
+						<cells>
+							<Text text="{dashBoardModel>well}" class="iopFontClass sapUiTinyMarginEnd iopAlarmListTextClass"/>
+							<myCustom:BulletMicroChart width="75%" size="XS" scale="M" targetValue="{dashBoardModel>avgForecastBoed}"
+								forecastValue="{dashBoardModel>maxThresholdValue}" class="iopMicroChartClass" press="press">
+								<myCustom:actual>
+									<chrt:BulletMicroChartData value="{dashBoardModel>avgActualBoed}" color="Good"/>
+								</myCustom:actual>
+								<myCustom:thresholds>
+									<chrt:BulletMicroChartData value="0" color="Error"/>
+								</myCustom:thresholds>
+							</myCustom:BulletMicroChart>
+							<HBox>
+								<Text text="{path:'dashBoardModel>avgVarToForecastBoed',formatter:'com.sap.incture.Incture_IOP.util.formatter.removeDecimal'}"
+									class="iopFontClass iopAlarmListTextClass"/>
+							</HBox>
+							<Text text="{path:'dashBoardModel>avgPerVarToForecastBoed',formatter:'com.sap.incture.Incture_IOP.util.formatter.removeDecimal'}"
+								class="iopFontClass iopAlarmListTextClass"/>
+							<Text text="{path:'dashBoardModel>avgActualBoed',formatter:'com.sap.incture.Incture_IOP.util.formatter.removeDecimal'}"
+								class="iopFontClass iopAlarmListTextClass"/>
+							<Text text="{path:'dashBoardModel>avgForecastBoed',formatter:'com.sap.incture.Incture_IOP.util.formatter.removeDecimal'}"
+								class="iopFontClass iopAlarmListTextClass"/>
+							<Text text="{path:'dashBoardModel>avgOil',formatter:'com.sap.incture.Incture_IOP.util.formatter.removeDecimal'}"
+								class="iopFontClass iopAlarmListTextClass"/>
+							<Text text="{path:'dashBoardModel>avgWater',formatter:'com.sap.incture.Incture_IOP.util.formatter.removeDecimal'}"
+								class="iopFontClass iopAlarmListTextClass"/>
+							<Text text="{path:'dashBoardModel>avgGas',formatter:'com.sap.incture.Incture_IOP.util.formatter.removeDecimal'}"
+								class="iopFontClass iopAlarmListTextClass"/>
+							<!--<Text text="{dashBoardModel>lastProdDate}" class="iopFontClass iopAlarmListTextClass"/>-->
+							<Text text="{path: 'dashBoardModel>lastProdDateField', formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateProve'}"
+								class="iopFontClass iopAlarmListTextClass"/>
+							<HBox justifyContent="SpaceBetween" width="100%" height="50%">
+								<VBox width="45%">
+									<Image src="{path:'i18n>incognito', formatter:'com.sap.incture.Incture_IOP.util.formatter.getImagePath'}"
+										visible="{dashBoardModel>investigationInProgress}" tooltip="Investigation" class="iopInvestigationImg"/>
+								</VBox>
+								<VBox width="45%">
+									<core:Icon src="sap-icon://InctureIopv2/inquire" size="1.3rem" class="iopInquiryIcon" visible="{dashBoardModel>inquiryInProgress}"
+										tooltip="Inquiry"/>
+								</VBox>
+							</HBox>
+						</cells>
+					</ColumnListItem>
+				</myCustom:items>
+			</myCustom:Table>
+		</ScrollContainer>
+		<OverflowToolbar height="5%" class="alarmListOverflowToolbar iopv2pagination" id="idProvePageNumberDiv"
+			visible="{dashBoardModel>/spotFireData/paginationVisible}"
+			width="{= ${dashBoardModel>/panelProperties/showTaskManagementPanelIcon} === false ? '86%' : '100%' }">
+			<ToolbarSpacer/>
+			<Text id="idProvePageRange" text="{dashBoardModel>/spotFireData/text}"></Text>
+			<Button icon="sap-icon://navigation-left-arrow" id="idProveLeftButton" enabled="{dashBoardModel>/spotFireData/leftButtonActive}"
+				press="onProveLeftPage"></Button>
+			<Button icon="sap-icon://navigation-right-arrow" id="idProveRightButton" enabled="{dashBoardModel>/spotFireData/rightButtonActive}"
+				press="onProveRightPage"></Button>
+		</OverflowToolbar>
+	</VBox>
+</core:FragmentDefinition>

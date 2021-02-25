@@ -1,0 +1,18 @@
+{
+	"fieldList": [{
+		"fieldId": "F001",
+		"description": "Kone West Central Facility"
+	}, {
+		"fieldId": "F002",
+		"description": "F002"
+	}, {
+		"fieldId": "F003",
+		"description": "F003"
+	}, {
+		"fieldId": "F004",
+		"description": "F004"
+	}, {
+		"fieldId": "F005",
+		"description": "F005"
+	} ]
+}

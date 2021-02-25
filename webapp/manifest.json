@@ -1,0 +1,147 @@
+{
+	"_version": "1.7.0",
+	"sap.app": {
+		"id": "com.sap.incture.Incture_IOP",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "1.0.0"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"sourceTemplate": {
+			"id": "ui5template.basicSAPUI5ApplicationProject",
+			"version": "1.40.12"
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		},
+		"supportedThemes": [
+			"sap_hcb",
+			"sap_belize"
+		]
+	},
+	"sap.ui5": {
+		"rootView": {
+			"viewName": "com.sap.incture.Incture_IOP.view.App",
+			"type": "XML"
+		},
+		"config": {
+			"fullWidth": true,
+			"sapFiori2Adaptation": true
+		},
+		"dependencies": {
+			"minUI5Version": "1.30.0",
+			"libs": {
+				"sap.collaboration": {},
+				"sap.m": {},
+				"sap.ui.comp": {},
+				"sap.ui.core": {},
+				"sap.ui.layout": {},
+				"sap.ui.unified": {
+					"minVersion": ""
+				},
+				"sap.ushell": {},
+				"sap.uxap": {}
+			}
+		},
+		"contentDensities": {
+			"compact": false,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "com.sap.incture.Incture_IOP.i18n.i18n"
+				}
+			}
+		},
+		"resources": {
+			"css": [
+				{
+					"uri": "css/style.css"
+				},
+				{
+					"uri": "css/taskpanel.css",
+					"id": ""
+				},
+				{
+					"uri": "css/fonts.css",
+					"id": ""
+				},
+				{
+					"uri": "css/boxstyles.css",
+					"id": ""
+				}
+			],
+			"js": [
+				{
+					"uri": "util/formatter.js"
+				},
+				{
+					"uri": "util/powerbi.js"
+				},
+				{
+					"uri": "util/htmlcanvas.js"
+				},
+				{
+					"uri": "util/plotly.js"
+				}
+			]
+		},
+		"routing": {
+			"config": {
+				"viewPath": "com.sap.incture.Incture_IOP.view",
+				"controlId": "idAppControl",
+				"viewType": "XML",
+				"controlAggregation": "pages",
+				"routerClass": "sap.m.routing.Router",
+				"async": true
+			},
+			"routes": [
+				{
+					"pattern": "/:?query:",
+					"name": "dashboardView",
+					"target": [
+						"dashboardView"
+					]
+				},
+				{
+					"pattern": "View1",
+					"name": "View1",
+					"target": [
+						"View1"
+					]
+				}
+			],
+			"targets": {
+				"dashboardView": {
+					"viewName": "DashBoardView",
+					"controlAggregation": "pages"
+				},
+				"View1": {
+					"viewName": "View1",
+					"controlAggregation": "pages"
+				}
+			}
+		}
+	},
+	"sap.platform.hcp": {
+		"uri": "webapp",
+		"_version": "1.1.0"
+	}
+}

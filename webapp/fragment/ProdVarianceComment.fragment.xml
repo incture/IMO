@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Dialog title="Enter the comments for Procount" contentWidth="100%" class="iopwbDetailDialogClass" busy="{dashBoardModel>/busyIndicators/taskPanelBusy}"
+		busyIndicatorDelay="0">
+		<HBox>
+			<Label text="Date"/>
+			<Input value=""/>
+		</HBox>
+		<Label text="Comments"/>
+		<TextArea value="" class="iopwbFlexBoxClass sapUiSmallMarginBegin iopInputClass iopwbTaskBoderLightClass"/>
+		<buttons>
+			<Button text="Update" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass" press="onProdVarCommentUpdate"/>
+			<Button text="Skip" press="onProdVarCommentSkip" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

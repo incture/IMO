@@ -1,0 +1,24 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Dialog contentWidth="30%" title="{= ${dashBoardModel>/currentLocationInHierarchy} === 'EFS'? 'Enter comments for Procount': 'Enter comments for ProdView' }">
+		<VBox class="sapUiSmallMargin" busy="{dashBoardModel>/busyIndicators/procountCommentPanel}" busyIndicatorDelay="0">
+			<Text text="Comment already exist!" visible="{= ${oTaskPanelDetailModel>/isPrevCommentExist} === true}" class="iopwbRedTextStyle"/>
+			<HBox>
+				<Label text="Prod Date" class="iopFontClass iopwbTaskLabelClass iopProCountLabelClass iopwbLabelRequiredClass" required="true"/>
+				<DatePicker class="sapUiTinyMarginBegin sapUiSizeCompact iopInputClass iopDTInputClass" value="{oTaskPanelDetailModel>/proCountDate}"
+					placeholder="mm/dd/yyyy" displayFormat="MM/dd/yyyy" valueFormat="yyyy-MM-dd" id="idProCountDate" change="onProCommentDateChange"/>
+			</HBox>
+			<VBox visible='{path:"oTaskPanelDetailModel>/proCountComment", formatter:"com.sap.incture.Incture_IOP.util.formatter.isPreviousComments"}'>
+				<Label text="Previous Comments" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass"/>
+				<TextArea
+					value='{path:"oTaskPanelDetailModel>/proCountComment", formatter:"com.sap.incture.Incture_IOP.util.formatter.procountPreviousComments"}'
+					class="iopwbFlexBoxClass iopInputClass" enabled="false"/>
+			</VBox>
+			<Label text="Comment" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass" required="true"/>
+			<TextArea value='{oTaskPanelDetailModel>/proCurrentCountComment}' class="iopwbFlexBoxClass iopInputClass"/>
+		</VBox>
+		<buttons>
+			<Button text="Update" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass" press="onUpdateProComment"/>
+			<Button text="Skip" press="onUpdateProComment" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

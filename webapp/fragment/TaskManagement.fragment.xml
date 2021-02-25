@@ -1,0 +1,418 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.f"
+	xmlns:cust="com.sap.incture.Incture_IOP.util" xmlns:mic="sap.suite.ui.microchart">
+	<cust:VBox width="100%" press="onPressMyTaskMain" height="100%"
+		visible="{= ${dashBoardModel>/taskManagementPanel/showTaskManagementPanel} === true  ? false: true }"
+		class="taskManagementIconBox">
+		<cust:VBox height="100%">
+			<cust:VBox
+				visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/userData/isENG} === true }"
+				alignItems="Center" justifyContent="Center" tooltip="My Tasks" press="onPressMyTask" class="sapUiTinyMarginTop iopTaskManagementBox">
+				<Text text="{dashBoardModel>/webSocketProperty/data/taskNotificationDto/taskCount}"
+					visible='{path:"dashBoardModel>/webSocketProperty/data/taskNotificationDto", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnNotifBubble"}'
+					class="iopTaskManagementNotifCount"/>
+				<core:Icon src="sap-icon://InctureIopv2/mytask" class="iopTaskManagementIcon"/>
+				<Text text="My Tasks" textAlign="Center" class="iopTaskManagementText sapUiTinyMarginBottom"/>
+			</cust:VBox>
+			<cust:VBox
+				visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/userData/isENG} === true }"
+				tooltip="Sent Items" press="onPressSentItems" class="iopTaskManagementBox sapUiTinyMarginTop">
+				<core:Icon src="sap-icon://InctureIopv2/send" class="iopTaskManagementIcon"/>
+				<Text text="Sent Items" textAlign="Center" class="iopTaskManagementText sapUiTinyMarginBottom"/>
+			</cust:VBox>
+			<cust:VBox tooltip="Non Dispatch" press="onPressNonDispatch" class="iopTaskManagementBox sapUiTinyMarginTop"
+				visible="{= ${dashBoardModel>/userData/isROC} === true}">
+				<core:Icon src="sap-icon://InctureIopv2/nondispatch" class="iopTaskManagementIcon sapUiTinyMarginTop"/>
+				<Text text="Non Dispatch" class="iopTaskManagementText sapUiTinyMarginBottom" textAlign="Center"/>
+			</cust:VBox> 
+			<cust:VBox tooltip="Create" press="onPressCreateTaskVBox" class="iopTaskManagementBox sapUiTinyMarginTop"
+				visible='{parts:["dashBoardModel>/userData/isROC", "dashBoardModel>/moduleReadOnly", "dashBoardModel>/panelProperties/currentSelectKey"],formatter:"com.sap.incture.Incture_IOP.util.formatter.handleCreateTaskVisible"}'>
+				<core:Icon src="sap-icon://InctureIopv2/create" tooltip="Create" class="iopTaskManagementIcon"/>
+				<Text text="Create" textAlign="Center" tooltip="Create" class="iopTaskManagementText sapUiTinyMarginBottom"/>
+			</cust:VBox>
+			<cust:VBox tooltip="Safety Forms Handover" press="onPressActiveBypassVBox" class="iopTaskManagementBox sapUiTinyMarginTop"
+				visible="{= ${dashBoardModel>/userData/isROC} === true}">
+				<Text text="{dashBoardModel>/bypassObj/bypassList/shiftHandoverCount}"
+					visible='{path:"dashBoardModel>/bypassObj/bypassList", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnShiftHandoverCount"}'
+					class="iopTaskManagementNotifCount"/>
+				<core:Icon src="sap-icon://activity-items" tooltip="Safety Forms Handover" class="iopTaskManagementIcon"/>
+				<Text text="Safety Forms Handover" textAlign="Center" tooltip="Safety Forms Handover" class="iopTaskManagementText sapUiTinyMarginBottom"/>
+			</cust:VBox>
+			<cust:VBox tooltip="Operator's Availability" press="onPressOpAvailVBox" class="iopTaskManagementBox sapUiTinyMarginTop" visible="false">
+				<mic:RadialMicroChart size="S" total="{dashBoardModel>/opAvailObj/opAvailtotal}" percentage="{dashBoardModel>/opAvailObj/opAvailCumilative}"
+					valueColor='{path:"dashBoardModel>/opAvailObj/opAvailCumilative", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnFieldAvail"}'
+					class="sapUiTinyMargin iopOpAvailCummilative"/>
+				<Text text="Operator's Availability" textAlign="Center" tooltip="Operator's Availability"
+					class="iopTaskManagementText sapUiTinyMarginBottom"/>
+			</cust:VBox>
+			<!--SH: HandoverNotes-->
+			<cust:VBox tooltip="Handover Notes" press="onPressHandoverNotesVBox" class="iopTaskManagementBox sapUiTinyMarginTop"
+				visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isENG} === true || ${dashBoardModel>/userData/isForeman} === true  || ${dashBoardModel>/isWebReadOnlyRole} === true) &amp;&amp; ${dashBoardModel>/userData/hasUSRole} === true}">
+				<core:Icon src="sap-icon://notes" tooltip="Handover Notes" class="iopTaskManagementIcon"/> 
+				<Text text="Handover Notes" textAlign="Center" tooltip="Handover Notes" class="iopTaskManagementText sapUiTinyMarginBottom"/>
+			</cust:VBox>
+		</cust:VBox>
+	</cust:VBox>
+	<VBox height="100%"
+		visible="{= ${dashBoardModel>/taskManagementPanel/showTaskManagementPanel} === true &amp;&amp; ${dashBoardModel>/taskManagementPanel/showBypassPanel} === false &amp;&amp; ${dashBoardModel>/taskManagementPanel/showOpAvailPanel}===false &amp;&amp; ${dashBoardModel>/taskManagementPanel/showHandoverNotesPanel}===false}">
+		<core:Icon src="sap-icon://journey-arrive" class="iopTaskManagementBack" press="onPressBack"/>
+		<SegmentedButton id="idTaskHeaderSegmentedButton" selectedKey="{dashBoardModel>/selectedTaskTab}"
+			class="sapUiLargeMarginBegin iopTaskManagementSegmentedButton" selectionChange="onTaskTabSelection" width="80%">
+			<items>
+				<SegmentedButtonItem text="My Tasks" key="{i18n>ALL}"/>
+				<SegmentedButtonItem text="Sent Items" key="{i18n>SENT_ITEMS}"/>
+				<SegmentedButtonItem text="{i18n>NON_DISPATCH}" key="{i18n>NON_DISPATCH}" visible="{dashBoardModel>/userData/isROC}"/>
+			</items>
+		</SegmentedButton>
+		<Panel id="idTaskFilterPanel" headerText="" expandable="true" expanded="false" class="iopFontClass iopAlarmListTextClass"
+			expand="onTaskFilterPanelExpand" visible="{= ${dashBoardModel>/selectedTaskTab} !== 'Non-Dispatch'}"
+			busy="{dashBoardModel>/busyIndicators/rightPanelFilterBusy}" busyIndicatorDelay="0">
+			<headerToolbar>
+				<Toolbar height="3rem" class="taskFilterToolbar">
+					<Link text="Filter" press="onTaskfilterLinkPress"></Link>
+					<ToolbarSpacer></ToolbarSpacer>
+					<ObjectStatus text="Filter(s) are applied" class="iopTaskManagementBack sapUiSmallMarginEnd" state="Warning"
+						visible="{= ${dashBoardModel>/taskFilterData/isFilterApplied} &amp;&amp; ${dashBoardModel>/taskFilterData/isFilterPanelExpanded} === false ? true : false }"/>
+					<Button icon="sap-icon://clear-filter" press="onTaskClearFilter" tooltip="Clear Filter" class="sapUiSmallMarginEnd"
+						visible="{dashBoardModel>/taskFilterData/isFilterPanelExpanded}" enabled="{dashBoardModel>/taskFilterData/isFilterApplied}"></Button>
+				</Toolbar>
+			</headerToolbar>
+			<content>
+				<FlexBox justifyContent="SpaceBetween" width="100%">
+					<FlexBox direction="Column" alignItems="Start" width="48%">
+						<Label text="Field"/>
+						<MultiComboBox id="idFieldFilterComboBoxLabel" selectionChange="onFieldFilterSelectionChange" width="11rem"
+							items="{dashBoardModel>/taskFilterData/fields}">
+							<core:ListItem key="{dashBoardModel>key}" text="{dashBoardModel>text}"/>
+						</MultiComboBox>
+						<Label text="Task Type"/>
+						<ComboBox id="idTaskTypeFilterComboBoxLabel" items="{dashBoardModel>/taskFilterData/taskType}"
+							selectionChange="onTaskTypeFilterSelectionChange">
+							<core:ListItem key="{dashBoardModel>key}" text="{dashBoardModel>text}"/>
+						</ComboBox>
+						<Label text="Task Classification" visible="{dashBoardModel>/taskFilterData/arrAttr/isTaskClassificationVisible}"/>
+						<ComboBox id="idTaskClassFilterComboBoxLabel" items="{dashBoardModel>/taskFilterData/taskClassification}"
+							visible="{dashBoardModel>/taskFilterData/arrAttr/isTaskClassificationVisible}" selectionChange="onTaskClassFilterSelectionChange">
+							<core:ListItem key="{dashBoardModel>key}" text="{dashBoardModel>text}"/>
+						</ComboBox>
+						<Label text="Issue Classification" visible="{dashBoardModel>/taskFilterData/arrAttr/isIssueClassificationVisible}"/>
+						<ComboBox id="idIssueClassFilterComboBoxLabel" items="{dashBoardModel>/taskFilterData/issueClassification}"
+							selectionChange="onIssueClassFilterSelectionChange" visible="{dashBoardModel>/taskFilterData/arrAttr/isIssueClassificationVisible}">
+							<core:ListItem key="{dashBoardModel>key}" text="{dashBoardModel>text}"/>
+						</ComboBox>
+						<Label text="Created On"/>
+						<DatePicker id="idCreatedOnFilterComboBoxLabel" displayFormat="MM/dd/yyyy" valueFormat="yyyy-MM-dd" placeholder="mm/dd/yyyy"
+							change="onTaskCreatedOnFilterChange"/>
+					</FlexBox>
+					<FlexBox direction="Column" alignItems="Start" width="48%">
+						<Label text="Location"/>
+						<ComboBox id="idLocationFilterComboBoxLabel" items="{dashBoardModel>/taskFilterData/location}"
+							selectionChange="onLocationFilterSelectionChange">
+							<core:ListItem key="{dashBoardModel>key}" text="{dashBoardModel>text}"/>
+						</ComboBox>
+						<Label text="Assigned To"/>
+						<ComboBox id="idAssignedToFilterComboBoxLabel" items="{dashBoardModel>/taskFilterData/assignedTo}"
+							selectionChange="onTaskAssignedToFilterSelectionChange">
+							<core:ListItem key="{dashBoardModel>key}" text="{dashBoardModel>text}"/>
+						</ComboBox>
+						<Label text="Sub Classification" visible="{dashBoardModel>/taskFilterData/arrAttr/isSubClassificationVisible}"/>
+						<ComboBox id="idSubClassFilterComboBoxLabel" items="{dashBoardModel>/taskFilterData/subClassification}"
+							visible="{dashBoardModel>/taskFilterData/arrAttr/isSubClassificationVisible}" selectionChange="onSubClassFilterSelectionChange">
+							<core:ListItem key="{dashBoardModel>key}" text="{dashBoardModel>text}" tooltip="{dashBoardModel>text}"/>
+						</ComboBox>
+						<Label text="Status"/>
+						<ComboBox id="idStatusFilterComboBoxLabel" items="{dashBoardModel>/taskFilterData/status}"
+							selectionChange="onTaskStatusFilterSelectionChange">
+							<core:ListItem key="{dashBoardModel>key}" text="{dashBoardModel>text}"/>
+						</ComboBox>
+						<Label text="Created By"/>
+						<ComboBox id="idCreatedByFilterComboBoxLabel" items="{dashBoardModel>/taskFilterData/createdBy}"
+							selectionChange="onCreatedByFilterSelectionChange">
+							<core:ListItem key="{dashBoardModel>key}" text="{dashBoardModel>text}"/>
+						</ComboBox>
+					</FlexBox>
+				</FlexBox>
+			</content>
+		</Panel>
+		<HBox id="idTaskHeaderBox" class="iopwbBoxStyle sapUiSizeCompact sapUiTinyMarginBegin iopTaskManagementSearch">
+			<SearchField placeholder="{i18n>searchTask}" class="sapUiTinyMarginEnd" liveChange="onSearchTask"/>
+			<Button id="idTaskCreateBtn" press="createTaskPress" class="sapUiTinyMarginBegin"
+				text='{path:"dashBoardModel>/selectedTaskTab", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnBtnText"}'
+				visible="{dashBoardModel>/userData/isROC}"/>
+			<Button press="onTaskRefreshPress" class="sapUiTinyMarginBegin" icon="sap-icon://synchronize" tooltip="Refresh"></Button>
+		</HBox>
+		<VBox class="iopwbBoxStyle" height="100%">
+			<List busy="{dashBoardModel>/busyIndicators/rightPanelBusy}" busyIndicatorDelay="0" items="{dashBoardModel>/taskList}" id="idTaskList">
+				<CustomListItem highlight="Warning" class="iopwbListClass iopTaskManagementListSelectedBgColor" type="Active" press="onPressTaskItem"
+					unread='{path:"dashBoardModel>tasksNotification", formatter:"com.sap.incture.Incture_IOP.util.formatter.getHighlightColorforTasksNotification"}'>
+					<VBox class="iopTaskManagementVBoxStyle">
+						<VBox class="sapUiTinyMargin sapUiSmallMarginBegin">
+							<HBox class="iopwbTimeClass" justifyContent="SpaceBetween">
+								<Text text="{dashBoardModel>description}" class="iopwbDescClass iopFontClass"/>
+								<core:Icon src="sap-icon://InctureIopv2/more" size="1rem" width="1.5rem" class="iopVerticalGripIconClass"
+									press="onOpenTaskOperationSuggestion"
+									visible='{path:"dashBoardModel>/selectedTaskTab", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnShowGripIcon"}'/>
+								<core:Icon src="sap-icon://decline" size="1rem" class="iopwbNonDispatchCloseIcon" tooltip="Delete Item" press="onCloseItem"
+									visible='{path:"dashBoardModel>/selectedTaskTab", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnShowTaskItems"}'/>
+							</HBox>
+							<HBox visible='{path:"dashBoardModel>/selectedTaskTab", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnShowTaskDetails"}'
+								class="iopwbAssignedToBoxClass">
+								<HBox
+									visible='{parts:["dashBoardModel>taskOwner","dashBoardModel>/userData/displayName"], formatter:"com.sap.incture.Incture_IOP.util.formatter.showTaskCardAssignedTo"}'>
+									<Label text="{i18n>ASSIGNED_TO}" class="iopTaskManagementTextFont"/>
+									<Label text="{dashBoardModel>taskOwner}" class="sapUiLargeMarginBegin iopNewBoldText iopFontClass iopwbDescClass"/>
+								</HBox>
+								<HBox
+									visible='{parts:["dashBoardModel>taskOwner","dashBoardModel>/userData/displayName"], formatter:"com.sap.incture.Incture_IOP.util.formatter.showTaskCardAssignedBy"}'>
+									<Label text="Assigned by" class="iopTaskManagementTextFont"/>
+									<Label text="{dashBoardModel>createdBy}" class="sapUiLargeMarginBegin iopNewBoldText iopFontClass iopwbDescClass"/>
+								</HBox>
+							</HBox>
+							<HBox class="iopwbAssignedToBoxClass"
+								visible='{path:"dashBoardModel>/selectedTaskTab", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnShowTaskDetails"}'>
+								<HBox>
+									<Label text="{i18n>CREATED_AT_STRING}" class="iopTaskManagementTextFont "/>
+									<Label text='{path:"dashBoardModel>createdAtInString", formatter:"com.sap.incture.Incture_IOP.util.formatter.getLocalDate"}'
+										class="sapUiLargeMarginBegin iopNewBoldText iopFontClass iopwbDescClass iopTaskManagementLabelAlign"/>
+								</HBox>
+							</HBox>
+							<HBox class="iopwbAssignedToBoxClassStatus" height="30px"
+								visible='{path:"dashBoardModel>/selectedTaskTab", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnShowTaskDetails"}'>
+								<Text text="Status" class="iopTaskManagementTextFont sapUiMediumMarginEnd"/>
+								<Text textAlign="Center" text="{dashBoardModel>status}" class=" iopwbOriginClass sapUiLargeMarginBegin iopTaskManagementTextFont"
+									visible='{parts:["dashBoardModel>/selectedTaskTab","dashBoardModel>status"], formatter:"com.sap.incture.Incture_IOP.util.formatter.fnGetStatusBgColor"}'/>
+							</HBox>
+							<HBox class="sapUiTinyMarginBottom"
+								visible='{path:"dashBoardModel>/selectedTaskTab", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnShowTaskDetails"}'>
+								<Text text="Type" class="iopTaskManagementTextFont sapUiLargeMarginEnd"/>
+								<Text text='{path:"dashBoardModel>origin", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnShowOrigin"}'
+									class="iopNewBoldText sapUiLargeMarginBegin iopFontClass iopwbDescClass iopTaskManagementTextAlign"/>
+							</HBox>
+							<HBox class="iopwbMsgBoxClass"
+								visible='{parts:["dashBoardModel>/selectedTaskTab","dashBoardModel>latestComment"], formatter:"com.sap.incture.Incture_IOP.util.formatter.fnShowTaskDetails"}'>
+								<f:Avatar initials="{parts:[{path:'dashBoardModel>commentedByDisplay'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.getinitials'}"
+									displaySize="S" displayShape="Circle" class="sapUiTinyMarginEnd"/>
+								<VBox>
+									<Text text="{dashBoardModel>commentedByDisplay}" class="iopTaskManagementTextFontAvatar"/>
+									<Text text="{dashBoardModel>latestComment}" class="iopNewBoldText iopFontClass iopwbDescClass" maxLines="2"
+										tooltip="{dashBoardModel>latestComment}"/>
+								</VBox>
+							</HBox>
+							<HBox class="iopwbLocationBoxStyle"
+								visible='{path:"dashBoardModel>/selectedTaskTab", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnShowTaskItems"}'>
+								<Text text="{i18n>LOCATION}" class="iopwbLocationTextClass iopFontClass"/>
+								<Text text="{dashBoardModel>location}" class="iopwbLocationValClass iopFontClass"/>
+							</HBox>
+							<Label text='{parts:["dashBoardModel>createdAtDisplay","i18n>ADDED_ON"], formatter:"com.sap.incture.Incture_IOP.util.formatter.getLocalDate"}'
+								class="iopwbTextItalicClass sapUiTinyMarginTop iopFontClass"
+								visible='{path:"dashBoardModel>/selectedTaskTab", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnShowTaskItems"}'/>
+						</VBox>
+					</VBox>
+				</CustomListItem>
+			</List>
+		</VBox>
+	</VBox>
+	<VBox height="100%"
+		visible="{= ${dashBoardModel>/taskManagementPanel/showTaskManagementPanel}===true &amp;&amp; ${dashBoardModel>/taskManagementPanel/showBypassPanel}===true }">
+		<core:Icon src="sap-icon://journey-arrive" class="iopTaskManagementBack" press="onPressBack"/>
+		<HBox class="iopwbBoxStyle sapUiSizeCompact sapUiTinyMarginTop iopTaskManagementSearch" width="100%">
+			<SearchField placeholder="Search" liveChange="onSearchActiveBypass" width="20rem" class="sapUiSmallMarginBeginEnd"/>
+			<Button press="onRefreshShiftHandoverData" icon="sap-icon://synchronize" tooltip="Refresh"/>
+		</HBox>
+		<VBox class="iopwbBoxStyle" height="100%">
+			<List id="idBypassLogList" items="{path:'dashBoardModel>/bypassObj/bypassList', sorter : { path : 'bypassStartTime', descending:true }}"
+				noDataText="No Items Available" busy="{dashBoardModel>/shiftHandover/busyInd}" busyIndicatorDelay="0">
+				<CustomListItem highlight="Warning" class="iopwbListClass iopTaskManagementListSelectedBgColor" type="Active" press="onPressActiveListitem"
+					unread='{path:"dashBoardModel>shiftHandoverNotification", formatter:"com.sap.incture.Incture_IOP.util.formatter.getHighlightColorforShiftHandoverNotification"}'>
+					<VBox class="iopTaskManagementVBoxStyle">
+						<VBox class="sapUiTinyMargin sapUiSmallMarginBegin">
+							<HBox class="iopwbTimeClass" justifyContent="SpaceBetween">
+								<Text text="{dashBoardModel>location}" class="iopwbDescClass iopFontClass"/>
+							</HBox>
+							<HBox width="100%">
+								<Label text="{path:'dashBoardModel>source',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopShiftRegisterNumberText'}"
+									tooltip="{path:'dashBoardModel>source',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopShiftRegisterNumberText'}" width="7rem"
+									class="iopTaskManagementTextFont"/>
+								<Label text="{dashBoardModel>ssdBypassNum}" class="sapUiMediumMarginBegin iopNewBoldText iopFontClass iopwbDescClass"/>
+							</HBox>
+							<HBox width="100%">
+								<Label text="{i18n>ASSIGNED_TO}" width="7rem" class="iopTaskManagementTextFont"/>
+								<Label text="{dashBoardModel>assignedTo}" class="sapUiMediumMarginBegin iopNewBoldText iopFontClass iopwbDescClass"/>
+							</HBox>
+							<HBox>
+								<Label text="{i18n>CREATED_AT_STRING}" width="7rem" class="iopTaskManagementTextFont "/>
+								<Label text="{path:'dashBoardModel>bypassStartTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime'}"
+									class="sapUiMediumMarginBegin iopNewBoldText iopFontClass iopwbDescClass"/>
+							</HBox>
+							<HBox class="iopwbAssignedToBoxClassStatus" height="30px">
+								<Text text="Status" width="7rem" class="iopTaskManagementTextFont"/>
+								<Text textAlign="Center" text="{dashBoardModel>bypassStatus}"
+									class="iopInProgressBypassStatus iopwbOriginClass sapUiMediumMarginBegin iopTaskManagementTextFont iopwbOriginClassTaskList"/>
+							</HBox>
+							<HBox>
+								<Label text="{path:'dashBoardModel>source',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopShiftRegisterReasonText'}"
+									tooltip="{path:'dashBoardModel>source',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopShiftRegisterReasonText'}" width="7rem"
+									class="iopTaskManagementTextFont"/>
+								<Label text="{dashBoardModel>reasonForBypass}" class="sapUiMediumMarginBegin iopNewBoldText iopFontClass iopwbDescClass"/>
+							</HBox>
+							<HBox class="sapUiTinyMarginBottom">
+								<Label text="Module" width="7rem" class="iopTaskManagementTextFont"/>
+								<Label text="{dashBoardModel>source}" class="sapUiMediumMarginBegin iopNewBoldText iopFontClass iopwbDescClass"/>
+							</HBox>
+						</VBox>
+					</VBox>
+				</CustomListItem>
+			</List>
+		</VBox>
+	</VBox>
+	<VBox height="100%"
+		visible="{= ${dashBoardModel>/taskManagementPanel/showTaskManagementPanel}===true &amp;&amp; ${dashBoardModel>/taskManagementPanel/showOpAvailPanel}===true }">
+		<HBox justifyContent="SpaceBetween">
+			<core:Icon src="sap-icon://journey-arrive" class="iopTaskManagementBack" press="onPressBack"/>
+			<HBox class="sapUiTinyMargin">
+				<core:Icon src="sap-icon://circle-task-2" color="#007D36"/>
+				<Label class="sapUiTinyMarginBegin sapUiTinyMarginEnd" text="&lt; 20 %"></Label>
+				<core:Icon src="sap-icon://circle-task-2" color="#FA9C2E"/>
+				<Label class="sapUiTinyMarginBegin sapUiTinyMarginEnd" text="&lt; 80 %"></Label>
+				<core:Icon src="sap-icon://circle-task-2" color="#DA3737"/>
+				<Label class="sapUiTinyMarginBegin sapUiTinyMarginEnd" text="&gt;= 80 %"></Label>
+			</HBox>
+		</HBox>
+		<HBox class="iopwbBoxStyle sapUiSizeCompact sapUiTinyMarginTop iopTaskManagementSearch" width="100%">
+			<SearchField placeholder="Search" liveChange="onSearchOpAvail" width="20rem" class="sapUiSmallMarginBeginEnd"/>
+			<Button press="onRefreshOpAvail" icon="sap-icon://synchronize" tooltip="Refresh"/>
+		</HBox>
+		<VBox class="iopwbBoxStyle" height="100%">
+			<List id="idOpAvailList" items="{dashBoardModel>/opAvailObj/opAvailList}" noDataText="No Items Available"
+				busy="{dashBoardModel>/shiftHandover/busyInd}" busyIndicatorDelay="0">
+				<CustomListItem highlight='{path:"dashBoardModel>fieldAvailablePercent", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnOpAvail"}'
+					class="iopwbListClass iopTaskManagementListSelectedBgColor" type="Inactive" press="onPressOpAvailActiveListitem">
+					<VBox class="iopTaskManagementVBoxStyle">
+						<VBox class="sapUiTinyMargin sapUiSmallMarginBegin">
+							<HBox class="iopwbTimeClass" justifyContent="SpaceBetween">
+								<Text text="{dashBoardModel>field}" class="iopwbDescClass iopFontClass"/>
+							</HBox>
+							<HBox justifyContent="SpaceBetween" width="100%">
+								<VBox class="sapUiTinyMargin" justifyContent="Center">
+									<ObjectStatus class="sapMObjectStatusMedium" title="Availability" text="{dashBoardModel>fieldAvailabilityPercentage}"
+										state='{path:"dashBoardModel>fieldAvailablePercent", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnOpAvail"}'/>
+									<ObjectStatus class="sapMObjectStatusMedium" title="No. of Operators" text="{dashBoardModel>noOfOperators}"/>
+								</VBox>
+								<mic:RadialMicroChart size="M" total="100" percentage="{dashBoardModel>fieldAvailablePercent}"
+									valueColor='{path:"dashBoardModel>fieldAvailablePercent", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnFieldAvail"}'
+									class="sapUiTinyMargin iopOpAvailField"/>
+							</HBox>
+						</VBox>
+						<Panel id="idOpAvailPanel" headerText="List of Operators" expandable="true" expanded="false" class="iopFontClass iopAlarmListTextClass"
+							expand="onOpAvailPanelExpand" busy="{dashBoardModel>/busyIndicators/rightPanelFilterBusy}" busyIndicatorDelay="0">
+							<content>
+								<Table id="idOpAvailTable" sticky="ColumnHeaders" class="iopFontClass alarmTableHeader" width="100%" alternateRowColors="true"
+									items="{dashBoardModel>operatorAvailabilityList}">
+									<columns>
+										<Column width="150px">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Operator"/>
+										</Column>
+										<Column width="80px" hAlign="Center">
+											<HBox>
+												<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Availability (%)"/>
+												<Button icon="sap-icon://sort" class=" iopBtnClass iopClearBtn obxSortBtn" press="onOpAvailSort"/>
+											</HBox>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<Text class="iopFontClass iopAlarmListTextClass" text="{dashBoardModel>firstName} {dashBoardModel>lastName} ({dashBoardModel>operatorType})"/>
+												<ObjectStatus class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>availablePercent}"
+													state='{path:"dashBoardModel>availablePercent", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnOpAvail"}'/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</content>
+						</Panel>
+					</VBox>
+				</CustomListItem>
+			</List>
+		</VBox>
+	</VBox>
+	<!--SH: HandoverNotes-->
+	<VBox height="100%"
+		visible="{= ${dashBoardModel>/taskManagementPanel/showTaskManagementPanel}===true &amp;&amp; ${dashBoardModel>/taskManagementPanel/showHandoverNotesPanel}===true }">
+		<core:Icon src="sap-icon://journey-arrive" class="iopTaskManagementBack" press="onPressBack"/>
+		<SegmentedButton id="idNotesHeaderSegmentedButton" selectedKey="{dashBoardModel>/selectedHanoverNotesTab}"
+			class="sapUiLargeMarginBegin iopTaskManagementSegmentedButton" selectionChange="onNotesTabSelection" width="80%">
+			<items>
+				<SegmentedButtonItem text="My Notes" key="My Notes" visible="{= ${dashBoardModel>/userData/isROC} === true &amp;&amp; ${dashBoardModel>/userData/isENG} === false &amp;&amp; ${dashBoardModel>/userData/isForeman} === false &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false}"/>
+				<SegmentedButtonItem text="Search Notes" key="Search Notes"/>
+			</items>
+		</SegmentedButton>
+		<Panel id="idHandoverNotesFilterPanel" headerText="" expandable="true" expanded="{= ${dashBoardModel>/selectedHanoverNotesTab} === 'Search Notes'}" class="iopFontClass iopAlarmListTextClass"
+			expand="onHandoverNotesFilterPanelExpand">
+			<headerToolbar>
+				<Toolbar height="3rem" class="taskFilterToolbar">
+					<Link text="{= ${dashBoardModel>/selectedHanoverNotesTab} === 'Search Notes'? 'Select': 'Filter'}" press="onHandoverfilterLinkPress"></Link>
+					<ToolbarSpacer></ToolbarSpacer>
+					<Button type="Ghost" press="onCreateNotePress" class="sapUiTinyMarginBegin" text="Create Note"
+						visible="{= ${dashBoardModel>/selectedHanoverNotesTab} !== 'Search Notes'}"/>
+				</Toolbar>
+			</headerToolbar>
+			<content>
+				<FlexBox justifyContent="SpaceBetween" width="100%">
+					<FlexBox direction="Column" alignItems="Start" width="48%">
+						<Label text="From"/>
+						<DatePicker id="idHandoverFromDate" displayFormat="MM/dd/yyyy" valueFormat="yyyy-MM-dd" placeholder="mm/dd/yyyy" change="onHandoverFetchPress"
+							value="{dashBoardModel>/handoverFilterData/fromDate}" minDate="{dashBoardModel>/handoverFilterData/handoverMinDate}"
+							maxDate="{dashBoardModel>/handoverFilterData/handoverMaxDate}"/>
+						<Label text="Field"/>
+						<MultiComboBox id="idHandoverFieldsFilter" selectionChange="onHandoverFieldFilterChange" width="11rem"
+							items="{dashBoardModel>/handoverFilterData/fields}">
+							<core:ListItem key="{dashBoardModel>key}" text="{dashBoardModel>text}"/>
+						</MultiComboBox>
+					</FlexBox>
+					<FlexBox direction="Column" alignItems="Start" width="48%">
+						<Label text="To"/>
+						<DatePicker id="idHandoverToDate" displayFormat="MM/dd/yyyy" valueFormat="yyyy-MM-dd" placeholder="mm/dd/yyyy" change="onHandoverFetchPress"
+							value="{dashBoardModel>/handoverFilterData/toDate}" minDate="{dashBoardModel>/handoverFilterData/handoverMinDate}"
+							maxDate="{dashBoardModel>/handoverFilterData/handoverMaxDate}"/>
+						<Label text="Shift"/>
+						<MultiComboBox id="idHandoverShiftFilter" items="{dashBoardModel>/handoverFilterData/shift}" selectionChange="idHandoverShiftFilterChange">
+							<core:ListItem key="{dashBoardModel>key}" text="{dashBoardModel>text}"/>
+						</MultiComboBox>
+					</FlexBox>
+				</FlexBox>
+				<!--<FlexBox direction="RowReverse" alignItems="Start">
+					<Button type="Ghost" press="onHandoverFetchPress" class="sapUiTinyMarginBegin" text="{= ${dashBoardModel>/selectedHanoverNotesTab} === 'Search Notes'? 'Search': 'Fetch'}"/>
+				</FlexBox>-->
+			</content>
+		</Panel>
+		<!--<HBox class="iopwbBoxStyle sapUiSizeCompact sapUiTinyMarginTop iopTaskManagementSearch" width="100%">
+			<SearchField placeholder="Search" liveChange="onSearchNotes" width="20rem" class="sapUiSmallMarginBeginEnd"/>
+			<Button press="onNotesRefreshPress" icon="sap-icon://synchronize" tooltip="Refresh"/>
+		</HBox>-->
+		<VBox class="iopwbBoxStyle" height="100%">
+			<List busy="{dashBoardModel>/busyIndicators/rightPanelBusy}" busyIndicatorDelay="0" showSeparators="Inner" items="{dashBoardModel>/handoverNotesList}" class="iopHandoverList">
+				<CustomListItem class="iopwbListClass iopTaskManagementListSelectedBgColor handoverNoteShadow" type="Active" press="onNotePress">
+					<VBox class="iopTaskManagementVBoxStyle">
+						<VBox class="sapUiTinyMargin sapUiSmallMarginBegin">
+							<HBox class="iopwbTimeClass" justifyContent="SpaceBetween">
+								<Text text="{dashBoardModel>field}" class="iopwbDescClass iopFontClass"/>
+							</HBox>
+							<HBox width="100%" visible="{= ${dashBoardModel>/selectedHanoverNotesTab} === 'Search Notes'}">
+								<Text text="ROC Operator" width="7rem" class="iopTaskManagementTextFont"/>
+								<Text text="{dashBoardModel>userName}" class="sapUiMediumMarginBegin iopTaskManagementTextFont"/>
+							</HBox>
+							<HBox>
+								<Text text="Created On" width="7rem" class="iopTaskManagementTextFont"/>
+								<Text text='{path:"dashBoardModel>date", formatter:"com.sap.incture.Incture_IOP.util.formatter.epochToDateForHandoverNote"}' class="sapUiMediumMarginBegin iopTaskManagementTextFont"/>
+							</HBox>
+							<HBox class="iopwbAssignedToBoxClassStatus" height="30px">
+								<Text text="Shift" width="7rem" class="iopTaskManagementTextFont"/>
+								<Text textAlign="Center" text="{dashBoardModel>shift}" class="sapUiMediumMarginBegin iopTaskManagementTextFont"/>
+							</HBox>
+						</VBox>
+					</VBox>
+				</CustomListItem>
+			</List>
+		</VBox>
+	</VBox>
+</core:FragmentDefinition>

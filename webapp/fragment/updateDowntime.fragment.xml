@@ -1,0 +1,109 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" id="TaskManagement">
+	<Dialog title="Designate Selected Downtime" contentWidth="60%" class="designateDialogClass">
+		<VBox width="100%" visible="{= ${dashBoardModel>/downtimeCaptureTabKey} === 'Compressor'?true:false }">
+			<Label text="Downtime Codes" class="iopFontClass iopwbTaskLabelClass sapUiTinyMargin"/>
+			<l:Grid defaultSpan="L3 M3 S6" width="100%" vSpacing="0">
+				<l:content>
+					<VBox>
+						<Label required="true" text="{i18n>DC_DATE}" design="Bold" class="iopFontClass iopwbLabelRequiredClass"/>
+						<DatePicker class="sapUiSizeCompact iopInputClass iopDTInputClass" enabled="false" value="{dashBoardModel>/compDownTime/date}"
+							placeholder="mm/dd/yyyy" displayFormat="MM/dd/yyyy" valueFormat="yyyy-MM-dd" change="onCompDateChange"/>
+					</VBox>
+					<VBox>
+						<Label required="true" text="{i18n>Location}" design="Bold" class="iopFontClass iopwbLabelRequiredClass"/>
+						<Input enabled="false" class="sapUiSizeCompact iopInputClass iopDTInputClass" value='{dashBoardModel>/compDownTime/locationText}'/>
+					</VBox>
+					<VBox>
+						<Label required="true" text="{i18n>durhr}" design="Bold" class="iopFontClass iopwbLabelRequiredClass iopDTInputClass"/>
+						<Select change="onCompHourKeySelect" forceSelection="false" width="100%" selectedKey="{dashBoardModel>/compDownTime/hourkey}"
+							class="sapUiSizeCompact iopSelectClass">
+							<core:ListItem key="0" text="00"/>
+							<core:ListItem key="1" text="01"/>
+							<core:ListItem key="2" text="02"/>
+							<core:ListItem key="3" text="03"/>
+							<core:ListItem key="4" text="04"/>
+							<core:ListItem key="5" text="05"/>
+							<core:ListItem key="6" text="06"/>
+							<core:ListItem key="7" text="07"/>
+							<core:ListItem key="8" text="08"/>
+							<core:ListItem key="9" text="09"/>
+							<core:ListItem key="10" text="10"/>
+							<core:ListItem key="11" text="11"/>
+							<core:ListItem key="12" text="12"/>
+							<core:ListItem key="13" text="13"/>
+							<core:ListItem key="14" text="14"/>
+							<core:ListItem key="15" text="15"/>
+							<core:ListItem key="16" text="16"/>
+							<core:ListItem key="17" text="17"/>
+							<core:ListItem key="18" text="18"/>
+							<core:ListItem key="19" text="19"/>
+							<core:ListItem key="20" text="20"/>
+							<core:ListItem key="21" text="21"/>
+							<core:ListItem key="22" text="22"/>
+							<core:ListItem key="23" text="23"/>
+							<core:ListItem key="24" text="24"/>
+						</Select>
+					</VBox>
+					<VBox>
+						<Label text="{i18n>durMin}" design="Bold" class="iopFontClass iopwbLabelRequiredClass iopDTInputClass"/>
+						<Select enabled="{= ${dashBoardModel>/compDownTime/hourkey} !== '24'}" forceSelection="false" width="100%"
+							selectedKey="{dashBoardModel>/compDownTime/minuteKey}" class="sapUiSizeCompact iopSelectClass">
+							<core:ListItem key="0" text="00 min"/>
+							<core:ListItem key="15" text="15 min"/>
+							<core:ListItem key="30" text="30 min"/>
+							<core:ListItem key="45" text="45 min"/>
+						</Select>
+					</VBox>
+				</l:content>
+			</l:Grid>
+			<l:Grid defaultSpan="L3 M3 S6" width="100%" vSpacing="0">
+				<l:content>
+					<VBox>
+						<Label required="true" text="{i18n>Equipment}" design="Bold" class="iopFontClass iopwbLabelRequiredClass"/>
+						<Input enabled="false" class="sapUiSizeCompact iopInputClass iopDTInputClass" value='{dashBoardModel>/compDownTime/compName}'/>
+					</VBox>
+					<VBox>
+						<Label required="true" text="{i18n>DC_DOWNTCODES}" design="Bold" class="iopFontClass iopwbLabelRequiredClass"/>
+						<Select forceSelection="false" width="100%" change="onCompDowntimeCodeSelect" selectedKey="{dashBoardModel>/compDownTime/downtimeCode}"
+							items="{dashBoardModel>/CompressorDowntimeCodes}" class="sapUiSizeCompact iopSelectClass">
+							<core:ListItem key="{dashBoardModel>childCode}" text="{dashBoardModel>childText}"/>
+						</Select>
+					</VBox>
+					<Text/>
+				</l:content>
+			</l:Grid>
+		</VBox>
+		<VBox width="100%" visible="{= ${dashBoardModel>/downtimeCaptureTabKey} === 'Flare'?true:false }">
+			<Label text="Downtime Codes" class="iopFontClass iopwbTaskLabelClass sapUiTinyMargin"/>
+			<l:Grid defaultSpan="L3 M3 S6" width="100%" vSpacing="0">
+				<l:content>
+					<VBox>
+						<Label required="true" text="{i18n>Location}" design="Bold" class="iopFontClass iopwbLabelRequiredClass"/>
+						<Input enabled="false" class="sapUiSizeCompact iopInputClass iopDTInputClass" value='{dashBoardModel>/flareDownTime/meterText}'/>
+					</VBox>
+					<VBox>
+						<Label required="true" text="{i18n>DC_DATE}" design="Bold" class="iopFontClass iopwbLabelRequiredClass"/>
+						<DatePicker enabled="false" class="sapUiSizeCompact iopInputClass iopDTInputClass" value="{dashBoardModel>/flareDownTime/date}"
+							placeholder="mm/dd/yyyy" displayFormat="MM/dd/yyyy" valueFormat="yyyy-MM-dd"/>
+					</VBox>
+					<VBox>
+						<Label required="true" text="{i18n>flareVolume}" design="Bold" class="iopFontClass iopwbLabelRequiredClass"/>
+						<Input value="{dashBoardModel>/flareDownTime/flareVolume}" width="100%" class="sapUiSizeCompact iopInputClass iopDTInputClass"></Input>
+					</VBox>
+					<VBox>
+						<Label required="true" text="{i18n>flareCode}" design="Bold" class="iopFontClass iopwbLabelRequiredClass iopDTInputClass"/>
+						<Select forceSelection="false" width="100%" selectedKey="{dashBoardModel>/flareDownTime/flareCode}" change="onflareDowntimeCodeSelect"
+							items="{dashBoardModel>/FlareDowntimeCodes}" class="sapUiSizeCompact iopSelectClass">
+							<core:ListItem key="{dashBoardModel>childCode}" text="{dashBoardModel>childText}"/>
+						</Select>
+					</VBox>
+				</l:content>
+			</l:Grid>
+		</VBox>
+		<Toolbar class="sapMFooter-CTX sapMTBNoBorders">
+			<ToolbarSpacer/>
+			<Button text="Cancel" press="onCompUpdateClose" class="sapUiSizeCompact iopBtnClass iopClearBtn"/>
+			<Button text="Update" press="onCompressorUpdate" class="sapUiSizeCompact iopBtnClass iopSaveBtn"/>
+		</Toolbar>
+	</Dialog>
+</core:FragmentDefinition>

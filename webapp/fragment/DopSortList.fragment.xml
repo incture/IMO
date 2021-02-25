@@ -1,0 +1,13 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<ViewSettingsDialog confirm="onDopTableSort" class="sapUiSizeCompact">
+		<sortItems>
+			<ViewSettingsItem text="Well Name" key="location" selected="true"/>
+			<ViewSettingsItem text="Tier" key="tier" selected="false"/>
+			<ViewSettingsItem text="Actual" key="actualBoed" selected="false"/>
+			<ViewSettingsItem text="Projected" key="forecastBoed" selected="false"/>
+			<ViewSettingsItem text="Forecast" key="plannedBoed" selected="false"/>
+			<ViewSettingsItem text="Variance" key="variance" selected="false"/>
+			<ViewSettingsItem text="Variance %" key="variancePercent" selected="false"/>
+		</sortItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

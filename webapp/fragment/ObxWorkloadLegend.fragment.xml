@@ -1,0 +1,20 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.f">
+	<Popover placement="Bottom" showArrow="true" contentWidth="auto" showHeader="true" title="Workload Legends" contentHeight="auto">
+		<content>
+			<VBox class="sapUiTinyMarginBottom">
+				<HBox class="sapUiTinyMarginBegin sapUiTinyMarginTop">
+					<core:Icon src="sap-icon://circle-task-2" color="#007D36"/>
+					<Label class="sapUiTinyMarginBegin sapUiTinyMarginEnd" text="&lt; 80 %"></Label>
+				</HBox>
+				<HBox class="sapUiTinyMarginBegin">
+					<core:Icon src="sap-icon://circle-task-2" color="#FA9C2E"/>
+					<Label class="sapUiTinyMarginBegin sapUiTinyMarginEnd" text="&lt;= 100 %"></Label>
+				</HBox>
+				<HBox class="sapUiTinyMarginBegin">
+					<core:Icon src="sap-icon://circle-task-2" color="#DA3737"/>
+					<Label class="sapUiTinyMarginBegin sapUiTinyMarginEnd" text="&gt; 100 %"></Label>
+				</HBox>
+			</VBox>
+		</content>
+	</Popover>
+</core:FragmentDefinition>

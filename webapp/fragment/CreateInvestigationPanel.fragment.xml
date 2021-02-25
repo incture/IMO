@@ -1,0 +1,34 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout"
+	xmlns:cd="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog showHeader="false" contentWidth="100%" class="iopwbDetailDialogClass" busy="{dashBoardModel>/busyIndicators/taskPanelBusy}"
+		busyIndicatorDelay="0" beforeOpen="onTaskPanelBeforeOpen" afterOpen="onTaskPanelAfterOpen" cd:collabTaskType="Investigation"
+		verticalScrolling="false">
+		<HBox>
+			<VBox width="75%">
+				<core:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.InvestigationDetailPanel" type="XML" id="idInvestigationPanel"></core:Fragment>
+			</VBox>
+			<VBox width="25%" class="iopwbSplitBorderClass">
+				<HBox justifyContent="End" height="0rem">
+					<Button icon="sap-icon://sys-cancel" class="iopwbCloseBtnClass" type="Transparent" press="onCreateInvestigationClose"/>
+				</HBox>
+				<core:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.taskDetailRightPanel" type="XML" id="idInvestigationRightPanel"></core:Fragment>
+			</VBox>
+		</HBox>
+		<buttons>
+			<Button text="Create Investigation" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass" press="onCreatingInvestigation"
+				visible='{parts:["oTaskPanelDetailModel>/taskEventDto/status","dashBoardModel>/userData/isENG", "dashBoardModel>/isWebReadOnlyRole","dashBoardModel>/moduleReadOnly", "dashBoardModel>/panelProperties/currentSelectKey"],formatter:"com.sap.incture.Incture_IOP.util.formatter.handleCreateInvestigationButton"}'/>
+			<Button text="Assign" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass" press="onAssign"
+				enabled="{= ${dashBoardModel>/isWebReadOnlyRole} === false}"
+				visible='{parts:["oTaskPanelDetailModel>/taskEventDto/status","dashBoardModel>/userData/isPOT", "dashBoardModel>/isWebReadOnlyRole","dashBoardModel>/moduleReadOnly", "dashBoardModel>/panelProperties/currentSelectKey"],formatter:"com.sap.incture.Incture_IOP.util.formatter.handleAssignButton"}'/>
+			<Button text="Remove PW Hopper" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass" press="onPressRemoveHopper"
+				visible='{parts:["oTaskPanelDetailModel>/PWData/buttonState","dashBoardModel>/userData/isPOT", "dashBoardModel>/isWebReadOnlyRole","dashBoardModel>/moduleReadOnly", "dashBoardModel>/panelProperties/currentSelectKey"],formatter:"com.sap.incture.Incture_IOP.util.formatter.handleRemovePWHopperButton"}'/>
+			<Button text="Update PW Hopper List" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass" press="onUpdatePWHopperData"
+				visible='{parts:["dashBoardModel>/userData/isROC","dashBoardModel>/userData/isENG","dashBoardModel>/userData/isPOT","oTaskPanelDetailModel>/taskEventDto/owners","dashBoardModel>/userData/displayName","oTaskPanelDetailModel>/checkList","oTaskPanelDetailModel>/taskEventDto/status", "dashBoardModel>/isWebReadOnlyRole","dashBoardModel>/moduleReadOnly", "dashBoardModel>/panelProperties/currentSelectKey","dashBoardModel>/userData/hasCanadaRole"], formatter:"com.sap.incture.Incture_IOP.util.formatter.showUpdateBtn"}'/>
+			<Button text="Close Investigation" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass" press="onCompletingInvestigation"
+				visible='{parts:["dashBoardModel>/userData/isROC","dashBoardModel>/userData/isENG","dashBoardModel>/userData/isPOT","oTaskPanelDetailModel>/taskEventDto/owners","dashBoardModel>/userData/displayName","oTaskPanelDetailModel>/taskEventDto/status","dashBoardModel>/isWebReadOnlyRole","dashBoardModel>/moduleReadOnly", "dashBoardModel>/panelProperties/currentSelectKey","dashBoardModel>/userData/hasCanadaRole"], formatter:"com.sap.incture.Incture_IOP.util.formatter.showCloseInvestigationBtn"}'/>
+			<Button text="Submit" press="onSubmitTask" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass"
+				visible='{parts:["dashBoardModel>/userData/isENG","dashBoardModel>/userData/isPOT","oTaskPanelDetailModel>/taskEventDto/owners","dashBoardModel>/userData/displayName","oTaskPanelDetailModel>/taskEventDto/taskId","oTaskPanelDetailModel>/taskEventDto/status", "dashBoardModel>/isWebReadOnlyRole", "dashBoardModel>/moduleReadOnly", "dashBoardModel>/panelProperties/currentSelectKey","dashBoardModel>/userData/hasCanadaRole"], formatter:"com.sap.incture.Incture_IOP.util.formatter.showSubmitBtn"}'/>
+			<Button text="Cancel" press="onCreateInvestigationClose" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

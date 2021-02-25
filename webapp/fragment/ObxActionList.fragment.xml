@@ -1,0 +1,8 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Popover showArrow="true" showHeader="false">
+		<VBox class="sapUiTinyMargin">
+			<Button id="idObxAssignBtn" press="onObxTaskAssignPress" icon="sap-icon://accept" text="Reassign to {dashBoardModel>/OBXSchedulingData/currentObxUserName}" width="100%" class="sapUiSizeCompact iopBtnClass iopAlarmBtnClass"
+			/>
+		</VBox>
+	</Popover>
+</core:FragmentDefinition>

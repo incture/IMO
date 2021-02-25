@@ -1,0 +1,50 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:icon="sap.ui.core.Icon">
+	<Dialog showHeader="false" verticalScrolling="false" contentWidth="80%" contentHeight="70%"
+		class="iopPtwOverFlow iopLocationHistoryCloseButton">
+		<VBox height="100%" width="100%">
+			<HBox width="100%">
+				<HBox justifyContent="SpaceAround" class="iopwbCollabTitleBoxClass" width="100%">
+					<Text text="Work Order Details" class="iopFontClass iopwbCollabTitleClass"/>
+				</HBox>
+				<HBox justifyContent="End" height="0rem">
+					<Button icon="sap-icon://sys-cancel" class="iopwbCloseBtnClass" type="Transparent" press="onCloseDetailsFragment"/>
+				</HBox>
+				<!--<HBox justifyContent="End" class="iopLocationHistoryCloseButton">
+					<Button icon="sap-icon://sys-cancel" class="iopLocationHistoryPTWFormCloseBtnClass" type="Transparent" press="onCloseDetailsFragment"/>
+				</HBox>-->
+			</HBox>
+			<ScrollContainer height="100%" vertical="true">
+				<Table sticky="ColumnHeaders" busyIndicatorDelay="0" busy="false" items="{dashBoardModel>/locationHistoryData/workOrderDetailsData}"
+					class="iopFontClass alarmTableHeader" width="100%" alternateRowColors="true">
+					<columns>
+						<Column width="100px">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Control Key"/>
+						</Column>
+						<Column width="100px">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Personnel Number (Technician)"/>
+						</Column>
+						<Column width="130px">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass childcodenoborder" text="Operation Number"/>
+						</Column>
+						<Column width="70px">
+							<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Short text operation"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>ControlKey}"/>
+								<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>PersonnelNo}"/>
+								<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>OperationNumber}"/>
+								<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>ShortText}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</ScrollContainer>
+		</VBox>
+		<!--	<buttons>
+			<Button text="Cancel" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass" press="onCloseDetailsFragment"/>
+		</buttons>-->
+	</Dialog>
+</core:FragmentDefinition>

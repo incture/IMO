@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Dialog contentWidth="30%" title="Reject Message" busy="{dashBoardModel>/InsightToActionData/iopWBMsgRejectInd}" busyIndicatorDelay="0">
+		<VBox class="sapUiSmallMargin">
+			<Label text="Reason for rejection" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass" required="true"/>
+			<TextArea value='{dashBoardModel>/InsightToActionData/rejectReason}' class="iopwbFlexBoxClass iopInputClass"/>
+		</VBox>
+		<buttons>
+			<Button text="Ok" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass" press="onWBMsgRejectOKPress"/>
+			<Button text="Cancel" press="onWBMsgRejectCancelPress" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

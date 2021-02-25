@@ -1,0 +1,13 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<ViewSettingsDialog confirm="onAnalyticsTableSort" class="sapUiSizeCompact">
+		<sortItems>
+			<ViewSettingsItem text="Investigation ID" key="requestId" selected="true"/>
+			<ViewSettingsItem text="Created Date" key="createdAt" selected="false"/>
+			<ViewSettingsItem text="Location" key="wellName" selected="false"/>
+			<ViewSettingsItem text="Var to Fcst BOED" key="varToFcstBOED" selected="false"/>
+			<ViewSettingsItem text="% Var to Fcst BOED" key="perVarToFcstBOED" selected="false"/>
+			<ViewSettingsItem text="Milestone Step" key="mileStoneStep" selected="false"/>
+			<ViewSettingsItem text="Investigation Status" key="status" selected="false"/>
+		</sortItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

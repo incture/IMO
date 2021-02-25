@@ -1,0 +1,662 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:icon="sap.ui.core.Icon">
+	<VBox height="{= ${dashBoardModel>/locationHistoryData/locHistoryPaginationVisibility} === true?'96%':'100%'}" width="100%"
+		id="idLocationHistoryFrag">
+		<IconTabBar class="iopDTTabBar iopDownTimeTab" expandable="false" select="onLocHistoryIconTabSelect"
+			selectedKey="{dashBoardModel>/locationHistorySelectTabs/iconFilterTab}" id="idLocHistoryIconTabBar">
+			<items>
+				<IconTabFilter visible="true" key="Task" text="Task">
+					<Panel expandable="false" expanded="true" class="iopFontClass iopAlarmListTextClass wellVisitConfigPanelPadding" headerText="" width="100%">
+						<headerToolbar>
+							<Toolbar height="3rem">
+								<ObjectStatus text="Showing List of Tasks" state="None"></ObjectStatus>
+								<ToolbarSpacer></ToolbarSpacer>
+								<SearchField width="10rem" class="iopFontClass" placeholder="Search" liveChange="onTableSearch">
+									<tooltip class="iopFontClass" text="Search.."></tooltip>
+								</SearchField>
+								<SegmentedButton width="14rem" class="sapUiTinyMarginEnd" selectionChange="onLocHistoryIconTabSelect"
+									selectedKey="{dashBoardModel>/locationHistorySelectTabs/monthFilterTask}">
+									<items>
+										<SegmentedButtonItem text="One Month" key="one"/>
+										<SegmentedButtonItem class="sapUiTinyMarginEnd" text="Three Month" key="three"/>
+									</items>
+								</SegmentedButton>
+							</Toolbar>
+						</headerToolbar>
+						<infoToolbar>
+							<Toolbar class="obxEngineToolbar">
+								<HBox width="100%" id="idInfoToolbarTask">
+									<HBox items="{dashBoardModel>/locationHistoryData/locHistoryTaskStatusList}">
+										<Label width="8rem" text="{dashBoardModel>status} : {dashBoardModel>count}"/>
+									</HBox>
+								</HBox>
+							</Toolbar>
+						</infoToolbar>
+						<content>
+							<ScrollContainer height="{dashBoardModel>/locationHistoryScrollPanelHeight}" vertical="true"
+								class="iopDowntimeTypeHeader iopWellVisitScrollBorder sapUiTinyMarginBottom">
+								<Table sticky="ColumnHeaders" visible="{= ${dashBoardModel>/locationHistorySelectTabs/iconFilterTab} === 'Task'?true:false}"
+									busyIndicatorDelay="0" busy="{dashBoardModel>/locationHistoryData/busyIndicator}" id="locHistoryTaskTable"
+									items="{dashBoardModel>/locationHistoryData/locHistoryTaskData/taskList}" class="iopFontClass alarmTableHeader" width="100%"
+									alternateRowColors="true">
+									<columns>
+										<Column>
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Location"/>
+										</Column>
+										<Column>
+											<HBox alignItems="Center">
+												<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Date Time"/>
+												<Button icon="sap-icon://sort" type="Transparent" class="sapUiTinyMarginBegin murphySortBtn" press="onDateSort"/>
+											</HBox>
+										</Column>
+										<Column>
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass childcodenoborder" text="Classification"/>
+										</Column>
+										<Column>
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Task Type"/>
+										</Column>
+										<Column>
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Assigned To"/>
+										</Column>
+										<Column>
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass childcodenoborder" text="Root Cause"/>
+										</Column>
+										<Column>
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Turn Around Time"/>
+										</Column>
+										<Column>
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass childcodenoborder" text="Variance"/>
+										</Column>
+										<Column hAlign="Center">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass childcodenoborder" text="Status"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem type="Active" press="onGetTaskDetails">
+											<cells>
+												<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>location}"/>
+												<!--<Text class="iopFontClass iopAlarmListTextClass "-->
+												<!--	text="{path:'dashBoardModel>createdAtInString',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateformatformStringDate'}"/>-->
+												<Text class="iopFontClass iopAlarmListTextClass "
+													text="{path:'dashBoardModel>createdAt',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateLocHistory'}"/>
+												<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>classification}"/>
+												<Text class="iopFontClass iopAlarmListTextClass" text="{dashBoardModel>origin}"/>
+												<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>taskOwner}"/>
+												<Text class="iopFontClass iopAlarmListTextClass "
+													text="{path:'dashBoardModel>rootCause',formatter:'com.sap.incture.Incture_IOP.util.formatter.checkForEmptyValue'}"/>
+												<Text class="iopFontClass iopAlarmListTextClass "
+													text="{path:'dashBoardModel>turnAroundTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.turnAroundFormatter'}"/>
+												<Text class="iopFontClass iopAlarmListTextClass"
+													text="{path:'dashBoardModel>turnAroundVariance',formatter:'com.sap.incture.Incture_IOP.util.formatter.turnAroundFormatter'}"/>
+												<Text class="ioplocHistoryOriginClass sapUiTinyMarginBegin iopTaskManagementTextFont" text="{dashBoardModel>status}"
+													visible='{path:"dashBoardModel>status", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnLocHisStatus"}'/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</ScrollContainer>
+						</content>
+					</Panel>
+				</IconTabFilter>
+				<IconTabFilter key="Downtime" text="Downtime">
+					<Panel expandable="false" expanded="true" class="iopFontClass iopAlarmListTextClass wellVisitConfigPanelPadding" width="100%">
+						<headerToolbar>
+							<Toolbar height="3rem">
+								<ObjectStatus text="Showing List of Downtime" state="None"></ObjectStatus>
+								<ToolbarSpacer></ToolbarSpacer>
+								<SearchField width="10rem" class="iopFontClass sapUiTinyMarginEnd" placeholder="Search" liveChange="onTableSearch">
+									<tooltip class="iopFontClass" text="Search.."></tooltip>
+								</SearchField>
+								<!--<Select selectedKey="{dashBoardModel>/locationHistorySelectTabs/LocHistoryDowntimeFilterKey}" change="onLocHistoryIconTabSelect">
+									<items>
+										<core:Item key="Well" text="Well"/>
+										<core:Item key="Compressor" text="Compressor"/>
+										<core:Item key="Flare" text="Flare"/>
+									</items>
+								</Select>-->
+								<MultiComboBox class="sapUiTinyMarginEnd" width="10rem" selectedKeys="{dashBoardModel>/locationHistorySelectTabs/LocHistoryDowntimeFilterKey}" selectionChange="onLHDowntimeChange" visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'EFS'}">
+									<core:Item key="Well" text="Well"/>
+									<core:Item key="Compressor" text="Compressor"/>
+									<core:Item key="Flare" text="Flare"/>
+								</MultiComboBox>
+								<MultiComboBox class="sapUiTinyMarginEnd" width="10rem" enabled="false" selectedKeys="{dashBoardModel>/locationHistorySelectTabs/LocHistoryDowntimeFilterKey}" selectionChange="onLHDowntimeChange" visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'CA'}">
+									<core:Item key="Well" text="Well"/>
+								</MultiComboBox>
+								<SegmentedButton width="14rem" class="sapUiTinyMarginEnd" selectedKey="{dashBoardModel>/locationHistorySelectTabs/monthFilterDowntime}"
+									selectionChange="onLocHistoryIconTabSelect">
+									<items>
+										<SegmentedButtonItem text="One Month" key="one"/>
+										<SegmentedButtonItem class="sapUiTinyMarginEnd" text="Three Month" key="three"/>
+									</items>
+								</SegmentedButton>
+							</Toolbar>
+						</headerToolbar>
+						<infoToolbar>
+							<Toolbar class="obxEngineToolbar">
+								<HBox width="100%">
+									<HBox width="100%">
+										<HBox items="{dashBoardModel>/locationHistoryData/locHistoryWellDowntimeStatusList}">
+											<Label width="8rem" text="{dashBoardModel>status} : {dashBoardModel>count}"/>
+										</HBox>
+									</HBox>
+								</HBox>
+							</Toolbar>
+						</infoToolbar>
+						<content>
+							<ScrollContainer height="{dashBoardModel>/locationHistoryScrollPanelHeight}" vertical="true"
+								class="iopDowntimeTypeHeader iopWellVisitScrollBorder sapUiTinyMarginBottom">
+								<!--<Table sticky="ColumnHeaders" visible="{= ${dashBoardModel>/locationHistorySelectTabs/iconFilterTab} === 'Downtime'?true:false}"
+									busyIndicatorDelay="0" items="{dashBoardModel>/locationHistoryData/locHistoryDowntimeData}" class="iopFontClass alarmTableHeader"
+									width="100%" alternateRowColors="true" id="locHistoryDowntimeTable" busy="{dashBoardModel>/locationHistoryData/busyIndicator}">
+									<columns>
+										<Column visible="{= ${dashBoardModel>/locationHistorySelectTabs/LocHistoryDowntimeFilterKey} === 'Well'?true:false}">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Location"/>
+										</Column>
+										<Column visible="{= ${dashBoardModel>/locationHistorySelectTabs/LocHistoryDowntimeFilterKey} === 'Well'?true:false}">
+											<HBox alignItems="Center">
+												<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Date Time"/>
+												<Button icon="sap-icon://sort" type="Transparent" class="sapUiTinyMarginBegin murphySortBtn" press="onDateSort"/>
+											</HBox>
+										</Column>
+										<Column visible="{= ${dashBoardModel>/locationHistorySelectTabs/LocHistoryDowntimeFilterKey} === 'Well'?true:false}">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Duration"/>
+										</Column>
+										<Column visible="{= ${dashBoardModel>/locationHistorySelectTabs/LocHistoryDowntimeFilterKey} === 'Well'?true:false}">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Parent Code"/>
+										</Column>
+										<Column visible="{= ${dashBoardModel>/locationHistorySelectTabs/LocHistoryDowntimeFilterKey} === 'Well'?true:false}">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass childcodenoborder" text="Child Code"/>
+										</Column>
+										<Column visible="{= ${dashBoardModel>/locationHistorySelectTabs/LocHistoryDowntimeFilterKey} === 'Compressor'?true:false}">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Location"/>
+										</Column>
+										<Column visible="{= ${dashBoardModel>/locationHistorySelectTabs/LocHistoryDowntimeFilterKey} === 'Compressor'?true:false}">
+											<HBox alignItems="Center">
+												<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Date Time"/>
+												<Button icon="sap-icon://sort" type="Transparent" class="sapUiTinyMarginBegin murphySortBtn" press="onDateSort"/>
+											</HBox>
+										</Column>
+										<Column visible="{= ${dashBoardModel>/locationHistorySelectTabs/LocHistoryDowntimeFilterKey} === 'Compressor'?true:false}">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Equipment"/>
+										</Column>
+										<Column visible="{= ${dashBoardModel>/locationHistorySelectTabs/LocHistoryDowntimeFilterKey} === 'Compressor'?true:false}">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Duration"/>
+										</Column>
+										
+								<Column visible="{= ${dashBoardModel>/locationHistorySelectTabs/LocHistoryDowntimeFilterKey} === 'Compressor'?true:false}">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass childcodenoborder" text="Downtime Code"/>
+								</Column>
+								<Column visible="{= ${dashBoardModel>/locationHistorySelectTabs/LocHistoryDowntimeFilterKey} === 'Flare'?true:false}">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Equipment"/>
+								</Column>
+								<Column visible="{= ${dashBoardModel>/locationHistorySelectTabs/LocHistoryDowntimeFilterKey} === 'Flare'?true:false}">
+									<HBox alignItems="Center">
+										<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Date Time"/>
+										<Button icon="sap-icon://sort" type="Transparent" class="sapUiTinyMarginBegin murphySortBtn" press="onDateSort"/>
+									</HBox>
+								</Column>
+								<Column visible="{= ${dashBoardModel>/locationHistorySelectTabs/LocHistoryDowntimeFilterKey} === 'Flare'?true:false}">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Flare Volume (MCF)"/>
+								</Column>
+								<Column visible="{= ${dashBoardModel>/locationHistorySelectTabs/LocHistoryDowntimeFilterKey} === 'Flare'?true:false}">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass childcodenoborder" text="Flare Code"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>well}"/>
+										<Text class="iopFontClass iopAlarmListTextClass "
+											text="{path:'dashBoardModel>createdAtUTC',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateformatformStringDate'}"/>
+										<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>durationByRocHour} hr {dashBoardModel>durationByRocMinute} min"/>
+										<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>downtimeText}"/>
+										<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>childText}"/>
+										<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>facility}"/>
+										<Text class="iopFontClass iopAlarmListTextClass"
+											text="{path:'dashBoardModel>createdAtUTC',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateformatformStringDate'}"/>
+										<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>well}"/>
+										<Text class="iopFontClass iopAlarmListTextClass" text="{dashBoardModel>durationByRocHour} hr {dashBoardModel>durationByRocMinute} min"/>
+										
+										<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>childText}"/>
+										<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>meter}"/>
+										<Text class="iopFontClass iopAlarmListTextClass "
+											text="{path:'dashBoardModel>createdAtUTC',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateformatformStringDate'}"/>
+										<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>flareVolume}"/>
+										<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>childText}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+						-->
+								<Table sticky="ColumnHeaders" visible="{= ${dashBoardModel>/locationHistorySelectTabs/iconFilterTab} === 'Downtime'?true:false}"
+									busyIndicatorDelay="0" items="{dashBoardModel>/locationHistoryData/locHistoryDowntimeData}" class="iopFontClass alarmTableHeader"
+									width="100%" alternateRowColors="true" id="locHistoryDowntimeTable" busy="{dashBoardModel>/locationHistoryData/busyIndicator}">
+									<columns>
+										<Column>
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Location"/>
+										</Column>
+										<Column>
+											<HBox alignItems="Center">
+												<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Date Time"/>
+												<Button icon="sap-icon://sort" type="Transparent" class="sapUiTinyMarginBegin murphySortBtn" press="onDateSort"/>
+											</HBox>
+										</Column>
+									<!--	<Column>
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Equipment"/>
+										</Column>-->
+										<Column>
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Duration"/>
+										</Column>
+										
+										<Column visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'EFS'}">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass childcodenoborder" text="Downtime Code"/>
+										</Column>
+										<Column visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'CA'}">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass childcodenoborder" text="Downtime Code"/>
+										</Column>
+										<Column visible="{= ${dashBoardModel>/currentLocationInHierarchy} !== 'CA'}">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Flare Volume (MCF)"/>
+										</Column>
+										
+									</columns>
+									<items>
+										<ColumnListItem>
+											<cells>
+												<Text class="iopFontClass iopAlarmListTextClass " text="{path:'dashBoardModel>well',formatter:'com.sap.incture.Incture_IOP.util.formatter.checkForEmptyValue'}"/>
+												<!--<Text class="iopFontClass iopAlarmListTextClass "-->
+												<!--	text="{path:'dashBoardModel>createdAtUTC',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateformatformStringDate'}"/>-->
+												<Text class="iopFontClass iopAlarmListTextClass "
+													text="{path:'dashBoardModel>created_At',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateLocHistoryDowntime'}"/>
+													
+												<!--<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>facility}"/>-->
+												<Text class="iopFontClass iopAlarmListTextClass " text='{parts:["dashBoardModel>durationByRocHour","dashBoardModel>durationByRocMinute"],formatter:"com.sap.incture.Incture_IOP.util.formatter.locHistoryDuration"}'/>
+												<Text visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'EFS'}" class="iopFontClass iopAlarmListTextClass " text="{path:'dashBoardModel>childText',formatter:'com.sap.incture.Incture_IOP.util.formatter.checkForEmptyValue'}"/>
+												<Text visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'CA'}" class="iopFontClass iopAlarmListTextClass " text="{path:'dashBoardModel>downtimeText',formatter:'com.sap.incture.Incture_IOP.util.formatter.checkForEmptyValue'}"/>
+												<Text class="iopFontClass iopAlarmListTextClass " text="{path:'dashBoardModel>flareVolume',formatter:'com.sap.incture.Incture_IOP.util.formatter.checkForEmptyValueFlare'}"/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</ScrollContainer>
+						</content>
+					</Panel>
+				</IconTabFilter>
+				<IconTabFilter key="Workorder" text="Work Order">
+					<Panel expandable="false" expanded="true" class="iopFontClass iopAlarmListTextClass wellVisitConfigPanelPadding" width="100%">
+						<headerToolbar>
+							<Toolbar height="3rem">
+								<ObjectStatus text="Showing List of Work Order" state="None"></ObjectStatus>
+								<ToolbarSpacer></ToolbarSpacer>
+								<SearchField width="10rem" class="iopFontClass" placeholder="Search" liveChange="onTableSearch">
+									<tooltip class="iopFontClass" text="Search.."></tooltip>
+								</SearchField>
+								<SegmentedButton width="14rem" class="sapUiTinyMarginEnd" selectedKey="{dashBoardModel>/locationHistorySelectTabs/monthFilterWorkorder}"
+									selectionChange="onLocHistoryIconTabSelect">
+									<items>
+										<SegmentedButtonItem text="One Month" key="1"/>
+										<SegmentedButtonItem class="sapUiTinyMarginEnd" text="Three Month" key="3"/>
+									</items>
+								</SegmentedButton>
+							</Toolbar>
+						</headerToolbar>
+						<infoToolbar>
+							<Toolbar class="obxEngineToolbar">
+								<HBox width="100%">
+									<HBox items="{dashBoardModel>/locationHistoryData/locHistoryWorkorderStatusData}">
+										<Label width="8rem" text="{dashBoardModel>OrderStatus} : {dashBoardModel>Count}"/>
+									</HBox>
+								</HBox>
+							</Toolbar>
+						</infoToolbar>
+						<content>
+							<ScrollContainer height="{dashBoardModel>/locationHistoryScrollPanelHeight}" vertical="true"
+								class="iopDowntimeTypeHeader iopWellVisitScrollBorder sapUiTinyMarginBottom">
+								<Table id="locHistoryWorkorderTable" sticky="ColumnHeaders"
+									visible="{= ${dashBoardModel>/locationHistorySelectTabs/iconFilterTab} === 'Workorder'?true:false}" busyIndicatorDelay="0"
+									items="{dashBoardModel>/locationHistoryData/locHistoryWorkorderData}" class="iopFontClass alarmTableHeader" width="100%"
+									alternateRowColors="true" rememberSelections="true" busy="{dashBoardModel>/locationHistoryData/busyIndicator}">
+									<columns>
+										<Column width="100px">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Location"/>
+										</Column>
+										<Column width="85px">
+											<HBox alignItems="Center">
+												<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass childcodenoborder" text="Created Date"/>
+												<Button icon="sap-icon://sort" type="Transparent" class="sapUiTinyMarginBegin murphySortBtn" press="onDateSort"/>
+											</HBox>
+										</Column>
+										<Column width="100px">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Work Order#"/>
+										</Column>
+										<Column width="85px">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Description"/>
+										</Column>
+										<Column width="50px">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Priority"/>
+										</Column>
+										<Column width="85px">
+											<HBox alignItems="Center">
+												<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass childcodenoborder" text="Basic Start Date"/>
+											</HBox>
+										</Column>
+										<Column width="85px" hAlign="Center">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass childcodenoborder" text="Status"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem type="Active" press="onGetWorkorderDetails">
+											<cells>
+												<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>FunctionalLocation}"/>
+												<Text class="iopFontClass iopAlarmListTextClass"
+													text="{path:'dashBoardModel>CreatedOn',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDate'}"/>
+												<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>WorkorderNo}"/>
+												<Text class="iopFontClass iopAlarmListTextClass " tooltip="{dashBoardModel>Description}"
+													text="{path:'dashBoardModel>Description',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopLongTextDescription'}"/>
+												<Text class="iopFontClass iopAlarmListTextClass " text="{dashBoardModel>PriorityText}"/>
+												<Text class="iopFontClass iopAlarmListTextClass"
+													text="{path:'dashBoardModel>StartDate',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDate'}"/>
+												<Text class="ioplocHistoryOriginClass sapUiTinyMarginBegin iopTaskManagementTextFont" text="{dashBoardModel>StatusText}"
+													visible='{path:"dashBoardModel>StatusText", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnLocHisWorkorderStatus"}'/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</ScrollContainer>
+						</content>
+					</Panel>
+				</IconTabFilter>
+				<IconTabFilter key="Permit To Work" text="Permit To Work" visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'EFS'}">
+					<Panel expandable="false" expanded="true" class="iopFontClass iopAlarmListTextClass wellVisitConfigPanelPadding" width="100%">
+						<headerToolbar>
+							<Toolbar height="3rem">
+								<ObjectStatus text="Showing List of All Permit To Work" state="None"></ObjectStatus>
+								<ToolbarSpacer></ToolbarSpacer>
+								<SearchField width="10rem" class="iopFontClass" placeholder="Search" liveChange="onPtwTableSearch">
+									<tooltip class="iopFontClass" text="Search.."></tooltip>
+								</SearchField>
+								<Select selectedKey="{dashBoardModel>/locationHistorySelectTabs/LocHistoryPTWFilterKey}" change="onPTWFilterChange">
+									<items>
+										<core:Item key="Active JSA" text="JSA"/>
+										<core:Item key="Active CW" text="CW"/>
+										<core:Item key="Active HW" text="HW"/>
+										<core:Item key="Active CSP" text="CSP"/>
+									</items>
+								</Select>
+								<SegmentedButton selectionChange="onLocHistoryIconTabSelect" width="14rem" class="sapUiTinyMarginEnd"
+									selectedKey="{dashBoardModel>/locationHistorySelectTabs/monthFilterPTW}">
+									<items>
+										<SegmentedButtonItem text="One Month" key="one"/>
+										<SegmentedButtonItem class="sapUiTinyMarginEnd" text="Three Month" key="three"/>
+									</items>
+								</SegmentedButton>
+							</Toolbar>
+						</headerToolbar>
+						<infoToolbar>
+							<Toolbar class="obxEngineToolbar">
+								<HBox width="100%">
+									<HBox items="{dashBoardModel>/locationHistoryData/locHistoryPTWStatusData}">
+										<Label width="8rem" text="{dashBoardModel>status} : {dashBoardModel>count}"/>
+									</HBox>
+								</HBox>
+							</Toolbar>
+						</infoToolbar>
+						<content>
+							<ScrollContainer height="{dashBoardModel>/locationHistoryScrollPanelHeight}" vertical="true"
+								class="iopDowntimeTypeHeader iopWellVisitScrollBorder sapUiTinyMarginBottom">
+								<Table sticky="ColumnHeaders"
+									visible="{= ${dashBoardModel>/locationHistorySelectTabs/iconFilterTab} === 'Permit To Work' &amp;&amp; ${dashBoardModel>/locationHistorySelectTabs/LocHistoryPTWFilterKey} === 'Active JSA'?true:false}"
+									busyIndicatorDelay="0" busy="" items="{dashBoardModel>/ptwJsaTable/results}" class="iopFontClass alarmTableHeader" width="100%"
+									id="idPtwTable" alternateRowColors="true" rememberSelections="true">
+									<columns>
+										<Column >
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="{i18n>location}"/>
+										</Column>
+										<Column>
+											<HBox alignContent="Center">
+												<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="{i18n>createddate}"/>
+												<Button icon="sap-icon://sort" type="Transparent" class="sapUiTinyMarginBegin murphySortBtn" press="onDateSort"/>
+											</HBox>
+										</Column>
+										<Column>
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="{i18n>PermitNo}"/>
+										</Column>
+										<Column >
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Created By"/>
+										</Column>
+										<Column>
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Task Description"/>
+										</Column>
+										<Column width="60px">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="{i18n>coldwrk}"/>
+										</Column>
+										<Column width="60px">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="{i18n>hotwrk}"/>
+										</Column>
+										<Column width="70px">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Confined Space"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem type="Active" press="onGetJSADetails">
+											<cells>
+												<Text class="iopFontClass iopAlarmListTextClass" tooltip="{dashBoardModel>FACILTYORSITE}" text="{dashBoardModel>FACILTYORSITE}"/>
+												<Text class="iopFontClass iopAlarmListTextClass"
+													text="{path:'dashBoardModel>CREATEDDATE',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDate'}"/>
+												<Text class="iopFontClass iopAlarmListTextClass" text="{dashBoardModel>PERMITNUMBER}"/>
+												<Text class="iopFontClass iopAlarmListTextClass" text="{dashBoardModel>CREATEDBY}"/>
+												<Text class="iopFontClass iopAlarmListTextClass"
+													text="{path:'dashBoardModel>TASKDESCRIPTION',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"/>
+												<core:Icon src="sap-icon://sys-enter-2" class="size2" color="green" visible="{= ${dashBoardModel>HASCWP} === 1 }"></core:Icon>
+												<core:Icon src="sap-icon://sys-enter-2" class="size2" color="green" visible="{= ${dashBoardModel>HASHWP} === 1 }"></core:Icon>
+												<core:Icon src="sap-icon://sys-enter-2" class="size2" color="green" visible="{= ${dashBoardModel>HASCSE} === 1 }"></core:Icon>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+								<Table sticky="ColumnHeaders" busyIndicatorDelay="0" busy="" class="iopFontClass alarmTableHeader" width="100%" alternateRowColors="true"
+									items="{dashBoardModel>/ptwPermitTable/results}" id="idPtwPermitTable"
+									visible="{= ${dashBoardModel>/locationHistorySelectTabs/iconFilterTab} === 'Permit To Work' &amp;&amp; (${dashBoardModel>/locationHistorySelectTabs/LocHistoryPTWFilterKey} === 'Active CW' || ${dashBoardModel>/locationHistorySelectTabs/LocHistoryPTWFilterKey} === 'Active HW' || ${dashBoardModel>/locationHistorySelectTabs/LocHistoryPTWFilterKey} === 'Active CSP' || ${dashBoardModel>/locationHistorySelectTabs/LocHistoryPTWFilterKey} === 'Energy Isolation')?true:false}">
+									<columns>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text class="iopFontClass iopRepTitleClass iopAlarmListTextClass" text="{i18n>location}"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<HBox alignContent="Center">
+												<Text class="iopFontClass iopRepTitleClass iopAlarmListTextClass" text="{i18n>createddate}"/>
+												<Button icon="sap-icon://sort" type="Transparent" class="sapUiTinyMarginBegin murphySortBtn" press="onDateSort"/>
+											</HBox>
+										</Column>
+										<Column minScreenWidth="Tablet">
+											<Text class="iopFontClass iopRepTitleClass iopAlarmListTextClass" text="Permit#"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text class="iopFontClass iopRepTitleClass iopAlarmListTextClass" text="Created By"/>
+										</Column>
+										<!--<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text class="iopFontClass iopRepTitleClass iopAlarmListTextClass" text="Task Description"/>
+										</Column>-->
+									</columns>
+									<items>
+										<ColumnListItem type="Active" press="onGetPTWPermitDetails">
+											<cells>
+												<Text class="iopFontClass iopAlarmListTextClass" tooltip="{dashBoardModel>LOCATION}" text="{dashBoardModel>LOCATION}"/>
+												<Text class="iopFontClass iopAlarmListTextClass"
+													text="{path:'dashBoardModel>PLANNEDDATETIME',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDate'}"/>
+												<Text class="iopFontClass iopAlarmListTextClass" text="{dashBoardModel>PERMITNUMBER}"/>
+												<Text class="iopFontClass iopAlarmListTextClass" text="{dashBoardModel>CREATEDBY}"/>
+												<!--	<Text class="iopFontClass iopAlarmListTextClass" text="{dashBoardModel>taskDescription}"/>-->
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</ScrollContainer>
+						</content>
+					</Panel>
+				</IconTabFilter>
+				<IconTabFilter visible="true" key="Bypass Log" text="Bypass Log">
+					<Panel expandable="false" expanded="true" class="iopFontClass iopAlarmListTextClass wellVisitConfigPanelPadding" headerText="" width="100%">
+						<headerToolbar>
+							<Toolbar height="3rem">
+								<ObjectStatus text="Showing List of Bypass log" state="None"></ObjectStatus>
+								<ToolbarSpacer></ToolbarSpacer>
+								<SearchField width="10rem" class="iopFontClass" placeholder="Search" liveChange="onTableSearch">
+									<tooltip class="iopFontClass" text="Search.."></tooltip>
+								</SearchField>
+								<SegmentedButton width="14rem" class="sapUiTinyMarginEnd" selectionChange="onLocHistoryIconTabSelect"
+									selectedKey="{dashBoardModel>/locationHistorySelectTabs/monthFilterBypassLog}">
+									<items>
+										<SegmentedButtonItem text="One Month" key="1"/>
+										<SegmentedButtonItem class="sapUiTinyMarginEnd" text="Three Month" key="3"/>
+									</items>
+								</SegmentedButton>
+							</Toolbar>
+						</headerToolbar>
+						<infoToolbar>
+							<Toolbar class="obxEngineToolbar">
+								<HBox width="100%">
+									<HBox items="{dashBoardModel>/locationHistoryData/locHistoryByPasslogStatusList}">
+										<Label width="8rem" text="{dashBoardModel>status} : {dashBoardModel>count}"/>
+									</HBox>
+								</HBox>
+							</Toolbar>
+						</infoToolbar>
+						<content>
+							<ScrollContainer height="{dashBoardModel>/locationHistoryScrollPanelHeight}" vertical="true"
+								class="iopDowntimeTypeHeader iopWellVisitScrollBorder sapUiTinyMarginBottom" horizontal="false">
+								<Table id="locHistoryBypassLogTable" sticky="ColumnHeaders" busyIndicatorDelay="0" class="iopFontClass alarmTableHeader" width="100%"
+									alternateRowColors="true" items="{dashBoardModel>/locationHistoryData/bypassLogTable}"
+									visible="{= ${dashBoardModel>/locationHistorySelectTabs/iconFilterTab} === 'Bypass Log'?true:false}"
+									busy="{dashBoardModel>/locationHistoryData/busyIndicator}">
+									<columns>
+										<Column minScreenWidth="Tablet">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Location"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<HBox alignItems="Center">
+												<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Date Time"/>
+												<Button icon="sap-icon://sort" type="Transparent" class="sapUiTinyMarginBegin murphySortBtn" press="onDateSort"/>
+											</HBox>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Bypass#"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Device Bypass"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Reason for Bypass"/>
+										</Column>
+										<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Status"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem type="Active" press="onGetBypassLogDetails">
+											<cells>
+												<Text class="iopFontClass iopAlarmListTextClass" text="{dashBoardModel>location}"/>
+												<!--<Text class="iopFontClass iopAlarmListTextClass"-->
+												<!--	text="{path:'dashBoardModel>bypassStartTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime'}"/>-->
+												<Text class="iopFontClass iopAlarmListTextClass"
+													text="{path:'dashBoardModel>bypassStartTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateLocHistory'}"/>
+												<Text class="iopFontClass iopAlarmListTextClass" text="{dashBoardModel>ssdBypassNum}"/>
+												<!--<Text class="iopFontClass iopPtwTextClass" tooltip="{dashBoardModel>deviceBypassed}"
+								text="{path:'dashBoardModel>facilityorsite',formatter:'com.sap.incture.Incture_IOP.util.formatter.showlessTextforOverFlow'}"/>
+							--><Text class="iopFontClass iopAlarmListTextClass" text="{dashBoardModel>deviceBypassed}"/>
+												<Text class="iopFontClass iopAlarmListTextClass" text="{dashBoardModel>reasonForBypass}"/>
+												<Text class="ioplocHistoryBypassLogOriginClass sapUiLargeMarginBegin iopTaskManagementTextFont" text="{dashBoardModel>bypassStatus}"
+													visible='{path:"dashBoardModel>bypassStatus", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnLocHisStatus"}'/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</ScrollContainer>
+						</content>
+					</Panel>
+				</IconTabFilter>
+				<IconTabFilter key="Energy Isolation" text="Energy Isolation" visible="{= ${dashBoardModel>/currentLocationInHierarchy} === 'EFS'}">
+					<Panel expandable="false" expanded="true" class="iopFontClass iopAlarmListTextClass wellVisitConfigPanelPadding" headerText="" width="100%">
+						<headerToolbar>
+							<Toolbar height="3rem">
+								<ObjectStatus text="Showing List of Energy Isolation" state="None"></ObjectStatus>
+								<ToolbarSpacer></ToolbarSpacer>
+								<SearchField width="10rem" class="iopFontClass" placeholder="Search" liveChange="onTableSearch">
+									<tooltip class="iopFontClass" text="Search.."></tooltip>
+								</SearchField>
+								<SegmentedButton width="14rem" class="sapUiTinyMarginEnd" selectionChange="onMonthFilterEnergyIsolationChange"
+									selectedKey="{dashBoardModel>/locationHistorySelectTabs/monthFilterEnergyIsolation}">
+									<items>
+										<SegmentedButtonItem text="One Month" key="one"/>
+										<SegmentedButtonItem class="sapUiTinyMarginEnd" text="Three Month" key="three"/>
+									</items>
+								</SegmentedButton>
+							</Toolbar>
+						</headerToolbar>
+						<infoToolbar>
+							<Toolbar class="obxEngineToolbar">
+								<HBox width="100%">
+									<HBox items="{dashBoardModel>/locationHistoryData/locHistoryEnergyIsolationStatusData}">
+										<Label width="8rem" text="{dashBoardModel>status} : {dashBoardModel>count}"/>
+									</HBox>
+								</HBox>
+							</Toolbar>
+						</infoToolbar>
+						<content>
+							<ScrollContainer height="{dashBoardModel>/locationHistoryScrollPanelHeight}" vertical="true"
+								class="iopDowntimeTypeHeader iopWellVisitScrollBorder sapUiTinyMarginBottom">
+								<Table id="locHistoryEnergyIsolationTable" sticky="ColumnHeaders" busyIndicatorDelay="0" class="iopFontClass alarmTableHeader" width="100%"
+									alternateRowColors="true" items="{dashBoardModel>/locationHistoryData/energyIsolationData}"
+									busy="{dashBoardModel>/locationHistoryData/busyIndicator}"
+									visible="{= ${dashBoardModel>/locationHistorySelectTabs/iconFilterTab} === 'Energy Isolation'?true:false}">
+									<columns>
+										<Column minScreenWidth="Tablet">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Location"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<HBox alignItems="Center">
+												<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Date Time"/>
+												<Button icon="sap-icon://sort" type="Transparent" class="sapUiTinyMarginBegin murphySortBtn" press="onDateSort"/>
+											</HBox>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Energy Isolation#"/>
+										</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Equipment Id"/>
+										</Column>
+										<Column minScreenWidth="Tablet" hAlign="Center" demandPopin="true">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Status"/>
+										</Column>
+									</columns>
+									<items>
+										<ColumnListItem type="Active" press="onGetEnergyIsolationDetails">
+											<cells>
+												<Text class="iopFontClass iopAlarmListTextClass" text="{dashBoardModel>locationName}"/>
+												<!--<Text class="iopFontClass iopAlarmListTextClass"-->
+												<!--	text="{path:'dashBoardModel>createdAt',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime'}"/>-->
+												<Text class="iopFontClass iopAlarmListTextClass"
+													text="{path:'dashBoardModel>createdAt',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateLocHistory'}"/>
+												<Text class="iopFontClass iopAlarmListTextClass" text="{dashBoardModel>id}"/>
+												<Text class="iopFontClass iopAlarmListTextClass" text="{dashBoardModel>equipmentId}"/>
+												<Text class="ioplocHistoryOriginClass sapUiLargeMarginBegin iopTaskManagementTextFont" text="{dashBoardModel>status}"
+													visible='{path:"dashBoardModel>status", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnLocHisStatus"}'/>
+											</cells>
+										</ColumnListItem>
+									</items>
+								</Table>
+							</ScrollContainer>
+						</content>
+					</Panel>
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+	</VBox>
+	<OverflowToolbar visible="{dashBoardModel>/locationHistoryData/locHistoryPaginationVisibility}" height="5%"
+		width="{= ${dashBoardModel>/panelProperties/showTaskManagementPanelIcon} === false ? '86%' : '100%' }"
+		class="LocHisOverflowToolbar iopLocHispagination" id="idLocHistoryPageNo">
+		<ToolbarSpacer/>
+		<Text id="idLocHistoryPageRange" text="{dashBoardModel>/locationHistoryPagination/PaginationText}"></Text>
+		<Button icon="sap-icon://navigation-left-arrow" press="onPreviousPagePress"
+			enabled="{dashBoardModel>/locationHistoryPagination/LocHistoryPreviousButtonEnable}"></Button>
+		<Button icon="sap-icon://navigation-right-arrow" press="onNextPagePress"
+			enabled="{dashBoardModel>/locationHistoryPagination/LocHistoryNextButtonEnable}"></Button>
+	</OverflowToolbar>
+</core:FragmentDefinition>

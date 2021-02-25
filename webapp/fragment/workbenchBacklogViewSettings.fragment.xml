@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+	<ViewSettingsDialog confirm="onWBViewSettingsBacklogConfirm" class="iopwbDialog" title="Sort/Group Backlogs" sortDescending="true">
+		<sortItems>
+			<ViewSettingsItem text="Date" key="createdOn" selected="true"/>
+			<ViewSettingsItem text="Tier" key="tier"/>
+		</sortItems>
+		<groupItems>
+			<ViewSettingsItem text="Task Type" key="taskType"/>
+			<ViewSettingsItem text="Location" key="taskLocationText"/>
+		</groupItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

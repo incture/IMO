@@ -1,0 +1,93 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+	xmlns:viz="sap.viz.ui5.controls" xmlns:viz.data="sap.viz.ui5.data" xmlns:ui="sap.ui.table" xmlns:myCustom="com.sap.incture.Incture_IOP.util">
+	<VBox height="100%">
+		<HBox height="2.1rem" class="sapUiTinyMarginTop sapUiTinyMarginBottom sapUiTinyMarginBegin" justifyContent="SpaceBetween">
+			<VBox class="sapUiTinyMarginTop sapUiTinyMarginEnd">
+				<HBox>
+					<Title text="PW Hopper" level="H2" textAlign="Begin" class="sapUiTinyMarginBegin"/>
+				</HBox>
+			</VBox>
+			<HBox justifyContent="End" class="sapUiSizeCompact">
+				<HBox class="sapUiTinyMarginBottom">
+					<core:Icon src="sap-icon://circle-task-2" class="activecolor"/>
+					<Label class="sapUiTinyMarginBegin sapUiTinyMarginEnd" text="Active"></Label>
+					<core:Icon src="sap-icon://circle-task-2" class="inprogresscolor"/>
+					<Label class="sapUiTinyMarginBegin sapUiTinyMarginEnd" text="Inprogress"></Label>
+					<core:Icon src="sap-icon://circle-task-2" class="completedColor"/>
+					<Label class="sapUiTinyMarginBegin sapUiTinyMarginEnd" text="Completed"></Label>
+					<core:Icon src="sap-icon://circle-task-2" class="inactiveColor"/>
+					<Label class="sapUiTinyMarginBegin sapUiTinyMarginEnd" text="Inactive"></Label>
+					<Button icon="sap-icon://filter" tooltip="Filter" press="onPwHopperRoleSortNew" class="sapUiSmallMarginBeginEnd"/>
+				</HBox>
+			</HBox>
+		</HBox>
+		<ScrollContainer id="idPwHopperScroll" height="{= ${dashBoardModel>/HierarchyPanelOpen} === true?'calc(100vh - 14.1rem)':'calc(100vh - 26.5rem)'}" vertical="true">
+			<myCustom:Table sticky="ColumnHeaders" class="sapUiSizeCompact sapUiTinyMarginEnd iopFontClass alarmTableHeader"
+				items="{dashBoardModel>/pwHopperData/tableData}" alternateRowColors="false" id="idPwHopperList" rightPress="onRightPressPwHopper"
+				busy="{dashBoardModel>/busyIndicators/pwHopperTblBusy}" busyIndicatorDelay="0">
+				<myCustom:columns>
+					<Column width="22%" minScreenWidth="Tablet" demandPopin="true">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Well Name"/>
+					</Column>
+					<Column width="12%" minScreenWidth="Tablet" demandPopin="true">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Potential Uplift (BOE)"/>
+					</Column>
+					<Column width="12%" minScreenWidth="Tablet" demandPopin="true">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Work Over Cost"/>
+					</Column>
+					<Column width="12%" minScreenWidth="Tablet" demandPopin="true">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="$/BOE"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="POT"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="RE"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="WW"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Center">
+						<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="ALS"/>
+					</Column>
+					<Column width="10%"></Column>
+				</myCustom:columns>
+				<myCustom:items>
+					<ColumnListItem unread='{path:"dashBoardModel>pwHopperNotification", formatter:"com.sap.incture.Incture_IOP.util.formatter.getHighlightColorforPwHopperNotification"}'>
+						<cells>
+							<Text text="{dashBoardModel>location}" class="iopFontClass iopAlarmListTextClass"/>
+							<Text text="{dashBoardModel>potentialUplift}" class="iopFontClass iopAlarmListTextClass"/>
+							<Text text="{dashBoardModel>workOverCost}" class="iopFontClass iopAlarmListTextClass"/>
+							<Text text="{dashBoardModel>boe}" class="iopFontClass iopAlarmListTextClass"/>
+							<core:Icon src="sap-icon://circle-task-2" class="iopAlarmIndicatorClass"
+								tooltip="{path:'dashBoardModel>potStatus', formatter:'com.sap.incture.Incture_IOP.util.formatter.getPWHopperStatus'}"
+								color="{dashBoardModel>potStatus}"/>
+							<core:Icon src="sap-icon://circle-task-2" class="iopAlarmIndicatorClass"
+								tooltip="{path:'dashBoardModel>reStatus', formatter:'com.sap.incture.Incture_IOP.util.formatter.getPWHopperStatus'}"
+								color="{dashBoardModel>reStatus}"/>
+							<core:Icon src="sap-icon://circle-task-2" class="iopAlarmIndicatorClass"
+								tooltip="{path:'dashBoardModel>wwStatus', formatter:'com.sap.incture.Incture_IOP.util.formatter.getPWHopperStatus'}"
+								color="{dashBoardModel>wwStatus}"/>
+							<core:Icon src="sap-icon://circle-task-2" class="iopAlarmIndicatorClass"
+								tooltip="{path:'dashBoardModel>alsStatus', formatter:'com.sap.incture.Incture_IOP.util.formatter.getPWHopperStatus'}"
+								color="{dashBoardModel>alsStatus}"/>
+							<VBox width="100%" visible="true" class="pwHopperActionIconSetStyle">
+								<HBox justifyContent="SpaceBetween" width="100%" height="50%">
+									<VBox width="40%" class="pwHopperIcon">
+										<core:Icon src="sap-icon://InctureIopv2/hopper" visible="{dashBoardModel>proactive}" tooltip="Proactive WorkOver Item"
+											class="iopInvestigationDopImg pwIconColor" press="onIconPress"/>
+									</VBox>
+									<VBox width="40%">
+										<Image src="{path:'i18n>incognito', formatter:'com.sap.incture.Incture_IOP.util.formatter.getImagePath'}"
+											visible='{path: "dashBoardModel>hasInvestigation", formatter:"com.sap.incture.Incture_IOP.util.formatter.getDOPEngInvestigation"}'
+											tooltip="Investigation" class="iopInvestigationDopImg" press="onIconPress"/>
+									</VBox>
+								</HBox>
+							</VBox>
+						</cells>
+					</ColumnListItem>
+				</myCustom:items>
+			</myCustom:Table>
+		</ScrollContainer>
+	</VBox>
+</core:FragmentDefinition>

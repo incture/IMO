@@ -1,0 +1,70 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.f">
+	<HBox id="idCollabTaskHBox" justifyContent="SpaceAround" class="iopwbCollabTitleBoxClass">
+		<Text text="{dashBoardModel>/collabTaskType}" class="iopFontClass iopwbCollabTitleClass"/>
+	</HBox>
+	<ScrollContainer vertical="true" id="idTdRightScrollCont" height="{dashBoardModel>/taskPanelSize/taskPanelScrollHeight}">
+		<IconTabBar expandable="false" backgroundDesign="Solid" class="iopwbCollabIconTab " busy="{dashBoardModel>/busyIndicators/collabPanelBusy}"
+			busyIndicatorDelay="0" id="idCollaborationTab" select="onTaskCollabTabSelect">
+			<items>
+				<IconTabFilter text="Comments" key="Comments">
+					<VBox>
+						<VBox visible='{parts:["dashBoardModel>/isWebReadOnlyRole","dashBoardModel>/moduleReadOnly", "dashBoardModel>/panelProperties/currentSelectKey"],formatter:"com.sap.incture.Incture_IOP.util.formatter.handleVisForModuleReadonly"}'>
+							<TextArea placeholder="Enter your comments (optional)" rows="5" liveChange="onCommentLiveChnage" value="{dashBoardModel>/newComment}"
+								class="iopwbTaskBoderLightClass iopFontClass iopwbCommentArea" width="100%" id="idTMTextArea"/>
+							<HBox class="iopwbCommentPostClass">
+								<Button text="Post" class="iopwbPostBtnClass iopBtnClass sapUiSizeCompact" press="onPostComment"/>
+							</HBox>
+						</VBox>
+						<VBox items="{ path: 'oTaskPanelDetailModel>/collabrationDtos', factory: '.commentListFactory' }"/>
+					</VBox>
+				</IconTabFilter>
+				<IconTabFilter text="Attachments" key="Attachments">
+					<Text text="Please select a file to attach" class="iopFontClass ipowbAttachmentTextClass sapUiTinyMarginBottom" width="100%" visible='{parts:["dashBoardModel>/isWebReadOnlyRole","dashBoardModel>/moduleReadOnly", "dashBoardModel>/panelProperties/currentSelectKey"],formatter:"com.sap.incture.Incture_IOP.util.formatter.handleVisForModuleReadonly"}'/>
+					<u:FileUploader id="idTMFileUploader" name="myFileUpload" uploadUrl="upload/" tooltip="Upload your file to the local server"
+						change="onFileUploadChange" fileAllowed="fileAllowed" class="iopwbFileUploaderClass sapUiSizeCompact sapUiTinyMarginBottom"
+						icon="sap-icon://open-folder" multiple="false" buttonText="Select a File" sameFilenameAllowed="false" visible='{parts:["dashBoardModel>/isWebReadOnlyRole","dashBoardModel>/moduleReadOnly", "dashBoardModel>/panelProperties/currentSelectKey"],formatter:"com.sap.incture.Incture_IOP.util.formatter.handleVisForModuleReadonly"}'/>
+					<core:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.ContentEditableDivPaste" type="XML" id="pasteContentArea"></core:Fragment>
+					<List items="{ path: 'oTaskPanelDetailModel>/collabrationDtos', factory: '.attachmentListFactory' }"/><!--class="sapUiSizeCompact" mode="Delete" delete="onDeletingAttachment"--></IconTabFilter>
+				<IconTabFilter text="Activity Log" key="ActivityLog"
+					visible="{parts:[{path:'dashBoardModel>/isInvestigationCreate'},{path:'dashBoardModel>/isInquiryCreate'},{path:'dashBoardModel>/userData/isPOT'},{path:'oTaskPanelDetailModel>/taskSubmittedList'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.showActivityLog'}">
+					<l:VerticalLayout content="{oTaskPanelDetailModel>/taskSubmittedList}" width="100%" class="processFlowMainStyleClass">
+						<l:content>
+							<VBox>
+								<HBox>
+									<Image src="{path:'oTaskPanelDetailModel>status', formatter:'com.sap.incture.Incture_IOP.util.formatter.fnGetTheTaskStatusIcon'}"
+										class="completedIcon"/>
+									<HBox justifyContent="SpaceBetween" width="100%">
+										<Label text="{oTaskPanelDetailModel>team}" class="iopFontClass timeLineDescrptionTextStyle"/>
+										<Text text='{parts:["oTaskPanelDetailModel>createdAtInString"], formatter:"com.sap.incture.Incture_IOP.util.formatter.getLocalDate"}'
+											class="iopFontClass iopActivityTimeClass sapUiTinyMarginEnd"
+											visible='{parts:["oTaskPanelDetailModel>status","oTaskPanelDetailModel>completedAtInString"], formatter:"com.sap.incture.Incture_IOP.util.formatter.showCreatedDate"}'/>
+										<Text text='{parts:["oTaskPanelDetailModel>completedAtInString"], formatter:"com.sap.incture.Incture_IOP.util.formatter.getLocalDate"}'
+											class="iopFontClass iopActivityTimeClass sapUiTinyMarginEnd"
+											visible='{parts:["oTaskPanelDetailModel>status","oTaskPanelDetailModel>completedAtInString"], formatter:"com.sap.incture.Incture_IOP.util.formatter.showCompletedDate"}'/>
+									</HBox>
+								</HBox>
+								<HBox class="processFlowLineStyle">
+									<Image src="{path:'i18n>barImage', formatter:'com.sap.incture.Incture_IOP.util.formatter.getImagePath'}" width="100%" height="100%"/>
+									<VBox width="95%" class="taskBoxStyle">
+										<HBox justifyContent="SpaceBetween" visible="{= ${oTaskPanelDetailModel>user} !== undefined}">
+											<VBox>
+												<Text text="{oTaskPanelDetailModel>description}" class="iopFontClass iopSmallFontClass"
+													visible="{= ${oTaskPanelDetailModel>status} === 'RESOLVED' || ${oTaskPanelDetailModel>status} === 'COMPLETED' || ${oTaskPanelDetailModel>status} === 'SUBMITTED'}"/>
+												<Text text="{oTaskPanelDetailModel>user}" class="iopFontClass iopSmallFontClass sapUiTinyMarginTop"/>
+												<Text text="{oTaskPanelDetailModel>status}" class="iopFontClass iopSmallFontClass sapUiTinyMarginTop logStatusStyle"
+													visible="{parts:[{path:'oTaskPanelDetailModel>status'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.dispalyStatus'}"/>
+											</VBox>
+											<f:Avatar initials="{parts:[{path:'oTaskPanelDetailModel>user'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.getinitials'}"
+												displaySize="XS" displayShape="Circle" class="sapUiTinyMarginEnd" tooltip="{oTaskPanelDetailModel>user}"/>
+										</HBox>
+										<HBox class="taskSeperatorStyle" width="100%"/>
+									</VBox>
+								</HBox>
+							</VBox>
+						</l:content>
+					</l:VerticalLayout>
+				</IconTabFilter>
+			</items>
+		</IconTabBar>
+	</ScrollContainer>
+</core:FragmentDefinition>

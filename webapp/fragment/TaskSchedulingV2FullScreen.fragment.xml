@@ -1,0 +1,8 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Dialog showHeader="false" contentWidth="100%" class="designateDialogClass">
+		<core:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.TaskSchedulingV2" type="XML"></core:Fragment>
+		<buttons>
+			<Button text="Close" press="onCloseTaskSchedulerV2FullScreen" class="sapUiSizeCompact"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

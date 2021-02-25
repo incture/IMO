@@ -1,0 +1,182 @@
+<mvc:View controllerName="com.sap.incture.Incture_IOP.controller.DashBoardView" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt" xmlns:myCustom="com.sap.incture.Incture_IOP.util" xmlns="sap.m"
+	xmlns:c="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Page title="{i18n>title}" enableScrolling="false" class="iopPageBckgrnd iopFontClass weight sapUiSizeCompact">
+		<content>
+			<VBox height="{dashBoardModel>/notificationPanelHeight}" class="iopRightPanelContainer"
+				width="{= ${dashBoardModel>/taskManagementPanel/showTaskManagementPanel} === true ? '25rem' : '5%' }"
+				visible='{parts:["dashBoardModel>/isWebReadOnlyRole","dashBoardModel>/moduleReadOnly", "dashBoardModel>/panelProperties/currentSelectKey", "dashBoardModel>/oUserDetail/addresses/0/country"],formatter:"com.sap.incture.Incture_IOP.util.formatter.manageTaskManagementPanelForModReadOnly"}'>
+				<c:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.TaskManagement" type="XML" id="taskmanagementpane1"></c:Fragment>
+			</VBox>
+			<VBox height="{dashBoardModel>/notificationPanelHeight}" class="iopRightPanelContainer" visible="{dashBoardModel>/showNotificationFragment}"
+				width="25rem">
+				<c:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.notificationFragment" type="XML" id="notificationPanel"></c:Fragment>
+			</VBox>
+			<!--<l:FixFlex id="rocMainFixFlex" class="fixFlexHorizontal" fixFirst="false" fixContentSize="{= ${dashBoardModel>/isWebReadOnlyRole} === true ? '0' : '5%' }" vertical="false">-->
+			<l:FixFlex id="rocMainFixFlex" class="fixFlexHorizontal" fixFirst="false"
+				fixContentSize='{parts:["dashBoardModel>/isWebReadOnlyRole","dashBoardModel>/moduleReadOnly", "dashBoardModel>/panelProperties/currentSelectKey", "dashBoardModel>/oUserDetail/addresses/0/country"],formatter:"com.sap.incture.Incture_IOP.util.formatter.manageTMPanelWidthForModReadOnly"}'
+				vertical="false">
+				<l:flexContent>
+					<tnt:ToolPage id="toolPage">
+						<tnt:sideContent>
+							<tnt:SideNavigation id="sideNavigationMain" class="iopV2SidePanelBgColor iopV2SidePanelNoBorder iopV2SidePanelRightBorder" expanded="true"
+								itemSelect="onSideNavigationItemSelect">
+								<tnt:NavigationList id="appsNavList"
+									class="iopV2SidePanelActive iopV2SidePanelTextIconColor iopV2SidePanelSelected iopV2SidePanelBgColor iopV2SidePanelNoBorder iopV2SidePanelMargin">
+									<myCustom:standardListItemNew text="Dashboard" icon=" sap-icon://performance" enabled="true" key="dashboard" visible="false"></myCustom:standardListItemNew>
+									<myCustom:standardListItemNew text="Tasks" icon="sap-icon://activity-2" enabled="true" key="tasks" visible="false"></myCustom:standardListItemNew>
+									<myCustom:standardListItemNew text="Alarms" icon="sap-icon://InctureIopv2/alarms" enabled="true" key="alarms"
+										pCount="{dashBoardModel>/webSocketProperty/data/alarmNotificationDto/alarmCount}" pIcon="sap-icon://circle-task-2"
+										visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isAlarmReadOnly} === true}"></myCustom:standardListItemNew>
+									<myCustom:standardListItemNew text="Task Scheduler" icon="sap-icon://InctureIopv2/taskscheduler" enabled="true" key="scheduler"
+										visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isTaskSchedulerReadOnly} === true}"></myCustom:standardListItemNew>
+									<myCustom:standardListItemNew text="DOP / DGP" icon="sap-icon://InctureIopv2/dop" enabled="true" key="DOP"
+										visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/userData/isENG} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isDOPReadOnly} === true}"></myCustom:standardListItemNew>
+									<myCustom:standardListItemNew text="PROVE" icon="sap-icon://InctureIopv2/ndtpv" enabled="true" key="ndtpv"
+										visible="{= ${dashBoardModel>/userData/isENG} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isProveReadOnly} === true}"></myCustom:standardListItemNew>
+									<myCustom:standardListItemNew text="Frac Monitoring" pCount="{dashBoardModel>/webSocketProperty/data/fracNotificationDto/fracCount}"
+										pIcon="sap-icon://circle-task-2" icon="sap-icon://InctureIopv2/createfrac" enabled="true" key="fracMonitoring" class="FracIconSize"
+										visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isENG} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isFracReadOnly} === true) &amp;&amp; ${dashBoardModel>/userData/hasUSRole} === true}"></myCustom:standardListItemNew>
+									<myCustom:standardListItemNew text="Downtime Capture" icon="sap-icon://InctureIopv2/downtime" enabled="true" key="downtime"
+										visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isDowntimeReadOnly} === true}"></myCustom:standardListItemNew>
+									<myCustom:standardListItemNew text="Permit To Work" icon="sap-icon://InctureIopv2/permitTowork" enabled="true" key="permit"
+										visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/isWebReadOnlyRole} === true) &amp;&amp; ${dashBoardModel>/userData/hasUSRole} === true}"></myCustom:standardListItemNew>
+									<myCustom:standardListItemNew text="Analytics" icon="sap-icon://InctureIopv2/analytics" enabled="true" key="analytics"
+										visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/userData/isENG} === true || ${dashBoardModel>/isWebReadOnlyRole} === true) &amp;&amp; ${dashBoardModel>/userData/hasUSRole} === true}"></myCustom:standardListItemNew>
+									<myCustom:standardListItemNew text="PW Hopper" key="pwhopper" enabled="true"
+										pCount="{dashBoardModel>/webSocketProperty/data/pwHopperNotificationDto/hopperCount}" pIcon="sap-icon://circle-task-2"
+										visible="{= ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/userData/isWW} === true || ${dashBoardModel>/userData/isRE} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isPWHopperReadOnly} === true}"
+										icon="sap-icon://InctureIopv2/hopper"></myCustom:standardListItemNew>
+									<myCustom:standardListItemNew text="OBX" key="obx" enabled="true"
+										visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isOBXReadOnly} === true) &amp;&amp; ${dashBoardModel>/userData/hasUSRole} === true}"
+										icon="sap-icon://InctureIopv2/OBX1"></myCustom:standardListItemNew>
+									<myCustom:standardListItemNew text="Location History" key="locHistory" enabled="true" icon="sap-icon://functional-location"></myCustom:standardListItemNew>
+									
+									<!--AN: Start of #prod-msgToROC 17-11-2020-->
+									<!--<myCustom:standardListItemNew text="Workbench" key="workbench" enabled="true" icon="sap-icon://manager-insight"
+										visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === true) &amp;&amp; ${dashBoardModel>/userData/hasUSRole} === true}"></myCustom:standardListItemNew>-->
+									<myCustom:standardListItemNew text="Workbench" key="workbench" enabled="true" icon="sap-icon://manager-insight"
+										visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === true) &amp;&amp; ${dashBoardModel>/userData/hasUSRole} === true}"></myCustom:standardListItemNew>
+									<!--AN: End of #prod-msgToROC 17-11-2020-->
+									
+								</tnt:NavigationList>
+								<tnt:footer >
+									<tnt:NavigationList id="appsNavList1" class="iopV2SidePanelTextIconColor iopV2SidePanelBgColor iopV2SidePanelNoBorder iopV2SidePanelMargin">
+										<tnt:NavigationListItem tooltip="{= ${dashBoardModel>/panelProperties/isLock} === false? 'Unlock Panel' : ''}" key="Lock" id="idLockicon"
+											enabled="true"
+											icon="{= ${dashBoardModel>/panelProperties/isLock} === false? 'sap-icon://InctureIopv2/locked' : 'sap-icon://InctureIopv2/unlocked'}"
+											text="{= ${dashBoardModel>/panelProperties/isLock} === false? '' : 'Lock Panel'}"></tnt:NavigationListItem >
+										<!--<tnt:NavigationListItem  text=" " key="Lock1" enabled="true" visible="true"></tnt:NavigationListItem >-->
+									</tnt:NavigationList>
+								</tnt:footer>
+							</tnt:SideNavigation>
+						</tnt:sideContent>
+						<tnt:mainContents>
+							<Page class="iopV2whiteBackground iopV2PanelNavContainerWrapClass" showHeader="false" enableScrolling="false">
+								<content height="100%">
+									<HBox height="2rem" class="iopV2hirarchyPanelHeaderContainer" justifyContent="SpaceBetween">
+										<VBox class="sapUiTinyMarginBegin iopV2whiteBackground" visible="{= ${dashBoardModel>/HierarchyPanelOpen} === true}">
+											<Button icon="sap-icon://tree" text="Open Hierarchy Panel" iconFirst="true" press="handleHierarchyPaneOpen"/>
+										</VBox>
+										<VBox class="sapUiTinyMarginBegin iopV2whiteBackground" visible="{= ${dashBoardModel>/HierarchyPanelOpen} === false}">
+											<Button icon="sap-icon://tree" text="Close Hierarchy Panel" iconFirst="true" press="handleHierarchyPaneOpen"/>
+										</VBox>
+										<HBox alignItems="Center" class="sapUiTinyMarginEnd">
+											<ObjectStatus visible="true" text="Logged in as" state="None" class="sapUiTinyMarginEnd"/>
+											<ObjectStatus text="{dashBoardModel>/changeSeatData/changeSeatIOPUserDisplayRoles}" class="iopChangeSeatDisplayRoles"></ObjectStatus>
+												<!--Start of AN: #TimeZone -->
+											<ObjectStatus visible="{dashBoardModel>/userData/isROC}" text="Time zone:" state="None" class="sapUiTinyMarginBegin sapUiTinyMarginEnd"/>
+											<Select visible="{dashBoardModel>/userData/isROC}" class="sapUiSizeCompact iopSelectClass iopwbTaskBoderLightClass" selectedKey="{dashBoardModel>/sSelectedTimeZone}" change="onTimeZoneChange">
+												<c:Item text="User" key="SYSTEM"></c:Item>
+												<!--<c:Item text="CST" key="CST"></c:Item>
+												<c:Item text="MST" key="MST"></c:Item>
+												<c:Item text="PST" key="PST"></c:Item>-->
+												<c:Item text="Field" key="FIELD"></c:Item>
+											</Select>
+											<!--End of AN: #TimeZone -->
+										</HBox>
+									</HBox>
+									<VBox class="sapUiTinyMargin iopV2whiteBackground">
+										<c:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.SelectedHierarchy" type="XML" id="selectedHierarchy"></c:Fragment>
+									</VBox>
+									<Panel class="hirarchyWrapperPanel" id="hierarchyWrapPanell" expandAnimation="true" expandable="true" expanded="true">
+										<content>
+											<c:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.FieldList" type="XML" id="hierarchyPanel"></c:Fragment>
+										</content>
+									</Panel>
+									<NavContainer id="pageContainer">
+										<pages>
+											<!--Dashboard Visibility is false-->
+											<VBox class="iopV2whiteBackground" id="root" width="100%" visible="false">
+												<HBox alignContent="Center" justifyContent="Center" class="sapUiLargeMarginTop">
+													<Title text="DashBoard" class="iopDashBoardText"/>
+												</HBox>
+											</VBox>
+											<VBox class="iopV2whiteBackground" id="alarmsPanel"
+												visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isAlarmReadOnly} === true}">
+												<c:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.alarmList" type="XML" id="alarmFragment"></c:Fragment>
+											</VBox>
+											<VBox class="iopV2whiteBackground" id="ndtpvPanel"
+												visible="{= ${dashBoardModel>/userData/isENG} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isProveReadOnly} === true}">
+												<c:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.SpotFire" type="XML" id="ndtpvFragmane"></c:Fragment>
+											</VBox>
+											<VBox class="iopV2whiteBackground" id="downtimePanel"
+												visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isDowntimeReadOnly} === true}">
+												<c:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.DownTimeCapture" type="XML" id="downtimeFragment"></c:Fragment>
+											</VBox>
+											<VBox class="iopV2whiteBackground" id="ptwPanel" width="100%"
+												visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/isWebReadOnlyRole} === true}">
+												<c:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.PermitToWork" type="XML" id="ptwFragment"></c:Fragment>
+											</VBox>
+											<VBox class="iopV2whiteBackground" id="analyticsPanel"
+												visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/userData/isENG} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isAnalyticsReadOnly} === true}">
+												<c:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.Pot" type="XML" id="analyticspotFragment"></c:Fragment>
+											</VBox>
+											<VBox class="iopV2whiteBackground" id="taskSchedulerPanel" height="100%"
+												visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isTaskSchedulerReadOnly} === true}">
+												<c:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.TaskSchedulingV2" type="XML" id="taskschedulerFragment"></c:Fragment>
+											</VBox>
+											<VBox class="iopV2whiteBackground" id="dopPanel"
+												visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/userData/isENG} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isDOPReadOnly} === true}">
+												<c:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.dop" type="XML" id="dopFragment"></c:Fragment>
+											</VBox>
+											<VBox class="iopV2whiteBackground" id="fracMonitoringPanel">
+												<c:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.FracMonitoring" type="XML" id="fracMonitorFragment"></c:Fragment>
+											</VBox>
+											<VBox class="iopV2whiteBackground" id="pwhopperPanel">
+												<c:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.Pwhopper" type="XML" id="pwhopperFragment"></c:Fragment>
+											</VBox>
+											<VBox
+												visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isOBXReadOnly} === true}"
+												class="iopV2whiteBackground" id="obxPanel">
+												<c:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.ObxScheduler" type="XML" id="obxFragment"></c:Fragment>
+											</VBox>
+											<VBox class="iopV2whiteBackground" id="locHistoryPanel">
+												<c:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.LocationHistory" type="XML" id="locHistoryFragment"></c:Fragment>
+											</VBox>
+											<VBox class="iopV2whiteBackground" id="workbenchPanel" width="100%"
+												visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/userData/isENG} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === true}">
+												<c:Fragment fragmentName="com.sap.incture.Incture_IOP.fragment.workbench" type="XML" id="workbenchFragment"></c:Fragment>
+											</VBox>
+										</pages>
+									</NavContainer>
+								</content>
+							</Page>
+						</tnt:mainContents>
+					</tnt:ToolPage>
+				</l:flexContent>
+				<l:fixContent></l:fixContent>
+			</l:FixFlex>
+		</content>
+		<footer>
+			<OverflowToolbar class="iopFooterColor">
+				<ToolbarSpacer width="95%"/>
+				<HBox>
+					<Button type="Default" icon="sap-icon://message-popup" class="iopFooterButton" press="onOpenNotification"/>
+					<Button type="Default" text="{dashBoardModel>/webSocketProperty/data/notifTotalCount}" class="iopFooterCountButton"
+						press="onOpenNotification"/>
+				</HBox>
+			</OverflowToolbar>
+		</footer>
+	</Page>
+</mvc:View>

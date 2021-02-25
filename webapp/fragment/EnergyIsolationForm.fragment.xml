@@ -1,0 +1,625 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:icon="sap.ui.core.Icon" xmlns:f="sap.f">
+	<Dialog showHeader="false" verticalScrolling="false" contentWidth="90%" contentHeight="90%"
+		class="iopLocationHistoryCloseButton iopPtwOverFlow">
+		<HBox justifyContent="End" height="0rem">
+			<Button icon="sap-icon://sys-cancel" class="iopwbCloseBtnClass" type="Transparent" press="onEnergyIsolationFormClose"/>
+		</HBox>
+		<HBox width="100%">
+			<VBox width="70%">
+				<HBox alignItems="Center" class="sapUiTinyMarginTop sapUiTinyMarginBottom" width="100%">
+					<HBox width="90%" height="2rem" class="sapUiSmallMarginBegin">
+						<Image src="{path:'i18n>murphy',formatter:'com.sap.incture.Incture_IOP.util.formatter.getImagePath'}" width="100px" height="40px"
+							tooltip="Murphy Logo"/>
+					</HBox>
+					<HBox class="iopPrintButtonClass">
+						<Button type="Transparent" icon="sap-icon://print" text="Print" press="onPrintEnergyIsolation"
+							class="sapUiTinyMarginTop sapUiSmallMarginEnd iopPtwPrintButton sapUiSizeCompact uoNoPrint"></Button>
+					</HBox>
+				</HBox>
+				<HBox alignItems="Center" height="2rem" width="97.7%" class="sapUiTinyMarginTop EnergyIsolationHeader sapUiTinyMarginBegin">
+					<Label text="ENERGY ISOLATION AUTHORIZATION FORM" design="Bold" class="sapUiTinyMarginBeginEnd ptwFontColor"/>
+				</HBox>
+				<ScrollContainer height="{dashBoardModel>/EnergyIsolationFromHeight}" horizontal="false" vertical="true">
+					<l:VerticalLayout width="97%" class="sapUiSmallMarginTopBottom sapUiSmallMarginBeginEnd sapUiSizeCompact">
+						<HBox width="100%">
+							<VBox width="20%">
+								<HBox width="90%" height="2rem" alignItems="Center">
+									<Label text="Permit No:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								</HBox>
+								<HBox width="90%" height="2rem" alignItems="Center">
+									<Label text="Planned Date of Work:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								</HBox>
+								<!--<HBox width="90%" height="2rem" alignItems="Center">
+									<Label text="Start Time:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								</HBox>-->
+								<HBox width="90%" height="2rem" alignItems="Center">
+									<Label text="Facility:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								</HBox>
+								<HBox width="90%" height="2rem" alignItems="Center">
+									<Label text="Permit Holder:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								</HBox>
+								<HBox width="90%" height="2rem" alignItems="Center" visible="{dashBoardModel>/locationHistoryData/byPassLogPersonRespEditable}">
+									<Label text="Permit Issuer:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								</HBox>
+							</VBox>
+							<VBox width="28%">
+								<HBox width="90%" height="2rem" alignItems="Start" class="PtwHboxFlexGrow">
+									<Input value="{dashBoardModel>/ptwEnergyIsolationDetail/id}" class="ptwInputBox" editable="false"></Input>
+								</HBox>
+								<HBox width="90%" height="2rem" alignItems="Start" class="PtwHboxFlexGrow">
+									<!--<Input-->
+									<!--	value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/date',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime'}"-->
+									<!--	class="ptwInputBox" editable="false"></Input>-->
+									<Input
+										value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/date',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateLocHistory'}"
+										class="ptwInputBox" editable="false"></Input>
+								</HBox>
+								<!--<HBox width="90%" height="2rem" alignItems="Start" class="PtwHboxFlexGrow">
+									<Input
+										value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/plannedDate',formatter:'com.sap.incture.Incture_IOP.util.formatter.EnergyIsolationgetTime'}"
+										class="ptwInputBox" editable="false"></Input>
+								</HBox>-->
+								<HBox width="90%" height="2rem" alignItems="Start" class="PtwHboxFlexGrow">
+									<Input value="{dashBoardModel>/ptwEnergyIsolationDetail/locationName}" class="ptwInputBox" editable="false"></Input>
+								</HBox>
+								<HBox width="90%" height="2rem" alignItems="Start" class="PtwHboxFlexGrow">
+									<Input value="{dashBoardModel>/ptwEnergyIsolationDetail/permHoldName}" class="ptwInputBox" editable="false"></Input>
+								</HBox>
+								<HBox width="100%" height="2rem" alignItems="Start" class="PtwHboxFlexGrow"
+									visible="{dashBoardModel>/locationHistoryData/byPassLogPersonRespEditable}">
+									<ComboBox class="sapUiSizeCompact iopEnergyIsoComboBoxClass" items="{dashBoardModel>/bypassPersonRespList}"
+										visible="{dashBoardModel>/locationHistoryData/byPassLogPersonRespEditable}" change="onChangeBypassResp" selectedKey="">
+										<core:ListItem key="{dashBoardModel>emailId}" text="{dashBoardModel>firstName} {dashBoardModel>lastName}"/>
+									</ComboBox>
+								</HBox>
+							</VBox>
+							<VBox width="26%">
+								<!--	<HBox width="90%" height="2rem" alignItems="Center">
+									<Label text="Date:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								</HBox>-->
+							<!--	<HBox width="90%" height="2rem" alignItems="Center">
+									<Label text="Contractor Performing Work:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								</HBox>-->
+								<HBox width="90%" height="2rem" alignItems="Center">
+									<Label text="Est. Time of Completion:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								</HBox>
+								<HBox width="90%" height="2rem" alignItems="Center">
+									<Label text="Equipment ID/Tag:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								</HBox>
+								<HBox width="90%" height="2rem" alignItems="Center">
+									<Label text="Work Order No.(if applicable):" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								</HBox>
+							</VBox>
+							<VBox width="26%">
+								<!--<HBox width="100%" height="2rem" alignItems="Start" class="PtwHboxFlexGrow">
+									<Input value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/date',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopdateFormate'}"
+										class="ptwInputBox" editable="false"></Input>
+								</HBox>-->
+							<!--	<HBox width="100%" height="2rem" alignItems="Start" class="PtwHboxFlexGrow">
+									<Input value="{dashBoardModel>/ptwEnergyIsolationDetail/contractorName}" class="ptwInputBox" editable="false"></Input>
+								</HBox>-->
+								<HBox width="100%" height="2rem" alignItems="Start" class="PtwHboxFlexGrow">
+									<!--<Input-->
+									<!--	value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/expectTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime'}"-->
+									<!--	class="ptwInputBox" editable="false"></Input>-->
+									<Input
+										value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/expectTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateLocHistory'}"
+										class="ptwInputBox" editable="false"></Input>
+								</HBox>
+								<HBox width="100%" height="2rem" alignItems="Start" class="PtwHboxFlexGrow">
+									<Input value="{dashBoardModel>/ptwEnergyIsolationDetail/equipId}" class="ptwInputBox" editable="false"></Input>
+								</HBox>
+								<HBox width="100%" height="2rem" alignItems="Start" class="PtwHboxFlexGrow">
+									<Input value="{dashBoardModel>/ptwEnergyIsolationDetail/workOrderNum}" class="ptwInputBox" editable="false"></Input>
+								</HBox>
+							</VBox>
+						</HBox>
+						<HBox alignItems="Center" height="2rem" width="100%" class="ptwUpperBoxBorder sapUiSmallMarginTop EnergyIsolationHeader">
+							<Label text="TYPE OF ENERGY TO BE ISOLATED :" design="Bold" class="sapUiTinyMarginBeginEnd ptwFontColor"/>
+						</HBox>
+						<HBox width="100%" alignItems="Center" class="sapUiTinyMarginEnd ptwBoxBottomRightBorder ptwBoxLeftBorder">
+							<Input value="{dashBoardModel>/ptwEnergyIsolationDetail/energyType}" class="ptwInputBoxForNoLine" width="100%"></Input>
+							<!--<HBox width="17%" class="ptwBoxBottomRightBorder ptwBoxLeftBorder">
+								<CheckBox text="Electrical" selected="{= ${dashBoardModel>/ptwEnergyIsolationDetail/energyType}=== 'Electrical'? true : false}"
+									class="sapUiTinyMarginBegin" editable="false"/>
+							</HBox>
+							<HBox width="17%" class="ptwBoxBottomRightBorder">
+								<CheckBox text="Mechanical" selected="{= ${dashBoardModel>/ptwEnergyIsolationDetail/energyType}=== 'Mechanical'? true : false}"
+									class="sapUiTinyMarginBegin" editable="false"/>
+							</HBox>
+							<HBox width="20%" class="ptwBoxBottomRightBorder">
+								<CheckBox text="Instrumentation" selected="{= ${dashBoardModel>/ptwEnergyIsolationDetail/energyType}=== 'Instrumentation'? true : false}"
+									class="sapUiTinyMarginBegin" editable="false"/>
+							</HBox>
+							<HBox width="17%" class="ptwBoxBottomRightBorder">
+								<CheckBox text="Pressure" selected="{= ${dashBoardModel>/ptwEnergyIsolationDetail/energyType}=== 'Pressure'? true : false}"
+									class="sapUiTinyMarginBegin" editable="false"/>
+							</HBox>
+							<HBox width="29%" class="ptwBoxBottomRightBorder">
+								<CheckBox text=" Other:"
+									selected="{path:'dashBoardModel>/ptwEnergyIsolationDetail/energyType',formatter:'com.sap.incture.Incture_IOP.util.formatter.EnergyIsolationEnergyTypeCheckbox'}"
+									class="sapUiTinyMarginBegin" editable="false"/>
+								<Input
+									visible="{path:'dashBoardModel>/ptwEnergyIsolationDetail/energyType',formatter:'com.sap.incture.Incture_IOP.util.formatter.EnergyIsolationEnergyTypeCheckbox'}"
+									value="{dashBoardModel>/ptwEnergyIsolationDetail/energyType}" class="ptwInputBoxForNoLine"></Input>
+							</HBox>-->
+						</HBox>
+						<Label text="Reason for Isolation:" class="sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
+						<HBox width="100%" class="border PtwHboxFlexGrow">
+							<TextArea rows="4" value="{dashBoardModel>/ptwEnergyIsolationDetail/reason}" width="100%" class="ptwInputBoxForNoLine" editable="false"></TextArea>
+						</HBox>
+						<HBox alignItems="Center" height="2rem" width="100%" class="ptwUpperBoxBorder sapUiSmallMarginTop EnergyIsolationHeader">
+							<Label text="Affected Personnel:" design="Bold" class="sapUiTinyMarginBeginEnd ptwFontColor"/>
+						</HBox>
+						<!--<VBox>-->
+						<!--	<HBox width="100%" class="sapUiTinyMarginTop">-->
+						<!--		<HBox width="25%" alignItems="Center">-->
+						<!--			<Label text="Name" class="sapUiTinyMarginBegin"></Label>-->
+						<!--			<Input class="ptwInputBox sapUiTinyMarginBegin" value="{dashBoardModel>/ptwEnergyIsolationDetail/permIssueName}" editable="false"></Input>-->
+						<!--		</HBox>-->
+						<!--		<HBox width="25%" alignItems="Center">-->
+						<!--			<Label text="Email" class="sapUiTinyMarginBegin"></Label>-->
+						<!--			<Input class="ptwInputBox sapUiTinyMarginBegin" value="{dashBoardModel>/ptwEnergyIsolationDetail/permIssueName}" editable="false"></Input>-->
+						<!--		</HBox>-->
+						<!--		<HBox width="25%" alignItems="Center">-->
+						<!--			<Label text="Signature" class="sapUiTinyMarginBegin"></Label>-->
+						<!--			<Input class="ptwInputBox sapUiTinyMarginBegin" value="{dashBoardModel>/ptwEnergyIsolationDetail/permIssueName}" editable="false"></Input>-->
+						<!--		</HBox>-->
+						<!--		<HBox width="25%" alignItems="Center">-->
+						<!--			<Label text="Contractor Performing Work:"></Label>-->
+						<!--			<Input class="ptwInputBox sapUiTinyMarginBegin" value="{dashBoardModel>/ptwEnergyIsolationDetail/permIssueName}" editable="false"></Input>-->
+						<!--		</HBox>-->
+						<!--	</HBox>-->
+						<!--</VBox>-->
+						<Table items="{dashBoardModel>/ptwEnergyIsolationDetail/contractorDetailList}">
+							<columns>
+								<Column>
+									<Text text="Name"/>
+								</Column>
+								<Column>
+									<Text text="Email"/>
+								</Column>
+								<Column>
+									<Text text="Signature"/>
+								</Column>
+								<Column>
+									<Text text="Contractor Performing work"/>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Label text="{dashBoardModel>contractorName}"></Label>
+										<Label text="{dashBoardModel>emailId}"></Label>
+										<Image src="data:image/png;base64,{dashBoardModel>signatureContent}" height="3rem" width="6rem"></Image>
+										<Label text="{dashBoardModel>contractorPerformingWork}"></Label>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+						<HBox alignItems="Center" height="2rem" width="100%" class="ptwUpperBoxBorder sapUiSmallMarginTop EnergyIsolationHeader">
+							<Label text="REQUIRED PRE-JOB SAFETY :" design="Bold" class="sapUiTinyMarginBeginEnd ptwFontColor"/>
+						</HBox>
+						<HBox width="100%">
+							<HBox width="50%">
+								<Label text="JSA Reviewed" class="sapUiTinyMarginBeginEnd sapUiTinyMarginTop"/>
+							</HBox>
+							<CheckBox text="Yes" selected="{= ${dashBoardModel>/ptwEnergyIsolationDetail/jsareviewed}=== true? true : false}"
+								class="sapUiSmallMarginBeginEnd" editable="false"/>
+							<CheckBox text="No" editable="false" selected="{= ${dashBoardModel>/ptwEnergyIsolationDetail/jsareviewed}=== true? false : true}"/>
+						</HBox>
+						<HBox width="100%">
+							<HBox width="50%">
+								<ObjectStatus text="All affected employees notified of LOTO intent" class="sapUiTinyMarginBeginEnd sapUiTinyMarginTop"/>
+							</HBox>
+							<CheckBox text="Yes" selected="{= ${dashBoardModel>/ptwEnergyIsolationDetail/empNotified}=== true? true : false}"
+								class="sapUiSmallMarginBeginEnd" editable="false"/>
+							<CheckBox text="No" selected="{= ${dashBoardModel>/ptwEnergyIsolationDetail/empNotified}=== false? true : false}" editable="false"/>
+						</HBox>
+						<HBox width="100%" class="sapUiTinyMarginTop">
+							<HBox width="50%" alignItems="Center">
+								<Label text="Permit Issuer" class="sapUiTinyMarginBegin"></Label>
+								<Input class="ptwInputBox sapUiTinyMarginBegin" value="{dashBoardModel>/ptwEnergyIsolationDetail/permIssueName}" editable="false"></Input>
+							</HBox>
+							<HBox width="50%" alignItems="Center">
+								<Label text="Date:"></Label>
+								<!--<Input class="ptwInputBox sapUiTinyMarginBegin" width="15rem"-->
+								<!--	value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/permIssueTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime'}"-->
+								<!--	editable="false"></Input>-->
+								<Input class="ptwInputBox sapUiTinyMarginBegin" width="15rem"
+									value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/permIssueTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateLocHistory'}"
+									editable="false"></Input>
+							</HBox>
+						</HBox>
+						<HBox width="100%" class="sapUiTinyMarginTop">
+							<HBox width="50%" alignItems="Center">
+								<Label text="Permit Holder" class="sapUiTinyMarginBegin"></Label>
+								<Input class="ptwInputBox sapUiTinyMarginBegin" value="{dashBoardModel>/ptwEnergyIsolationDetail/permHoldName}" editable="false"></Input>
+							</HBox>
+							<HBox width="50%" alignItems="Center">
+								<Label text="Date:"></Label>
+								<!--<Input class="ptwInputBox sapUiTinyMarginBegin" width="15rem"-->
+								<!--	value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/permHoldTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime'}"-->
+								<!--	editable="false"></Input>-->
+								<Input class="ptwInputBox sapUiTinyMarginBegin" width="15rem"
+									value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/permHoldTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateLocHistory'}"
+									editable="false"></Input>
+							</HBox>
+						</HBox>
+						<VBox width="100%">
+							<Label text="Other Hazards identified:" class="sapUiTinyMarginBegin sapUiTinyMarginTop"></Label>
+							<HBox width="100%" class="border PtwHboxFlexGrow">
+								<TextArea rows="2" value="{dashBoardModel>/ptwEnergyIsolationDetail/otherHazards}" width="100%" class="ptwInputBoxForNoLine"
+									editable="false"></TextArea>
+							</HBox>
+						</VBox>
+						<HBox alignItems="Center" height="2rem" width="100%" class="ptwUpperBoxBorder sapUiSmallMarginTop EnergyIsolationHeader">
+							<Label text="TYPE AND DESCRIPTION OF ISOLATIONS" design="Bold" class="sapUiTinyMarginBeginEnd ptwFontColor"/>
+						</HBox>
+						<HBox width="100%">
+							<VBox width="19%" alignItems="Center" alignContent="Center">
+								<HBox alignItems="Center" alignContent="Center" justifyContent="Center" height="4.5rem" width="100%" class="ptwHWPTableBorderClass">
+									<Label text="Isolation Details"></Label>
+								</HBox>
+								<VBox items="{dashBoardModel>/ptwEnergyIsolationDetail/isolationList}" width="100%">
+									<HBox height="3rem" width="100%" alignItems="Center" class="ptwHWPTableBorderClass">
+										<Input class="ptwInputBoxForNoLine" value="{dashBoardModel>description}" editable="false"></Input>
+									</HBox>
+								</VBox>
+							</VBox>
+							<VBox width="17%" alignItems="Center" alignContent="Center">
+								<HBox alignItems="Center" alignContent="Center" justifyContent="Center" height="4.5rem" width="100%" class="ptwHWPTableBorderClass">
+									<Label text="Location"></Label>
+								</HBox>
+								<VBox items="{dashBoardModel>/ptwEnergyIsolationDetail/isolationList}" width="100%">
+									<HBox height="3rem" width="100%" alignItems="Center" class="ptwHWPTableBorderClass">
+										<Input class="ptwInputBoxForNoLine" value="{dashBoardModel>/ptwEnergyIsolationDetail/locationName}" editable="false"></Input>
+									</HBox>
+								</VBox>
+							</VBox>
+							<VBox width="14%" alignItems="Center" alignContent="Center">
+								<VBox width="100%">
+									<HBox height="3rem" width="100%" justifyContent="Center" alignItems="Center" alignContent="Center" class="ptwHWPTableBorderClass">
+										<ObjectStatus text="Stored Energy Released" class="sapUiTinyMarginBegin"></ObjectStatus>
+									</HBox>
+									<HBox height="1.5rem" alignItems="Center" class="ptwHWPTableBorderClass ">
+										<HBox width="50%" alignItems="Center" height="100%" justifyContent="Center" class="ptwBoxRightBorder">
+											<Label text="YES"></Label>
+										</HBox>
+										<HBox width="50%" alignItems="Center" justifyContent="Center">
+											<Label text="NO"></Label>
+										</HBox>
+									</HBox>
+								</VBox>
+								<VBox width="100%" items="{dashBoardModel>/ptwEnergyIsolationDetail/isolationList}">
+									<HBox width="100%">
+										<HBox height="3rem" alignContent="Center" alignItems="Center" justifyContent="Center" width="49.5%" class="ptwHWPTableBorderClass">
+											<CheckBox selected="{= ${dashBoardModel>eistored}=== true? true : false}" editable="false"></CheckBox>
+										</HBox>
+										<HBox height="3rem" width="50.5%" alignContent="Center" alignItems="Center" justifyContent="Center" class="ptwHWPTableBorderClass">
+											<CheckBox selected="{= ${dashBoardModel>eistored}=== false? true : false}" editable="false"></CheckBox>
+										</HBox>
+									</HBox>
+								</VBox>
+							</VBox>
+							<VBox width="14%" alignItems="Center" alignContent="Center">
+								<VBox width="100%">
+									<HBox height="3rem" width="100%" justifyContent="Center" alignContent="Center" alignItems="Center" class="ptwHWPTableBorderClass">
+										<ObjectStatus text="Equipment tested to verify isolation" class="sapUiTinyMarginBegin"></ObjectStatus>
+									</HBox>
+									<HBox height="1.5rem" width="100%" alignItems="Center" class="ptwHWPTableBorderClass">
+										<HBox width="50%" alignItems="Center" height="100%" justifyContent="Center" class="ptwBoxRightBorder">
+											<Label text="YES"></Label>
+										</HBox>
+										<HBox width="50%" alignItems="Center" height="100%" justifyContent="Center">
+											<Label text="NO"></Label>
+										</HBox>
+									</HBox>
+								</VBox>
+								<VBox width="100%" items="{dashBoardModel>/ptwEnergyIsolationDetail/isolationList}">
+									<HBox width="100%">
+										<HBox height="3rem" width="49.5%" alignContent="Center" alignItems="Center" justifyContent="Center" class="ptwHWPTableBorderClass">
+											<CheckBox selected="{= ${dashBoardModel>equipTested}=== true? true : false}" editable="false"></CheckBox>
+										</HBox>
+										<HBox height="3rem" width="50.5%" alignContent="Center" alignItems="Center" justifyContent="Center" class="ptwHWPTableBorderClass">
+											<CheckBox selected="{= ${dashBoardModel>equipTested}=== false? true : false}" editable="false"></CheckBox>
+										</HBox>
+									</HBox>
+								</VBox>
+							</VBox>
+							<VBox width="18%" alignItems="Center">
+								<VBox width="100%">
+									<HBox height="3rem" width="100%" justifyContent="Center" alignContent="Center" alignItems="Center" class="ptwHWPTableBorderClass">
+										<ObjectStatus text="Isolation"></ObjectStatus>
+									</HBox>
+									<HBox height="1.5rem" width="100%" alignItems="Center" justifyContent="Center" class="ptwHWPTableBorderClass">
+										<Label text="Date / time"></Label>
+									</HBox>
+								</VBox>
+								<VBox width="100%" items="{dashBoardModel>/ptwEnergyIsolationDetail/isolationList}">
+									<VBox height="3rem" width="100%" class="ptwHWPTableBorderClass">
+										<HBox height="1.2rem" width="100%">
+											<!--<Input value="Date: {path:'dashBoardModel>isolationDate',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDate'}"-->
+											<!--	class="ptwInputBoxForNoLine" editable="false"></Input>-->
+											<Input value="Date: {path:'dashBoardModel>isolationDate',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateEnergyIsolation'}"
+												class="ptwInputBoxForNoLine" editable="false"></Input>
+										</HBox>
+										<HBox height="1.15rem" width="100%">
+											<!--<Input value="Time: {path:'dashBoardModel>isolationDate',formatter:'com.sap.incture.Incture_IOP.util.formatter.EnergyIsolationgetTime'}"-->
+											<!--	class="ptwInputBoxForNoLine" editable="false"></Input>-->
+											<Input value="Time: {path:'dashBoardModel>isolationDate',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToTimeEnergyIsolation'}"
+												class="ptwInputBoxForNoLine" editable="false"></Input>
+										</HBox>
+									</VBox>
+								</VBox>
+							</VBox>
+							<VBox width="18%" alignItems="Center">
+								<VBox width="100%">
+									<HBox height="3rem" justifyContent="Center" alignContent="Center" alignItems="Center" width="100%" class="ptwBoxBorder ">
+										<ObjectStatus text="Reinstatement"></ObjectStatus>
+									</HBox>
+									<HBox height="1.5rem" width="100%" alignItems="Center" justifyContent="Center" class="ptwBoxBorder">
+										<Label text="Date / time"></Label>
+									</HBox>
+								</VBox>
+								<VBox width="100%" items="{dashBoardModel>/ptwEnergyIsolationDetail/isolationList}">
+									<VBox height="3rem" width="100%" class="ptwBoxBorder">
+										<HBox height="1.2rem" width="100%">
+											<!--<Input value="Date: {path:'dashBoardModel>reinstatement',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDate'}"-->
+											<!--	class="ptwInputBoxForNoLine" editable="false"></Input>-->
+											<Input value="Date: {path:'dashBoardModel>reinstatement',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateEnergyIsolation'}"
+												class="ptwInputBoxForNoLine" editable="false"></Input>
+										</HBox>
+										<HBox height="1rem" width="100%">
+											<!--<Input value="Time: {path:'dashBoardModel>reinstatement',formatter:'com.sap.incture.Incture_IOP.util.formatter.EnergyIsolationgetTime'}"-->
+											<!--	class="ptwInputBoxForNoLine" editable="false"></Input>-->
+											<Input value="Time: {path:'dashBoardModel>reinstatement',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToTimeEnergyIsolation'}"
+												class="ptwInputBoxForNoLine" editable="false"></Input>
+										</HBox>
+									</VBox>
+								</VBox>
+							</VBox>
+						</HBox>
+						<HBox width="100%" visible="{=${dashBoardModel>/ptwEnergyIsolationDetail/isolationList} ? false : true}" class="ptwBoxBorder" height="2rem"
+							alignItems="Center">
+							<Label text="No Data" class="sapUiTinyMarginBegin"></Label>
+						</HBox>
+						<HBox width="100%" class="ptwBoxBorder" height="2rem" alignItems="Center">
+							<Label text="I certify that all of the above isolations have been carried out as indicated" class="sapUiTinyMarginBegin"></Label>
+						</HBox>
+						<HBox width="100%" class="ptwBoxBorder" height="2rem">
+							<HBox width="50%" alignItems="Center">
+								<Label text="Permit Holder:" class="sapUiTinyMarginBegin"></Label>
+								<Input class="ptwInputBoxForNoLine" value="{dashBoardModel>/ptwEnergyIsolationDetail/permHoldName}" editable="false"></Input>
+							</HBox>
+							<HBox width="25%" alignItems="Center">
+								<Label text="Date:"></Label>
+								<!--<Input class="ptwInputBoxForNoLine"-->
+								<!--	value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/permHoldTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDate'}"-->
+								<!--	editable="false"></Input>-->
+								<Input class="ptwInputBoxForNoLine"
+									value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/permHoldTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateEnergyIsolation'}"
+									editable="false"></Input>
+							</HBox>
+							<HBox width="25%" alignItems="Center">
+								<Label text="Time:"></Label>
+								<!--<Input class="ptwInputBoxForNoLine"-->
+								<!--	value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/permHoldTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.EnergyIsolationgetTime'}"-->
+								<!--	editable="false"></Input>-->
+								<Input class="ptwInputBoxForNoLine"
+									value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/permHoldTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToTimeEnergyIsolation'}"
+									editable="false"></Input>
+							</HBox>
+						</HBox>
+						<HBox width="100%" class="ptwBoxBorder" height="2rem">
+							<HBox width="50%" alignItems="Center">
+								<Label text="Permit Issuer:" class="sapUiTinyMarginBegin"></Label>
+								<Input class="ptwInputBoxForNoLine" value="{dashBoardModel>/ptwEnergyIsolationDetail/permIssueName}" editable="false"></Input>
+							</HBox>
+							<HBox width="25%" alignItems="Center">
+								<Label text="Date:"></Label>
+								<!--<Input class="ptwInputBoxForNoLine"-->
+								<!--	value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/permIssueTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDate'}"-->
+								<!--	editable="false"></Input>-->
+								<Input class="ptwInputBoxForNoLine"
+									value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/permIssueTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateEnergyIsolation'}"
+									editable="false"></Input>
+							</HBox>
+							<HBox width="25%" alignItems="Center">
+								<Label text="Time:"></Label>
+								<!--<Input class="ptwInputBoxForNoLine"-->
+								<!--	value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/permIssueTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.EnergyIsolationgetTime'}"-->
+								<!--	editable="false"></Input>-->
+								<Input class="ptwInputBoxForNoLine"
+									value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/permIssueTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToTimeEnergyIsolation'}"
+									editable="false"></Input>
+							</HBox>
+						</HBox>
+						<HBox alignItems="Center" height="2rem" width="100%" class="ptwUpperBoxBorder sapUiSmallMarginTop EnergyIsolationHeader">
+							<Label text="RETURN TO SERVICE" design="Bold" class="sapUiTinyMarginBeginEnd ptwFontColor"/>
+						</HBox>
+						<HBox width="100%" class="ptwBoxBorder" height="2rem">
+							<HBox width="70%">
+								<ObjectStatus text="All affected employees have been notified of intent to remove LOTO" class="sapUiTinyMarginBeginEnd sapUiTinyMarginTop"/>
+							</HBox>
+							<CheckBox text="Yes" selected="{= ${dashBoardModel>/ptwEnergyIsolationDetail/lotoRemoved}=== true? true : false}"
+								class="sapUiSmallMarginBeginEnd" editable="false"/>
+							<CheckBox text="No" selected="{= ${dashBoardModel>/ptwEnergyIsolationDetail/lotoRemoved}=== false? true : false}" editable="false"/>
+						</HBox>
+						<HBox width="100%" class="ptwBoxBorder" height="2rem">
+							<HBox width="70%">
+								<ObjectStatus text="All affected employees have removed their locks" class="sapUiTinyMarginBeginEnd sapUiTinyMarginTop"/>
+							</HBox>
+							<CheckBox text="Yes" selected="{= ${dashBoardModel>/ptwEnergyIsolationDetail/lockTagRemoved}=== true? true : false}"
+								class="sapUiSmallMarginBeginEnd" editable="false"/>
+							<CheckBox text="No" selected="{= ${dashBoardModel>/ptwEnergyIsolationDetail/lockTagRemoved}=== false? true : false}" editable="false"/>
+						</HBox>
+						<HBox width="100%" class="ptwBoxBorder" height="2rem">
+							<HBox width="70%">
+								<ObjectStatus text="Work area was inspected prior to removing LOTO" class="sapUiTinyMarginBeginEnd sapUiTinyMarginTop"/>
+							</HBox>
+							<CheckBox text="Yes" selected="{= ${dashBoardModel>/ptwEnergyIsolationDetail/wainspected}=== true? true : false}"
+								class="sapUiSmallMarginBeginEnd" editable="false"/>
+							<CheckBox text="No" selected="{= ${dashBoardModel>/ptwEnergyIsolationDetail/wainspected}=== false? true : false}" editable="false"/>
+						</HBox>
+						<HBox width="100%" class="ptwBoxBorder" height="2rem" alignItems="Center">
+							<Label text="I certify that specified isolations have been reinstated" class="sapUiTinyMarginBegin"></Label>
+						</HBox>
+						<HBox width="100%" class="ptwBoxBorder" height="2rem">
+							<HBox width="50%" alignItems="Center">
+								<Label text="Permit Holder:" class="sapUiTinyMarginBegin"></Label>
+								<Input class="ptwInputBoxForNoLine" value="{dashBoardModel>/ptwEnergyIsolationDetail/permHoldName}" editable="false"></Input>
+							</HBox>
+							<HBox width="25%" alignItems="Center">
+								<Label text="Date:"></Label>
+								<!--<Input class="ptwInputBoxForNoLine"-->
+								<!--	value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/permHoldTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDate'}"-->
+								<!--	editable="false"></Input>-->
+								<Input class="ptwInputBoxForNoLine"
+									value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/permHoldTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateEnergyIsolation'}"
+									editable="false"></Input>
+							</HBox>
+							<HBox width="25%" alignItems="Center">
+								<Label text="Time:"></Label>
+								<!--<Input class="ptwInputBoxForNoLine"-->
+								<!--	value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/permHoldTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.EnergyIsolationgetTime'}"-->
+								<!--	editable="false"></Input>-->
+								<Input class="ptwInputBoxForNoLine"
+									value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/permHoldTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToTimeEnergyIsolation'}"
+									editable="false"></Input>
+							</HBox>
+						</HBox>
+						<HBox width="100%" class="ptwBoxBorder" height="2rem">
+							<HBox width="50%" alignItems="Center">
+								<Label text="Permit Issuer:" class="sapUiTinyMarginBegin"></Label>
+								<Input class="ptwInputBoxForNoLine" value="{dashBoardModel>/ptwEnergyIsolationDetail/permIssueName}" editable="false"></Input>
+							</HBox>
+							<HBox width="25%" alignItems="Center">
+								<Label text="Date:"></Label>
+								<!--<Input class="ptwInputBoxForNoLine"-->
+								<!--	value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/permIssueTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDate'}"-->
+								<!--	editable="false"></Input>-->
+								<Input class="ptwInputBoxForNoLine"
+									value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/permIssueTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateEnergyIsolation'}"
+									editable="false"></Input>
+							</HBox>
+							<HBox width="25%" alignItems="Center">
+								<Label text="Time:"></Label>
+								<!--<Input class="ptwInputBoxForNoLine"-->
+								<!--	value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/permIssueTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.EnergyIsolationgetTime'}"-->
+								<!--	editable="false"></Input>-->
+								<Input class="ptwInputBoxForNoLine"
+									value="{path:'dashBoardModel>/ptwEnergyIsolationDetail/permIssueTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToTimeEnergyIsolation'}"
+									editable="false"></Input>
+							</HBox>
+						</HBox>
+					</l:VerticalLayout>
+				</ScrollContainer>
+			</VBox>
+			<VBox width="30%" class="iopwbSplitBorderClass">
+				<IconTabBar expandable="false" backgroundDesign="Solid" class="iopLocHisBypasToolbar sapUiSizeCompact" busyIndicatorDelay="0"
+					id="idCollaborationTab" select="onTaskCollabTabSelect">
+					<items>
+						<IconTabFilter text="Comments" key="Comments">
+							<ScrollContainer vertical="true" horizontal="false" height="{dashBoardModel>/BypassLogFromHeight}">
+								<VBox class="sapUiTinyMarginBottom" visible="{dashBoardModel>/locationHistoryData/byPassLogPersonRespEditable}">
+									<TextArea placeholder="Enter your comments (optional)" rows="5" value="{dashBoardModel>/newEnergyIsolationComment}"
+										class="iopwbTaskBoderLightClass iopFontClass iopwbCommentArea" width="100%" id="idBypassCommTextArea"/>
+									<HBox class="iopwbCommentPostClass">
+										<Button text="Post" class="iopwbPostBtnClass iopBtnClass sapUiSizeCompact" press="onEnergyIsolationComment"/>
+									</HBox>
+								</VBox>
+								<l:VerticalLayout content="{dashBoardModel>/ptwEnergyIsolationDetail/commentList}" width="100%" class="processFlowMainStyleClass">
+									<l:content>
+										<VBox visible="true" width="100%">
+											<HBox width="100%" class="sapUiMediumMarginTop iopwbTimeClass iopCreateTaskPanelAlignment">
+												<HBox width="100%" class="sapUiSmallMarginTop iopwbAvatarClass">
+													<f:Avatar initials="{parts:[{path:'dashBoardModel>updatedBy'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.getinitials'}"
+														displaySize="S" displayShape="Circle" class="sapUiTinyMarginTop"/>
+													<VBox class=" sapUiSmallMargin iopTaskPanelAvatarMargin" width="100%">
+														<Label design="Bold" text="{dashBoardModel>updatedBy}" class="iopFontClass iopCommentClass iopSmallFontClass"/>
+														<!--<Text-->
+														<!--	text="Commented On: {path:'dashBoardModel>updatedAt',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime'}"-->
+														<!--	class="iopFontClass iopItalicClass iopSmallFontClass"/>-->
+														<Text
+															text="Commented On: {path:'dashBoardModel>updatedAt',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateLocHistory'}"
+															class="iopFontClass iopItalicClass iopSmallFontClass"/>
+														<Text text="{dashBoardModel>comment}" class="iopFontClass iopSmallFontClass" width="100%"/>
+													</VBox>
+												</HBox>
+											</HBox>
+										</VBox>
+									</l:content>
+								</l:VerticalLayout>
+							</ScrollContainer>
+						</IconTabFilter>
+						<IconTabFilter text="Attachments" key="Attachments">
+							<ScrollContainer vertical="true" horizontal="false" height="{dashBoardModel>/BypassLogFromHeight}">
+								<l:VerticalLayout width="100%" content="{dashBoardModel>/ptwEnergyIsolationDetail/attachmentList}" class="processFlowMainStyleClass">
+									<l:content>
+										<VBox width="100%">
+											<HBox width="95%" class="sapUiMediumMarginTop iopwbTimeClass iopCreateTaskPanelAlignment">
+												<HBox width="100%" class="sapUiSmallMarginTop iopwbAvatarClass">
+													<f:Avatar initials="{parts:[{path:'dashBoardModel>createdBy'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.getinitials'}"
+														displaySize="S" displayShape="Circle" class="sapUiTinyMarginTop"/>
+													<VBox class=" sapUiSmallMargin iopTaskPanelAvatarMargin" width="100%">
+														<Link text="{dashBoardModel>fileName}" press="onBypassLinkPress"/>
+														<Text text="Uploaded by: {dashBoardModel>createdBy}" class="iopFontClass iopSmallFontClass"/>
+														<!--<Text text="{path:'dashBoardModel>createdAt',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime'}"-->
+														<!--	class="iopFontClass iopSmallFontClass sapUiTinyMarginTop"/>-->
+														<Text text="{path:'dashBoardModel>createdAt',formatter:'com.sap.incture.Incture_IOP.util.formatter.epochToDateLocHistory'}"
+															class="iopFontClass iopSmallFontClass sapUiTinyMarginTop"/>
+													</VBox>
+												</HBox>
+												<l:Grid defaultSpan="L4 M6 S12" vSpacing="0" class="sapUiSmallMarginTop sapUiTinyMarginBottom"/>
+											</HBox>
+										</VBox>
+									</l:content>
+								</l:VerticalLayout>
+							</ScrollContainer>
+						</IconTabFilter>
+						<IconTabFilter text="Activity Log" key="ActivityLog">
+							<ScrollContainer vertical="true" horizontal="false" height="{dashBoardModel>/BypassLogFromHeight}">
+								<l:VerticalLayout content="{dashBoardModel>/ptwEnergyIsolationDetail/activityLogList}" width="100%" class="processFlowMainStyleClass">
+									<l:content>
+										<VBox>
+											<HBox>
+												<core:Icon src="sap-icon://circle-task-2" class="completedIcon BypasslogActivityLogIcon"/>
+												<HBox justifyContent="SpaceBetween" width="100%">
+													<Label text="Operator" class="iopFontClass timeLineDescrptionTextStyle"/>
+													<!--<Text text='{parts:["dashBoardModel>permIssueTime"], formatter:"com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime"}'-->
+													<!--	class="iopFontClass iopActivityTimeClass sapUiTinyMarginEnd"/>-->
+													<Text text='{parts:["dashBoardModel>permIssueTime"], formatter:"com.sap.incture.Incture_IOP.util.formatter.epochToDateLocHistory"}'
+														class="iopFontClass iopActivityTimeClass sapUiTinyMarginEnd"/>
+												</HBox>
+											</HBox>
+											<HBox id="processTaskBox" class="processFlowLineStyle">
+												<Image src="{path:'i18n>barImage', formatter:'com.sap.incture.Incture_IOP.util.formatter.getImagePath'}" width="100%" height="100%"/>
+												<VBox width="95%" class="taskBoxStyle">
+													<HBox justifyContent="SpaceBetween" visible="{= ${oTaskPanelDetailModel>user} !== undefined}">
+														<VBox>
+															<Text text="{dashBoardModel>permIssueName}" class="iopFontClass iopSmallFontClass"/>
+															<Text text="Approval Obtained: {= ${dashBoardModel>isApproved}==='True'?'Yes':'No'}"
+																class="iopFontClass iopSmallFontClass sapUiTinyMarginTop"/>
+														</VBox>
+														<f:Avatar initials="{parts:[{path:'dashBoardModel>personResponsible'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.getinitials'}"
+															displaySize="XS" displayShape="Circle" class="sapUiTinyMarginEnd" tooltip="{dashBoardModel>personResponsible}"/>
+													</HBox>
+													<HBox class="taskSeperatorStyle" width="100%"/>
+												</VBox>
+											</HBox>
+										</VBox>
+									</l:content>
+								</l:VerticalLayout>
+							</ScrollContainer>
+						</IconTabFilter>
+					</items>
+				</IconTabBar>
+			</VBox>
+		</HBox>
+		<buttons visible="{dashBoardModel>/locationHistoryData/byPassLogPersonRespEditable}">
+			<Button text="Change Shift" class="sapUiSizeCompact iopBtnClass iopwbFooterBtnClass" press="onPressEnergyIsoLogButtons"
+				visible="{dashBoardModel>/locationHistoryData/byPassLogPersonRespEditable}"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

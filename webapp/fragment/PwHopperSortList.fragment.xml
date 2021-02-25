@@ -1,0 +1,14 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<ViewSettingsDialog confirm="onPwHopperTableSort" class="sapUiSizeCompact">
+		<sortItems>
+			<ViewSettingsItem text="Well Name" key="location" selected="true"/>
+			<ViewSettingsItem text="Potential Uplift" key="potentialUplift" selected="false"/>
+			<ViewSettingsItem text="Work Cost Over" key="workOverCost" selected="false"/>
+			<ViewSettingsItem text="BOE/$" key="boe" selected="false"/>
+			<ViewSettingsItem text="POT" key="potStatus" selected="false"/>
+			<ViewSettingsItem text="RE" key="reStatus" selected="false"/>
+			<ViewSettingsItem text="WW" key="wwStatus" selected="false"/>
+			<ViewSettingsItem text="ALS" key="alsStatus" selected="false"/>
+		</sortItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

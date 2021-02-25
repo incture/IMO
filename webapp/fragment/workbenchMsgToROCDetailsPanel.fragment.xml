@@ -1,0 +1,233 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.f"
+	xmlns:table="sap.ui.table">
+	<HBox id="idCollabTaskHBox" justifyContent="SpaceAround" class="iopwbCollabTitleBoxClass">
+		<Text text="Message - ID #{dashBoardModel>/InsightToActionData/oCurrSelWBMsgData/messageId}" class="iopFontClass iopwbCollabTitleClass"/>
+	</HBox>
+	<ScrollContainer vertical="true" height="{dashBoardModel>/taskPanelSize/taskPanelScrollHeight}">
+		<VBox class=" sapUiSmallMarginBegin sapUiTinyMarginTop clVBOXPadding" width="97.5%">
+			<HBox width="95%" class="sapUiMediumMarginBegin sapUiMediumMarginTop iopwbTimeClass iopCreateTaskPanelAlignment">
+				<VBox width="100%" class="sapUiTinyMarginBottom">
+					<l:Grid defaultSpan="L3 M6 S12" vSpacing="0" class="sapUiTinyMarginTop">
+						<HBox width="14.65rem" class="iopwbAvatarClass">
+							<f:Avatar displaySize="S" displayShape="Circle" class="sapUiTinyMarginTop "
+								initials="{parts:[{path:'dashBoardModel>/InsightToActionData/msgDraftDetailData/createdBy'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.getinitials'}"/>
+							<VBox class=" sapUiSmallMargin iopTaskPanelAvatarMargin" width="100%">
+								<Text text="{dashBoardModel>/InsightToActionData/msgDraftDetailData/createdBy}" class="iopFontClass iopwbCreatedByNameClass"/>
+								<Text class="iopFontClass iopwbTextItalicClass"
+									text="{path:'dashBoardModel>/InsightToActionData/msgDraftDetailData/createdAt', formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDateTime'}"/>
+							</VBox>
+						</HBox>
+						<VBox height="3.5rem" justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">
+							<Label text="Location" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass"
+								required='{path:"dashBoardModel>/InsightToActionData/msgDraftDetailData/locationText", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnWbMsgLocTextlblMndt"}'></Label>
+							<Label text="{dashBoardModel>/InsightToActionData/msgDraftDetailData/locationText}"
+								visible='{path:"dashBoardModel>/InsightToActionData/msgDraftDetailData/locationText", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnWbMsgLocTextVisibility"}'
+								class="sapUiSizeCompact iopFontClass sapUiTinyMarginBottom "></Label>
+							<HBox
+								visible="{= ${dashBoardModel>/InsightToActionData/msgDraftDetailData/locationText} === '' || ${dashBoardModel>/InsightToActionData/msgDraftDetailData/locationText} === null || ${dashBoardModel>/InsightToActionData/msgDraftDetailData/locationText} === undefined}">
+								<Input id="idSearchLocations" value="{dashBoardModel>/InsightToActionData/oCurrSelWBMsgData/locationText}" editable="false"
+									class="iopInputClass iopSelectClass iopwbTaskBoderLightClass"></Input>
+								<!--<Button icon="sap-icon://functional-location" tooltip="Search location" press="onWBMsgSearchLocations"-->
+								<!--	class="sapUiSizeCompact iopSelectClass iopBtnClass iopwbFooterBtnClass"></Button>-->
+							</HBox>
+						</VBox>
+						<VBox height="3.5rem" justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">
+							<Label text="Assigned to person" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass"></Label>
+							<Label class="sapUiSizeCompact iopFontClass sapUiTinyMarginBottom "
+								text='{parts:["dashBoardModel>/InsightToActionData/msgDraftDetailData/currentOwner","dashBoardModel>/userData/isROC","dashBoardModel>/userData/isPOT", "dashBoardModel>/userData/displayName"], formatter:"com.sap.incture.Incture_IOP.util.formatter.iopWbMsgAssignedTo"}'/>
+						</VBox>
+						<VBox height="3.5rem" justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">
+							<Label text="Status" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass"></Label>
+							<Label text="{dashBoardModel>/InsightToActionData/msgDraftDetailData/status}" class="sapUiSizeCompact iopFontClass sapUiTinyMarginBottom"
+								visible='{path:"dashBoardModel>/InsightToActionData/msgDraftDetailData/status", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnLocHisTaskDetailStatus"}'></Label>
+						</VBox>
+						<VBox height="3.5rem" justifyContent="SpaceBetween" class="sapUiTinyMarginBottom" visible="false">
+							<Label text="Assign to group" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass"></Label>
+							<Select width="30%" class="sapUiSizeCompact iopSelectClass iopwbTaskBoderLightClass" selectedKey="POT">
+								<core:Item text="POT" key="POT"></core:Item>
+							</Select>
+						</VBox>
+					</l:Grid>
+					<!--<VBox height="3.5rem" justifyContent="SpaceBetween" class="sapUiTinyMarginBottom sapUiSmallMarginBegin">-->
+					<!--	<Label text="Description" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass"></Label>-->
+					<!--	<Label text="Downtime / Open Gas Lift SDV" tooltip="Downtime / Open Gas Lift SDV" wrapping="true"-->
+					<!--		class="sapUiSizeCompact iopFontClass sapUiTinyMarginBottom "></Label>-->
+					<!--</VBox>-->
+				</VBox>
+			</HBox>
+		</VBox>
+		<Panel expandable="true" expanded="true" visible="{= !${dashBoardModel>/InsightToActionData/msgDraftDetailData/locationText}}"
+			class="iopFontClass iopAlarmListTextClass iopWBMsgPanelClass iopCreateTaskIconAlignment" headerText="Select Location" width="100%">
+			<content>
+				<VBox class="sapUiTinyMarginBottom sapUiSmallMarginBegin iopwbTimeClassDesc">
+					<VBox width="100%">
+						<VBox justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">
+							<!--<Label text="Select Location" class="iopFontClass iopwbTaskLabelClass sapUiSmallMarginBegin iopwbLabelRequiredClass"></Label>-->
+							<l:Grid visible="{= !${dashBoardModel>/InsightToActionData/msgDraftDetailData/locationText}}" defaultSpan="L2 M6 S12" vSpacing="0">
+								<VBox height="3.5rem" justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">
+									<Label text="BASE" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass"></Label>
+									<Select class="sapUiSizeCompact iopSelectClass iopFontClass sapUiTinyMarginBottom" change="onWBMSgLocCountryChange"
+										items="{dashBoardModel>/InsightToActionData/hierarchyDetails/countries}" selectedKey="{dashBoardModel>/InsightToActionData/selectedCountry}"
+										busy="{dashBoardModel>/InsightToActionData/iopWBMsgLocationsCntryInd}" busyIndicatorDelay="0">
+										<core:Item enabled="{= ${dashBoardModel>location} === 'MUR-US-EFS' }" text="{dashBoardModel>locationText}"
+											key="{dashBoardModel>location} {dashBoardModel>/InsightToActionData/regExp} {dashBoardModel>locationType}"></core:Item>
+									</Select>
+								</VBox>
+								<VBox height="3.5rem" justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">
+									<Label text="Field" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass"></Label>
+									<Select id="idLocField" class="sapUiSizeCompact iopSelectClass iopFontClass sapUiTinyMarginBottom" change="onWBMSgLocFieldChange"
+										selectedKey="{dashBoardModel>/InsightToActionData/selectedField}" items="{dashBoardModel>/InsightToActionData/hierarchyDetails/fields}"
+										busy="{dashBoardModel>/InsightToActionData/iopWBMsgLocationsFieldInd}" busyIndicatorDelay="0">
+										<core:Item text="{dashBoardModel>locationText}"
+											key="{dashBoardModel>location} {dashBoardModel>/InsightToActionData/regExp} {dashBoardModel>locationType}"></core:Item>
+									</Select>
+								</VBox>
+								<VBox height="3.5rem" justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">
+									<Label text="Facility" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass"></Label>
+									<Select id="idLocFacility" class="sapUiSizeCompact iopSelectClass iopFontClass sapUiTinyMarginBottom" change="onWBMSgLocFacilityChange"
+										items="{dashBoardModel>/InsightToActionData/hierarchyDetails/facilities}"
+										selectedKey="{dashBoardModel>/InsightToActionData/selectedFacility}"
+										busy="{dashBoardModel>/InsightToActionData/iopWBMsgLocationsFacilityInd}" busyIndicatorDelay="0">
+										<core:Item text="{dashBoardModel>locationText}"
+											key="{dashBoardModel>location} {dashBoardModel>/InsightToActionData/regExp} {dashBoardModel>locationType}"></core:Item>
+									</Select>
+								</VBox>
+								<VBox height="3.5rem" justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">
+									<Label text="Well Pad" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass"></Label>
+									<Select id="idLocWellPad" class="sapUiSizeCompact iopSelectClass iopFontClass sapUiTinyMarginBottom" change="onWBMSgLocWellPadChange"
+										items="{dashBoardModel>/InsightToActionData/hierarchyDetails/wellpads}" selectedKey="{dashBoardModel>/InsightToActionData/selectedWellPad}"
+										busy="{dashBoardModel>/InsightToActionData/iopWBMsgLocationsWellPadInd}" busyIndicatorDelay="0">
+										<core:Item text="{dashBoardModel>locationText}"
+											key="{dashBoardModel>location} {dashBoardModel>/InsightToActionData/regExp} {dashBoardModel>locationType}"></core:Item>
+									</Select>
+									<layoutData>
+										<l:GridData span="XL4 L4 M6 S6" spanXL="3" spanL="3" spanM="6" spanS="12"/>
+									</layoutData>
+								</VBox>
+								<VBox height="3.5rem" justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">
+									<Label text="Well" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass"></Label>
+									<Select class="sapUiSizeCompact iopSelectClass iopFontClass sapUiTinyMarginBottom" change="onWBMSgLocWellChange"
+										items="{dashBoardModel>/InsightToActionData/hierarchyDetails/wells}" busy="{dashBoardModel>/InsightToActionData/iopWBMsgLocationsWellInd}"
+										busyIndicatorDelay="0" selectedKey="{dashBoardModel>/InsightToActionData/selectedWell}">
+										<core:Item text="{dashBoardModel>locationText}"
+											key="{dashBoardModel>location} {dashBoardModel>/InsightToActionData/regExp} {dashBoardModel>locationType}"></core:Item>
+									</Select>
+									<layoutData>
+										<l:GridData span="XL4 L4 M6 S6" spanXL="3" spanL="3" spanM="6" spanS="12"/>
+									</layoutData>
+								</VBox>
+							</l:Grid>
+						</VBox>
+					</VBox>
+				</VBox>
+			</content>
+		</Panel>
+		<VBox class="sapUiTinyMarginBottom sapUiSmallMarginBegin sapUiTinyMarginTop iopwbTimeClassDesc">
+			<VBox width="100%">
+				<Label text="Description" class="iopFontClass iopwbTaskLabelClass sapUiSmallMarginBegin iopwbLabelRequiredClass"/>
+				<TextArea editable="{= ${dashBoardModel>/userData/isENG} === true}" liveChange="onInquiryDescLiveChange"
+					class="sapUiSmallMarginBegin iopInputClass" width="95%"
+					value="{path:'dashBoardModel>/InsightToActionData/msgDraftDetailData/message', formatter:'com.sap.incture.Incture_IOP.util.formatter.iopWbMsgDescText'}"/>
+			</VBox>
+		</VBox>
+		<VBox class="sapUiTinyMarginBottom sapUiTinyMarginTop iopwbTimeClassDesc">
+			<l:Grid defaultSpan="L6 M6 S12" vSpacing="0"
+				visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true) &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === false &amp;&amp; ${dashBoardModel>/InsightToActionData/msgDraftDetailData/status} !== 'RESOLVED' &amp;&amp; !${dashBoardModel>/InsightToActionData/msgDraftDetailData/hasDispatch} &amp;&amp; !${dashBoardModel>/InsightToActionData/msgDraftDetailData/hasInvestigation}}">
+				<VBox width="100%">
+					<Label text="Action" class="iopFontClass iopwbTaskLabelClass sapUiSmallMarginBegin iopwbLabelRequiredClass"
+						visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true) &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === false &amp;&amp; ${dashBoardModel>/InsightToActionData/msgDraftDetailData/status} !== 'RESOLVED' &amp;&amp; !${dashBoardModel>/InsightToActionData/msgDraftDetailData/hasDispatch} &amp;&amp; !${dashBoardModel>/InsightToActionData/msgDraftDetailData/hasInvestigation}}"/>
+					<RadioButtonGroup columns="4" selectedIndex="{dashBoardModel>/InsightToActionData/selectedIndex}"
+						class="sapUiTinyMarginBegin iopWBMsgRadioBtnClass " select="onWBMsgRadioBtnPress">
+						<RadioButton text="Forward To POT"
+							visible="{= ${dashBoardModel>/userData/isROC} === true &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === false &amp;&amp; ${dashBoardModel>/InsightToActionData/msgDraftDetailData/status} !== 'RESOLVED' &amp;&amp; !${dashBoardModel>/InsightToActionData/msgDraftDetailData/hasDispatch} &amp;&amp; !${dashBoardModel>/InsightToActionData/msgDraftDetailData/hasInvestigation}}"/>
+						<RadioButton text="Investigate"
+							visible="{= ${dashBoardModel>/userData/isPOT} === true &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === false &amp;&amp; ${dashBoardModel>/InsightToActionData/msgDraftDetailData/status} !== 'RESOLVED' &amp;&amp; !${dashBoardModel>/InsightToActionData/msgDraftDetailData/hasDispatch} &amp;&amp; !${dashBoardModel>/InsightToActionData/msgDraftDetailData/hasInvestigation}}"/>
+						<RadioButton text="Dispatch"
+							visible="{= ${dashBoardModel>/userData/isROC} === true &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === false &amp;&amp; ${dashBoardModel>/InsightToActionData/msgDraftDetailData/status} !== 'RESOLVED' &amp;&amp; !${dashBoardModel>/InsightToActionData/msgDraftDetailData/hasDispatch} &amp;&amp; !${dashBoardModel>/InsightToActionData/msgDraftDetailData/hasInvestigation}}"/>
+						<RadioButton text="Resolve"
+							visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true) &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === false &amp;&amp; ${dashBoardModel>/InsightToActionData/msgDraftDetailData/status} !== 'RESOLVED' &amp;&amp; !${dashBoardModel>/InsightToActionData/msgDraftDetailData/hasDispatch} &amp;&amp; !${dashBoardModel>/InsightToActionData/msgDraftDetailData/hasInvestigation}}"/>
+					</RadioButtonGroup>
+				</VBox>
+				<VBox >
+					<Label text="Comments" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass" required="true"
+						visible="{= ${dashBoardModel>/InsightToActionData/selectedRadioGrpKey} === 'Resolve' }"/>
+					<TextArea width="95%" value='{dashBoardModel>/InsightToActionData/rejectReason}' class="iopInputClass"
+						visible="{= ${dashBoardModel>/InsightToActionData/selectedRadioGrpKey} === 'Resolve' }"/>
+				</VBox>
+			</l:Grid>
+		</VBox>
+		<!--<VBox class="sapUiTinyMarginBottom sapUiSmallMarginBegin sapUiTinyMarginTop iopwbTimeClassDesc">-->
+		<!--	<l:Grid defaultSpan="L4 M6 S12" vSpacing="0" class="sapUiTinyMarginTop">-->
+		<!--		<VBox width="100%">-->
+		<!--			<Label text="Description" class="iopFontClass iopwbTaskLabelClass sapUiSmallMarginBegin iopwbLabelRequiredClass"/>-->
+		<!--			<TextArea editable="{= ${dashBoardModel>/userData/isENG} === true}" liveChange="onInquiryDescLiveChange"-->
+		<!--				class="sapUiSmallMarginBegin iopInputClass" width="95%" maxLength="1000"-->
+		<!--				value="{path:'dashBoardModel>/InsightToActionData/msgDraftDetailData/message', formatter:'com.sap.incture.Incture_IOP.util.formatter.iopWbMsgDescText'}"/>-->
+		<!--			<layoutData>-->
+		<!--				<l:GridData span="XL4 L4 M6 S6" spanXL="8" spanL="8" spanM="6" spanS="12"/>-->
+		<!--			</layoutData>-->
+		<!--		</VBox>-->
+		<!--		<VBox justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">-->
+		<!--			<Label text="Location" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass"-->
+		<!--				required='{path:"dashBoardModel>/InsightToActionData/msgDraftDetailData/locationText", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnWbMsgLocTextlblMndt"}'></Label>-->
+		<!--			<Label text="{dashBoardModel>/InsightToActionData/msgDraftDetailData/locationText}"-->
+		<!--				visible='{path:"dashBoardModel>/InsightToActionData/msgDraftDetailData/locationText", formatter:"com.sap.incture.Incture_IOP.util.formatter.fnWbMsgLocTextVisibility"}'-->
+		<!--				class="sapUiSizeCompact iopFontClass sapUiTinyMarginBottom "></Label>-->
+		<!--			<l:Grid visible="{= !${dashBoardModel>/InsightToActionData/msgDraftDetailData/locationText}}" defaultSpan="L4 M6 S12" vSpacing="0"-->
+		<!--				class="sapUiTinyMarginTop iopWbMsgGrid">-->
+		<!--				<VBox height="3.5rem" justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">-->
+		<!--					<Label text="BASE" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass"></Label>-->
+		<!--					<Select class="sapUiSizeCompact iopSelectClass iopFontClass sapUiTinyMarginBottom" change="onWBMSgLocCountryChange"-->
+		<!--						items="{dashBoardModel>/InsightToActionData/hierarchyDetails/countries}" selectedKey="{dashBoardModel>/InsightToActionData/selectedCountry}"-->
+		<!--						busy="{dashBoardModel>/InsightToActionData/iopWBMsgLocationsCntryInd}" busyIndicatorDelay="0">-->
+		<!--						<core:Item enabled="{= ${dashBoardModel>location} === 'MUR-US-EFS' }" text="{dashBoardModel>locationText}"-->
+		<!--							key="{dashBoardModel>location} {dashBoardModel>/InsightToActionData/regExp} {dashBoardModel>locationType}"></core:Item>-->
+		<!--					</Select>-->
+		<!--				</VBox>-->
+		<!--				<VBox height="3.5rem" justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">-->
+		<!--					<Label text="Field" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass"></Label>-->
+		<!--					<Select class="sapUiSizeCompact iopSelectClass iopFontClass sapUiTinyMarginBottom" change="onWBMSgLocFieldChange"-->
+		<!--						selectedKey="{dashBoardModel>/InsightToActionData/selectedField}" items="{dashBoardModel>/InsightToActionData/hierarchyDetails/fields}"-->
+		<!--						busy="{dashBoardModel>/InsightToActionData/iopWBMsgLocationsFieldInd}" busyIndicatorDelay="0">-->
+		<!--						<core:Item text="{dashBoardModel>locationText}"-->
+		<!--							key="{dashBoardModel>location} {dashBoardModel>/InsightToActionData/regExp} {dashBoardModel>locationType}"></core:Item>-->
+		<!--					</Select>-->
+		<!--				</VBox>-->
+		<!--				<VBox height="3.5rem" justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">-->
+		<!--					<Label text="Facility" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass"></Label>-->
+		<!--					<Select class="sapUiSizeCompact iopSelectClass iopFontClass sapUiTinyMarginBottom" change="onWBMSgLocFacilityChange"-->
+		<!--						items="{dashBoardModel>/InsightToActionData/hierarchyDetails/facilities}"-->
+		<!--						selectedKey="{dashBoardModel>/InsightToActionData/selectedFacility}"-->
+		<!--						busy="{dashBoardModel>/InsightToActionData/iopWBMsgLocationsFacilityInd}" busyIndicatorDelay="0">-->
+		<!--						<core:Item text="{dashBoardModel>locationText}"-->
+		<!--							key="{dashBoardModel>location} {dashBoardModel>/InsightToActionData/regExp} {dashBoardModel>locationType}"></core:Item>-->
+		<!--					</Select>-->
+		<!--				</VBox>-->
+		<!--				<VBox height="3.5rem" justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">-->
+		<!--					<Label text="Well Pad" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass"></Label>-->
+		<!--					<Select class="sapUiSizeCompact iopSelectClass iopFontClass sapUiTinyMarginBottom" change="onWBMSgLocWellPadChange"-->
+		<!--						items="{dashBoardModel>/InsightToActionData/hierarchyDetails/wellpads}" selectedKey="{dashBoardModel>/InsightToActionData/selectedWellPad}"-->
+		<!--						busy="{dashBoardModel>/InsightToActionData/iopWBMsgLocationsWellPadInd}" busyIndicatorDelay="0">-->
+		<!--						<core:Item text="{dashBoardModel>locationText}"-->
+		<!--							key="{dashBoardModel>location} {dashBoardModel>/InsightToActionData/regExp} {dashBoardModel>locationType}"></core:Item>-->
+		<!--					</Select>-->
+		<!--				</VBox>-->
+		<!--				<VBox height="3.5rem" justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">-->
+		<!--					<Label text="Well" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass"></Label>-->
+		<!--					<Select class="sapUiSizeCompact iopSelectClass iopFontClass sapUiTinyMarginBottom" change="onWBMSgLocWellChange"-->
+		<!--						items="{dashBoardModel>/InsightToActionData/hierarchyDetails/wells}" busy="{dashBoardModel>/InsightToActionData/iopWBMsgLocationsWellInd}"-->
+		<!--						busyIndicatorDelay="0" selectedKey="{dashBoardModel>/InsightToActionData/selectedWell}">-->
+		<!--						<core:Item text="{dashBoardModel>locationText}"-->
+		<!--							key="{dashBoardModel>location} {dashBoardModel>/InsightToActionData/regExp} {dashBoardModel>locationType}"></core:Item>-->
+		<!--					</Select>-->
+		<!--				</VBox>-->
+		<!--			</l:Grid>-->
+		<!--		<layoutData>-->
+		<!--				<l:GridData span="XL4 L4 M6 S6" spanXL="8" spanL="8" spanM="6" spanS="12"/>-->
+		<!--			</layoutData>-->
+		<!--		</VBox>-->
+		<!--	</l:Grid>-->
+		<!--</VBox>-->
+		<!--</VBox>-->
+	</ScrollContainer>
+</core:FragmentDefinition>

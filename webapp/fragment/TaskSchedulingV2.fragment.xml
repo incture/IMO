@@ -1,0 +1,64 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:viz="sap.viz.ui5.controls"
+	xmlns:unified="sap.ui.unified" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz.data="sap.viz.ui5.data"
+	id="taskSchedulingTableFragV2">
+	<VBox height="100%">
+		<ScrollContainer vertical="true" horizontal="true" height="{= ${dashBoardModel>/HierarchyPanelOpen} === true?'87%':'52%' }">
+			<PlanningCalendar startDate="{dashBoardModel>/schedulingV2Data/startDate}" busy="{dashBoardModel>/schedulingV2Data/busyIndicator}"
+				busyIndicatorDelay="0" width="{dashBoardModel>/schedulingV2Data/widths}" appointmentsReducedHeight="true" id="PC2"
+				class="iopCalendarClass iopCalendarTitleClass sapUiSizeCompact" stickyHeader="true"
+				rows="{path: 'dashBoardModel>/schedulingV2Data/scheduleData'}" appointmentsVisualization="Filled" appointmentSelect="handleV2TaskSelect"
+				showEmptyIntervalHeaders="false" intervalSelect="handleAppointmentAddWithContext" viewKey="A" startDateChange="onTaskSchedulingV2TabSelect">
+				<views>
+					<PlanningCalendarView key="A" intervalType="Hour" intervalsS="{dashBoardModel>/schedulingV2Data/view}"
+						intervalsM="{dashBoardModel>/schedulingV2Data/view}" intervalsL="{dashBoardModel>/schedulingV2Data/view}" showSubIntervals="true "></PlanningCalendarView>
+				</views>
+				<toolbarContent>
+					<HBox class="sapUiTinyMarginBegin sapUiTinyMarginTop sapUiSizeCompact iopTaskSchFieldOp">
+						<Label class="iopFontClass sapUiTinyMarginTop" text="{i18n>fldOpr}: "></Label>
+						<HBox>
+							<Input valueHelpOnly="true" value="{dashBoardModel>/taskSchedulingSelectUser}" tooltip="{dashBoardModel>/taskSchedulingSelectUser}"
+								class="sapUiTinyMarginBegin" type="Text" showValueHelp="true" valueHelpRequest="handleFieldUserValueHelp"/>
+							<Button class="sapUiSmallMarginBegin" icon="sap-icon://clear-filter" tooltip="Clear Filter" press="ontaskSchedulingClear"></Button>
+						</HBox>
+					</HBox>
+					<ToolbarSpacer/>
+					<HBox justifyContent="End">
+						<HBox class="sapUiTinyMarginTop sapUiTinyMarginEnd">
+							<core:Icon src="sap-icon://circle-task-2" class="tierA"/>
+							<Label class="sapUiTinyMarginBegin sapUiTinyMarginEnd" text="Tier A"></Label>
+							<core:Icon src="sap-icon://circle-task-2" class="tierB"/>
+							<Label class="sapUiTinyMarginBegin sapUiTinyMarginEnd" text="Tier B"></Label>
+							<core:Icon src="sap-icon://circle-task-2" class="tierC"/>
+							<Label class="sapUiTinyMarginBegin sapUiTinyMarginEnd" text="Tier C"></Label>
+							<core:Icon src="sap-icon://circle-task-2" class="tierNo"/>
+							<Label class="sapUiTinyMarginBegin sapUiTinyMarginEnd" text="No Tier"></Label>
+							<core:Icon src="sap-icon://circle-task-2" class="tierCompleted"/>
+							<Label class="sapUiTinyMarginBegin sapUiTinyMarginEnd" text="Resolved/Completed"></Label>
+						</HBox>
+						<HBox>
+							<Button visible="{= ${dashBoardModel>/schedulingV2Data/fullScreenView} === false }" class="sapUiTinyMarginEnd" icon="sap-icon://settings"
+								press="handleTaskScheduleV2Settings" tooltip="Settings"/>
+							<Button visible="{dashBoardModel>/schedulingV2Data/fullScreenView}" class="sapUiTinyMarginEnd" icon="sap-icon://full-screen"
+								press="handleTaskScheduleV2Fullscreen" tooltip="Full Screen"/>
+						</HBox>
+					</HBox>
+				</toolbarContent>
+				<rows>
+					<PlanningCalendarRow enableAppointmentsDragAndDrop="{= ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isTaskSchedulerReadOnly} === false}" class="sapUiSizeCompact" title="{dashBoardModel>taskOwner}"
+						text="{dashBoardModel>name}" appointments="{path : 'dashBoardModel>appointments', templateShareable: 'false'}"
+						appointmentDrop="handleTaskV2Drop">
+						<appointments>
+							<unified:CalendarAppointment tentative="{=${dashBoardModel>status} === 'RESOLVED' || ${dashBoardModel>status} === 'COMPLETED'}"
+								tooltip='{parts:["dashBoardModel>classification","dashBoardModel>subClassification","dashBoardModel>estResolveTime","dashBoardModel>travelTime","dashBoardModel>totalEstTime","dashBoardModel>createdAtDisplay","dashBoardModel>startTimeInString","dashBoardModel>endTimeInString"], formatter:"com.sap.incture.Incture_IOP.util.formatter.taskSchedulerAppointmentTooltip"}Location : {dashBoardModel>location}'
+								startDate='{path:"dashBoardModel>startTime", formatter:"com.sap.incture.Incture_IOP.util.formatter.taskSchedulerStartTime"}'
+								endDate='{path:"dashBoardModel>endTime", formatter:"com.sap.incture.Incture_IOP.util.formatter.taskSchedulerEndTime"}'
+								title='{parts:["dashBoardModel>classification","dashBoardModel>subClassification"], formatter:"com.sap.incture.Incture_IOP.util.formatter.taskSchedulerTitle"}'
+								text="{dashBoardModel>location}" rightpress="rightPressAppointment"
+								type='{parts:["dashBoardModel>status","dashBoardModel>tier"], formatter:"com.sap.incture.Incture_IOP.util.formatter.taskSchedulerAppointmentType"}'></unified:CalendarAppointment>
+						</appointments>
+					</PlanningCalendarRow>
+				</rows>
+			</PlanningCalendar>
+		</ScrollContainer>
+	</VBox>
+</core:FragmentDefinition>

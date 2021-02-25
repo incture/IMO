@@ -1,0 +1,73 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.f">
+	<Popover contentMinWidth="500px" showHeader="false" contentHeight="auto" placement="Bottom" showArrow="false" afterOpen="onpopoverOpen">
+		<content>
+			<VBox>
+				<List rememberSelections="true" noDataText="no suggestion item avaliable" id="suggestionlist" mode="MultiSelect"
+					items="{dashBoardModel>/suggestionItems}" itemPress="onSuggestionListItemPress" selectionChange="onSuggestionListItemSelectionChange"
+					class="sapUiSizeCompact iopwbSuggListClass" growing="true" growingThreshold="5">
+					<CustomListItem type="Active">
+						<Panel expand="onSuggestionListPanelExpand" expandAnimation="false" class="suggestionListPanel" expandable="true" expanded="false"
+							width="500px" visible="{= ${dashBoardModel>/isInvestigationCreate} === false &amp;&amp; ${dashBoardModel>/isInquiryCreate} === false}">
+							<!--{dashBoardModel>taskCount}-->
+							<headerToolbar>
+								<Toolbar height="3rem">
+									<HBox class="sapUiTinyMarginTopBottom">
+										<f:Avatar
+											initials="{parts:[{path:'dashBoardModel>firstName'}, {path:'dashBoardModel>lastName'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.getinitials'}"
+											displaySize="XS" displayShape="Circle" class="sapUiTinyMarginEnd"/>
+										<VBox>
+											<HBox>
+												<Text text="{dashBoardModel>firstName} {dashBoardModel>lastName}" class="iopFontClass sapUiTinyMarginEnd"></Text>
+												<Text text="({dashBoardModel>taskCount})" class="iopFontClass"></Text>
+											</HBox>
+											<HBox visible="true" width="7.65rem" justifyContent="Start">
+												<Text
+													text="{parts:[{path:'dashBoardModel>distanceFromLocation'},{path:'dashBoardModel>/suggestionItemsCountry'}],formatter:'com.sap.incture.Incture_IOP.util.formatter.addMiles'}"
+													class="iopFontClass "></Text>
+												<core:Icon visible="{= ${dashBoardModel>isDriving} === true}" src="sap-icon://BusinessSuiteInAppSymbols/icon-box-truck-empty"
+													class="size5 sapUiTinyMarginBegin" color="#1a9898"></core:Icon>
+											</HBox>
+										</VBox>
+									</HBox>
+								</Toolbar>
+							</headerToolbar>
+							<content>
+								<Table sticky="ColumnHeaders" class="sapUiSizeCompact" busyIndicatorDelay="0" mode="None" inset="false"
+									visible="{= ${dashBoardModel>taskCount} > 0}">
+									<columns>
+										<Column width="50px">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="{i18n>taskDt}"/>
+										</Column>
+										<Column width="30px">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="{i18n>usrName}"/>
+										</Column>
+										<Column width="50px">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="{i18n>functLoc}"/>
+										</Column>
+										<Column width="50px">
+											<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="{i18n>classfcation}"/>
+										</Column>
+									</columns>
+								</Table>
+							</content>
+						</Panel>
+						<HBox class="sapUiTinyMarginTopBottom"
+							visible="{= ${dashBoardModel>/isInvestigationCreate} === true || ${dashBoardModel>/isInquiryCreate} === true}">
+							<f:Avatar
+								initials="{parts:[{path:'dashBoardModel>firstName'}, {path:'dashBoardModel>lastName'}], formatter:'com.sap.incture.Incture_IOP.util.formatter.getinitials'}"
+								displaySize="XS" displayShape="Circle" class="sapUiTinyMarginEnd"/>
+							<HBox justifyContent="SpaceBetween" width="100%">
+								<VBox>
+									<Text text="{dashBoardModel>firstName} {dashBoardModel>lastName}" class="iopFontClass"></Text>
+									<HBox visible="{= ${dashBoardModel>/isInvestigationCreate} === true}">
+										<Text text="{path:'dashBoardModel>distanceFromLocation',formatter:'com.sap.incture.Incture_IOP.util.formatter.addMiles'}" class="iopFontClass "></Text>
+									</HBox>
+								</VBox>
+							</HBox>
+						</HBox>
+					</CustomListItem>
+				</List>
+			</VBox>
+		</content>
+	</Popover>
+</core:FragmentDefinition>

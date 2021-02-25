@@ -1,0 +1,55 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:tnt="sap.tnt">
+	<ResponsivePopover showHeader="false" title="Locations" class="sapUiPopupWithPadding" placement="Right"
+		beforeOpen="onBeforeWBMsgLocationsDialogOpen">
+		<content>
+			<l:Grid defaultSpan="L4 M6 S12" vSpacing="0" class="sapUiTinyMarginTop">
+				<VBox height="3.5rem" justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">
+					<Label text="BASE" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass"></Label>
+					<Select class="sapUiSizeCompact iopSelectClass iopFontClass sapUiTinyMarginBottom" change="onWBMSgLocCountryChange"
+						items="{dashBoardModel>/InsightToActionData/hierarchyDetails/countries}" selectedKey="{dashBoardModel>/InsightToActionData/selectedCountry}"
+						busy="{dashBoardModel>/InsightToActionData/iopWBMsgLocationsCntryInd}" busyIndicatorDelay="0">
+						<core:Item enabled="{= ${dashBoardModel>location} === 'MUR-US-EFS' }" text="{dashBoardModel>locationText}"
+							key="{dashBoardModel>location} {dashBoardModel>/InsightToActionData/regExp} {dashBoardModel>locationType}"></core:Item>
+					</Select>
+				</VBox>
+				<VBox height="3.5rem" justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">
+					<Label text="Field" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass"></Label>
+					<Select class="sapUiSizeCompact iopSelectClass iopFontClass sapUiTinyMarginBottom" change="onWBMSgLocFieldChange"
+						selectedKey="{dashBoardModel>/InsightToActionData/selectedField}" items="{dashBoardModel>/InsightToActionData/hierarchyDetails/fields}"
+						busy="{dashBoardModel>/InsightToActionData/iopWBMsgLocationsFieldInd}" busyIndicatorDelay="0">
+						<core:Item text="{dashBoardModel>locationText}"
+							key="{dashBoardModel>location} {dashBoardModel>/InsightToActionData/regExp} {dashBoardModel>locationType}"></core:Item>
+					</Select>
+				</VBox>
+				<VBox height="3.5rem" justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">
+					<Label text="Facility" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass"></Label>
+					<Select class="sapUiSizeCompact iopSelectClass iopFontClass sapUiTinyMarginBottom" change="onWBMSgLocFacilityChange"
+						items="{dashBoardModel>/InsightToActionData/hierarchyDetails/facilities}"
+						selectedKey="{dashBoardModel>/InsightToActionData/selectedFacility}"
+						busy="{dashBoardModel>/InsightToActionData/iopWBMsgLocationsFacilityInd}" busyIndicatorDelay="0">
+						<core:Item text="{dashBoardModel>locationText}"
+							key="{dashBoardModel>location} {dashBoardModel>/InsightToActionData/regExp} {dashBoardModel>locationType}"></core:Item>
+					</Select>
+				</VBox>
+				<VBox height="3.5rem" justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">
+					<Label text="Well Pad" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass"></Label>
+					<Select class="sapUiSizeCompact iopSelectClass iopFontClass sapUiTinyMarginBottom" change="onWBMSgLocWellPadChange"
+						items="{dashBoardModel>/InsightToActionData/hierarchyDetails/wellpads}" selectedKey="{dashBoardModel>/InsightToActionData/selectedWellPad}"
+						busy="{dashBoardModel>/InsightToActionData/iopWBMsgLocationsWellPadInd}" busyIndicatorDelay="0">
+						<core:Item text="{dashBoardModel>locationText}"
+							key="{dashBoardModel>location} {dashBoardModel>/InsightToActionData/regExp} {dashBoardModel>locationType}"></core:Item>
+					</Select>
+				</VBox>
+				<VBox height="3.5rem" justifyContent="SpaceBetween" class="sapUiTinyMarginBottom">
+					<Label text="Well" class="iopFontClass iopwbTaskLabelClass iopwbLabelRequiredClass"></Label>
+					<Select class="sapUiSizeCompact iopSelectClass iopFontClass sapUiTinyMarginBottom" change="onWBMSgLocWellChange"
+						items="{dashBoardModel>/InsightToActionData/hierarchyDetails/wells}" busy="{dashBoardModel>/InsightToActionData/iopWBMsgLocationsWellInd}"
+						busyIndicatorDelay="0" selectedKey="{dashBoardModel>/InsightToActionData/selectedWell}">
+						<core:Item text="{dashBoardModel>locationText}"
+							key="{dashBoardModel>location} {dashBoardModel>/InsightToActionData/regExp} {dashBoardModel>locationType}"></core:Item>
+					</Select>
+				</VBox>
+			</l:Grid>
+		</content>
+	</ResponsivePopover>
+</core:FragmentDefinition>

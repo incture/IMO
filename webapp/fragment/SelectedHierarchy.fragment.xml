@@ -1,0 +1,16 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:form="sap.ui.layout.form"
+	id="SelectedHierarchyBar">
+	<VBox height="2rem" visible="{dashBoardModel>/isSelectedHierarchy}">
+		<HBox>
+			<Label text="Selected Hierarchy" class="hrFontSize sapUiTinyMarginTop"></Label>
+			<l:VerticalLayout id="selectedHrTokens">
+				<Tokenizer tokenUpdate="onTokenUpdate" class="SelectedHierarchyBarToken SelectedHrHover" tokens="{dashBoardModel>/selectedHrArry/}">
+					<Token key="{dashBoardModel>location}" text="{dashBoardModel>locationText}" tooltip="{dashBoardModel>locationText}"/>
+				</Tokenizer>
+			</l:VerticalLayout>
+			<HBox>
+				<core:Icon id="moreIcon" src="sap-icon://InctureIopv2/more" size="1rem" width="1.5rem" class="iopVerticalGripIconClass moreHrIcon"
+					press="onOpenSelectedHr" visible="{dashBoardModel>/showMoreIcon}"/></HBox>
+		</HBox>
+	</VBox>
+</core:FragmentDefinition>

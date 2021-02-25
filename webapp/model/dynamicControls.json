@@ -1,0 +1,94 @@
+{
+	"controlData": [{
+		"clItemId": "Id1",
+		"taskTempId": "Template1",
+		"label": "Location",
+		"shortDesc": "Name of the Well",
+		"seqNumber": "1",
+		"maxLength": "30",
+		"dataType": "Input",
+		"isMandatory": true,
+		"isDefault": false,
+		"isEditable": true,
+		"serviceUrl": "",
+		"valueDtos": [{
+			"value": "Well 1"
+		}, {
+			"value": "Well 2"
+		}],
+		"values": "Well 1,Well 2"
+	}, {
+		"clItemId": "Id2",
+		"taskTempId": "Template1",
+		"label": "Assign To",
+		"shortDesc": "To whom the task is to be assigned",
+		"seqNumber": "2",
+		"maxLength": "4",
+		"dataType": "MultiSelect",
+		"isMandatory": true,
+		"isDefault": false,
+		"isEditable": true,
+		"serviceUrl": "host/somethng/somethng",
+		"valueDtos": [{
+			"value": "Name"
+		}, {
+			"value": "Id"
+		}],
+		"values": ["Name", "Id"]
+	}, {
+		"clItemId": "Id5",
+		"taskTempId": "Template1",
+		"label": "Status",
+		"shortDesc": "Name of the Well",
+		"seqNumber": "1",
+		"maxLength": "30",
+		"dataType": "Input",
+		"isMandatory": true,
+		"isDefault": false,
+		"isEditable": true,
+		"serviceUrl": "",
+		"valueDtos": [{
+			"value": "Compressor"
+		}, {
+			"value": "Other"
+		}],
+		"values": "New"
+	}, {
+		"clItemId": "Id3",
+		"taskTempId": "Template1",
+		"label": "Task Classification",
+		"shortDesc": "Name of the Well",
+		"seqNumber": "1",
+		"maxLength": "30",
+		"dataType": "Select",
+		"isMandatory": true,
+		"isDefault": false,
+		"isEditable": true,
+		"serviceUrl": "",
+		"valueDtos": [{
+			"value": "Downtime"
+		}, {
+			"value": "Other"
+		}],
+		"values": ["Well 1", "Well 2"]
+	}, {
+		"clItemId": "Id4",
+		"taskTempId": "Template1",
+		"label": "  ",
+		"shortDesc": "Name of the Well",
+		"seqNumber": "1",
+		"maxLength": "30",
+		"dataType": "Select",
+		"isMandatory": true,
+		"isDefault": false,
+		"isEditable": true,
+		"serviceUrl": "",
+		"valueDtos": [{
+			"value": "Compressor"
+		}, {
+			"value": "Other"
+		}],
+		"values": ["Well 1", "Well 2"]
+	}]
+
+}

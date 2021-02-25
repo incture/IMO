@@ -1,0 +1,22 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:u="sap.ui.unified" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<Popover showArrow="true" showHeader="false" afterClose="alarmActionListClose">
+		<VBox class="sapUiTinyMargin">
+			<Button id="idAcknowledgeBtn" icon="sap-icon://accept" text="Acknowledge" width="100%" class="sapUiSizeCompact iopBtnClass iopAlarmBtnClass"
+				press="onPressAlarmAction" visible="{= ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isAlarmReadOnly} === false}"/>
+				<Button id="idDesignateBtn" icon="sap-icon://InctureIopv2/designate" text="Designate" visible="{= ${dashBoardModel>/dopData/showDesignate} &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isAlarmReadOnly} === false}"
+				width="100%" class="sapUiSizeCompact iopBtnClass iopAlarmBtnClass" press="onPressAlarmAction"/>
+			<Button id="idDispatchBtn" icon="sap-icon://InctureIopv2/dispatch" text="Dispatch" width="100%"
+				class="sapUiSizeCompact sapUiTinyMarginEnd iopBtnClass iopAlarmBtnClass" press="onPressAlarmAction" visible="{= ${dashBoardModel>/isWebReadOnlyRole} === false ? 
+				${dashBoardModel>/moduleReadOnly/isAlarmReadOnly} === false &amp;&amp; ${dashBoardModel>/panelProperties/currentSelectKey} === 'alarms' ? true:
+				${dashBoardModel>/moduleReadOnly/isDOPReadOnly} === false &amp;&amp; ${dashBoardModel>/panelProperties/currentSelectKey} === 'DOP' ? true: false: false}"/>
+			
+			<Button id="idDopInquiryBtn" icon="sap-icon://InctureIopv2/inquire" text="Inquiry" width="100%"
+				class="sapUiSizeCompact sapUiTinyMarginEnd iopBtnClass iopAlarmBtnClass iopInquireicon" press="onPressAlarmAction"
+				visible="{= ${dashBoardModel>/dopData/showInquire} === true &amp;&amp; ${dashBoardModel>/panelProperties/currentSelectKey} === 'DOP' &amp;&amp; ${dashBoardModel>/isWebReadOnlyRole} === false &amp;&amp; ${dashBoardModel>/moduleReadOnly/isDOPReadOnly} === false &amp;&amp; ${dashBoardModel>/currentLocationInHierarchy} === 'EFS' }"/>
+			<Button id="idTrendBtn" icon="sap-icon://business-objects-experience" text="Trends" width="100%"
+				class="sapUiSizeCompact sapUiSmallMarginEnd iopBtnClass iopAlarmBtnClass" press="onPressAlarmAction"/>
+			<Button icon="sap-icon://history" text="Location History" width="100%" class="sapUiSizeCompact iopBtnClass iopAlarmBtnClass"
+				press="onPressAlarmAction"/>
+		</VBox>
+	</Popover>
+</core:FragmentDefinition>

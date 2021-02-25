@@ -1,0 +1,143 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" id="TaskManagement">
+	<VBox height="100%" width="100%">
+		<Toolbar class="sapUiSizeCompact sapUiTinyMarginBegin sapUiSmallMarginBottom">
+			<Text text="{i18n>ptwTitle}" class="sapUiSmallMarginBegin iopFontClass"/>
+			<ToolbarSpacer/>
+		</Toolbar>
+		<IconTabBar select="onPTWIconTabChange" class="sapUiSizeCompact sapUiResponsiveContentPadding iopPtwTabClass"
+			selectedKey="{dashBoardModel>/ptwSelectedKey}" id="ptwIconTabBar">
+			<items>
+				<IconTabFilter icon="sap-icon://activity-items" iconColor="Default" text="Active JSA" key="Active JSA"/>
+				<IconTabSeparator/>
+				<IconTabFilter icon="sap-icon://business-card" iconColor="Default" text="Active CW" key="Active CW"/>
+				<IconTabFilter icon="sap-icon://temperature" iconColor="Default" text="Active HW" key="Active HW"/>
+				<IconTabFilter icon="sap-icon://visits" iconColor="Default" text="Active CSP" key="Active CSP"/>
+			</items>
+		</IconTabBar>
+		<ScrollContainer height="{dashBoardModel>/PTWScrollPanelHeight}" vertical="true"
+			class="iopDowntimeTypeHeader iopWellVisitScrollBorder sapUiTinyMarginBottom">
+			<Table sticky="ColumnHeaders" id="permitToworkJsaTable" busyIndicatorDelay="0" busy="{dashBoardModel>/busyIndicators/ptwTableBusy}"
+				visible="{= ${dashBoardModel>/ptwSelectedKey} === 'Active JSA' }" items="{dashBoardModel>/ptwJsaTable/results}"
+				class="sapUiSizeCompact sapUiTinyMarginEnd iopFontClass iopRepWLTableClass alarmListHeader alarmTableHeader" fixedLayout="false">
+				<headerToolbar>
+					<Toolbar class="sapUiSizeCompact iopDCToolbar">
+						<content>
+							<ToolbarSpacer/>
+							<SearchField width="10rem" class="iopFontClass" placeholder="Search" liveChange="onPTWTableSearchFromPTW">
+								<tooltip class="iopFontClass" text="Search.."></tooltip>
+							</SearchField>
+							<!--<SearchField width="10rem" class="iopFontClass" placeholder="Search" liveChange="onPtwTableSerach">
+							<tooltip class="iopFontClass" text="Search.."></tooltip>
+						</SearchField>-->
+						</content>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column >
+						<Text class="iopFontClass iopRepTitleClass iopPtwTextClass" text="{i18n>location}"/>
+					</Column>
+					<Column>
+						<Text class="iopFontClass iopRepTitleClass iopPtwTextClass" text="{i18n>createddate}"/>
+					</Column>
+					<Column>
+						<Text class="iopFontClass iopRepTitleClass iopPtwTextClass" text="{i18n>PermitNo}"/>
+					</Column>
+					<Column >
+						<Text class="iopFontClass iopRepTitleClass iopPtwTextClass" text="Created By"/>
+					</Column>
+					<Column>
+						<Text class="iopFontClass iopRepTitleClass iopPtwTextClass" text="Task Description"/>
+					</Column>
+					<Column width="60px">
+						<Text class="iopFontClass iopRepTitleClass iopPtwTextClass" text="{i18n>coldwrk}"/>
+					</Column>
+					<Column width="60px">
+						<Text class="iopFontClass iopRepTitleClass iopPtwTextClass" text="{i18n>hotwrk}"/>
+					</Column>
+					<Column width="60px">
+						<Text class="iopFontClass iopRepTitleClass iopPtwTextClass" text="Confined Space"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Active" press="onGetJSADetails">
+						<cells>
+							<Text class="iopFontClass iopPtwTextClass" tooltip="{dashBoardModel>FACILTYORSITE}" text="{dashBoardModel>FACILTYORSITE}"/>
+							<Text class="iopFontClass iopPtwTextClass"
+								text="{path:'dashBoardModel>CREATEDDATE',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDate'}"/>
+							<Text class="iopFontClass iopPtwTextClass" text="{dashBoardModel>PERMITNUMBER}"/>
+							<Text class="iopFontClass iopPtwTextClass" text="{dashBoardModel>CREATEDBY}"/>
+							<Text class="iopFontClass iopPtwTextClass" text="{dashBoardModel>TASKDESCRIPTION}"/>
+							<core:Icon src="sap-icon://sys-enter-2" class="size2" color="green" visible="{= ${dashBoardModel>HASCWP} === 1 }"></core:Icon>
+							<core:Icon src="sap-icon://sys-enter-2" class="size2" color="green" visible="{= ${dashBoardModel>HASHWP} === 1 }"></core:Icon>
+							<core:Icon src="sap-icon://sys-enter-2" class="size2" color="green" visible="{= ${dashBoardModel>HASCSE} === 1 }"></core:Icon>
+							<!--	<Text class="iopFontClass iopPtwTextClass" text="{dashBoardModel>jsaPermitNumber}"/>
+						<Text class="iopFontClass iopPtwTextClass" text="{dashBoardModel>createdBy}"/>
+						<Text class="iopFontClass iopPtwTextClass" text="{dashBoardModel>taskDescription}"/>
+						<Text class="iopFontClass iopPtwTextClass" tooltip="{dashBoardModel>facilityorsite}"
+							text="{path:'dashBoardModel>facilityorsite',formatter:'com.sap.incture.Incture_IOP.util.formatter.showlessTextforOverFlow'}"/>
+						<Text class="iopFontClass iopPtwTextClass" text="{dashBoardModel>createdDate}"/>
+						<core:Icon src="sap-icon://sys-enter-2" class="size2" color="green" visible="{= ${dashBoardModel>CWP} !== undefined }"></core:Icon>
+						<core:Icon src="sap-icon://sys-enter-2" class="size2" color="green" visible="{= ${dashBoardModel>HWP} !== undefined }"></core:Icon>
+						<core:Icon src="sap-icon://sys-enter-2" class="size2" color="green" visible="{= ${dashBoardModel>CSE} !== undefined }"></core:Icon>
+					-->
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+			<Table id="permitToWorkPermitTable" busyIndicatorDelay="0" busy="{dashBoardModel>/busyIndicators/ptwTableBusy}"
+				visible="{= ${dashBoardModel>/ptwSelectedKey} === 'Active CW' || ${dashBoardModel>/ptwSelectedKey} === 'Active HW' || ${dashBoardModel>/ptwSelectedKey} === 'Active CSP' }"
+				items="{dashBoardModel>/ptwPermitTable/results}"
+				class="sapUiSizeCompact sapUiTinyMarginEnd iopFontClass iopRepWLTableClass alarmListHeader alarmTableHeader" fixedLayout="false"
+				rememberSelections="true">
+				<headerToolbar>
+					<Toolbar class="sapUiSizeCompact">
+						<content>
+							<ToolbarSpacer/>
+							<SearchField width="10rem" class="iopFontClass" placeholder="Search" liveChange="onPTWTableSearchFromPTW">
+								<tooltip class="iopFontClass" text="Search.."></tooltip>
+							</SearchField>
+							<!--	<SearchField width="10rem" class="iopFontClass" placeholder="Search" liveChange="onPtwTableSerach">
+							<tooltip class="iopFontClass" text="Search.."></tooltip>
+						</SearchField>-->
+						</content>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text class="iopFontClass iopRepTitleClass iopPtwTextClass" text="{i18n>location}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text class="iopFontClass iopRepTitleClass iopPtwTextClass" text="{i18n>createddate}"/>
+					</Column>
+					<Column minScreenWidth="Tablet">
+						<Text class="iopFontClass iopRepTitleClass iopPtwTextClass" text="Permit#"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text class="iopFontClass iopRepTitleClass iopPtwTextClass" text="Created By"/>
+					</Column>
+					<!--<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text class="iopFontClass iopRepTitleClass iopPtwTextClass" text="Task Description"/>
+					</Column>-->
+				</columns>
+				<items>
+					<ColumnListItem type="Active" press="onGetPTWPermitDetails">
+						<cells>
+							<Text class="iopFontClass iopPtwTextClass" tooltip="{dashBoardModel>LOCATION}" text="{dashBoardModel>LOCATION}"/>
+							<Text class="iopFontClass iopPtwTextClass"
+								text="{path:'dashBoardModel>PLANNEDDATETIME',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDate'}"/>
+							<Text class="iopFontClass iopPtwTextClass" text="{dashBoardModel>PERMITNUMBER}"/>
+							<Text class="iopFontClass iopPtwTextClass" text="{dashBoardModel>CREATEDBY}"/>
+							<!--<Text class="iopFontClass iopPtwTextClass" text="{dashBoardModel>taskDescription}"/>-->
+							<!--<Text class="iopFontClass iopPtwTextClass" text="{dashBoardModel>jsaPermitNumber}"/>
+						<Text class="iopFontClass iopPtwTextClass" text="{dashBoardModel>createdBy}"/>
+						<Text class="iopFontClass iopPtwTextClass" text="{dashBoardModel>taskDescription}"/>
+						<Text class="iopFontClass iopPtwTextClass" tooltip="{dashBoardModel>facilityorsite}"
+							text="{path:'dashBoardModel>facilityorsite',formatter:'com.sap.incture.Incture_IOP.util.formatter.showlessTextforOverFlow'}"/>
+						<Text class="iopFontClass iopPtwTextClass" text="{dashBoardModel>createdDate}"/>-->
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</ScrollContainer>
+	</VBox>
+</core:FragmentDefinition>

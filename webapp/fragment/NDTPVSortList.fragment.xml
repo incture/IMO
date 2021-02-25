@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout">
+	<ViewSettingsDialog confirm="onNDTPVTableSort" class="sapUiSizeCompact">
+		<sortItems>
+			<ViewSettingsItem text="Location" key="well" selected="false"/>
+			<ViewSettingsItem text="Var to Fcst BOED" key="avgVarToForecastBoed" selected="true"/>
+			<ViewSettingsItem text="% Var to Fcst BOED" key="avgPerVarToForecastBoed" selected="false"/>
+			<ViewSettingsItem text="Actual BOED" key="avgActualBoed" selected="false"/>
+			<ViewSettingsItem text="Forecast BOED" key="avgForecastBoed" selected="false"/>
+			<ViewSettingsItem text="Oil" key="avgOil" selected="false"/>
+			<ViewSettingsItem text="Water" key="avgWater" selected="false"/>
+			<ViewSettingsItem text="Gas" key="avgGas" selected="false"/>
+			<ViewSettingsItem text="Last Prod Date" key="lastProdDateField" selected="false"/>
+		</sortItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

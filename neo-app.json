@@ -1,0 +1,108 @@
+{
+  "welcomeFile": "/webapp/index.html",
+  "routes": [
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources",
+        "version": "1.78.0"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources",
+        "version": "1.78.0"
+      },
+      "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/taskmanagementRest",
+      "target": {
+        "type": "destination",
+        "name": "JavaAPI_Dest"
+      },
+      "description": "Destination for Murphy Task Management"
+    },
+    {
+      "path": "/taskmanagementRestTest",
+      "target": {
+        "type": "destination",
+        "name": "JavaAPI_Dest_Temp_ritwikServ"
+      },
+      "description": "Destination for Murphy Task Management"
+    },
+    {
+      "path": "/bpmrulesRest",
+      "target": {
+        "type": "destination",
+        "name": "bpmrulesruntime"
+      },
+      "description": "bpmrulesruntime"
+    },
+    {
+      "path": "/services/userapi",
+      "target": {
+        "type": "service",
+        "name": "userapi"
+      }
+    },
+    {
+      "path": "/destination/ODATA_DEST",
+      "target": {
+        "type": "destination",
+        "name": "ODATA_DEST"
+      }
+    },
+    {
+      "path": "/destination/MurphyCloudIdPDest",
+      "target": {
+        "type": "destination",
+        "name": "UserManagement_Dest",
+        "entryPath": "/"
+      },
+      "description": "Used for Murphy IdP APIs"
+    },
+    {
+      "path": "/destination/PushNotification_Dest",
+      "target": {
+        "type": "destination",
+        "name": "PushNotification_Dest"
+      }
+    },
+    {
+      "path": "/downTimeRest",
+      "target": {
+        "type": "destination",
+        "name": "DowntimeCaptureDestination"
+      }
+    },
+    {
+      "path": "/ptwRest",
+      "target": {
+        "type": "destination",
+        "name": "HANAXSAPI_Dest"
+      }
+    },
+    {
+      "path": "/appDownloadRest",
+      "target": {
+        "type": "destination",
+        "name": "AppDownloadDest_Dummy"
+      }
+    },
+    {
+      "path": "/getLoginNameRest",
+      "target": {
+        "type": "destination",
+        "name": "WF_DFT_Login_Name"
+      }
+    }
+  ],
+  "sendWelcomeFileRedirect": true
+}

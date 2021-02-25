@@ -1,0 +1,711 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:f="sap.f" xmlns:ui="sap.ui.table">
+	<Dialog showHeader="false" contentWidth="100%" class="iopPtwJsaForm sapUiSizeCompact iopPtwOverFlow" verticalScrolling="false"
+		horizontalScrolling="false">
+		<HBox justifyContent="End" class="iopLocationHistoryCloseButton" height="0rem">
+			<Button icon="sap-icon://sys-cancel" class="iopLocationHistoryPTWFormCloseBtnClass" type="Transparent" press="onFromClose"/>
+		</HBox>
+		<ScrollContainer vertical="true" horizontal="false" height="{dashBoardModel>/PTWFromHeight}">
+			<VBox class="sapUiSmallMarginTopBottom sapUiLargeMarginBeginEnd sapUiSizeCompact">
+				<HBox alignItems="Center" class="sapUiSmallMarginTop" width="100%">
+					<HBox width="90%" height="2rem" alignItems="Center">
+						<Image src="{path:'i18n>murphy',formatter:'com.sap.incture.Incture_IOP.util.formatter.getImagePath'}" width="150px" height="50px"
+							tooltip="Murphy Logo"/>
+					</HBox>
+					<HBox alignItems="End" height="2rem">
+						<Label text="Permit No:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+						<Input value="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWHEADER/0/permitNumber}" editable="false" class="ptwInputBox"></Input>
+					</HBox>
+					<Button icon="sap-icon://print" text="Print" class="sapUiTinyMarginBegin iopPtwPrintButton uoNoPrint" type="Default" press="onPrintHW"/>
+				</HBox>
+				<HBox alignItems="Center" height="2rem" width="100%" class="ptwUpperBoxBorder sapUiSmallMarginTopBottom ptwHeaderBackgroud">
+					<Label text="HOT WORK PERMIT" design="Bold" class="sapUiTinyMarginBeginEnd ptwHeaderFont"/>
+				</HBox>
+				<HBox alignItems="Center" width="100%">
+					<VBox width="15%">
+						<Label text="Planned Date of Work:" design="Bold" class="sapUiTinyMarginBeginEnd sapUiTinyMarginBottom"/>
+						<Label text="Permit Holder:" design="Bold" class="sapUiTinyMarginBeginEnd sapUiTinyMarginBottom"/>
+						<Label text="Est. Time of Completion:" design="Bold" class="sapUiTinyMarginBeginEnd sapUiTinyMarginBottom"/>
+					</VBox>
+					<VBox width="17%" class="ptwInputBoxAlign">
+						<Input
+							value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWHEADER/0/plannedDateTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDate'}"
+							editable="false" class="ptwInputBox"></Input>
+						<Input value="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWHEADER/0/createdBy}" class="ptwInputBox"></Input>
+						<Input
+							value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWHEADER/0/estimatedTimeOfCompletion',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwGetTime'}"
+							editable="false" class="ptwInputBox"></Input>
+					</VBox>
+					<VBox width="13%">
+						<Label text="Start Time:" design="Bold" class="sapUiSmallMarginBeginEnd sapUiTinyMarginBottom"/>
+						<Label text="Date:" design="Bold" class="sapUiSmallMarginBeginEnd sapUiTinyMarginBottom"/>
+						<Label text="Equipment ID/Tag:" design="Bold" class="sapUiSmallMarginBeginEnd sapUiTinyMarginBottom"/>
+					</VBox>
+					<VBox width="17%" class="ptwInputBoxAlign">
+						<Input
+							value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWHEADER/0/plannedDateTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwGetTime'}"
+							editable="false" class="ptwInputBox"></Input>
+						<Input
+							value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWHEADER/0/plannedDateTime',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDate'}"
+							editable="false" class="ptwInputBox"></Input>
+						<Input
+							value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWHEADER/0/equipmentID',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"
+							editable="false" class="ptwInputBox"></Input>
+					</VBox>
+					<VBox width="19%">
+						<Label text="Location:" design="Bold" class="sapUiSmallMarginBeginEnd sapUiTinyMarginBottom"/>
+						<Label text="Contractor Performing Work:" design="Bold" class="sapUiSmallMarginBeginEnd sapUiTinyMarginBottom"/>
+						<Label text="Work Order No. (If Applicable):" design="Bold" class="sapUiSmallMarginBeginEnd sapUiTinyMarginBottom"/>
+					</VBox>
+					<VBox width="17%" class="ptwInputBoxAlign">
+						<Input value="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWHEADER/0/location}" editable="false" class="ptwInputBox"></Input>
+						<Input
+							value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWHEADER/0/contractorPerformingWork',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"
+							editable="false" class="ptwInputBox"></Input>
+						<Input
+							value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWHEADER/0/workOrderNumber',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"
+							editable="false" class="ptwInputBox"></Input>
+					</VBox>
+				</HBox>
+				<HBox alignItems="Center" height="2rem" width="100%" class="ptwUpperBoxBorder sapUiSmallMarginTop ptwHeaderBackgroud">
+					<Label text="TYPE OF WORK" design="Bold" class="sapUiTinyMarginBeginEnd ptwHeaderFont"/>
+				</HBox>
+				<HBox alignItems="Center" width="100%" class="ptwBoxBorder">
+					<HBox width="16%">
+						<CheckBox text="Cutting" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWHWPWORK/cutting}=== 1? true : false}"
+							editable="false" class="ptwCheckBoxAlign"/>
+					</HBox>
+					<HBox width="16%">
+						<CheckBox text="Welding" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWHWPWORK/wielding}=== 1? true : false}"
+							editable="false" class="ptwCheckBoxAlign"/>
+					</HBox>
+					<HBox width="19%">
+						<CheckBox text="Electical Powered Equipment"
+							selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWHWPWORK/electricalPoweredEquipment}=== 1? true : false}" editable="false"
+							class="ptwCheckBoxAlign"/>
+					</HBox>
+					<HBox width="16%">
+						<CheckBox text="Grinding" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWHWPWORK/grinding}=== 1? true : false}"
+							editable="false" class="ptwCheckBoxAlign"/>
+					</HBox>
+					<HBox width="16%">
+						<CheckBox text="Abrasive Blasting" editable="false"
+							selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWHWPWORK/abrasiveBlasting}=== 1? true : false}" class="ptwCheckBoxAlign"/>
+					</HBox>
+					<HBox width="16%">
+						<CheckBox text="Other:" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWHWPWORK/otherTypeOfWork} !== '' ? true : false}"
+							editable="false"/>
+						<Input
+							value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWHWPWORK/otherTypeOfWork',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"
+							width="100%" class="ptwInputBoxForNoLine" editable="false"></Input>
+					</HBox>
+				</HBox>
+				<HBox alignItems="Center" width="100%" class="sapUiSmallMarginTop">
+					<Label text="HOT WORK PERMITS ARE ONLY VALID FOR THE SHIFT IN WHICH THEY ARE AUTHORISIED OR A MAXIMUM OF 12 HOURS FORM THE TIME OF ISSUE."
+						design="Bold" class="sapUiTinyMarginBeginEnd"/>
+				</HBox>
+				<HBox alignItems="Center" width="100%">
+					<Label text="Description of Work To be Performed:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+				</HBox>
+				<HBox alignItems="Center" height="4rem" width="100%" class="ptwUpperBoxBorder">
+					<TextArea
+						value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWHWPWORK/descriptionOfWorkToBePerformed',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"
+						maxLength="400" showExceededText="false" class="ptwTextArea"/>
+				</HBox>
+				<HBox alignItems="Center" height="2rem" width="100%" class="ptwUpperBoxBorder sapUiSmallMarginBottom ptwHeaderBackgroud">
+					<Label text="WORK PERMIT REQUIRED DOCUMENTS" design="Bold" class="sapUiTinyMarginBeginEnd ptwHeaderFont"/>
+				</HBox>
+				<HBox width="100%">
+					<VBox class="sapUiSmallMarginBegin" width="100%">
+						<CheckBox text="Energy Isolation Auth(LOTO)"
+							selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWREQDOC/0/loto}=== 1? true : false}" editable="false"/>
+						<CheckBox text="Temporary Defeat"
+							selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWREQDOC/0/temporaryDefeat}=== 1? true : false}" editable="false"/>
+						<CheckBox text="Fire Watch Checklist"
+							selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWREQDOC/0/fireWatchChecklist}=== 1? true : false}" editable="false"/>
+					</VBox>
+					<VBox class="sapUiSmallMarginBegin" width="100%">
+						<CheckBox text="SIMOPS Auth" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWREQDOC/0/simopDeviation}=== 1? true : false}"
+							editable="false"/>
+						<CheckBox text="JSA" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWREQDOC/0/fireWatchChecklist}=== 1? true : false}"
+							editable="false"/>
+						<CheckBox text="Lift Plan" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWREQDOC/0/liftPlan}=== 1? true : false}"
+							editable="false"/>
+					</VBox>
+					<VBox class="sapUiSmallMarginBegin" width="100%">
+						<CheckBox text="Procedure" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWREQDOC/0/procedure}=== 1? true : false}"
+							editable="false"/>
+						<CheckBox text="Rescue Plan" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWREQDOC/0/rescuePlan}=== 1? true : false}"
+							editable="false"/>
+						<CheckBox text="P ID/Drawing" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWREQDOC/0/pAndIdOrDrawing}=== 1? true : false}"
+							editable="false"/>
+					</VBox>
+					<VBox width="100%">
+						<CheckBox text="SDS (MSDS)" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWREQDOC/0/sds}=== 1? true : false}"
+							editable="false"/>
+						<CheckBox text="Safe Wk Practice"
+							selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWREQDOC/0/safeWorkPractice}=== 1? true : false}" editable="false"/>
+						<CheckBox text="Other" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWREQDOC/0/otherWorkPermitDocs}!== ''? true : false}"
+							editable="false"/>
+					</VBox>
+					<VBox width="100%">
+						<HBox alignItems="End" height="2rem" class="ptwInputBox PtwHboxFlexGrow">
+							<Label text="Certificate:" design="Bold"/>
+							<Input
+								value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWREQDOC/0/certificate',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"
+								class="ptwInputBox" editable="false"></Input>
+						</HBox>
+						<HBox alignItems="End" height="4rem" width="100%" class="PtwHboxFlexGrow sapuiTinyMarginTop">
+							<TextArea
+								value="Other (Describe): {path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWREQDOC/0/otherWorkPermitDocs',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"
+								editable="false" class="ptwInputBox" width="100%"></TextArea>
+						</HBox>
+					</VBox>
+				</HBox>
+				<HBox alignItems="Center" height="2rem" width="100%" class="ptwUpperBoxBorder sapUiSmallMarginTopBottom ptwHeaderBackgroud">
+					<Label text="WORK TEAM ACKNOWLEDGEMENT" design="Bold" class="sapUiTinyMarginBeginEnd ptwHeaderFont"/>
+				</HBox>
+				<HBox height="2rem" width="100%">
+					<Text wrapping="true"
+						text="Work Team: I have Participated in a review of the Permit To Work (PTW), JSA(s) and relevant documents for safe work exection. I understand the hazards that have been identified and the controls implemented and maintained to work safe. "
+						class="sapUiTinyMarginBeginEnd"/>
+				</HBox>
+				<HBox height="4rem" width="100%" class="sapUiTinyTop">
+					<Text wrapping="true"
+						text="NOTE: Each person working under this permit must sign before commencing work for the first time. If any person working under this permit considers conditions are becoming unsafe to continue, they must immediately inform their coworkers, stop work, make the worksite safe and then inform the Permit Holder and the Person-In-Charge(PIC)."
+						class="sapUiTinyMarginBeginEnd sapUiTinyMarginTop"/>
+				</HBox>
+				<HBox width="100%">
+					<Table class="sapUiSizeCompact ptwHWPTableBorderClass" items="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWPEOPLEOne}">
+						<columns>
+							<Column width="25%">
+								<Label text="Name:" design="Bold" class=" murphyBlackFont"/>
+							</Column>
+							<Column width="55%">
+								<Label text="Contact Number" design="Bold" class=" murphyBlackFont"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Input value="{path:'dashBoardModel>firstName',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}" class="ptwTableInputBox"
+										width="100%" editable="false"></Input>
+									<Input value="{dashBoardModel>contactNumber}" class="ptwTableInputBox" width="100%" editable="false"></Input>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+					<Table class="sapUiSizeCompact ptwHWPTableBorderClass" items="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWPEOPLETwo}">
+						<columns>
+							<Column width="25%">
+								<Label text="Name:" design="Bold" class=" murphyBlackFont"/>
+							</Column>
+							<Column width="55%">
+								<Label text="Contact Number" design="Bold" class=" murphyBlackFont"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Input value="{path:'dashBoardModel>firstName',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}" editable="false"
+										class="ptwTableInputBox" width="100%"></Input>
+									<Input value="{dashBoardModel>contactNumber}" editable="false" class="ptwTableInputBox" width="100%"></Input>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</HBox>
+				<HBox width="100%" class="ptwBoxBorder ptwHWPTableRowColor">
+					<HBox width="30%">
+						<Text text="Is the work safe to perform as planned?" class="sapUiTinyMarginTop sapUiSmallMarginBeginEnd"></Text>
+					</HBox>
+					<HBox width="5%">
+						<CheckBox text="Yes" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWAPPROVAL/0/isWorkSafeToPerform}=== 1? true : false}"
+							editable="false"/>
+					</HBox>
+					<HBox width="5%">
+						<CheckBox text="No" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWAPPROVAL/0/isWorkSafeToPerform}=== 0? true : false}"
+							editable="false"/>
+					</HBox>
+					<HBox width="50%">
+						<Text text="If No, review work plan and associated hazards with PIC again." class="sapUiTinyMarginTop sapUiLargeMarginBeginEnd"></Text>
+					</HBox>
+				</HBox>
+				<HBox width="100%" height="2rem" class="sapUiSmallMarginTopBottom">
+					<Label text="Pre-job walkthrough conducted by:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+					<Input
+						value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWAPPROVAL/0/prejobWalkthroughBy',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"
+						class="ptwInputBox" editable="false"></Input>
+				</HBox>
+				<HBox alignItems="Center" height="2rem" width="100%" class="ptwUpperBoxBorder sapUiTinyMarginTop ptwHeaderBackgroud">
+					<Label text="APPROVAL AND AUTHORITY TO PROCEED" design="Bold" class="sapUiTinyMarginBeginEnd ptwHeaderFont"/>
+				</HBox>
+				<HBox width="100%" class="ptwUpperBoxBorder">
+					<VBox width="100%">
+						<HBox width="100%">
+							<Text wrapping="true"
+								text="PIC: I have reviewed this work and can confirm it will not conflict with other activities. Work can commense when the permit conditions are fullfilled. I have reviewed this work permit with the area operator and the work can proceed as planned."
+								class="sapUiTinyMarginBeginEnd sapUiSmallMarginTop"/>
+						</HBox>
+						<HBox width="100%" class="sapUiTinyMarginTopBottom">
+							<HBox width="33%">
+								<Label text="Name:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								<Input
+									value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWAPPROVAL/0/picName',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"
+									class="ptwInputBox" editable="false"></Input>
+							</HBox>
+							<!--	<HBox width="33%">
+								<Label text="Signature:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								<Input value="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWAPPROVAL/0/picName}" class="ptwInputBox" editable="false"></Input>
+							</HBox>-->
+							<HBox width="33%">
+								<Label text="Time/Date:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								<Input
+									value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWAPPROVAL/0/picDate',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDate'}"
+									class="ptwInputBox" editable="false"></Input>
+							</HBox>
+						</HBox>
+						<HBox width="100%">
+							<Text wrapping="true"
+								text="Permit Holder: Energy Isolations have been demonstrated to me and I accept this permit. All required controls will be implemented. I will notify the PIC when the job is complete."
+								class="sapUiTinyMarginBeginEnd"/>
+						</HBox>
+						<HBox width="100%" class="sapUiTinyMarginTopBottom">
+							<HBox width="33%">
+								<Label text="Name:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								<Input
+									value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWHEADER/0/createdBy',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"
+									class="ptwInputBox" editable="false"></Input>
+							</HBox>
+							<!--<HBox width="33%">
+							<Label text="Signature:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								<Input value="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWHEADER/0/createdBy}" class="ptwInputBox"></Input>
+							</HBox>-->
+							<HBox width="33%">
+								<Label text="Time/Date:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								<Input
+									value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWAPPROVAL/0/approvalDate',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDate'}"
+									class="ptwInputBox" editable="false"></Input>
+							</HBox>
+						</HBox>
+						<HBox width="100%">
+							<HBox width="20%">
+								<Label text="Permit Distribution:" design="Bold" class="sapUiTinyMarginBeginEnd sapUiTinyMarginTop"/>
+							</HBox>
+							<HBox width="20%">
+								<CheckBox text="Control Board/Point"
+									selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWAPPROVAL/0/controlBoardDistribution}=== 1? true : false}" editable="false"
+									class="ptwCheckBoxAlign"/>
+							</HBox>
+							<HBox width="20%">
+								<CheckBox text="Worksite"
+									selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWAPPROVAL/0/worksiteDistribution}=== 1? true : false}" editable="false"
+									class="ptwCheckBoxAlign"/>
+							</HBox>
+							<HBox width="16%">
+								<CheckBox text="SIMOPS" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWAPPROVAL/0/simopsDistribution}=== 1? true : false}"
+									editable="false" class="ptwCheckBoxAlign"/>
+							</HBox>
+							<HBox width="20%">
+								<CheckBox text="Other" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWAPPROVAL/0/otherDistribution} !== ''? true : false}"
+									editable="false"/>
+								<Input
+									value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWAPPROVAL/0/otherDistribution',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"
+									class="ptwInputBox sapUiTinyMarginBegin" editable="false"></Input>
+							</HBox>
+						</HBox>
+					</VBox>
+				</HBox>
+				<HBox alignItems="Center" height="2rem" width="100%" class="ptwUpperBoxBorder sapUiMediumMarginTop ptwHeaderBackgroud">
+					<Label text="ATMOSPHERIC TEST RECORD" design="Bold" class="sapUiTinyMarginBeginEnd ptwHeaderFont"/>
+				</HBox>
+				<HBox width="100%" class="ptwUpperBoxBorder">
+					<VBox width="50%" class="ptwVBoxRightBorder sapUiTinyMarginBegin">
+						<Label text="Area and / or equipment to be tested:" design="Bold" class="sapUiTinyMarginBeginEnd sapUiSmallMarginTop"/>
+						<HBox width="100%">
+							<Label text="Detector Used:" class="sapUiTinyMarginBeginEnd sapUiSmallMarginTop"/>
+							<Input width="20rem"
+								value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTREC/detectorUsed',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"
+								editable="false" class="ptwVBoxInputBox"></Input>
+						</HBox>
+						<HBox width="100%">
+							<Label text="Last Calibration Date:" class="sapUiTinyMarginBeginEnd sapUiSmallMarginTop"/>
+							<Input
+								value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTREC/DateOfLastCalibration',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDate'}"
+								editable="false" class="ptwVBoxInputBox sapUiTinyMarginTop" width="20rem"></Input>
+						</HBox>
+					</VBox>
+					<VBox width="50%">
+						<HBox height="2rem" width="100%" class="ptwVBoxUpperBoxBorder" alignItems="Center">
+							<Label text="Test Frequency:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+							<Input value="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTREC/testingFrequency}" editable="false" class="ptwInputBoxForNoLine"></Input>
+						</HBox>
+						<HBox width="100%">
+							<VBox width="100%">
+								<HBox width="100%" class="sapUiSmallMarginBegin">
+									<HBox width="40%">
+										<Label text="Prior to work commencing:" class="sapUiTinyMarginBeginEnd sapUiTinyMarginTop"/>
+									</HBox>
+									<CheckBox text="Yes" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTREC/priorToWorkCommencing}=== 1? true : false}"
+										editable="false"/>
+									<CheckBox text="No" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTREC/priorToWorkCommencing}=== 1? false : true}"
+										editable="false"/>
+								</HBox>
+								<HBox width="100%" class="sapUiSmallMarginBegin">
+									<HBox width="40%" alignContent="Center" alignItems="Center">
+										<Label text="Each work period or every" class="sapUiTinyMarginBeginEnd sapUiTinyMarginTop"/>
+									</HBox>
+									<CheckBox text="Yes" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTREC/eachWorkPeriod} === 1? true : false}"
+										editable="false"/>
+									<CheckBox text="No" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTREC/eachWorkPeriod}=== 1? false : true}"
+										editable="false"/>
+								</HBox>
+								<HBox width="100%" class="sapUiSmallMarginBegin">
+									<HBox width="40%">
+										<Label text="Continuous gas monitoring required" class="sapUiTinyMarginBeginEnd sapUiTinyMarginTop"/>
+									</HBox>
+									<CheckBox text="Yes" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTREC/continuousGasMonitoring}=== 1? true : false}"
+										editable="false"/>
+									<CheckBox text="No" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTREC/continuousGasMonitoring}=== 1? false : true}"
+										editable="false"/>
+								</HBox>
+							</VBox>
+						</HBox>
+					</VBox>
+				</HBox>
+				<HBox alignItems="Center" width="100%" class="ptwBoxBorder ptwHWPTableRowColor">
+					<Label text="Required Tests:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+					<CheckBox text="O2 (19.5-23%)" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTREC/isO2}=== 1? true : false}"
+						editable="false" class="ptwCheckBoxAlign"/>
+					<CheckBox text="LELs(&lt; 5%)" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTREC/isLELS}=== 1? true : false}"
+						editable="false" class="ptwCheckBoxAlign"/>
+					<CheckBox text="H2S (&lt; 10 ppm)" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTREC/isH2S}=== 1? true : false}"
+						editable="false" class="ptwCheckBoxAlign"/>
+					<CheckBox text="Other:" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTREC/Other}!== ''? true : false}" editable="false"/>
+					<Input
+						value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTREC/Other',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}"
+						editable="false" class="ptwInputBoxForNoLine"></Input>
+				</HBox>
+				<HBox alignItems="Center" width="100%" class="sapUiTinyMarginTop">
+					<Label text="Authorised Gas Tester Comments/ Special Precausions:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+				</HBox>
+				<HBox alignItems="Center" height="4rem" width="100%" class="sapUiTinyMarginTop ptwUpperBoxBorder">
+					<TextArea value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTREC/gasTesterComments',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}" maxLength="400" showExceededText="false"
+						rows="3" class="ptwTextArea" editable="false"/>
+				</HBox>
+				<HBox width="100%" class="sapUiTinyMarginTopBottom">
+					<HBox width="33%">
+						<Label text="Authorised Gas Tester (Print Name):" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+						<Input value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTREC/gasTester',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}" class="ptwInputBox" editable="false"></Input>
+					</HBox>
+					<!--	<HBox width="33%">
+						<Label text="Signature:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+						<Input value="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTREC/gasTester}" class="ptwInputBox" editable="false"></Input>
+					</HBox>-->
+					<HBox width="33%">
+						<Label text="Serial No:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+						<Input value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTREC/deviceSerialNo',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}" class="ptwInputBox" editable="false"></Input>
+					</HBox>
+				</HBox>
+				<HBox alignItems="Center" height="2rem" width="100%" class="ptwUpperBoxBorder sapUiSmallMarginTop ptwHeaderBackgroud ptwPrintMargin">
+					<Label text="RESULTS" design="Bold" class="sapUiTinyMarginBeginEnd ptwHeaderFont"/>
+				</HBox>
+				<HBox alignItems="Center" width="100%" class="ptwBoxLeftBorder ptwBoxRightBorder ptwBoxTopBorder">
+					<VBox width="15%">
+						<Label text="Pre-Starts Tests" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+					</VBox>
+					<VBox width="85%">
+						<HBox width="100%">
+							<VBox width="6%" class="ptwBoxBottomRightBorder ptwBoxLeftBorder">
+								<HBox class="ptwBoxBottomBorder" height="3rem" alignItems="Center">
+									<Label text="O2" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								</HBox>
+								<VBox items="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTRES}">
+									<HBox class="ptwBoxBottomBorder" visible="{= ${dashBoardModel>preStartOrWorkTest}=== 'PRESTART'? true : false}" width="100%">
+										<Input value="{path:'dashBoardModel>oxygenPercentage',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}" class="ptwInputBoxForNoLine sapUiSizeCompact ptwTableInputBox" editable="false" width="90%"></Input>
+									</HBox>
+								</VBox>
+							</VBox>
+							<VBox width="20%" class="ptwBoxBottomRightBorder">
+								<HBox class="ptwBoxBottomBorder" width="100%" height="1.5rem" alignItems="Center">
+									<Label text="Toxic" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								</HBox>
+								<HBox width="100%" height="1.5rem" class="ptwBoxBottomBorder">
+									<HBox class="ptwBoxRightBorder" width="50%">
+										<Label text="Type" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+									</HBox>
+									<HBox width="50%">
+										<Label text="Result" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+									</HBox>
+								</HBox>
+								<VBox items="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTRES}">
+									<HBox class="ptwBoxBottomBorder" visible="{= ${dashBoardModel>preStartOrWorkTest}=== 'PRESTART'? true : false}">
+										<HBox class="ptwBoxRightBorder" width="50%">
+											<Input value="{path:'dashBoardModel>toxicType',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}" class="ptwInputBoxForNoLine" editable="false"></Input>
+										</HBox>
+										<HBox width="50%">
+											<Input value="{path:'dashBoardModel>toxicResult',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}" class="ptwInputBoxForNoLine" editable="false"></Input>
+										</HBox>
+									</HBox>
+								</VBox>
+							</VBox>
+							<VBox width="20%" class="ptwBoxBottomRightBorder">
+								<HBox class="ptwBoxBottomBorder" height="3rem" alignItems="Center">
+									<Label text="Flammable Gas" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								</HBox>
+								<VBox items="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTRES}">
+									<HBox class="ptwBoxBottomBorder" visible="{= ${dashBoardModel>preStartOrWorkTest}=== 'PRESTART'? true : false}">
+										<Input value="{path:'dashBoardModel>flammableGas',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}" class="ptwInputBoxForNoLine" editable="false"></Input>
+									</HBox>
+								</VBox>
+							</VBox>
+							<VBox width="20%" class="ptwBoxBottomRightBorder">
+								<HBox class="ptwBoxBottomBorder" width="100%" height="1.5rem" alignItems="Center">
+									<Label text="Others" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								</HBox>
+								<HBox width="100%" height="1.5rem" class="ptwBoxBottomBorder">
+									<HBox class="ptwBoxRightBorder" width="50%">
+										<Label text="Type" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+									</HBox>
+									<HBox width="50%">
+										<Label text="Result" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+									</HBox>
+								</HBox>
+								<VBox items="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTRES}">
+									<HBox class="ptwBoxBottomBorder" width="100%" visible="{= ${dashBoardModel>preStartOrWorkTest}=== 'PRESTART'? true : false}">
+										<HBox class="ptwBoxRightBorder" width="50%">
+											<Input value="{path:'dashBoardModel>othersType',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}" class="ptwInputBoxForNoLine ptwTableInputBox" editable="false" width="80%"></Input>
+										</HBox>
+										<HBox width="50%">
+											<Input value="{path:'dashBoardModel>othersResult',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}" class="ptwInputBoxForNoLine ptwTableInputBox" editable="false" width="80%"></Input>
+										</HBox>
+									</HBox>
+								</VBox>
+							</VBox>
+							<VBox width="17%" class="ptwBoxBottomRightBorder">
+								<HBox class="ptwBoxBottomBorder" height="3rem" alignItems="Center">
+									<Label text="Date" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								</HBox>
+								<VBox items="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTRES}">
+									<HBox class="ptwBoxBottomBorder" visible="{= ${dashBoardModel>preStartOrWorkTest}=== 'PRESTART'? true : false}">
+										<Input value="{path:'dashBoardModel>date',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwGetDate'}" class="ptwInputBoxForNoLine"
+											editable="false"></Input>
+									</HBox>
+								</VBox>
+							</VBox>
+							<VBox width="17%" class="ptwBoxBottomRightBorder">
+								<HBox class="ptwBoxBottomBorder" height="3rem" alignItems="Center">
+									<Label text="Time" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								</HBox>
+								<VBox items="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTRES}">
+									<HBox class="ptwBoxBottomBorder" visible="{= ${dashBoardModel>preStartOrWorkTest}=== 'PRESTART'? true : false}">
+										<Input value="{dashBoardModel>time}" class="ptwInputBoxForNoLine" editable="false"></Input>
+									</HBox>
+								</VBox>
+							</VBox>
+						</HBox>
+						<HBox width="100%"
+							visible="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTRES',formatter:'com.sap.incture.Incture_IOP.util.formatter.ptwTableVisible'}"
+							class="ptwBoxLeftBorder">
+							<VBox>
+								<Input value="No Data" class="ptwInputBoxForNoLine sapUiSizeCompact ptwTableInputBox" editable="false" width="90%"></Input>
+							</VBox>
+						</HBox>
+					</VBox>
+				</HBox>
+				<HBox alignItems="Center" width="100%" class="ptwUpperBoxBorder sapUiSmallMarginBottom">
+					<VBox width="15%">
+						<Label text="Work Period Tests" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+					</VBox>
+					<VBox width="85%">
+						<HBox width="100%">
+							<VBox width="6%" class="ptwBoxBottomRightBorder ptwBoxLeftBorder">
+								<HBox class="ptwBoxBottomBorder" height="3rem" alignItems="Center">
+									<Label text="O2" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								</HBox>
+								<VBox items="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTRES}">
+									<HBox class="ptwBoxBottomBorder" visible="{= ${dashBoardModel>preStartOrWorkTest}=== 'WORKPERIOD'? true : false}" width="100%">
+										<Input value="{path:'dashBoardModel>oxygenPercentage',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}" class="ptwInputBoxForNoLine sapUiSizeCompact ptwTableInputBox" editable="false" width="90%"></Input>
+									</HBox>
+								</VBox>
+							</VBox>
+							<VBox width="20%" class="ptwBoxBottomRightBorder">
+								<HBox class="ptwBoxBottomBorder" width="100%" height="1.5rem" alignItems="Center">
+									<Label text="Toxic" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								</HBox>
+								<HBox width="100%" height="1.5rem" class="ptwBoxBottomBorder">
+									<HBox class="ptwBoxRightBorder" width="50%">
+										<Label text="Type" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+									</HBox>
+									<HBox width="50%">
+										<Label text="Result" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+									</HBox>
+								</HBox>
+								<VBox items="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTRES}">
+									<HBox class="ptwBoxBottomBorder" visible="{= ${dashBoardModel>preStartOrWorkTest}=== 'WORKPERIOD'? true : false}">
+										<HBox class="ptwBoxRightBorder" width="50%">
+											<Input value="{path:'dashBoardModel>toxicType',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}" class="ptwInputBoxForNoLine" editable="false"></Input>
+										</HBox>
+										<HBox width="50%">
+											<Input value="{path:'dashBoardModel>toxicResult',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}" class="ptwInputBoxForNoLine" editable="false"></Input>
+										</HBox>
+									</HBox>
+								</VBox>
+							</VBox>
+							<VBox width="20%" class="ptwBoxBottomRightBorder">
+								<HBox class="ptwBoxBottomBorder" height="3rem" alignItems="Center">
+									<Label text="Flammable Gas" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								</HBox>
+								<VBox items="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTRES}">
+									<HBox class="ptwBoxBottomBorder" visible="{= ${dashBoardModel>preStartOrWorkTest}=== 'WORKPERIOD'? true : false}">
+										<Input value="{path:'dashBoardModel>flammableGas',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}" class="ptwInputBoxForNoLine" editable="false"></Input>
+									</HBox>
+								</VBox>
+							</VBox>
+							<VBox width="20%" class="ptwBoxBottomRightBorder">
+								<HBox class="ptwBoxBottomBorder" width="100%" height="1.5rem" alignItems="Center">
+									<Label text="Others" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								</HBox>
+								<HBox width="100%" height="1.5rem" class="ptwBoxBottomBorder">
+									<HBox class="ptwBoxRightBorder" width="50%">
+										<Label text="Type" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+									</HBox>
+									<HBox width="50%">
+										<Label text="Result" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+									</HBox>
+								</HBox>
+								<VBox items="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTRES}">
+									<HBox class="ptwBoxBottomBorder" width="100%" visible="{= ${dashBoardModel>preStartOrWorkTest}=== 'WORKPERIOD'? true : false}">
+										<HBox class="ptwBoxRightBorder" width="50%">
+											<Input value="{path:'dashBoardModel>othersType',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}" class="ptwInputBoxForNoLine ptwTableInputBox" editable="false" width="80%"></Input>
+										</HBox>
+										<HBox width="50%">
+											<Input value="{path:'dashBoardModel>othersResult',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}" class="ptwInputBoxForNoLine ptwTableInputBox" editable="false" width="80%"></Input>
+										</HBox>
+									</HBox>
+								</VBox>
+							</VBox>
+							<VBox width="17%" class="ptwBoxBottomRightBorder">
+								<HBox class="ptwBoxBottomBorder" height="3rem" alignItems="Center">
+									<Label text="Date" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								</HBox>
+								<VBox items="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTRES}">
+									<HBox class="ptwBoxBottomBorder" visible="{= ${dashBoardModel>preStartOrWorkTest}=== 'WORKPERIOD'? true : false}">
+										<Input value="{path:'dashBoardModel>date',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwGetDate'}" class="ptwInputBoxForNoLine"
+											editable="false"></Input>
+									</HBox>
+								</VBox>
+							</VBox>
+							<VBox width="17%" class="ptwBoxBottomRightBorder">
+								<HBox class="ptwBoxBottomBorder" height="3rem" alignItems="Center">
+									<Label text="Time" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+								</HBox>
+								<VBox items="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTRES}">
+									<HBox class="ptwBoxBottomBorder" visible="{= ${dashBoardModel>preStartOrWorkTest}=== 'WORKPERIOD'? true : false}">
+										<Input value="{path:'dashBoardModel>time',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}" class="ptwInputBoxForNoLine" editable="false"></Input>
+									</HBox>
+								</VBox>
+							</VBox>
+						</HBox>
+						<HBox width="100%"
+							visible="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTRES',formatter:'com.sap.incture.Incture_IOP.util.formatter.ptwTableVisible'}"
+							class="ptwBoxLeftBorder">
+							<VBox>
+								<Input value="No Data" class="ptwInputBoxForNoLine sapUiSizeCompact ptwTableInputBox" editable="false" width="90%"></Input>
+							</VBox>
+						</HBox>
+					</VBox>
+				</HBox>
+				<!--<HBox alignItems="Center" height="2rem" width="100%" class="ptwUpperBoxBorder sapUiSmallMarginTopBottom ptwHeaderBackgroud">
+					<Label text="FIRE WATCH" design="Bold" class="sapUiTinyMarginBeginEnd ptwHeaderFont"/>
+				</HBox>
+				<HBox width="100%">
+					<Text wrapping="true"
+						text="I inspected the work area and adjacent areas 30 minutes after the work was completed and the areas were found to me safe from Fire."
+						class="sapUiTinyMarginBeginEnd"/>
+				</HBox>
+				<HBox width="100%" class="sapUiTinyMarginTop">
+					<HBox width="35%">
+						<Label text="Authorised Gas Tester (Print Name):" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+						<Input value="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTREC/gasTester}" class="ptwInputBox" editable="false"></Input>
+					</HBox>
+					<HBox width="25%">
+						<Label text="Signature:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+						<Input value="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWTESTREC/gasTester}" class="ptwInputBox" editable="false"></Input>
+					</HBox>
+					<HBox width="20%">
+						<Label text="Date:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+						<Input value="" class="ptwInputBox" editable="false"></Input>
+					</HBox>
+					<HBox width="20%">
+						<Label text="Time:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+						<Input value="" class="ptwInputBox" editable="false"></Input>
+					</HBox>
+				</HBox>-->
+				<HBox alignItems="Center" height="2rem" width="100%" class="ptwUpperBoxBorder sapUiSmallMarginTopBottom ptwHeaderBackgroud">
+					<Label text="PERMIT CLOSE OUT" design="Bold" class="sapUiTinyMarginBeginEnd ptwHeaderFont"/>
+				</HBox>
+				<HBox width="100%" class="sapUiTinyMarginBottom">
+					<HBox>
+						<Label text="Work Associated with this permit has been completed:" design="Bold" class="sapUiSmallMarginBeginEnd"/>
+						<CheckBox text="Yes" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWCLOSEOUT/0/workCompleted}=== 1? true : false}"
+							class="sapUiSmallMarginBeginEnd" editable="false"/>
+						<CheckBox text="No" selected="{= ${dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWCLOSEOUT/0/workCompleted}=== 1? false : true}"
+							editable="false"/>
+					</HBox>
+				</HBox>
+				<VBox alignItems="Center" width="100%" class="ptwUpperBoxBorder">
+					<HBox width="100%" class="sapUiTinyMarginTopBottom">
+						<Label text="Permit Holder" design="Bold" class="sapUiTinyMarginBegin"/>
+						<Label text="I confirm that all personnel are accounted for and the work site has been restored to a safe and orderly working condition."
+							class="sapUiTinyMarginBeginEnd"/>
+					</HBox>
+					<HBox width="100%">
+						<Label text="Permit Holder (Print Name):" design="Bold" class="sapUiTinyMarginBeginEnd sapUiTinyMarginTop"/>
+						<Input value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWHEADER/0/createdBy',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}" class="ptwInputBoxForNoLine sapUiTinyMarginEnd"
+							editable="false"></Input>
+						<!--	<Label text="Signature:" design="Bold" class="sapUiTinyMarginEnd sapUiTinyMarginTop"/>
+						<Input value="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWHEADER/0/createdBy}" class="ptwInputBoxForNoLine " editable="false"></Input>-->
+					</HBox>
+				</VBox>
+				<VBox alignItems="Center" width="100%" class="ptwBoxBorder">
+					<HBox width="100%" class="sapUiTinyMarginTop">
+						<Label text="Work Status Comments:" design="Bold" class="sapUiTinyMarginBegin"/>
+					</HBox>
+					<HBox alignItems="Center" height="4rem" width="100%">
+						<TextArea value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWCLOSEOUT/0/workStatusComment',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}" maxLength="400" showExceededText="false"
+							rows="3" class="ptwTextArea" editable="false"/>
+					</HBox>
+				</VBox>
+				<VBox alignItems="Center" width="100%" class="ptwBoxBorder">
+					<HBox alignItems="Center" height="2rem" width="100%">
+						<Label text="PIC:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+						<Text
+							text="I am satisfied that the worksite has been restored to a safe and clean working conditions. All isolations relevant to this permit must follow the de-isolation procedure prior to reenergizing or a long term isolation must be applied."
+							wrapping="true" class="sapUiTinyMarginEnd"/>
+					</HBox>
+				</VBox>
+				<HBox width="100%" class="sapUiTinyMarginTopBottom">
+					<HBox width="33%">
+						<Label text="Name:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+						<Input value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWCLOSEOUT/0/picName',formatter:'com.sap.incture.Incture_IOP.util.formatter.PtwTextDecode'}" class="ptwInputBox" editable="false"></Input>
+					</HBox>
+					<!--<HBox width="33%">
+						<Label text="Signature:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+						<Input value="{dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWCLOSEOUT/0/picName}" class="ptwInputBox" editable="false"></Input>
+					</HBox>-->
+					<HBox width="34%">
+						<Label text="Time/Date:" design="Bold" class="sapUiTinyMarginBeginEnd"/>
+						<Input width="20rem"
+							value="{path:'dashBoardModel>/ptwPermitDetail/PTWDetails/TOPTWCLOSEOUT/0/closedDate',formatter:'com.sap.incture.Incture_IOP.util.formatter.iopDateFormatTimeStampValueDate'}"
+							class="ptwInputBox" editable="false"></Input>
+					</HBox>
+				</HBox>
+				<HBox class="ptwMessageAlign" width="100%">
+					<Label wrapping="true"
+						text="This permit is void if conditions change or if permit expires. If revoked or expired a new permit must be issued." design="Bold"
+						class="sapUiLargeMarginBeginEnd sapUiLargeMarginTopBottom ptwMessage"/>
+				</HBox>
+			</VBox>
+		</ScrollContainer>
+	</Dialog>
+</core:FragmentDefinition>

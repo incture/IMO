@@ -1,0 +1,216 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:l="sap.ui.layout" xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+	xmlns:viz="sap.viz.ui5.controls" xmlns:viz.data="sap.viz.ui5.data" xmlns:ui="sap.ui.table" xmlns:myCustom="com.sap.incture.Incture_IOP.util"
+	xmlns:chrt="sap.suite.ui.microchart">
+	<IconTabBar select="onDOPTabSelected" class="iopOBXIconTab iopOBXTabClass" expandable="false" id="idDopIconTabBar"
+		selectedKey="{dashBoardModel>/dopData/selectedKey}">
+		<items>
+			<IconTabFilter key="dop" text="DOP">
+				<VBox height="100%">
+					<HBox height="2.5rem" class="sapUiTinyMarginTop sapUiTinyMarginBottom iopv2BorderBottom" justifyContent="SpaceBetween">
+						<VBox class="sapUiTinyMarginTop sapUiTinyMarginEnd sapUiSmallMarginBegin">
+							<HBox>
+								<Text text=" Oil Production Variance as of " class="sapUiTinyMarginBegin"/>
+								<!--<Text text=' {path:"dashBoardModel>/dopData/date", formatter:"com.sap.incture.Incture_IOP.util.formatter.getLocalDate"}' class="dopDateClass"/>-->
+								<Text text=' {path:"dashBoardModel>/dopData/dateInEpoch", formatter:"com.sap.incture.Incture_IOP.util.formatter.epochToDateDOP"}'
+									class="dopDateClass"/>
+							</HBox>
+						</VBox>
+						<HBox justifyContent="End" class="sapUiSizeCompact">
+							<Select id="selectKeyDopFrag" class="iopSelectClass iopAlarmSelectClass sapUiTinyMarginEnd" change="onAppsTabSelect"
+								selectedKey="{dashBoardModel>/dopData/durationKey}" visible="false">
+								<core:Item key="1" text="Daily" class="iopAlarmSelectClass"/>
+								<core:Item key="7" text="Weekly" class="iopAlarmSelectClass"/>
+							</Select>
+							<SegmentedButton id="RollUp" width="14rem" class="sapUiTinyMarginEnd" selectionChange="onRollUpChangeDOP"
+								selectedKey="{dashBoardModel>/RUP}">
+								<items>
+									<SegmentedButtonItem id="RolledUpDOP" text="Rolled Up" key="RUP"/>
+									<SegmentedButtonItem id="NonRolledUpDOP" class="sapUiTinyMarginEnd" text="All Data" key="NRUP"/>
+								</items>
+							</SegmentedButton>
+							<Button text="Download Report" class="iopBtnClass sapUiTinyMarginEnd" press="onPressDownloadReport"/>
+							<Button tooltip="Table Sort" icon="sap-icon://drop-down-list" class="sapUiSizeCompact iopBtnClass iopwbBtnClass sapUiTinyMarginBeginEnd"
+								press="onDopTableSortClick"/>
+						</HBox>
+					</HBox>
+					<ScrollContainer height="{dashBoardModel>/dopScrollPanelHeight}" vertical="true">
+						<myCustom:Table sticky="ColumnHeaders" class="sapUiSizeCompact sapUiTinyMarginEnd iopFontClass alarmListHeader iopCheckBox alarmTableHeader"
+							items="{dashBoardModel>/dopData/tableData}" alternateRowColors="false" id="idDopList" rightPress="onRightPressDop"
+							busy="{dashBoardModel>/busyIndicators/dopTblBusy}" busyIndicatorDelay="0" growing="true" growingThreshold="25">
+							<myCustom:columns>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="12%">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="{dashBoardModel>/dopData/currentHierarchyLevel}"/>
+								</Column>
+								<Column vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" width="12%">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Projected vs Fcst (Gross Oil BBL)"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Tier"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Actual"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="15%">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Projected"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="12%">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Forecast"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="12%">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Variance"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="14%">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Variance %"/>
+								</Column>
+								<Column width="4rem" visible="{= ${dashBoardModel>/alarmDetailKey} !== 'Acknowledged'}"></Column>
+								<!--AN: #ThemeBug-->
+							</myCustom:columns>
+							<myCustom:items>
+								<ColumnListItem highlight="Warning" tooltip="{dashBoardModel>alarmSeverity}"
+									visible='{parts:["dashBoardModel>alarmSeverity"], formatter:"com.sap.incture.Incture_IOP.util.formatter.getHighlightColor"}'>
+									<cells>
+										<Text text="{dashBoardModel>location}" class="iopFontClass iopAlarmListTextClass"/>
+										<ProgressIndicator percentValue="{= ${dashBoardModel>projectedBoed}*100/${dashBoardModel>forecastBoed}}"
+											displayValue="{dashBoardModel>projectedBoed}/{dashBoardModel>forecastBoed}" showValue="true" state="Success"/>
+										<Text text="{dashBoardModel>tier}" class="iopFontClass iopAlarmListTextClass"/>
+										<Text text="{dashBoardModel>actualBoed}" class="iopFontClass iopAlarmListTextClass"/>
+										<Text text="{dashBoardModel>projectedBoed}" class="iopFontClass iopAlarmListTextClass"/>
+										<Text text="{dashBoardModel>forecastBoed}" class="iopFontClass iopAlarmListTextClass"/>
+										<Text text="{dashBoardModel>variance}" class="iopFontClass iopAlarmListTextClass"/>
+										<Text text="{dashBoardModel>variancePercent}%" class="iopFontClass iopAlarmListTextClass"/>
+										<VBox width="100%" visible="true" class="dopActionIconSetStyle">
+											<HBox justifyContent="SpaceBetween" width="100%" height="50%">
+												<VBox width="45%" class="pwHopperIcon">
+													<core:Icon src="sap-icon://InctureIopv2/hopper" visible="{dashBoardModel>proActive}" tooltip="Proactive WorkOver Item"
+														class="iopInvestigationDopImgInDOP pwIconColor" press="onIconPress"/>
+												</VBox>
+												<VBox width="45%">
+													<core:Icon src="sap-icon://accept" tooltip="Acknowledge" visible='{path:"dashBoardModel>acknowledge"}'/>
+												</VBox>
+											</HBox>
+											<HBox justifyContent="SpaceBetween" width="100%" height="50%">
+												<VBox width="40%" class="dopIndicatorVbox">
+													<core:Icon src="sap-icon://InctureIopv2/dispatch" tooltip="Dispatched" visible='{path:"dashBoardModel>dispatch"}' press="onIconPress"/>
+												</VBox>
+												<VBox width="40%" class="dopIndicatorVbox">
+													<Image src="{path:'i18n>incognito', formatter:'com.sap.incture.Incture_IOP.util.formatter.getImagePath'}"
+														visible='{path: "dashBoardModel>hasInvestigation", formatter:"com.sap.incture.Incture_IOP.util.formatter.getDOPEngInvestigation"}'
+														tooltip="Investigation" class="iopInvestigationDopImg" press="onIconPress"/>
+													<core:Icon src="sap-icon://InctureIopv2/inquire" size="1.3rem" class="iopInquiryIconDOP"
+														visible="{= ${dashBoardModel>hasInquiry} === true &amp;&amp; ${dashBoardModel>hasInvestigation} === false}"/>
+												</VBox>
+											</HBox>
+										</VBox>
+									</cells>
+								</ColumnListItem>
+							</myCustom:items>
+						</myCustom:Table>
+					</ScrollContainer>
+				</VBox>
+			</IconTabFilter>
+			<IconTabFilter key="dgp" text="DGP">
+				<VBox height="100%">
+					<HBox height="2.5rem" class="sapUiTinyMarginTop sapUiTinyMarginBottom iopv2BorderBottom" justifyContent="SpaceBetween">
+						<VBox class="sapUiTinyMarginTop sapUiTinyMarginEnd sapUiSmallMarginBegin">
+							<HBox>
+								<Text text=" Gas Production Variance as of " class="sapUiTinyMarginBegin"/>
+								<!--<Text text=' {path:"dashBoardModel>/dopData/date", formatter:"com.sap.incture.Incture_IOP.util.formatter.getLocalDate"}' class="dopDateClass"/>-->
+								<Text text=' {path:"dashBoardModel>/dopData/dateInEpoch", formatter:"com.sap.incture.Incture_IOP.util.formatter.epochToDateDOP"}'
+									class="dopDateClass"/>
+							</HBox>
+						</VBox>
+						<HBox justifyContent="End" class="sapUiSizeCompact">
+							<Select id="selectKeyDgpFrag" class="iopSelectClass iopAlarmSelectClass sapUiTinyMarginEnd" change="onAppsTabSelect"
+								selectedKey="{dashBoardModel>/dopData/durationKey}" visible="false">
+								<core:Item key="1" text="Daily" class="iopAlarmSelectClass"/>
+								<core:Item key="7" text="Weekly" class="iopAlarmSelectClass"/>
+							</Select>
+							<SegmentedButton width="14rem" class="sapUiTinyMarginEnd" selectionChange="onRollUpChangeDOP" selectedKey="{dashBoardModel>/RUP}">
+								<items>
+									<SegmentedButtonItem id="RolledUpDGP" text="Rolled Up" key="RUP"/>
+									<SegmentedButtonItem id="NonRolledUpDGP" class="sapUiTinyMarginEnd" text="All Data" key="NRUP"/>
+								</items>
+							</SegmentedButton>
+							<Button text="Download Report" class="iopBtnClass sapUiTinyMarginEnd" press="onPressDownloadReport"/>
+							<Button tooltip="Table Sort" icon="sap-icon://drop-down-list" class="sapUiSizeCompact iopBtnClass iopwbBtnClass sapUiTinyMarginBeginEnd"
+								press="onDopTableSortClick"/>
+						</HBox>
+					</HBox>
+					<ScrollContainer height="{dashBoardModel>/dopScrollPanelHeight}" vertical="true">
+						<myCustom:Table sticky="ColumnHeaders" class="sapUiSizeCompact sapUiTinyMarginEnd iopFontClass alarmListHeader iopCheckBox alarmTableHeader"
+							items="{dashBoardModel>/dopData/tableData}" alternateRowColors="false" id="idDgpList" rightPress="onRightPressDop"
+							busy="{dashBoardModel>/busyIndicators/dopTblBusy}" busyIndicatorDelay="0" growing="true" growingThreshold="25">
+							<myCustom:columns>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="12%">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="{dashBoardModel>/dopData/currentHierarchyLevel}"/>
+								</Column>
+								<Column vAlign="Middle" minScreenWidth="Tablet" demandPopin="true" width="12%">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Projected vs Fcst (Gross Gas MCF)"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Tier"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="10%">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Actual"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="15%">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Projected"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="12%">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Forecast"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="12%">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Variance"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" width="14%">
+									<Text class="iopFontClass iopAlarmListTextClass iopRepTitleClass" text="Variance %"/>
+								</Column>
+								<Column width="4rem" visible="{= ${dashBoardModel>/alarmDetailKey} !== 'Acknowledged'}"></Column>
+								<!--AN: #ThemeBug-->
+							</myCustom:columns>
+							<myCustom:items>
+								<ColumnListItem highlight="Warning" tooltip="{dashBoardModel>alarmSeverity}"
+									visible='{parts:["dashBoardModel>alarmSeverity"], formatter:"com.sap.incture.Incture_IOP.util.formatter.getHighlightColor"}'>
+									<cells>
+										<Text text="{dashBoardModel>location}" class="iopFontClass iopAlarmListTextClass"/>
+										<ProgressIndicator percentValue="{= ${dashBoardModel>projectedBoed}*100/${dashBoardModel>forecastBoed}}"
+											displayValue="{dashBoardModel>projectedBoed}/{dashBoardModel>forecastBoed}" showValue="true" state="Success"/>
+										<Text text="{dashBoardModel>tier}" class="iopFontClass iopAlarmListTextClass"/>
+										<Text text="{dashBoardModel>actualBoed}" class="iopFontClass iopAlarmListTextClass"/>
+										<Text text="{dashBoardModel>projectedBoed}" class="iopFontClass iopAlarmListTextClass"/>
+										<Text text="{dashBoardModel>forecastBoed}" class="iopFontClass iopAlarmListTextClass"/>
+										<Text text="{dashBoardModel>variance}" class="iopFontClass iopAlarmListTextClass"/>
+										<Text text="{dashBoardModel>variancePercent}%" class="iopFontClass iopAlarmListTextClass"/>
+										<VBox width="100%" visible="true" class="dopActionIconSetStyle">
+											<HBox justifyContent="SpaceBetween" width="100%" height="50%">
+												<VBox width="45%" class="pwHopperIcon">
+													<core:Icon src="sap-icon://InctureIopv2/hopper" visible="{dashBoardModel>proActive}" tooltip="Proactive WorkOver Item"
+														class="iopInvestigationDopImgInDOP pwIconColor" press="onIconPress"/>
+												</VBox>
+												<VBox width="45%">
+													<core:Icon src="sap-icon://accept" tooltip="Acknowledge" visible='{path:"dashBoardModel>acknowledge"}'/>
+												</VBox>
+											</HBox>
+											<HBox justifyContent="SpaceBetween" width="100%" height="50%">
+												<VBox width="40%" class="dopIndicatorVbox">
+													<core:Icon src="sap-icon://InctureIopv2/dispatch" tooltip="Dispatched" visible='{path:"dashBoardModel>dispatch"}' press="onIconPress"/>
+												</VBox>
+												<VBox width="40%" class="dopIndicatorVbox">
+													<Image src="{path:'i18n>incognito', formatter:'com.sap.incture.Incture_IOP.util.formatter.getImagePath'}"
+														visible='{path: "dashBoardModel>hasInvestigation", formatter:"com.sap.incture.Incture_IOP.util.formatter.getDOPEngInvestigation"}'
+														tooltip="Investigation" class="iopInvestigationDopImg" press="onIconPress"/>
+													<core:Icon src="sap-icon://InctureIopv2/inquire" size="1.3rem" class="iopInquiryIconDOP"
+														visible="{= ${dashBoardModel>hasInquiry} === true &amp;&amp; ${dashBoardModel>hasInvestigation} === false}"/>
+												</VBox>
+											</HBox>
+										</VBox>
+									</cells>
+								</ColumnListItem>
+							</myCustom:items>
+						</myCustom:Table>
+					</ScrollContainer>
+				</VBox>
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+</core:FragmentDefinition>
