@@ -1,0 +1,112 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:layout="sap.ui.layout"
+	xmlns:l="sap.ui.layout">
+	<Dialog title="{i18n>CREATE_ORDER_CAL}" contentWidth="50%" class="sapUiSizeCompact dialogHeader">
+		<content>
+			<Toolbar>
+				<RadioButton text="Reactive Order" select="onSelectOrder" selected="{mLookupModel>/sReactiveorder}">
+					<customData>
+						<core:CustomData key="dataType" value="Reactive"/>
+					</customData>
+				</RadioButton>
+				<RadioButton text="Scheduled Order" select="onSelectOrder" selected="{=!${mLookupModel>/sReactiveorder}}">
+					<customData>
+						<core:CustomData key="dataType" value="Scheduled"/>
+					</customData>
+				</RadioButton>
+				<ToolbarSpacer/>
+				<Text text="Selected Date:"/>
+				<Text text="{path:'mLookupModel>/CalstartDate',formatter:'com.sap.incture.IMO_PM.formatter.formatter.displaySelectedDate'}"/>
+			</Toolbar>
+			<VBox visible="{mLookupModel>/sReactiveorder}">
+				<l:Grid defaultSpan="XL6 L6 M12 S12">
+					<l:content>
+						<VBox class="sapUiSmallMarginTop">
+							<Label text="{i18n>oType}" required="true"/>
+							<ComboBox showSecondaryValues="true" items="{path:'mLookupModel>/aOrderTypeSet',sorter:{ path: 'text' }}"
+								selectedKey="{mLookupModel>/sOrderTypeSel}" class="sapInputBorderClass inputRadius" width="80%">
+								<core:ListItem key="{mLookupModel>AUART}" additionalText="{mLookupModel>TXT}" text="{mLookupModel>AUART}"/>
+							</ComboBox>
+						</VBox>
+						<VBox class="sapUiSmallMarginTop">
+							<Label text="{i18n>equip}" required="true"/>
+							<Input showValueHelp="true" value="{mLookupModel>/sEquip}" valueHelpOnly="true" valueHelpRequest="equipmentValueHelp" width="80%"
+								class="inputRadius"></Input>
+						</VBox>
+						<VBox class="sapUiSmallMarginTop">
+							<Label text="{i18n>FunLocation}" required="true"/>
+							<Input editable="true" showValueHelp="true" value="{mLookupModel>/sFunLoc}" valueHelpOnly="true" valueHelpRequest="fnLocValueHelp"
+								width="80%" class="inputRadius"></Input>
+						</VBox>
+						<VBox class="sapUiSmallMarginTop">
+							<Label text="{i18n>prior}" required="true"/>
+							<ComboBox items="{ path: 'mLookupModel>/aPrioritySet', sorter: { path: 'text' } }" selectedKey="{mLookupModel>/sPrior}" width="80%"
+								class="inputRadius">
+								<core:Item key="{mLookupModel>PRIOK}" text="{mLookupModel>PRIOKX}"/>
+							</ComboBox>
+						</VBox>
+					</l:content>
+				</l:Grid>
+			</VBox>
+			<VBox visible="{=!${mLookupModel>/sReactiveorder}}">
+				<l:Grid defaultSpan="XL6 L6 M12 S12">
+					<l:content>
+						<VBox class="sapUiSmallMarginTop">
+							<Label text="{i18n>MTN_PLN_DESC}" required="true"/>
+							<Input value="{mLookupModel>/sSCOrderDesc}" type="Text" width="80%" class="inputRadius"/>
+							<layoutData>
+								<l:GridData span="XL8 L8 M12 S12"/>
+							</layoutData>
+						</VBox>
+						<VBox class="sapUiSmallMarginTop">
+							<Label text="{i18n>MTN_PLN_FREQ}" required="true"/>
+							<HBox>
+								<Input value="{mLookupModel>/sSCOrderFreq}" type="Number" class="inputRadius"/>
+								<Input value="{mLookupModel>/sSCOrderFreqUnit}" type="Text" width="80%" class="inputRadius"/>
+							</HBox>
+						</VBox>
+						<VBox class="sapUiSmallMarginTop">
+							<Label text="{i18n>MTN_PLN_PERIOD}" required="true"/>
+							<HBox>
+								<Input value="{mLookupModel>/sSCOrderPeriod}" type="Number" class="inputRadius"/>
+								<Input value="{mLookupModel>/sSCOrderPeriodUnit}" type="Text" width="80%" class="inputRadius"/>
+							</HBox>
+						</VBox>
+						<VBox class="sapUiSmallMarginTop">
+							<Label text="{i18n>oType}" required="true"/>
+							<ComboBox showSecondaryValues="true" items="{path:'mLookupModel>/aOrderTypeSet',sorter:{ path: 'text' }}"
+								selectedKey="{mLookupModel>/sOrderTypeSel}" class="sapInputBorderClass inputRadius" width="80%">
+								<core:ListItem key="{mLookupModel>AUART}" additionalText="{mLookupModel>TXT}" text="{mLookupModel>AUART}"/>
+							</ComboBox>
+						</VBox>
+						<VBox class="sapUiSmallMarginTop">
+							<Label text="{i18n>prior}" required="true"/>
+							<ComboBox items="{ path: 'mLookupModel>/aPrioritySet', sorter: { path: 'text' } }" selectedKey="{mLookupModel>/sPrior}" width="80%"
+								class="inputRadius">
+								<core:Item key="{mLookupModel>PRIOK}" text="{mLookupModel>PRIOKX}"/>
+							</ComboBox>
+						</VBox>
+						<VBox class="sapUiSmallMarginTop">
+							<Label text="{i18n>FunLocation}" required="true"/>
+							<Input editable="true" showValueHelp="true" value="{mLookupModel>/sFunLoc}" valueHelpOnly="true" valueHelpRequest="fnLocValueHelp"
+								class="inputRadius" width="80%"></Input>
+						</VBox>
+						<VBox class="sapUiSmallMarginTop">
+							<Label text="{i18n>equip}" required="true"/>
+							<Input showValueHelp="true" value="{mLookupModel>/sEquip}" valueHelpOnly="true" valueHelpRequest="equipmentValueHelp" class="inputRadius"
+								width="80%"></Input>
+						</VBox>
+						<VBox class="sapUiSmallMarginTop">
+							<Label text="{i18n>MTN_PLN_TASKS}" required="true"/>
+							<Input showValueHelp="true" value="{mLookupModel>/sSHTaks}" valueHelpOnly="true" valueHelpRequest="fnOpenTaskListPopup" class="inputRadius"
+								width="80%"></Input>
+						</VBox>
+					</l:content>
+				</l:Grid>
+			</VBox>
+		</content>
+		<buttons>
+			<Button text="Create" press="onCreateOrder" type="Emphasized"/>
+			<Button text="Cancel" press="onCancelCreate"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition >

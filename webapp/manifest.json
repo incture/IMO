@@ -296,6 +296,11 @@
 					"name": "dashboard",
 					"pattern": "dashboard",
 					"target": "Dashboard"
+				},
+				{
+					"name": "CalendarView",
+					"pattern": "CalendarView",
+					"target": "CalendarView"
 				}
 			],
 			"targets": {
@@ -356,6 +361,10 @@
 				"Dashboard": {
 					"viewType": "XML",
 					"viewName": "Dashboard"
+				},
+				"CalendarView": {
+					"viewType": "XML",
+					"viewName": "CalendarView"
 				}
 			}
 		}

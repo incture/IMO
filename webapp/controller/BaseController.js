@@ -3941,7 +3941,74 @@ sap.ui.define([
 					that.busy.close();
 				}
 			});
+		},
+		//Functin to Setup Calendar view
+		fnInitCalendarView: function (fromView) {
+			this.busy = new BusyDialog();
+			this.MessageBox = MessageBox;
+			this.DateFormat = DateFormat.getDateTimeInstance({
+				pattern: "yyyy-MM-dd HH:mm:ss"
+			});
+
+			this.oHeader = {
+				"Accept": "application/json",
+				"Content-Type": "application/json"
+			};
+			var oResourceModel = this.getOwnerComponent().getModel("i18n");
+			this.oResourceModel = oResourceModel.getResourceBundle();
+
+			var oPortalDataModel = this.getOwnerComponent().getModel("oPortalDataModel");
+			this.oPortalDataModel = oPortalDataModel;
+
+			var oLookupDataModel = this.getOwnerComponent().getModel("oLookupDataModel");
+			this.oLookupDataModel = oLookupDataModel;
+
+			var oWorkOrderOData = this.getOwnerComponent().getModel("oWorkOrderOData");
+			this.oWorkOrderOData = oWorkOrderOData;
+			oWorkOrderOData.setHeaders({
+				"Accept": "application/json",
+				"Content-Type": "application/json"
+			});
+
+			var oPortalUserLoginOData = this.getOwnerComponent().getModel("oPortalUserLoginOData");
+			this.oPortalUserLoginOData = oPortalUserLoginOData;
+
+			var mLookupModel = this.getOwnerComponent().getModel("mLookupModel");
+			this.mLookupModel = mLookupModel;
+			mLookupModel.setSizeLimit(10000);
+
+			//Data Model holding Work Order details, used to set only for GET/POST [View: Work Order Detail]
+			var oWorkOrderDetailModel = this.getOwnerComponent().getModel("oWorkOrderDetailModel");
+			this.oWorkOrderDetailModel = oWorkOrderDetailModel;
+			oWorkOrderDetailModel.setSizeLimit(10000);
+
+			//View Model used for configuring UI controls, and not for GET/POST [View: Work Order Detail]
+			var oWorkOrderDetailViewModel = this.getOwnerComponent().getModel("oWorkOrderDetailViewModel");
+			this.oWorkOrderDetailViewModel = oWorkOrderDetailViewModel;
+			oWorkOrderDetailViewModel.setSizeLimit(10000);
+
+			//Data Model used for holding Application's logged in user details
+			var oUserDetailModel = this.getOwnerComponent().getModel("oUserDetailModel");
+			this.oUserDetailModel = oUserDetailModel;
+
+			//View Model controlling enable/diable property [View: Work Order Detail]
+			var oWODetailFieldsModel = this.getOwnerComponent().getModel("oWODetailFieldsModel");
+			this.oWODetailFieldsModel = oWODetailFieldsModel;
+			oWODetailFieldsModel.setSizeLimit(10000);
+
+			var oPortalNotifOData = this.getOwnerComponent().getModel("oPortalNotifOData");
+			this.oPortalNotifOData = oPortalNotifOData;
+			oPortalNotifOData.setSizeLimit(10000);
+
+			oPortalUserLoginOData.setSizeLimit(10000);
+			this.getLoggedInUserCreateWO(fromView);
+			this.getOrderType();
+			this.getWOPriorities();
+			this.getWorkCentersCreateWO();
+			this.getFavEquips();
+			this.busy.close();
 		}
+
 
 	});
 });

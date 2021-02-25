@@ -81,6 +81,19 @@ sap.ui.define([
 					this.fnFilterCNFOperations(true);
 					this.SetinitialOperation();
 					this.getOperationIdLookup();
+				} else if (viewType === "CREATE_WO_CAL") {
+					util.fnEnableCreateWOFields(oWODetailFieldsModel);
+					util.resetDetailWOFields(oUserDetailModel, oWorkOrderDetailModel, oWorkOrderDetailViewModel, "CREATE_ORDER", this.oPortalDataModel);
+					//util.setRowItemsforCostOverview(oWorkOrderDetailViewModel);
+					this.fnCreateUpdateBtnTxt("CREATE_ORDER");
+					var workCenter = oWorkOrderDetailModel.getProperty("/MnWkCtr");
+					//this.setOrderTypeOperation(oWorkOrderDetailModel, oWorkOrderDetailViewModel, [], workCenter);
+					// this.fnFilterSlectedDamageGroup(); //nischal -- this functionality is removed
+					// this.fnFilterSlectedCauseGroup(); //nischal -- this functionality is removed
+					this.fnFilterCNFOperations(true);
+					this.SetinitialOperation();
+					this.getOperationIdLookup();
+					this.getPlannerGroups();
 				} else {
 					util.initializeWODetailFields(oWorkOrderDetailModel, oWorkOrderDetailViewModel);
 					util.resetDetailWOFields(oUserDetailModel, oWorkOrderDetailModel, oWorkOrderDetailViewModel, "VIEW_WO");

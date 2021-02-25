@@ -29,5 +29,10 @@
 		"tabKey": "reviewWO",
 		"icon": "sap-icon://search",
 		"isVis": true
+	}, {
+		"tabText": "My Calendar",
+		"tabKey": "CalendarView",
+		"icon": "sap-icon://calendar",
+		"isVis": true
 	}]
 }

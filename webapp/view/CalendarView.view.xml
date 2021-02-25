@@ -1,0 +1,89 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="com.sap.incture.IMO_PM.controller.CalendarView"
+	xmlns:html="http://www.w3.org/1999/xhtml" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:tnt="sap.tnt">
+	<Page title="{i18n>MY_CALENDAR}" showFooter="false" showHeader="false">
+		<tnt:ToolHeader class="headerBG headerShadow">
+			<Label design="Bold" class="sapUiSmallMarginBegin textColr" text="{i18n>MY_CALENDAR}" wrapping="true"/>
+			<ToolbarSpacer/>
+		</tnt:ToolHeader>
+		<Toolbar>
+			<RadioButton text="One Week" select="Intervalchange">
+				<customData>
+					<core:CustomData key="dateType" value="1 week"/>
+				</customData>
+			</RadioButton>
+			<RadioButton text="Two Weeks" select="Intervalchange">
+				<customData>
+					<core:CustomData key="dateType" value="2 weeks"/>
+				</customData>
+			</RadioButton>
+			<RadioButton text="One Month" select="Intervalchange" selected="true">
+				<customData>
+					<core:CustomData key="dateType" value="1 month"/>
+				</customData>
+			</RadioButton>
+			<ToolbarSpacer/>
+			<Button text="Create Order" class="tableHeadertansparentBtn" icon="sap-icon://edit" iconFirst="true" press="onCreateButton"></Button>
+			<Button text="Scheduled Overview" class="tableHeadertansparentBtn" press="onMtnPlanOverView"/>
+		</Toolbar>
+		<content>
+			<l:Grid defaultSpan="XL12 L12" class="sapUiSmallMarginTop sapUiTinyMarginBeginEnd sapUiTinyMarginBottom">
+				<l:content>
+					<VBox class="sapMParentGridBroder sapUiTinyMarginBeginEnd sapUiSmallMarginBottom">
+						<core:Fragment fragmentName="com.sap.incture.IMO_PM.fragment.Calendar" type="XML" id="idCalendarFrag"></core:Fragment>
+						<!--<u:Calendar months="1" width="100%" select="handleCalendarSelect" visible="{=(${mLookupModel>/sCalendarInterval}===30)?true:false}"-->
+						<!--	singleSelection="true"></u:Calendar>-->
+						<!--<u:CalendarDateInterval id="calendar" width="100%" visible="{=(${mLookupModel>/sCalendarInterval}!==30)?true:false}"-->
+						<!--	days="{mLookupModel>/sCalendarInterval}" select="handleCalendarSelect" startDate="{mLookupModel>/CalstartDate}"></u:CalendarDateInterval>-->
+					</VBox>
+					<VBox class="sapMParentGridBroder sapUiTinyMarginBeginEnd">
+						<Toolbar class="tableHeaderBG" height="3rem">
+							<content>
+								<Title text="{i18n>WOList}" class="styleTableTitle"/>
+							</content>
+						</Toolbar>
+						<ScrollContainer vertical="true" height="calc(100vh - 25rem)">
+							<content>
+								<List items="{path: 'mLookupModel>/ActiveWorkOrders'}">
+									<CustomListItem type="Navigation"
+										highlight="{path:'mLookupModel>FinishDate',formatter:'com.sap.incture.IMO_PM.formatter.formatter.fnWOStatusIndicate'}"
+										press="onWorkOrderDetailpress">
+										<l:Grid defaultSpan="XL2 L2 M6 S8" hSpacing="1rem">
+											<VBox class="sapUiTinyMarginBeginEnd">
+												<Text text="{mLookupModel>Orderid}" class="sapUiTinyMarginTop listTitleClass"/>
+												<HBox class="sapUiTinyMarginTopBottom">
+													<Text text="{mLookupModel>OrderType}" class="sapUiTinyMarginEnd"/>
+													<Text text="Description: {mLookupModel>ShortText}" class="sapUiTinyMarginBeginEnd"></Text>
+												</HBox>
+												<layoutData>
+													<l:GridData span="XL4 L4"/>
+												</layoutData>
+											</VBox>
+											<VBox>
+												<layoutData>
+													<l:GridData span="XL7 L7 M4 S4"/>
+												</layoutData>
+											</VBox>
+											<VBox class="listInfoDivclass sapUiTinyMarginTop">
+												<Text text="{mLookupModel>SysStatusDes}" class="sapUiSmallMarginTopBottom listInfoclass"/>
+												<layoutData>
+													<l:GridData span="XL1 L1 M4 S4"/>
+												</layoutData>
+											</VBox>
+										</l:Grid>
+									</CustomListItem>
+									<!--<StandardListItem title="{mLookupModel>Orderid}" info="{mLookupModel>SysStatusDes}" class="listItemClass"-->
+									<!--	highlight="{path:'mLookupModel>FinishDate',formatter:'com.sap.incture.IMO_PM.formatter.formatter.fnWOStatusIndicate'}"-->
+									<!--	description="{mLookupModel>OrderType} Description:{mLookupModel>ShortText}" type="Navigation" press="onWorkOrderDetailpress"></StandardListItem>-->
+								</List>
+							</content>
+						</ScrollContainer>
+						<Toolbar class="tableHeaderBg">
+							<ToolbarSpacer/>
+							<Link text="Load more records" press="handleLoadMore"/>
+						</Toolbar>
+					</VBox>
+				</l:content>
+			</l:Grid>
+		</content>
+	</Page>
+</mvc:View>

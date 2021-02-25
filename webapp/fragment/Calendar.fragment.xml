@@ -1,0 +1,8 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" class="sapUiSizeCompact" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified">
+	<VBox>
+		<u:Calendar months="1" width="100%" select="handleCalendarSelect" visible="{=(${mLookupModel>/sCalendarInterval}===30)?true:false}"
+			singleSelection="true"></u:Calendar>
+		<u:CalendarDateInterval id="calendar" width="100%" visible="{=(${mLookupModel>/sCalendarInterval}!==30)?true:false}"
+			days="{mLookupModel>/sCalendarInterval}" select="handleCalendarSelect"></u:CalendarDateInterval>
+	</VBox>
+</core:FragmentDefinition>

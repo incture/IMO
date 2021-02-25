@@ -1711,6 +1711,104 @@ com.sap.incture.IMO_PM.formatter.formatter = {
 			}
 		}
 		return bFlag;
+	},
+	//Function to get 1 month back Date of given Date
+	getMonthbackDateofgiven: function (nDays, startdate) {
+		var newTime = startdate.getTime() - nDays * 24 * 60 * 60 * 1000;
+		return new Date(newTime);
+	},
+	fnWOStatusIndicate: function (oFinishDate) {
+		var oNowDate = new Date();
+		var nFinishDate = oFinishDate.toDateString();
+		var newFinishDate = new Date(nFinishDate);
+		var nDate = newFinishDate.getDate();
+		newFinishDate.setDate(nDate + 1);
+		if (oNowDate > newFinishDate) {
+			return "Error";
+		}
+		return "None";
+	},
+	fnGetValDate: function (oSelectedDate) {
+		var newDate = new Date(oSelectedDate);
+		var oNowDate = oSelectedDate.getDate();
+		newDate.setDate(oNowDate - 1);
+		return newDate;
+	},
+	displaySelectedDate: function (oDate) {
+		var sDate = oDate.toDateString();
+		return sDate;
+	},
+	fnstrToDateObj: function (sDate) {
+		var oDate;
+		if (sDate) {
+			if (sDate !== "") {
+				oDate = new Date(sDate);
+			} else {
+				oDate = null;
+			}
+		}
+		return oDate;
+	},
+	fnOrderFillstatus: function (sStatus) {
+		var fill = "@sapUiChartPaletteQualitativeHue9";
+		if (sStatus) {
+			if (sStatus === "Completed") {
+				fill = "@sapUiChartPaletteSemanticGoodLight1";
+			} else if (sStatus === "Skipped") {
+				fill = "#555c24";
+			} else if (sStatus === "Deleted") {
+				fill = "@sapUiChartPaletteSequentialHue1Light3";
+			} else if (sStatus === "Fixed") {
+				fill = "@sapUiChartPaletteSemanticGoodDark2";
+			} else if (sStatus === "Called") {
+				fill = "#57f700";
+			} else if (sStatus === "CalledManually") {
+				fill = "#233d34";
+			} else if (sStatus === "onHold") {
+				fill = "@sapUiChartPaletteSemanticBadLight1";
+			}
+		}
+		return fill;
+	},
+	fnNotifFillstatus: function (sStatus) {
+		var fill = "@sapUiChartPaletteQualitativeHue9";
+		if (sStatus) {
+			if (sStatus === "Closed") {
+				fill = "@sapUiChartPaletteSemanticGoodLight1";
+			} else if (sStatus === "Skipped") {
+				fill = "#555c24";
+			} else if (sStatus === "Deleted") {
+				fill = "@sapUiChartPaletteSequentialHue1Light3";
+			} else if (sStatus === "Fixed") {
+				fill = "@sapUiChartPaletteSemanticGoodDark2";
+			} else if (sStatus === "Called") {
+				fill = "#57f700";
+			} else if (sStatus === "CalledManually") {
+				fill = "#309de6";
+			} else if (sStatus === "onHold") {
+				fill = "@sapUiChartPaletteSemanticBadLight1";
+			}
+		}
+		return fill;
+	},
+	fnSimulationFillstatus: function (sStatus) {
+		var fill = "@sapUiChartPaletteQualitativeHue9";
+		if (sStatus === "Closed") {
+			fill = "@sapUiChartPaletteSemanticGoodLight1";
+		} else if (sStatus === "Skipped") {
+			fill = "#555c24";
+		} else if (sStatus === "Deleted") {
+			fill = "@sapUiChartPaletteSequentialHue1Light3";
+		} else if (sStatus === "Fixed") {
+			fill = "@sapUiChartPaletteSemanticGoodDark2";
+		} else if (sStatus === "Called") {
+			fill = "#57f700";
+		} else if (sStatus === "CalledManually") {
+			fill = "#233d34";
+		} else if (sStatus === "onHold") {
+			fill = "@sapUiChartPaletteSemanticBadLight1";
+		}
+		return fill;
 	}
 
 };
