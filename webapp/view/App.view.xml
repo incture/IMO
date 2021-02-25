@@ -4,4 +4,5 @@
 		xmlns="sap.m"
 		 busy="false" busyIndicatorDelay="0" >
 	<App id="idAppControl" /> 
+	<!--<Input>testing git push</Input>-->
 </mvc:View>
