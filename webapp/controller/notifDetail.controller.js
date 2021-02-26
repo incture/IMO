@@ -74,7 +74,7 @@ sap.ui.define([
 				success: function (oData) {
 					var notifData = oData.results[0];
 					that.resetUIFields(notifData);
-
+					that.fnFetchItemList();
 					that.busy.close();
 				},
 				error: function (oData) {
@@ -1320,6 +1320,30 @@ sap.ui.define([
 				oEvent.getSource().setProperty("src", "sap-icon://grid");
 				oEvent.getSource().setAggregation("tooltip", "Open Attachments");
 			}*/
-		}
+		},
+		//nischal -- function to GET item itemList
+		fnFetchItemList: function () {
+			var that = this;
+			this.busy.open();
+			var mLookupModel = this.mLookupModel;
+			var oPortalDataModel = this.oPortalDataModel;
+			var oNotificationDataModel = this.oNotificationDataModel;
+			var notifId = window.location.hash.split("/")[2];
+			var sUrl = "/NotificationListSet" + "(" + "'" + notifId + "'" + ")" + "/NavNotiflistToNotifitem";
+			oPortalDataModel.read(sUrl, {
+				success: function (oData) {
+					// oNotificationDataModel.setProperty("/NavNoticreateToNotiItem", oData.results);
+					util.setItemtoNotifDataModel(oData.results,oNotificationDataModel);
+					oNotificationDataModel.refresh();
+					that.getItemKeyForCause();
+					that.busy.close();
+				},
+				error: function (oData) {
+					oNotificationDataModel.setProperty("/NavNoticreateToNotiItem", []);
+					oNotificationDataModel.refresh();
+					that.busy.close();
+				}
+			});
+		},
 	});
 });

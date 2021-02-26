@@ -3676,7 +3676,8 @@ sap.ui.define([
 				"TxtObjptcd": "",
 				"DlCodegrp": "",
 				"DlCode": "",
-				"TxtProbcd": ""
+				"TxtProbcd": "",
+				"ICode":"C"
 			};
 			if (aTempArr === null || aTempArr.length === 0) {
 
@@ -3699,7 +3700,8 @@ sap.ui.define([
 					"TxtObjptcd": "",
 					"DlCodegrp": "",
 					"DlCode": "",
-					"TxtProbcd": ""
+					"TxtProbcd": "",
+					"ICode":"C"
 				};
 				aTempArr.push(oTempItemObj1);
 				oNotificationDataModel.setProperty("/NavNoticreateToNotiItem", aTempArr);

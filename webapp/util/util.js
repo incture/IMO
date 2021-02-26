@@ -619,7 +619,8 @@ com.sap.incture.IMO_PM.util.util = {
 			"TxtObjptcd": "",
 			"DlCodegrp": "",
 			"DlCode": "",
-			"TxtProbcd": ""
+			"TxtProbcd": "",
+			"ICode":"C"
 		}];
 
 		// var aCause = [{
@@ -2159,6 +2160,19 @@ com.sap.incture.IMO_PM.util.util = {
 			return sVal[0].ReservNo;
 		} else {
 			return "";
+		}
+	},
+	setItemtoNotifDataModel: function(oData,oNotificationDataModel){
+		if(oData === null || oData.length === undefined || oData.length === 0){
+			oNotificationDataModel.setProperty("/NavNoticreateToNotiItem", []);
+			oNotificationDataModel.refresh();
+		}else{
+			for (var i = 0;i < oData.length; i++){
+				delete oData[i].NotifNo;
+				delete oData[i].__metadata;
+			}
+			oNotificationDataModel.setProperty("/NavNoticreateToNotiItem",oData);
+			oNotificationDataModel.refresh();
 		}
 	}
 
