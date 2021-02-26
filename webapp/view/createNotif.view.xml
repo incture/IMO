@@ -81,14 +81,11 @@
 									</ComboBox>
 								</VBox>
 								<VBox class="sapUiTinyMarginTop">
-									<Label text="{i18n>notif_PlanningPlant}" required="true"></Label>
-									<Input class="inputRadius" value="{oNotificationDataModel>/PlanPlant}" editable="false" width="90%"
-										tooltip="{oNotificationDataModel>/PlanPlant}"></Input>
-									<!--<Select class="selectRadius" forceSelection="false" width="90%" selectedKey="{oNotificationDataModel>/PlanPlant}" showSecondaryValues="true"-->
-									<!--	enabled="true">-->
-									<!--	<core:ListItem key="4321" text="4321"/>-->
-									<!--	<core:ListItem key="US02" text="US02"/>-->
-									<!--</Select>-->
+									<Label text="{i18n>person_resp}"></Label>
+									<ComboBox showSecondaryValues="true" class="inputRadius" width="90%" selectedKey="{mLookupModel>/assignedToHardCode}">
+										<core:ListItem key="John Smith" text="John Smith"/>
+										<core:ListItem key="Andrew Goal" text="Andrew Goal"/>
+									</ComboBox>
 								</VBox>
 								<VBox class="sapUiTinyMarginTop">
 									<Label text="{i18n>notif_Priority}" required="true"></Label>
@@ -123,7 +120,8 @@
 								</VBox>
 								<VBox class="sapUiTinyMarginTop">
 									<Label text="{i18n>notif_plant}" required="true"></Label>
-									<Input class="inputRadius" value="{oNotificationDataModel>/PlanPlant}" editable="false" width="90%" tooltip="{oNotificationDataModel>/PlanPlant}"></Input>
+									<Input class="inputRadius" value="{oNotificationDataModel>/PlanPlant}" editable="false" width="90%"
+										tooltip="{oNotificationDataModel>/PlanPlant}"></Input>
 									<!--<Select class="selectRadius" forceSelection="false" width="90%" showSecondaryValues="true" enabled="true"-->
 									<!--	selectedKey="{oNotificationDataModel>/PlanPlant}">-->
 									<!--	<core:ListItem key="4321" text="4321"/>-->
