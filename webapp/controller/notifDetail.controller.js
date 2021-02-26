@@ -75,6 +75,7 @@ sap.ui.define([
 					var notifData = oData.results[0];
 					that.resetUIFields(notifData);
 					that.fnFetchItemList();
+					that.fnFetchCauseList();
 					that.busy.close();
 				},
 				error: function (oData) {
@@ -1345,5 +1346,111 @@ sap.ui.define([
 				}
 			});
 		},
+		fnFetchCauseList: function () {
+			var that = this;
+			this.busy.open();
+			// var mLookupModel = this.mLookupModel;
+			var oPortalDataModel = this.oPortalDataModel;
+			var oNotificationDataModel = this.oNotificationDataModel;
+			var notifId = window.location.hash.split("/")[2];
+			var sUrl = "/NotificationListSet" + "(" + "'" + notifId + "'" + ")" + "/NavNotiflistToNotifcause";
+			oPortalDataModel.read(sUrl, {
+				success: function (oData) {
+					util.setCausetoNotifDataModel(oData.results,oNotificationDataModel);
+					oNotificationDataModel.refresh();
+					that.busy.close();
+				},
+				error: function (oData) {
+					oNotificationDataModel.setProperty("/NavNoticreateToNotifcause", []);
+					oNotificationDataModel.refresh();
+					that.busy.close();
+				}
+			});
+		},
+		onRemoveItem: function(oEvent){
+			var oNotificationDataModel = this.oNotificationDataModel;
+			var itemTableFrag = this.getView().createId("idOperationsMaterialPanelWO");
+			var oTable = sap.ui.core.Fragment.byId(itemTableFrag, "NOTIF_ITEM_TABLE");
+			// var oTable = this.byId("NOTIF_ITEM_TABLE");
+			var aIndices = oTable.getSelectedIndices();
+			if (aIndices.length === 0) {
+				MessageToast.show("Please select the Item to be deleted");
+				return;
+			}
+			var aItemNo = [];
+			var aTempArr = oNotificationDataModel.getProperty("/NavNoticreateToNotiItem");
+			for (var i = 0; i < aIndices.length; i++) {
+				var temp = aTempArr[aIndices[i]].ItemKey;
+				aItemNo.push(temp);
+			}
+			for (var q = 0; q < aItemNo.length; q++) {
+				var sKey = aItemNo[q];
+				for (var j = 0; j < aTempArr.length; j++) {
+					if (aTempArr[j].ItemKey === sKey) {
+						aTempArr.splice(j, 1);
+						break;
+					}
+				}
+			}
+			oTable.clearSelection();
+			oTable.rerender();
+			if(this.isItemArrayEmpty(aTempArr)){
+				oNotificationDataModel.setProperty("/NavNoticreateToNotifcause",[]);
+			}
+			oNotificationDataModel.setProperty("/NavNoticreateToNotiItem", aTempArr);
+			oNotificationDataModel.refresh();
+			this.getItemKeyForCause();
+		},
+		onRemoveCause: function(oEvent){
+			var oNotificationDataModel = this.oNotificationDataModel;
+			// if (!this._oTable) {
+			// 	this._oTable = this.byId("CREATE_NOTIF_CAUSES_TABLE");
+			// }
+			// var oTable = this._oTable;
+			var itemTableFrag = this.getView().createId("idOperationsMaterialPanelWO");
+			var oTable = sap.ui.core.Fragment.byId(itemTableFrag, "CREATE_NOTIF_CAUSES_TABLE");
+			var aIndices = oTable.getSelectedIndices();
+			if (aIndices.length === 0) {
+				MessageToast.show("Please select the Row to be deleted");
+				return;
+			}
+			var aCauseNo = [];
+			var aTempArr = oNotificationDataModel.getProperty("/NavNoticreateToNotifcause");
+			for (var i = 0; i < aIndices.length; i++) {
+				var temp = aTempArr[aIndices[i]].CauseKey;
+				aCauseNo.push(temp);
+			}
+			for (var q = 0; q < aCauseNo.length; q++) {
+				var sKey = aCauseNo[q];
+				for (var j = 0; j < aTempArr.length; j++) {
+					if (aTempArr[j].CauseKey === sKey) {
+						aTempArr.splice(j, 1);
+						break;
+					}
+				}
+			}
+			oTable.clearSelection();
+			oTable.rerender();
+			oNotificationDataModel.setProperty("/NavNoticreateToNotifcause", aTempArr);
+			oNotificationDataModel.refresh();
+		},
+		onChangeItemLText: function(oEvent){
+			var oNotificationDataModel = this.oNotificationDataModel;
+			var sPath = oEvent.getSource().getBindingContext("oNotificationDataModel").getPath();
+			var oObj = oNotificationDataModel.getProperty(sPath);
+			if(oObj.ICode === "N" || oObj.ICode === "U"){
+				oNotificationDataModel.setProperty(sPath + "/ICode", "U");
+			}
+			oNotificationDataModel.refresh();
+		},
+		onChangeCauseLText: function(oEvent){
+			var oNotificationDataModel = this.oNotificationDataModel;
+			var sPath = oEvent.getSource().getBindingContext("oNotificationDataModel").getPath();
+			var oObj = oNotificationDataModel.getProperty(sPath);
+			if(oObj.Ccode === "N" || oObj.Ccode === "U"){
+				oNotificationDataModel.setProperty(sPath + "/Ccode", "U");
+			}
+			oNotificationDataModel.refresh();
+		}
 	});
 });

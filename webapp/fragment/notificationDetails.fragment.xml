@@ -3,8 +3,10 @@
 		<items>
 			<IconTabFilter text="Item">
 				<OverflowToolbar class="sapMToolBarBottomBorderClass sapUiTinyMarginBottom tableHeaderBg">
-					<Button text="{i18n>ADD_OP}" type="Emphasized" icon="sap-icon://add" iconFirst="true"></Button>
-					<Button text="{i18n>REMOVE}" type="Reject" icon="sap-icon://delete" iconFirst="true" class="transparentBtn"></Button>
+					<Button text="{i18n>ADD_OP}" press="onAddItems"  type="Emphasized" icon="sap-icon://add" iconFirst="true"
+					visible = "{path:'mLookupModel>/SysStatus', formatter:'com.sap.incture.IMO_PM.formatter.formatter.setEnabledBasedOnStatus'}"></Button>
+					<Button text="{i18n>REMOVE}" type="Reject" press= "onRemoveItem" icon="sap-icon://delete" iconFirst="true" class="transparentBtn"
+					visible = "{path:'mLookupModel>/SysStatus', formatter:'com.sap.incture.IMO_PM.formatter.formatter.setEnabledBasedOnStatus'}"></Button>
 				</OverflowToolbar>
 				<ui:Table enableSelectAll="false" selectionMode="MultiToggle" selectionBehavior="Row" visibleRowCount="8"
 					rows="{oNotificationDataModel>/NavNoticreateToNotiItem}" class="tableCellNoBorder TableHeaderWhiteBG" rowSelectionChange="onSelectItem"
@@ -76,47 +78,58 @@
 			<IconTabFilter text="Causes">
 				<OverflowToolbar class="sapMToolBarBottomBorderClass sapUiTinyMarginBottom tableHeaderBg">
 					<Button text="{i18n>ADD_OP}" press="onAddCauses" type="Emphasized" icon="sap-icon://add" iconFirst="true"></Button>
-					<Button text="{i18n>REMOVE}" type="Reject" press="onDeleteCauses" icon="sap-icon://delete" iconFirst="true" class="transparentBtn"></Button>
+					<Button text="{i18n>REMOVE}" type="Reject" press="onRemoveCause" icon="sap-icon://delete" iconFirst="true" class="transparentBtn"></Button>
 				</OverflowToolbar>
 				<ui:Table enableSelectAll="false" selectionMode="MultiToggle" selectionBehavior="Row" visibleRowCount="8"
-					class="tableCellNoBorder TableHeaderWhiteBG" rowSelectionChange="onSelectItem" id="NOTIF_CAUSES_TABLE">
+					rows="{oNotificationDataModel>/NavNoticreateToNotifcause}" class="tableCellNoBorder TableHeaderWhiteBG" rowSelectionChange="onSelectItem"
+					id="CREATE_NOTIF_CAUSES_TABLE">
 					<ui:columns>
 						<ui:Column tooltip="Cause Number" width="4rem">
 							<Label text="No." class="tableHeaderText"/>
 							<ui:template>
-								<Input class="inputRadius"/>
+								<Text text="{oNotificationDataModel>CauseKey}"/>
 							</ui:template>
 						</ui:Column>
-						<ui:Column width="8rem">
+						<ui:Column tooltip="Item Number" width="6rem">
+							<Label text="Item No." class="tableHeaderText"/>
+							<ui:template>
+								<ComboBox items="{ path: 'mLookupModel>/aItemKeyForCause', sorter: { path: 'text' } }" selectedKey="{oNotificationDataModel>ItemKey}"
+									class="inputRadius">
+									<core:Item key="{mLookupModel>sItemKey}" text="{mLookupModel>sItemKey}"/>
+								</ComboBox>
+							</ui:template>
+						</ui:Column>
+						<ui:Column width="6rem">
 							<Label text="Code Group" class="tableHeaderText"/>
 							<ui:template>
-								<Input class="inputRadius"/>
+								<Input class="inputRadius" value="{oNotificationDataModel>CauseCodegrp}" showValueHelp="true" valueHelpRequest="causeCodeValueHelp"
+									valueHelpOnly="true" enabled="{path:'mLookupModel>/SysStatus', formatter:'com.sap.incture.IMO_PM.formatter.formatter.setEnabledBasedOnStatus'}"/>
 							</ui:template>
 						</ui:Column>
-						<ui:Column tooltip="Cause Code" width="9rem">
+						<ui:Column tooltip="Cause Code" width="6rem">
 							<Label text="Cause Code" class="tableHeaderText"/>
 							<ui:template>
-								<Input class="inputRadius"/>
+								<Input class="inputRadius" value="{oNotificationDataModel>CauseCode}" editable="false"/>
 							</ui:template>
 						</ui:Column>
-						<ui:Column tooltip="Cause Code Text">
+						<ui:Column tooltip="Cause Code Text" width="14rem">
 							<Label text="Cause Code Text" class="tableHeaderText"/>
 							<ui:template>
-								<Input class="inputRadius"/>
+								<Input class="inputRadius" editable="false" value="{oNotificationDataModel>TxtCausecd}"/>
 							</ui:template>
 						</ui:Column>
 						<ui:Column tooltip="Cause Long Text">
 							<Label text="Cause Long Text" class="tableHeaderText"/>
 							<ui:template>
-								<Input class="inputRadius"/>
+								<Input change = "onChangeCauseLText" class="inputRadius" value="{oNotificationDataModel>Causetext}" maxLength="40" enabled="{path:'mLookupModel>/SysStatus', formatter:'com.sap.incture.IMO_PM.formatter.formatter.setEnabledBasedOnStatus'}"/>
 							</ui:template>
 						</ui:Column>
-						<ui:Column tooltip="Created By" width="10rem">
-							<Label text="Created By" class="tableHeaderText"/>
-							<ui:template>
-								<Input class="inputRadius"/>
-							</ui:template>
-						</ui:Column>
+						<!--<ui:Column tooltip="Created By">-->
+						<!--	<Label text="Created By" class="tableHeaderText"/>-->
+						<!--	<ui:template>-->
+						<!--		<Input class="inputRadius"/>-->
+						<!--	</ui:template>-->
+						<!--</ui:Column>-->
 					</ui:columns>
 				</ui:Table>
 			</IconTabFilter>

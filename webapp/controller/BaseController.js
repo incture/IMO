@@ -362,6 +362,7 @@ sap.ui.define([
 			this.getFavEquips();
 			this.getWorkCentersNotifList();
 			this.getFnLocs();
+			this.fnGetObjectPart();
 		},
 		//Function to get Work centers list
 		getWorkCentersNotifList: function () {
@@ -3625,12 +3626,30 @@ sap.ui.define([
 			var sSelectedItemPath = oEvent.getSource().getSelectedContextPaths()[0];
 			var sRowPath = oNotificationViewModel.getProperty("/sObjCodePath");
 			var oSelectedItemData = mLookupModel.getProperty(sSelectedItemPath);
+			
 			var sCode = oSelectedItemData.Code;
 			var sCodeGroup = oSelectedItemData.Codegruppe;
 			var sCodeText = oSelectedItemData.Codetext;
+			
+			var oPrevVal = oNotificationDataModel.getProperty(sRowPath);
+			if(oPrevVal.ICode === "C"){
 			oNotificationDataModel.setProperty(sRowPath + "/DlCodegrp", sCodeGroup);
 			oNotificationDataModel.setProperty(sRowPath + "/DlCode", sCode);
 			oNotificationDataModel.setProperty(sRowPath + "/TxtObjptcd", sCodeText);
+			oNotificationDataModel.refresh();
+			}else{
+				if(oPrevVal.ICode === "N" || oPrevVal.ICode === "U"){
+					if(oPrevVal.DlCodegrp !== sCodeGroup || oPrevVal.DlCode !== sCode || oPrevVal.TxtObjptcd !== sCodeText){
+						oNotificationDataModel.setProperty(sRowPath + "/DlCodegrp", sCodeGroup);
+						oNotificationDataModel.setProperty(sRowPath + "/DlCode", sCode);
+						oNotificationDataModel.setProperty(sRowPath + "/TxtObjptcd", sCodeText);
+						oNotificationDataModel.setProperty(sRowPath + "/ICode", "U");
+						oNotificationDataModel.refresh();
+					}
+				
+				}
+			}
+			
 			this.onCancelDialogObjectCode();
 		},
 		damageCodeValueHelp: function (oEvent) {
@@ -3656,12 +3675,27 @@ sap.ui.define([
 			var sSelectedItemPath = oEvent.getSource().getSelectedContextPaths()[0];
 			var sRowPath = oNotificationViewModel.getProperty("/sDamageCodePath");
 			var oSelectedItemData = mLookupModel.getProperty(sSelectedItemPath);
+			
 			var sCode = oSelectedItemData.Code;
 			var sCodeGroup = oSelectedItemData.Codegruppe;
 			var sCodeText = oSelectedItemData.Codetext;
+			
+			var oPrevVal = oNotificationDataModel.getProperty(sRowPath);
+			if(oPrevVal.ICode === "C"){
 			oNotificationDataModel.setProperty(sRowPath + "/DCodegrp", sCodeGroup);
 			oNotificationDataModel.setProperty(sRowPath + "/DCode", sCode);
 			oNotificationDataModel.setProperty(sRowPath + "/TxtProbcd", sCodeText);
+			}else{
+				if(oPrevVal.ICode === "N" || oPrevVal.ICode === "U"){
+					if(oPrevVal.DCodegrp !== sCodeGroup || oPrevVal.DCode !== sCode || oPrevVal.TxtProbcd !== sCodeText){
+						oNotificationDataModel.setProperty(sRowPath + "/DCodegrp", sCodeGroup);
+						oNotificationDataModel.setProperty(sRowPath + "/DCode", sCode);
+						oNotificationDataModel.setProperty(sRowPath + "/TxtProbcd", sCodeText);
+						oNotificationDataModel.setProperty(sRowPath + "/ICode", "U");
+						oNotificationDataModel.refresh();
+					}
+				}
+			}
 			this.onCancelDialogDamageCode();
 		},
 		onAddItems: function (oEvent) {
@@ -3783,9 +3817,25 @@ sap.ui.define([
 			var sCode = oSelectedItemData.Code;
 			var sCodeGroup = oSelectedItemData.Codegruppe;
 			var sCodeText = oSelectedItemData.Codetext;
+			
+			var oPrevVal = oNotificationDataModel.getProperty(sRowPath);
+			if(oPrevVal.Ccode === "C"){
 			oNotificationDataModel.setProperty(sRowPath + "/CauseCodegrp", sCodeGroup);
 			oNotificationDataModel.setProperty(sRowPath + "/CauseCode", sCode);
 			oNotificationDataModel.setProperty(sRowPath + "/TxtCausecd", sCodeText);
+			}else{
+				{
+				if(oPrevVal.Ccode === "N" || oPrevVal.Ccode === "U"){
+					if(oPrevVal.CauseCodegrp !== sCodeGroup || oPrevVal.CauseCode !== sCode || oPrevVal.TxtCausecd !== sCodeText){
+						oNotificationDataModel.setProperty(sRowPath + "/CauseCodegrp", sCodeGroup);
+						oNotificationDataModel.setProperty(sRowPath + "/CauseCode", sCode);
+						oNotificationDataModel.setProperty(sRowPath + "/TxtCausecd", sCodeText);
+						oNotificationDataModel.setProperty(sRowPath + "/Ccode", "U");
+						oNotificationDataModel.refresh();
+					}
+				}
+			}
+			}
 			this.onCancelDialogCauseCode();
 		},
 		onAddCauses: function () {
@@ -3799,7 +3849,8 @@ sap.ui.define([
 				"Causetext": "",
 				"CauseCodegrp": "",
 				"CauseCode": "",
-				"TxtCausecd": ""
+				"TxtCausecd": "",
+				"Ccode":"C"
 			};
 			if (aItemArr === null || aItemArr === undefined || aItemArr.length === 0) {
 				MessageToast.show("Please add Items to add Cause");
@@ -3823,7 +3874,8 @@ sap.ui.define([
 					"Causetext": "",
 					"CauseCodegrp": "",
 					"CauseCode": "",
-					"TxtCausecd": ""
+					"TxtCausecd": "",
+					"Ccode":"C"
 				};
 				aTempArr.push(oTempCauseObj1);
 				oNotificationDataModel.setProperty("/NavNoticreateToNotifcause", aTempArr);
