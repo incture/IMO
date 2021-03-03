@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.client.ClientProtocolException;
-import org.json.JSONObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,7 +18,6 @@ import com.murphy.taskmgmt.dto.ResponseMessage;
 import com.murphy.taskmgmt.ita.ITAGasBlowByActionDto;
 import com.murphy.taskmgmt.ita.ITARulesServiceFacadeLocal;
 import com.murphy.taskmgmt.ita.ITATaskActionDto;
-import com.murphy.taskmgmt.service.interfaces.DopAutomationFacadeLocal;
 import com.murphy.taskmgmt.service.interfaces.ItaFacadeLocal;
 import com.murphy.taskmgmt.util.MurphyConstant;
 import com.murphy.taskmgmt.util.ServicesUtil;

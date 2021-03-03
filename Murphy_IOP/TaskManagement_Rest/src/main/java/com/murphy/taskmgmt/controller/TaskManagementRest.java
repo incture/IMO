@@ -23,7 +23,6 @@ import com.murphy.taskmgmt.dto.LocationHierarchyResponseDto;
 import com.murphy.taskmgmt.dto.NDVTaskListResponseDto;
 import com.murphy.taskmgmt.dto.ResponseMessage;
 import com.murphy.taskmgmt.dto.TaskDetailResponseDto;
-import com.murphy.taskmgmt.dto.TaskEventsDto;
 import com.murphy.taskmgmt.dto.TaskListResponseDto;
 import com.murphy.taskmgmt.dto.TaskTemplatesDto;
 import com.murphy.taskmgmt.dto.UIResponseDto;
@@ -34,7 +33,6 @@ import com.murphy.taskmgmt.service.AutoTaskSchedulingFacade;
 import com.murphy.taskmgmt.service.interfaces.TaskManagementFacadeLocal;
 import com.murphy.taskmgmt.service.interfaces.TaskSchedulingCalFacadeLocal;
 import com.murphy.taskmgmt.service.interfaces.TaskTemplateFacadeLocal;
-import com.murphy.taskmgmt.util.MurphyConstant;
 import com.murphy.taskmgmt.util.ServicesUtil;
 
 @RestController
