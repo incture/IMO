@@ -33,7 +33,7 @@ public class LocationHierarchyDo implements BaseDo, Serializable {
 	@Column(name = "WELLPAD" ,length=50)
 	private String wellpad;
 	
-	@Column(name = "WELL", length = 25)
+	@Column(name = "WELL", length = 40)
 	private String well;
 	
 //	@Column(name = "LONGITUDE")
