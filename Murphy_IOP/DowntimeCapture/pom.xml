@@ -1,13 +1,14 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.murphy.iop</groupId>
-    <artifactId>Murphy_IOP</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-  </parent>
-  <artifactId>DowntimeCapture</artifactId>
-  
-  <properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.murphy.iop</groupId>
+		<artifactId>Murphy_IOP</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>DowntimeCapture</artifactId>
+
+	<properties>
 		<springframework.version>4.2.5.RELEASE</springframework.version>
 		<hibernate.version>4.3.11.Final</hibernate.version>
 		<mysql.connector.version>5.1.31</mysql.connector.version>
@@ -64,13 +65,10 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.version}</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/sqljdbc4 -->
-		<!-- <dependency>
-			<groupId>com.microsoft.sqlserver</groupId>
-			<artifactId>sqljdbc4</artifactId>
-			<version>4.0</version>
-		</dependency> -->
+		<!-- <dependency> <groupId>com.microsoft.sqlserver</groupId> <artifactId>sqljdbc4</artifactId> 
+			<version>4.0</version> </dependency> -->
 
 		<!-- Joda-Time -->
 		<dependency>
@@ -92,7 +90,7 @@
 			<version>3.0.0.CR1</version>
 		</dependency>
 
-		
+
 
 		<dependency>
 			<groupId>com.microsoft.sqlserver</groupId>
@@ -102,16 +100,9 @@
 
 		<!-- <dependency> <groupId>sample</groupId> <artifactId>com.sample</artifactId> 
 			<version>1.0</version> <scope>system</scope> <systemPath>${project.basedir}/lib/sqljdbc42.jar</systemPath> 
-			</dependency> 
-			
-			<dependency>
-			<groupId>sample</groupId>
-			<artifactId>com.sample</artifactId>
-			<version>1.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/ngdbc.jar</systemPath>
-		</dependency>
-			-->
+			</dependency> <dependency> <groupId>sample</groupId> <artifactId>com.sample</artifactId> 
+			<version>1.0</version> <scope>system</scope> <systemPath>${project.basedir}/lib/ngdbc.jar</systemPath> 
+			</dependency> -->
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -143,7 +134,7 @@
 		</dependency>
 
 	</dependencies>
-	
+
 	<build>
 		<pluginManagement>
 			<plugins>
