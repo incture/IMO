@@ -64,17 +64,35 @@ com.sap.incture.IMO_PM.formatter.formatter = {
 	},
 	//nischal -- Notification Detail's CreateWO button Visibility function
 	setBtnVisibleCreateOrder: function (sValue) {
-		if (sValue == "NOPR") {
-			return true;
-		} else {
+		// if (sValue == "NOPR") {
+		// 	return true;
+		// } else {
+		// 	return false;
+		// }
+		if(sValue){
+			if(sValue.includes("NOCO") || sValue.includes("OSNO") || sValue.includes("ORAS") || sValue.includes("APRQ") ){
+				return false;
+			}else{
+				return true;
+			}
+		}else{
 			return false;
 		}
 	},
 	//nischal -- notification Detail Revert button visible
 	setBtnVisibleRevert: function (sValue) {
-		if (sValue == "NOCO" || sValue == "NOCO ORAS") {
-			return true;
-		} else {
+		// if (sValue == "NOCO" || sValue == "NOCO ORAS") {
+		// 	return true;
+		// } else {
+		// 	return false;
+		// }
+		if(sValue){
+			if(sValue.includes("NOCO")){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
 			return false;
 		}
 	},
@@ -89,26 +107,53 @@ com.sap.incture.IMO_PM.formatter.formatter = {
 
 	//nischal -- notificationDetail Release button visible
 	setBtnVisibleRelease: function (sValue) {
-		if (sValue == "NOPR" || sValue == "NOPR ORAS" || sValue == "NOCO" || sValue == "NOCO ORAS") {
+		// if (sValue == "NOPR" || sValue == "NOPR ORAS" || sValue == "NOCO" || sValue == "NOCO ORAS") {
+		// 	return false;
+		// } else {
+		// 	return true;
+		// }
+		if(sValue){
+			if(sValue.includes("OSNO") || sValue.includes("APRQ")){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
 			return false;
-		} else {
-			return true;
 		}
 	},
 	//nischal -- notification Update button visible
 	setBtnVisibleUpdate: function (sValue) {
-		if (sValue == "NOCO" || sValue == "NOCO ORAS") {
+		// if (sValue == "NOCO" || sValue == "NOCO ORAS") {
+		// 	return false;
+		// } else {
+		// 	return true;
+		// }
+		if(sValue){
+			if(sValue.includes("NOCO")){
+				return false;
+			}else{
+				return true;
+			}
+		}else{
 			return false;
-		} else {
-			return true;
 		}
 	},
 	//nischal -- notification close button visibility
 	setBtnVisibleClose: function (sValue) {
-		if (sValue == "NOCO" || sValue == "NOCO ORAS") {
+		// if (sValue == "NOCO" || sValue == "NOCO ORAS") {
+		// 	return false;
+		// } else {
+		// 	return true;
+		// }
+		if(sValue){
+			if(sValue.includes("NOCO")){
+				return false;
+			}else{
+				return true;
+			}
+		}else{
 			return false;
-		} else {
-			return true;
 		}
 	},
 	VisiblityCNFLongText: function (operationId) {

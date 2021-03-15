@@ -31,6 +31,7 @@ sap.ui.define([
 			if (viewName === "notifDetail") {
 				this.fnFetchDetailNotifList();
 			}
+			this.getOrderType();
 			///For Attachements///
 			var oPortalDataModel = this.oPortalDataModel;
 			var sericeUrl = oPortalDataModel.sServiceUrl;
@@ -782,7 +783,12 @@ sap.ui.define([
 			oNotifData.Notif_date = formatter.formatDateobjToString(oNotifData.Notif_date);
 			oNotifData.ReqStartdate = formatter.formatDateobjToString(oNotifData.ReqStartdate);
 			oNotifData.ReqEnddate = formatter.formatDateobjToString(oNotifData.ReqEnddate);
-			oNotifData.Type = "RELEASE";
+			if(sVal === "revert"){
+				oNotifData.Type = "REVERT";
+			}else{
+				oNotifData.Type = "APPROVE";
+			}
+			
 			if (oNotifData.Assembly === "NaN") {
 				oNotifData.Assembly = "";
 			}
@@ -911,6 +917,12 @@ sap.ui.define([
 			if (oNotifData.Enddate !== "") {
 				var splitDate2 = oNotifData.Enddate.split("T")[0];
 				oNotifData.Enddate = splitDate2 + "T" + endTime + ":00";
+			}
+			if(oNotifData.NavNoticreateToNotifcause === null){
+				oNotifData.NavNoticreateToNotifcause = [];
+			}
+			if(oNotifData.NavNoticreateToNotiItem === null){
+				oNotifData.NavNoticreateToNotiItem = [];
 			}
 			oPortalNotifOData.setHeaders({
 				"X-Requested-With": "X"
@@ -1451,6 +1463,78 @@ sap.ui.define([
 				oNotificationDataModel.setProperty(sPath + "/Ccode", "U");
 			}
 			oNotificationDataModel.refresh();
+		},
+		//nischal -- starts
+		onRejectNotif: function(){
+			var that = this;
+			this.busy.open();
+			var mLookupModel = this.mLookupModel;
+			var oPortalNotifOData = this.oPortalNotifOData;
+			var oNotificationDataModel = this.oNotificationDataModel;
+			var oNotificationViewModel = this.oNotificationViewModel;
+			var oNotifData = oNotificationDataModel.getData();
+
+			var tempLongText = oNotificationViewModel.getProperty("/Longtext");
+			oNotifData.Longtext = tempLongText;
+
+			oNotifData.Startdate = formatter.formatDateobjToString(oNotifData.Startdate);
+			if (oNotifData.Enddate) {
+				oNotifData.Enddate = formatter.formatDateobjToString(oNotifData.Enddate, true);
+			} else {
+				oNotifData.Enddate = "";
+			}
+			oNotifData.Notif_date = formatter.formatDateobjToString(oNotifData.Notif_date);
+			oNotifData.ReqStartdate = formatter.formatDateobjToString(oNotifData.ReqStartdate);
+			oNotifData.ReqEnddate = formatter.formatDateobjToString(oNotifData.ReqEnddate);
+			oNotifData.Type = "REJECT";
+			if (oNotifData.Assembly === "NaN") {
+				oNotifData.Assembly = "";
+			}
+			if (oNotifData.Breakdown === true) {
+				oNotifData.Breakdown = "X";
+			} else if (oNotifData.Breakdown === false) {
+				oNotifData.Breakdown = " ";
+			}
+
+			var startTime = oNotificationViewModel.getProperty("/StartTime");
+			if (!startTime) {
+				startTime = "00:00";
+			}
+			var splitDate1 = oNotifData.Startdate.split("T")[0];
+			oNotifData.Startdate = splitDate1 + "T" + startTime + ":00";
+
+			var endTime = oNotificationViewModel.getProperty("/EndTime");
+			if (!endTime) {
+				endTime = "00:00";
+			}
+			if (oNotifData.Enddate !== "") {
+				var splitDate2 = oNotifData.Enddate.split("T")[0];
+				oNotifData.Enddate = splitDate2 + "T" + endTime + ":00";
+			}
+			oPortalNotifOData.setHeaders({
+				"X-Requested-With": "X"
+			});
+			oPortalNotifOData.create("/NotificationSet", oNotifData, {
+				async: false,
+				success: function (sData, oResponse) {
+					var statusCode = oResponse.statusCode;
+					var orderId = oResponse.Orderid;
+					if (statusCode == 201) {
+							MessageBox.success("Notification Rejected Successfully", {
+								actions: [MessageBox.Action.OK],
+								emphasizedAction: MessageBox.Action.OK,
+								onClose: function (sAction) {
+									that.fnFetchDetailNotifList();
+								}
+							});
+					}
+
+					that.busy.close();
+				},
+				error: function (error, oResponse) {
+					that.busy.close();
+				}
+			});
 		}
 	});
 });
