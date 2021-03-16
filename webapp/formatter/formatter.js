@@ -98,9 +98,18 @@ com.sap.incture.IMO_PM.formatter.formatter = {
 	},
 	//nischal -- set Notification Detail View Enabled/Disabled based on Notification Status
 	setEnabledBasedOnStatus: function (sValue) {
-		if (sValue == "NOCO" || sValue == "NOCO ORAS") {
-			return false;
-		} else {
+		// if (sValue == "NOCO" || sValue == "NOCO ORAS") {
+		// 	return false;
+		// } else {
+		// 	return true;
+		// }
+		if(sValue){
+			if(sValue.includes("NOCO")){
+				return false;
+			}else{
+				return true;
+			}
+		}else{
 			return true;
 		}
 	},
