@@ -137,7 +137,7 @@ com.sap.incture.IMO_PM.util.util = {
 		var oReqEndDate = oWorkOrderDetailViewModel.getProperty("/oRequiredEndDate");
 
 		oWorkOrderDetailModel.setProperty("/Plant", userPlant);
-		oWorkOrderDetailModel.setProperty("/Pmacttype", "001");
+		oWorkOrderDetailModel.setProperty("/Pmacttype", "");
 		oWorkOrderDetailModel.setProperty("/NotifNo", "");
 		oWorkOrderDetailModel.setProperty("/Systcond", "");
 		oWorkOrderDetailModel.setProperty("/Maintplant", "");
@@ -277,12 +277,12 @@ com.sap.incture.IMO_PM.util.util = {
 			// oErrorMsg = "Please enter a Functional Location";
 			return [true, oErrorMsg];
 		}
-		var assignedTo = oWorkOrderDetailModel.getProperty("/HEADERTOPARTNERNAV/0/AssignedTo");
-		if (!assignedTo) {
-			oErrorMsg = oResourceModel.getText("SEL_ASSIGNED_TO");
-			// oErrorMsg = "Please select Assigned To";
-			return [true, oErrorMsg];
-		}
+		// var assignedTo = oWorkOrderDetailModel.getProperty("/HEADERTOPARTNERNAV/0/AssignedTo");
+		// if (!assignedTo) {
+		// 	oErrorMsg = oResourceModel.getText("SEL_ASSIGNED_TO");
+		// 	// oErrorMsg = "Please select Assigned To";
+		// 	return [true, oErrorMsg];
+		// }
 		var priority = oWorkOrderDetailModel.getProperty("/Priority");
 		if (!priority) {
 			oErrorMsg = oResourceModel.getText("SEL_PRIORITY");
@@ -305,6 +305,12 @@ com.sap.incture.IMO_PM.util.util = {
 		if (!planEndDate) {
 			oErrorMsg = oResourceModel.getText("SEL_PLANNED_END_DATE");
 			// oErrorMsg = "Please select Planned End Date";
+			return [true, oErrorMsg];
+		}
+		var Pmacttype = oWorkOrderDetailModel.getProperty("/Pmacttype");
+		if (!Pmacttype) {
+			oErrorMsg = oResourceModel.getText("SEL_PM_ACT_TYPE");
+			
 			return [true, oErrorMsg];
 		}
 
@@ -2115,7 +2121,7 @@ com.sap.incture.IMO_PM.util.util = {
 				"systemstatustext": ""
 			}],
 			"HEADERTOPARTNERNAV": [{
-				"AssignedTo": "00000125",
+				"AssignedTo": "",
 				"Orderid": "",
 				"PARTNERNAV": "C",
 				"PARTNEROLD": ""

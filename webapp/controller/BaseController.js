@@ -975,12 +975,12 @@ sap.ui.define([
 						var userName = that.oUserDetailModel.getProperty("/userName");
 						partner = [{
 							"Orderid": "",
-							"AssignedTo": userName,
-							"PARTNERNAV": "C",
+							"AssignedTo":"" ,
+							"PARTNERNAV": "",
 							"PARTNEROLD": ""
 						}];
 						oData.ReportedBy = userName;
-						oWorkOrderDetailViewModel.setProperty("/HEADERTOPARTNERNAV/0/AssignedTo", userName);
+						oWorkOrderDetailViewModel.setProperty("/HEADERTOPARTNERNAV/0/AssignedTo", "");
 					}
 					var CostList = oData.HEADERTOCOSTNAV.results;
 					util.setRowItemsforCostOverview(oWorkOrderDetailViewModel, CostList);
@@ -1039,6 +1039,7 @@ sap.ui.define([
 					that.fnFilterCNFOperations(true);
 					that.getDamageGroupCode("", oData.Damagecode);
 					that.getCauseGroupCode("", oData.Causecode);
+					that.getPmActTypes(oData.OrderType);// ST:PM ACT TYPE lookup
 					oWorkOrderDetailModel.refresh(true);
 					////////TO show PR num////
 

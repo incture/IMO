@@ -46,6 +46,7 @@ sap.ui.define([
 					util.resetDetailWOFields(oUserDetailModel, oWorkOrderDetailModel, oWorkOrderDetailViewModel, "CREATE_ORDER", this.oPortalDataModel);
 					//util.setRowItemsforCostOverview(oWorkOrderDetailViewModel);
 					this.fnCreateUpdateBtnTxt("CREATE_ORDER");
+
 					var workCenter = oWorkOrderDetailModel.getProperty("/MnWkCtr");
 					this.setOrderTypeOperation(oWorkOrderDetailModel, oWorkOrderDetailViewModel, [], workCenter);
 					// this.fnFilterSlectedDamageGroup(); //nischal -- this functionality is removed
@@ -101,6 +102,8 @@ sap.ui.define([
 					this.fnCreateUpdateBtnTxt("UPDATE_ORDER");
 					this.getWODetails(viewType);
 				}
+				var PMType = oWorkOrderDetailModel.getProperty("/OrderType")
+				this.getPmActTypes(PMType); // ST:PM ACT TYPE lookup
 			} else if (viewName === "detailTabWO") {
 				var oViewType = oEvent.getParameter("arguments").workOrderID;
 				util.initializeWODetailFields(oWorkOrderDetailModel, oWorkOrderDetailViewModel);
@@ -124,6 +127,7 @@ sap.ui.define([
 			}
 			this.getSystemCondition();
 			this.getNotificationType();
+
 			var userName = this.oUserDetailModel.getProperty("/userName");
 			oWorkOrderDetailModel.setProperty("/ReportedBy", userName);
 
@@ -1006,10 +1010,16 @@ sap.ui.define([
 			var oWorkOrderDetailViewModel = this.oWorkOrderDetailViewModel;
 			var assignedTo = oWorkOrderDetailModel.getProperty("/HEADERTOPARTNERNAV/0/AssignedTo");
 			var uiAssignedTo = oWorkOrderDetailViewModel.getProperty("/HEADERTOPARTNERNAV/0/AssignedTo");
+			//var uiAssignedTo = oEvent.getParameter("value");
 			var uiPartnerNav = oWorkOrderDetailViewModel.getProperty("/HEADERTOPARTNERNAV/0/PARTNERNAV");
 			if (uiAssignedTo !== assignedTo) {
 				if (uiPartnerNav === "N" || uiPartnerNav === "U") {
 					oWorkOrderDetailViewModel.setProperty("/HEADERTOPARTNERNAV/0/PARTNERNAV", "U");
+					oWorkOrderDetailViewModel.setProperty("/HEADERTOPARTNERNAV/0/AssignedTo", uiAssignedTo);
+					oWorkOrderDetailViewModel.setProperty("/HEADERTOPARTNERNAV/0/PARTNEROLD", assignedTo);
+				}
+				if (uiPartnerNav === "") {
+					oWorkOrderDetailViewModel.setProperty("/HEADERTOPARTNERNAV/0/PARTNERNAV", "C");
 					oWorkOrderDetailViewModel.setProperty("/HEADERTOPARTNERNAV/0/AssignedTo", uiAssignedTo);
 					oWorkOrderDetailViewModel.setProperty("/HEADERTOPARTNERNAV/0/PARTNEROLD", assignedTo);
 				}
@@ -1307,6 +1317,7 @@ sap.ui.define([
 						oWorkOrderDetailModel.setProperty("/", sData);
 						that.sortOperations();
 						oWorkOrderDetailModel.refresh(true);
+						that.oWorkOrderDetailViewModel.setProperty("/HEADERTOPARTNERNAV", headerPartner);
 						that.getOperationIdLookup();
 						that.getDamageGroupCode("", sData.Damagecode);
 						that.getCauseGroupCode("", sData.Causecode);
@@ -4065,6 +4076,34 @@ sap.ui.define([
 			}
 			return components;
 		},
+		getPmActTypes: function (sPMType) {
+			var sUrl = "/ActTypeSet";
+			var mLookupModel = this.mLookupModel;
+			var oLookupDataModel = this.oLookupDataModel;
+			var oFilter = [];
+			if (!sPMType) {
+				sPMType = "";
+			}
+			sPMType = "'" + sPMType.replace(/['"]+/g, '') + "'"
+			oFilter.push(new Filter("OrderType", "EQ", sPMType));
+			oLookupDataModel.read(sUrl, {
+				filters: oFilter,
+				success: function (oData) {
+					var aPmActTypeSet = oData.results;
+					mLookupModel.setProperty("/aPmActTypeSet", aPmActTypeSet);
+					mLookupModel.refresh();
+				},
+				error: function (oData) {
+					mLookupModel.setProperty("/aPmActTypeSet", []);
+					mLookupModel.refresh();
+				}
+			});
+		},
+		onPMTypeChange: function (oEvent) {
+			var sPMType = oEvent.getParameter("value");
+			this.oWorkOrderDetailModel.setProperty("/Pmacttype", "");
+			this.getPmActTypes(sPMType);
+		}
 
 	});
 });

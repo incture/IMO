@@ -209,6 +209,42 @@ sap.ui.define([
 					}, {
 						"key": "OSNO",
 						"text": "Outsranding Notification"
+					}, {
+						"key": "APRQ OSNO",
+						"text": "Approval Required Outstanding Notification"
+					}, {
+						"key": "APRQ ORAS OSNO",
+						"text": "Approval Required Outstanding Notification, Order Assigned"
+					}, {
+						"key": "APOK NOPR",
+						"text": "Appoval Granted Notification in Progress"
+					}, {
+						"key": "APOK NOPR ORAS",
+						"text": "Approval Granted Notification in Progress,Order Assigned"
+					}, {
+						"key": "APRF NOCO",
+						"text": "Approval Refused Notification Closed"
+					}, {
+						"key": "APRF NOCO ORAS",
+						"text": "Approval Refused Notification Closed,Order Assigned"
+					}, {
+						"key": "APOK NOCO",
+						"text": "Approval Granted Notification Closed"
+					}, {
+						"key": "APOK NOCO ORAS",
+						"text": "Approval Granted Notification Closed,Order Assigned"
+					}, {
+						"key": "APRQ NOCO",
+						"text": "Approval Required Notification Closed"
+					}, {
+						"key": "APRQ NOCO ORAS",
+						"text": "Approval Required Notification Closed,Order Assigned"
+					}, {
+						"key": "APRQ NOPR",
+						"text": "Approval Required Notification in Progress"
+					}, {
+						"key": "APRQ NOPR ORAS",
+						"text": "Approval Required Notification in Progress,Order Assigned"
 					}],
 					"sCreatedOnStart": formatter.GetMonthsBackDate(90),
 					"sCreatedOnEnd": new Date().toLocaleDateString()
