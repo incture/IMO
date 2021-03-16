@@ -16,6 +16,8 @@
 						<core:CustomData key="dateType" value="UPDATE"/>
 					</customData>
 				</Button>
+				<Button text="{i18n>rejectNotif}" id="idRejectNotif" press="onRejectNotif" class="tableHeadertansparentBtn"
+					visible="{path:'mLookupModel>/SysStatus', formatter:'com.sap.incture.IMO_PM.formatter.formatter.setBtnVisibleClose'}"/>
 				<Button text="{i18n>close_notif}" id="idcloseNotif" press="fnSaveandCloseNotif" class="tableHeadertansparentBtn"
 					visible="{path:'mLookupModel>/SysStatus', formatter:'com.sap.incture.IMO_PM.formatter.formatter.setBtnVisibleClose'}"
 					icon="sap-icon://decline" iconFirst="true"/>

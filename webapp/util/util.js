@@ -2180,6 +2180,19 @@ com.sap.incture.IMO_PM.util.util = {
 			oNotificationDataModel.setProperty("/NavNoticreateToNotiItem",oData);
 			oNotificationDataModel.refresh();
 		}
+	},
+	setCausetoNotifDataModel: function(oData,oNotificationDataModel){
+		if(oData === null || oData.length === undefined || oData.length === 0){
+			oNotificationDataModel.setProperty("/NavNoticreateToNotifcause", []);
+			oNotificationDataModel.refresh();
+		}else{
+			for (var i = 0;i < oData.length; i++){
+				delete oData[i].NotifNo;
+				delete oData[i].__metadata;
+			}
+			oNotificationDataModel.setProperty("/NavNoticreateToNotifcause",oData);
+			oNotificationDataModel.refresh();
+		}
 	}
 
 };

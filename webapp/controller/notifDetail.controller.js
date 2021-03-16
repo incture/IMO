@@ -31,6 +31,7 @@ sap.ui.define([
 			if (viewName === "notifDetail") {
 				this.fnFetchDetailNotifList();
 			}
+			this.getOrderType();
 			///For Attachements///
 			var oPortalDataModel = this.oPortalDataModel;
 			var sericeUrl = oPortalDataModel.sServiceUrl;
@@ -75,6 +76,7 @@ sap.ui.define([
 					var notifData = oData.results[0];
 					that.resetUIFields(notifData);
 					that.fnFetchItemList();
+					that.fnFetchCauseList();
 					that.busy.close();
 				},
 				error: function (oData) {
@@ -781,7 +783,12 @@ sap.ui.define([
 			oNotifData.Notif_date = formatter.formatDateobjToString(oNotifData.Notif_date);
 			oNotifData.ReqStartdate = formatter.formatDateobjToString(oNotifData.ReqStartdate);
 			oNotifData.ReqEnddate = formatter.formatDateobjToString(oNotifData.ReqEnddate);
-			oNotifData.Type = "RELEASE";
+			if(sVal === "revert"){
+				oNotifData.Type = "REVERT";
+			}else{
+				oNotifData.Type = "APPROVE";
+			}
+			
 			if (oNotifData.Assembly === "NaN") {
 				oNotifData.Assembly = "";
 			}
@@ -910,6 +917,12 @@ sap.ui.define([
 			if (oNotifData.Enddate !== "") {
 				var splitDate2 = oNotifData.Enddate.split("T")[0];
 				oNotifData.Enddate = splitDate2 + "T" + endTime + ":00";
+			}
+			if(oNotifData.NavNoticreateToNotifcause === null){
+				oNotifData.NavNoticreateToNotifcause = [];
+			}
+			if(oNotifData.NavNoticreateToNotiItem === null){
+				oNotifData.NavNoticreateToNotiItem = [];
 			}
 			oPortalNotifOData.setHeaders({
 				"X-Requested-With": "X"
@@ -1345,5 +1358,183 @@ sap.ui.define([
 				}
 			});
 		},
+		fnFetchCauseList: function () {
+			var that = this;
+			this.busy.open();
+			// var mLookupModel = this.mLookupModel;
+			var oPortalDataModel = this.oPortalDataModel;
+			var oNotificationDataModel = this.oNotificationDataModel;
+			var notifId = window.location.hash.split("/")[2];
+			var sUrl = "/NotificationListSet" + "(" + "'" + notifId + "'" + ")" + "/NavNotiflistToNotifcause";
+			oPortalDataModel.read(sUrl, {
+				success: function (oData) {
+					util.setCausetoNotifDataModel(oData.results,oNotificationDataModel);
+					oNotificationDataModel.refresh();
+					that.busy.close();
+				},
+				error: function (oData) {
+					oNotificationDataModel.setProperty("/NavNoticreateToNotifcause", []);
+					oNotificationDataModel.refresh();
+					that.busy.close();
+				}
+			});
+		},
+		onRemoveItem: function(oEvent){
+			var oNotificationDataModel = this.oNotificationDataModel;
+			var itemTableFrag = this.getView().createId("idOperationsMaterialPanelWO");
+			var oTable = sap.ui.core.Fragment.byId(itemTableFrag, "NOTIF_ITEM_TABLE");
+			// var oTable = this.byId("NOTIF_ITEM_TABLE");
+			var aIndices = oTable.getSelectedIndices();
+			if (aIndices.length === 0) {
+				MessageToast.show("Please select the Item to be deleted");
+				return;
+			}
+			var aItemNo = [];
+			var aTempArr = oNotificationDataModel.getProperty("/NavNoticreateToNotiItem");
+			for (var i = 0; i < aIndices.length; i++) {
+				var temp = aTempArr[aIndices[i]].ItemKey;
+				aItemNo.push(temp);
+			}
+			for (var q = 0; q < aItemNo.length; q++) {
+				var sKey = aItemNo[q];
+				for (var j = 0; j < aTempArr.length; j++) {
+					if (aTempArr[j].ItemKey === sKey) {
+						aTempArr.splice(j, 1);
+						break;
+					}
+				}
+			}
+			oTable.clearSelection();
+			oTable.rerender();
+			if(this.isItemArrayEmpty(aTempArr)){
+				oNotificationDataModel.setProperty("/NavNoticreateToNotifcause",[]);
+			}
+			oNotificationDataModel.setProperty("/NavNoticreateToNotiItem", aTempArr);
+			oNotificationDataModel.refresh();
+			this.getItemKeyForCause();
+		},
+		onRemoveCause: function(oEvent){
+			var oNotificationDataModel = this.oNotificationDataModel;
+			// if (!this._oTable) {
+			// 	this._oTable = this.byId("CREATE_NOTIF_CAUSES_TABLE");
+			// }
+			// var oTable = this._oTable;
+			var itemTableFrag = this.getView().createId("idOperationsMaterialPanelWO");
+			var oTable = sap.ui.core.Fragment.byId(itemTableFrag, "CREATE_NOTIF_CAUSES_TABLE");
+			var aIndices = oTable.getSelectedIndices();
+			if (aIndices.length === 0) {
+				MessageToast.show("Please select the Row to be deleted");
+				return;
+			}
+			var aCauseNo = [];
+			var aTempArr = oNotificationDataModel.getProperty("/NavNoticreateToNotifcause");
+			for (var i = 0; i < aIndices.length; i++) {
+				var temp = aTempArr[aIndices[i]].CauseKey;
+				aCauseNo.push(temp);
+			}
+			for (var q = 0; q < aCauseNo.length; q++) {
+				var sKey = aCauseNo[q];
+				for (var j = 0; j < aTempArr.length; j++) {
+					if (aTempArr[j].CauseKey === sKey) {
+						aTempArr.splice(j, 1);
+						break;
+					}
+				}
+			}
+			oTable.clearSelection();
+			oTable.rerender();
+			oNotificationDataModel.setProperty("/NavNoticreateToNotifcause", aTempArr);
+			oNotificationDataModel.refresh();
+		},
+		onChangeItemLText: function(oEvent){
+			var oNotificationDataModel = this.oNotificationDataModel;
+			var sPath = oEvent.getSource().getBindingContext("oNotificationDataModel").getPath();
+			var oObj = oNotificationDataModel.getProperty(sPath);
+			if(oObj.ICode === "N" || oObj.ICode === "U"){
+				oNotificationDataModel.setProperty(sPath + "/ICode", "U");
+			}
+			oNotificationDataModel.refresh();
+		},
+		onChangeCauseLText: function(oEvent){
+			var oNotificationDataModel = this.oNotificationDataModel;
+			var sPath = oEvent.getSource().getBindingContext("oNotificationDataModel").getPath();
+			var oObj = oNotificationDataModel.getProperty(sPath);
+			if(oObj.Ccode === "N" || oObj.Ccode === "U"){
+				oNotificationDataModel.setProperty(sPath + "/Ccode", "U");
+			}
+			oNotificationDataModel.refresh();
+		},
+		//nischal -- starts
+		onRejectNotif: function(){
+			var that = this;
+			this.busy.open();
+			var mLookupModel = this.mLookupModel;
+			var oPortalNotifOData = this.oPortalNotifOData;
+			var oNotificationDataModel = this.oNotificationDataModel;
+			var oNotificationViewModel = this.oNotificationViewModel;
+			var oNotifData = oNotificationDataModel.getData();
+
+			var tempLongText = oNotificationViewModel.getProperty("/Longtext");
+			oNotifData.Longtext = tempLongText;
+
+			oNotifData.Startdate = formatter.formatDateobjToString(oNotifData.Startdate);
+			if (oNotifData.Enddate) {
+				oNotifData.Enddate = formatter.formatDateobjToString(oNotifData.Enddate, true);
+			} else {
+				oNotifData.Enddate = "";
+			}
+			oNotifData.Notif_date = formatter.formatDateobjToString(oNotifData.Notif_date);
+			oNotifData.ReqStartdate = formatter.formatDateobjToString(oNotifData.ReqStartdate);
+			oNotifData.ReqEnddate = formatter.formatDateobjToString(oNotifData.ReqEnddate);
+			oNotifData.Type = "REJECT";
+			if (oNotifData.Assembly === "NaN") {
+				oNotifData.Assembly = "";
+			}
+			if (oNotifData.Breakdown === true) {
+				oNotifData.Breakdown = "X";
+			} else if (oNotifData.Breakdown === false) {
+				oNotifData.Breakdown = " ";
+			}
+
+			var startTime = oNotificationViewModel.getProperty("/StartTime");
+			if (!startTime) {
+				startTime = "00:00";
+			}
+			var splitDate1 = oNotifData.Startdate.split("T")[0];
+			oNotifData.Startdate = splitDate1 + "T" + startTime + ":00";
+
+			var endTime = oNotificationViewModel.getProperty("/EndTime");
+			if (!endTime) {
+				endTime = "00:00";
+			}
+			if (oNotifData.Enddate !== "") {
+				var splitDate2 = oNotifData.Enddate.split("T")[0];
+				oNotifData.Enddate = splitDate2 + "T" + endTime + ":00";
+			}
+			oPortalNotifOData.setHeaders({
+				"X-Requested-With": "X"
+			});
+			oPortalNotifOData.create("/NotificationSet", oNotifData, {
+				async: false,
+				success: function (sData, oResponse) {
+					var statusCode = oResponse.statusCode;
+					var orderId = oResponse.Orderid;
+					if (statusCode == 201) {
+							MessageBox.success("Notification Rejected Successfully", {
+								actions: [MessageBox.Action.OK],
+								emphasizedAction: MessageBox.Action.OK,
+								onClose: function (sAction) {
+									that.fnFetchDetailNotifList();
+								}
+							});
+					}
+
+					that.busy.close();
+				},
+				error: function (error, oResponse) {
+					that.busy.close();
+				}
+			});
+		}
 	});
 });
