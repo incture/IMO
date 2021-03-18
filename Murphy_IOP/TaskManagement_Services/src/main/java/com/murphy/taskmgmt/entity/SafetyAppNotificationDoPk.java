@@ -14,7 +14,7 @@ public class SafetyAppNotificationDoPk implements Serializable{
 	@Column(name = "OBJECT_ID", length = 32)
 	private String objectId;
 
-	@Column(name = "ACTIVITY_LOG_ID", length = 30)
+	@Column(name = "ACTIVITY_LOG_ID", length = 32)
 	private String activityLogId;
 
 	public String getObjectId() {

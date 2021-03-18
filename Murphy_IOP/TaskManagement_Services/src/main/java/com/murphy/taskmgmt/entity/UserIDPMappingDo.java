@@ -11,12 +11,34 @@ public class UserIDPMappingDo implements BaseDo {
 
 	@Column(name = "SERIAL_ID", length = 150)
 	private String serialId;
-	
+
 	@Column(name = "BLACKLINE_ID", length = 150)
 	private String blackLineId;
-	
+
 	@Column(name = "SAP_ID", length = 150)
 	private String sapId;
+
+	@Column(name = "USER_FIRST_NAME", length = 100)
+	private String userFirstName;
+
+	@Column(name = "USER_LAST_NAME", length = 100)
+	private String userLastName;
+
+	@Id
+	@Column(name = "USER_EMAIL", length = 100)
+	private String userEmail;
+
+	@Column(name = "USER_ROLE", length = 500)
+	private String userRole;
+
+	@Column(name = "USER_LOGIN_NAME", length = 100)
+	private String userLoginName;
+
+	@Column(name = "TASK_ASSIGNABLE", length = 10)
+	private String taskAssignable;
+
+	@Column(name = "P_ID", length = 10)
+	private String pId;
 
 	public String getSapId() {
 		return sapId;
@@ -33,32 +55,6 @@ public class UserIDPMappingDo implements BaseDo {
 	public void setBlackLineId(String blackLineId) {
 		this.blackLineId = blackLineId;
 	}
-
-	@Column(name = "USER_FIRST_NAME", length = 100)
-	private String userFirstName;
-
-	@Column(name = "USER_LAST_NAME", length = 100)
-	private String userLastName;
-
-	@Id
-	@Column(name = "USER_EMAIL", length = 100)
-	private String userEmail;
-
-	@Column(name = "USER_ROLE", length = 80)
-	private String userRole;
-
-
-	@Column(name = "USER_LOGIN_NAME", length = 100)
-	private String userLoginName;
-	
-	@Column(name = "TASK_ASSIGNABLE", length = 10)
-	private String taskAssignable;
-	
-	
-	@Column(name = "P_ID",length =10)
-	private String pId;
-	
-	
 
 	public String getpId() {
 		return pId;

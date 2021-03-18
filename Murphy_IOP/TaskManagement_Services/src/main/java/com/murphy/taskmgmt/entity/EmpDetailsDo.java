@@ -13,15 +13,54 @@ public class EmpDetailsDo implements BaseDo, Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "EMP_ID", length = 32)
+	@Column(name = "EMP_ID", length = 100)
 	private String empId;
 
-	@Column(name = "EMP_EMAIL", length = 50)
+	@Column(name = "EMP_EMAIL", length = 100)
 	private String empEmail;
-	
-	@Column(name = "EMP_STATUS", length = 50)
+
+	@Column(name = "EMP_STATUS", length = 100)
 	private String emplStatus;
-	
+
+	@Column(name = "EMP_NAME", length = 100)
+	private String empName;
+
+	@Column(name = "DESIGNATION", length = 100)
+	private String designation;
+
+	@Column(name = "FOREMAN_NAME", length = 100)
+	private String foremanName;
+
+	@Column(name = "FIELD_TASK_USER")
+	private int fieldTaskUser;
+
+	@Column(name = "START_DATE", length = 100)
+	private String startDate;
+
+	@Column(name = "END_DATE", length = 100)
+	private String endDate;
+
+	@Column(name = "SUPERINTENDENT_ID", length = 100)
+	private String superintendentId;
+
+	@Column(name = "FOREMAN_ID", length = 100)
+	private String foremanId;
+
+	@Column(name = "FOREMAN_EMAIL", length = 100)
+	private String foremanEmail;
+
+	@Column(name = "FOREMAN_DESIGNATION", length = 100)
+	private String foremanDesignation;
+
+	@Column(name = "SUPERINTENDENT_NAME", length = 100)
+	private String superintendentName;
+
+	@Column(name = "SUPERINTENDENT_EMAIL", length = 100)
+	private String superintendentEmail;
+
+	@Column(name = "SUPERINTENDENT_DESIGNATION", length = 100)
+	private String superintendentDesignation;
+
 	public String getEmplStatus() {
 		return emplStatus;
 	}
@@ -30,33 +69,6 @@ public class EmpDetailsDo implements BaseDo, Serializable {
 		this.emplStatus = emplStatus;
 	}
 
-	@Column(name = "EMP_NAME", length = 50)
-	private String empName;
-	
-	
-
-	@Column(name = "DESIGNATION", length = 50)
-	private String designation;
-	
-	@Column(name = "FOREMAN_NAME", length = 50)
-	private String foremanName;
-	
-	@Column(name = "FIELD_TASK_USER", length = 50)
-	private int fieldTaskUser;
-	
-	@Column(name = "START_DATE", length = 50)
-	private String startDate;
-	
-	@Column(name = "END_DATE", length = 50)
-	private String endDate;
-	
-	@Column(name = "SUPERINTENDENT_ID", length = 50)
-	private String superintendentId;
-	
-	@Column(name = "FOREMAN_ID", length = 50)
-	private String foremanId;
-	
-	
 	public String getEmpId() {
 		return empId;
 	}
@@ -72,8 +84,6 @@ public class EmpDetailsDo implements BaseDo, Serializable {
 	public void setEmpEmail(String empEmail) {
 		this.empEmail = empEmail;
 	}
-
-	
 
 	public String getDesignation() {
 		return designation;
@@ -190,30 +200,12 @@ public class EmpDetailsDo implements BaseDo, Serializable {
 		this.superintendentDesignation = superintendentDesignation;
 	}
 
-	@Column(name = "FOREMAN_EMAIL", length = 50)
-	private String foremanEmail;
-	
-	@Column(name = "FOREMAN_DESIGNATION", length = 50)
-	private String foremanDesignation;
-	
-	@Column(name = "SUPERINTENDENT_NAME", length = 50)
-	private String superintendentName;
-	
-	@Column(name = "SUPERINTENDENT_EMAIL", length = 50)
-	private String superintendentEmail;
-	
-	@Column(name = "SUPERINTENDENT_DESIGNATION", length = 50)
-	private String superintendentDesignation;
-
-	
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
 	@Override
 	public Object getPrimaryKey() {
-		// TODO Auto-generated method stub
 		return empId;
 	}
 
@@ -241,8 +233,5 @@ public class EmpDetailsDo implements BaseDo, Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
 
 }

@@ -14,74 +14,73 @@ import javax.persistence.TemporalType;
 public class CygnetAlarmFeedDo implements BaseDo {
 
 	@Id
-	@Column(name = "POINT_ID", length = 100)
+	@Column(name = "POINT_ID", length = 300)
 	private String pointId;
-	
+
 	@Column(name = "TIME_STAMP")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date timeStamp;
-	
+
 	@Column(name = "FAC_DESCRIPTION", length = 300)
 	private String facDescription;
 
 	@Column(name = "LONG_DESCRIPTION", length = 600)
 	private String longDescription;
-	
+
 	@Column(name = "TIER", length = 50)
 	private String tier;
 
 	@Column(name = "ROUTE", length = 70)
 	private String route;
-	
+
 	@Column(name = "ALARM_CONDITION", length = 100)
 	private String alarmCondition;
 
 	@Column(name = "VALUE", length = 100)
 	private String alarmValue;
-	
+
 	@Column(name = "UNACKNOWLEDGED", length = 5)
 	private String unacknowledged;
-	
+
 	@Column(name = "ACKNOWLEDGED", length = 5)
 	private String acknowledged;
 
 	@Column(name = "SUPPRESSED", length = 5)
 	private String suppressed;
-	
+
 	@Column(name = "HIDDEN", length = 5)
 	private String hidden;
-	
-	@Column(name = "ALARM_SEVERITY", length = 5)
+
+	@Column(name = "ALARM_SEVERITY", length = 20)
 	private String alarmSeverity;
-	
+
 	@Column(name = "MUWI", length = 100)
 	private String muwi;
-	
+
 	@Column(name = "FIELD", length = 100)
 	private String field;
-	
+
 	@Column(name = "FACILITY", length = 100)
 	private String facility;
-	
+
 	@Column(name = "TAG", length = 50)
 	private String tag;
 
 	@Column(name = "DOWNTIME_CLASSIFIER", length = 70)
 	private String downTimeClassifier;
 
-		
 	@Column(name = "IS_ACKNOWLEDGE", length = 5)
 	private String isAcknowledge;
-	
+
 	@Column(name = "IS_DESIGNATE", length = 5)
 	private String isDesignate;
-	
+
 	@Column(name = "IS_DISPATCH", length = 5)
 	private String isDispatch;
 
 	@Override
 	public Object getPrimaryKey() {
-		
+
 		return pointId;
 	}
 
@@ -264,5 +263,4 @@ public class CygnetAlarmFeedDo implements BaseDo {
 				+ ", isDesignate=" + isDesignate + ", isDispatch=" + isDispatch + "]";
 	}
 
-	
 }
