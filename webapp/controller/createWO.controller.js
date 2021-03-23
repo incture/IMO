@@ -667,17 +667,23 @@ sap.ui.define([
 				}));
 				oFilter.push(new Filter("Descriptn", "EQ", sNotifIDDesFilter));
 				//oFilter.push(new Filter("SysStatus", "EQ",sNotifStatusFilter ));
-				if (sNotifStatusFilter === "") {
-					oFilter.push(new Filter({
-						filters: [new Filter("SysStatus", "EQ", "OSNO"),
-							new Filter("SysStatus", "EQ", "NOPR")
-						],
-						and: false
-					}));
-				} else {
-					oFilter.push(new Filter("SysStatus", "EQ", sNotifStatusFilter));
-				}
-				oFilter.push(new Filter("Userstatus", "EQ", sUnAssignedWOFlag));
+				// if (sNotifStatusFilter === "") {
+				// 	oFilter.push(new Filter({
+				// 		filters: [new Filter("SysStatus", "EQ", "OSNO"),
+				// 			new Filter("SysStatus", "EQ", "NOPR")
+				// 		],
+				// 		and: false
+				// 	}));
+				// } else {
+				// 	oFilter.push(new Filter("SysStatus", "EQ", sNotifStatusFilter));
+				// }
+				oFilter.push(new Filter({
+					filters: [new Filter("SysStatus", "EQ", "APOK NOPR"),
+						new Filter("SysStatus", "EQ", "NOPR")
+					],
+					and: false
+				}));
+				// oFilter.push(new Filter("Userstatus", "EQ", sUnAssignedWOFlag));
 				oFilter.push(new Filter("NotifNo", "EQ", sNotifIdFilter));
 				oFilter.push(new Filter("Equipment", "EQ", sNotifEquipFilter));
 				oFilter.push(new Filter("Bdflag", "EQ", sNotifBDFilter));
