@@ -556,7 +556,7 @@ sap.ui.define([
 			oNotifData.Notif_date = formatter.formatDateobjToString(oNotifData.Notif_date);
 			oNotifData.ReqStartdate = formatter.formatDateobjToString(oNotifData.ReqStartdate);
 			oNotifData.ReqEnddate = formatter.formatDateobjToString(oNotifData.ReqEnddate);
-			oNotifData.Type = "RELEASE";
+			oNotifData.Type = "APPROVE";
 			if (oNotifData.Breakdown === true) {
 				oNotifData.Breakdown = "X";
 			} else if (oNotifData.Breakdown === false) {
@@ -857,6 +857,7 @@ sap.ui.define([
 		},
 
 		onCancelDialogEquip: function (oEvent) {
+			this.mLookupModel.setProperty("/iSkipEquip",0);
 			this.equipmentsListDialog.close();
 		},
 
@@ -872,40 +873,40 @@ sap.ui.define([
 		},
 
 		//Function to get Equiments List
-		onSearchWOFilter: function (oEvent) {
-			var that = this;
-			this.busy.open();
-			var mLookupModel = this.mLookupModel;
-			var oPortalDataModel = this.oPortalDataModel;
-			var TechId = mLookupModel.getProperty("/TechId");
-			if (!TechId) {
-				TechId = "";
-			}
-			var EqIdDes = mLookupModel.getProperty("/EqIdDes");
-			if (!EqIdDes) {
-				EqIdDes = "";
-			}
+		// onSearchWOFilter: function (oEvent) {
+		// 	var that = this;
+		// 	this.busy.open();
+		// 	var mLookupModel = this.mLookupModel;
+		// 	var oPortalDataModel = this.oPortalDataModel;
+		// 	var TechId = mLookupModel.getProperty("/TechId");
+		// 	if (!TechId) {
+		// 		TechId = "";
+		// 	}
+		// 	var EqIdDes = mLookupModel.getProperty("/EqIdDes");
+		// 	if (!EqIdDes) {
+		// 		EqIdDes = "";
+		// 	}
 
-			var oFilter = [];
-			oFilter.push(new Filter("Equnr", "EQ", EqIdDes.toUpperCase()));
-			oFilter.push(new Filter("Tidnr", "EQ", TechId.toUpperCase()));
-			oFilter.push(new Filter("Eqktu", "EQ", EqIdDes.toUpperCase()));
-			var userPlant = this.oUserDetailModel.getProperty("/userPlant");
-			oFilter.push(new Filter("plant", "EQ", userPlant));
+		// 	var oFilter = [];
+		// 	oFilter.push(new Filter("Equnr", "EQ", EqIdDes.toUpperCase()));
+		// 	oFilter.push(new Filter("Tidnr", "EQ", TechId.toUpperCase()));
+		// 	oFilter.push(new Filter("Eqktu", "EQ", EqIdDes.toUpperCase()));
+		// 	var userPlant = this.oUserDetailModel.getProperty("/userPlant");
+		// 	oFilter.push(new Filter("plant", "EQ", userPlant));
 
-			oPortalDataModel.read("/EquipmentDetailsSet", {
-				filters: oFilter,
-				success: function (oData, oResponse) {
-					var aEquipmentsList = oData.results;
-					mLookupModel.setProperty("/aEquipmentsList", aEquipmentsList);
-					that.busy.close();
-				},
-				error: function (oResponse) {
-					mLookupModel.setProperty("/aEquipmentsList", []);
-					that.busy.close();
-				}
-			});
-		},
+		// 	oPortalDataModel.read("/EquipmentDetailsSet", {
+		// 		filters: oFilter,
+		// 		success: function (oData, oResponse) {
+		// 			var aEquipmentsList = oData.results;
+		// 			mLookupModel.setProperty("/aEquipmentsList", aEquipmentsList);
+		// 			that.busy.close();
+		// 		},
+		// 		error: function (oResponse) {
+		// 			mLookupModel.setProperty("/aEquipmentsList", []);
+		// 			that.busy.close();
+		// 		}
+		// 	});
+		// },
 
 		onNotifDetail: function () {
 			var mLookupModel = this.mLookupModel;

@@ -18,6 +18,9 @@
 						</ColumnListItem>
 					</items>
 				</Table>
+				<Toolbar>
+					<Link class="sapUiSmallMarginEnd" text="{i18n>LOAD_MORE}" press="handleLoadFnLocs"/>
+				</Toolbar>
 			</ScrollContainer>
 		</content>
 		<beginButton>

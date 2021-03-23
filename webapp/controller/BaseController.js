@@ -479,15 +479,40 @@ sap.ui.define([
 			var oLookupDataModel = this.oLookupDataModel;
 			var mLookupModel = this.mLookupModel;
 			// var oPortalDataModel = this.oPortalDataModel;
-			var userPlant = this.oUserDetailModel.getProperty("/userPlant");
+			var userPlant = this.mLookupModel.getProperty("/userPlant");
+			var FnLocSearch = this.mLookupModel.getProperty("/FnLocSearch");
+			if (!FnLocSearch) {
+				FnLocSearch = "";
+			}
+			FnLocSearch = "'" + FnLocSearch.replace(/['"]+/g, '') + "'";
+			var aFnLocsList = mLookupModel.getProperty("/aFnLocsList");
 
+			var iSkipFnLoc = mLookupModel.getProperty("/iSkipFnLoc");
+			var iTopFnLoc = mLookupModel.getProperty("/iTopFnLoc");
+			if (!iSkipFnLoc && iSkipFnLoc !== 0) {
+				iSkipFnLoc = 0;
+				mLookupModel.setProperty("/iSkipFnLoc", iSkipFnLoc);
+			}
+			if (!iTopFnLoc && iTopFnLoc !== 0) {
+				iTopFnLoc = 10;
+				mLookupModel.setProperty("/iTopFnLoc", iTopFnLoc);
+			}
 			var oFilter = [];
-			oFilter.push(new Filter("plant", "EQ", userPlant));
+			//oFilter.push(new Filter("plant", "EQ", userPlant));
 			// oFilter.push(new Filter("Tidnr", "EQ", TechId.toUpperCase()));
 			// filters: oFilter,
+			oFilter.push(new Filter("FuncLoc ", "EQ", FnLocSearch));
 			oLookupDataModel.read("/FuncLocationSet", {
+				urlParameters: {
+					"$top": iTopFnLoc,
+					"$skip": iSkipFnLoc
+				},
+				filters: oFilter,
 				success: function (oData) {
-					var aFnLocsList = oData.results;
+					aFnLocsList = oData.results;
+					if (iSkipFnLoc !== 0) {
+						aFnLocsList = aFnLocsList.concat(mLookupModel.getProperty("/aFnLocsList"));
+					}
 					mLookupModel.setProperty("/aFnLocsList", aFnLocsList);
 					mLookupModel.refresh();
 					that.busy.close();
@@ -976,7 +1001,7 @@ sap.ui.define([
 						var userName = that.oUserDetailModel.getProperty("/userName");
 						partner = [{
 							"Orderid": "",
-							"AssignedTo":"" ,
+							"AssignedTo": "",
 							"PARTNERNAV": "",
 							"PARTNEROLD": ""
 						}];
@@ -1040,7 +1065,7 @@ sap.ui.define([
 					that.fnFilterCNFOperations(true);
 					that.getDamageGroupCode("", oData.Damagecode);
 					that.getCauseGroupCode("", oData.Causecode);
-					that.getPmActTypes(oData.OrderType);// ST:PM ACT TYPE lookup
+					that.getPmActTypes(oData.OrderType); // ST:PM ACT TYPE lookup
 					oWorkOrderDetailModel.refresh(true);
 					////////TO show PR num////
 
@@ -1912,8 +1937,18 @@ sap.ui.define([
 					EqIdDes = "";
 				}
 			}
-			var userPlant = this.oUserDetailModel.getProperty("/userPlant");
+			var userPlant = this.mLookupModel.getProperty("/userPlant");
 
+			var iSkipEquip = mLookupModel.getProperty("/iSkipEquip");
+			var iTopEquip = mLookupModel.getProperty("/iTopEquip");
+			if (!iSkipEquip && iSkipEquip !== 0) {
+				iSkipEquip = 0;
+				mLookupModel.setProperty("/iSkipEquip", iSkipEquip);
+			}
+			if (!iTopEquip && iTopEquip !== 0) {
+				iTopEquip = 10;
+				mLookupModel.setProperty("/iTopEquip", iTopEquip);
+			}
 			var oFilter = [];
 			oFilter.push(new Filter("Equnr", "EQ", EqIdDes.toUpperCase()));
 			oFilter.push(new Filter("Tidnr", "EQ", TechId.toUpperCase()));
@@ -1922,9 +1957,17 @@ sap.ui.define([
 
 			oPortalDataModel.read("/EquipmentDetailsSet", {
 				filters: oFilter,
+				urlParameters: {
+					"$top": iTopEquip,
+					"$skip": iSkipEquip
+				},
 				success: function (oData, oResponse) {
 					var aEquipmentsList = oData.results;
+					if (iSkipEquip !== 0) {
+						aEquipmentsList = aEquipmentsList.concat(mLookupModel.getProperty("/aEquipmentsList"));
+					}
 					mLookupModel.setProperty("/aEquipmentsList", aEquipmentsList);
+					
 					if (isFromGetDetail) {
 						var oWorkOrderDetailViewModel = that.oWorkOrderDetailViewModel;
 						if (aEquipmentsList.length > 0) {
@@ -2811,18 +2854,35 @@ sap.ui.define([
 			if (!EqIdDes) {
 				EqIdDes = "";
 			}
+			var iSkipEquip = mLookupModel.getProperty("/iSkipEquip");
+			var iTopEquip = mLookupModel.getProperty("/iTopEquip");
+			if (!iSkipEquip && iSkipEquip !== 0) {
+				iSkipEquip = 0;
+				mLookupModel.setProperty("/iSkipEquip", iSkipEquip);
+			}
+			if (!iTopEquip && iTopEquip !== 0) {
+				iTopEquip = 50;
+				mLookupModel.setProperty("/iTopEquip", iTopEquip);
+			}
 
 			var oFilter = [];
 			oFilter.push(new Filter("Equnr", "EQ", EqIdDes.toUpperCase()));
 			oFilter.push(new Filter("Tidnr", "EQ", TechId.toUpperCase()));
 			oFilter.push(new Filter("Eqktu", "EQ", EqIdDes.toUpperCase()));
-			var userPlant = this.oUserDetailModel.getProperty("/userPlant");
+			var userPlant = this.mLookupModel.getProperty("/userPlant");
 			oFilter.push(new Filter("plant", "EQ", userPlant));
 
 			oPortalDataModel.read("/EquipmentDetailsSet", {
 				filters: oFilter,
+				urlParameters: {
+					"$top": iTopEquip,
+					"$skip": iSkipEquip
+				},
 				success: function (oData, oResponse) {
 					var aEquipmentsList = oData.results;
+					if (iSkipEquip !== 0) {
+						aEquipmentsList = aEquipmentsList.concat(mLookupModel.getProperty("/aEquipmentsList"));
+					}
 					mLookupModel.setProperty("/aEquipmentsList", aEquipmentsList);
 					that.busy.close();
 				},
@@ -3627,30 +3687,30 @@ sap.ui.define([
 			var sSelectedItemPath = oEvent.getSource().getSelectedContextPaths()[0];
 			var sRowPath = oNotificationViewModel.getProperty("/sObjCodePath");
 			var oSelectedItemData = mLookupModel.getProperty(sSelectedItemPath);
-			
+
 			var sCode = oSelectedItemData.Code;
 			var sCodeGroup = oSelectedItemData.Codegruppe;
 			var sCodeText = oSelectedItemData.Codetext;
-			
+
 			var oPrevVal = oNotificationDataModel.getProperty(sRowPath);
-			if(oPrevVal.ICode === "C"){
-			oNotificationDataModel.setProperty(sRowPath + "/DlCodegrp", sCodeGroup);
-			oNotificationDataModel.setProperty(sRowPath + "/DlCode", sCode);
-			oNotificationDataModel.setProperty(sRowPath + "/TxtObjptcd", sCodeText);
-			oNotificationDataModel.refresh();
-			}else{
-				if(oPrevVal.ICode === "N" || oPrevVal.ICode === "U"){
-					if(oPrevVal.DlCodegrp !== sCodeGroup || oPrevVal.DlCode !== sCode || oPrevVal.TxtObjptcd !== sCodeText){
+			if (oPrevVal.ICode === "C") {
+				oNotificationDataModel.setProperty(sRowPath + "/DlCodegrp", sCodeGroup);
+				oNotificationDataModel.setProperty(sRowPath + "/DlCode", sCode);
+				oNotificationDataModel.setProperty(sRowPath + "/TxtObjptcd", sCodeText);
+				oNotificationDataModel.refresh();
+			} else {
+				if (oPrevVal.ICode === "N" || oPrevVal.ICode === "U") {
+					if (oPrevVal.DlCodegrp !== sCodeGroup || oPrevVal.DlCode !== sCode || oPrevVal.TxtObjptcd !== sCodeText) {
 						oNotificationDataModel.setProperty(sRowPath + "/DlCodegrp", sCodeGroup);
 						oNotificationDataModel.setProperty(sRowPath + "/DlCode", sCode);
 						oNotificationDataModel.setProperty(sRowPath + "/TxtObjptcd", sCodeText);
 						oNotificationDataModel.setProperty(sRowPath + "/ICode", "U");
 						oNotificationDataModel.refresh();
 					}
-				
+
 				}
 			}
-			
+
 			this.onCancelDialogObjectCode();
 		},
 		damageCodeValueHelp: function (oEvent) {
@@ -3676,19 +3736,19 @@ sap.ui.define([
 			var sSelectedItemPath = oEvent.getSource().getSelectedContextPaths()[0];
 			var sRowPath = oNotificationViewModel.getProperty("/sDamageCodePath");
 			var oSelectedItemData = mLookupModel.getProperty(sSelectedItemPath);
-			
+
 			var sCode = oSelectedItemData.Code;
 			var sCodeGroup = oSelectedItemData.Codegruppe;
 			var sCodeText = oSelectedItemData.Codetext;
-			
+
 			var oPrevVal = oNotificationDataModel.getProperty(sRowPath);
-			if(oPrevVal.ICode === "C"){
-			oNotificationDataModel.setProperty(sRowPath + "/DCodegrp", sCodeGroup);
-			oNotificationDataModel.setProperty(sRowPath + "/DCode", sCode);
-			oNotificationDataModel.setProperty(sRowPath + "/TxtProbcd", sCodeText);
-			}else{
-				if(oPrevVal.ICode === "N" || oPrevVal.ICode === "U"){
-					if(oPrevVal.DCodegrp !== sCodeGroup || oPrevVal.DCode !== sCode || oPrevVal.TxtProbcd !== sCodeText){
+			if (oPrevVal.ICode === "C") {
+				oNotificationDataModel.setProperty(sRowPath + "/DCodegrp", sCodeGroup);
+				oNotificationDataModel.setProperty(sRowPath + "/DCode", sCode);
+				oNotificationDataModel.setProperty(sRowPath + "/TxtProbcd", sCodeText);
+			} else {
+				if (oPrevVal.ICode === "N" || oPrevVal.ICode === "U") {
+					if (oPrevVal.DCodegrp !== sCodeGroup || oPrevVal.DCode !== sCode || oPrevVal.TxtProbcd !== sCodeText) {
 						oNotificationDataModel.setProperty(sRowPath + "/DCodegrp", sCodeGroup);
 						oNotificationDataModel.setProperty(sRowPath + "/DCode", sCode);
 						oNotificationDataModel.setProperty(sRowPath + "/TxtProbcd", sCodeText);
@@ -3712,7 +3772,7 @@ sap.ui.define([
 				"DlCodegrp": "",
 				"DlCode": "",
 				"TxtProbcd": "",
-				"ICode":"C"
+				"ICode": "C"
 			};
 			if (aTempArr === null || aTempArr.length === 0) {
 
@@ -3736,7 +3796,7 @@ sap.ui.define([
 					"DlCodegrp": "",
 					"DlCode": "",
 					"TxtProbcd": "",
-					"ICode":"C"
+					"ICode": "C"
 				};
 				aTempArr.push(oTempItemObj1);
 				oNotificationDataModel.setProperty("/NavNoticreateToNotiItem", aTempArr);
@@ -3818,24 +3878,24 @@ sap.ui.define([
 			var sCode = oSelectedItemData.Code;
 			var sCodeGroup = oSelectedItemData.Codegruppe;
 			var sCodeText = oSelectedItemData.Codetext;
-			
+
 			var oPrevVal = oNotificationDataModel.getProperty(sRowPath);
-			if(oPrevVal.Ccode === "C"){
-			oNotificationDataModel.setProperty(sRowPath + "/CauseCodegrp", sCodeGroup);
-			oNotificationDataModel.setProperty(sRowPath + "/CauseCode", sCode);
-			oNotificationDataModel.setProperty(sRowPath + "/TxtCausecd", sCodeText);
-			}else{
+			if (oPrevVal.Ccode === "C") {
+				oNotificationDataModel.setProperty(sRowPath + "/CauseCodegrp", sCodeGroup);
+				oNotificationDataModel.setProperty(sRowPath + "/CauseCode", sCode);
+				oNotificationDataModel.setProperty(sRowPath + "/TxtCausecd", sCodeText);
+			} else {
 				{
-				if(oPrevVal.Ccode === "N" || oPrevVal.Ccode === "U"){
-					if(oPrevVal.CauseCodegrp !== sCodeGroup || oPrevVal.CauseCode !== sCode || oPrevVal.TxtCausecd !== sCodeText){
-						oNotificationDataModel.setProperty(sRowPath + "/CauseCodegrp", sCodeGroup);
-						oNotificationDataModel.setProperty(sRowPath + "/CauseCode", sCode);
-						oNotificationDataModel.setProperty(sRowPath + "/TxtCausecd", sCodeText);
-						oNotificationDataModel.setProperty(sRowPath + "/Ccode", "U");
-						oNotificationDataModel.refresh();
+					if (oPrevVal.Ccode === "N" || oPrevVal.Ccode === "U") {
+						if (oPrevVal.CauseCodegrp !== sCodeGroup || oPrevVal.CauseCode !== sCode || oPrevVal.TxtCausecd !== sCodeText) {
+							oNotificationDataModel.setProperty(sRowPath + "/CauseCodegrp", sCodeGroup);
+							oNotificationDataModel.setProperty(sRowPath + "/CauseCode", sCode);
+							oNotificationDataModel.setProperty(sRowPath + "/TxtCausecd", sCodeText);
+							oNotificationDataModel.setProperty(sRowPath + "/Ccode", "U");
+							oNotificationDataModel.refresh();
+						}
 					}
 				}
-			}
 			}
 			this.onCancelDialogCauseCode();
 		},
@@ -3851,7 +3911,7 @@ sap.ui.define([
 				"CauseCodegrp": "",
 				"CauseCode": "",
 				"TxtCausecd": "",
-				"Ccode":"C"
+				"Ccode": "C"
 			};
 			if (aItemArr === null || aItemArr === undefined || aItemArr.length === 0) {
 				MessageToast.show("Please add Items to add Cause");
@@ -3876,7 +3936,7 @@ sap.ui.define([
 					"CauseCodegrp": "",
 					"CauseCode": "",
 					"TxtCausecd": "",
-					"Ccode":"C"
+					"Ccode": "C"
 				};
 				aTempArr.push(oTempCauseObj1);
 				oNotificationDataModel.setProperty("/NavNoticreateToNotifcause", aTempArr);
@@ -4062,8 +4122,35 @@ sap.ui.define([
 			this.getWorkCentersCreateWO();
 			this.getFavEquips();
 			this.busy.close();
-		}
-
+		},
+		handleLoadFnLocs: function () {
+			var mLookupModel = this.mLookupModel;
+			var iSkipFnLocs = mLookupModel.getProperty("/iSkipFnLoc");
+			iSkipFnLocs = iSkipFnLocs + 10;
+			mLookupModel.setProperty("/iSkipFnLoc", iSkipFnLocs);
+			this.getFnLocs();
+		},
+		onSearchFnLocs: function (oEvent) {
+			var sQuery = oEvent.getSource().getValue();
+			this.mLookupModel.setProperty("/FnLocSearch", sQuery);
+			this.getFnLocs();
+		},
+		onCancelDialogFunLoc: function () {
+			var mLookupModel = this.mLookupModel;
+			var iSkipFnLocs = 0;
+			mLookupModel.setProperty("/iSkipFnLoc", iSkipFnLocs);
+			mLookupModel.setProperty("/FnLocSearch", "");
+			this.functionalLocationListDialog.close();
+			this.functionalLocationListDialog.destroy();
+			this.functionalLocationListDialog = null;
+		},
+		handleLoadEquips: function () {
+			var mLookupModel = this.mLookupModel;
+			var iSkipEquip = mLookupModel.getProperty("/iSkipEquip");
+			iSkipEquip = iSkipEquip + 10;
+			mLookupModel.setProperty("/iSkipEquip", iSkipEquip);
+			this.onSearchEquipments("",false);
+		},
 
 	});
 });

@@ -146,40 +146,40 @@ sap.ui.define([
 		},
 
 		//Function to get Equiments List
-		onSearchWOFilter: function (oEvent) {
-			var that = this;
-			//this.busy.open();
-			var mLookupModel = this.mLookupModel;
-			var oPortalDataModel = this.oPortalDataModel;
-			var userPlant = this.oUserDetailModel.getProperty("/userPlant");
-			var TechId = mLookupModel.getProperty("/TechId");
-			if (!TechId) {
-				TechId = "";
-			}
-			var EqIdDes = mLookupModel.getProperty("/EqIdDes");
-			if (!EqIdDes) {
-				EqIdDes = "";
-			}
+		// onSearchWOFilter: function (oEvent) {
+		// 	var that = this;
+		// 	//this.busy.open();
+		// 	var mLookupModel = this.mLookupModel;
+		// 	var oPortalDataModel = this.oPortalDataModel;
+		// 	var userPlant = this.oUserDetailModel.getProperty("/userPlant");
+		// 	var TechId = mLookupModel.getProperty("/TechId");
+		// 	if (!TechId) {
+		// 		TechId = "";
+		// 	}
+		// 	var EqIdDes = mLookupModel.getProperty("/EqIdDes");
+		// 	if (!EqIdDes) {
+		// 		EqIdDes = "";
+		// 	}
 
-			var oFilter = [];
-			oFilter.push(new Filter("Equnr", "EQ", EqIdDes.toUpperCase()));
-			oFilter.push(new Filter("Tidnr", "EQ", TechId.toUpperCase()));
-			oFilter.push(new Filter("Eqktu", "EQ", EqIdDes.toUpperCase()));
-			oFilter.push(new Filter("plant", "EQ", userPlant));
+		// 	var oFilter = [];
+		// 	oFilter.push(new Filter("Equnr", "EQ", EqIdDes.toUpperCase()));
+		// 	oFilter.push(new Filter("Tidnr", "EQ", TechId.toUpperCase()));
+		// 	oFilter.push(new Filter("Eqktu", "EQ", EqIdDes.toUpperCase()));
+		// 	oFilter.push(new Filter("plant", "EQ", userPlant));
 
-			oPortalDataModel.read("/EquipmentDetailsSet", {
-				filters: oFilter,
-				success: function (oData, oResponse) {
-					var aEquipmentsList = oData.results;
-					mLookupModel.setProperty("/aEquipmentsList", aEquipmentsList);
-					that.busy.close();
-				},
-				error: function (oResponse) {
-					mLookupModel.setProperty("/aEquipmentsList", []);
-					that.busy.close();
-				}
-			});
-		},
+		// 	oPortalDataModel.read("/EquipmentDetailsSet", {
+		// 		filters: oFilter,
+		// 		success: function (oData, oResponse) {
+		// 			var aEquipmentsList = oData.results;
+		// 			mLookupModel.setProperty("/aEquipmentsList", aEquipmentsList);
+		// 			that.busy.close();
+		// 		},
+		// 		error: function (oResponse) {
+		// 			mLookupModel.setProperty("/aEquipmentsList", []);
+		// 			that.busy.close();
+		// 		}
+		// 	});
+		// },
 
 		onSearchFavEqips: function (oEvent) {
 			//this.validateIntegerValues(oEvent, this);
@@ -332,6 +332,7 @@ sap.ui.define([
 		},
 
 		onCancelDialogEquip: function (oEvent) {
+			this.mLookupModel.setProperty("/iSkipEquip", 0);
 			this.equipmentsListDialog.close();
 			this.equipmentsListDialog.destroy();
 			this.equipmentsListDialog = null;
@@ -1254,11 +1255,14 @@ sap.ui.define([
 			}
 			this.functionalLocationListDialog.open();
 		},
-		onCancelDialogFunLoc: function () {
-			this.functionalLocationListDialog.close();
-			this.functionalLocationListDialog.destroy();
-			this.functionalLocationListDialog = null;
-		},
+		// onCancelDialogFunLoc: function () {
+		// 	var mLookupModel = this.mLookupModel;
+		// 	var iSkipFnLocs = 0;
+		// 	mLookupModel.setProperty("/iSkipFnLoc", iSkipFnLocs);
+		// 	this.functionalLocationListDialog.close();
+		// 	this.functionalLocationListDialog.destroy();
+		// 	this.functionalLocationListDialog = null;
+		// },
 		onFnLocSelect: function (oEvent) {
 			this.onFunlocChange();
 			var mLookupModel = this.mLookupModel;
@@ -1324,6 +1328,16 @@ sap.ui.define([
 				var sfunLoc = "'" + sFunctionalLocation.replace(/['"]+/g, '') + "'";
 				var oPortalDataModel = this.oPortalDataModel;
 				var userPlant = this.oUserDetailModel.getProperty("/userPlant");
+				var iSkipFnLoc = mLookupModel.getProperty("/iSkipFnLoc");
+				var iTopFnLoc = mLookupModel.getProperty("/iTopFnLoc");
+				if (!iSkipFnLoc && iSkipFnLoc !== 0) {
+					iSkipFnLoc = 0;
+					mLookupModel.setProperty("/iSkipFnLoc", iSkipFnLoc);
+				}
+				if (!iTopFnLoc && iTopFnLoc !== 0) {
+					iTopFnLoc = 10;
+					mLookupModel.setProperty("/iTopFnLoc", iTopFnLoc);
+				}
 				var oFilter = [];
 				oFilter.push(new Filter("Equnr", "EQ", ''));
 				oFilter.push(new Filter("Tidnr", "EQ", ''));
@@ -1332,6 +1346,10 @@ sap.ui.define([
 				oFilter.push(new Filter("Tplnr ", "EQ", "'" + sFunctionalLocation.replace(/['"]+/g, '') + "'"));
 				oPortalDataModel.read("/EquipmentDetailsSet", {
 					filters: oFilter,
+					urlParameters: {
+						"$top": iTopFnLoc,
+						"$skip": iSkipFnLoc
+					},
 					success: function (oData, oResponse) {
 						var aEqListOfFunLoc = oData.results;
 						mLookupModel.setProperty("/aEqListOfFunLoc", aEqListOfFunLoc);

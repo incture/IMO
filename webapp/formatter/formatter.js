@@ -69,13 +69,13 @@ com.sap.incture.IMO_PM.formatter.formatter = {
 		// } else {
 		// 	return false;
 		// }
-		if(sValue){
-			if(sValue.includes("NOCO") || sValue.includes("OSNO") || sValue.includes("ORAS") || sValue.includes("APRQ") ){
+		if (sValue) {
+			if (sValue.includes("NOCO") || sValue.includes("OSNO") || sValue.includes("ORAS") || sValue.includes("APRQ")) {
 				return false;
-			}else{
+			} else {
 				return true;
 			}
-		}else{
+		} else {
 			return false;
 		}
 	},
@@ -86,13 +86,13 @@ com.sap.incture.IMO_PM.formatter.formatter = {
 		// } else {
 		// 	return false;
 		// }
-		if(sValue){
-			if(sValue.includes("NOCO")){
+		if (sValue) {
+			if (sValue.includes("NOCO")) {
 				return true;
-			}else{
+			} else {
 				return false;
 			}
-		}else{
+		} else {
 			return false;
 		}
 	},
@@ -103,13 +103,13 @@ com.sap.incture.IMO_PM.formatter.formatter = {
 		// } else {
 		// 	return true;
 		// }
-		if(sValue){
-			if(sValue.includes("NOCO")){
+		if (sValue) {
+			if (sValue.includes("NOCO")) {
 				return false;
-			}else{
+			} else {
 				return true;
 			}
-		}else{
+		} else {
 			return true;
 		}
 	},
@@ -121,13 +121,13 @@ com.sap.incture.IMO_PM.formatter.formatter = {
 		// } else {
 		// 	return true;
 		// }
-		if(sValue){
-			if(sValue.includes("OSNO") || sValue.includes("APRQ")){
+		if (sValue) {
+			if (sValue.includes("OSNO") || sValue.includes("APRQ")) {
 				return true;
-			}else{
+			} else {
 				return false;
 			}
-		}else{
+		} else {
 			return false;
 		}
 	},
@@ -138,13 +138,13 @@ com.sap.incture.IMO_PM.formatter.formatter = {
 		// } else {
 		// 	return true;
 		// }
-		if(sValue){
-			if(sValue.includes("NOCO")){
+		if (sValue) {
+			if (sValue.includes("NOCO")) {
 				return false;
-			}else{
+			} else {
 				return true;
 			}
-		}else{
+		} else {
 			return false;
 		}
 	},
@@ -155,13 +155,13 @@ com.sap.incture.IMO_PM.formatter.formatter = {
 		// } else {
 		// 	return true;
 		// }
-		if(sValue){
-			if(sValue.includes("NOCO")){
+		if (sValue) {
+			if (sValue.includes("NOCO")) {
 				return false;
-			}else{
+			} else {
 				return true;
 			}
-		}else{
+		} else {
 			return false;
 		}
 	},
@@ -1863,6 +1863,14 @@ com.sap.incture.IMO_PM.formatter.formatter = {
 			fill = "@sapUiChartPaletteSemanticBadLight1";
 		}
 		return fill;
+	},
+
+	showLoadMore: function (aEquipList) {
+		var bFlag = false;
+		if (aEquipList && aEquipList.length > 0) {
+			bFlag = true;
+		}
+		return bFlag;
 	}
 
 };

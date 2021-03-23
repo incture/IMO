@@ -45,6 +45,10 @@
 									</ColumnListItem>
 								</items>
 							</Table>
+							<Toolbar visible="{path:'mLookupModel>/aEquipmentsList',formatter:'com.sap.incture.IMO_PM.formatter.formatter.showLoadMore'}">
+								<ToolbarSpacer/>
+								<Link class="sapUiSmallMarginEnd" text="{i18n>LOAD_MORE}" press="handleLoadEquips"/>
+							</Toolbar>
 						</ScrollContainer>
 					</IconTabFilter>
 					<!--nischal - icontabfilter is included to show equipment list of corresponding functional location-->

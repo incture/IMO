@@ -24,7 +24,8 @@
 							</VBox>
 						</l:Grid>
 						<ScrollContainer height="20rem" vertical="true" focusable="false" class="sapUiSmallMarginTop">
-							<Table class="tableCellNoBorder TableHeaderWhiteBG" sticky="ColumnHeaders" mode="SingleSelectLeft" selectionChange="onEquipSelect" growing="false" items="{path: 'mLookupModel>/aEquipmentsList'}">
+							<Table class="tableCellNoBorder TableHeaderWhiteBG" sticky="ColumnHeaders" mode="SingleSelectLeft" selectionChange="onEquipSelect"
+								growing="false" items="{path: 'mLookupModel>/aEquipmentsList'}">
 								<columns>
 									<Column>
 										<Text text="{i18n>equipId}"/>
@@ -50,6 +51,10 @@
 									</ColumnListItem>
 								</items>
 							</Table>
+							<Toolbar visible="{path:'mLookupModel>/aEquipmentsList',formatter:'com.sap.incture.IMO_PM.formatter.formatter.showLoadMore'}">
+								<ToolbarSpacer/>
+								<Link class="sapUiSmallMarginEnd" text="{i18n>LOAD_MORE}" press="handleLoadEquips"/>
+							</Toolbar>
 						</ScrollContainer>
 					</IconTabFilter>
 					<!--nischal - icontabfilter is included to show equipment list of corresponding functional location-->
@@ -59,7 +64,8 @@
 								<Label design="Bold" text="{i18n>FUNC_LOCATION}" class="sapUiTinyMarginEnd"/>
 								<Text text="{oNotificationDataModel>/FunctLoc}"/>
 							</HBox>
-							<Table class="tableCellNoBorder TableHeaderWhiteBG" sticky="ColumnHeaders" mode="SingleSelectLeft" selectionChange="onEquipSelect" growing="false" items="{path: 'mLookupModel>/aEqListOfFunLoc'}">
+							<Table class="tableCellNoBorder TableHeaderWhiteBG" sticky="ColumnHeaders" mode="SingleSelectLeft" selectionChange="onEquipSelect"
+								growing="false" items="{path: 'mLookupModel>/aEqListOfFunLoc'}">
 								<columns>
 									<Column width="{= ${device>/system/tablet} === true ? '6rem' : 'auto' }">
 										<Text text="{i18n>EQUIPMENT_ID}"/>
@@ -88,13 +94,15 @@
 					</IconTabFilter>
 					<!--nischal - icontabfilter is included to show equipment list of corresponding functional location-->
 					<IconTabFilter text="{i18n>favEq}" key="idFav">
-						<SearchField search="onSearchFavEqips" width="100%" class="sapUiSmallMarginBottom sapSearchFieldBorderClass" placeholder="{i18n>searchbyIDDes}">
+						<SearchField search="onSearchFavEqips" width="100%" class="sapUiSmallMarginBottom sapSearchFieldBorderClass"
+							placeholder="{i18n>searchbyIDDes}">
 							<customData>
 								<core:CustomData value="INTEGER"/>
 							</customData>
 						</SearchField>
 						<ScrollContainer height="20rem" vertical="true" focusable="false">
-							<Table class="tableCellNoBorder TableHeaderWhiteBG" sticky="ColumnHeaders" mode="SingleSelectLeft" selectionChange="onEquipSelect" growing="false" items="{path: 'mLookupModel>/aFavEquipList'}">
+							<Table class="tableCellNoBorder TableHeaderWhiteBG" sticky="ColumnHeaders" mode="SingleSelectLeft" selectionChange="onEquipSelect"
+								growing="false" items="{path: 'mLookupModel>/aFavEquipList'}">
 								<columns>
 									<Column>
 										<Text text="{i18n>equipId}"/>
