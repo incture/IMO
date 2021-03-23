@@ -3215,6 +3215,7 @@ sap.ui.define([
 		},
 
 		onCancelDialogEquip: function (oEvent) {
+			this.mLookupModel.setProperty("/iSkipEquip",0);
 			this.woEquipmentsList.close();
 			this.woEquipmentsList.destroy();
 			this.woEquipmentsList = null;
