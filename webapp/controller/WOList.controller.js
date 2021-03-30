@@ -46,7 +46,12 @@ sap.ui.define([
 			var mLookupModel = this.getOwnerComponent().getModel("mLookupModel");
 			this.mLookupModel = mLookupModel;
 			mLookupModel.setSizeLimit(10000);
-
+			
+			//Data Model used for holding Application's logged in user details
+			var oUserDetailModel = this.getOwnerComponent().getModel("oUserDetailModel");
+			this.oUserDetailModel = oUserDetailModel;
+			
+			this.getLoggedInUserListWO();
 			var oViewSetting = {
 				"iTop": 50,
 				"iSkip": 0,
@@ -1216,6 +1221,34 @@ sap.ui.define([
 			mLookupModel.setProperty("/sTpriority", true);
 			mLookupModel.setProperty("/sTcreatedBy", true);
 			mLookupModel.setProperty("/sTCreatedDate", true);
-		}
+		},
+		getLoggedInUserListWO: function () {
+			var that = this;
+			//this.busy.open();
+			var sUrl = "/UserDetailsSet('')";
+			var mLookupModel = this.mLookupModel;
+			var oPortalDataModel = this.oPortalDataModel;
+			var oUserDetailModel = this.oUserDetailModel;
+			oPortalDataModel.read(sUrl, {
+				success: function (oData) {
+					oUserDetailModel.setProperty("/firstName", oData.Firstname);
+					oUserDetailModel.setProperty("/fullName", oData.Fullname);
+					oUserDetailModel.setProperty("/secondName", oData.Secondname);
+					oUserDetailModel.setProperty("/userName", oData.UserName);
+					oUserDetailModel.setProperty("/userRole", oData.Role);
+					oUserDetailModel.setProperty("/userPlant", oData.UserPlant);
+					//oUserDetailModel.setProperty("/userPlant", "US02");
+					mLookupModel.setProperty("/userName", oData.UserName);
+					oUserDetailModel.refresh();
+					
+					that.busy.close();
+				},
+				error: function (oData) {
+					oUserDetailModel.setProperty("/userName", "");
+					oUserDetailModel.refresh();
+					that.busy.close();
+				}
+			});
+		},
 	});
 });

@@ -511,7 +511,7 @@ sap.ui.define([
 				success: function (oData) {
 					aFnLocsList = oData.results;
 					if (iSkipFnLoc !== 0) {
-						aFnLocsList = aFnLocsList.concat(mLookupModel.getProperty("/aFnLocsList"));
+						aFnLocsList = mLookupModel.getProperty("/aFnLocsList").concat(aFnLocsList);
 					}
 					mLookupModel.setProperty("/aFnLocsList", aFnLocsList);
 					mLookupModel.refresh();
@@ -1918,7 +1918,7 @@ sap.ui.define([
 		},
 
 		//Function to get Equiments List
-		onSearchEquipments: function (oEvent, isFromGetDetail) {
+		onSearchEquipments: function (oEvent, isFromGetDetail, fromLoadmore) {
 			var that = this;
 			this.busy.open();
 			var EqIdDes = "";
@@ -1937,17 +1937,26 @@ sap.ui.define([
 					EqIdDes = "";
 				}
 			}
-			var userPlant = this.mLookupModel.getProperty("/userPlant");
+			var userPlant = this.oUserDetailModel.getProperty("/userPlant");
 
 			var iSkipEquip = mLookupModel.getProperty("/iSkipEquip");
 			var iTopEquip = mLookupModel.getProperty("/iTopEquip");
-			if (!iSkipEquip && iSkipEquip !== 0) {
+			if (fromLoadmore) {
+				if (!iSkipEquip && iSkipEquip !== 0) {
+					iSkipEquip = 0;
+					mLookupModel.setProperty("/iSkipEquip", iSkipEquip);
+				}
+				if (!iTopEquip && iTopEquip !== 0) {
+					iTopEquip = 10;
+					mLookupModel.setProperty("/iTopEquip", iTopEquip);
+				}
+			} else {
 				iSkipEquip = 0;
 				mLookupModel.setProperty("/iSkipEquip", iSkipEquip);
-			}
-			if (!iTopEquip && iTopEquip !== 0) {
 				iTopEquip = 10;
 				mLookupModel.setProperty("/iTopEquip", iTopEquip);
+				mLookupModel.setProperty("/aEquipmentsList", []);
+
 			}
 			var oFilter = [];
 			oFilter.push(new Filter("Equnr", "EQ", EqIdDes.toUpperCase()));
@@ -1964,10 +1973,9 @@ sap.ui.define([
 				success: function (oData, oResponse) {
 					var aEquipmentsList = oData.results;
 					if (iSkipEquip !== 0) {
-						aEquipmentsList = aEquipmentsList.concat(mLookupModel.getProperty("/aEquipmentsList"));
+						aEquipmentsList = mLookupModel.getProperty("/aEquipmentsList").concat(aEquipmentsList);
 					}
 					mLookupModel.setProperty("/aEquipmentsList", aEquipmentsList);
-					
 					if (isFromGetDetail) {
 						var oWorkOrderDetailViewModel = that.oWorkOrderDetailViewModel;
 						if (aEquipmentsList.length > 0) {
@@ -2854,14 +2862,15 @@ sap.ui.define([
 			if (!EqIdDes) {
 				EqIdDes = "";
 			}
+
 			var iSkipEquip = mLookupModel.getProperty("/iSkipEquip");
 			var iTopEquip = mLookupModel.getProperty("/iTopEquip");
 			if (!iSkipEquip && iSkipEquip !== 0) {
 				iSkipEquip = 0;
 				mLookupModel.setProperty("/iSkipEquip", iSkipEquip);
 			}
-			if (!iTopEquip && iTopEquip !== 0) {
-				iTopEquip = 50;
+			if (!iTopEquip || iTopEquip !== 0) {
+				iTopEquip = 10;
 				mLookupModel.setProperty("/iTopEquip", iTopEquip);
 			}
 
@@ -2869,7 +2878,7 @@ sap.ui.define([
 			oFilter.push(new Filter("Equnr", "EQ", EqIdDes.toUpperCase()));
 			oFilter.push(new Filter("Tidnr", "EQ", TechId.toUpperCase()));
 			oFilter.push(new Filter("Eqktu", "EQ", EqIdDes.toUpperCase()));
-			var userPlant = this.mLookupModel.getProperty("/userPlant");
+			var userPlant = this.oUserDetailModel.getProperty("/userPlant");
 			oFilter.push(new Filter("plant", "EQ", userPlant));
 
 			oPortalDataModel.read("/EquipmentDetailsSet", {
@@ -2881,7 +2890,7 @@ sap.ui.define([
 				success: function (oData, oResponse) {
 					var aEquipmentsList = oData.results;
 					if (iSkipEquip !== 0) {
-						aEquipmentsList = aEquipmentsList.concat(mLookupModel.getProperty("/aEquipmentsList"));
+						aEquipmentsList = mLookupModel.getProperty("/aEquipmentsList").concat(aEquipmentsList);
 					}
 					mLookupModel.setProperty("/aEquipmentsList", aEquipmentsList);
 					that.busy.close();
@@ -4130,11 +4139,7 @@ sap.ui.define([
 			mLookupModel.setProperty("/iSkipFnLoc", iSkipFnLocs);
 			this.getFnLocs();
 		},
-		onSearchFnLocs: function (oEvent) {
-			var sQuery = oEvent.getSource().getValue();
-			this.mLookupModel.setProperty("/FnLocSearch", sQuery);
-			this.getFnLocs();
-		},
+
 		onCancelDialogFunLoc: function () {
 			var mLookupModel = this.mLookupModel;
 			var iSkipFnLocs = 0;
@@ -4144,13 +4149,20 @@ sap.ui.define([
 			this.functionalLocationListDialog.destroy();
 			this.functionalLocationListDialog = null;
 		},
+		onSearchFnLocs: function (oEvent) {
+			var sQuery = oEvent.getSource().getValue();
+			this.mLookupModel.setProperty("/FnLocSearch", sQuery);
+			this.mLookupModel.setProperty("/iSkipFnLoc", 0);
+			this.mLookupModel.setProperty("/aFnLocsList", []);
+			this.getFnLocs();
+		},
 		handleLoadEquips: function () {
 			var mLookupModel = this.mLookupModel;
 			var iSkipEquip = mLookupModel.getProperty("/iSkipEquip");
 			iSkipEquip = iSkipEquip + 10;
 			mLookupModel.setProperty("/iSkipEquip", iSkipEquip);
-			this.onSearchEquipments("",false);
-		},
+			this.onSearchEquipments("", false, true);
+		}
 
 	});
 });
