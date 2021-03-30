@@ -307,12 +307,12 @@ com.sap.incture.IMO_PM.util.util = {
 			// oErrorMsg = "Please select Planned End Date";
 			return [true, oErrorMsg];
 		}
-		var Pmacttype = oWorkOrderDetailModel.getProperty("/Pmacttype");
-		if (!Pmacttype) {
-			oErrorMsg = oResourceModel.getText("SEL_PM_ACT_TYPE");
+		// var Pmacttype = oWorkOrderDetailModel.getProperty("/Pmacttype");
+		// if (!Pmacttype) {
+		// 	oErrorMsg = oResourceModel.getText("SEL_PM_ACT_TYPE");
 			
-			return [true, oErrorMsg];
-		}
+		// 	return [true, oErrorMsg];
+		// }
 
 		if (navType === "WO_DETAIL_TECHO" || navType === "WO_DETAIL_OPERATION_FINAL_CONFIRM") {
 			var breakDown = oWorkOrderDetailModel.getProperty("/Breakdown");
