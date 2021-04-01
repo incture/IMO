@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="ActionModel" representedClassName="ActionModel" syncable="YES">
+        <attribute name="actionType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="permitNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="postData" optional="YES" attributeType="Transformable" customClassName="NSDictionary" syncable="YES"/>
+    </entity>
+    <entity name="FacilityList" representedClassName="FacilityList" syncable="YES">
+        <attribute name="facility" optional="YES" attributeType="Transformable" customClassName="NSArray" syncable="YES"/>
+    </entity>
+    <entity name="JSADetailModel" representedClassName="JSADetailModel" syncable="YES">
+        <attribute name="detailData" optional="YES" attributeType="Transformable" customClassName="JSA" syncable="YES"/>
+        <attribute name="permitNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="JSAModel" representedClassName="JSAModel" syncable="YES">
+        <attribute name="facilityOrSite" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="listData" optional="YES" attributeType="Transformable" customClassName="JSAList" syncable="YES"/>
+        <attribute name="permitNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="PeopleList" representedClassName="PeopleList" syncable="YES">
+        <attribute name="facilityOrSite" optional="YES" attributeType="String" customClassName="NSArray" syncable="YES"/>
+        <attribute name="peopleAddedList" optional="YES" attributeType="Transformable" customClassName="PeopleAddedList" syncable="YES"/>
+    </entity>
+    <entity name="PermitDetailModel" representedClassName="PermitDetailModel" syncable="YES">
+        <attribute name="detailData" optional="YES" attributeType="Transformable" customClassName="JSA" syncable="YES"/>
+        <attribute name="permitNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="permitType" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PermitModel" representedClassName="PermitModel" syncable="YES">
+        <attribute name="facilityOrSite" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="listData" optional="YES" attributeType="Transformable" customClassName="PermitList" syncable="YES"/>
+        <attribute name="permitNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="permitType" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="WellList" representedClassName="WellList" syncable="YES">
+        <attribute name="facility" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="muwiList" optional="YES" attributeType="Transformable" customClassName="NSArray" syncable="YES"/>
+        <attribute name="wellList" optional="YES" attributeType="Transformable" customClassName="NSArray" syncable="YES"/>
+        <attribute name="wellPad" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="WellPadList" representedClassName="WellPadList" syncable="YES">
+        <attribute name="facility" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="wellPads" optional="YES" attributeType="Transformable" customClassName="NSArray" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ActionModel" positionX="45" positionY="108" width="128" height="90"/>
+        <element name="FacilityList" positionX="54" positionY="126" width="128" height="60"/>
+        <element name="JSADetailModel" positionX="27" positionY="90" width="128" height="75"/>
+        <element name="JSAModel" positionX="-27" positionY="18" width="128" height="90"/>
+        <element name="PeopleList" positionX="27" positionY="108" width="128" height="75"/>
+        <element name="PermitDetailModel" positionX="36" positionY="99" width="128" height="90"/>
+        <element name="PermitModel" positionX="54" positionY="99" width="128" height="105"/>
+        <element name="WellList" positionX="72" positionY="144" width="128" height="105"/>
+        <element name="WellPadList" positionX="63" positionY="135" width="128" height="75"/>
+    </elements>
+</model>

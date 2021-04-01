@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="45" id="KGk-i7-Jjw" customClass="FrequencyCell" customModule="Task_Management" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Priot to work commencing" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YFj-BE-7Dn">
+                        <rect key="frame" x="8" y="16" width="247" height="13"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="BOr-v2-V54">
+                        <rect key="frame" x="263" y="7" width="51" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="49" id="6Wo-JP-FDG"/>
+                            <constraint firstAttribute="height" constant="31" id="Yze-nE-ynv"/>
+                        </constraints>
+                    </switch>
+                </subviews>
+                <color key="backgroundColor" name="BlackColor"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="BOr-v2-V54" secondAttribute="trailing" constant="8" id="4dc-BI-5SY"/>
+                    <constraint firstItem="YFj-BE-7Dn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="7S0-OB-7XH"/>
+                    <constraint firstItem="YFj-BE-7Dn" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="d8D-Uc-gcL"/>
+                    <constraint firstAttribute="bottom" secondItem="YFj-BE-7Dn" secondAttribute="bottom" constant="16" id="f4I-FN-2c8"/>
+                    <constraint firstItem="YFj-BE-7Dn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="leD-Fz-nx9"/>
+                    <constraint firstItem="BOr-v2-V54" firstAttribute="leading" secondItem="YFj-BE-7Dn" secondAttribute="trailing" constant="8" id="sT3-Rk-30s"/>
+                    <constraint firstItem="BOr-v2-V54" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="tGD-1N-TRW"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="permitSwitch" destination="BOr-v2-V54" id="M1v-ip-HK5"/>
+                <outlet property="titleLabel" destination="YFj-BE-7Dn" id="CsM-sg-UbG"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="149"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="BlackColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

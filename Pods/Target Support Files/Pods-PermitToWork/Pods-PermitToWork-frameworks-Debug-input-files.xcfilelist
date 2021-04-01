@@ -1,0 +1,6 @@
+${PODS_ROOT}/Target Support Files/Pods-PermitToWork/Pods-PermitToWork-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Letters/Letters.framework
+${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework
+${BUILT_PRODUCTS_DIR}/NotificationBannerSwift/NotificationBannerSwift.framework
+${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework
+${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
