@@ -2089,7 +2089,7 @@ sap.ui.define([
 				if (oEvent.getParameter("success")) {
 					var resultData = oEvent.getSource().getData();
 					if (resultData) {
-						that.getLoggedUserDetails(resultData.userId);
+						that.getLoggedUserDetails(resultData.Userid);
 					}
 				} else {
 					sap.m.MessageToast.show("Error in Retrieving User Details");
