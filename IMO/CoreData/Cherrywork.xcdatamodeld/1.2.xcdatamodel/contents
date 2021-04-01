@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="17F77" minimumToolsVersion="Xcode 7.3" sourceLanguage="Swift" userDefinedModelVersionIdentifier="1.2">
+    <entity name="ActList" representedClassName=".ActList" syncable="YES">
+        <attribute name="actionType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dateSync" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="empId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="extraParam" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postObj" optional="YES" attributeType="Binary" syncable="YES"/>
+    </entity>
+    <entity name="CardConfig" representedClassName=".CardConfig" syncable="YES">
+        <attribute name="actions" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="fields" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="subType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="templateId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Cherry" representedClassName=".Cherry" syncable="YES">
+        <attribute name="cherryName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="DownloadTS" representedClassName=".DownloadTS" syncable="YES">
+        <attribute name="dateSync" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="empId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="endDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="startDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="timesheetWeekObj" optional="YES" attributeType="Binary" syncable="YES"/>
+    </entity>
+    <entity name="Filter" representedClassName=".Filter" syncable="YES">
+        <attribute name="filterIcon" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="filterId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="filterTabId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="optionDisplayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="optionIconName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="optionId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="FilterList" representedClassName=".FilterList" syncable="YES">
+        <attribute name="dateSync" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="empId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="filterListObject" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="instanceId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="taskType" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Location" representedClassName=".Location" syncable="YES">
+        <attribute name="locationName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="locationType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="response" optional="YES" attributeType="Transformable" customClassName="NSDictionary" syncable="YES"/>
+    </entity>
+    <entity name="Menu" representedClassName=".Menu" syncable="YES">
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tabId" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="subMenus" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="SubMenu" inverseName="menu" inverseEntity="SubMenu" syncable="YES"/>
+    </entity>
+    <entity name="OfflineAction" representedClassName=".OfflineAction" syncable="YES">
+        <attribute name="actionProperty" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="workitemId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Permission" representedClassName=".Permission" syncable="YES">
+        <attribute name="create" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="delete" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="moduleName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="read" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="update" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Reviewer" representedClassName=".Reviewer" syncable="YES">
+        <attribute name="department" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="facility" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="field" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="response" optional="YES" attributeType="Transformable" customClassName="NSArray" syncable="YES"/>
+        <attribute name="well" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="wellPad" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="SubMenu" representedClassName=".SubMenu" syncable="YES">
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="menu" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Menu" inverseName="subMenus" inverseEntity="Menu" syncable="YES"/>
+    </entity>
+    <entity name="Tab" representedClassName=".Tab" syncable="YES">
+        <attribute name="displayName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isDefault" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
+    <entity name="TaskList" representedClassName=".TaskList" syncable="YES">
+        <attribute name="dateSync" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="empId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="instanceId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="taskListObject" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="taskType" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Workitem" representedClassName=".Workitem" syncable="YES">
+        <attribute name="cardSubtype" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cardType" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isSynced" optional="YES" attributeType="Boolean" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="workitemData" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="workitemId" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="ActList" positionX="45" positionY="135" width="128" height="120"/>
+        <element name="CardConfig" positionX="9" positionY="126" width="128" height="120"/>
+        <element name="Cherry" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="DownloadTS" positionX="63" positionY="153" width="128" height="120"/>
+        <element name="Filter" positionX="-27" positionY="108" width="128" height="135"/>
+        <element name="FilterList" positionX="45" positionY="135" width="128" height="120"/>
+        <element name="Location" positionX="-225" positionY="174" width="128" height="90"/>
+        <element name="Menu" positionX="-36" positionY="45" width="128" height="120"/>
+        <element name="OfflineAction" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="Permission" positionX="45" positionY="135" width="128" height="120"/>
+        <element name="Reviewer" positionX="-36" positionY="162" width="128" height="135"/>
+        <element name="SubMenu" positionX="-9" positionY="72" width="128" height="105"/>
+        <element name="Tab" positionX="-63" positionY="18" width="128" height="105"/>
+        <element name="TaskList" positionX="-180" positionY="225" width="128" height="118"/>
+        <element name="Workitem" positionX="151" positionY="18" width="128" height="133"/>
+    </elements>
+</model>

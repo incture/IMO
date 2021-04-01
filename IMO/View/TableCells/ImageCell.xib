@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleAspectFill" selectionStyle="default" indentationWidth="10" rowHeight="128" id="KGk-i7-Jjw" customClass="ImageCell" customModule="MurphyDFT_Final" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="361" height="128"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="361" height="127.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pdf" translatesAutoresizingMaskIntoConstraints="NO" id="wER-jp-2Mw">
+                        <rect key="frame" x="8" y="9.5" width="109" height="109"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="109" id="V6n-xD-syQ"/>
+                            <constraint firstAttribute="height" constant="109" id="xjF-Fb-auf"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cf7-ch-hBe">
+                        <rect key="frame" x="125" y="11" width="228" height="18"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Guw-V5-jS6">
+                        <rect key="frame" x="125" y="39" width="228" height="18"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="wER-jp-2Mw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="H0O-lb-ojR"/>
+                    <constraint firstItem="Guw-V5-jS6" firstAttribute="top" secondItem="cf7-ch-hBe" secondAttribute="bottom" constant="10" id="Hlk-i5-r5b"/>
+                    <constraint firstAttribute="trailing" secondItem="Guw-V5-jS6" secondAttribute="trailing" constant="8" id="OJz-9b-Jhu"/>
+                    <constraint firstItem="wER-jp-2Mw" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="XY9-ct-SuX"/>
+                    <constraint firstAttribute="trailing" secondItem="cf7-ch-hBe" secondAttribute="trailing" constant="8" id="d7z-lM-jwU"/>
+                    <constraint firstItem="Guw-V5-jS6" firstAttribute="leading" secondItem="wER-jp-2Mw" secondAttribute="trailing" constant="8" id="dGT-mK-Urr"/>
+                    <constraint firstItem="cf7-ch-hBe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="ngZ-dG-sjT"/>
+                    <constraint firstItem="cf7-ch-hBe" firstAttribute="leading" secondItem="wER-jp-2Mw" secondAttribute="trailing" constant="8" id="s0h-a7-tdo"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="attachmentImage" destination="wER-jp-2Mw" id="zyH-TL-Cyf"/>
+                <outlet property="attachmentName" destination="cf7-ch-hBe" id="RPH-fo-zM5"/>
+                <outlet property="uploadDate" destination="Guw-V5-jS6" id="4Kx-iK-6Dx"/>
+            </connections>
+            <point key="canvasLocation" x="54.5" y="120"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="pdf" width="100" height="100"/>
+    </resources>
+</document>

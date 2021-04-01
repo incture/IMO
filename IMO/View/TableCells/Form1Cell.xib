@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="71" id="KGk-i7-Jjw" customClass="Form1Cell" customModule="MurphyDFT_Final" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="71"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="70.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZy-4Y-VJZ">
+                        <rect key="frame" x="8" y="4" width="152" height="18"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hgU-nT-J6s">
+                        <rect key="frame" x="160" y="4" width="152" height="18"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bx4-Kb-lVU" customClass="ICTextField" customModule="MurphyDFT_Final" customModuleProvider="target">
+                        <rect key="frame" x="8" y="30" width="152" height="30"/>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="luI-t5-X9B" customClass="ICTextField" customModule="MurphyDFT_Final" customModuleProvider="target">
+                        <rect key="frame" x="160" y="30" width="152" height="30"/>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="hgU-nT-J6s" firstAttribute="leading" secondItem="cZy-4Y-VJZ" secondAttribute="trailing" id="52v-Lv-16j"/>
+                    <constraint firstAttribute="trailing" secondItem="luI-t5-X9B" secondAttribute="trailing" constant="8" id="DVh-nj-ulH"/>
+                    <constraint firstItem="cZy-4Y-VJZ" firstAttribute="width" secondItem="hgU-nT-J6s" secondAttribute="width" id="Dy0-pR-VQn"/>
+                    <constraint firstItem="hgU-nT-J6s" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="FWv-Sg-45t"/>
+                    <constraint firstItem="cZy-4Y-VJZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="SV1-8E-6Uu"/>
+                    <constraint firstItem="cZy-4Y-VJZ" firstAttribute="height" secondItem="hgU-nT-J6s" secondAttribute="height" id="UkV-JT-vde"/>
+                    <constraint firstItem="bx4-Kb-lVU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="YSR-Pv-NLM"/>
+                    <constraint firstAttribute="bottom" secondItem="luI-t5-X9B" secondAttribute="bottom" constant="10.5" id="aUh-KM-Kkt"/>
+                    <constraint firstAttribute="bottom" secondItem="bx4-Kb-lVU" secondAttribute="bottom" constant="10.5" id="d2b-ro-Hy8"/>
+                    <constraint firstItem="cZy-4Y-VJZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="fa5-Zb-DfZ"/>
+                    <constraint firstItem="bx4-Kb-lVU" firstAttribute="width" secondItem="luI-t5-X9B" secondAttribute="width" id="gwu-hd-ztd"/>
+                    <constraint firstAttribute="trailing" secondItem="hgU-nT-J6s" secondAttribute="trailing" constant="8" id="ica-K9-pV7"/>
+                    <constraint firstItem="bx4-Kb-lVU" firstAttribute="height" secondItem="luI-t5-X9B" secondAttribute="height" id="yEv-Yd-vpT"/>
+                    <constraint firstItem="luI-t5-X9B" firstAttribute="leading" secondItem="bx4-Kb-lVU" secondAttribute="trailing" id="z9w-mD-p3w"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="dateLabel" destination="cZy-4Y-VJZ" id="PEx-W8-X4d"/>
+                <outlet property="dateValue" destination="bx4-Kb-lVU" id="74d-IU-HjV"/>
+                <outlet property="timeLabel" destination="hgU-nT-J6s" id="BXo-Y0-fx8"/>
+                <outlet property="timeValue" destination="luI-t5-X9B" id="9Or-dF-z2P"/>
+            </connections>
+            <point key="canvasLocation" x="71" y="155.5"/>
+        </tableViewCell>
+    </objects>
+</document>
