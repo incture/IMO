@@ -4,11 +4,11 @@ import lombok.Data;
 
 @Data
 public class JsaLocationDto {
-	int serialNo;
-	int permitNumber;
-	String faciltyOrSite;
-	String hierarchyLevel;
-	String facility;
-	String muwi;
+	private int serialNo;
+	private int permitNumber;
+	private String faciltyOrSite;
+	private String hierarchyLevel;
+	private String facility;
+	private String muwi;
 
 }

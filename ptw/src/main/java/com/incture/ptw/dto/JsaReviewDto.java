@@ -5,13 +5,13 @@ import java.util.Date;
 import lombok.Data;
 @Data
 public class JsaReviewDto {
-	int permitNumber;
-	String createdBy;
-	String approvedBy;
-	Date approvedDate;
-	String lastUpdatedBy;
-	Date lastUpdatedDate;
-	Date createdDate;
+	private int permitNumber;
+	private String createdBy;
+	private String approvedBy;
+	private Date approvedDate;
+	private String lastUpdatedBy;
+	private Date lastUpdatedDate;
+	private Date createdDate;
 	
 	
 

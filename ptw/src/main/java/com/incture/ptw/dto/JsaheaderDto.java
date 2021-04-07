@@ -4,14 +4,14 @@ import lombok.Data;
 
 @Data
 public class JsaheaderDto {
-	int permitNumber;
-	String jsaPermitNumber;
-	int hasCwp;
-	int hasHwp;
-	int hasCse;
-	String taskDescription;
-	String identifyMostSeriousPotentialInjury;
-	int isActive;
-	String status;
+	private int permitNumber;
+	private String jsaPermitNumber;
+	private int hasCwp;
+	private int hasHwp;
+	private int hasCse;
+	private String taskDescription;
+	private String identifyMostSeriousPotentialInjury;
+	private int isActive;
+	private String status;
 
 }
