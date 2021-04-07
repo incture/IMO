@@ -8,6 +8,12 @@
 	<name>ptw Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.20</version>
+			<scope>provided</scope>
+		</dependency>
 		<!-- java servlet dependency -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
