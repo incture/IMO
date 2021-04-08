@@ -3,7 +3,7 @@ package com.incture.ptw.dto;
 import lombok.Data;
 
 @Data
-public class JsaHazardsSimultaneous {
+public class JsaHazardsSimultaneousDto {
 	private Integer permitNumber;
 	private Integer simultaneousOperations;
 	private Integer followsImopsMatrix;

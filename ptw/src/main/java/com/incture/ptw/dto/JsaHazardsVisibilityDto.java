@@ -3,7 +3,7 @@ package com.incture.ptw.dto;
 import lombok.Data;
 
 @Data
-public class JsaHazardsVisibility {
+public class JsaHazardsVisibilityDto {
 	private Integer permitNumber;
 	private Integer poorLighting;
 	private Integer alternateLighting;

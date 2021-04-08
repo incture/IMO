@@ -3,7 +3,7 @@ package com.incture.ptw.dto;
 import lombok.Data;
 
 @Data
-public class JsaHazardsPressurized {
+public class JsaHazardsPressurizedDto {
 	private Integer permitNumber;
 	private Integer presurizedEquipment;
 	private Integer performIsolation;

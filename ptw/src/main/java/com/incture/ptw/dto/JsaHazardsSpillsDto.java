@@ -3,7 +3,7 @@ package com.incture.ptw.dto;
 import lombok.Data;
 
 @Data
-public class JsaHazardsSpills {
+public class JsaHazardsSpillsDto {
 	private Integer permitNumber;
 	private Integer potentialSpills;
 	private Integer drainEquipment;

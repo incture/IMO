@@ -3,7 +3,7 @@ package com.incture.ptw.dto;
 import lombok.Data;
 
 @Data
-public class JsaSteps {
+public class JsaStepsDto {
 	private int serialNo;
 	private int permitNumber;
 	private String taskSteps;
