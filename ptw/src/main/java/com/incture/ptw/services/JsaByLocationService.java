@@ -1,7 +1,5 @@
 package com.incture.ptw.services;
 
-import java.util.List;
-
 import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
@@ -9,9 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.incture.ptw.dao.GetJsaDetailsDao;
 import com.incture.ptw.dao.JsaByLocationDao;
-import com.incture.ptw.dto.JsaDetailsDto;
 import com.incture.ptw.util.ResponseDto;
 
 @Service
@@ -24,7 +20,7 @@ public class JsaByLocationService {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	public ResponseDto getJsaByLocation(String muwi, String facility) {
-		logger.info("DownloadDataService ");
+		logger.info("JsaByLocationService ");
 
 		ResponseDto responseDto = new ResponseDto();
 		responseDto.setStatus(Boolean.TRUE);
@@ -35,14 +31,14 @@ public class JsaByLocationService {
 
 		} catch (Exception e) {
 
-			logger.error("DownloadDataService " + e.getMessage());
+			logger.error("JsaByLocationService " + e.getMessage());
 			responseDto.setStatus(Boolean.FALSE);
 			responseDto.setStatusCode(500);
 			responseDto.setMessage(e.getMessage());
 
 		}
 
-		logger.info("DownloadDataService " + responseDto);
+		logger.info("JsaByLocationService " + responseDto);
 
 		return responseDto;
 
