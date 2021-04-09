@@ -6,7 +6,7 @@ import javax.persistence.Query;
 import com.incture.ptw.dto.JsaheaderDto;
 
 public class GetJsaDetailsDao extends BaseDao {
-	public void downloaadData() {
+	public List<Object[]> downloaadData() {
 		Query query = getSession().createNativeQuery(
 				"select J.*,L.FACILTYORSITE, R.* from IOP.JSAHEADER as J inner join IOP.JSA_LOCATION as L on J.PERMITNUMBER=L.PERMITNUMBER"
 						+ "inner join IOP.JSAREVIEW as R on J.PERMITNUMBER=R.PERMITNUMBER");
@@ -18,6 +18,7 @@ public class GetJsaDetailsDao extends BaseDao {
 //			
 //			
 //		}
+		return res;
 
 	}
 

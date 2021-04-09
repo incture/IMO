@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.incture.ptw.services.GetJsaDetailsService;
+import com.incture.ptw.util.ResponseDto;
 @RestController
 @RequestMapping("/jsadetails")
 public class GetJsaDetailsController {
@@ -15,8 +16,8 @@ public class GetJsaDetailsController {
 
 	
 	@GetMapping("/download")
-	public void downloadData() {
-		getJsaDetailsService.downloadDataService();
+	public ResponseDto downloadData() {
+		return getJsaDetailsService.downloadDataService();
 
 	}
 
