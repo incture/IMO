@@ -6,8 +6,6 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
-import com.incture.ptw.dto.JsaDetailsDto;
-
 @Repository("GetJsaByLocationDao")
 public class JsaByLocationDao extends BaseDao {
 	@SuppressWarnings("unchecked")
@@ -29,15 +27,18 @@ public class JsaByLocationDao extends BaseDao {
 		return q.getResultList();
 	}
 
-	public List<JsaDetailsDto> getJsaByLocation(String muwi, String facility) {
+	@SuppressWarnings("unchecked")
+	public List<Object> getJsaByLocation(String muwi, String facility) {
 		List<String> permitNumberList = getPermitNumberList(muwi, facility);
 		String sql = "select J.JSAPERMITNUMBER, J.TASKDESCRIPTION,J.STATUS,P.PTWPERMITNUMBER, "
 				+ "R.CREATEDDATE,R.CREATEDBY , L.FACILTYORSITE, R.LASTUPDATEDDATE, "
 				+ "R.APPROVEDDATE,J.PERMITNUMBER from IOP.JSA_LOCATION as L inner join "
 				+ "IOP.JSAHEADER as J on L.PERMITNUMBER = J.PERMITNUMBER "
 				+ "left join IOP.PTWHEADER as P on L.PERMITNUMBER = P.PERMITNUMBER "
-				+ "inner join IOP.JSAREVIEW as R on L.PERMITNUMBER = R.PERMITNUMBER " + "where J.PERMITNUMBER IN "
-				+ permitNumberList + " ORDER BY R.LASTUPDATEDDATE DESC ";
-		return null;
+				+ "inner join IOP.JSAREVIEW as R on L.PERMITNUMBER = R.PERMITNUMBER "
+				+ "where J.PERMITNUMBER IN (:list) ORDER BY R.LASTUPDATEDDATE DESC ";
+		Query q = getSession().createNativeQuery(sql);
+		q.setParameter("list", permitNumberList);
+		return q.getResultList();
 	}
 }
