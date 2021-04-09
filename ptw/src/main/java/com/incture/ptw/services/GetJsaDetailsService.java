@@ -19,7 +19,7 @@ public class GetJsaDetailsService {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	public ResponseDto downloadDataService() {
-		logger.info("DownloadDataService "  );
+		logger.info("DownloadDataService ");
 
 		ResponseDto responseDto = new ResponseDto();
 		responseDto.setStatus(Boolean.TRUE);
