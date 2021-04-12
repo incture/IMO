@@ -16,7 +16,7 @@ public class JsaByLocationController {
 	private JsaByLocationService jsaByLocationService;
 
 	@GetMapping()
-	public ResponseDto getDetails(@RequestParam String muwi, @RequestParam String facility) {
+	public ResponseDto getDetails(@RequestParam(required = false) String muwi, @RequestParam String facility) {
 		return jsaByLocationService.getJsaByLocation(muwi, facility);
 	}
 
