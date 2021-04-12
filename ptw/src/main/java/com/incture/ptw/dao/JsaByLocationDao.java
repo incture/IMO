@@ -11,11 +11,11 @@ public class JsaByLocationDao extends BaseDao {
 	@SuppressWarnings("unchecked")
 	public List<String> getPermitNumberList(String muwi, String facility) {
 		String sql = "";
-		if (!muwi.isEmpty()) {
+		if (muwi.isEmpty() || muwi.equals("null")) {
 			sql = "select L.PERMITNUMBER from IOP.JSA_LOCATION as L inner join "
 					+ " IOP.JSAHEADER as J on L.PERMITNUMBER = J.PERMITNUMBER inner join"
 					+ " IOP.JSAREVIEW as R on L.PERMITNUMBER = R.PERMITNUMBER " + " where (L.MUWI ='" + muwi
-					+ "' or (L.FACILITY = '" + facility + "' and L.MUWI is null ))"
+					+ "' or (L.FACILITY = '" + facility + "' and L.MUWI = 'null' ))"
 					+ " AND (J.ISACTIVE = 1 or J.ISACTIVE = 2) ORDER BY R.LASTUPDATEDDATE DESC ";
 		} else {
 			sql = "select L.PERMITNUMBER from IOP.JSA_LOCATION as L inner join "
@@ -23,6 +23,7 @@ public class JsaByLocationDao extends BaseDao {
 					+ " IOP.JSAREVIEW as R on L.PERMITNUMBER = R.PERMITNUMBER " + " where (L.FACILITY = '" + facility
 					+ "')" + "AND (J.ISACTIVE = 1 or J.ISACTIVE = 2) ORDER BY R.LASTUPDATEDDATE DESC ";
 		}
+		System.out.println("sql : " +sql);
 		Query q = getSession().createNativeQuery(sql);
 		return q.getResultList();
 	}
