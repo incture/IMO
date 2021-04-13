@@ -1,7 +1,9 @@
 package com.incture.ptw.dao;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.persistence.Query;
 
@@ -73,23 +75,26 @@ public class JsaByLocationDao extends BaseDao {
 		List<JsaDetailsDto> jsaDetailsDtoList = null;
 		for (JsaRecord jDto : jsaList) {
 			JsaDetailsDto temp = new JsaDetailsDto();
-			// if(jsaDetailsDtoList.contains(jDto.getPermitNumber()))
-			// {
-			// int index=Collections.binarySearch(jsaDetailsDtoList,
-			// jDto.getPermitNumber());
-			// temp=jsaDetailsDtoList.get(index);
-			// temp.getPtwPermitNumber().add(jDto.getPtwPermitNumber());
-			// continue;
-			// }
-			// else
-			// {
-			// temp.setPermitNumber(jDto.getPermitNumber());
-			// }
+			List<JsaDetailsDto> res = jsaDetailsDtoList.stream()
+					.filter(c -> c.getJsaPermitNumber().equalsIgnoreCase(jDto.getJsaPermitNumber()))
+					.collect(Collectors.toList());
+			if (res.get(0).getJsaPermitNumber().equals((jDto.getJsaPermitNumber()))) {
+				res.get(0).getPtwPermitNumber().add(jDto.getPtwPermitNumber());
+				continue;
+			} else {
+				temp.setPermitNumber(jDto.getPermitNumber());
+			}
 			temp.setApprovedDate(jDto.getApprovedDate());
 			temp.setCreatedBy(jDto.getCreatedBy());
-
+			temp.setCreatedDate(jDto.getCreatedDate());
+			temp.setFacilityOrSite(Arrays.asList(jDto.getFacilityOrSite()));
+			temp.setJsaPermitNumber(jDto.getJsaPermitNumber());
+			temp.setLastUpdatedDate(jDto.getLastUpdatedDate());
+			temp.setPermitNumber(jDto.getPermitNumber());
+			temp.setStatus(jDto.getStatus());
+			temp.setTaskDescription(jDto.getTaskDescription());
 			jsaDetailsDtoList.add(temp);
 		}
-		return null;
+		return jsaDetailsDtoList;
 	}
 }
