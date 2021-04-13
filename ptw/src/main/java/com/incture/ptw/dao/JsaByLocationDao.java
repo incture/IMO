@@ -42,6 +42,7 @@ public class JsaByLocationDao extends BaseDao {
 
 	}
 
+	@SuppressWarnings("null")
 	public List<JsaDetailsDto> getJsaByLocation(String muwi, String facility) {
 		List<String> permitNumberList = getPermitNumberList(muwi, facility);
 		String sql = "select J.JSAPERMITNUMBER, J.TASKDESCRIPTION,J.STATUS,P.PTWPERMITNUMBER, "
@@ -57,7 +58,7 @@ public class JsaByLocationDao extends BaseDao {
 		@SuppressWarnings("unchecked")
 		List<Object[]> obj = q.getResultList();
 		logger.info(obj.toString());
-		List<JsaRecord> jsaList = new ArrayList<>();
+		List<JsaRecord> jsaList = new ArrayList<JsaRecord>();
 		int objLength = obj.size();
 		for (int i = 0; i < objLength; i++) {
 			Object[] rs = obj.get(i);
@@ -76,7 +77,7 @@ public class JsaByLocationDao extends BaseDao {
 		}
 		System.out.println(jsaList.toString());
 		logger.info(jsaList.toString());
-		List<JsaDetailsDto> jsaDetailsDtoList = new ArrayList<>();
+		List<JsaDetailsDto> jsaDetailsDtoList = new ArrayList<JsaDetailsDto>();
 		for (JsaRecord jDto : jsaList) {
 			JsaDetailsDto temp = new JsaDetailsDto();
 			List<JsaDetailsDto> res = jsaDetailsDtoList.stream()
