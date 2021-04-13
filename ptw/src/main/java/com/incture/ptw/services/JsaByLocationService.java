@@ -30,8 +30,9 @@ public class JsaByLocationService {
 			responseDto.setMessage("Data displayed successfully");
 
 		} catch (Exception e) {
-			e.printStackTrace();
+
 			logger.error("JsaByLocationService " + e.getMessage());
+			logger.error(e.getStackTrace().toString());
 			responseDto.setStatus(Boolean.FALSE);
 			responseDto.setStatusCode(500);
 			responseDto.setMessage(e.getMessage());

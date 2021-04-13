@@ -54,7 +54,7 @@ public class JsaByLocationDao extends BaseDao {
 		Query q = getSession().createNativeQuery(sql);
 		q.setParameter("list", permitNumberList);
 		List<Object> obj = q.getResultList();
-
+		logger.info(obj.toString());
 		List<JsaRecord> jsaList = null;
 		int objLength = obj.size();
 		for (int i = 0; i < objLength; i++) {
@@ -72,6 +72,7 @@ public class JsaByLocationDao extends BaseDao {
 			jsaDto.setPermitNumber((Integer) rs.get(10));
 			jsaList.add(jsaDto);
 		}
+		logger.info(jsaList.toString());
 		List<JsaDetailsDto> jsaDetailsDtoList = null;
 		for (JsaRecord jDto : jsaList) {
 			JsaDetailsDto temp = new JsaDetailsDto();
@@ -95,6 +96,7 @@ public class JsaByLocationDao extends BaseDao {
 			temp.setTaskDescription(jDto.getTaskDescription());
 			jsaDetailsDtoList.add(temp);
 		}
+		logger.info(jsaDetailsDtoList.toString());
 		return jsaDetailsDtoList;
 	}
 }
