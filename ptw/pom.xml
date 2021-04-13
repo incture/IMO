@@ -75,7 +75,7 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>1.7.19</version>
-		</dependency> 
+		</dependency>
 
 		<!-- hibernate dependency -->
 		<dependency>
@@ -104,5 +104,15 @@
 	</dependencies>
 	<build>
 		<finalName>ptw</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
 	</build>
 </project>
