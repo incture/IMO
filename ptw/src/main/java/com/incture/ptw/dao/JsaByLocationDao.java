@@ -98,7 +98,7 @@ public class JsaByLocationDao extends BaseDao {
 				temp.setStatus(jDto.getStatus());
 				temp.setTaskDescription(jDto.getTaskDescription());
 				List<String> l = new ArrayList<String>();
-				if (jDto.getPtwPermitNumber() != null || !jDto.getPtwPermitNumber().isEmpty())
+				if (jDto.getPtwPermitNumber() != null)
 					l.add(jDto.getPtwPermitNumber());
 				temp.setPtwPermitNumber(l);
 				jsaDetailsDtoList.add(temp);
