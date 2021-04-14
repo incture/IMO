@@ -83,25 +83,25 @@ public class JsaByLocationDao extends BaseDao {
 			List<JsaDetailsDto> res = jsaDetailsDtoList.stream()
 					.filter(c -> c.getJsaPermitNumber().equalsIgnoreCase(jDto.getJsaPermitNumber()))
 					.collect(Collectors.toList());
-			if (res != null) {
+			if (!res.isEmpty()) {
 				if (res.get(0).getJsaPermitNumber().equals((jDto.getJsaPermitNumber()))) {
 					res.get(0).getPtwPermitNumber().add(jDto.getPtwPermitNumber());
-					continue;
 				}
+			} else {
+				temp.setApprovedDate(jDto.getApprovedDate());
+				temp.setCreatedBy(jDto.getCreatedBy());
+				temp.setCreatedDate(jDto.getCreatedDate());
+				temp.setFacilityOrSite(Arrays.asList(jDto.getFacilityOrSite()));
+				temp.setJsaPermitNumber(jDto.getJsaPermitNumber());
+				temp.setLastUpdatedDate(jDto.getLastUpdatedDate());
+				temp.setPermitNumber(jDto.getPermitNumber());
+				temp.setStatus(jDto.getStatus());
+				temp.setTaskDescription(jDto.getTaskDescription());
+				List<String> l = new ArrayList<>();
+				l.add(jDto.getPtwPermitNumber());
+				temp.setPtwPermitNumber(l);
+				jsaDetailsDtoList.add(temp);
 			}
-			temp.setApprovedDate(jDto.getApprovedDate());
-			temp.setCreatedBy(jDto.getCreatedBy());
-			temp.setCreatedDate(jDto.getCreatedDate());
-			temp.setFacilityOrSite(Arrays.asList(jDto.getFacilityOrSite()));
-			temp.setJsaPermitNumber(jDto.getJsaPermitNumber());
-			temp.setLastUpdatedDate(jDto.getLastUpdatedDate());
-			temp.setPermitNumber(jDto.getPermitNumber());
-			temp.setStatus(jDto.getStatus());
-			temp.setTaskDescription(jDto.getTaskDescription());
-			List<String> l = new ArrayList<>();
-			l.add(jDto.getPtwPermitNumber());
-			temp.setPtwPermitNumber(l);
-			jsaDetailsDtoList.add(temp);
 		}
 		logger.info(jsaDetailsDtoList.toString());
 		System.out.println(jsaDetailsDtoList.toString());
