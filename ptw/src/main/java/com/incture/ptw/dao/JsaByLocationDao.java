@@ -88,6 +88,7 @@ public class JsaByLocationDao extends BaseDao {
 					res.get(0).getPtwPermitNumber().add(jDto.getPtwPermitNumber());
 				}
 			} else {
+				temp.setPtwPermitNumber(new ArrayList<String>());
 				temp.setApprovedDate(jDto.getApprovedDate());
 				temp.setCreatedBy(jDto.getCreatedBy());
 				temp.setCreatedDate(jDto.getCreatedDate());
