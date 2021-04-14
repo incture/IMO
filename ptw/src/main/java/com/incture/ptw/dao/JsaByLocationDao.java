@@ -18,21 +18,31 @@ public class JsaByLocationDao extends BaseDao {
 	@SuppressWarnings("unchecked")
 	public List<String> getPermitNumberList(String muwi, String facility) {
 		String sql = "";
+		int flag = 0;
 		if (muwi != null) {
+			flag = 1;
 			sql = "select L.PERMITNUMBER from IOP.JSA_LOCATION as L inner join "
 					+ " IOP.JSAHEADER as J on L.PERMITNUMBER = J.PERMITNUMBER inner join"
-					+ " IOP.JSAREVIEW as R on L.PERMITNUMBER = R.PERMITNUMBER " + " where (L.MUWI ='" + muwi
-					+ "' or (L.FACILITY = '" + facility + "' and L.MUWI = 'null' ))"
+					+ " IOP.JSAREVIEW as R on L.PERMITNUMBER = R.PERMITNUMBER "
+					+ " where (L.MUWI =:muwi or (L.FACILITY = :facility and L.MUWI = 'null' ))"
 					+ " AND (J.ISACTIVE = 1 or J.ISACTIVE = 2) ORDER BY R.LASTUPDATEDDATE DESC ";
 		} else {
+			flag = 2;
 			sql = "select L.PERMITNUMBER from IOP.JSA_LOCATION as L inner join "
 					+ " IOP.JSAHEADER as J on L.PERMITNUMBER = J.PERMITNUMBER inner join"
-					+ " IOP.JSAREVIEW as R on L.PERMITNUMBER = R.PERMITNUMBER " + " where L.FACILITY = '" + facility
-					+ "'" + " AND (J.ISACTIVE = 1 or J.ISACTIVE = 2) ORDER BY R.LASTUPDATEDDATE DESC ";
+					+ " IOP.JSAREVIEW as R on L.PERMITNUMBER = R.PERMITNUMBER "
+					+ " where L.FACILITY = :facility AND (J.ISACTIVE = 1 or J.ISACTIVE = 2) ORDER BY R.LASTUPDATEDDATE DESC ";
 		}
 		System.out.println("sql : " + sql);
 		try {
 			Query q = getSession().createNativeQuery(sql);
+			if (flag == 1) {
+				q.setParameter("muwi", muwi);
+				q.setParameter("facility", facility);
+			}
+			if (flag == 2) {
+				q.setParameter("facility", facility);
+			}
 			return q.getResultList();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -53,6 +63,7 @@ public class JsaByLocationDao extends BaseDao {
 				+ "inner join IOP.JSAREVIEW as R on L.PERMITNUMBER = R.PERMITNUMBER "
 				+ "where J.PERMITNUMBER IN (:list) ORDER BY R.LASTUPDATEDDATE DESC ";
 		Query q = getSession().createNativeQuery(sql);
+		System.out.println("2nd sql "+sql);
 		q.setParameter("list", permitNumberList);
 		System.out.println(q.getResultList().toArray());
 		@SuppressWarnings("unchecked")

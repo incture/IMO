@@ -71,12 +71,13 @@
 			<version>1.0.4.RELEASE</version>
 		</dependency>
 		<!-- logger dependency -->
+		<!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-api</artifactId> 
+			<version>1.7.19</version> </dependency> -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.7.19</version>
+			<artifactId>slf4j-nop</artifactId>
+			<version>1.7.25</version>
 		</dependency>
-
 		<!-- hibernate dependency -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
