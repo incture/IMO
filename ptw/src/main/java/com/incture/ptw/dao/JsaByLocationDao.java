@@ -88,7 +88,6 @@ public class JsaByLocationDao extends BaseDao {
 					res.get(0).getPtwPermitNumber().add(jDto.getPtwPermitNumber());
 				}
 			} else {
-				temp.setPtwPermitNumber(new ArrayList<String>());
 				temp.setApprovedDate(jDto.getApprovedDate());
 				temp.setCreatedBy(jDto.getCreatedBy());
 				temp.setCreatedDate(jDto.getCreatedDate());
@@ -98,8 +97,9 @@ public class JsaByLocationDao extends BaseDao {
 				temp.setPermitNumber(jDto.getPermitNumber());
 				temp.setStatus(jDto.getStatus());
 				temp.setTaskDescription(jDto.getTaskDescription());
-				List<String> l = new ArrayList<>();
-				l.add(jDto.getPtwPermitNumber());
+				List<String> l = new ArrayList<String>();
+				if (jDto.getPtwPermitNumber() != null || !jDto.getPtwPermitNumber().isEmpty())
+					l.add(jDto.getPtwPermitNumber());
 				temp.setPtwPermitNumber(l);
 				jsaDetailsDtoList.add(temp);
 			}
