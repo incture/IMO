@@ -54,6 +54,10 @@ public class JsaByLocationDao extends BaseDao {
 	public List<JsaDetailsDto> getJsaByLocation(String muwi, String facility) {
 		List<String> permitNumberList = getPermitNumberList(muwi, facility);
 		logger.info("getpermitnumberlist :"+permitNumberList.toString());
+		if(permitNumberList.isEmpty())
+		{
+			return null;
+		}
 		String sql = "select J.JSAPERMITNUMBER, J.TASKDESCRIPTION,J.STATUS,P.PTWPERMITNUMBER, "
 				+ "R.CREATEDDATE,R.CREATEDBY , L.FACILTYORSITE, R.LASTUPDATEDDATE, "
 				+ "R.APPROVEDDATE,J.PERMITNUMBER from IOP.JSA_LOCATION as L inner join "
