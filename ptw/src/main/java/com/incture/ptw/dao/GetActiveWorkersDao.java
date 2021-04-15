@@ -13,18 +13,18 @@ public class GetActiveWorkersDao extends BaseDao {
 	public List<Object[]> getActiveWorkers(String muwi, String facility) {
 		String sql = "";
 		int flag = 0;
-		if (muwi != null) {
+		if (muwi == null) {
 			flag = 1;
 			sql = " select P.FIRSTNAME P.LASTNAME P.CONTACTNUMBER P.PERMITNUMBER L.FACILTYORSITE from IOP.PTWPEOPLE as P inner join "
 					+ " IOP.JSAHEADER as J on P.PERMITNUMBER = J.PERMITNUMBER inner join "
 					+ " IOP.JSA_LOCATION as L on P.PERMITNUMBER = L.PERMITNUMBER "
-					+ " WHERE L.FACILITY = : facility AND (J.ISACTIVE = in (1,2)) ";
+					+ " WHERE L.FACILITY = :facility AND (J.ISACTIVE = in (1,2)) ";
 		} else {
 			flag = 2;
 			sql = " select P.FIRSTNAME P.LASTNAME P.CONTACTNUMBER P.PERMITNUMBER L.FACILTYORSITE from IOP.PTWPEOPLE as P inner join "
 					+ " IOP.JSAHEADER as J on P.PERMITNUMBER = J.PERMITNUMBER inner join "
 					+ " IOP.JSA_LOCATION as L on P.PERMITNUMBER = L.PERMITNUMBER "
-					+ " WHERE (L.MUWI = : muwi OR (L.FACILITY = :facility AND L.MUWI = '' )) AND (J.ISACTIVE in( 1,2)) ";
+					+ " WHERE (L.MUWI = :muwi OR (L.FACILITY = :facility AND L.MUWI = 'null' )) AND (J.ISACTIVE in(1,2)) ";
 		}
 		logger.info("getActiveWorkers sql " + sql);
 
