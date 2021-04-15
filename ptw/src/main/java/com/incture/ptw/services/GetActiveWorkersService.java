@@ -16,9 +16,9 @@ public class GetActiveWorkersService {
 	@Autowired
 	private GetActiveWorkersDao getActiveWorkersDao;
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-	
-	public ResponseDto getActiveWorkers(String muwi, String facility){
-		logger.info("GetActiveWorkersService ");
+
+	public ResponseDto getActiveWorkers(String muwi, String facility) {
+		logger.info("GetActiveWorkersService || getActiveWorkers muwi " + muwi + " faciltiy " + facility);
 
 		ResponseDto responseDto = new ResponseDto();
 		responseDto.setStatus(Boolean.TRUE);
@@ -29,7 +29,7 @@ public class GetActiveWorkersService {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.error("GetActiveWorkersService " + e.getMessage());
+			logger.error("GetActiveWorkersService || getActiveWorkers " + e.getMessage());
 			logger.error(e.getStackTrace().toString());
 			responseDto.setStatus(Boolean.FALSE);
 			responseDto.setStatusCode(500);
@@ -37,7 +37,7 @@ public class GetActiveWorkersService {
 
 		}
 
-		logger.info("GetActiveWorkersService " + responseDto);
+		logger.info("GetActiveWorkersService || getActiveWorkers" + responseDto);
 
 		return responseDto;
 	}

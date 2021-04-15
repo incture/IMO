@@ -33,7 +33,7 @@ public class JsaByLocationDao extends BaseDao {
 					+ " IOP.JSAREVIEW as R on L.PERMITNUMBER = R.PERMITNUMBER "
 					+ " where L.FACILITY = :facility AND (J.ISACTIVE = 1 or J.ISACTIVE = 2) ORDER BY R.LASTUPDATEDDATE DESC ";
 		}
-		System.out.println("sql : " + sql);
+		logger.info("1st sql : " + sql);
 		try {
 			Query q = getSession().createNativeQuery(sql);
 			if (flag == 1) {
@@ -45,16 +45,15 @@ public class JsaByLocationDao extends BaseDao {
 			}
 			return q.getResultList();
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println(sql);
+			logger.error("getPermitNumberList" + e.getMessage());
 		}
 		return null;
 
 	}
 
-	@SuppressWarnings("null")
 	public List<JsaDetailsDto> getJsaByLocation(String muwi, String facility) {
 		List<String> permitNumberList = getPermitNumberList(muwi, facility);
+		logger.info("getpermitnumberlist :"+permitNumberList.toString());
 		String sql = "select J.JSAPERMITNUMBER, J.TASKDESCRIPTION,J.STATUS,P.PTWPERMITNUMBER, "
 				+ "R.CREATEDDATE,R.CREATEDBY , L.FACILTYORSITE, R.LASTUPDATEDDATE, "
 				+ "R.APPROVEDDATE,J.PERMITNUMBER from IOP.JSA_LOCATION as L inner join "
@@ -63,12 +62,11 @@ public class JsaByLocationDao extends BaseDao {
 				+ "inner join IOP.JSAREVIEW as R on L.PERMITNUMBER = R.PERMITNUMBER "
 				+ "where J.PERMITNUMBER IN (:list) ORDER BY R.LASTUPDATEDDATE DESC ";
 		Query q = getSession().createNativeQuery(sql);
-		System.out.println("2nd sql "+sql);
+		logger.info("2nd sql " + sql);
 		q.setParameter("list", permitNumberList);
-		System.out.println(q.getResultList().toArray());
 		@SuppressWarnings("unchecked")
 		List<Object[]> obj = q.getResultList();
-		logger.info(obj.toString());
+		logger.info("2nd sql output :"+obj);
 		List<JsaRecord> jsaList = new ArrayList<JsaRecord>();
 		int objLength = obj.size();
 		for (int i = 0; i < objLength; i++) {
@@ -86,8 +84,7 @@ public class JsaByLocationDao extends BaseDao {
 			jsaDto.setPermitNumber((Integer) rs[9]);
 			jsaList.add(jsaDto);
 		}
-		System.out.println(jsaList.toString());
-		logger.info(jsaList.toString());
+		logger.info("new jsaList "+jsaList.toString());
 		List<JsaDetailsDto> jsaDetailsDtoList = new ArrayList<JsaDetailsDto>();
 		for (JsaRecord jDto : jsaList) {
 			JsaDetailsDto temp = new JsaDetailsDto();
@@ -115,8 +112,7 @@ public class JsaByLocationDao extends BaseDao {
 				jsaDetailsDtoList.add(temp);
 			}
 		}
-		logger.info(jsaDetailsDtoList.toString());
-		System.out.println(jsaDetailsDtoList.toString());
+		logger.info("actual output : "+jsaDetailsDtoList);
 		return jsaDetailsDtoList;
 	}
 	/*

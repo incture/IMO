@@ -20,7 +20,7 @@ public class JsaByLocationService {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	public ResponseDto getJsaByLocation(String muwi, String facility) {
-		logger.info("JsaByLocationService ");
+		logger.info("JsaByLocationService || getJsaByLocation muwi " + muwi + " faciltiy " + facility);
 
 		ResponseDto responseDto = new ResponseDto();
 		responseDto.setStatus(Boolean.TRUE);
@@ -31,16 +31,12 @@ public class JsaByLocationService {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.error("JsaByLocationService " + e.getMessage());
-			logger.error(e.getStackTrace().toString());
+			logger.error("JsaByLocationService || getJsaByLocation" + e.getMessage());
 			responseDto.setStatus(Boolean.FALSE);
 			responseDto.setStatusCode(500);
 			responseDto.setMessage(e.getMessage());
-
 		}
-
-		logger.info("JsaByLocationService " + responseDto);
-
+		logger.info("JsaByLocationService || getJsaByLocation " + responseDto);
 		return responseDto;
 
 	}

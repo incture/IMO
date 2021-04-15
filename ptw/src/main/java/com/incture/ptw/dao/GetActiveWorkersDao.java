@@ -6,30 +6,28 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
-import com.incture.ptw.dto.ActiveWorkersPayloadDto;
-
 @Repository("GetActiveWorkersDao")
 public class GetActiveWorkersDao extends BaseDao {
-	
+
 	@SuppressWarnings("unchecked")
-	public List<ActiveWorkersPayloadDto> getActiveWorkers(String muwi, String facility) {
+	public List<Object[]> getActiveWorkers(String muwi, String facility) {
 		String sql = "";
 		int flag = 0;
 		if (muwi != null) {
 			flag = 1;
 			sql = " select P.FIRSTNAME P.LASTNAME P.CONTACTNUMBER P.PERMITNUMBER L.FACILTYORSITE from IOP.PTWPEOPLE as P inner join "
-					+ " IOP.JSAHEADER as J on P.PERMITNUMBER = J.PERMITNUMBER inner join " 
-					+ " IOP.JSA_LOCATION as L on P.PERMITNUMBER = L.PERMITNUMBER " 
+					+ " IOP.JSAHEADER as J on P.PERMITNUMBER = J.PERMITNUMBER inner join "
+					+ " IOP.JSA_LOCATION as L on P.PERMITNUMBER = L.PERMITNUMBER "
 					+ " WHERE L.FACILITY = : facility AND (J.ISACTIVE = in (1,2)) ";
 		} else {
 			flag = 2;
 			sql = " select P.FIRSTNAME P.LASTNAME P.CONTACTNUMBER P.PERMITNUMBER L.FACILTYORSITE from IOP.PTWPEOPLE as P inner join "
-					+ " IOP.JSAHEADER as J on P.PERMITNUMBER = J.PERMITNUMBER inner join " 
-					+ " IOP.JSA_LOCATION as L on P.PERMITNUMBER = L.PERMITNUMBER " 
-					+ " WHERE (L.MUWI = : muwi OR (L.FACILITY = :facility AND L.MUWI = '' )) AND (J.ISACTIVE in( 1,2)) "; 
+					+ " IOP.JSAHEADER as J on P.PERMITNUMBER = J.PERMITNUMBER inner join "
+					+ " IOP.JSA_LOCATION as L on P.PERMITNUMBER = L.PERMITNUMBER "
+					+ " WHERE (L.MUWI = : muwi OR (L.FACILITY = :facility AND L.MUWI = '' )) AND (J.ISACTIVE in( 1,2)) ";
 		}
-		System.out.println("sql : " + sql);
-		List<Object[]> obj;
+		logger.info("getActiveWorkers sql " + sql);
+
 		try {
 			Query q = getSession().createNativeQuery(sql);
 			if (flag == 1) {
@@ -39,10 +37,10 @@ public class GetActiveWorkersDao extends BaseDao {
 				q.setParameter("muwi", muwi);
 				q.setParameter("facility", facility);
 			}
-			obj = q.getResultList();
+			List<Object[]> obj = q.getResultList();
+			return obj;
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println(sql);
+			logger.error("getActiveWorkers error" + e.getMessage());
 		}
 		return null;
 	}
