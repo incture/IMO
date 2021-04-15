@@ -29,7 +29,7 @@ public class JsaByLocationService {
 		responseDto.setStatusCode(200);
 		try {
 			List<JsaDetailsDto> l = jsaByLocationDao.getJsaByLocation(muwi, facility);
-			if (!l.isEmpty()) {
+			if (l!=null) {
 				responseDto.setData(l);
 				responseDto.setMessage("Data displayed successfully");
 			}
