@@ -70,15 +70,15 @@ public class ActiveWorkersDao extends BaseDao {
 				ptwPeopleData.setContactNumber(res.get(i).getContactNumber());
 				ptwPeopleData.setPermitNumber(res.get(i).getPermitNumber());
 				facilitySiteData.setFacilityOrSite(res.get(i).getFacilityOrSite());
-				if (facilitySiteData.getPtwPeopleList()==null) {
-					facilitySiteData.setPtwPeopleList(null);
-				}
+//				if (facilitySiteData.getPtwPeopleList()==null) {
+//					facilitySiteData.setPtwPeopleList(null);
+//				}
 				if (i == (res.size() - 1)) {
 					ptwPeopleList.add(ptwPeopleData);
 					facilitySiteData.setPtwPeopleList(ptwPeopleList);
 					finalDataList.add(facilitySiteData);
 					break;
-				} else if (res.get(i).getFacilityOrSite() == res.get(i + 1).getFacilityOrSite()) {
+				} else if (res.get(i).getFacilityOrSite().equals(res.get(i + 1).getFacilityOrSite())) {
 					ptwPeopleList.add(ptwPeopleData);
 					facilitySiteData.setPtwPeopleList(ptwPeopleList);
 				} else {
