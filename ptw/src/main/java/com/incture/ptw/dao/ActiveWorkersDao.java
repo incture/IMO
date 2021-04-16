@@ -62,17 +62,17 @@ public class ActiveWorkersDao extends BaseDao {
 			logger.info("res" + res);
 			List<ActiveWorkersPayloadDto> finalDataList = new ArrayList<ActiveWorkersPayloadDto>();
 			ActiveWorkersPayloadDto facilitySiteData = new ActiveWorkersPayloadDto();
+			List<ActiveWorkersDto> ptwPeopleList = new ArrayList<ActiveWorkersDto>();
 			for (int i = 0; i < res.size(); i++) {
 				ActiveWorkersDto ptwPeopleData = new ActiveWorkersDto();
-				List<ActiveWorkersDto> ptwPeopleList = new ArrayList<ActiveWorkersDto>();
 				ptwPeopleData.setFirstName(res.get(i).getFirstName());
 				ptwPeopleData.setLastName(res.get(i).getLastName());
 				ptwPeopleData.setContactNumber(res.get(i).getContactNumber());
 				ptwPeopleData.setPermitNumber(res.get(i).getPermitNumber());
 				facilitySiteData.setFacilityOrSite(res.get(i).getFacilityOrSite());
-//				if (facilitySiteData.getPtwPeopleList()==null) {
-//					facilitySiteData.setPtwPeopleList(null);
-//				}
+				if (facilitySiteData.getPtwPeopleList()==null) {
+					facilitySiteData.setPtwPeopleList(new ArrayList<ActiveWorkersDto>());
+				}
 				if (i == (res.size() - 1)) {
 					ptwPeopleList.add(ptwPeopleData);
 					facilitySiteData.setPtwPeopleList(ptwPeopleList);
