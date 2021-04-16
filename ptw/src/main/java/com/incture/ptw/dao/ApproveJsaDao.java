@@ -8,23 +8,23 @@ import org.springframework.stereotype.Repository;
 
 @Repository("ApproveJsaDao")
 public class ApproveJsaDao extends BaseDao {
-	public String approveJsa(String jsaPermitNumber, String status, String approvedBy) {
+	public Integer approveJsa(String jsaPermitNumber, String status, String approvedBy) {
 		try {
-			String permitNumber;
+			Integer permitNumber;
 			String sql1 = "select PERMITNUMBER from IOP.JSAHEADER where JSAPERMITNUMBER=:jsaPermitNumber";
 			Query q = getSession().createNativeQuery(sql1);
 			q.setParameter("jsaPermitNumber", jsaPermitNumber);
 			logger.info("1st sql1 : " + sql1);
-			Object[] res = (Object[]) q.getSingleResult();
-			logger.info("res : " + res[0].toString());
-			permitNumber = res[0].toString();
+			permitNumber =  (Integer) q.getSingleResult();
+			logger.info("permitNumber : " + permitNumber);
+			
 
 			String sql2 = "UPDATE IOP.JSAHEADER SET STATUS=:status , ISACTIVE=:isActive where JSAPERMITNUMBER=:jsaPermitNumber ";
 			Query q1 = getSession().createNativeQuery(sql2);
-			logger.info("2nd sql " + sql2);
 			q1.setParameter("status", status);
 			q1.setParameter("isActive", 1);
 			q1.setParameter("jsaPermitNumber", jsaPermitNumber);
+			logger.info("2nd sql " + sql2);
 			q1.executeUpdate();
 
 			String sql3 = "UPDATE IOP.JSAREVIEW SET APPROVEDDATE =:newDate, LASTUPDATEDDATE=:newDate, APPROVEDBY=:approvedBy where PERMITNUMBER=:permitNumber ";
