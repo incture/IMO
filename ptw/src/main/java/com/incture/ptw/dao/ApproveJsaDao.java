@@ -16,6 +16,7 @@ public class ApproveJsaDao extends BaseDao {
 			q.setParameter("jsaPermitNumber", jsaPermitNumber);
 			logger.info("1st sql1 : " + sql1);
 			Object[] res = (Object[]) q.getSingleResult();
+			logger.info("res : " + res[0].toString());
 			permitNumber = res[0].toString();
 
 			String sql2 = "UPDATE IOP.JSAHEADER SET STATUS=:status , ISACTIVE=:isActive where JSAPERMITNUMBER=:jsaPermitNumber ";
@@ -32,7 +33,8 @@ public class ApproveJsaDao extends BaseDao {
 			Date date = new Date();
 			q2.setParameter("newDate", date);
 			q2.setParameter("approvedBy", approvedBy);
-			q1.setParameter("permitNumber", permitNumber);
+			q2.setParameter("permitNumber", permitNumber);
+			q2.executeUpdate();
 			return permitNumber;
 		} catch (Exception e) {
 			logger.error(e.getMessage());
