@@ -31,7 +31,7 @@ public class ApproveJsaDao extends BaseDao {
 		Date date = new Date();  
 		q2.setParameter("newDate", date);
 		q2.setParameter("approvedBy",approvedBy);
-		q1.setParameter("jsaPermitNumber", permitNumber);
+		q1.setParameter("permitNumber", permitNumber);
 		return permitNumber;
 		
 		
