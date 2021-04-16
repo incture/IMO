@@ -6,15 +6,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.incture.ptw.dao.GetJsaDetailsDao;
+import com.incture.ptw.dao.JsaDetailsDao;
 import com.incture.ptw.util.ResponseDto;
 
 @Service
 @Transactional
-public class GetJsaDetailsService {
+public class JsaDetailsService {
 
 	@Autowired
-	private GetJsaDetailsDao getJsaDetailsDao;
+	private JsaDetailsDao getJsaDetailsDao;
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 

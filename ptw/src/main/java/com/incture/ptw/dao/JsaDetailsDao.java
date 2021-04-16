@@ -7,7 +7,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository("GetJsaDetailsDao")
-public class GetJsaDetailsDao extends BaseDao {
+public class JsaDetailsDao extends BaseDao {
 	public List<Object[]> downloaadData() {
 		Query query = getSession().createNativeQuery(
 				"select J.*,L.FACILTYORSITE, R.CREATEDBY,R.APPROVEDBY,R.APPROVEDDATE,R.LASTUPDATEDBY,R.LASTUPDATEDDATE,R.CREATEDDATE"

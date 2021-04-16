@@ -5,14 +5,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.incture.ptw.services.GetJsaDetailsService;
+import com.incture.ptw.services.JsaDetailsService;
 import com.incture.ptw.util.ResponseDto;
 
 @RestController
 @RequestMapping("/jsadetails")
-public class GetJsaDetailsController {
+public class JsaDetailsController {
 	@Autowired
-	private GetJsaDetailsService getJsaDetailsService;
+	private JsaDetailsService getJsaDetailsService;
 
 	@GetMapping("/download")
 	public ResponseDto downloadData() {

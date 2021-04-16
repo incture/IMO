@@ -7,14 +7,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.incture.ptw.dao.GetActiveWorkersDao;
+import com.incture.ptw.dao.ActiveWorkersDao;
 import com.incture.ptw.util.ResponseDto;
 
 @Service
 @Transactional
-public class GetActiveWorkersService {
+public class ActiveWorkersService {
 	@Autowired
-	private GetActiveWorkersDao getActiveWorkersDao;
+	private ActiveWorkersDao getActiveWorkersDao;
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	public ResponseDto getActiveWorkers(String muwi, String facility) {

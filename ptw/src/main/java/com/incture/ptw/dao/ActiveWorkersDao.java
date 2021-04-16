@@ -1,7 +1,6 @@
 package com.incture.ptw.dao;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -14,7 +13,7 @@ import com.incture.ptw.dto.ActiveWorkersPayloadDto;
 import com.incture.ptw.dto.ActiveWorkersRecordDto;
 
 @Repository("GetActiveWorkersDao")
-public class GetActiveWorkersDao extends BaseDao {
+public class ActiveWorkersDao extends BaseDao {
 
 	@SuppressWarnings("unchecked")
 	public List<ActiveWorkersPayloadDto> getActiveWorkers(String muwi, String facility) {
@@ -34,7 +33,7 @@ public class GetActiveWorkersDao extends BaseDao {
 					+ " WHERE (L.MUWI = :muwi OR (L.FACILITY = :facility AND L.MUWI = 'null' )) AND (J.ISACTIVE in(1,2)) ";
 		}
 		logger.info("getActiveWorkers sql " + sql);
-		List<Object[]> obj = null;
+		List<Object[]> obj;
 
 		try {
 			Query q = getSession().createNativeQuery(sql);
