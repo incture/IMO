@@ -6,12 +6,9 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class PermitsByLocDataDto {
+public class PermitsByLocInnerDto {
 	private String createdBy;
 	private Date createdDate;
-	private int isCwp;
-	private int isHwp;
-	private int isCse;
 	private List<String> facilityorsite;
 	private String jsaPermitNumber;
 	private Date lastUpdatedDate;

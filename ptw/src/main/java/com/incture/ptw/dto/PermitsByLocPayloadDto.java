@@ -6,8 +6,8 @@ import lombok.Data;
 
 @Data
 public class PermitsByLocPayloadDto {
-	private List<PermitsByLocDataDto> CSE;
-	private List<PermitsByLocDataDto> CWP;
-	private List<PermitsByLocDataDto> HWP;
+	private List<PermitsByLocInnerDto> CSE;
+	private List<PermitsByLocInnerDto> CWP;
+	private List<PermitsByLocInnerDto> HWP;
 
 }
