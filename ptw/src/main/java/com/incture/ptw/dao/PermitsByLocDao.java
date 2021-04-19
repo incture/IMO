@@ -21,7 +21,7 @@ public class PermitsByLocDao extends BaseDao {
 			return null;
 		}
 		String sql = " select J.JSAPERMITNUMBER,P.PTWPERMITNUMBER,P.CREATEDBY,P.ISCWP, "
-				+ "P.ISHWP,P.ISCSE,R.CREATEDDATE,L.FACILTYORSITE,J.PERMITNUMBER,R.LASTUPDATEDDATE "
+				+ "P.ISHWP,P.ISCSE,R.CREATEDDATE,L.FACILTYORSITE,J.PERMITNUMBER,R.LASTUPDATEDDATE, "
 				+ "P.STATUS FROM IOP.JSA_LOCATION as L inner join IOP.JSAHEADER as J "
 				+ "on L.PERMITNUMBER = J.PERMITNUMBER left join IOP.PTWHEADER as P "
 				+ "on L.PERMITNUMBER = P.PERMITNUMBER inner join IOP.JSAREVIEW as R "
@@ -31,7 +31,6 @@ public class PermitsByLocDao extends BaseDao {
 		q.setParameter("list", permitNumberList);
 		@SuppressWarnings("unchecked")
 		List<Object[]> obj = q.getResultList();
-
 		return obj;
 	}
 
