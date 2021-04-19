@@ -29,12 +29,11 @@ public class JsaByLocationService {
 		responseDto.setStatusCode(200);
 		try {
 			List<JsaDetailsDto> l = jsaByLocationDao.getJsaByLocation(muwi, facility);
-			if (l!=null) {
+			if (l != null) {
 				responseDto.setData(l);
 				responseDto.setMessage("Data displayed successfully");
-			}
-			else
-			responseDto.setMessage("Data not found!");
+			} else
+				responseDto.setMessage("Data not found!");
 
 		} catch (Exception e) {
 			e.printStackTrace();
