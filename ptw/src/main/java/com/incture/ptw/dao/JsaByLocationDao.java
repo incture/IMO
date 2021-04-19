@@ -87,7 +87,7 @@ public class JsaByLocationDao extends BaseDao {
 			jsaDto.setFacilityOrSite((String) rs[6]);
 			jsaDto.setLastUpdatedDate((Date) rs[7]);
 			jsaDto.setApprovedDate((Date) rs[8]);
-			jsaDto.setPermitNumber((String) rs[9]);
+			jsaDto.setPermitNumber( String.valueOf(rs[9]));
 			jsaList.add(jsaDto);
 		}
 		logger.info("new jsaList " + jsaList.toString());

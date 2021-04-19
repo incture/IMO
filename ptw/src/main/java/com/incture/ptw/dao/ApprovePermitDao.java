@@ -1,5 +1,7 @@
 package com.incture.ptw.dao;
 
+import java.math.BigInteger;
+
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -23,8 +25,8 @@ public class ApprovePermitDao extends BaseDao {
 			String sql2 = "select IOP.PTWAPPROVAL_SEQ.NEXTVAL FROM DUMMY";
 			Query q2 = getSession().createNativeQuery(sql2);
 			logger.info("2nd sql : " + sql2);
-			Object res =  (Object) q2.getSingleResult();
-			int serialNumber = (int) res;
+			BigInteger serialNumber =  (BigInteger) q2.getSingleResult();
+			logger.info("serialNumber: "+serialNumber);
 			
 			String sql3 = " INSERT INTO IOP.PTWAPPROVAL VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			Query q3 = getSession().createNativeQuery(sql2);
