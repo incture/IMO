@@ -33,6 +33,7 @@ public class JsaByLocationService {
 				responseDto.setData(l);
 				responseDto.setMessage("Data displayed successfully");
 			}
+			else
 			responseDto.setMessage("Data not found!");
 
 		} catch (Exception e) {
