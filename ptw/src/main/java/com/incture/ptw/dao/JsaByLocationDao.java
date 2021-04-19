@@ -43,7 +43,10 @@ public class JsaByLocationDao extends BaseDao {
 			if (flag == 2) {
 				q.setParameter("facility", facility);
 			}
-			return q.getResultList();
+			List<String> str = q.getResultList();
+			logger.info("Return Statement : " + str);
+			return str;
+			
 		} catch (Exception e) {
 			logger.error("getPermitNumberList" + e.getMessage());
 		}
