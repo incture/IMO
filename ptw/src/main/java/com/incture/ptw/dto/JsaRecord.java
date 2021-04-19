@@ -12,7 +12,7 @@ public class JsaRecord {
 	private String facilityOrSite;
 	private String jsaPermitNumber;
 	private Date lastUpdatedDate;
-	private int permitNumber;
+	private String permitNumber;
 	private String ptwPermitNumber;
 	private String status;
 	private String taskDescription;

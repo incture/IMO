@@ -13,7 +13,7 @@ public class JsaDetailsDto {
 	private List<String> facilityOrSite;
 	private String jsaPermitNumber;
 	private Date lastUpdatedDate;
-	private int permitNumber;
+	private String permitNumber;
 	private List<String> ptwPermitNumber;
 	private String status;
 	private String taskDescription;

@@ -53,9 +53,8 @@ public class JsaByLocationDao extends BaseDao {
 
 	public List<JsaDetailsDto> getJsaByLocation(String muwi, String facility) {
 		List<String> permitNumberList = getPermitNumberList(muwi, facility);
-		logger.info("getpermitnumberlist :"+permitNumberList.toString());
-		if(permitNumberList.isEmpty())
-		{
+		logger.info("getpermitnumberlist :" + permitNumberList.toString());
+		if (permitNumberList.isEmpty()) {
 			return null;
 		}
 		String sql = "select J.JSAPERMITNUMBER, J.TASKDESCRIPTION,J.STATUS,P.PTWPERMITNUMBER, "
@@ -70,7 +69,7 @@ public class JsaByLocationDao extends BaseDao {
 		q.setParameter("list", permitNumberList);
 		@SuppressWarnings("unchecked")
 		List<Object[]> obj = q.getResultList();
-		logger.info("2nd sql output :"+obj);
+		logger.info("2nd sql output :" + obj);
 		List<JsaRecord> jsaList = new ArrayList<JsaRecord>();
 		int objLength = obj.size();
 		for (int i = 0; i < objLength; i++) {
@@ -85,10 +84,10 @@ public class JsaByLocationDao extends BaseDao {
 			jsaDto.setFacilityOrSite((String) rs[6]);
 			jsaDto.setLastUpdatedDate((Date) rs[7]);
 			jsaDto.setApprovedDate((Date) rs[8]);
-			jsaDto.setPermitNumber((Integer) rs[9]);
+			jsaDto.setPermitNumber((String) rs[9]);
 			jsaList.add(jsaDto);
 		}
-		logger.info("new jsaList "+jsaList.toString());
+		logger.info("new jsaList " + jsaList.toString());
 		List<JsaDetailsDto> jsaDetailsDtoList = new ArrayList<JsaDetailsDto>();
 		for (JsaRecord jDto : jsaList) {
 			JsaDetailsDto temp = new JsaDetailsDto();
@@ -116,7 +115,7 @@ public class JsaByLocationDao extends BaseDao {
 				jsaDetailsDtoList.add(temp);
 			}
 		}
-		logger.info("actual output : "+jsaDetailsDtoList);
+		logger.info("actual output : " + jsaDetailsDtoList);
 		return jsaDetailsDtoList;
 	}
 	/*
