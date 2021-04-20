@@ -17,9 +17,5 @@ public class TestController {
 	{
 		return "Hello";
 	}
-	@PostMapping("/forDto")
-	public void get(@RequestBody CreateRequestDto createRequestDto)
-	{
-		System.out.println(createRequestDto);
-	}
+	
 }
