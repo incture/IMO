@@ -13,7 +13,7 @@ import com.incture.ptw.dto.ApprovePermitDto;
 public class ApprovePermitDao extends BaseDao {
 	public Integer approvePermit(ApprovePermitDto approvePermitDto) {
 		try {
-			logger.info("ApprovePermitDto: "+approvePermitDto);
+			logger.info("ApprovePermitDto: " + approvePermitDto);
 			String sql1 = " UPDATE IOP.PTWHEADER SET STATUS=:status where PERMITNUMBER=:permitNumber AND ISCWP=:iscwp AND ISHWP=:ishwp AND ISCSE=:iscse ";
 			Query q1 = getSession().createNativeQuery(sql1);
 			q1.setParameter("status", approvePermitDto.getStatus());
@@ -30,7 +30,11 @@ public class ApprovePermitDao extends BaseDao {
 			BigInteger serialNumber = (BigInteger) q2.getSingleResult();
 			logger.info("serialNumber: " + serialNumber);
 
-			String sql3 = " INSERT INTO IOP.PTWAPPROVAL VALUES (:sNo,:pNo,:cwp,:hwp,:cse,:wsp,:pjwt,:approvedBy,:approvalDate,:cbd,:wsd,:sd,:od,:picName,:picDate,:sName,:sDate)";
+			String sql3 = " INSERT INTO IOP.PTWAPPROVAL(SERIALNO,PERMITNUMBER,ISCWP,ISHWP,ISCSE,"
+					+ "ISWORKSAFETOPERFORM,PREJOBWALKTHROUGHBY,APPROVEDBY,APPROVALDATE,CONTROLBOARDDISTRIBUTION,"
+					+ "WORKSITEDISTRIBUTION,SIMOPSDISTRIBUTION,OTHERDISTRIBUTION,PICNAME,PICDATE,SUPERITENDENTNAME,"
+					+ "SUPERITENDENTDATE) VALUES"
+					+ " (:sNo,:pNo,:cwp,:hwp,:cse,:wsp,:pjwt,:approvedBy,:approvalDate,:cbd,:wsd,:sd,:od,:picName,:picDate,:sName,:sDate)";
 			Query q3 = getSession().createNativeQuery(sql2);
 			q3.setParameter("sNo", serialNumber.intValue());
 			q3.setParameter("pNo", approvePermitDto.getPtwApprovalDto().getPermitNumber());
