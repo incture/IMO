@@ -21,13 +21,13 @@ public class ApprovePermitDao extends BaseDao {
 			q1.setParameter("iscse", approvePermitDto.getPtwApprovalDto().getIsCse());
 			logger.info("1st sql : " + sql1);
 			q1.executeUpdate();
-			
+
 			String sql2 = "select IOP.PTWAPPROVAL_SEQ.NEXTVAL FROM DUMMY";
 			Query q2 = getSession().createNativeQuery(sql2);
 			logger.info("2nd sql : " + sql2);
-			BigInteger serialNumber =  (BigInteger) q2.getSingleResult();
-			logger.info("serialNumber: "+serialNumber);
-			
+			BigInteger serialNumber = (BigInteger) q2.getSingleResult();
+			logger.info("serialNumber: " + serialNumber);
+
 			String sql3 = " INSERT INTO IOP.PTWAPPROVAL VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			Query q3 = getSession().createNativeQuery(sql2);
 			q3.setParameter(1, serialNumber.intValue());
@@ -54,6 +54,7 @@ public class ApprovePermitDao extends BaseDao {
 
 		} catch (Exception e) {
 			logger.error(e.getMessage());
+			e.printStackTrace();
 			return null;
 		}
 	}
