@@ -9,9 +9,9 @@ import lombok.Data;
 public class PermitsByLocDataDto {
 	private String createdBy;
 	private Date createdDate;
-	private int isCwp;
-	private int isHwp;
-	private int isCse;
+	private Byte isCwp;
+	private Byte isHwp;
+	private Byte isCse;
 	private List<String> facilityorsite;
 	private String jsaPermitNumber;
 	private Date lastUpdatedDate;

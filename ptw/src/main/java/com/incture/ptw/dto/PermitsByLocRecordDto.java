@@ -9,9 +9,9 @@ public class PermitsByLocRecordDto {
 	private String jsaPermitNumber;
 	private String ptwPermitNumber;
 	private String createdBy;
-	private int isCwp;
-	private int isHwp;
-	private int isCse;
+	private Byte isCwp;
+	private Byte isHwp;
+	private Byte isCse;
 	private Date createdDate;
 	private String facilityorsite;
 	private String permitNumber;

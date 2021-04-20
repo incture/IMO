@@ -44,16 +44,20 @@ public class PermitsByLocDao extends BaseDao {
 			temp.setJsaPermitNumber((String) d[0]);
 			temp.setPtwPermitNumber((String) d[1]);
 			temp.setCreatedBy((String) d[2]);
-			temp.setIsCwp((int) d[3]);
-			temp.setIsHwp((int) d[4]);
-			temp.setIsCse((int) d[5]);
+			temp.setIsCwp((Byte) d[3]);
+			temp.setIsHwp((Byte) d[4]);
+			temp.setIsCse((Byte) d[5]);
 			temp.setCreatedDate((Date) d[6]);
 			temp.setFacilityorsite((String) d[7]);
-			temp.setPermitNumber((String) d[8]);
+			temp.setPermitNumber(String.valueOf(d[8]));
 			temp.setLastUpdatedDate((Date) d[9]);
 			temp.setStatus((String) d[10]);
 			res.add(temp);
+			logger.info("PermitsByLocDao | getPermitsByLoc | temp " + temp.getCreatedBy() + temp.getFacilityorsite()
+					+ temp.getJsaPermitNumber() + temp.getPermitNumber() + temp.getPtwPermitNumber() + temp.getStatus()
+					+ temp.getIsCse() + temp.getIsCwp() + temp.getIsHwp());
 		}
+		logger.info("PermitsByLocDao | getPermitsByLoc | res  " + res);
 		PermitsByLocDataDto obj = new PermitsByLocDataDto();
 		List<PermitsByLocDataDto> rawData = new ArrayList<PermitsByLocDataDto>();
 		for (int i = 0; i < res.size(); i++) {
@@ -98,40 +102,79 @@ public class PermitsByLocDao extends BaseDao {
 			}
 
 		}
+		logger.info("PermitsByLocDao | getPermitsByLoc | rawData  " + rawData);
 		PermitsByLocInnerDto permitRecord = new PermitsByLocInnerDto();
 		PermitsByLocPayloadDto output = new PermitsByLocPayloadDto();
-		int isCwp, isHwp, isCse;
-		for(int i = 0; i < rawData.size(); i++){
+		Byte isCwp = 0, isHwp = 0, isCse = 0;
+		for (int i = 0; i < rawData.size(); i++) {
 			permitRecord.setJsaPermitNumber(rawData.get(i).getJsaPermitNumber());
 			permitRecord.setPtwPermitNumber(rawData.get(i).getPtwPermitNumber());
 			permitRecord.setCreatedBy(rawData.get(i).getCreatedBy());
-			isCwp = rawData.get(i).getIsCwp();
-			isHwp = rawData.get(i).getIsHwp();
-			isCse = rawData.get(i).getIsCse();
+//			isCwp = rawData.get(i).getIsCwp();
+//			isHwp = rawData.get(i).getIsHwp();
+//			isCse = rawData.get(i).getIsCse();
+			if(rawData.get(i).getIsCwp() != null){
+				isCwp = rawData.get(i).getIsCwp();
+			}
+			if(rawData.get(i).getIsHwp() != null){
+				isHwp = rawData.get(i).getIsHwp();
+			}
+			if(rawData.get(i).getIsCse() == null){
+				isCse = rawData.get(i).getIsCse();
+			}
 			permitRecord.setCreatedDate(rawData.get(i).getCreatedDate());
 			permitRecord.setFacilityorsite(rawData.get(i).getFacilityorsite());
 			permitRecord.setPermitNumber(rawData.get(i).getPermitNumber());
 			permitRecord.setLastUpdatedDate(rawData.get(i).getLastUpdatedDate());
 			permitRecord.setStatus(rawData.get(i).getStatus());
-			
-			if(isCwp == 1){
-				List<PermitsByLocInnerDto> cwpData = output.getCWP();
-				cwpData.add(permitRecord);
-				output.setCWP(cwpData);
+			logger.info("PermitsByLocDao | getPermitsByLoc | permitRecord  " + permitRecord.toString());
+			logger.info("PermitsByLocDao | getPermitsByLoc | isCwp  " + rawData.get(i).getIsCwp() + "isHwp"
+					+ rawData.get(i).getIsHwp() + "isCse" + rawData.get(i).getIsCse());
+			if (isCwp == 1) {
+				logger.info("PermitsByLocDao | getPermitsByLoc | isCwp ==1  " + output.getCWP());
+				if(output.getCWP() == null){
+					List<PermitsByLocInnerDto> cwpData = new ArrayList<PermitsByLocInnerDto>();
+					cwpData.add(permitRecord);
+					output.setCWP(cwpData);
+				}else{
+					List<PermitsByLocInnerDto> cwpData = output.getCWP();
+					cwpData.add(permitRecord);
+					output.setCWP(cwpData);
+				}
+				
+				logger.info("PermitsByLocDao | getPermitsByLoc | output  " + output);
 			}
-			if(isHwp == 1){
-				List<PermitsByLocInnerDto> hwpData = output.getHWP();
-				hwpData.add(permitRecord);
-				output.setHWP(hwpData);
+			if (isHwp == 1) {
+				logger.info("PermitsByLocDao | getPermitsByLoc | isHwp ==1  " + output.getHWP());
+				if(output.getHWP() == null){
+					List<PermitsByLocInnerDto> hwpData = new ArrayList<PermitsByLocInnerDto>();
+					hwpData.add(permitRecord);
+					output.setHWP(hwpData);
+				}else{
+					List<PermitsByLocInnerDto> hwpData = output.getHWP();
+					hwpData.add(permitRecord);
+					output.setHWP(hwpData);
+				}
+				
+				logger.info("PermitsByLocDao | getPermitsByLoc | output  " + output);
 			}
-			if(isCse == 1){
-				List<PermitsByLocInnerDto> cseData = output.getCSE();
-				cseData.add(permitRecord);
-				output.setCSE(cseData);
+			if (isCse == 1) {
+				logger.info("PermitsByLocDao | getPermitsByLoc | isCse ==1  " + output.getCSE());
+				if(output.getCSE() == null){
+					List<PermitsByLocInnerDto> cseData = new ArrayList<PermitsByLocInnerDto>();
+					cseData.add(permitRecord);
+					output.setCSE(cseData);
+				}else{
+					List<PermitsByLocInnerDto> cseData = output.getCSE();
+					cseData.add(permitRecord);
+					output.setCSE(cseData);
+				}
+				
+				logger.info("PermitsByLocDao | getPermitsByLoc | output  " + output);
 			}
 			permitRecord = new PermitsByLocInnerDto();
 		}
-		
+		logger.info("PermitsByLocDao | getPermitsByLoc | output  " + output);
 		return output;
 	}
 
