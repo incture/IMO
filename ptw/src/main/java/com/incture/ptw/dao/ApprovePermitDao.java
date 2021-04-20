@@ -36,7 +36,9 @@ public class ApprovePermitDao extends BaseDao {
 					+ "SUPERITENDENTDATE) VALUES"
 					+ " (:sNo,:pNo,:cwp,:hwp,:cse,:wsp,:pjwt,:approvedBy,:approvalDate,:cbd,:wsd,:sd,:od,:picName,:picDate,:sName,:sDate)";
 			Query q3 = getSession().createNativeQuery(sql2);
-			q3.setParameter("sNo", serialNumber.intValue());
+			int n= 310; 
+			
+			q3.setParameter("sNo", n++);
 			q3.setParameter("pNo", approvePermitDto.getPtwApprovalDto().getPermitNumber());
 			q3.setParameter("cwp", approvePermitDto.getPtwApprovalDto().getIsCwp());
 			q3.setParameter("hwp", approvePermitDto.getPtwApprovalDto().getIsHwp());
