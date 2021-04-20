@@ -8,7 +8,7 @@ import com.incture.ptw.dto.JsaheaderDto;
 
 @Repository
 public class JsaHeaderDao extends BaseDao {
-	private void insertJsaHeader(JsaheaderDto jsaheaderDto){
+	public void insertJsaHeader(JsaheaderDto jsaheaderDto){
 		Query query = getSession().createNativeQuery("INSERT INTO \"IOP\".\"JSAHEADER\" VALUES (?,?,?,?,?,?,?,?,?)");
 		query.setParameter(1, jsaheaderDto.getPermitNumber());
 		query.setParameter(2, jsaheaderDto.getJsaPermitNumber());

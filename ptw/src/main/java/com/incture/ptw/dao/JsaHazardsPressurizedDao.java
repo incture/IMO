@@ -2,8 +2,11 @@ package com.incture.ptw.dao;
 
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+
 import com.incture.ptw.dto.JsaHazardsPressurizedDto;
 
+@Repository
 public class JsaHazardsPressurizedDao extends BaseDao {
 	public void insertJsaHazardsPressurized(JsaHazardsPressurizedDto jsaHazardsPressurizedDto) {
 		Query query = getSession()

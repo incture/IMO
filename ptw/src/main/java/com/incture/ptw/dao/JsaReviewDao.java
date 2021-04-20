@@ -1,8 +1,12 @@
 package com.incture.ptw.dao;
 
 import javax.persistence.Query;
+
+import org.springframework.stereotype.Repository;
+
 import com.incture.ptw.dto.JsaReviewDto;
 
+@Repository
 public class JsaReviewDao extends BaseDao {
 	public void insertJsaReview(JsaReviewDto jsaReviewDto) {
 		Query query = getSession().createNativeQuery("INSERT INTO \"IOP\".\"JSAREVIEW\" VALUES (?,?,?,?,?,?,?)");

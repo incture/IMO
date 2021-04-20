@@ -1,11 +1,16 @@
 package com.incture.ptw.dao;
 
 import javax.persistence.Query;
+
+import org.springframework.stereotype.Repository;
+
 import com.incture.ptw.dto.JsappeDto;
 
+@Repository
 public class JsappeDao extends BaseDao {
-	private void insertJsappe(JsappeDto jsappeDto){
-		Query query = getSession().createNativeQuery("INSERT INTO \"IOP\".\"JSA_PPE\" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+	private void insertJsappe(JsappeDto jsappeDto) {
+		Query query = getSession().createNativeQuery(
+				"INSERT INTO \"IOP\".\"JSA_PPE\" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 		query.setParameter(1, jsappeDto.getPermitNumber());
 		query.setParameter(2, jsappeDto.getHardHat());
 		query.setParameter(3, jsappeDto.getSafetyBoot());
@@ -31,8 +36,7 @@ public class JsappeDao extends BaseDao {
 		query.setParameter(23, jsappeDto.getNeedFoulWeatherGear());
 		query.setParameter(24, jsappeDto.getHaveConsentOfTaskLeader());
 		query.setParameter(25, jsappeDto.getCompanyOfTaskLeader());
-		query.executeUpdate();		
-	} 
-
+		query.executeUpdate();
+	}
 
 }

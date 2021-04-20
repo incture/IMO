@@ -1,8 +1,12 @@
 package com.incture.ptw.dao;
 
 import javax.persistence.Query;
+
+import org.springframework.stereotype.Repository;
+
 import com.incture.ptw.dto.PtwPeopleDto;
 
+@Repository
 public class PtwPeopleDao extends BaseDao {
 	public void insertPtwPeople(PtwPeopleDto ptwPeopleDto) {
 		Query query = getSession().createNativeQuery("INSERT INTO \"IOP\".\"PTWPEOPLE\" VALUES (?,?,?,?,?,?,?,?,?)");

@@ -2,8 +2,11 @@ package com.incture.ptw.dao;
 
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+
 import com.incture.ptw.dto.JsaHazardsVisibilityDto;
 
+@Repository
 public class JsaHazardsVisibilityDao extends BaseDao {
 	public void insertJsaHazardsVisibility(JsaHazardsVisibilityDto jsaHazardsVisibilityDto) {
 		Query query = getSession()
