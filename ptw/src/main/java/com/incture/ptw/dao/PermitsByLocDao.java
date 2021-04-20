@@ -105,7 +105,7 @@ public class PermitsByLocDao extends BaseDao {
 		logger.info("PermitsByLocDao | getPermitsByLoc | rawData  " + rawData);
 		PermitsByLocInnerDto permitRecord = new PermitsByLocInnerDto();
 		PermitsByLocPayloadDto output = new PermitsByLocPayloadDto();
-		Byte isCwp = 0, isHwp = 0, isCse = 0;
+		
 		for (int i = 0; i < rawData.size(); i++) {
 			permitRecord.setJsaPermitNumber(rawData.get(i).getJsaPermitNumber());
 			permitRecord.setPtwPermitNumber(rawData.get(i).getPtwPermitNumber());
@@ -113,13 +113,14 @@ public class PermitsByLocDao extends BaseDao {
 //			isCwp = rawData.get(i).getIsCwp();
 //			isHwp = rawData.get(i).getIsHwp();
 //			isCse = rawData.get(i).getIsCse();
+			Byte isCwp = 0, isHwp = 0, isCse = 0;
 			if(rawData.get(i).getIsCwp() != null){
 				isCwp = rawData.get(i).getIsCwp();
 			}
 			if(rawData.get(i).getIsHwp() != null){
 				isHwp = rawData.get(i).getIsHwp();
 			}
-			if(rawData.get(i).getIsCse() == null){
+			if(rawData.get(i).getIsCse() != null){
 				isCse = rawData.get(i).getIsCse();
 			}
 			permitRecord.setCreatedDate(rawData.get(i).getCreatedDate());
@@ -142,7 +143,7 @@ public class PermitsByLocDao extends BaseDao {
 					output.setCWP(cwpData);
 				}
 				
-				logger.info("PermitsByLocDao | getPermitsByLoc | output  " + output);
+				logger.info("PermitsByLocDao | getPermitsByLoc | output1  " + output);
 			}
 			if (isHwp == 1) {
 				logger.info("PermitsByLocDao | getPermitsByLoc | isHwp ==1  " + output.getHWP());
@@ -156,7 +157,7 @@ public class PermitsByLocDao extends BaseDao {
 					output.setHWP(hwpData);
 				}
 				
-				logger.info("PermitsByLocDao | getPermitsByLoc | output  " + output);
+				logger.info("PermitsByLocDao | getPermitsByLoc | output1  " + output);
 			}
 			if (isCse == 1) {
 				logger.info("PermitsByLocDao | getPermitsByLoc | isCse ==1  " + output.getCSE());
@@ -170,11 +171,11 @@ public class PermitsByLocDao extends BaseDao {
 					output.setCSE(cseData);
 				}
 				
-				logger.info("PermitsByLocDao | getPermitsByLoc | output  " + output);
+				logger.info("PermitsByLocDao | getPermitsByLoc | output1  " + output);
 			}
 			permitRecord = new PermitsByLocInnerDto();
 		}
-		logger.info("PermitsByLocDao | getPermitsByLoc | output  " + output);
+		logger.info("PermitsByLocDao | getPermitsByLoc | Finaloutput  " + output);
 		return output;
 	}
 
