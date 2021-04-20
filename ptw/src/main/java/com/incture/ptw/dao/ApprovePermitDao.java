@@ -30,7 +30,7 @@ public class ApprovePermitDao extends BaseDao {
 			
 			String sql3 = " INSERT INTO IOP.PTWAPPROVAL VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			Query q3 = getSession().createNativeQuery(sql2);
-			q3.setParameter(1, serialNumber);
+			q3.setParameter(1, serialNumber.intValue());
 			q3.setParameter(2, approvePermitDto.getPtwApprovalDto().getPermitNumber());
 			q3.setParameter(3, approvePermitDto.getPtwApprovalDto().getIsCwp());
 			q3.setParameter(4, approvePermitDto.getPtwApprovalDto().getIsHwp());
