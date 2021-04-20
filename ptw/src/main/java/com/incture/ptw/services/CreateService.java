@@ -154,6 +154,111 @@ public class CreateService {
 			if (createRequestDto.getJsaheaderDto() != null) {
 				jsaHeaderDao.insertJsaHeader(createRequestDto.getJsaheaderDto());
 			}
+			if (createRequestDto.getJsaReviewDto() != null) {
+
+			}
+			if (createRequestDto.getJsaRiskAssesmentDto() != null) {
+
+			}
+			if (createRequestDto.getJsappeDto() != null) {
+
+			}
+			if (createRequestDto.getPtwPeopleDto() != null) {
+
+			}
+			if (createRequestDto.getJsaHazardsPressurizedDto() != null) {
+
+			}
+			if (createRequestDto.getJsaHazardsVisibilityDto() != null) {
+
+			}
+			if (createRequestDto.getJsaHazardsPersonnelDto() != null) {
+
+			}
+			if (createRequestDto.getJsaHazardscseDto() != null) {
+
+			}
+			if (createRequestDto.getJsaHazardsSimultaneousDto() != null) {
+
+			}
+			if (createRequestDto.getJsaHazardsIgnitionDto() != null) {
+
+			}
+			if (createRequestDto.getJsaHazardsSubstancesDto() != null) {
+
+			}
+			if (createRequestDto.getJsaHazardsSpillsDto() != null) {
+
+			}
+			if (createRequestDto.getJsaHazardsWeatherDto() != null) {
+
+			}
+			if (createRequestDto.getJsaHazardsHighNoiseDto() != null) {
+
+			}
+			if (createRequestDto.getJsaHazardsDroppedDto() != null) {
+
+			}
+			if (createRequestDto.getJsaHazardsLiftingDto() != null) {
+
+			}
+			if (createRequestDto.getJsaHazardsHeightsDto() != null) {
+
+			}
+			if (createRequestDto.getJsaHazardsElectricalDto() != null) {
+
+			}
+			if (createRequestDto.getJsaHazardsMovingDto() != null) {
+
+			}
+			if (createRequestDto.getJsaHazardsManualDto() != null) {
+
+			}
+			if (createRequestDto.getJsaHazardsToolsDto() != null) {
+
+			}
+			if (createRequestDto.getJsaHazardsFallsDto() != null) {
+
+			}
+			if (createRequestDto.getJsaHazardsVoltageDto() != null) {
+
+			}
+			if (createRequestDto.getJsaHazardsExcavationdDto() != null) {
+
+			}
+			if (createRequestDto.getJsaHazardsMobileDto() != null) {
+
+			}
+			if (createRequestDto.getJsaStepsDto() != null) {
+
+			}
+			if (createRequestDto.getJsaStopTriggerDto() != null) {
+
+			}
+			if (createRequestDto.getJsaLocationDto() != null) {
+
+			}
+			if (createRequestDto.getPtwHeaderDto() != null) {
+
+			}
+			if (createRequestDto.getPtwRequiredDocumentDto() != null) {
+
+			}
+			if (createRequestDto.getPtwTestRecordDto() != null) {
+
+			}
+			if (createRequestDto.getPtwTestResultsDto() != null) {
+
+			}
+			if (createRequestDto.getPtwCwpWorkTypeDto() != null) {
+
+			}
+			if (createRequestDto.getPtwHwpWorkTypeDto() != null) {
+
+			}
+			if (createRequestDto.getPtwCseWorkTypeDto() != null) {
+
+			}
 
 			responseDto.setData("Success:   approved succesfully.");
 		} catch (Exception e) {
