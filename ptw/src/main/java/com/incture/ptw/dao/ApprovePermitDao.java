@@ -1,6 +1,7 @@
 package com.incture.ptw.dao;
 
 import java.math.BigInteger;
+import java.util.Date;
 
 import javax.persistence.Query;
 
@@ -12,6 +13,7 @@ import com.incture.ptw.dto.ApprovePermitDto;
 public class ApprovePermitDao extends BaseDao {
 	public Integer approvePermit(ApprovePermitDto approvePermitDto) {
 		try {
+			logger.info("ApprovePermitDto: "+approvePermitDto);
 			String sql1 = " UPDATE IOP.PTWHEADER SET STATUS=:status where PERMITNUMBER=:permitNumber AND ISCWP=:iscwp AND ISHWP=:ishwp AND ISCSE=:iscse ";
 			Query q1 = getSession().createNativeQuery(sql1);
 			q1.setParameter("status", approvePermitDto.getStatus());
@@ -28,25 +30,43 @@ public class ApprovePermitDao extends BaseDao {
 			BigInteger serialNumber = (BigInteger) q2.getSingleResult();
 			logger.info("serialNumber: " + serialNumber);
 
-			String sql3 = " INSERT INTO IOP.PTWAPPROVAL VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			String sql3 = " INSERT INTO IOP.PTWAPPROVAL VALUES (:sNo,:pNo,:cwp,:hwp,:cse,:wsp,:pjwt,:approvedBy,:approvalDate,:cbd,:wsd,:sd,:od,:picName,:picDate,:sName,:sDate)";
 			Query q3 = getSession().createNativeQuery(sql2);
-			q3.setParameter(1, serialNumber.intValue());
-			q3.setParameter(2, approvePermitDto.getPtwApprovalDto().getPermitNumber());
-			q3.setParameter(3, approvePermitDto.getPtwApprovalDto().getIsCwp());
-			q3.setParameter(4, approvePermitDto.getPtwApprovalDto().getIsHwp());
-			q3.setParameter(5, approvePermitDto.getPtwApprovalDto().getIsCse());
-			q3.setParameter(6, approvePermitDto.getPtwApprovalDto().getIsWorkSafeToPerform());
-			q3.setParameter(7, approvePermitDto.getPtwApprovalDto().getPreJobWalkThroughBy());
-			q3.setParameter(8, approvePermitDto.getPtwApprovalDto().getApprovedBy());
-			q3.setParameter(9, approvePermitDto.getPtwApprovalDto().getApprovalDate());
-			q3.setParameter(10, approvePermitDto.getPtwApprovalDto().getControlBoardDistribution());
-			q3.setParameter(11, approvePermitDto.getPtwApprovalDto().getWorkSiteDistribution());
-			q3.setParameter(12, approvePermitDto.getPtwApprovalDto().getSimopsDistribution());
-			q3.setParameter(13, approvePermitDto.getPtwApprovalDto().getOtherDistribution());
-			q3.setParameter(14, approvePermitDto.getPtwApprovalDto().getPicName());
-			q3.setParameter(15, approvePermitDto.getPtwApprovalDto().getPicDate());
-			q3.setParameter(16, approvePermitDto.getPtwApprovalDto().getSuperItendentName());
-			q3.setParameter(17, approvePermitDto.getPtwApprovalDto().getSuperItendentDate());
+			q3.setParameter("sNo", serialNumber.intValue());
+			q3.setParameter("pNo", approvePermitDto.getPtwApprovalDto().getPermitNumber());
+			q3.setParameter("cwp", approvePermitDto.getPtwApprovalDto().getIsCwp());
+			q3.setParameter("hwp", approvePermitDto.getPtwApprovalDto().getIsHwp());
+			q3.setParameter("cse", approvePermitDto.getPtwApprovalDto().getIsCse());
+			q3.setParameter("wsp", approvePermitDto.getPtwApprovalDto().getIsWorkSafeToPerform());
+			q3.setParameter("pjwt", approvePermitDto.getPtwApprovalDto().getPreJobWalkThroughBy());
+			q3.setParameter("approvedBy", approvePermitDto.getPtwApprovalDto().getApprovedBy());
+			if (approvePermitDto.getPtwApprovalDto().getApprovalDate() == null) {
+				Date d1 = new Date();
+				q3.setParameter("approvalDate", d1);
+			} else {
+				q3.setParameter("approvalDate", approvePermitDto.getPtwApprovalDto().getApprovalDate());
+			}
+
+			q3.setParameter("cbd", approvePermitDto.getPtwApprovalDto().getControlBoardDistribution());
+			q3.setParameter("wsd", approvePermitDto.getPtwApprovalDto().getWorkSiteDistribution());
+			q3.setParameter("sd", approvePermitDto.getPtwApprovalDto().getSimopsDistribution());
+			q3.setParameter("od", approvePermitDto.getPtwApprovalDto().getOtherDistribution());
+			q3.setParameter("picName", approvePermitDto.getPtwApprovalDto().getPicName());
+			if (approvePermitDto.getPtwApprovalDto().getPicDate() == null) {
+				Date d2 = new Date();
+				q3.setParameter("picDate", d2);
+			} else {
+				q3.setParameter("picDate", approvePermitDto.getPtwApprovalDto().getPicDate());
+			}
+
+			q3.setParameter("sName", approvePermitDto.getPtwApprovalDto().getSuperItendentName());
+			if (approvePermitDto.getPtwApprovalDto().getSuperItendentDate() == null) {
+				Date d3 = new Date();
+				q3.setParameter("sDate", d3);
+			} else {
+				q3.setParameter("sDate", approvePermitDto.getPtwApprovalDto().getSuperItendentDate());
+			}
+
 			logger.info("3rd sql : " + sql3);
 			q3.executeUpdate();
 
@@ -59,4 +79,4 @@ public class ApprovePermitDao extends BaseDao {
 		}
 	}
 
-}
+};
