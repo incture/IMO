@@ -1625,6 +1625,8 @@ sap.ui.define([
 				}
 			} else {
 				oRoleData = this.getModel("dashBoardModel").getProperty("/userData/resGroupRead");
+				//oRoleData = "IOP_TM_ROC_Catarina,IOP_TM_ROC_WestTilden,IOP_TM_ROC_CentralTilden,IOP_TM_ROC_Karnes";
+				oRoleData="";
 			}
 			if (!this.fieldUserFragment) {
 				this.fieldUserFragment = this._createFragment(oFragmentId, oFragmentName);
@@ -2120,7 +2122,7 @@ sap.ui.define([
 		},
 		getLoggedUserDetails: function (oUserId) {
 			var dashBoardModel = this.getModel("dashBoardModel");
-			var sUrl = "/destination/MurphyCloudIdPDest/service/scim/Users/" + oUserId;
+			var sUrl = "/destination/Incture_tenant/service/scim/Users/" + oUserId;
 			var oModel = new sap.ui.model.json.JSONModel();
 			var that = this;
 			oModel.loadData(sUrl, true, "GET", false, false);
@@ -2133,7 +2135,7 @@ sap.ui.define([
 						var reRole = "";
 						var wwRole = "";
 						var resGroup;
-						var resGroupRead = "";
+						var resGroupRead = "IMO_USER";
 						var potRole = "";
 						var engRole = ""; //AN: #inquire
 						var foremanRole = "";
@@ -2204,7 +2206,7 @@ sap.ui.define([
 								moduleReadOnly.isWorkbenchReadOnly = true;
 							}
 
-							if (groups[i].value === "IOP_ADMIN") { //check if IOPAdmin-OBXEngine
+							if (groups[i].value === "IOP_ADMIN"||groups[i].value==="IMO_USER") { //check if IOPAdmin-OBXEngine
 								isIOPAdmin = true;
 							}
 							if (groups[i].value === "IOP_FOREMAN") { //check if Foreman
@@ -2223,7 +2225,7 @@ sap.ui.define([
 							}
 							if (groups[i].value === "IOP_TM_ROC_Catarina" || groups[i].value === "IOP_TM_ROC_WestTilden" || groups[i].value ===
 								"IOP_TM_ROC_CentralTilden" || groups[i].value === "IOP_TM_ROC_Karnes" || groups[i].value === "IOP_TM_ROC_Montney" || groups[
-									i].value === "IOP_TM_ROC_Kaybob") { //SH: Canada Roles changes
+									i].value === "IOP_TM_ROC_Kaybob"||groups[i].value==="IMO_USER") { //SH: Canada Roles changes //ST:Adding IMO role
 								resGroup = groups[i].value;
 								sGroup = resGroup; //AN: #pw
 								isROC = true;
@@ -3256,6 +3258,7 @@ sap.ui.define([
 
 		_bindInitialLeftPanel: function () {
 			var sUrl = "/taskmanagementRest/location/getLocation";
+			//var sUrl="https://imob0ot37y8l6.hana.ondemand.com/TaskManagement_Rest/imo/location/getLocation";
 			var oInitialDataPayload;
 			var oHirarchyModel = this.getModel("dashBoardModel").getProperty("/hierarchyDetails");
 			var isCanada = this.getModel("dashBoardModel").getProperty("/userData/hasCanadaRole");
@@ -3290,10 +3293,15 @@ sap.ui.define([
 					};
 					this.getModel("dashBoardModel").setProperty("/currentLocationInHierarchy", "EFS");
 				} else {
-					oInitialDataPayload = {
+					/*oInitialDataPayload = {
 						"locationType": "Base",
 						"navigate": "CHILD",
 						"location": "MUR-CA"
+					};*/
+					oInitialDataPayload = {
+						"locationType": "Base",
+						"navigate": "",
+						"location": ""
 					};
 					this.getModel("dashBoardModel").setProperty("/currentLocationInHierarchy", "CA");
 				}

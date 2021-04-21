@@ -25,7 +25,7 @@
       "path": "/taskmanagementRest",
       "target": {
         "type": "destination",
-        "name": "JavaAPI_Dest"
+        "name": "taskmanagementRest"
       },
       "description": "Destination for Murphy Task Management"
     },
@@ -60,10 +60,10 @@
       }
     },
     {
-      "path": "/destination/MurphyCloudIdPDest",
+      "path": "/destination/Incture_tenant",
       "target": {
         "type": "destination",
-        "name": "UserManagement_Dest",
+        "name": "Incture_tenant",
         "entryPath": "/"
       },
       "description": "Used for Murphy IdP APIs"

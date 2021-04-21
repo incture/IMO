@@ -90,7 +90,10 @@ sap.ui.define([
 						valueIopUserRole: "ROC_Montney"
 					}, {
 						keyIopUserRole: "IOP_TM_ROC_Kaybob",
-						valueIopUserRole: "ROC_Kaybob"
+						valueIopUserRole: "ROC_Kaybob"       //ST:Adding IMO_USER for test
+					}, {
+						keyIopUserRole: "IMO_USER",
+						valueIopUserRole: "IMO_USER"
 					}];
 				}
 				if (oUserData.isPOT) {
