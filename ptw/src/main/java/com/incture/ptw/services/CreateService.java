@@ -179,85 +179,85 @@ public class CreateService {
 				jsaHazardsCseDao.insertJsaHazardsCse(createRequestDto.getJsaHazardscseDto());
 			}
 			if (createRequestDto.getJsaHazardsSimultaneousDto() != null) {
-				jsaHazardsSimultaneousDao.insertSim
+				jsaHazardsSimultaneousDao.insertJsaHazardsSimultaneous(createRequestDto.getJsaHazardsSimultaneousDto());
 			}
 			if (createRequestDto.getJsaHazardsIgnitionDto() != null) {
-
+				jsaHazardsIgnitionDao.insertJsaHazardsIgnition(createRequestDto.getJsaHazardsIgnitionDto());
 			}
 			if (createRequestDto.getJsaHazardsSubstancesDto() != null) {
-
+				jsaHazardsSubstancesDao.insertJsaHazardsSubstances(createRequestDto.getJsaHazardsSubstancesDto());
 			}
 			if (createRequestDto.getJsaHazardsSpillsDto() != null) {
-
+				jsaHazardsSpillsDao.insertJsaHazardsSpills(createRequestDto.getJsaHazardsSpillsDto());
 			}
 			if (createRequestDto.getJsaHazardsWeatherDto() != null) {
-
+				jsaHazardsWeatherDao.insertJsaHazardsWeather(createRequestDto.getJsaHazardsWeatherDto());
 			}
 			if (createRequestDto.getJsaHazardsHighNoiseDto() != null) {
-
+				jsaHazardsHighNoiseDao.insertJsaHazardsHighNoise(createRequestDto.getJsaHazardsHighNoiseDto());
 			}
 			if (createRequestDto.getJsaHazardsDroppedDto() != null) {
-
+				jsaHazardsDroppedDao.insertJsaHazardsDropped(createRequestDto.getJsaHazardsDroppedDto());
 			}
 			if (createRequestDto.getJsaHazardsLiftingDto() != null) {
-
+				jsaHazardsLiftingDao.insertJsaHazardsLifting(createRequestDto.getJsaHazardsLiftingDto());
 			}
 			if (createRequestDto.getJsaHazardsHeightsDto() != null) {
-
+				jsaHazardsHeightsDao.insertJsaHazardsHeights(createRequestDto.getJsaHazardsHeightsDto());
 			}
 			if (createRequestDto.getJsaHazardsElectricalDto() != null) {
-
+				jsaHazardsElectricalDao.insertJsaHazardsElectricalDto(createRequestDto.getJsaHazardsElectricalDto());
 			}
 			if (createRequestDto.getJsaHazardsMovingDto() != null) {
-
+				jsaHazardsMovingDao.insertJsaHazardsMoving(createRequestDto.getJsaHazardsMovingDto());
 			}
 			if (createRequestDto.getJsaHazardsManualDto() != null) {
-
+				jsaHazardsManualDao.insertJsaHazardsManual(createRequestDto.getJsaHazardsManualDto());
 			}
 			if (createRequestDto.getJsaHazardsToolsDto() != null) {
-
+				jsaHazardsToolsDao.insertJsaHazardsTools(createRequestDto.getJsaHazardsToolsDto());
 			}
 			if (createRequestDto.getJsaHazardsFallsDto() != null) {
-
+				jsaHazardsFallsDao.insertJsaHazardsFalls(createRequestDto.getJsaHazardsFallsDto());
 			}
 			if (createRequestDto.getJsaHazardsVoltageDto() != null) {
-
+				jsaHazardsVoltageDao.insertJsaHazardsVoltage(createRequestDto.getJsaHazardsVoltageDto());
 			}
 			if (createRequestDto.getJsaHazardsExcavationdDto() != null) {
-
+				jsaHazardsExcavationdDao.insertJsaHazardsExcavationd(createRequestDto.getJsaHazardsExcavationdDto());
 			}
 			if (createRequestDto.getJsaHazardsMobileDto() != null) {
-
+				jsaHazardsMobileDao.insertJsaHazardsMobile(createRequestDto.getJsaHazardsMobileDto());
 			}
 			if (createRequestDto.getJsaStepsDto() != null) {
-
+				jsaStepsDao.insertJsaSteps(createRequestDto.getJsaStepsDto());
 			}
 			if (createRequestDto.getJsaStopTriggerDto() != null) {
-
+				jsaStopTriggerDao.insertJsaStopTrigger(createRequestDto.getJsaStopTriggerDto());
 			}
 			if (createRequestDto.getJsaLocationDto() != null) {
-
+				jsaLocationDao.insertJsaLocation(createRequestDto.getJsaLocationDto());
 			}
 			if (createRequestDto.getPtwHeaderDto() != null) {
-
+				ptwHeaderDao.insertPtwHeader(createRequestDto.getPtwHeaderDto());
 			}
 			if (createRequestDto.getPtwRequiredDocumentDto() != null) {
-
+				ptwRequiredDocumentDao.insertPtwRequiredDocument(createRequestDto.getPtwRequiredDocumentDto());
 			}
 			if (createRequestDto.getPtwTestRecordDto() != null) {
-
+				ptwTestRecordDao.insertPtwTestRecord(createRequestDto.getPtwTestRecordDto());
 			}
 			if (createRequestDto.getPtwTestResultsDto() != null) {
-
+				ptwTestResultsDao.insertPtwTestResults(createRequestDto.getPtwTestResultsDto());
 			}
 			if (createRequestDto.getPtwCwpWorkTypeDto() != null) {
-
+				ptwCwpWorkTypeDao.insertPtwCwpWorkType(createRequestDto.getPtwCwpWorkTypeDto());
 			}
 			if (createRequestDto.getPtwHwpWorkTypeDto() != null) {
-
+				ptwHwpWorkTypeDao.insertPtwHwpWorkType(createRequestDto.getPtwHwpWorkTypeDto());
 			}
 			if (createRequestDto.getPtwCseWorkTypeDto() != null) {
-
+				ptwCseWorkTypeDao.insertPtwCseWorkType(createRequestDto.getPtwCseWorkTypeDto());
 			}
 
 			responseDto.setData("Success:   approved succesfully.");
