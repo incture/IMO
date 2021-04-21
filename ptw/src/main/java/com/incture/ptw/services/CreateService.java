@@ -70,8 +70,6 @@ public class CreateService {
 	@Autowired
 	private JsaHeaderDao jsaHeaderDao;
 	@Autowired
-	private PtwCwpWorkTypeDao ptwCwpWorkTypeDao;
-	@Autowired
 	private JsaReviewDao jsaReviewDao;
 	@Autowired
 	private JsaRiskAssessmentDao jsaRiskAssessmentDao;
@@ -136,13 +134,11 @@ public class CreateService {
 	@Autowired
 	private PtwTestResultsDao ptwTestResultsDao;
 	@Autowired
-	private PtwCwpWorkTypeDao ptWorkTypeDao;
+	private PtwCwpWorkTypeDao ptwCwpWorkTypeDao;
 	@Autowired
 	private PtwHwpWorkTypeDao ptwHwpWorkTypeDao;
 	@Autowired
 	private PtwCseWorkTypeDao ptwCseWorkTypeDao;
-	@Autowired
-	private JsaHeaderDao jsHeaderDao;
 
 	public ResponseDto createService(CreateRequestDto createRequestDto) {
 		logger.info("CreateService || createService || createDto: " + createRequestDto);
