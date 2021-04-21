@@ -84,7 +84,7 @@ public class CreateService {
 	@Autowired
 	private JsaHazardsVisibilityDao jsaHazardsVisibilityDao;
 	@Autowired
-	private JsaHazardsPersonnelDao jsaHazardsPersonnel;
+	private JsaHazardsPersonnelDao jsaHazardsPersonnelDao;
 	@Autowired
 	private JsaHazardsCseDao jsaHazardsCseDao;
 	@Autowired
@@ -155,31 +155,31 @@ public class CreateService {
 				jsaHeaderDao.insertJsaHeader(createRequestDto.getJsaheaderDto());
 			}
 			if (createRequestDto.getJsaReviewDto() != null) {
-
+				jsaReviewDao.insertJsaReview(createRequestDto.getJsaReviewDto());
 			}
 			if (createRequestDto.getJsaRiskAssesmentDto() != null) {
-
+				jsaRiskAssessmentDao.insertJsaRiskAssessment(createRequestDto.getJsaRiskAssesmentDto());
 			}
 			if (createRequestDto.getJsappeDto() != null) {
-
+				jsappeDao.insertJsappe(createRequestDto.getJsappeDto());
 			}
 			if (createRequestDto.getPtwPeopleDto() != null) {
-
+				ptwPeopleDao.insertPtwPeople(createRequestDto.getPtwPeopleDto());
 			}
 			if (createRequestDto.getJsaHazardsPressurizedDto() != null) {
-
+				jsaHazardsPressurizedDao.insertJsaHazardsPressurized(createRequestDto.getJsaHazardsPressurizedDto());
 			}
 			if (createRequestDto.getJsaHazardsVisibilityDto() != null) {
-
+				jsaHazardsVisibilityDao.insertJsaHazardsVisibility(createRequestDto.getJsaHazardsVisibilityDto());
 			}
 			if (createRequestDto.getJsaHazardsPersonnelDto() != null) {
-
+				jsaHazardsPersonnelDao.insertJsaHazardsPersonnel(createRequestDto.getJsaHazardsPersonnelDto());
 			}
 			if (createRequestDto.getJsaHazardscseDto() != null) {
-
+				jsaHazardsCseDao.insertJsaHazardsCse(createRequestDto.getJsaHazardscseDto());
 			}
 			if (createRequestDto.getJsaHazardsSimultaneousDto() != null) {
-
+				jsaHazardsSimultaneousDao.insertSim
 			}
 			if (createRequestDto.getJsaHazardsIgnitionDto() != null) {
 
