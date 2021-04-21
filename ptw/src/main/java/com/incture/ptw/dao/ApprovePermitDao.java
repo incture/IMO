@@ -5,12 +5,16 @@ import java.util.Date;
 
 import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.ptw.dto.ApprovePermitDto;
 
 @Repository("ApprovePermitDao")
 public class ApprovePermitDao extends BaseDao {
+	@Autowired
+	private KeyGeneratorDao keyGeneratorDao;
+
 	public Integer approvePermit(ApprovePermitDto approvePermitDto) {
 		try {
 			logger.info("ApprovePermitDto: " + approvePermitDto);
@@ -23,11 +27,7 @@ public class ApprovePermitDao extends BaseDao {
 			q1.setParameter("iscse", approvePermitDto.getPtwApprovalDto().getIsCse());
 			logger.info("1st sql : " + sql1);
 			q1.executeUpdate();
-
-			String sql2 = "select IOP.PTWAPPROVAL_SEQ.NEXTVAL FROM DUMMY";
-			Query q2 = getSession().createNativeQuery(sql2);
-			logger.info("2nd sql : " + sql2);
-			BigInteger serialNumber = (BigInteger) q2.getSingleResult();
+			BigInteger serialNumber = keyGeneratorDao.getSerialNo();
 			logger.info("serialNumber: " + serialNumber);
 
 			String sql3 = " INSERT INTO IOP.PTWAPPROVAL(SERIALNO,PERMITNUMBER,ISCWP,ISHWP,ISCSE,"
@@ -35,10 +35,9 @@ public class ApprovePermitDao extends BaseDao {
 					+ "WORKSITEDISTRIBUTION,SIMOPSDISTRIBUTION,OTHERDISTRIBUTION,PICNAME,PICDATE,SUPERITENDENTNAME,"
 					+ "SUPERITENDENTDATE) VALUES"
 					+ " (:sNo,:pNo,:cwp,:hwp,:cse,:wsp,:pjwt,:approvedBy,:approvalDate,:cbd,:wsd,:sd,:od,:picName,:picDate,:sName,:sDate)";
-			Query q3 = getSession().createNativeQuery(sql2);
-			int n= 310; 
-			
-			q3.setParameter("sNo", n++);
+			Query q3 = getSession().createNativeQuery(sql3);
+
+			q3.setParameter("sNo", serialNumber);
 			q3.setParameter("pNo", approvePermitDto.getPtwApprovalDto().getPermitNumber());
 			q3.setParameter("cwp", approvePermitDto.getPtwApprovalDto().getIsCwp());
 			q3.setParameter("hwp", approvePermitDto.getPtwApprovalDto().getIsHwp());
@@ -73,7 +72,7 @@ public class ApprovePermitDao extends BaseDao {
 				q3.setParameter("sDate", approvePermitDto.getPtwApprovalDto().getSuperItendentDate());
 			}
 
-			logger.info("3rd sql : " + sql3);
+			logger.info("2nd sql : " + sql3);
 			q3.executeUpdate();
 
 			return approvePermitDto.getPtwApprovalDto().getPermitNumber();
