@@ -27,7 +27,7 @@ public class ApprovePermitDao extends BaseDao {
 			q1.setParameter("iscse", approvePermitDto.getPtwApprovalDto().getIsCse());
 			logger.info("1st sql : " + sql1);
 			q1.executeUpdate();
-			BigInteger serialNumber = keyGeneratorDao.getSerialNo();
+			BigInteger serialNumber = keyGeneratorDao.getPtwApprovalSerialNo();
 			logger.info("serialNumber: " + serialNumber);
 
 			String sql3 = " INSERT INTO IOP.PTWAPPROVAL(SERIALNO,PERMITNUMBER,ISCWP,ISHWP,ISCSE,"
