@@ -16,7 +16,7 @@ public class JsaReviewDao extends BaseDao {
 			query.setParameter(3, jsaReviewDto.getApprovedBy());
 			query.setParameter(4, jsaReviewDto.getApprovedDate());
 			query.setParameter(5, jsaReviewDto.getLastUpdatedBy());
-			query.setParameter(6, jsaReviewDto.getLastUpdatedDate());
+			query.setParameter(6, jsaReviewDto.getCreatedDate());
 			query.setParameter(7, jsaReviewDto.getCreatedDate());
 			query.executeUpdate();
 		} catch (Exception e) {

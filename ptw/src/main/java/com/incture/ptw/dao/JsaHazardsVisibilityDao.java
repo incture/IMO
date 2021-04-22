@@ -11,7 +11,7 @@ public class JsaHazardsVisibilityDao extends BaseDao {
 	public void insertJsaHazardsVisibility(String permitNumber, JsaHazardsVisibilityDto jsaHazardsVisibilityDto) {
 		Query query = getSession()
 				.createNativeQuery("INSERT INTO \"IOP\".\"JSAHAZARDSVISIBILITY\" VALUES (?,?,?,?,?,?)");
-		query.setParameter(1, jsaHazardsVisibilityDto.getPermitNumber());
+		query.setParameter(1, permitNumber);
 		query.setParameter(2, jsaHazardsVisibilityDto.getPoorLighting());
 		query.setParameter(3, jsaHazardsVisibilityDto.getAlternateLighting());
 		query.setParameter(4, jsaHazardsVisibilityDto.getWaitUntilVisibilityImprove());
