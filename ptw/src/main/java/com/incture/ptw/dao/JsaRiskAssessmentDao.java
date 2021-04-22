@@ -8,12 +8,19 @@ import com.incture.ptw.dto.JsaRiskAssesmentDto;
 
 @Repository
 public class JsaRiskAssessmentDao extends BaseDao {
-	public void insertJsaRiskAssessment(String permitNumber,JsaRiskAssesmentDto jsaRiskAssesmentDto) {
-		Query query = getSession().createNativeQuery("INSERT INTO \"IOP\".\"JSARISKASSESMENT\" VALUES (?,?,?)");
-		query.setParameter(1, permitNumber);
-		query.setParameter(2, jsaRiskAssesmentDto.getMustModifyExistingWorkPractice());
-		query.setParameter(3, jsaRiskAssesmentDto.getHasContinuedRisk());
-		query.executeUpdate();
+
+	public void insertJsaRiskAssessment(String permitNumber, JsaRiskAssesmentDto jsaRiskAssesmentDto) {
+		try {
+			String sql = "INSERT INTO \"IOP\".\"JSARISKASSESMENT\" VALUES (?,?,?)";
+			Query query = getSession().createNativeQuery(sql);
+			logger.info("sql: " + sql);
+			query.setParameter(1, permitNumber);
+			query.setParameter(2, jsaRiskAssesmentDto.getMustModifyExistingWorkPractice());
+			query.setParameter(3, jsaRiskAssesmentDto.getHasContinuedRisk());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
 	}
 
 }

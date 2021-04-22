@@ -13,18 +13,24 @@ public class PtwPeopleDao extends BaseDao {
 	private KeyGeneratorDao keyGeneratorDao;
 
 	public void insertPtwPeople(String permitNumber,PtwPeopleDto ptwPeopleDto) {
-		Query query = getSession().createNativeQuery("INSERT INTO \"IOP\".\"PTWPEOPLE\" VALUES (?,?,?,?,?,?,?,?,?)");
-		query.setParameter(1, keyGeneratorDao.getSerialNo());
-		query.setParameter(2,permitNumber);
-		query.setParameter(3, ptwPeopleDto.getFirstName());
-		query.setParameter(4, ptwPeopleDto.getLastName());
-		query.setParameter(5, ptwPeopleDto.getContactNumber());
-		query.setParameter(6, ptwPeopleDto.getHasSignedJsa());
-		query.setParameter(7, ptwPeopleDto.getHasSignedCwp());
-		query.setParameter(8, ptwPeopleDto.getHasSignedHwp());
-		query.setParameter(9, ptwPeopleDto.getHasSignedCse());
-
-		query.executeUpdate();
+		try{
+			String sql ="INSERT INTO \"IOP\".\"PTWPEOPLE\" VALUES (?,?,?,?,?,?,?,?,?)";
+			Query query = getSession().createNativeQuery(sql);
+			logger.info("sql: " + sql);
+			query.setParameter(1, keyGeneratorDao.getSerialNo());
+			query.setParameter(2,permitNumber);
+			query.setParameter(3, ptwPeopleDto.getFirstName());
+			query.setParameter(4, ptwPeopleDto.getLastName());
+			query.setParameter(5, ptwPeopleDto.getContactNumber());
+			query.setParameter(6, ptwPeopleDto.getHasSignedJsa());
+			query.setParameter(7, ptwPeopleDto.getHasSignedCwp());
+			query.setParameter(8, ptwPeopleDto.getHasSignedHwp());
+			query.setParameter(9, ptwPeopleDto.getHasSignedCse());
+			query.executeUpdate();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		
 	}
 
 }

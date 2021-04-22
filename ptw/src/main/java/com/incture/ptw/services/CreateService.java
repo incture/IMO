@@ -174,10 +174,10 @@ public class CreateService {
 						createRequestDto.getJsaHazardsVisibilityDto());
 			}
 			if (createRequestDto.getJsaHazardsPersonnelDto() != null) {
-				jsaHazardsPersonnelDao.insertJsaHazardsPersonnel(createRequestDto.getJsaHazardsPersonnelDto());
+				jsaHazardsPersonnelDao.insertJsaHazardsPersonnel(permitNumber,createRequestDto.getJsaHazardsPersonnelDto());
 			}
 			if (createRequestDto.getJsaHazardscseDto() != null) {
-				jsaHazardsCseDao.insertJsaHazardsCse(createRequestDto.getJsaHazardscseDto());
+				jsaHazardsCseDao.insertJsaHazardsCse(permitNumber,createRequestDto.getJsaHazardscseDto());
 			}
 			if (createRequestDto.getJsaHazardsSimultaneousDto() != null) {
 				jsaHazardsSimultaneousDao.insertJsaHazardsSimultaneous(permitNumber,
@@ -306,8 +306,10 @@ public class CreateService {
 			if (createRequestDto.getPtwCseWorkTypeDto() != null && isCse == true) {
 				ptwCseWorkTypeDao.insertPtwCseWorkType(permitNumber, createRequestDto.getPtwCseWorkTypeDto());
 			}
-
-			responseDto.setData("Success:   approved succesfully.");
+			createServiceResponseDto.setJsaPermitNumber("JSA"+permitNumber);
+            responseDto.setData(createServiceResponseDto);
+            responseDto.setMessage("JSA "+permitNumber+"  created successfully");
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error("CreateService || createService: " + e.getMessage());

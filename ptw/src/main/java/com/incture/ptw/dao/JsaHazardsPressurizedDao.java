@@ -10,8 +10,9 @@ import com.incture.ptw.dto.JsaHazardsPressurizedDto;
 public class JsaHazardsPressurizedDao extends BaseDao {
 	public void insertJsaHazardsPressurized(String permitNumber, JsaHazardsPressurizedDto jsaHazardsPressurizedDto) {
 		try {
-			Query query = getSession()
-					.createNativeQuery("INSERT INTO \"IOP\".\"JSAHAZARDSPRESSURIZED\" VALUES (?,?,?,?,?,?,?,?)");
+			String sql = "INSERT INTO \"IOP\".\"JSAHAZARDSPRESSURIZED\" VALUES (?,?,?,?,?,?,?,?)";
+			Query query = getSession().createNativeQuery(sql);
+			logger.info("sql: " + sql);
 			query.setParameter(1, permitNumber);
 			query.setParameter(2, jsaHazardsPressurizedDto.getPresurizedEquipment());
 			query.setParameter(3, jsaHazardsPressurizedDto.getPerformIsolation());

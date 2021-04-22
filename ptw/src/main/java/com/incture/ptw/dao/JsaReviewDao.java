@@ -10,7 +10,9 @@ import com.incture.ptw.dto.JsaReviewDto;
 public class JsaReviewDao extends BaseDao {
 	public void insertJsaReview(String permitNumber, JsaReviewDto jsaReviewDto) {
 		try {
-			Query query = getSession().createNativeQuery("INSERT INTO \"IOP\".\"JSAREVIEW\" VALUES (?,?,?,?,?,?,?)");
+			String sql ="INSERT INTO \"IOP\".\"JSAREVIEW\" VALUES (?,?,?,?,?,?,?)";
+			Query query = getSession().createNativeQuery(sql);
+			logger.info("sql: "+sql);
 			query.setParameter(1, permitNumber);
 			query.setParameter(2, jsaReviewDto.getCreatedBy());
 			query.setParameter(3, jsaReviewDto.getApprovedBy());
