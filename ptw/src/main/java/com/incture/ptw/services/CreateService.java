@@ -132,6 +132,9 @@ public class CreateService {
 		responseDto.setStatusCode(200);
 		try {
 			String permitNumber = keyGeneratorDao.getPermitNumber();
+			boolean isCwp=false;
+			boolean isCse=false;
+			boolean isHwp=false;
 			if (createRequestDto.getJsaheaderDto() != null) {
 				jsaHeaderDao.insertJsaHeader(permitNumber, createRequestDto.getJsaheaderDto());
 			}
@@ -225,7 +228,22 @@ public class CreateService {
 				jsaLocationDao.insertJsaLocation(permitNumber,createRequestDto.getJsaLocationDto());
 			}
 			if (createRequestDto.getPtwHeaderDto() != null) {
-				ptwHeaderDao.insertPtwHeader(permitNumber,createRequestDto.getPtwHeaderDto());
+				String ptwHeader="" ;
+				if (createRequestDto.getPtwHeaderDto().getIsCwp() == 1) {
+					ptwHeader = "CWP" + permitNumber;
+					isCwp=true;
+					//output.ptwPermitNumber.push(ptwHeader); // PTW Numbers to be added to output.
+				
+				} else if (createRequestDto.getPtwHeaderDto().getIsHwp() == 1) {
+					ptwHeader = "HWP" + permitNumber;
+					//output.ptwPermitNumber.push(ptwHeader); // PTW Numbers to be added to output.
+					isHwp = true; 
+				} else if (createRequestDto.getPtwHeaderDto().getIsCse() == 1) {
+					ptwHeader = "CSE" + permitNumber;
+					//output.ptwPermitNumber.push(ptwHeader); // PTW Numbers to be added to output.
+					isCse = true; 
+				}
+				ptwHeaderDao.insertPtwHeader(permitNumber,ptwHeader,createRequestDto.getPtwHeaderDto());
 			}
 			if (createRequestDto.getPtwRequiredDocumentDto() != null) {
 				ptwRequiredDocumentDao.insertPtwRequiredDocument(permitNumber,createRequestDto.getPtwRequiredDocumentDto());
@@ -236,13 +254,13 @@ public class CreateService {
 			if (createRequestDto.getPtwTestResultsDto() != null) {
 				ptwTestResultsDao.insertPtwTestResults(permitNumber,createRequestDto.getPtwTestResultsDto());
 			}
-			if (createRequestDto.getPtwCwpWorkTypeDto() != null) {
+			if (createRequestDto.getPtwCwpWorkTypeDto() != null && isCwp==true)  {
 				ptwCwpWorkTypeDao.insertPtwCwpWorkType(permitNumber, createRequestDto.getPtwCwpWorkTypeDto());
 			}
-			if (createRequestDto.getPtwHwpWorkTypeDto() != null) {
+			if (createRequestDto.getPtwHwpWorkTypeDto() != null && isHwp==true) {
 				ptwHwpWorkTypeDao.insertPtwHwpWorkType(permitNumber, createRequestDto.getPtwHwpWorkTypeDto());
 			}
-			if (createRequestDto.getPtwCseWorkTypeDto() != null) {
+			if (createRequestDto.getPtwCseWorkTypeDto() != null && isCse==true) {
 				ptwCseWorkTypeDao.insertPtwCseWorkType(permitNumber, createRequestDto.getPtwCseWorkTypeDto());
 			}
 

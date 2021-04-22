@@ -8,12 +8,14 @@ import com.incture.ptw.dto.PtwHeaderDto;
 
 @Repository
 public class PtwHeaderDao extends BaseDao {
-	public void insertPtwHeader(String permitNumber,PtwHeaderDto ptwHeaderDto) {
+	public void insertPtwHeader(String permitNumber,String ptwHeader,PtwHeaderDto ptwHeaderDto) {
 		try {
+			
 			Query query = getSession()
 					.createNativeQuery("INSERT INTO \"IOP\".\"PTWHEADER\"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			query.setParameter(1, permitNumber);
-			query.setParameter(2, ptwHeaderDto.getPtwPermitNumber());
+			query.setParameter(2,ptwHeader);
+			//query.setParameter(2, ptwHeaderDto.getPtwPermitNumber());
 			query.setParameter(3, ptwHeaderDto.getIsCwp());
 			query.setParameter(4, ptwHeaderDto.getIsHwp());
 			query.setParameter(5, ptwHeaderDto.getIsCse());
