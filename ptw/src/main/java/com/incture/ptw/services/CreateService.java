@@ -310,6 +310,7 @@ public class CreateService {
 			jsaHeaderDao.updateJsaHeader(permitNumber, createRequestDto.getJsaheaderDto());
 			jsaReviewDao.updateJsaReview(permitNumber, createRequestDto.getJsaReviewDto());
 			createServiceResponseDto.setJsaPermitNumber("JSA" + permitNumber);
+			createServiceResponseDto.setPermitNumber(permitNumber);
 			responseDto.setData(createServiceResponseDto);
 			responseDto.setMessage("JSA " + permitNumber + "  created successfully");
 
