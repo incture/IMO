@@ -8,18 +8,22 @@ import com.incture.ptw.dto.PtwCseWorkTypeDto;
 
 @Repository
 public class PtwCseWorkTypeDao extends BaseDao {
-	public void insertPtwCseWorkType (PtwCseWorkTypeDto ptwCseWorkTypeDto){
-		Query query = getSession().createNativeQuery("INSERT INTO \"IOP\".\"PTW_CSE_WORK_TYPE\" VALUES (?,?,?,?,?,?,?,?)");
-		query.setParameter(1, ptwCseWorkTypeDto.getPermitNumber());
-		query.setParameter(2, ptwCseWorkTypeDto.getTank());
-		query.setParameter(3, ptwCseWorkTypeDto.getVessel());
-		query.setParameter(4, ptwCseWorkTypeDto.getExcavation());
-		query.setParameter(5, ptwCseWorkTypeDto.getPit());
-		query.setParameter(6, ptwCseWorkTypeDto.getTower());
-		query.setParameter(7, ptwCseWorkTypeDto.getOther());
-		query.setParameter(8, ptwCseWorkTypeDto.getReasonForCse());
-		query.executeUpdate();		
+	public void insertPtwCseWorkType(String permitNumber, PtwCseWorkTypeDto ptwCseWorkTypeDto) {
+		try {
+			Query query = getSession()
+					.createNativeQuery("INSERT INTO \"IOP\".\"PTW_CSE_WORK_TYPE\" VALUES (?,?,?,?,?,?,?,?)");
+			query.setParameter(1, permitNumber);
+			query.setParameter(2, ptwCseWorkTypeDto.getTank());
+			query.setParameter(3, ptwCseWorkTypeDto.getVessel());
+			query.setParameter(4, ptwCseWorkTypeDto.getExcavation());
+			query.setParameter(5, ptwCseWorkTypeDto.getPit());
+			query.setParameter(6, ptwCseWorkTypeDto.getTower());
+			query.setParameter(7, ptwCseWorkTypeDto.getOther());
+			query.setParameter(8, ptwCseWorkTypeDto.getReasonForCse());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
 	}
-	
 
 }

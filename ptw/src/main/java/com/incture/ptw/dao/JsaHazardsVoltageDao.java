@@ -2,23 +2,19 @@ package com.incture.ptw.dao;
 
 import javax.persistence.Query;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.ptw.dto.JsaHazardsVoltageDto;
 
 @Repository
 public class JsaHazardsVoltageDao extends BaseDao {
-	@Autowired
-	private KeyGeneratorDao keyGeneratorDao;
 
-	public void insertJsaHazardsVoltage(JsaHazardsVoltageDto jsaHazardsVoltageDto) {
+	public void insertJsaHazardsVoltage(String permitNumber, JsaHazardsVoltageDto jsaHazardsVoltageDto) {
 		try {
 			String sql = "INSERT INTO \"IOP\".\"JSAHAZARDSVOLTAGE\" VALUES (?,?,?,?,?,?,?)";
 			logger.info(sql);
 			Query query = getSession().createNativeQuery(sql);
-			String str = keyGeneratorDao.getPermitNumber();
-			query.setParameter(1, str);
+			query.setParameter(1, permitNumber);
 			query.setParameter(2, jsaHazardsVoltageDto.getHighVoltage());
 			query.setParameter(3, jsaHazardsVoltageDto.getRestrictAccess());
 			query.setParameter(4, jsaHazardsVoltageDto.getDischargeEquipment());

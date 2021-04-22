@@ -8,7 +8,7 @@ import com.incture.ptw.dto.JsaHazardsSpillsDto;
 
 @Repository
 public class JsaHazardsSpillsDao extends BaseDao{
-	public void insertJsaHazardsSpillsDao(String permitNumber,JsaHazardsSpillsDto jsaHazardsSpillsDto){
+	public void insertJsaHazardsSpills(String permitNumber,JsaHazardsSpillsDto jsaHazardsSpillsDto){
 		try{
 			String sql = "INSERT INTO IOP.JSAHAZARDSSPILLS VALUES (?,?,?,?,?,?,?)";
 			logger.info(sql);

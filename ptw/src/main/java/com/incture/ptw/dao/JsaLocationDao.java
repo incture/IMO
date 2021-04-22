@@ -12,13 +12,13 @@ public class JsaLocationDao extends BaseDao {
 	@Autowired
 	private KeyGeneratorDao keyGeneratorDao;
 
-	public void insertJsaLocation(JsaLocationDto jsaLocationDto) {
+	public void insertJsaLocation(String permitNumber,JsaLocationDto jsaLocationDto) {
 		try {
 			logger.info("JsaLocationDto: " + jsaLocationDto);
 			String sql = "INSERT INTO \"IOP\".\"JSA_LOCATION\" VALUES (?,?,?,?,?,?)";
 			Query query = getSession().createNativeQuery(sql);
 			query.setParameter(1, keyGeneratorDao.getTOJSALOCATION());
-			query.setParameter(2, keyGeneratorDao.getPermitNumber());
+			query.setParameter(2, permitNumber);
 			query.setParameter(3, jsaLocationDto.getFaciltyOrSite());
 			query.setParameter(4, jsaLocationDto.getHierarchyLevel());
 			query.setParameter(5, jsaLocationDto.getFacility());

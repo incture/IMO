@@ -2,22 +2,19 @@ package com.incture.ptw.dao;
 
 import javax.persistence.Query;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.ptw.dto.JsaHazardsMobileDto;
 
 @Repository
 public class JsaHazardsMobileDao extends BaseDao {
-	@Autowired
-	private KeyGeneratorDao keyGeneratorDao;
 
-	public void insertJsaHazardsMobile(JsaHazardsMobileDto jsaHazardsMobileDto) {
+	public void insertJsaHazardsMobile(String permitNumber,JsaHazardsMobileDto jsaHazardsMobileDto) {
 		try {
 			logger.info("JsaHazardsMobileDto: " + jsaHazardsMobileDto);
 			String sql = "INSERT INTO \"IOP\".\"JSAHAZARDSMOBILE\" VALUES (?,?,?,?,?,?,?)";
 			Query query = getSession().createNativeQuery(sql);
-			query.setParameter(1, keyGeneratorDao.getPermitNumber());
+			query.setParameter(1, permitNumber);
 			query.setParameter(2, jsaHazardsMobileDto.getMobileEquipment());
 			query.setParameter(3, jsaHazardsMobileDto.getAssessEquipmentCondition());
 			query.setParameter(4, jsaHazardsMobileDto.getControlAccess());

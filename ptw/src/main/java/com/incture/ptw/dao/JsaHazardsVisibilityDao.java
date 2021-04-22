@@ -8,7 +8,7 @@ import com.incture.ptw.dto.JsaHazardsVisibilityDto;
 
 @Repository
 public class JsaHazardsVisibilityDao extends BaseDao {
-	public void insertJsaHazardsVisibility(JsaHazardsVisibilityDto jsaHazardsVisibilityDto) {
+	public void insertJsaHazardsVisibility(String permitNumber, JsaHazardsVisibilityDto jsaHazardsVisibilityDto) {
 		Query query = getSession()
 				.createNativeQuery("INSERT INTO \"IOP\".\"JSAHAZARDSVISIBILITY\" VALUES (?,?,?,?,?,?)");
 		query.setParameter(1, jsaHazardsVisibilityDto.getPermitNumber());

@@ -8,7 +8,7 @@ import com.incture.ptw.dto.JsaHazardsWeatherDto;
 
 @Repository
 public class JsaHazardsWeatherDao extends BaseDao{
-	public void insertJsaHazardsWeatherDao(String permitNumber,JsaHazardsWeatherDto jsaHazardsWeatherDto){
+	public void insertJsaHazardsWeather(String permitNumber,JsaHazardsWeatherDto jsaHazardsWeatherDto){
 		try{
 			String sql = "INSERT INTO IOP.JSAHAZARDSWEATHER VALUES (?,?,?,?,?,?)";
 			logger.info(sql);

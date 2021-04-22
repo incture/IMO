@@ -13,13 +13,13 @@ public class JsaStepsDao extends BaseDao{
 	@Autowired
 	private KeyGeneratorDao keyGeneratorDao;
 
-	public void insertJsaSteps(JsaStepsDto jsaStepsDto) {
+	public void insertJsaSteps(String permitNumber,JsaStepsDto jsaStepsDto) {
 		try {
 			logger.info("JsaStepsDto: " + jsaStepsDto);
 			String sql = "INSERT INTO \"IOP\".\"JSASTEPS\" VALUES (?,?,?,?,?,?)";
 			Query query = getSession().createNativeQuery(sql);
 			query.setParameter(1, keyGeneratorDao.getJSASTEPSSerialNo());
-			query.setParameter(2, keyGeneratorDao.getPermitNumber());
+			query.setParameter(2, permitNumber);
 			query.setParameter(3, jsaStepsDto.getTaskSteps());
 			query.setParameter(4, jsaStepsDto.getPotentialHazards());
 			query.setParameter(5, jsaStepsDto.getHazardControls());

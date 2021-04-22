@@ -8,7 +8,7 @@ import com.incture.ptw.dto.JsaHazardsHighNoiseDto;
 
 @Repository
 public class JsaHazardsHighNoiseDao extends BaseDao{
-	public void insertJsaHazardsHighNoiseDao(String permitNumber, JsaHazardsHighNoiseDto jsaHazardsHighNoiseDto){
+	public void insertJsaHazardsHighNoise(String permitNumber, JsaHazardsHighNoiseDto jsaHazardsHighNoiseDto){
 		try{
 			String sql = "INSERT INTO IOP.JSAHAZARDSHIGHNOISE VALUES (?,?,?,?,?,?,?,?)";
 			logger.info(sql);
