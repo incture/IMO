@@ -12,7 +12,7 @@ public class JsaHazardsCseDao extends BaseDao {
 	@Autowired
 	private KeyGeneratorDao keyGeneratorDao;
 
-	public void insertJsaHazardsCseDao(JsaHazardscseDto jsaHazardscseDto){
+	public void insertJsaHazardsCse(JsaHazardscseDto jsaHazardscseDto){
 		try{
 			String sql = "INSERT INTO IOP.JSAHAZARDSCSE VALUES (?,?,?,?,?,?,?,?,?)";
 			logger.info(sql);

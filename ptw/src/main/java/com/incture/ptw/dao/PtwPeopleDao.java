@@ -2,15 +2,19 @@ package com.incture.ptw.dao;
 
 import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.ptw.dto.PtwPeopleDto;
 
 @Repository
 public class PtwPeopleDao extends BaseDao {
+	@Autowired
+	private KeyGeneratorDao keyGeneratorDao;
+
 	public void insertPtwPeople(PtwPeopleDto ptwPeopleDto) {
 		Query query = getSession().createNativeQuery("INSERT INTO \"IOP\".\"PTWPEOPLE\" VALUES (?,?,?,?,?,?,?,?,?)");
-		query.setParameter(1, ptwPeopleDto.getSerialNo());
+		query.setParameter(1, keyGeneratorDao.getSerialNo());
 		query.setParameter(2, ptwPeopleDto.getPermitNumber());
 		query.setParameter(3, ptwPeopleDto.getFirstName());
 		query.setParameter(4, ptwPeopleDto.getLastName());

@@ -33,6 +33,7 @@ import com.incture.ptw.dao.JsaRiskAssessmentDao;
 import com.incture.ptw.dao.JsaStepsDao;
 import com.incture.ptw.dao.JsaStopTriggerDao;
 import com.incture.ptw.dao.JsappeDao;
+import com.incture.ptw.dao.KeyGeneratorDao;
 import com.incture.ptw.dao.PtwCseWorkTypeDao;
 import com.incture.ptw.dao.PtwCwpWorkTypeDao;
 import com.incture.ptw.dao.PtwHeaderDao;
@@ -140,6 +141,9 @@ public class CreateService {
 	@Autowired
 	private PtwCseWorkTypeDao ptwCseWorkTypeDao;
 
+	@Autowired
+	private KeyGeneratorDao keyGeneratorDao;
+
 	public ResponseDto createService(CreateRequestDto createRequestDto) {
 		logger.info("CreateService || createService || createDto: " + createRequestDto);
 
@@ -147,17 +151,18 @@ public class CreateService {
 		responseDto.setStatus(Boolean.TRUE);
 		responseDto.setStatusCode(200);
 		try {
+			String permitNumber = keyGeneratorDao.getPermitNumber();
 			if (createRequestDto.getJsaheaderDto() != null) {
-				jsaHeaderDao.insertJsaHeader(createRequestDto.getJsaheaderDto());
+				jsaHeaderDao.insertJsaHeader(permitNumber, createRequestDto.getJsaheaderDto());
 			}
 			if (createRequestDto.getJsaReviewDto() != null) {
-				jsaReviewDao.insertJsaReview(createRequestDto.getJsaReviewDto());
+				jsaReviewDao.insertJsaReview(permitNumber, createRequestDto.getJsaReviewDto());
 			}
 			if (createRequestDto.getJsaRiskAssesmentDto() != null) {
-				jsaRiskAssessmentDao.insertJsaRiskAssessment(createRequestDto.getJsaRiskAssesmentDto());
+				jsaRiskAssessmentDao.insertJsaRiskAssessment(permitNumber, createRequestDto.getJsaRiskAssesmentDto());
 			}
 			if (createRequestDto.getJsappeDto() != null) {
-				jsappeDao.insertJsappe(createRequestDto.getJsappeDto());
+				jsappeDao.insertJsappe(permitNumber, createRequestDto.getJsappeDto());
 			}
 			if (createRequestDto.getPtwPeopleDto() != null) {
 				ptwPeopleDao.insertPtwPeople(createRequestDto.getPtwPeopleDto());
@@ -220,7 +225,7 @@ public class CreateService {
 				jsaHazardsVoltageDao.insertJsaHazardsVoltage(createRequestDto.getJsaHazardsVoltageDto());
 			}
 			if (createRequestDto.getJsaHazardsExcavationdDto() != null) {
-				jsaHazardsExcavationdDao.insertJsaHazardsExcavationd(createRequestDto.getJsaHazardsExcavationdDto());
+				jsaHazardsExcavationdDao.insertJsaHazardsExcavation(createRequestDto.getJsaHazardsExcavationdDto());
 			}
 			if (createRequestDto.getJsaHazardsMobileDto() != null) {
 				jsaHazardsMobileDao.insertJsaHazardsMobile(createRequestDto.getJsaHazardsMobileDto());

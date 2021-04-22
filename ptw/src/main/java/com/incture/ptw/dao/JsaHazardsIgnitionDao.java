@@ -8,12 +8,12 @@ import org.springframework.stereotype.Repository;
 import com.incture.ptw.dto.JsaHazardsIgnitionDto;
 
 @Repository
-public class JsaHazardsIgnitionDao extends BaseDao{
+public class JsaHazardsIgnitionDao extends BaseDao {
 	@Autowired
 	private KeyGeneratorDao keyGeneratorDao;
-	
-	public void insertJsaHazardsIgnitionDao(JsaHazardsIgnitionDto jsaHazardsIgnitionDto){
-		try{
+
+	public void insertJsaHazardsIgnition(JsaHazardsIgnitionDto jsaHazardsIgnitionDto) {
+		try {
 			String sql = "INSERT INTO IOP.JSAHAZARDSIGNITION VALUES (?,?,?,?,?,?,?)";
 			logger.info(sql);
 			Query query = getSession().createNativeQuery(sql);
@@ -26,8 +26,9 @@ public class JsaHazardsIgnitionDao extends BaseDao{
 			query.setParameter(6, jsaHazardsIgnitionDto.getConductContinuousGasTesting());
 			query.setParameter(7, jsaHazardsIgnitionDto.getEarthForStaticElectricity());
 			query.executeUpdate();
-		}catch(Exception e){
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
 	}
+
 }

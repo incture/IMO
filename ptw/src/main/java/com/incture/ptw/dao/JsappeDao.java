@@ -8,10 +8,10 @@ import com.incture.ptw.dto.JsappeDto;
 
 @Repository
 public class JsappeDao extends BaseDao {
-	public void insertJsappe(JsappeDto jsappeDto) {
+	public void insertJsappe(String permitNumber, JsappeDto jsappeDto) {
 		Query query = getSession().createNativeQuery(
 				"INSERT INTO \"IOP\".\"JSA_PPE\" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-		query.setParameter(1, jsappeDto.getPermitNumber());
+		query.setParameter(1, permitNumber);
 		query.setParameter(2, jsappeDto.getHardHat());
 		query.setParameter(3, jsappeDto.getSafetyBoot());
 		query.setParameter(4, jsappeDto.getGoggles());
