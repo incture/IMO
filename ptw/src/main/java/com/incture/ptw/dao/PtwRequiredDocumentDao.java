@@ -2,17 +2,20 @@ package com.incture.ptw.dao;
 
 import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.ptw.dto.PtwRequiredDocumentDto;
 
 @Repository
 public class PtwRequiredDocumentDao extends BaseDao {
+	@Autowired
+	private KeyGeneratorDao keyGeneratorDao;
 	public void insertPtwRequiredDocument(String permitNumber, PtwRequiredDocumentDto ptwRequiredDocumentDto) {
 		try {
 			Query query = getSession().createNativeQuery(
 					"INSERT INTO \"IOP\".\"PTWREQUIREDDOCUMENT\"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-			query.setParameter(1, "");
+			query.setParameter(1, keyGeneratorDao.getPTWREQDOC());
 			query.setParameter(2, permitNumber);
 			query.setParameter(3, ptwRequiredDocumentDto.getIsCwp());
 			query.setParameter(4, ptwRequiredDocumentDto.getIsHwp());
