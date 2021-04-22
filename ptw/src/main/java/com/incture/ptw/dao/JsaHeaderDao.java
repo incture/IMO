@@ -13,7 +13,7 @@ public class JsaHeaderDao extends BaseDao {
 			String sql = "INSERT INTO IOP.JSAHEADER VALUES (?,?,?,?,?,?,?,?,?)";
 			Query query = getSession().createNativeQuery(sql);
 			logger.info("insertJsaHeader sql " + sql);
-			query.setParameter(1, permitNumber);
+			query.setParameter(1, Integer.parseInt(permitNumber));
 			query.setParameter(2, "JSA" + permitNumber);
 			query.setParameter(3, jsaheaderDto.getHasCwp());
 			query.setParameter(4, jsaheaderDto.getHasHwp());

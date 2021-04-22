@@ -15,7 +15,7 @@ public class JsaReviewDao extends BaseDao {
 			String sql = "INSERT INTO IOP.JSAREVIEW VALUES (?,?,?,?,?,?,?)";
 			Query query = getSession().createNativeQuery(sql);
 			logger.info("sql: " + sql);
-			query.setParameter(1, permitNumber);
+			query.setParameter(1, Integer.parseInt(permitNumber));
 			query.setParameter(2, jsaReviewDto.getCreatedBy());
 			query.setParameter(3, jsaReviewDto.getApprovedBy());
 			query.setParameter(4, jsaReviewDto.getApprovedDate());
