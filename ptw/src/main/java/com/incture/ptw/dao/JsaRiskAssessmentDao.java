@@ -11,7 +11,7 @@ public class JsaRiskAssessmentDao extends BaseDao {
 
 	public void insertJsaRiskAssessment(String permitNumber, JsaRiskAssesmentDto jsaRiskAssesmentDto) {
 		try {
-			String sql = "INSERT INTO \"IOP\".\"JSARISKASSESMENT\" VALUES (?,?,?)";
+			String sql = "INSERT INTO IOP.JSARISKASSESMENT VALUES (?,?,?)";
 			Query query = getSession().createNativeQuery(sql);
 			logger.info("sql: " + sql);
 			query.setParameter(1, permitNumber);
@@ -19,6 +19,7 @@ public class JsaRiskAssessmentDao extends BaseDao {
 			query.setParameter(3, jsaRiskAssesmentDto.getHasContinuedRisk());
 			query.executeUpdate();
 		} catch (Exception e) {
+			e.printStackTrace();
 			logger.error(e.getMessage());
 		}
 	}

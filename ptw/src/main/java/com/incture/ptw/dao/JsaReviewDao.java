@@ -12,7 +12,7 @@ import com.incture.ptw.dto.JsaReviewDto;
 public class JsaReviewDao extends BaseDao {
 	public void insertJsaReview(String permitNumber, JsaReviewDto jsaReviewDto) {
 		try {
-			String sql = "INSERT INTO \"IOP\".\"JSAREVIEW\" VALUES (?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO IOP.JSAREVIEW VALUES (?,?,?,?,?,?,?)";
 			Query query = getSession().createNativeQuery(sql);
 			logger.info("sql: " + sql);
 			query.setParameter(1, permitNumber);
@@ -24,6 +24,7 @@ public class JsaReviewDao extends BaseDao {
 			query.setParameter(7, jsaReviewDto.getCreatedDate());
 			query.executeUpdate();
 		} catch (Exception e) {
+			e.printStackTrace();
 			logger.error(e.getMessage());
 		}
 	}

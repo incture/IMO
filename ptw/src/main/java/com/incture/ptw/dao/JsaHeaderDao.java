@@ -10,7 +10,7 @@ import com.incture.ptw.dto.JsaheaderDto;
 public class JsaHeaderDao extends BaseDao {
 	public void insertJsaHeader(String permitNumber, JsaheaderDto jsaheaderDto) {
 		try {
-			String sql = "INSERT INTO \"IOP\".\"JSAHEADER\" VALUES (?,?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO IOP.JSAHEADER VALUES (?,?,?,?,?,?,?,?,?)";
 			Query query = getSession().createNativeQuery(sql);
 			logger.info("insertJsaHeader sql " + sql);
 			query.setParameter(1, permitNumber);
@@ -24,6 +24,7 @@ public class JsaHeaderDao extends BaseDao {
 			query.setParameter(9, jsaheaderDto.getStatus());
 			query.executeUpdate();
 		} catch (Exception e) {
+			e.printStackTrace();
 			logger.error(e.getMessage());
 		}
 	}
