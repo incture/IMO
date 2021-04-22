@@ -1,5 +1,7 @@
 package com.incture.ptw.dto;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
@@ -9,8 +11,8 @@ public class CreateRequestDto {
 	private JsaHazardsExcavationdDto jsaHazardsExcavationdDto;
 	private JsaHazardsDroppedDto jsaHazardsDroppedDto;
 	private JsaHazardsPressurizedDto jsaHazardsPressurizedDto;
-	private JsaLocationDto jsaLocationDto;
-	private PtwCloseOutDto ptwCloseOutDto;
+	private List<JsaLocationDto> jsaLocationDtoList;
+	private List<PtwCloseOutDto> ptwCloseOutDtoList;
 	private JsaHazardsVisibilityDto jsaHazardsVisibilityDto;
 	private JsaHazardsPersonnelDto jsaHazardsPersonnelDto;
 	private JsaHazardsHighNoiseDto jsaHazardsHighNoiseDto;
@@ -18,10 +20,10 @@ public class CreateRequestDto {
 	private JsaHazardsMovingDto jsaHazardsMovingDto;
 	private JsaHazardsVoltageDto jsaHazardsVoltageDto;
 	private JsaHazardsLiftingDto jsaHazardsLiftingDto;
-	private JsaStepsDto jsaStepsDto;
+	private List<JsaStepsDto> jsaStepsDtoList;
 	private JsaHazardsManualDto jsaHazardsManualDto;
 	private JsaHazardsSpillsDto jsaHazardsSpillsDto;
-	private JsaStopTriggerDto jsaStopTriggerDto;
+	private List<JsaStopTriggerDto> jsaStopTriggerDtoList;
 	private JsappeDto jsappeDto;
 	private JsaHazardsHeightsDto jsaHazardsHeightsDto;
 	private JsaHazardsToolsDto jsaHazardsToolsDto;
@@ -29,17 +31,17 @@ public class CreateRequestDto {
 	private JsaheaderDto jsaheaderDto;
 	private PtwCseWorkTypeDto ptwCseWorkTypeDto;
 	private JsaHazardsIgnitionDto jsaHazardsIgnitionDto;
-	private PtwTestResultsDto ptwTestResultsDto;
+	private List<PtwTestResultsDto> ptwTestResultsDtoList;
 	private JsaHazardscseDto jsaHazardscseDto;
 	private JsaHazardsWeatherDto jsaHazardsWeatherDto;
 	private JsaRiskAssesmentDto jsaRiskAssesmentDto;
-	private PtwApprovalDto ptwApprovalDto;
-	private PtwPeopleDto ptwPeopleDto;
+	private List<PtwApprovalDto> ptwApprovalDtoList;
+	private List<PtwPeopleDto> ptwPeopleDtoList;
 	private JsaHazardsSubstancesDto jsaHazardsSubstancesDto;
 	private JsaHazardsElectricalDto jsaHazardsElectricalDto;
 	private JsaHazardsFallsDto jsaHazardsFallsDto;
-	private PtwHeaderDto ptwHeaderDto;
-	private PtwRequiredDocumentDto ptwRequiredDocumentDto;
+	private List<PtwHeaderDto> ptwHeaderDtoList;
+	private List<PtwRequiredDocumentDto> ptwRequiredDocumentDtoList;
 	private PtwTestRecordDto ptwTestRecordDto;
 	private JsaHazardsSimultaneousDto jsaHazardsSimultaneousDto;
 }

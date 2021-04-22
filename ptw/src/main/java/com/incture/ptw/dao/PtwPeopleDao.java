@@ -12,10 +12,10 @@ public class PtwPeopleDao extends BaseDao {
 	@Autowired
 	private KeyGeneratorDao keyGeneratorDao;
 
-	public void insertPtwPeople(PtwPeopleDto ptwPeopleDto) {
+	public void insertPtwPeople(String permitNumber,PtwPeopleDto ptwPeopleDto) {
 		Query query = getSession().createNativeQuery("INSERT INTO \"IOP\".\"PTWPEOPLE\" VALUES (?,?,?,?,?,?,?,?,?)");
 		query.setParameter(1, keyGeneratorDao.getSerialNo());
-		query.setParameter(2, ptwPeopleDto.getPermitNumber());
+		query.setParameter(2,permitNumber);
 		query.setParameter(3, ptwPeopleDto.getFirstName());
 		query.setParameter(4, ptwPeopleDto.getLastName());
 		query.setParameter(5, ptwPeopleDto.getContactNumber());
