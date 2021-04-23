@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 @Data
 public class JsaReviewDto {
-	private int permitNumber;
+	private Integer permitNumber;
 	private String createdBy;
 	private String approvedBy;
 	private Date approvedDate;

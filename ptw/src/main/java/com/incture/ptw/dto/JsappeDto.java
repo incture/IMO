@@ -4,30 +4,30 @@ import lombok.Data;
 
 @Data
 public class JsappeDto {
-	private int permitNumber;
-	private int hardHat;
-	private int safetyBoot;
-	private int goggles;
-	private int faceShield;
-	private int safetyGlasses;
-	private int singleEar;
-	private int doubleEars;
+	private Integer permitNumber;
+	private Integer hardHat;
+	private Integer safetyBoot;
+	private Integer goggles;
+	private Integer faceShield;
+	private Integer safetyGlasses;
+	private Integer singleEar;
+	private Integer doubleEars;
 	private String respiratorTypeDescription;
-	private int needScba;
-	private int needDustMask;
-	private int cottonGlove;
-	private int leatherGlove;
-	private int impactProtection;
+	private Integer needScba;
+	private Integer needDustMask;
+	private Integer cottonGlove;
+	private Integer leatherGlove;
+	private Integer impactProtection;
 	private String gloveDescription;
 	private String chemicalGloveDescription;
-	private int fallProtection;
-	private int fallRestraint;
-	private int chemicalSuit;
-	private int apron;
-	private int flameResistantClothing;
+	private Integer fallProtection;
+	private Integer fallRestraint;
+	private Integer chemicalSuit;
+	private Integer apron;
+	private Integer flameResistantClothing;
 	private String otherppeDescription;
 	private String needFoulWeatherGear;
-	private int haveConsentOfTaskLeader;
+	private Integer haveConsentOfTaskLeader;
 	private String companyOfTaskLeader;
 
 }
