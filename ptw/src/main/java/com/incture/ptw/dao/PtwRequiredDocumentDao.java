@@ -15,8 +15,8 @@ public class PtwRequiredDocumentDao extends BaseDao {
 		try {
 			Query query = getSession().createNativeQuery(
 					"INSERT INTO \"IOP\".\"PTWREQUIREDDOCUMENT\"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-			query.setParameter(1, keyGeneratorDao.getPTWREQDOC());
-			query.setParameter(2, permitNumber);
+			query.setParameter(1, Integer.parseInt(keyGeneratorDao.getPTWREQDOC()));
+			query.setParameter(2, Integer.parseInt(permitNumber));
 			query.setParameter(3, ptwRequiredDocumentDto.getIsCwp());
 			query.setParameter(4, ptwRequiredDocumentDto.getIsHwp());
 			query.setParameter(5, ptwRequiredDocumentDto.getIsCse());
@@ -36,6 +36,7 @@ public class PtwRequiredDocumentDao extends BaseDao {
 			query.executeUpdate();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
