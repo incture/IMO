@@ -28,6 +28,7 @@ public class PtwPeopleDao extends BaseDao {
 			query.setParameter(9, ptwPeopleDto.getHasSignedCse());
 			query.executeUpdate();
 		} catch (Exception e) {
+			e.printStackTrace();
 			logger.error(e.getMessage());
 		}
 

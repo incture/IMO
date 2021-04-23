@@ -314,6 +314,7 @@ public class CreateService {
 			jsaReviewDao.updateJsaReview(permitNumber, createRequestDto.getJsaReviewDto());
 			createServiceResponseDto.setJsaPermitNumber("JSA" + permitNumber);
 			createServiceResponseDto.setPermitNumber(permitNumber);
+			createServiceResponseDto.setSuccess("JSA " + permitNumber + "  created successfully");
 			responseDto.setData(createServiceResponseDto);
 			responseDto.setMessage("JSA " + permitNumber + "  created successfully");
 
