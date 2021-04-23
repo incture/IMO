@@ -12,13 +12,13 @@ public class PtwPeopleDao extends BaseDao {
 	@Autowired
 	private KeyGeneratorDao keyGeneratorDao;
 
-	public void insertPtwPeople(String permitNumber,PtwPeopleDto ptwPeopleDto) {
-		try{
-			String sql ="INSERT INTO \"IOP\".\"PTWPEOPLE\" VALUES (?,?,?,?,?,?,?,?,?)";
+	public void insertPtwPeople(String permitNumber, PtwPeopleDto ptwPeopleDto) {
+		try {
+			String sql = "INSERT INTO \"IOP\".\"PTWPEOPLE\" VALUES (?,?,?,?,?,?,?,?,?)";
 			Query query = getSession().createNativeQuery(sql);
 			logger.info("sql: " + sql);
-			query.setParameter(1, keyGeneratorDao.getSerialNo());
-			query.setParameter(2,permitNumber);
+			query.setParameter(1, Integer.parseInt(keyGeneratorDao.getSerialNo()));
+			query.setParameter(2, Integer.parseInt(permitNumber));
 			query.setParameter(3, ptwPeopleDto.getFirstName());
 			query.setParameter(4, ptwPeopleDto.getLastName());
 			query.setParameter(5, ptwPeopleDto.getContactNumber());
@@ -27,10 +27,10 @@ public class PtwPeopleDao extends BaseDao {
 			query.setParameter(8, ptwPeopleDto.getHasSignedHwp());
 			query.setParameter(9, ptwPeopleDto.getHasSignedCse());
 			query.executeUpdate();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		
+
 	}
 
 }

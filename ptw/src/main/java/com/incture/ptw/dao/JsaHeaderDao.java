@@ -31,7 +31,7 @@ public class JsaHeaderDao extends BaseDao {
 
 	public void updateJsaHeader(String permitNumber, JsaheaderDto jsaheaderDto) {
 		try {
-			String sql = "UPDATE IOP.JSAHEADER SET STATUS =?, ISACTIVE=?, where JSAPERMITNUMBER=? ";
+			String sql = "UPDATE IOP.JSAHEADER SET STATUS =?, ISACTIVE=? where JSAPERMITNUMBER=? ";
 			logger.info("updateJsaHeader sql" + sql);
 			Query query = getSession().createNativeQuery(sql);
 			query.setParameter(1, jsaheaderDto.getStatus());
