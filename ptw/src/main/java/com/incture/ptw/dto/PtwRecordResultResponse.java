@@ -1,9 +1,11 @@
 package com.incture.ptw.dto;
 
+import java.util.List;
+
 import lombok.Data;
 
 @Data
 public class PtwRecordResultResponse {
 	private PtwTestRecordDto ptwTestRecordDto;
-	private PtwTestResultsDto ptwTestResultsDto;
+	private List<PtwTestResultsDto> ptwTestResultsDtoList;
 }
