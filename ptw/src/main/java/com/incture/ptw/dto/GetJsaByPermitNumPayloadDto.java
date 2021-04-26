@@ -2,39 +2,37 @@ package com.incture.ptw.dto;
 
 import java.util.List;
 
-import com.incture.ptw.dao.JsaReviewDao;
-
 import lombok.Data;
 
 @Data
 public class GetJsaByPermitNumPayloadDto {
-	private JsaheaderDto TOJSAHEADER;
-	private JsaReviewDto TOJSAREVIEW;
-	private JsaRiskAssesmentDto TOJSARISKASS;
-	private JsappeDto TOJSE_PPE;
-	private JsaHazardsPressurizedDto TOJSAHAZARDPRESS;
-	private JsaHazardsVisibilityDto TOJSAHAZARDVISIBLE;
-	private JsaHazardsPersonnelDto TOJSAHAZARDPERSON;
-	private JsaHazardscseDto TOJSAHAZARDCSE;
-	private JsaHazardsSimultaneousDto TOJSAHAZARDSIMULTAN;
-	private JsaHazardsIgnitionDto TOJSAHAZARDIGNITION;
-	private JsaHazardsSubstancesDto TOJSAHAZARDSUBS;
-	private JsaHazardsSpillsDto TOJSAHAZARDSPILL;
-	private JsaHazardsWeatherDto TOJSAHAZARDWEATHER;
-	private JsaHazardsHighNoiseDto TOJSAHAZARDNOISE;
-	private JsaHazardsDroppedDto TOJSAHAZARDDROPPED;
-	private JsaHazardsLiftingDto TOJSAHAZARDLIFT;
-	private JsaHazardsHeightsDto TOJSAHAZARDHEIGHT;
-	private JsaHazardsElectricalDto TOJSAHAZARDELECTRICAL;
-	private JsaHazardsMovingDto TOJSAHAZARDMOVING;
-	private JsaHazardsManualDto TOJSAHAZARDMANUAL;
-	private JsaHazardsToolsDto TOJSAHAZARDTOOLS;
-	private JsaHazardsFallsDto TOJSAHAZARDFALLS;
-	private JsaHazardsVoltageDto TOJSAHAZARDVOLTAGE;
-	private JsaHazardsExcavationdDto TOJSAHAZARDEXCAVATION;
-	private JsaHazardsMobileDto TOJSAHAZARDMOBILE;
-	private List<JsaStepsDto> TOJSASTEPS;
-	private List<JsaStopTriggerDto> TOJSASTOP;
-	private List<JsaLocationDto> TOJSALOCATION;
-	private List<PtwPeopleDto> TOPTWPEOPLE;
+	private JsaheaderDto jsaheaderDto;
+	private JsaReviewDto jsaReviewDto;
+	private JsaRiskAssesmentDto jsaRiskAssesmentDto;
+	private JsappeDto jsappeDto;
+	private JsaHazardsPressurizedDto jsaHazardsPressurizedDto;
+	private JsaHazardsVisibilityDto jsaHazardsVisibilityDto;
+	private JsaHazardsPersonnelDto jsaHazardsPersonnelDto;
+	private JsaHazardscseDto jsaHazardscseDto;
+	private JsaHazardsSimultaneousDto jsaHazardsSimultaneousDto;
+	private JsaHazardsIgnitionDto jsaHazardsIgnitionDto;
+	private JsaHazardsSubstancesDto jsaHazardsSubstancesDto;
+	private JsaHazardsSpillsDto jsaHazardsSpillsDto;
+	private JsaHazardsWeatherDto jsaHazardsWeatherDto;
+	private JsaHazardsHighNoiseDto jsaHazardsHighNoiseDto;
+	private JsaHazardsDroppedDto jsaHazardsDroppedDto;
+	private JsaHazardsLiftingDto jsaHazardsLiftingDto;
+	private JsaHazardsHeightsDto jsaHazardsHeightsDto;
+	private JsaHazardsElectricalDto jsaHazardsElectricalDto;
+	private JsaHazardsMovingDto jsaHazardsMovingDto;
+	private JsaHazardsManualDto jsaHazardsManualDto;
+	private JsaHazardsToolsDto jsaHazardsToolsDto;
+	private JsaHazardsFallsDto jsaHazardsFallsDto;
+	private JsaHazardsVoltageDto jsaHazardsVoltageDto;
+	private JsaHazardsExcavationdDto jsaHazardsExcavationdDto;
+	private JsaHazardsMobileDto jsaHazardsMobileDto;
+	private List<JsaStepsDto> jsaStepsDtoList;
+	private List<JsaStopTriggerDto> jsaStopTriggerDtoList;
+	private List<JsaLocationDto> jsaLocationDtoList;
+	private List<PtwPeopleDto> ptwPeopleDtoList;
 }

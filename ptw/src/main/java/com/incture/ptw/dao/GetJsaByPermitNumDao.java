@@ -8,6 +8,7 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
+import com.incture.ptw.dto.CreateRequestDto;
 import com.incture.ptw.dto.GetJsaByPermitNumPayloadDto;
 import com.incture.ptw.dto.JsaHazardsDroppedDto;
 import com.incture.ptw.dto.JsaHazardsElectricalDto;
@@ -45,6 +46,7 @@ public class GetJsaByPermitNumDao extends BaseDao {
 	@SuppressWarnings("unchecked")
 	public GetJsaByPermitNumPayloadDto getJsaByPermitNum(String permitNumber) {
 		GetJsaByPermitNumPayloadDto getJsaByPermitNumPayloadDto = new GetJsaByPermitNumPayloadDto();
+		CreateRequestDto payload = new CreateRequestDto();
 		List<Object[]> obj;
 		try {
 			String sql = "select distinct PERMITNUMBER, JSAPERMITNUMBER,HASCWP,HASHWP, "
@@ -68,7 +70,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 			}
 
 			logger.info(jsaheaderDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSAHEADER(jsaheaderDto);
+			payload.setJsaheaderDto(jsaheaderDto);
+			getJsaByPermitNumPayloadDto.setJsaheaderDto(jsaheaderDto);
 			////////////////////////////////////////////////////////////
 
 			Integer permitNum = jsaheaderDto.getPermitNumber(); // as per xsjs
@@ -94,7 +97,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaReviewDto.setLastUpdatedDate((Date) a[6]);
 			}
 			logger.info(jsaReviewDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSAREVIEW(jsaReviewDto);
+			payload.setJsaReviewDto(jsaReviewDto);
+			getJsaByPermitNumPayloadDto.setJsaReviewDto(jsaReviewDto);
 			///////////////////////////////////////////////////////////////
 			sql = "select distinct PERMITNUMBER, MUSTMODIFYEXISTINGWORKPRACTICE,HASCONTINUEDRISK "
 					+ " from IOP.JSARISKASSESMENT where PERMITNUMBER = :permitNum";
@@ -109,7 +113,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaRiskAssesmentDto.setHasContinuedRisk(Integer.parseInt(a[2].toString()));
 			}
 			logger.info(jsaRiskAssesmentDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSARISKASS(jsaRiskAssesmentDto);
+			payload.setJsaRiskAssesmentDto(jsaRiskAssesmentDto);
+			getJsaByPermitNumPayloadDto.setJsaRiskAssesmentDto(jsaRiskAssesmentDto);
 			/////////////////////////////////////////////////////////////////
 			sql = "select distinct PERMITNUMBER, HARDHAT,SAFETYBOOT,GOGGLES,FACESHIELD,SAFETYGLASSES, "
 					+ " SINGLEEAR,DOUBLEEARS,RESPIRATORTYPEDESCRIPTION,NEEDSCBA,NEEDDUSTMASK,COTTONGLOVE, "
@@ -155,7 +160,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsappeDto.setCompanyOfTaskLeader((String) a[24]);
 			}
 			logger.info(jsappeDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSE_PPE(jsappeDto);
+			payload.setJsappeDto(jsappeDto);
+			getJsaByPermitNumPayloadDto.setJsappeDto(jsappeDto);
 			//////////////////////////////////////////////////////////////
 			sql = "select distinct PERMITNUMBER, PRESURIZEDEQUIPMENT,PERFORMISOLATION,DEPRESSURIZEDRAIN, "
 					+ " RELIEVETRAPPEDPRESSURE,DONOTWORKINLINEOFFIRE,ANTICIPATERESIDUAL,SECUREALLHOSES "
@@ -175,8 +181,9 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsPressurizedDto.setAnticipateResidual(Integer.parseInt(a[6].toString()));
 				jsaHazardsPressurizedDto.setSecureAllHoses(Integer.parseInt(a[7].toString()));
 			}
+			payload.setJsaHazardsPressurizedDto(jsaHazardsPressurizedDto);
 			logger.info(jsaHazardsPressurizedDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSAHAZARDPRESS(jsaHazardsPressurizedDto);
+			getJsaByPermitNumPayloadDto.setJsaHazardsPressurizedDto(jsaHazardsPressurizedDto);
 			//////////////////////////////////////////////////////////////
 			sql = "select distinct PERMITNUMBER, POORLIGHTING,PROVIDEALTERNATELIGHTING, "
 					+ " WAITUNTILVISIBILITYIMPROVE,DEFERUNTILVISIBILITYIMPROVE,KNOWDISTANCEFROMPOLES "
@@ -194,8 +201,9 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsVisibilityDto.setDeferUntilVisibility(Integer.parseInt(a[4].toString()));
 				jsaHazardsVisibilityDto.setKnowDistanceFromPoles(Integer.parseInt(a[5].toString()));
 			}
+			payload.setJsaHazardsVisibilityDto(jsaHazardsVisibilityDto);
 			logger.info(jsaHazardsVisibilityDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSAHAZARDVISIBLE(jsaHazardsVisibilityDto);
+			getJsaByPermitNumPayloadDto.setJsaHazardsVisibilityDto(jsaHazardsVisibilityDto);
 			//////////////////////////////////////////////////////////////
 			sql = "select distinct PERMITNUMBER, PERSONNEL,PERFORMINDUCTION,MENTORCOACHSUPERVISE, "
 					+ " VERIFYCOMPETENCIES,ADDRESSLIMITATIONS,MANAGELANGUAGEBARRIERS,WEARSEATBELTS "
@@ -215,8 +223,9 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsPersonnelDto.setManageLanguageBarriers(Integer.parseInt(a[6].toString()));
 				jsaHazardsPersonnelDto.setWearSeatBelts(Integer.parseInt(a[7].toString()));
 			}
+			payload.setJsaHazardsPersonnelDto(jsaHazardsPersonnelDto);
 			logger.info(jsaHazardsPersonnelDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSAHAZARDPERSON(jsaHazardsPersonnelDto);
+			getJsaByPermitNumPayloadDto.setJsaHazardsPersonnelDto(jsaHazardsPersonnelDto);
 			//////////////////////////////////////////////////////////////
 			sql = "select distinct PERMITNUMBER, CONFINEDSPACEENTRY,DISCUSSWORKPRACTICE, "
 					+ " CONDUCTATMOSPHERICTESTING,MONITORACCESS,PROTECTSURFACES,PROHIBITMOBILEENGINE, "
@@ -237,8 +246,9 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardscseDto.setProvideObserver(Integer.parseInt(a[7].toString()));
 				jsaHazardscseDto.setDevelopRescuePlan(Integer.parseInt(a[8].toString()));
 			}
+			payload.setJsaHazardscseDto(jsaHazardscseDto);
 			logger.info(jsaHazardscseDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSAHAZARDCSE(jsaHazardscseDto);
+			getJsaByPermitNumPayloadDto.setJsaHazardscseDto(jsaHazardscseDto);
 			//////////////////////////////////////////////////////////////
 			sql = "select distinct PERMITNUMBER, SIMULTANEOUSOPERATIONS,FOLLOWSIMOPSMATRIX, "
 					+" MOCREQUIREDFOR,INTERFACEBETWEENGROUPS,USEBARRIERSAND,HAVEPERMITSIGNED "
@@ -257,8 +267,9 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsSimultaneousDto.setUseBarriersAnd(Integer.parseInt(a[5].toString()));
 				jsaHazardsSimultaneousDto.setHavePermitSigned(Integer.parseInt(a[6].toString()));
 			}
+			payload.setJsaHazardsSimultaneousDto(jsaHazardsSimultaneousDto);
 			logger.info(jsaHazardsSimultaneousDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSAHAZARDSIMULTAN(jsaHazardsSimultaneousDto);
+			getJsaByPermitNumPayloadDto.setJsaHazardsSimultaneousDto(jsaHazardsSimultaneousDto);
 			//////////////////////////////////////////////////////////////
 			sql = "select distinct PERMITNUMBER,IGNITIONSOURCES,REMOVECOMBUSTIBLEMATERIALS,PROVIDEFIREWATCH, "
 					+" IMPLEMENTABRASIVEBLASTINGCONTROLS,CONDUCTCONTINUOUSGASTESTING,EARTHFORSTATICELECTRICITY "
@@ -278,7 +289,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsIgnitionDto.setEarthForStaticElectricity(Integer.parseInt(a[6].toString()));
 			}
 			logger.info(jsaHazardsIgnitionDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSAHAZARDIGNITION(jsaHazardsIgnitionDto);
+			payload.setJsaHazardsIgnitionDto(jsaHazardsIgnitionDto);
+			getJsaByPermitNumPayloadDto.setJsaHazardsIgnitionDto(jsaHazardsIgnitionDto);
 			//////////////////////////////////////////////////////////////
 			sql = "select distinct PERMITNUMBER, HAZARDOUSSUBSTANCES,DRAINEQUIPMENT,FOLLOWSDSCONTROLS, "
 					+" IMPLEMENTHEALTHHAZARDCONTROLS,TESTMATERIAL from IOP.JSAHAZARDSSUBSTANCES "
@@ -296,7 +308,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsSubstancesDto.setTestMaterial(Integer.parseInt(a[5].toString()));
 			}
 			logger.info(jsaHazardsSubstancesDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSAHAZARDSUBS(jsaHazardsSubstancesDto);
+			payload.setJsaHazardsSubstancesDto(jsaHazardsSubstancesDto);
+			getJsaByPermitNumPayloadDto.setJsaHazardsSubstancesDto(jsaHazardsSubstancesDto);
 			//////////////////////////////////////////////////////////////
 			sql = "select distinct PERMITNUMBER, POTENTIALSPILLS,DRAINEQUIPMENT,CONNECTIONSINGOODCONDITION, "
 					+" SPILLCONTAINMENTEQUIPMENT,HAVESPILLCLEANUPMATERIALS,RESTRAINHOSESWHENNOTINUSE "
@@ -317,7 +330,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				
 			}
 			logger.info(jsaHazardsSpillsDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSAHAZARDSPILL(jsaHazardsSpillsDto);
+			payload.setJsaHazardsSpillsDto(jsaHazardsSpillsDto);
+			getJsaByPermitNumPayloadDto.setJsaHazardsSpillsDto(jsaHazardsSpillsDto);
 			//////////////////////////////////////////////////////////////
 			sql = "select distinct PERMITNUMBER, WEATHER,CONTROLSFORSLIPPERYSURFACE,HEATBREAK, "
 					+" COLDHEATERS,LIGHTNING from IOP.JSAHAZARDSWEATHER where PERMITNUMBER = :permitNum";
@@ -334,7 +348,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsWeatherDto.setLightning(Integer.parseInt(a[5].toString()));
 			}
 			logger.info(jsaHazardsWeatherDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSAHAZARDWEATHER(jsaHazardsWeatherDto);
+			payload.setJsaHazardsWeatherDto(jsaHazardsWeatherDto);
+			getJsaByPermitNumPayloadDto.setJsaHazardsWeatherDto(jsaHazardsWeatherDto);
 			//////////////////////////////////////////////////////////////
 			sql = "select distinct PERMITNUMBER, HIGHNOISE,WEARCORRECTHEARING,MANAGEEXPOSURETIMES, "
 					+" SHUTDOWNEQUIPMENT,USEQUIETTOOLS,SOUNDBARRIERS,PROVIDESUITABLECOMMS "
@@ -354,7 +369,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsHighNoiseDto.setProvideSuitablecomms(Integer.parseInt(a[7].toString()));
 			}
 			logger.info(jsaHazardsHighNoiseDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSAHAZARDNOISE(jsaHazardsHighNoiseDto);
+			payload.setJsaHazardsHighNoiseDto(jsaHazardsHighNoiseDto);
+			getJsaByPermitNumPayloadDto.setJsaHazardsHighNoiseDto(jsaHazardsHighNoiseDto);
 			//////////////////////////////////////////////////////////////
 			sql = "select distinct PERMITNUMBER, DROPPEDOBJECTS,MARKRESTRICTENTRY,USELIFTINGEQUIPMENTTORAISE, "
 					+" SECURETOOLS from IOP.JSAHAZARDSDROPPED where PERMITNUMBER = :permitNum";
@@ -370,7 +386,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsDroppedDto.setSecureTools(Integer.parseInt(a[4].toString()));
 			}
 			logger.info(jsaHazardsDroppedDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSAHAZARDDROPPED(jsaHazardsDroppedDto);
+			payload.setJsaHazardsDroppedDto(jsaHazardsDroppedDto);
+			getJsaByPermitNumPayloadDto.setJsaHazardsDroppedDto(jsaHazardsDroppedDto);
 			//////////////////////////////////////////////////////////////
 			sql = "select distinct PERMITNUMBER, LIFTINGEQUIPMENT,CONFIRMEQUIPMENTCONDITION, "
 					+" OBTAINAPPROVALFORLIFTS,HAVEDOCUMENTEDLIFTPLAN from IOP.JSAHAZARDSLIFTING "
@@ -387,7 +404,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsLiftingDto.setHaveDocumentedLiftPlan(Integer.parseInt(a[4].toString()));
 			}
 			logger.info(jsaHazardsLiftingDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSAHAZARDLIFT(jsaHazardsLiftingDto);
+			payload.setJsaHazardsLiftingDto(jsaHazardsLiftingDto);
+			getJsaByPermitNumPayloadDto.setJsaHazardsLiftingDto(jsaHazardsLiftingDto);
 			//////////////////////////////////////////////////////////////
 			sql = "select distinct PERMITNUMBER, WORKATHEIGHTS,DISCUSSWORKINGPRACTICE,VERIFYFALLRESTRAINT, "
 					+" USEFULLBODYHARNESS,USELOCKTYPESNAPHOOOKS from IOP.JSAHAZARDSHEIGHTS "
@@ -405,7 +423,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsHeightsDto.setUseLockTypeSnapHooks(Integer.parseInt(a[5].toString()));
 			}
 			logger.info(jsaHazardsHeightsDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSAHAZARDHEIGHT(jsaHazardsHeightsDto);
+			payload.setJsaHazardsHeightsDto(jsaHazardsHeightsDto);
+			getJsaByPermitNumPayloadDto.setJsaHazardsHeightsDto(jsaHazardsHeightsDto);
 			//////////////////////////////////////////////////////////////
 			sql = "select distinct PERMITNUMBER, PORTABLEELECTRICALEQUIPMENT,INSPECTTOOLSFORCONDITION, "
 					+" IMPLEMENTGASTESTING,PROTECTELECTRICALLEADS,IDENTIFYEQUIPCLASSIFICATION "
@@ -423,7 +442,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsElectricalDto.setIdentifyEquipClassification(Integer.parseInt(a[5].toString()));
 			}
 			logger.info(jsaHazardsElectricalDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSAHAZARDELECTRICAL(jsaHazardsElectricalDto);
+			payload.setJsaHazardsElectricalDto(jsaHazardsElectricalDto);
+			getJsaByPermitNumPayloadDto.setJsaHazardsElectricalDto(jsaHazardsElectricalDto);
 			//////////////////////////////////////////////////////////////
 			sql = "select distinct PERMITNUMBER, MOVINGEQUIPMENT,CONFIRMMACHINERYINTEGRITY, "
 					+" PROVIDEPROTECTIVEBARRIERS,OBSERVERTOMONITORPROXIMITYPEOPLEANDEQUIPMENT,LOCKOUTEQUIPMENT, "
@@ -442,7 +462,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsMovingDto.setDonotWorkInLineOFFire(Integer.parseInt(a[6].toString()));
 			}
 			logger.info(jsaHazardsMovingDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSAHAZARDMOVING(jsaHazardsMovingDto);
+			payload.setJsaHazardsMovingDto(jsaHazardsMovingDto);
+			getJsaByPermitNumPayloadDto.setJsaHazardsMovingDto(jsaHazardsMovingDto);
 			//////////////////////////////////////////////////////////////
 			sql = "select distinct PERMITNUMBER, MANUALHANDLING,ASSESSMANUALTASK,LIMITLOADSIZE, "
 					+" PROPERLIFTINGTECHNIQUE,CONFIRMSTABILITYOFLOAD,GETASSISTANCEORAID "
@@ -462,7 +483,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				
 			}
 			logger.info(jsaHazardsManualDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSAHAZARDMANUAL(jsaHazardsManualDto);
+			payload.setJsaHazardsManualDto(jsaHazardsManualDto);
+			getJsaByPermitNumPayloadDto.setJsaHazardsManualDto(jsaHazardsManualDto);
 			//////////////////////////////////////////////////////////////
 			sql = "select distinct PERMITNUMBER, EQUIPMENTANDTOOLS,INSPECTEQUIPMENTTOOL, "
 					+" BRASSTOOLSNECESSARY,USEPROTECTIVEGUARDS,USECORRECTTOOLS,CHECKFORSHARPEDGES, "
@@ -482,7 +504,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsToolsDto.setApplyHandSafetyPrinciple(Integer.parseInt(a[7].toString()));
 			}
 			logger.info(jsaHazardsToolsDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSAHAZARDTOOLS(jsaHazardsToolsDto);
+			payload.setJsaHazardsToolsDto(jsaHazardsToolsDto);
+			getJsaByPermitNumPayloadDto.setJsaHazardsToolsDto(jsaHazardsToolsDto);
 			//////////////////////////////////////////////////////////////
 			sql = "select distinct PERMITNUMBER, SLIPSTRIPSANDFALLS,IDENTIFYPROJECTIONS,FLAGHAZARDS, "
 					+" SECURECABLES,CLEANUPLIQUIDS,BARRICADEHOLES from IOP.JSAHAZARDSFALLS "
@@ -502,7 +525,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				
 			}
 			logger.info(jsaHazardsFallsDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSAHAZARDFALLS(jsaHazardsFallsDto);
+			payload.setJsaHazardsFallsDto(jsaHazardsFallsDto);
+			getJsaByPermitNumPayloadDto.setJsaHazardsFallsDto(jsaHazardsFallsDto);
 			//////////////////////////////////////////////////////////////
 			sql = "select distinct PERMITNUMBER, HIGHVOLTAGE,RESTRICTACCESS,DISCHARGEEQUIPMENT, "
 					+" OBSERVESAFEWORKDISTANCE,USEFLASHBURN,USEINSULATEDGLOVES from IOP.JSAHAZARDSVOLTAGE "
@@ -521,7 +545,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsVoltageDto.setUseInsulatedGloves(Integer.parseInt(a[6].toString()));
 			}
 			logger.info(jsaHazardsVoltageDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSAHAZARDVOLTAGE(jsaHazardsVoltageDto);
+			payload.setJsaHazardsVoltageDto(jsaHazardsVoltageDto);
+			getJsaByPermitNumPayloadDto.setJsaHazardsVoltageDto(jsaHazardsVoltageDto);
 			//////////////////////////////////////////////////////////////
 			sql = "select distinct PERMITNUMBER, EXCAVATIONS,HAVEEXCAVATIONPLAN,LOCATEPIPESBYHANDDIGGING, "
 					+" DEENERGIZEUNDERGROUND,CSECONTROLS from IOP.JSAHAZARDSEXCAVATION "
@@ -539,7 +564,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsExcavationdDto.setCsecontrols(Integer.parseInt(a[5].toString()));
 			}
 			logger.info(jsaHazardsExcavationdDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSAHAZARDEXCAVATION(jsaHazardsExcavationdDto);
+			payload.setJsaHazardsExcavationdDto(jsaHazardsExcavationdDto);
+			getJsaByPermitNumPayloadDto.setJsaHazardsExcavationdDto(jsaHazardsExcavationdDto);
 			//////////////////////////////////////////////////////////////
 			sql = "select distinct PERMITNUMBER, MOBILEEQUIPMENT,ASSESSEQUIPMENTCONDITION,CONTROLACCESS, "
 					+" MONITORPROXIMITY,MANAGEOVERHEADHAZARDS,ADHERETORULES from IOP.JSAHAZARDSMOBILE "
@@ -558,7 +584,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsMobileDto.setAdhereToRules(Integer.parseInt(a[6].toString()));
 			}
 			logger.info(jsaHazardsMobileDto.toString());
-			getJsaByPermitNumPayloadDto.setTOJSAHAZARDMOBILE(jsaHazardsMobileDto);
+			payload.setJsaHazardsMobileDto(jsaHazardsMobileDto);
+			getJsaByPermitNumPayloadDto.setJsaHazardsMobileDto(jsaHazardsMobileDto);
 			//////////////////////////////////////////////////////////////
 			sql = "select  SERIALNO,PERMITNUMBER, TASKSTEPS,POTENTIALHAZARDS,HAZARDCONTROLS,PERSONRESPONSIBLE "
 					+" from IOP.JSASTEPS where PERMITNUMBER = :permitNum";
@@ -579,7 +606,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaStepsDtoList.add(jsaStepsDto);
 			}
 			logger.info(jsaStepsDtoList.toString());
-			getJsaByPermitNumPayloadDto.setTOJSASTEPS(jsaStepsDtoList);
+			payload.setJsaStepsDtoList(jsaStepsDtoList);
+			getJsaByPermitNumPayloadDto.setJsaStepsDtoList(jsaStepsDtoList);
 			//////////////////////////////////////////////////////////////
 			sql = "select  SERIALNO,PERMITNUMBER, LINEDESCRIPTION from IOP.JSASTOPTRIGGER "
 					+" where PERMITNUMBER = :permitNum";
@@ -595,7 +623,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaStopTriggerDtoList.add(jsaStopTriggerDto);
 			}
 			logger.info(jsaStopTriggerDtoList.toString());
-			getJsaByPermitNumPayloadDto.setTOJSASTOP(jsaStopTriggerDtoList);
+			payload.setJsaStopTriggerDtoList(jsaStopTriggerDtoList);
+			getJsaByPermitNumPayloadDto.setJsaStopTriggerDtoList(jsaStopTriggerDtoList);
 			//////////////////////////////////////////////////////////////
 			sql = "select  SERIALNO,PERMITNUMBER, FACILTYORSITE,HIERARCHYLEVEL,FACILITY,MUWI from IOP.JSA_LOCATION "
 					+" where PERMITNUMBER = :permitNum";
@@ -614,7 +643,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaLocationDtoList.add(jsaLocationDto);
 			}
 			logger.info(jsaLocationDtoList.toString());
-			getJsaByPermitNumPayloadDto.setTOJSALOCATION(jsaLocationDtoList);
+			payload.setJsaLocationDtoList(jsaLocationDtoList);
+			getJsaByPermitNumPayloadDto.setJsaLocationDtoList(jsaLocationDtoList);
 			//////////////////////////////////////////////////////////////
 			sql = "select  SERIALNO,PERMITNUMBER, FIRSTNAME,LASTTNAME,CONTACTNUMBER,HASSIGNEDJSA, "
 					+" HASSIGNEDCWP,HASSIGNEDHWP,HASSIGNEDCSE from IOP.PTWPEOPLE "
@@ -637,7 +667,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				ptwPeopleDtoList.add(ptwPeopleDto);
 			}
 			logger.info(ptwPeopleDtoList.toString());
-			getJsaByPermitNumPayloadDto.setTOPTWPEOPLE(ptwPeopleDtoList);
+			payload.setPtwPeopleDtoList(ptwPeopleDtoList);
+			getJsaByPermitNumPayloadDto.setPtwPeopleDtoList(ptwPeopleDtoList);
 			//////////////////////////////////////////////////////////////
 			logger.info("GetJsaByPermitNumDao | Final Output" + getJsaByPermitNumPayloadDto);
 			return getJsaByPermitNumPayloadDto;
