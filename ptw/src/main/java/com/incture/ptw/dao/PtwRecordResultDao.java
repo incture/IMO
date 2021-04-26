@@ -51,7 +51,7 @@ public class PtwRecordResultDao extends BaseDao {
 			Query q1 = getSession().createNativeQuery(sql1);
 			logger.info("2nd sql : " + sql2);
 			q1.setParameter(1, permitNumber);
-			List<Object[]> rs1 = q.getResultList();
+			List<Object[]> rs1 = q1.getResultList();
 			logger.info("rs1 " + rs1);
 			for (Object o[] : rs1) {
 				PtwTestRecordDto ptwTestRecordDto = new PtwTestRecordDto();
