@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class JsaStepsDto {
-	private int serialNo;
-	private int permitNumber;
+	private Integer serialNo;
+	private Integer permitNumber;
 	private String taskSteps;
 	private String potentialHazards;
 	private String hazardControls;

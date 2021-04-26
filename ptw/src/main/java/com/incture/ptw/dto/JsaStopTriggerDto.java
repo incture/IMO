@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class JsaStopTriggerDto {
-	private int serialNo;
-	private int permitNumber;
+	private Integer serialNo;
+	private Integer permitNumber;
 	private String lineDescription;
 }

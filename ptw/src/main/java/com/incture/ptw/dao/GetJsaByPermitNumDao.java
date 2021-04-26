@@ -1,5 +1,6 @@
 package com.incture.ptw.dao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,10 +30,14 @@ import com.incture.ptw.dto.JsaHazardsVisibilityDto;
 import com.incture.ptw.dto.JsaHazardsVoltageDto;
 import com.incture.ptw.dto.JsaHazardsWeatherDto;
 import com.incture.ptw.dto.JsaHazardscseDto;
+import com.incture.ptw.dto.JsaLocationDto;
 import com.incture.ptw.dto.JsaReviewDto;
 import com.incture.ptw.dto.JsaRiskAssesmentDto;
+import com.incture.ptw.dto.JsaStepsDto;
+import com.incture.ptw.dto.JsaStopTriggerDto;
 import com.incture.ptw.dto.JsaheaderDto;
 import com.incture.ptw.dto.JsappeDto;
+import com.incture.ptw.dto.PtwPeopleDto;
 
 @Repository("GetJsaByPermitNumDao")
 public class GetJsaByPermitNumDao extends BaseDao {
@@ -554,6 +559,85 @@ public class GetJsaByPermitNumDao extends BaseDao {
 			}
 			logger.info(jsaHazardsMobileDto.toString());
 			getJsaByPermitNumPayloadDto.setTOJSAHAZARDMOBILE(jsaHazardsMobileDto);
+			//////////////////////////////////////////////////////////////
+			sql = "select  SERIALNO,PERMITNUMBER, TASKSTEPS,POTENTIALHAZARDS,HAZARDCONTROLS,PERSONRESPONSIBLE "
+					+" from IOP.JSASTEPS where PERMITNUMBER = :permitNum";
+			q = getSession().createNativeQuery(sql);
+			q.setParameter("permitNum", permitNum);
+			obj = q.getResultList();
+			
+			
+			List<JsaStepsDto> jsaStepsDtoList = new ArrayList<JsaStepsDto>();
+			for (Object[] a : obj) {
+				JsaStepsDto jsaStepsDto = new JsaStepsDto();
+				jsaStepsDto.setSerialNo((Integer)a[0]);
+				jsaStepsDto.setPermitNumber((Integer)a[1]);
+				jsaStepsDto.setTaskSteps((String)a[2]);
+				jsaStepsDto.setPotentialHazards((String)a[3]);
+				jsaStepsDto.setHazardControls((String)a[4]);
+				jsaStepsDto.setPersonResponsible((String)a[5]);
+				jsaStepsDtoList.add(jsaStepsDto);
+			}
+			logger.info(jsaStepsDtoList.toString());
+			getJsaByPermitNumPayloadDto.setTOJSASTEPS(jsaStepsDtoList);
+			//////////////////////////////////////////////////////////////
+			sql = "select  SERIALNO,PERMITNUMBER, LINEDESCRIPTION from IOP.JSASTOPTRIGGER "
+					+" where PERMITNUMBER = :permitNum";
+			q = getSession().createNativeQuery(sql);
+			q.setParameter("permitNum", permitNum);
+			obj = q.getResultList();
+			List<JsaStopTriggerDto> jsaStopTriggerDtoList = new ArrayList<JsaStopTriggerDto>();
+			for (Object[] a : obj) {
+				JsaStopTriggerDto jsaStopTriggerDto = new JsaStopTriggerDto();
+				jsaStopTriggerDto.setSerialNo((Integer)a[0]);
+				jsaStopTriggerDto.setPermitNumber((Integer)a[1]);
+				jsaStopTriggerDto.setLineDescription((String)a[2]);
+				jsaStopTriggerDtoList.add(jsaStopTriggerDto);
+			}
+			logger.info(jsaStopTriggerDtoList.toString());
+			getJsaByPermitNumPayloadDto.setTOJSASTOP(jsaStopTriggerDtoList);
+			//////////////////////////////////////////////////////////////
+			sql = "select  SERIALNO,PERMITNUMBER, FACILTYORSITE,HIERARCHYLEVEL,FACILITY,MUWI from IOP.JSA_LOCATION "
+					+" where PERMITNUMBER = :permitNum";
+			q = getSession().createNativeQuery(sql);
+			q.setParameter("permitNum", permitNum);
+			obj = q.getResultList();
+			List<JsaLocationDto> jsaLocationDtoList = new ArrayList<JsaLocationDto>();
+			for (Object[] a : obj) {
+				JsaLocationDto jsaLocationDto = new JsaLocationDto();
+				jsaLocationDto.setSerialNo((Integer)a[0]);
+				jsaLocationDto.setPermitNumber((Integer)a[1]);
+				jsaLocationDto.setFaciltyOrSite((String)a[2]);
+				jsaLocationDto.setHierarchyLevel((String)a[3]);
+				jsaLocationDto.setFacility((String)a[4]);
+				jsaLocationDto.setMuwi((String)a[5]);
+				jsaLocationDtoList.add(jsaLocationDto);
+			}
+			logger.info(jsaLocationDtoList.toString());
+			getJsaByPermitNumPayloadDto.setTOJSALOCATION(jsaLocationDtoList);
+			//////////////////////////////////////////////////////////////
+			sql = "select  SERIALNO,PERMITNUMBER, FIRSTNAME,LASTTNAME,CONTACTNUMBER,HASSIGNEDJSA, "
+					+" HASSIGNEDCWP,HASSIGNEDHWP,HASSIGNEDCSE from IOP.PTWPEOPLE "
+					+" where PERMITNUMBER = :permitNum";
+			q = getSession().createNativeQuery(sql);
+			q.setParameter("permitNum", permitNum);
+			obj = q.getResultList();
+			List<PtwPeopleDto> ptwPeopleDtoList = new ArrayList<PtwPeopleDto>();
+			for (Object[] a : obj) {
+				PtwPeopleDto ptwPeopleDto = new PtwPeopleDto();
+				ptwPeopleDto.setSerialNo((Integer)a[0]);
+				ptwPeopleDto.setPermitNumber((Integer)a[1]);
+				ptwPeopleDto.setFirstName((String)a[2]);
+				ptwPeopleDto.setLastName((String)a[3]);
+				ptwPeopleDto.setContactNumber((String)a[4]);
+				ptwPeopleDto.setHasSignedJsa(Integer.parseInt(a[5].toString()));
+				ptwPeopleDto.setHasSignedCwp(Integer.parseInt(a[6].toString()));
+				ptwPeopleDto.setHasSignedHwp(Integer.parseInt(a[7].toString()));
+				ptwPeopleDto.setHasSignedCse(Integer.parseInt(a[8].toString()));
+				ptwPeopleDtoList.add(ptwPeopleDto);
+			}
+			logger.info(ptwPeopleDtoList.toString());
+			getJsaByPermitNumPayloadDto.setTOPTWPEOPLE(ptwPeopleDtoList);
 			//////////////////////////////////////////////////////////////
 			logger.info("GetJsaByPermitNumDao | Final Output" + getJsaByPermitNumPayloadDto);
 			return getJsaByPermitNumPayloadDto;
