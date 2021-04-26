@@ -1,10 +1,13 @@
 package com.incture.ptw.dao;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.incture.ptw.dto.PtwCseWorkTypeDto;
 import com.incture.ptw.dto.PtwPeopleDto;
 
 @Repository
@@ -33,5 +36,16 @@ public class PtwPeopleDao extends BaseDao {
 		}
 
 	}
+	
+	public List<PtwPeopleDto> getPtwPeople(String permitNumber) {
+		try {
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 
 }

@@ -3,7 +3,6 @@ package com.incture.ptw.dao;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
-
 import com.incture.ptw.dto.PtwHwpWorkTypeDto;
 
 @Repository
@@ -25,5 +24,15 @@ public class PtwHwpWorkTypeDao extends BaseDao {
 			logger.error(e.getMessage());
 		}
 
+	}
+	
+	public PtwHwpWorkTypeDto getPtwHwpWork(String permitNumber) {
+		try {
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

@@ -43,5 +43,14 @@ public class JsaReviewDao extends BaseDao {
 			logger.error(e.getMessage());
 		}
 	}
+	
+	public JsaReviewDto getJsaReview(String permitNumber) {
+		try {
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return null;
+	}
 
 }

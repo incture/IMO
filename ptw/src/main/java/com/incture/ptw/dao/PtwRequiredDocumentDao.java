@@ -1,5 +1,7 @@
 package com.incture.ptw.dao;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +40,16 @@ public class PtwRequiredDocumentDao extends BaseDao {
 			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
+	}
+	
+	public List<PtwRequiredDocumentDto> getPtwReqDoc(String permitNumber, String isCwp, String isHwp, String isCse) {
+		try {
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

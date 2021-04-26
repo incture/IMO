@@ -1,10 +1,13 @@
 package com.incture.ptw.dao;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.incture.ptw.dto.PtwTestRecordDto;
 import com.incture.ptw.dto.PtwTestResultsDto;
 
 @Repository
@@ -34,5 +37,15 @@ public class PtwTestResultsDao extends BaseDao {
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
+	}
+	
+	public List<PtwTestResultsDto> getPtwTestRes(String permitNumber) {
+		try {
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

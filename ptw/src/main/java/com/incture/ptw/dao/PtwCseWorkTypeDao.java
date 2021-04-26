@@ -25,5 +25,15 @@ public class PtwCseWorkTypeDao extends BaseDao {
 			logger.error(e.getMessage());
 		}
 	}
+	
+	public PtwCseWorkTypeDto getPtwCseWork(String permitNumber) {
+		try {
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 }

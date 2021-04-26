@@ -1,9 +1,12 @@
 package com.incture.ptw.dao;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
+import com.incture.ptw.dto.PtwCloseOutDto;
 import com.incture.ptw.dto.PtwCwpWorkTypeDto;
 
 @Repository
@@ -32,6 +35,16 @@ public class PtwCwpWorkTypeDao extends BaseDao {
 			logger.error(e.getMessage());
 		}
 
+	}
+	
+	public PtwCwpWorkTypeDto getPtwCwpWork(String permitNumber) {
+		try {
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
