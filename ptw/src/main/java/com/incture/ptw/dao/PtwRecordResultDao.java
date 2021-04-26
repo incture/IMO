@@ -15,7 +15,7 @@ import com.incture.ptw.dto.PtwTestResultsDto;
 @Repository
 public class PtwRecordResultDao extends BaseDao {
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	public PtwRecordResultResponse getPtwRecordResult(String permitNumber) {
 		try {
 			String sql1 = "select * from IOP.PTWTESTRESULTS where PERMITNUMBER= ?";
@@ -58,7 +58,7 @@ public class PtwRecordResultDao extends BaseDao {
 				ptwTestRecordDto.setIsHwp(Integer.parseInt(o[3].toString()));
 				ptwTestRecordDto.setIsCse(Integer.parseInt(o[4].toString()));
 				ptwTestRecordDto.setDetectorUsed((String) o[5]);
-				ptwTestRecordDto.setDateOfLastCalibration((Date) o[6]);
+				ptwTestRecordDto.setDateOfLastCalibration(new Date(o[6].toString()));
 				ptwTestRecordDto.setTestingFrequency((String) o[7]);
 				ptwTestRecordDto.setContinuousGasMonitoring(Integer.parseInt(o[8].toString()));
 				ptwTestRecordDto.setPriorToWorkCommencing(Integer.parseInt(o[9].toString()));
