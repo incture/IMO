@@ -23,7 +23,7 @@ public class PtwRecordResultDao extends BaseDao {
 			logger.info("1st sql1 : " + sql1);
 			q.setParameter(1, permitNumber);
 			List<Object[]> rs = q.getResultList();
-			logger.info("rs "+rs);
+			logger.info("rs " + rs);
 			List<PtwTestResultsDto> ptwTestResultsDtoList = new ArrayList<PtwTestResultsDto>();
 			for (Object[] o : rs) {
 				PtwTestResultsDto ptwTestResultsDto = new PtwTestResultsDto();
@@ -43,7 +43,7 @@ public class PtwRecordResultDao extends BaseDao {
 				ptwTestResultsDto.setTime((Date) o[13]);
 				ptwTestResultsDtoList.add(ptwTestResultsDto);
 			}
-			logger.info("ptwTestResultsDtoList :"+ptwTestResultsDtoList);
+			logger.info("ptwTestResultsDtoList :" + ptwTestResultsDtoList);
 			PtwRecordResultResponse ptwRecordResultResponse = new PtwRecordResultResponse();
 			ptwRecordResultResponse.setPtwTestResultsDtoList(ptwTestResultsDtoList);
 
@@ -52,7 +52,7 @@ public class PtwRecordResultDao extends BaseDao {
 			logger.info("2nd sql : " + sql2);
 			q1.setParameter(1, permitNumber);
 			List<Object[]> rs1 = q.getResultList();
-			logger.info("rs1 "+rs1);
+			logger.info("rs1 " + rs1);
 			for (Object o[] : rs1) {
 				PtwTestRecordDto ptwTestRecordDto = new PtwTestRecordDto();
 				ptwTestRecordDto.setSerialNo(Integer.parseInt(o[0].toString()));
@@ -75,13 +75,14 @@ public class PtwRecordResultDao extends BaseDao {
 				ptwTestRecordDto.setIslels(Integer.parseInt(o[17].toString()));
 				ptwTestRecordDto.setIsh2s(Integer.parseInt(o[18].toString()));
 				ptwTestRecordDto.setOther((String) o[19]);
-				logger.info("ptwTestRecordDto "+ptwTestRecordDto);
+				logger.info("ptwTestRecordDto " + ptwTestRecordDto);
 				ptwRecordResultResponse.setPtwTestRecordDto(ptwTestRecordDto);
 				break;
 			}
 			return ptwRecordResultResponse;
 		} catch (Exception e) {
 			logger.error(e.getMessage());
+			e.printStackTrace();
 		}
 		return null;
 	}
