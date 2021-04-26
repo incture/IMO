@@ -21,37 +21,37 @@ import com.incture.ptw.dto.PtwTestResultsDto;
 @Repository("GetPermitDetailsDao")
 public class GetPermitDetailsDao extends BaseDao {
 	@Autowired
-	PtwHeaderDao ptwHeaderDao;
+	private PtwHeaderDao ptwHeaderDao;
 	
 	@Autowired
-	JsaReviewDao jsaReviewDao;
+	private JsaReviewDao jsaReviewDao;
 	
 	@Autowired
-	PtwRequiredDocumentDao ptwRequiredDocumentDao;
+	private PtwRequiredDocumentDao ptwRequiredDocumentDao;
 	
 	@Autowired
-	PtwApprovalDao ptwApprovalDao;
+	private PtwApprovalDao ptwApprovalDao;
 	
 	@Autowired
-	PtwTestRecordDao ptwTestRecordDao;
+	private PtwTestRecordDao ptwTestRecordDao;
 	
 	@Autowired
-	PtwTestResultsDao ptwTestResultsDao;
+	private PtwTestResultsDao ptwTestResultsDao;
 	
 	@Autowired
-	PtwCloseOutDao ptwCloseOutDao;
+	private PtwCloseOutDao ptwCloseOutDao;
 	
 	@Autowired
-	PtwCwpWorkTypeDao ptwCwpWorkTypeDao;
+	private PtwCwpWorkTypeDao ptwCwpWorkTypeDao;
 	
 	@Autowired
-	PtwHwpWorkTypeDao ptwHwpWorkTypeDao;
+	private PtwHwpWorkTypeDao ptwHwpWorkTypeDao;
 	
 	@Autowired
-	PtwCseWorkTypeDao ptwCseWorkTypeDao;
+	private PtwCseWorkTypeDao ptwCseWorkTypeDao;
 	
 	@Autowired
-	PtwPeopleDao ptwPeopleDao;
+	private PtwPeopleDao ptwPeopleDao;
 	
 	
 	
