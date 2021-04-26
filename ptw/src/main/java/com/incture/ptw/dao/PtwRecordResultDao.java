@@ -15,7 +15,7 @@ import com.incture.ptw.dto.PtwTestResultsDto;
 @Repository
 public class PtwRecordResultDao extends BaseDao {
 
-	@SuppressWarnings({ "unchecked", "deprecation" })
+	@SuppressWarnings({ "unchecked" })
 	public PtwRecordResultResponse getPtwRecordResult(String permitNumber) {
 		try {
 			String sql1 = "select * from IOP.PTWTESTRESULTS where PERMITNUMBER= ?";
@@ -48,7 +48,7 @@ public class PtwRecordResultDao extends BaseDao {
 			ptwRecordResultResponse.setPtwTestResultsDtoList(ptwTestResultsDtoList);
 
 			String sql2 = "select * from IOP.PTWTESTRECORD where PERMITNUMBER= ?";
-			Query q1 = getSession().createNativeQuery(sql1);
+			Query q1 = getSession().createNativeQuery(sql2);
 			logger.info("2nd sql : " + sql2);
 			q1.setParameter(1, permitNumber);
 			List<Object[]> rs1 = q1.getResultList();
@@ -61,7 +61,8 @@ public class PtwRecordResultDao extends BaseDao {
 				ptwTestRecordDto.setIsHwp(Integer.parseInt(o[3].toString()));
 				ptwTestRecordDto.setIsCse(Integer.parseInt(o[4].toString()));
 				ptwTestRecordDto.setDetectorUsed((String) o[5]);
-				ptwTestRecordDto.setDateOfLastCalibration(new Date(o[6].toString()));
+				logger.info(o[6].toString());
+				ptwTestRecordDto.setDateOfLastCalibration((Date) o[6]);
 				ptwTestRecordDto.setTestingFrequency((String) o[7]);
 				ptwTestRecordDto.setContinuousGasMonitoring(Integer.parseInt(o[8].toString()));
 				ptwTestRecordDto.setPriorToWorkCommencing(Integer.parseInt(o[9].toString()));
