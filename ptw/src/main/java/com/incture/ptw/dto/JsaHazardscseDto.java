@@ -4,14 +4,14 @@ import lombok.Data;
 
 @Data
 public class JsaHazardscseDto {
-	private int permitNumber;
-	private int confinedSpaceEntry;
-	private int discussWorkPractice;
-	private int conductAtmosphericTesting;
-	private int monitorAccess;
-	private int protectSurfaces;
-	private int prohibitMobileEngine;
-	private int provideObserver;
-	private int developRescuePlan;
+	private Integer permitNumber;
+	private Integer confinedSpaceEntry;
+	private Integer discussWorkPractice;
+	private Integer conductAtmosphericTesting;
+	private Integer monitorAccess;
+	private Integer protectSurfaces;
+	private Integer prohibitMobileEngine;
+	private Integer provideObserver;
+	private Integer developRescuePlan;
 
 }
