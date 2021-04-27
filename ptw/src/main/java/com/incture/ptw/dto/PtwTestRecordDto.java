@@ -20,7 +20,7 @@ public class PtwTestRecordDto {
 	private Integer everyHour;
 	private String gasTester;
 	private String gasTesterComments;
-	private String areaToBeTested;
+	private String areaTobeTested;
 	private String deviceSerialNo;
 	private Integer isO2;
 	private Integer isLELs;

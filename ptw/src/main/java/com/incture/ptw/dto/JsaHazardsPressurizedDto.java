@@ -9,7 +9,7 @@ public class JsaHazardsPressurizedDto {
 	private Integer performIsolation;
 	private Integer depressurizeDrain;
 	private Integer relieveTrappedPressure;
-	private Integer doNotWorkInlineOfFire;
+	private Integer doNotWorkInLineOfFire;
 	private Integer anticipateResidual;
 	private Integer secureAllHoses;
 }

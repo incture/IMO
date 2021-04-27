@@ -70,7 +70,7 @@ public class PtwRecordResultDao extends BaseDao {
 				ptwTestRecordDto.setEveryHour(Integer.parseInt(o[11].toString()));
 				ptwTestRecordDto.setGasTester((String) o[12]);
 				ptwTestRecordDto.setGasTesterComments((String) o[13]);
-				ptwTestRecordDto.setAreaToBeTested((String) o[14]);
+				ptwTestRecordDto.setAreaTobeTested((String) o[14]);
 				ptwTestRecordDto.setDeviceSerialNo((String) o[15]);
 				ptwTestRecordDto.setIsO2(Integer.parseInt(o[16].toString()));
 				ptwTestRecordDto.setIsLELs(Integer.parseInt(o[17].toString()));

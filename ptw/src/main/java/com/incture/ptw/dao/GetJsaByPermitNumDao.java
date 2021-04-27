@@ -177,7 +177,7 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsPressurizedDto.setPerformIsolation(Integer.parseInt(a[2].toString()));
 				jsaHazardsPressurizedDto.setDepressurizeDrain(Integer.parseInt(a[3].toString()));
 				jsaHazardsPressurizedDto.setRelieveTrappedPressure(Integer.parseInt(a[4].toString()));
-				jsaHazardsPressurizedDto.setDoNotWorkInlineOfFire(Integer.parseInt(a[5].toString()));
+				jsaHazardsPressurizedDto.setDoNotWorkInLineOfFire(Integer.parseInt(a[5].toString()));
 				jsaHazardsPressurizedDto.setAnticipateResidual(Integer.parseInt(a[6].toString()));
 				jsaHazardsPressurizedDto.setSecureAllHoses(Integer.parseInt(a[7].toString()));
 			}
@@ -323,10 +323,10 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsSpillsDto.setPermitNumber((Integer)a[0]);
 				jsaHazardsSpillsDto.setPotentialSpills(Integer.parseInt(a[1].toString()));
 				jsaHazardsSpillsDto.setDrainEquipment(Integer.parseInt(a[2].toString()));
-				jsaHazardsSpillsDto.setConnectionSinGoodCondition(Integer.parseInt(a[3].toString()));
+				jsaHazardsSpillsDto.setConnectionsInGoodCondition(Integer.parseInt(a[3].toString()));
 				jsaHazardsSpillsDto.setSpillContainmentEquipment(Integer.parseInt(a[4].toString()));
-				jsaHazardsSpillsDto.setHaveSpillCleanUpMaterials(Integer.parseInt(a[5].toString()));
-				jsaHazardsSpillsDto.setRestRainHosesWhenNotInUse(Integer.parseInt(a[6].toString()));
+				jsaHazardsSpillsDto.setHaveSpillCleanupMaterials(Integer.parseInt(a[5].toString()));
+				jsaHazardsSpillsDto.setRestrainHosesWhenNotInUse(Integer.parseInt(a[6].toString()));
 				
 			}
 			logger.info(jsaHazardsSpillsDto.toString());
@@ -366,7 +366,7 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsHighNoiseDto.setShutDownEquipment(Integer.parseInt(a[4].toString()));
 				jsaHazardsHighNoiseDto.setUseQuietTools(Integer.parseInt(a[5].toString()));
 				jsaHazardsHighNoiseDto.setSoundBarriers(Integer.parseInt(a[6].toString()));
-				jsaHazardsHighNoiseDto.setProvideSuitablecomms(Integer.parseInt(a[7].toString()));
+				jsaHazardsHighNoiseDto.setProvideSuitableComms(Integer.parseInt(a[7].toString()));
 			}
 			logger.info(jsaHazardsHighNoiseDto.toString());
 			payload.setJsaHazardsHighNoiseDto(jsaHazardsHighNoiseDto);
@@ -516,11 +516,11 @@ public class GetJsaByPermitNumDao extends BaseDao {
 			JsaHazardsFallsDto jsaHazardsFallsDto = new JsaHazardsFallsDto();
 			for (Object[] a : obj) {
 				jsaHazardsFallsDto.setPermitNumber((Integer)a[0]);
-				jsaHazardsFallsDto.setSlipstripsAndFalls(Integer.parseInt(a[1].toString()));
+				jsaHazardsFallsDto.setSlipsTripsAndFalls(Integer.parseInt(a[1].toString()));
 				jsaHazardsFallsDto.setIdentifyProjections(Integer.parseInt(a[2].toString()));
 				jsaHazardsFallsDto.setFlagHazards(Integer.parseInt(a[3].toString()));
 				jsaHazardsFallsDto.setSecureCables(Integer.parseInt(a[4].toString()));
-				jsaHazardsFallsDto.setCleanupLiquids(Integer.parseInt(a[5].toString()));
+				jsaHazardsFallsDto.setCleanUpLiquids(Integer.parseInt(a[5].toString()));
 				jsaHazardsFallsDto.setBarricadeHoles(Integer.parseInt(a[6].toString()));
 				
 			}
@@ -580,7 +580,7 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsMobileDto.setAssessEquipmentCondition(Integer.parseInt(a[2].toString()));
 				jsaHazardsMobileDto.setControlAccess(Integer.parseInt(a[3].toString()));
 				jsaHazardsMobileDto.setMonitorProximity(Integer.parseInt(a[4].toString()));
-				jsaHazardsMobileDto.setManageOverHeadHazards(Integer.parseInt(a[5].toString()));
+				jsaHazardsMobileDto.setManageOverheadHazards(Integer.parseInt(a[5].toString()));
 				jsaHazardsMobileDto.setAdhereToRules(Integer.parseInt(a[6].toString()));
 			}
 			logger.info(jsaHazardsMobileDto.toString());
@@ -637,7 +637,7 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaLocationDto.setSerialNo((Integer)a[0]);
 				jsaLocationDto.setPermitNumber((Integer)a[1]);
 				jsaLocationDto.setFaciltyOrSite((String)a[2]);
-				jsaLocationDto.setHierarchyLevel((String)a[3]);
+				jsaLocationDto.setHierachyLevel((String)a[3]);
 				jsaLocationDto.setFacility((String)a[4]);
 				jsaLocationDto.setMuwi((String)a[5]);
 				jsaLocationDtoList.add(jsaLocationDto);
@@ -660,10 +660,10 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				ptwPeopleDto.setFirstName((String)a[2]);
 				ptwPeopleDto.setLastName((String)a[3]);
 				ptwPeopleDto.setContactNumber((String)a[4]);
-				ptwPeopleDto.setHasSignedJsa(Integer.parseInt(a[5].toString()));
-				ptwPeopleDto.setHasSignedCwp(Integer.parseInt(a[6].toString()));
-				ptwPeopleDto.setHasSignedHwp(Integer.parseInt(a[7].toString()));
-				ptwPeopleDto.setHasSignedCse(Integer.parseInt(a[8].toString()));
+				ptwPeopleDto.setHasSignedJSA(Integer.parseInt(a[5].toString()));
+				ptwPeopleDto.setHasSignedCWP(Integer.parseInt(a[6].toString()));
+				ptwPeopleDto.setHasSignedHWP(Integer.parseInt(a[7].toString()));
+				ptwPeopleDto.setHasSignedCSE(Integer.parseInt(a[8].toString()));
 				ptwPeopleDtoList.add(ptwPeopleDto);
 			}
 			logger.info(ptwPeopleDtoList.toString());

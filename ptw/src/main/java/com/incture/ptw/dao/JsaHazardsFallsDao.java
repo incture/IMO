@@ -15,11 +15,11 @@ public class JsaHazardsFallsDao extends BaseDao {
 			logger.info(sql);
 			Query query = getSession().createNativeQuery(sql);
 			query.setParameter(1, permitNumber);
-			query.setParameter(2, jsaHazardsFallsDto.getSlipstripsAndFalls());
+			query.setParameter(2, jsaHazardsFallsDto.getSlipsTripsAndFalls());
 			query.setParameter(3, jsaHazardsFallsDto.getIdentifyProjections());
 			query.setParameter(4, jsaHazardsFallsDto.getFlagHazards());
 			query.setParameter(5, jsaHazardsFallsDto.getSecureCables());
-			query.setParameter(6, jsaHazardsFallsDto.getCleanupLiquids());
+			query.setParameter(6, jsaHazardsFallsDto.getCleanUpLiquids());
 			query.setParameter(7, jsaHazardsFallsDto.getBarricadeHoles());
 			query.executeUpdate();
 		} catch (Exception e) {

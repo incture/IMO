@@ -16,10 +16,10 @@ public class JsaHazardsSpillsDao extends BaseDao{
 			query.setParameter(1, permitNumber);
 			query.setParameter(2, jsaHazardsSpillsDto.getPotentialSpills());
 			query.setParameter(3, jsaHazardsSpillsDto.getDrainEquipment());
-			query.setParameter(4, jsaHazardsSpillsDto.getConnectionSinGoodCondition());
+			query.setParameter(4, jsaHazardsSpillsDto.getConnectionsInGoodCondition());
 			query.setParameter(5, jsaHazardsSpillsDto.getSpillContainmentEquipment());
-			query.setParameter(6, jsaHazardsSpillsDto.getHaveSpillCleanUpMaterials());
-			query.setParameter(7, jsaHazardsSpillsDto.getRestRainHosesWhenNotInUse());
+			query.setParameter(6, jsaHazardsSpillsDto.getHaveSpillCleanupMaterials());
+			query.setParameter(7, jsaHazardsSpillsDto.getRestrainHosesWhenNotInUse());
 			query.executeUpdate();
 		}catch(Exception e){
 			logger.error(e.getMessage());

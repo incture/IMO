@@ -33,7 +33,7 @@ public class PtwTestRecordDao extends BaseDao {
 			query.setParameter(12, ptwTestRecordDto.getEveryHour());
 			query.setParameter(13, ptwTestRecordDto.getGasTester());
 			query.setParameter(14, ptwTestRecordDto.getGasTesterComments());
-			query.setParameter(15, ptwTestRecordDto.getAreaToBeTested());
+			query.setParameter(15, ptwTestRecordDto.getAreaTobeTested());
 			query.setParameter(16, ptwTestRecordDto.getDeviceSerialNo());
 			query.setParameter(17, ptwTestRecordDto.getIsO2());
 			query.setParameter(18, ptwTestRecordDto.getIsLELs());
@@ -68,7 +68,7 @@ public class PtwTestRecordDao extends BaseDao {
 				ptwTestRecordDto.setEveryHour(Integer.parseInt(o[11].toString()));
 				ptwTestRecordDto.setGasTester((String) o[12]);
 				ptwTestRecordDto.setGasTesterComments((String) o[13]);
-				ptwTestRecordDto.setAreaToBeTested((String) o[14]);
+				ptwTestRecordDto.setAreaTobeTested((String) o[14]);
 				ptwTestRecordDto.setDeviceSerialNo((String) o[15]);
 				ptwTestRecordDto.setIsO2(Integer.parseInt(o[16].toString()));
 				ptwTestRecordDto.setIsLELs(Integer.parseInt(o[17].toString()));

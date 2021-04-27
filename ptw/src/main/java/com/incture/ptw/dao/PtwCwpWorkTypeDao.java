@@ -25,7 +25,7 @@ public class PtwCwpWorkTypeDao extends BaseDao {
 			query.setParameter(9, ptwCwpWorkTypeDto.getErectingOrDismantlingScaffodling());
 			query.setParameter(10, ptwCwpWorkTypeDto.getBreakingContainmentOfClosedOperatingSystem());
 			query.setParameter(11, ptwCwpWorkTypeDto.getWorkingInCloseToHazardousEnergy());
-			query.setParameter(12, ptwCwpWorkTypeDto.getRemovalOFIdelEquipemntForRepair());
+			query.setParameter(12, ptwCwpWorkTypeDto.getRemovalOfIdelEquipemntForRepair());
 			query.setParameter(13, ptwCwpWorkTypeDto.getHigherRiskElectricalWork());
 			query.setParameter(14, ptwCwpWorkTypeDto.getOtherTypeOfWork());
 			query.setParameter(15, ptwCwpWorkTypeDto.getDescriptionOfWorkToBePerformed());
@@ -57,7 +57,7 @@ public class PtwCwpWorkTypeDao extends BaseDao {
 				ptwCwpWorkTypeDto.setErectingOrDismantlingScaffodling(Integer.parseInt(a[8].toString()));
 				ptwCwpWorkTypeDto.setBreakingContainmentOfClosedOperatingSystem(Integer.parseInt(a[9].toString()));
 				ptwCwpWorkTypeDto.setWorkingInCloseToHazardousEnergy(Integer.parseInt(a[10].toString()));
-				ptwCwpWorkTypeDto.setRemovalOFIdelEquipemntForRepair(Integer.parseInt(a[11].toString()));
+				ptwCwpWorkTypeDto.setRemovalOfIdelEquipemntForRepair(Integer.parseInt(a[11].toString()));
 				ptwCwpWorkTypeDto.setHigherRiskElectricalWork(Integer.parseInt(a[12].toString()));
 				ptwCwpWorkTypeDto.setOtherTypeOfWork((String)a[13]);
 				ptwCwpWorkTypeDto.setDescriptionOfWorkToBePerformed((String)a[14]);

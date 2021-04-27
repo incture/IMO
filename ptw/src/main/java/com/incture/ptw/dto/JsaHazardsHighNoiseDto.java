@@ -11,6 +11,6 @@ public class JsaHazardsHighNoiseDto {
 	private Integer shutDownEquipment;
 	private Integer useQuietTools;
 	private Integer soundBarriers;
-	private Integer provideSuitablecomms;
+	private Integer provideSuitableComms;
 
 }

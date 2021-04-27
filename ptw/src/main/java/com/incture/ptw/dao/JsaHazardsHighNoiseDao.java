@@ -20,7 +20,7 @@ public class JsaHazardsHighNoiseDao extends BaseDao{
 			query.setParameter(5, jsaHazardsHighNoiseDto.getShutDownEquipment());
 			query.setParameter(6, jsaHazardsHighNoiseDto.getUseQuietTools());
 			query.setParameter(7, jsaHazardsHighNoiseDto.getSoundBarriers());
-			query.setParameter(8, jsaHazardsHighNoiseDto.getProvideSuitablecomms());
+			query.setParameter(8, jsaHazardsHighNoiseDto.getProvideSuitableComms());
 			query.executeUpdate();
 		}catch(Exception e){
 			logger.error(e.getMessage());

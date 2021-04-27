@@ -18,7 +18,7 @@ public class JsaHazardsPressurizedDao extends BaseDao {
 			query.setParameter(3, jsaHazardsPressurizedDto.getPerformIsolation());
 			query.setParameter(4, jsaHazardsPressurizedDto.getDepressurizeDrain());
 			query.setParameter(5, jsaHazardsPressurizedDto.getRelieveTrappedPressure());
-			query.setParameter(6, jsaHazardsPressurizedDto.getDoNotWorkInlineOfFire());
+			query.setParameter(6, jsaHazardsPressurizedDto.getDoNotWorkInLineOfFire());
 			query.setParameter(7, jsaHazardsPressurizedDto.getAnticipateResidual());
 			query.setParameter(8, jsaHazardsPressurizedDto.getSecureAllHoses());
 

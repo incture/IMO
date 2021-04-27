@@ -19,7 +19,7 @@ public class JsaHazardsMobileDao extends BaseDao {
 			query.setParameter(3, jsaHazardsMobileDto.getAssessEquipmentCondition());
 			query.setParameter(4, jsaHazardsMobileDto.getControlAccess());
 			query.setParameter(5, jsaHazardsMobileDto.getMonitorProximity());
-			query.setParameter(6, jsaHazardsMobileDto.getManageOverHeadHazards());
+			query.setParameter(6, jsaHazardsMobileDto.getManageOverheadHazards());
 			query.setParameter(7, jsaHazardsMobileDto.getAdhereToRules());
 			logger.info("sql " + sql);
 			query.executeUpdate();

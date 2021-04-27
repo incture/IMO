@@ -9,6 +9,6 @@ public class JsaHazardsMobileDto {
 	private Integer assessEquipmentCondition;
 	private Integer controlAccess;
 	private Integer monitorProximity;
-	private Integer manageOverHeadHazards;
+	private Integer manageOverheadHazards;
 	private Integer adhereToRules;
 }

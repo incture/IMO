@@ -9,8 +9,8 @@ public class PtwPeopleDto {
 	private String firstName;
 	private String lastName;
 	private String contactNumber;
-	private Integer hasSignedJsa;
-	private Integer hasSignedCwp;
-	private Integer hasSignedHwp;
-	private Integer hasSignedCse;
+	private Integer hasSignedJSA;
+	private Integer hasSignedCWP;
+	private Integer hasSignedHWP;
+	private Integer hasSignedCSE;
 }

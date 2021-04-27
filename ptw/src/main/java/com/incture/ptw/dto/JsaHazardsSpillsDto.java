@@ -7,8 +7,8 @@ public class JsaHazardsSpillsDto {
 	private Integer permitNumber;
 	private Integer potentialSpills;
 	private Integer drainEquipment;
-	private Integer connectionSinGoodCondition;
+	private Integer connectionsInGoodCondition;
 	private Integer spillContainmentEquipment;
-	private Integer haveSpillCleanUpMaterials;
-	private Integer restRainHosesWhenNotInUse;
+	private Integer haveSpillCleanupMaterials;
+	private Integer restrainHosesWhenNotInUse;
 }

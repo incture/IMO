@@ -25,10 +25,10 @@ public class PtwPeopleDao extends BaseDao {
 			query.setParameter(3, ptwPeopleDto.getFirstName());
 			query.setParameter(4, ptwPeopleDto.getLastName());
 			query.setParameter(5, ptwPeopleDto.getContactNumber());
-			query.setParameter(6, ptwPeopleDto.getHasSignedJsa());
-			query.setParameter(7, ptwPeopleDto.getHasSignedCwp());
-			query.setParameter(8, ptwPeopleDto.getHasSignedHwp());
-			query.setParameter(9, ptwPeopleDto.getHasSignedCse());
+			query.setParameter(6, ptwPeopleDto.getHasSignedJSA());
+			query.setParameter(7, ptwPeopleDto.getHasSignedCWP());
+			query.setParameter(8, ptwPeopleDto.getHasSignedHWP());
+			query.setParameter(9, ptwPeopleDto.getHasSignedCSE());
 			query.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -54,10 +54,10 @@ public class PtwPeopleDao extends BaseDao {
 				ptwPeopleDto.setFirstName((String)a[2]);
 				ptwPeopleDto.setLastName((String)a[3]);
 				ptwPeopleDto.setContactNumber((String)a[4]);
-				ptwPeopleDto.setHasSignedJsa(Integer.parseInt(a[5].toString()));
-				ptwPeopleDto.setHasSignedCwp(Integer.parseInt(a[6].toString()));
-				ptwPeopleDto.setHasSignedHwp(Integer.parseInt(a[7].toString()));
-				ptwPeopleDto.setHasSignedCse(Integer.parseInt(a[8].toString()));
+				ptwPeopleDto.setHasSignedJSA(Integer.parseInt(a[5].toString()));
+				ptwPeopleDto.setHasSignedCWP(Integer.parseInt(a[6].toString()));
+				ptwPeopleDto.setHasSignedHWP(Integer.parseInt(a[7].toString()));
+				ptwPeopleDto.setHasSignedCSE(Integer.parseInt(a[8].toString()));
 				ptwPeopleDtoList.add(ptwPeopleDto);
 				
 			}
