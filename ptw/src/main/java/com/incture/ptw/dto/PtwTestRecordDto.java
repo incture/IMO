@@ -12,7 +12,7 @@ public class PtwTestRecordDto {
 	private Integer isHWP;
 	private Integer isCSE;
 	private String detectorUsed;
-	private Date dateOfLastCalibration;
+	private Date DateOfLastCalibration;
 	private String testingFrequency;
 	private Integer continuousGasMonitoring;
 	private Integer priorToWorkCommencing;
@@ -25,5 +25,5 @@ public class PtwTestRecordDto {
 	private Integer isO2;
 	private Integer isLELs;
 	private Integer isH2S;
-	private String other;
+	private String Other;
 }
