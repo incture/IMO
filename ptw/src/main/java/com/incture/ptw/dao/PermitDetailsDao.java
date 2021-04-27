@@ -19,7 +19,7 @@ import com.incture.ptw.dto.PtwTestRecordDto;
 import com.incture.ptw.dto.PtwTestResultsDto;
 
 @Repository("GetPermitDetailsDao")
-public class GetPermitDetailsDao extends BaseDao {
+public class PermitDetailsDao extends BaseDao {
 	@Autowired
 	private PtwHeaderDao ptwHeaderDao;
 	
@@ -56,7 +56,7 @@ public class GetPermitDetailsDao extends BaseDao {
 	
 	
 
-	public PtwDetailsDto GetPermitDetailsDao(String permitNumber, String permitType) {
+	public PtwDetailsDto getPermitDetails(String permitNumber, String permitType) {
 		PtwDetailsDto ptwDetailsDto = new PtwDetailsDto();
 		String ptwPermitNumber = null;
 		String isCwp;
@@ -115,7 +115,7 @@ public class GetPermitDetailsDao extends BaseDao {
 			List<PtwPeopleDto> ptwPeopleDtoList = ptwPeopleDao.getPtwPeople(pmNumber);
 			ptwDetailsDto.setPtwPeopleDtoList(ptwPeopleDtoList);
 			
-			
+			return ptwDetailsDto;
 			} catch (Exception e) {
 				logger.error(e.getMessage());
 				e.printStackTrace();
