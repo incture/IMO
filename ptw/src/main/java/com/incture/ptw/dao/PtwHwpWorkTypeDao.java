@@ -1,5 +1,7 @@
 package com.incture.ptw.dao;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -28,7 +30,24 @@ public class PtwHwpWorkTypeDao extends BaseDao {
 	
 	public PtwHwpWorkTypeDto getPtwHwpWork(String permitNumber) {
 		try {
-			
+			String sql = "select * from IOP.PTW_HWP_WORK_TYPE where PERMITNUMBER= :permitNumber";
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter("permitNumber", permitNumber);
+			logger.info("getPtwHwpWork Sql: " + sql);
+			@SuppressWarnings("unchecked")
+			List<Object[]> result = query.getResultList();
+			PtwHwpWorkTypeDto ptwHwpWorkTypeDto = new PtwHwpWorkTypeDto();
+			for(Object[] a : result){
+				ptwHwpWorkTypeDto.setPermitNumber((Integer)a[0]);
+				ptwHwpWorkTypeDto.setCutting(Integer.parseInt(a[1].toString()));
+				ptwHwpWorkTypeDto.setWielding(Integer.parseInt(a[2].toString()));
+				ptwHwpWorkTypeDto.setElectricalPoweredEquipment(Integer.parseInt(a[3].toString()));
+				ptwHwpWorkTypeDto.setGrinding(Integer.parseInt(a[4].toString()));
+				ptwHwpWorkTypeDto.setAbrasiveBlasting(Integer.parseInt(a[5].toString()));
+				ptwHwpWorkTypeDto.setOtherTypeOfWork((String)a[6]);
+				ptwHwpWorkTypeDto.setDescriptionOfWorkToBePerformed((String)a[7]);
+			}
+			return ptwHwpWorkTypeDto;
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();

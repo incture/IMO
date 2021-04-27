@@ -1,5 +1,7 @@
 package com.incture.ptw.dao;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -36,7 +38,31 @@ public class PtwCwpWorkTypeDao extends BaseDao {
 	
 	public PtwCwpWorkTypeDto getPtwCwpWork(String permitNumber) {
 		try {
-			
+			String sql = "select * from IOP.PTW_CWP_WORK_TYPE where PERMITNUMBER= :permitNumber";
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter("permitNumber", permitNumber);
+			logger.info("getPtwHwpWork Sql: " + sql);
+			@SuppressWarnings("unchecked")
+			List<Object[]> result = query.getResultList();
+			PtwCwpWorkTypeDto ptwCwpWorkTypeDto = new PtwCwpWorkTypeDto();
+			for(Object[] a : result){
+				ptwCwpWorkTypeDto.setPermitNumber((Integer)a[0]);
+				ptwCwpWorkTypeDto.setCriticalOrComplexLift(Integer.parseInt(a[1].toString()));
+				ptwCwpWorkTypeDto.setCraneOrLiftingDevice(Integer.parseInt(a[2].toString()));
+				ptwCwpWorkTypeDto.setGroundDisturbanceOrExcavation(Integer.parseInt(a[3].toString()));
+				ptwCwpWorkTypeDto.setHandlingHazardousChemicals(Integer.parseInt(a[4].toString()));
+				ptwCwpWorkTypeDto.setWorkingAtHeight(Integer.parseInt(a[5].toString()));
+				ptwCwpWorkTypeDto.setPaintingOrBlasting(Integer.parseInt(a[6].toString()));
+				ptwCwpWorkTypeDto.setWorkingOnPressurizedSystems(Integer.parseInt(a[7].toString()));
+				ptwCwpWorkTypeDto.setErectingOrDismantlingScaffodling(Integer.parseInt(a[8].toString()));
+				ptwCwpWorkTypeDto.setBreakingContainmentOfClosedOperatingSystem(Integer.parseInt(a[9].toString()));
+				ptwCwpWorkTypeDto.setWorkingInCloseToHazardousEnergy(Integer.parseInt(a[10].toString()));
+				ptwCwpWorkTypeDto.setRemovalOFIdelEquipemntForRepair(Integer.parseInt(a[11].toString()));
+				ptwCwpWorkTypeDto.setHigherRiskElectricalWork(Integer.parseInt(a[12].toString()));
+				ptwCwpWorkTypeDto.setOtherTypeOfWork((String)a[13]);
+				ptwCwpWorkTypeDto.setDescriptionOfWorkToBePerformed((String)a[14]);
+			}
+			return ptwCwpWorkTypeDto;
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();

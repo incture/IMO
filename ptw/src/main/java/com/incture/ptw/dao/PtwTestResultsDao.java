@@ -1,5 +1,7 @@
 package com.incture.ptw.dao;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -40,7 +42,32 @@ public class PtwTestResultsDao extends BaseDao {
 	
 	public List<PtwTestResultsDto> getPtwTestRes(String permitNumber) {
 		try {
-			
+			String sql = "select * from IOP.PTWTESTRESULTS where PERMITNUMBER= :permitNumber";
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter("permitNumber", permitNumber);
+			logger.info("getPtwPeople Sql: " + sql);
+			@SuppressWarnings("unchecked")
+			List<Object[]> result = query.getResultList();
+			List<PtwTestResultsDto> ptwTestResultsDtoList = new ArrayList<PtwTestResultsDto>();
+			for(Object[] a : result){
+				PtwTestResultsDto ptwTestResultsDto = new PtwTestResultsDto();
+				ptwTestResultsDto.setSerialNo((Integer)a[0]);
+				ptwTestResultsDto.setPermitNumber((Integer)a[1]);
+				ptwTestResultsDto.setIsCWP(Integer.parseInt(a[2].toString()));
+				ptwTestResultsDto.setIsHWP(Integer.parseInt(a[3].toString()));
+				ptwTestResultsDto.setIsCSE(Integer.parseInt(a[4].toString()));
+				ptwTestResultsDto.setPreStartOrWorkTest((String)a[5]);
+				ptwTestResultsDto.setOxygenPercentage((Float)a[6]);
+				ptwTestResultsDto.setToxicType((String)a[7]);
+				ptwTestResultsDto.setToxicResult((Float)a[8]);
+				ptwTestResultsDto.setFlammableGas((String)a[9]);
+				ptwTestResultsDto.setOthersType((String)a[10]);
+				ptwTestResultsDto.setOthersResult((Float)a[11]);
+				ptwTestResultsDto.setDate((Date)a[12]);
+				ptwTestResultsDto.setTime((Date)a[13]);
+				ptwTestResultsDtoList.add(ptwTestResultsDto);
+			}
+			return ptwTestResultsDtoList;
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();

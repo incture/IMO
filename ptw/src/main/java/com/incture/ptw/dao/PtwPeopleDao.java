@@ -1,5 +1,6 @@
 package com.incture.ptw.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -37,8 +38,30 @@ public class PtwPeopleDao extends BaseDao {
 	}
 
 	public List<PtwPeopleDto> getPtwPeople(String permitNumber) {
+		List<PtwPeopleDto> ptwPeopleDtoList = new ArrayList<PtwPeopleDto>();
 		try {
-
+			String sql = "select * from IOP.PTWPEOPLE where PERMITNUMBER= :permitNumber";
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter("permitNumber", permitNumber);
+			logger.info("getPtwPeople Sql: " + sql);
+			@SuppressWarnings("unchecked")
+			List<Object[]> result = query.getResultList();
+			
+			for(Object[] a : result){
+				PtwPeopleDto ptwPeopleDto = new PtwPeopleDto();
+				ptwPeopleDto.setSerialNo((Integer)a[0]);
+				ptwPeopleDto.setPermitNumber((Integer)a[1]);
+				ptwPeopleDto.setFirstName((String)a[2]);
+				ptwPeopleDto.setLastName((String)a[3]);
+				ptwPeopleDto.setContactNumber((String)a[4]);
+				ptwPeopleDto.setHasSignedJsa(Integer.parseInt(a[5].toString()));
+				ptwPeopleDto.setHasSignedCwp(Integer.parseInt(a[6].toString()));
+				ptwPeopleDto.setHasSignedHwp(Integer.parseInt(a[7].toString()));
+				ptwPeopleDto.setHasSignedCse(Integer.parseInt(a[8].toString()));
+				ptwPeopleDtoList.add(ptwPeopleDto);
+				
+			}
+			return ptwPeopleDtoList;
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
