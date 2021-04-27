@@ -63,7 +63,7 @@
       "path": "/destination/Incture_tenant",
       "target": {
         "type": "destination",
-        "name": "Incture_tenant",
+        "name": "UserManagement_Dest",
         "entryPath": "/"
       },
       "description": "Used for Murphy IdP APIs"
