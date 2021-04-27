@@ -50,9 +50,9 @@ public class JsaReviewDao extends BaseDao {
 		JsaReviewDto jsaReviewDto = new JsaReviewDto();
 		List<Object[]> obj;
 		try {
-			String sql = "select * from IOP.JSAREVIEW where PERMITNUMBER:=permitNumber";
+			String sql = "select * from IOP.JSAREVIEW where PERMITNUMBER = ?";
 			Query query = getSession().createNativeQuery(sql);
-			query.setParameter("permitNumber",permitNumber );
+			query.setParameter(1,permitNumber );
 			logger.info("getJsaReview sql :" + sql);
 			obj = query.getResultList();
 			for (Object[] a : obj) {

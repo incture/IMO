@@ -40,9 +40,9 @@ public class PtwHeaderDao extends BaseDao {
 	public PtwHeaderDto getPermitNumber(String ptwPermitNumber) {
 		PtwHeaderDto ptwHeaderDto = new PtwHeaderDto();
 		try {
-			String sql="select PERMITNUMBER,ISCWP,ISHWP,ISCSE from IOP.PTWHEADER where PTWPERMITNUMBER:=ptwPermitNumber";
+			String sql="select PERMITNUMBER,ISCWP,ISHWP,ISCSE from IOP.PTWHEADER where PTWPERMITNUMBER = ?";
 			Query query = getSession().createNativeQuery(sql);
-			query.setParameter("ptwPermitNumber", ptwPermitNumber);
+			query.setParameter(1, ptwPermitNumber);
 			logger.info("Sql: "+sql);
 			@SuppressWarnings("unchecked")
 			List<Object[]> result = query.getResultList();
@@ -61,9 +61,9 @@ public class PtwHeaderDao extends BaseDao {
 	public List<PtwHeaderDto> getPtwHeader(String ptwPermitNumber) {
 		List<PtwHeaderDto> ptwHeaderDtoList = new ArrayList<PtwHeaderDto>();
 		try {
-			String sql = "select * from IOP.PTWHEADER where PTWPERMITNUMBER:=ptwPermitNumber";
+			String sql = "select * from IOP.PTWHEADER where PTWPERMITNUMBER  = ?";
 			Query query = getSession().createNativeQuery(sql);
-			query.setParameter("ptwPermitNumber", ptwPermitNumber);
+			query.setParameter(1, ptwPermitNumber);
 			logger.info("GetPtwHeader Sql: " + sql);
 			@SuppressWarnings("unchecked")
 			List<Object[]> result = query.getResultList();

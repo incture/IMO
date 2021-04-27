@@ -47,7 +47,7 @@ public class PtwTestRecordDao extends BaseDao {
 
 	public PtwTestRecordDto getPtwTestRec(String permitNumber) {
 		try {
-			String sqlString = "select * from IOP.PTWTESTRECORD where PERMITNUMBER=?";
+			String sqlString = "select * from IOP.PTWTESTRECORD where PERMITNUMBER = ?";
 			Query query = getSession().createNativeQuery(sqlString);
 			query.setParameter(1, permitNumber);
 			PtwTestRecordDto ptwTestRecordDto = new PtwTestRecordDto();
