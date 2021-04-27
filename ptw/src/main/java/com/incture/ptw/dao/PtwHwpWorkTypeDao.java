@@ -38,7 +38,7 @@ public class PtwHwpWorkTypeDao extends BaseDao {
 			List<Object[]> result = query.getResultList();
 			PtwHwpWorkTypeDto ptwHwpWorkTypeDto = new PtwHwpWorkTypeDto();
 			for(Object[] a : result){
-				ptwHwpWorkTypeDto.setPermitNumber((Integer)a[0]);
+				ptwHwpWorkTypeDto.setPermitNumber(Integer.parseInt(a[0].toString()));
 				ptwHwpWorkTypeDto.setCutting(Integer.parseInt(a[1].toString()));
 				ptwHwpWorkTypeDto.setWielding(Integer.parseInt(a[2].toString()));
 				ptwHwpWorkTypeDto.setElectricalPoweredEquipment(Integer.parseInt(a[3].toString()));

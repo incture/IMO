@@ -54,8 +54,8 @@ public class PtwTestRecordDao extends BaseDao {
 			@SuppressWarnings("unchecked")
 			List<Object[]> list = query.getResultList();
 			for (Object[] o : list) {
-				ptwTestRecordDto.setSerialNo((Integer) o[0]);
-				ptwTestRecordDto.setPermitNumber((Integer) o[1]);
+				ptwTestRecordDto.setSerialNo(Integer.parseInt( o[0].toString()));
+				ptwTestRecordDto.setPermitNumber(Integer.parseInt(o[1].toString()));
 				ptwTestRecordDto.setIsCWP(Integer.parseInt(o[2].toString()));
 				ptwTestRecordDto.setIsHWP(Integer.parseInt(o[3].toString()));
 				ptwTestRecordDto.setIsCSE(Integer.parseInt(o[4].toString()));

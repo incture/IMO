@@ -38,7 +38,7 @@ public class PtwCseWorkTypeDao extends BaseDao {
 			List<Object[]> result = query.getResultList();
 			PtwCseWorkTypeDto ptwCseWorkTypeDto = new PtwCseWorkTypeDto();
 			for(Object[] res : result){
-				ptwCseWorkTypeDto.setPermitNumber((Integer)res[0]);
+				ptwCseWorkTypeDto.setPermitNumber(Integer.parseInt(res[0].toString()));
 				ptwCseWorkTypeDto.setTank(Integer.parseInt(res[1].toString()));
 				ptwCseWorkTypeDto.setVessel(Integer.parseInt(res[2].toString()));
 				ptwCseWorkTypeDto.setExcavation(Integer.parseInt(res[3].toString()));

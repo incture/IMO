@@ -23,8 +23,8 @@ public class PtwCloseOutDao extends BaseDao{
 			List<PtwCloseOutDto> ptwCloseOutDtoList = new ArrayList<PtwCloseOutDto>();
 			for(Object[] a : result){
 				PtwCloseOutDto ptwCloseOutDto = new PtwCloseOutDto();
-				ptwCloseOutDto.setSerialNo((Integer)a[0]);
-				ptwCloseOutDto.setPermitNumber((Integer)a[1]);
+				ptwCloseOutDto.setSerialNo(Integer.parseInt(a[0].toString()));
+				ptwCloseOutDto.setPermitNumber(Integer.parseInt(a[1].toString()));
 				ptwCloseOutDto.setIsCWP(Integer.parseInt(a[2].toString()));
 				ptwCloseOutDto.setIsHWP(Integer.parseInt(a[3].toString()));
 				ptwCloseOutDto.setIsCSE(Integer.parseInt(a[4].toString()));

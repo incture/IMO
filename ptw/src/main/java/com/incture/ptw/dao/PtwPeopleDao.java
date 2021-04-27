@@ -49,8 +49,8 @@ public class PtwPeopleDao extends BaseDao {
 			
 			for(Object[] a : result){
 				PtwPeopleDto ptwPeopleDto = new PtwPeopleDto();
-				ptwPeopleDto.setSerialNo((Integer)a[0]);
-				ptwPeopleDto.setPermitNumber((Integer)a[1]);
+				ptwPeopleDto.setSerialNo(Integer.parseInt(a[0].toString()));
+				ptwPeopleDto.setPermitNumber(Integer.parseInt(a[1].toString()));
 				ptwPeopleDto.setFirstName((String)a[2]);
 				ptwPeopleDto.setLastName((String)a[3]);
 				ptwPeopleDto.setContactNumber((String)a[4]);

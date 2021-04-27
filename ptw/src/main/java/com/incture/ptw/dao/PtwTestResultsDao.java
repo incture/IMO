@@ -51,8 +51,8 @@ public class PtwTestResultsDao extends BaseDao {
 			List<PtwTestResultsDto> ptwTestResultsDtoList = new ArrayList<PtwTestResultsDto>();
 			for(Object[] a : result){
 				PtwTestResultsDto ptwTestResultsDto = new PtwTestResultsDto();
-				ptwTestResultsDto.setSerialNo((Integer)a[0]);
-				ptwTestResultsDto.setPermitNumber((Integer)a[1]);
+				ptwTestResultsDto.setSerialNo(Integer.parseInt(a[0].toString()));
+				ptwTestResultsDto.setPermitNumber(Integer.parseInt(a[1].toString()));
 				ptwTestResultsDto.setIsCWP(Integer.parseInt(a[2].toString()));
 				ptwTestResultsDto.setIsHWP(Integer.parseInt(a[3].toString()));
 				ptwTestResultsDto.setIsCSE(Integer.parseInt(a[4].toString()));
