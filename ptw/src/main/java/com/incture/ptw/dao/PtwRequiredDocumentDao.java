@@ -1,5 +1,6 @@
 package com.incture.ptw.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -13,6 +14,7 @@ import com.incture.ptw.dto.PtwRequiredDocumentDto;
 public class PtwRequiredDocumentDao extends BaseDao {
 	@Autowired
 	private KeyGeneratorDao keyGeneratorDao;
+
 	public void insertPtwRequiredDocument(String permitNumber, PtwRequiredDocumentDto ptwRequiredDocumentDto) {
 		try {
 			Query query = getSession().createNativeQuery(
@@ -41,10 +43,41 @@ public class PtwRequiredDocumentDao extends BaseDao {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public List<PtwRequiredDocumentDto> getPtwReqDoc(String permitNumber, String isCwp, String isHwp, String isCse) {
 		try {
-			
+			String sql = "select * from IOP.PTWREQUIREDDOCUMENT where PERMITNUMBER=? and ISCWP = ? and ISHWP = ? and ISCSE = ?";
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, permitNumber);
+			query.setParameter(2, isCwp);
+			query.setParameter(3, isHwp);
+			query.setParameter(4, isCse);
+			@SuppressWarnings("unchecked")
+			List<Object[]> list = query.getResultList();
+			List<PtwRequiredDocumentDto> ptwRequiredDocumentDtoList = new ArrayList<PtwRequiredDocumentDto>();
+			for (Object[] o : list) {
+				PtwRequiredDocumentDto ptwRequiredDocumentDto = new PtwRequiredDocumentDto();
+				ptwRequiredDocumentDto.setSerialNo((Integer) o[0]);
+				ptwRequiredDocumentDto.setPermitNumber((Integer) o[1]);
+				ptwRequiredDocumentDto.setIsCwp(Integer.parseInt(o[2].toString()));
+				ptwRequiredDocumentDto.setIsHwp(Integer.parseInt(o[3].toString()));
+				ptwRequiredDocumentDto.setIsCse(Integer.parseInt(o[4].toString()));
+				ptwRequiredDocumentDto.setAtmosphericTestRecord(Integer.parseInt(o[5].toString()));
+				ptwRequiredDocumentDto.setLoto(Integer.parseInt(o[6].toString()));
+				ptwRequiredDocumentDto.setProcedure(Integer.parseInt(o[7].toString()));
+				ptwRequiredDocumentDto.setPandidorDrwaing(Integer.parseInt(o[8].toString()));
+				ptwRequiredDocumentDto.setCertificate((String) o[9]);
+				ptwRequiredDocumentDto.setTemporaryDefeat(Integer.parseInt(o[10].toString()));
+				ptwRequiredDocumentDto.setRescuePlan(Integer.parseInt(o[11].toString()));
+				ptwRequiredDocumentDto.setSds(Integer.parseInt(o[12].toString()));
+				ptwRequiredDocumentDto.setOtherWorkPermitDocs((String) o[13]);
+				ptwRequiredDocumentDto.setFireWatchCheckList(Integer.parseInt(o[14].toString()));
+				ptwRequiredDocumentDto.setLiftPlan(Integer.parseInt(o[15].toString()));
+				ptwRequiredDocumentDto.setSimopDeviation(Integer.parseInt(o[16].toString()));
+				ptwRequiredDocumentDto.setSafeWorkPractice(Integer.parseInt(o[17].toString()));
+				ptwRequiredDocumentDtoList.add(ptwRequiredDocumentDto);
+			}
+			return ptwRequiredDocumentDtoList;
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
