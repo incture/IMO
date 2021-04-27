@@ -1,5 +1,8 @@
 package com.incture.ptw.dao;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +15,7 @@ public class PtwTestRecordDao extends BaseDao {
 	@Autowired
 	private KeyGeneratorDao keyGeneratorDao;
 
-	public void insertPtwTestRecord(String permitNumber,PtwTestRecordDto ptwTestRecordDto) {
+	public void insertPtwTestRecord(String permitNumber, PtwTestRecordDto ptwTestRecordDto) {
 		try {
 			Query query = getSession().createNativeQuery(
 					"INSERT INTO \"IOP\".\"PTWTESTRECORD\"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -41,10 +44,39 @@ public class PtwTestRecordDao extends BaseDao {
 			logger.error(e.getMessage());
 		}
 	}
-	
+
 	public PtwTestRecordDto getPtwTestRec(String permitNumber) {
 		try {
-			
+			String sqlString = "select * from IOP.PTWTESTRECORD where PERMITNUMBER=?";
+			Query query = getSession().createNativeQuery(sqlString);
+			query.setParameter(1, permitNumber);
+			PtwTestRecordDto ptwTestRecordDto = new PtwTestRecordDto();
+			@SuppressWarnings("unchecked")
+			List<Object[]> list = query.getResultList();
+			for (Object[] o : list) {
+				ptwTestRecordDto.setSerialNo((Integer) o[0]);
+				ptwTestRecordDto.setPermitNumber((Integer) o[1]);
+				ptwTestRecordDto.setIsCWP(Integer.parseInt(o[2].toString()));
+				ptwTestRecordDto.setIsHWP(Integer.parseInt(o[3].toString()));
+				ptwTestRecordDto.setIsCSE(Integer.parseInt(o[4].toString()));
+				ptwTestRecordDto.setDetectorUsed((String) o[5]);
+				ptwTestRecordDto.setDateOfLastCalibration((Date) o[6]);
+				ptwTestRecordDto.setTestingFrequency((String) o[7]);
+				ptwTestRecordDto.setContinuousGasMonitoring(Integer.parseInt(o[8].toString()));
+				ptwTestRecordDto.setPriorToWorkCommencing(Integer.parseInt(o[9].toString()));
+				ptwTestRecordDto.setEachWorkPeriod(Integer.parseInt(o[10].toString()));
+				ptwTestRecordDto.setEveryHour(Integer.parseInt(o[11].toString()));
+				ptwTestRecordDto.setGasTester((String) o[12]);
+				ptwTestRecordDto.setGasTesterComments((String) o[13]);
+				ptwTestRecordDto.setAreaToBeTested((String) o[14]);
+				ptwTestRecordDto.setDeviceSerialNo((String) o[15]);
+				ptwTestRecordDto.setIsO2(Integer.parseInt(o[16].toString()));
+				ptwTestRecordDto.setIsLELs(Integer.parseInt(o[17].toString()));
+				ptwTestRecordDto.setIsH2S(Integer.parseInt(o[18].toString()));
+				ptwTestRecordDto.setOther((String) o[19]);
+				break;
+			}
+			return ptwTestRecordDto;
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
