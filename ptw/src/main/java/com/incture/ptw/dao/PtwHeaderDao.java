@@ -69,11 +69,11 @@ public class PtwHeaderDao extends BaseDao {
 			List<Object[]> result = query.getResultList();
 			for (Object[] res : result) {
 				PtwHeaderDto ptwHeaderDto = new PtwHeaderDto();
-				ptwHeaderDto.setPermitNumber((Integer) res[0]);
+				ptwHeaderDto.setPermitNumber(Integer.parseInt( res[0].toString()));
 				ptwHeaderDto.setPtwPermitNumber((String) res[1]);
-				ptwHeaderDto.setIsCwp((Integer) res[2]);
-				ptwHeaderDto.setIsHwp((Integer) res[3]);
-				ptwHeaderDto.setIsCse((Integer) res[4]);
+				ptwHeaderDto.setIsCwp(Integer.parseInt(res[2].toString()));
+				ptwHeaderDto.setIsHwp(Integer.parseInt( res[3].toString()));
+				ptwHeaderDto.setIsCse(Integer.parseInt( res[4].toString()));
 				ptwHeaderDto.setPlannedDateTime( (Date) res[5]);
 				ptwHeaderDto.setLocation((String) res[6]);
 				ptwHeaderDto.setCreatedBy((String) res[7]);
