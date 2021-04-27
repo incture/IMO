@@ -14,6 +14,7 @@ import com.incture.ptw.util.ResponseDto;
 public class ActiveWorkersController {
 	@Autowired
 	private ActiveWorkersService getActiveWorkersService;
+
 	@GetMapping()
 	public ResponseDto getDetails(@RequestParam(required = false) String muwi, @RequestParam String facility) {
 		return getActiveWorkersService.getActiveWorkers(muwi, facility);
