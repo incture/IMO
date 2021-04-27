@@ -11,5 +11,5 @@ public class PtwCseWorkTypeDto {
 	private Integer pit;
 	private Integer tower;
 	private String other;
-	private String reasonForCse;
+	private String reasonForCSE;
 }

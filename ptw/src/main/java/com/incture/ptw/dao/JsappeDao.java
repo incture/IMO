@@ -22,7 +22,7 @@ public class JsappeDao extends BaseDao {
 			query.setParameter(7, jsappeDto.getSingleEar());
 			query.setParameter(8, jsappeDto.getDoubleEars());
 			query.setParameter(9, jsappeDto.getRespiratorTypeDescription());
-			query.setParameter(10, jsappeDto.getNeedScba());
+			query.setParameter(10, jsappeDto.getNeedSCBA());
 			query.setParameter(11, jsappeDto.getNeedDustMask());
 			query.setParameter(12, jsappeDto.getCottonGlove());
 			query.setParameter(13, jsappeDto.getLeatherGlove());
@@ -34,7 +34,7 @@ public class JsappeDao extends BaseDao {
 			query.setParameter(19, jsappeDto.getChemicalSuit());
 			query.setParameter(20, jsappeDto.getApron());
 			query.setParameter(21, jsappeDto.getFlameResistantClothing());
-			query.setParameter(22, jsappeDto.getOtherppeDescription());
+			query.setParameter(22, jsappeDto.getOtherPPEDescription());
 			query.setParameter(23, jsappeDto.getNeedFoulWeatherGear());
 			query.setParameter(24, jsappeDto.getHaveConsentOfTaskLeader());
 			query.setParameter(25, jsappeDto.getCompanyOfTaskLeader());

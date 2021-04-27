@@ -29,9 +29,9 @@ public class PtwRecordResultDao extends BaseDao {
 				PtwTestResultsDto ptwTestResultsDto = new PtwTestResultsDto();
 				ptwTestResultsDto.setSerialNo(Integer.parseInt(o[0].toString()));
 				ptwTestResultsDto.setPermitNumber(Integer.parseInt(o[1].toString()));
-				ptwTestResultsDto.setIsCwp(Integer.parseInt(o[2].toString()));
-				ptwTestResultsDto.setIsHwp(Integer.parseInt(o[3].toString()));
-				ptwTestResultsDto.setIsCse(Integer.parseInt(o[4].toString()));
+				ptwTestResultsDto.setIsCWP(Integer.parseInt(o[2].toString()));
+				ptwTestResultsDto.setIsHWP(Integer.parseInt(o[3].toString()));
+				ptwTestResultsDto.setIsCSE(Integer.parseInt(o[4].toString()));
 				ptwTestResultsDto.setPreStartOrWorkTest((String) o[5]);
 				ptwTestResultsDto.setOxygenPercentage(Float.parseFloat(o[6].toString()));
 				ptwTestResultsDto.setToxicType((String) o[7]);
@@ -57,9 +57,9 @@ public class PtwRecordResultDao extends BaseDao {
 				PtwTestRecordDto ptwTestRecordDto = new PtwTestRecordDto();
 				ptwTestRecordDto.setSerialNo(Integer.parseInt(o[0].toString()));
 				ptwTestRecordDto.setPermitNumber(Integer.parseInt(o[1].toString()));
-				ptwTestRecordDto.setIsCwp(Integer.parseInt(o[2].toString()));
-				ptwTestRecordDto.setIsHwp(Integer.parseInt(o[3].toString()));
-				ptwTestRecordDto.setIsCse(Integer.parseInt(o[4].toString()));
+				ptwTestRecordDto.setIsCWP(Integer.parseInt(o[2].toString()));
+				ptwTestRecordDto.setIsHWP(Integer.parseInt(o[3].toString()));
+				ptwTestRecordDto.setIsCSE(Integer.parseInt(o[4].toString()));
 				ptwTestRecordDto.setDetectorUsed((String) o[5]);
 				logger.info(o[6].toString());
 				ptwTestRecordDto.setDateOfLastCalibration((Date) o[6]);
@@ -72,9 +72,9 @@ public class PtwRecordResultDao extends BaseDao {
 				ptwTestRecordDto.setGasTesterComments((String) o[13]);
 				ptwTestRecordDto.setAreaToBeTested((String) o[14]);
 				ptwTestRecordDto.setDeviceSerialNo((String) o[15]);
-				ptwTestRecordDto.setIso2(Integer.parseInt(o[16].toString()));
-				ptwTestRecordDto.setIslels(Integer.parseInt(o[17].toString()));
-				ptwTestRecordDto.setIsh2s(Integer.parseInt(o[18].toString()));
+				ptwTestRecordDto.setIsO2(Integer.parseInt(o[16].toString()));
+				ptwTestRecordDto.setIsLELs(Integer.parseInt(o[17].toString()));
+				ptwTestRecordDto.setIsH2S(Integer.parseInt(o[18].toString()));
 				ptwTestRecordDto.setOther((String) o[19]);
 				logger.info("ptwTestRecordDto " + ptwTestRecordDto);
 				ptwRecordResultResponse.setPtwTestRecordDto(ptwTestRecordDto);

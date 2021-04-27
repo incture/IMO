@@ -18,7 +18,7 @@ public class JsaHazardsMovingDao extends BaseDao {
 			query.setParameter(4, jsaHazardsMovingDto.getProvideProtectiveBarriers());
 			query.setParameter(5, jsaHazardsMovingDto.getObserverToMonitorProximityPeopleAndEquipment());
 			query.setParameter(6, jsaHazardsMovingDto.getLockOutEquipment());
-			query.setParameter(7, jsaHazardsMovingDto.getDonotWorkInLineOFFire());
+			query.setParameter(7, jsaHazardsMovingDto.getDoNotWorkInLineOfFire());
 			query.executeUpdate();
 		} catch (Exception e) {
 			logger.error(e.getMessage());

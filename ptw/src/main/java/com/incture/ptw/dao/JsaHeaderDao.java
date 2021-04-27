@@ -15,9 +15,9 @@ public class JsaHeaderDao extends BaseDao {
 			logger.info("insertJsaHeader sql " + sql);
 			query.setParameter(1, Integer.parseInt(permitNumber));
 			query.setParameter(2, "JSA" + permitNumber);
-			query.setParameter(3, jsaheaderDto.getHasCwp());
-			query.setParameter(4, jsaheaderDto.getHasHwp());
-			query.setParameter(5, jsaheaderDto.getHasCse());
+			query.setParameter(3, jsaheaderDto.getHasCWP());
+			query.setParameter(4, jsaheaderDto.getHasHWP());
+			query.setParameter(5, jsaheaderDto.getHasCSE());
 			query.setParameter(6, jsaheaderDto.getTaskDescription());
 			query.setParameter(7, jsaheaderDto.getIdentifyMostSeriousPotentialInjury());
 			query.setParameter(8, jsaheaderDto.getIsActive());

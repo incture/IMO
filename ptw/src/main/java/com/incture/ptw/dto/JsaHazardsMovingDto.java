@@ -10,5 +10,5 @@ public class JsaHazardsMovingDto {
 	private Integer provideProtectiveBarriers;
 	private Integer observerToMonitorProximityPeopleAndEquipment;
 	private Integer lockOutEquipment;
-	private Integer donotWorkInLineOFFire;
+	private Integer doNotWorkInLineOfFire;
 }

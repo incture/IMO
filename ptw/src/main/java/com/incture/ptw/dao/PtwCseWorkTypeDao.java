@@ -19,7 +19,7 @@ public class PtwCseWorkTypeDao extends BaseDao {
 			query.setParameter(5, ptwCseWorkTypeDto.getPit());
 			query.setParameter(6, ptwCseWorkTypeDto.getTower());
 			query.setParameter(7, ptwCseWorkTypeDto.getOther());
-			query.setParameter(8, ptwCseWorkTypeDto.getReasonForCse());
+			query.setParameter(8, ptwCseWorkTypeDto.getReasonForCSE());
 			query.executeUpdate();
 		} catch (Exception e) {
 			logger.error(e.getMessage());

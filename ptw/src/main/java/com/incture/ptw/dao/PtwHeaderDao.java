@@ -35,19 +35,20 @@ public class PtwHeaderDao extends BaseDao {
 		}
 	}
 
+	@SuppressWarnings({ "unchecked" })
 	public PtwHeaderDto getPermitNumber(String ptwPermitNumber) {
-		PtwHeaderDto ptwHeaderDto = null;
+		PtwHeaderDto ptwHeaderDto = new PtwHeaderDto();
 		try {
-			String sql="select PERMITNUMBER,ISCWP,ISHWP,ISCSE from IOP.PTWHEADER where PTWPERMITNUMBER:=ptwPermitNumber";
+			String sql = "select PERMITNUMBER,ISCWP,ISHWP,ISCSE from IOP.PTWHEADER where PTWPERMITNUMBER:=ptwPermitNumber";
 			Query query = getSession().createNativeQuery(sql);
 			query.setParameter("ptwPermitNumber", ptwPermitNumber);
-			logger.info("Sql: "+sql);
+			logger.info("Sql: " + sql);
 			List<Object[]> result = query.getResultList();
-			for(Object res[]: result){
-				 ptwHeaderDto.setPermitNumber(Integer.parseInt( res[0].toString()));
-				 ptwHeaderDto.setIsCwp(Integer.parseInt(res[1].toString()));
-				 ptwHeaderDto.setIsHwp(Integer.parseInt(res[1].toString()));
-				 ptwHeaderDto.setIsCse(Integer.parseInt(res[2].toString()));
+			for (Object res[] : result) {
+				ptwHeaderDto.setPermitNumber(Integer.parseInt(res[0].toString()));
+				ptwHeaderDto.setIsCwp(Integer.parseInt(res[1].toString()));
+				ptwHeaderDto.setIsHwp(Integer.parseInt(res[1].toString()));
+				ptwHeaderDto.setIsCse(Integer.parseInt(res[2].toString()));
 			}
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -56,9 +57,9 @@ public class PtwHeaderDao extends BaseDao {
 	}
 
 	public List<PtwHeaderDto> getPtwHeader(String ptwPermitNumber) {
-		
+
 		try {
-			
+
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
@@ -66,4 +67,3 @@ public class PtwHeaderDao extends BaseDao {
 	}
 
 }
-

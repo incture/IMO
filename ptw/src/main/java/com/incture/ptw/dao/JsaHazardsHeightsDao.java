@@ -15,8 +15,8 @@ public class JsaHazardsHeightsDao extends BaseDao {
 			query.setParameter(2, jsaHazardsHeightsDto.getWorkAtHeights());
 			query.setParameter(3, jsaHazardsHeightsDto.getDiscussWorkingPractice());
 			query.setParameter(4, jsaHazardsHeightsDto.getVerifyFallRestraint());
-			query.setParameter(5, jsaHazardsHeightsDto.getUsefullbodyHarness());
-			query.setParameter(6, jsaHazardsHeightsDto.getUseLockTypeSnapHooks());
+			query.setParameter(5, jsaHazardsHeightsDto.getUseFullBodyHarness());
+			query.setParameter(6, jsaHazardsHeightsDto.getUseLockTypeSnaphoooks());
 			query.executeUpdate();
 		} catch (Exception e) {
 			logger.error(e.getMessage());

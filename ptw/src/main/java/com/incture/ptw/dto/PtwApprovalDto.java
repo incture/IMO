@@ -8,9 +8,9 @@ import lombok.Data;
 public class PtwApprovalDto {
 	private int serialNo;
 	private int permitNumber;
-	private int isCwp;
-	private int isHwp;
-	private int isCse;
+	private int isCWP;
+	private int isHWP;
+	private int isCSE;
 	private int isWorkSafeToPerform;
 	private String preJobWalkThroughBy;
 	private String approvedBy;

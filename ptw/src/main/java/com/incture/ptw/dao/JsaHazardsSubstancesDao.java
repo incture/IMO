@@ -17,7 +17,7 @@ public class JsaHazardsSubstancesDao extends BaseDao {
 			query.setParameter(1, permitNumber);
 			query.setParameter(2, jsaHazardsSubstancesDto.getHazardousSubstances());
 			query.setParameter(3, jsaHazardsSubstancesDto.getDrainEquipment());
-			query.setParameter(4, jsaHazardsSubstancesDto.getFollowsDSControls());
+			query.setParameter(4, jsaHazardsSubstancesDto.getFollowSdsControls());
 			query.setParameter(5, jsaHazardsSubstancesDto.getImplementHealthHazardControls());
 			query.setParameter(6, jsaHazardsSubstancesDto.getTestMaterial());
 			query.executeUpdate();

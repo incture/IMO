@@ -22,9 +22,9 @@ public class ApprovePermitDao extends BaseDao {
 			Query q1 = getSession().createNativeQuery(sql1);
 			q1.setParameter("status", approvePermitDto.getStatus());
 			q1.setParameter("permitNumber", approvePermitDto.getPtwApprovalDto().getPermitNumber());
-			q1.setParameter("iscwp", approvePermitDto.getPtwApprovalDto().getIsCwp());
-			q1.setParameter("ishwp", approvePermitDto.getPtwApprovalDto().getIsHwp());
-			q1.setParameter("iscse", approvePermitDto.getPtwApprovalDto().getIsCse());
+			q1.setParameter("iscwp", approvePermitDto.getPtwApprovalDto().getIsCWP());
+			q1.setParameter("ishwp", approvePermitDto.getPtwApprovalDto().getIsHWP());
+			q1.setParameter("iscse", approvePermitDto.getPtwApprovalDto().getIsCSE());
 			logger.info("1st sql : " + sql1);
 			q1.executeUpdate();
 			BigInteger serialNumber = keyGeneratorDao.getPtwApprovalSerialNo();
@@ -39,9 +39,9 @@ public class ApprovePermitDao extends BaseDao {
 
 			q3.setParameter("sNo", serialNumber);
 			q3.setParameter("pNo", approvePermitDto.getPtwApprovalDto().getPermitNumber());
-			q3.setParameter("cwp", approvePermitDto.getPtwApprovalDto().getIsCwp());
-			q3.setParameter("hwp", approvePermitDto.getPtwApprovalDto().getIsHwp());
-			q3.setParameter("cse", approvePermitDto.getPtwApprovalDto().getIsCse());
+			q3.setParameter("cwp", approvePermitDto.getPtwApprovalDto().getIsCWP());
+			q3.setParameter("hwp", approvePermitDto.getPtwApprovalDto().getIsHWP());
+			q3.setParameter("cse", approvePermitDto.getPtwApprovalDto().getIsCSE());
 			q3.setParameter("wsp", approvePermitDto.getPtwApprovalDto().getIsWorkSafeToPerform());
 			q3.setParameter("pjwt", approvePermitDto.getPtwApprovalDto().getPreJobWalkThroughBy());
 			q3.setParameter("approvedBy", approvePermitDto.getPtwApprovalDto().getApprovedBy());

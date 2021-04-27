@@ -7,8 +7,8 @@ public class JsaHazardsExcavationdDto {
 	private Integer permitNumber;
 	private Integer excavations;
 	private Integer haveExcavationPlan;
-	private Integer locatePipeByHandsDigging;
+	private Integer locatePipesByHandDigging;
 	private Integer deEnergizeUnderground;
-	private Integer csecontrols;
+	private Integer cseControls;
 
 }

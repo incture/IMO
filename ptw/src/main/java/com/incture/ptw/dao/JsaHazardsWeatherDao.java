@@ -15,7 +15,7 @@ public class JsaHazardsWeatherDao extends BaseDao{
 			Query query = getSession().createNativeQuery(sql);
 			query.setParameter(1, permitNumber);
 			query.setParameter(2, jsaHazardsWeatherDto.getWeather());
-			query.setParameter(3, jsaHazardsWeatherDto.getControlsForLipperySurface());
+			query.setParameter(3, jsaHazardsWeatherDto.getControlsForSlipperySurface());
 			query.setParameter(4, jsaHazardsWeatherDto.getHeatBreak());
 			query.setParameter(5, jsaHazardsWeatherDto.getColdHeaters());
 			query.setParameter(6, jsaHazardsWeatherDto.getLightning());

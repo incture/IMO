@@ -8,9 +8,9 @@ import lombok.Data;
 public class PtwTestRecordDto {
 	private Integer serialNo;
 	private Integer permitNumber;
-	private Integer isCwp;
-	private Integer isHwp;
-	private Integer isCse;
+	private Integer isCWP;
+	private Integer isHWP;
+	private Integer isCSE;
 	private String detectorUsed;
 	private Date dateOfLastCalibration;
 	private String testingFrequency;
@@ -22,8 +22,8 @@ public class PtwTestRecordDto {
 	private String gasTesterComments;
 	private String areaToBeTested;
 	private String deviceSerialNo;
-	private Integer iso2;
-	private Integer islels;
-	private Integer ish2s;
+	private Integer isO2;
+	private Integer isLELs;
+	private Integer isH2S;
 	private String other;
 }

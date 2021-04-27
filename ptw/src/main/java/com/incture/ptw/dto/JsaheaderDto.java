@@ -6,9 +6,9 @@ import lombok.Data;
 public class JsaheaderDto {
 	private Integer permitNumber;
 	private String jsaPermitNumber;
-	private Integer hasCwp;
-	private Integer hasHwp;
-	private Integer hasCse;
+	private Integer hasCWP;
+	private Integer hasHWP;
+	private Integer hasCSE;
 	private String taskDescription;
 	private String identifyMostSeriousPotentialInjury;
 	private Integer isActive;

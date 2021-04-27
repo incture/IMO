@@ -13,7 +13,7 @@ public class JsappeDto {
 	private Integer singleEar;
 	private Integer doubleEars;
 	private String respiratorTypeDescription;
-	private Integer needScba;
+	private Integer needSCBA;
 	private Integer needDustMask;
 	private Integer cottonGlove;
 	private Integer leatherGlove;
@@ -25,7 +25,7 @@ public class JsappeDto {
 	private Integer chemicalSuit;
 	private Integer apron;
 	private Integer flameResistantClothing;
-	private String otherppeDescription;
+	private String otherPPEDescription;
 	private String needFoulWeatherGear;
 	private Integer haveConsentOfTaskLeader;
 	private String companyOfTaskLeader;

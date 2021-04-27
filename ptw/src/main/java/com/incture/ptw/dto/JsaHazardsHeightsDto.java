@@ -8,7 +8,7 @@ public class JsaHazardsHeightsDto {
 	private Integer workAtHeights;
 	private Integer discussWorkingPractice;
 	private Integer verifyFallRestraint;
-	private Integer usefullbodyHarness;
-	private Integer useLockTypeSnapHooks;
+	private Integer useFullBodyHarness;
+	private Integer useLockTypeSnaphoooks;
 
 }

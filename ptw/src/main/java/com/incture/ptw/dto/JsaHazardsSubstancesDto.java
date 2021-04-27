@@ -7,7 +7,7 @@ public class JsaHazardsSubstancesDto {
 	private Integer permitNumber;
 	private Integer hazardousSubstances;
 	private Integer drainEquipment;
-	private Integer followsDSControls;
+	private Integer followSdsControls;
 	private Integer implementHealthHazardControls;
 	private Integer testMaterial;
 	

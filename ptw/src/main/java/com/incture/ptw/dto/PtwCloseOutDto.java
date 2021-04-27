@@ -8,9 +8,9 @@ import lombok.Data;
 public class PtwCloseOutDto {
 	private int serialNo;
 	private int permitNumber;
-	private int isCwp;
-	private int isHwp;
-	private int isCse;
+	private int isCWP;
+	private int isHWP;
+	private int isCSE;
 	private String picName;
 	private int workCompleted;
 	private String closedBy;

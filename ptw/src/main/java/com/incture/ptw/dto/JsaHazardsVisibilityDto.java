@@ -6,8 +6,8 @@ import lombok.Data;
 public class JsaHazardsVisibilityDto {
 	private Integer permitNumber;
 	private Integer poorLighting;
-	private Integer alternateLighting;
+	private Integer provideAlternateLighting;
 	private Integer waitUntilVisibilityImprove;
-	private Integer deferUntilVisibility;
+	private Integer deferUntilVisibilityImporve;
 	private Integer knowDistanceFromPoles;
 }

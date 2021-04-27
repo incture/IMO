@@ -60,9 +60,9 @@ public class GetJsaByPermitNumDao extends BaseDao {
 			for (Object[] a : obj) {
 				jsaheaderDto.setPermitNumber((Integer) a[0]);
 				jsaheaderDto.setJsaPermitNumber((String) a[1]);
-				jsaheaderDto.setHasCwp(Integer.parseInt(a[2].toString()));
-				jsaheaderDto.setHasHwp(Integer.parseInt(a[2].toString()));
-				jsaheaderDto.setHasCse(Integer.parseInt(a[2].toString()));
+				jsaheaderDto.setHasCWP(Integer.parseInt(a[2].toString()));
+				jsaheaderDto.setHasHWP(Integer.parseInt(a[2].toString()));
+				jsaheaderDto.setHasCSE(Integer.parseInt(a[2].toString()));
 				jsaheaderDto.setTaskDescription((String) a[5]);
 				jsaheaderDto.setIdentifyMostSeriousPotentialInjury((String) a[6]);
 				jsaheaderDto.setIsActive(Integer.parseInt(a[2].toString()));
@@ -137,7 +137,7 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsappeDto.setSingleEar(Integer.parseInt(a[6].toString()));
 				jsappeDto.setDoubleEars(Integer.parseInt(a[7].toString()));
 				jsappeDto.setRespiratorTypeDescription((String) a[8]);
-				jsappeDto.setNeedScba(Integer.parseInt(a[9].toString()));
+				jsappeDto.setNeedSCBA(Integer.parseInt(a[9].toString()));
 				jsappeDto.setNeedDustMask(Integer.parseInt(a[10].toString()));
 				jsappeDto.setCottonGlove(Integer.parseInt(a[11].toString()));
 				jsappeDto.setLeatherGlove(Integer.parseInt(a[12].toString()));
@@ -149,7 +149,7 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsappeDto.setChemicalSuit(Integer.parseInt(a[18].toString()));
 				jsappeDto.setApron(Integer.parseInt(a[19].toString()));
 				jsappeDto.setFlameResistantClothing(Integer.parseInt(a[20].toString()));
-				jsappeDto.setOtherppeDescription((String) a[21]);
+				jsappeDto.setOtherPPEDescription((String) a[21]);
 				jsappeDto.setNeedFoulWeatherGear((String) a[22]); // need to
 																	// convert
 																	// this into
@@ -196,9 +196,9 @@ public class GetJsaByPermitNumDao extends BaseDao {
 			for (Object[] a : obj) {
 				jsaHazardsVisibilityDto.setPermitNumber((Integer) a[0]);
 				jsaHazardsVisibilityDto.setPoorLighting(Integer.parseInt(a[1].toString()));
-				jsaHazardsVisibilityDto.setAlternateLighting(Integer.parseInt(a[2].toString()));
+				jsaHazardsVisibilityDto.setProvideAlternateLighting(Integer.parseInt(a[2].toString()));
 				jsaHazardsVisibilityDto.setWaitUntilVisibilityImprove(Integer.parseInt(a[3].toString()));
-				jsaHazardsVisibilityDto.setDeferUntilVisibility(Integer.parseInt(a[4].toString()));
+				jsaHazardsVisibilityDto.setDeferUntilVisibilityImporve(Integer.parseInt(a[4].toString()));
 				jsaHazardsVisibilityDto.setKnowDistanceFromPoles(Integer.parseInt(a[5].toString()));
 			}
 			payload.setJsaHazardsVisibilityDto(jsaHazardsVisibilityDto);
@@ -303,7 +303,7 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsSubstancesDto.setPermitNumber((Integer)a[0]);
 				jsaHazardsSubstancesDto.setHazardousSubstances(Integer.parseInt(a[1].toString()));
 				jsaHazardsSubstancesDto.setDrainEquipment(Integer.parseInt(a[2].toString()));
-				jsaHazardsSubstancesDto.setFollowsDSControls(Integer.parseInt(a[3].toString()));
+				jsaHazardsSubstancesDto.setFollowSdsControls(Integer.parseInt(a[3].toString()));
 				jsaHazardsSubstancesDto.setImplementHealthHazardControls(Integer.parseInt(a[4].toString()));
 				jsaHazardsSubstancesDto.setTestMaterial(Integer.parseInt(a[5].toString()));
 			}
@@ -342,7 +342,7 @@ public class GetJsaByPermitNumDao extends BaseDao {
 			for (Object[] a : obj) {
 				jsaHazardsWeatherDto.setPermitNumber((Integer)a[0]);
 				jsaHazardsWeatherDto.setWeather(Integer.parseInt(a[1].toString()));
-				jsaHazardsWeatherDto.setControlsForLipperySurface(Integer.parseInt(a[2].toString()));
+				jsaHazardsWeatherDto.setControlsForSlipperySurface(Integer.parseInt(a[2].toString()));
 				jsaHazardsWeatherDto.setHeatBreak(Integer.parseInt(a[3].toString()));
 				jsaHazardsWeatherDto.setColdHeaters(Integer.parseInt(a[4].toString()));
 				jsaHazardsWeatherDto.setLightning(Integer.parseInt(a[5].toString()));
@@ -419,8 +419,8 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsHeightsDto.setWorkAtHeights(Integer.parseInt(a[1].toString()));
 				jsaHazardsHeightsDto.setDiscussWorkingPractice(Integer.parseInt(a[2].toString()));
 				jsaHazardsHeightsDto.setVerifyFallRestraint(Integer.parseInt(a[3].toString()));
-				jsaHazardsHeightsDto.setUsefullbodyHarness(Integer.parseInt(a[4].toString()));
-				jsaHazardsHeightsDto.setUseLockTypeSnapHooks(Integer.parseInt(a[5].toString()));
+				jsaHazardsHeightsDto.setUseFullBodyHarness(Integer.parseInt(a[4].toString()));
+				jsaHazardsHeightsDto.setUseLockTypeSnaphoooks(Integer.parseInt(a[5].toString()));
 			}
 			logger.info(jsaHazardsHeightsDto.toString());
 			payload.setJsaHazardsHeightsDto(jsaHazardsHeightsDto);
@@ -459,7 +459,7 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsMovingDto.setProvideProtectiveBarriers(Integer.parseInt(a[3].toString()));
 				jsaHazardsMovingDto.setObserverToMonitorProximityPeopleAndEquipment(Integer.parseInt(a[4].toString()));
 				jsaHazardsMovingDto.setLockOutEquipment(Integer.parseInt(a[5].toString()));
-				jsaHazardsMovingDto.setDonotWorkInLineOFFire(Integer.parseInt(a[6].toString()));
+				jsaHazardsMovingDto.setDoNotWorkInLineOfFire(Integer.parseInt(a[6].toString()));
 			}
 			logger.info(jsaHazardsMovingDto.toString());
 			payload.setJsaHazardsMovingDto(jsaHazardsMovingDto);
@@ -559,9 +559,9 @@ public class GetJsaByPermitNumDao extends BaseDao {
 				jsaHazardsExcavationdDto.setPermitNumber((Integer)a[0]);
 				jsaHazardsExcavationdDto.setExcavations(Integer.parseInt(a[1].toString()));
 				jsaHazardsExcavationdDto.setHaveExcavationPlan(Integer.parseInt(a[2].toString()));
-				jsaHazardsExcavationdDto.setLocatePipeByHandsDigging(Integer.parseInt(a[3].toString()));
+				jsaHazardsExcavationdDto.setLocatePipesByHandDigging(Integer.parseInt(a[3].toString()));
 				jsaHazardsExcavationdDto.setDeEnergizeUnderground(Integer.parseInt(a[4].toString()));
-				jsaHazardsExcavationdDto.setCsecontrols(Integer.parseInt(a[5].toString()));
+				jsaHazardsExcavationdDto.setCseControls(Integer.parseInt(a[5].toString()));
 			}
 			logger.info(jsaHazardsExcavationdDto.toString());
 			payload.setJsaHazardsExcavationdDto(jsaHazardsExcavationdDto);

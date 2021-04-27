@@ -1,12 +1,9 @@
 package com.incture.ptw.dao;
 
-import java.util.List;
-
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
-import com.incture.ptw.dto.PtwCloseOutDto;
 import com.incture.ptw.dto.PtwCwpWorkTypeDto;
 
 @Repository

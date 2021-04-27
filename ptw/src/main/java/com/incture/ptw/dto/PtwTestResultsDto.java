@@ -8,9 +8,9 @@ import lombok.Data;
 public class PtwTestResultsDto {
 	private Integer serialNo;
 	private Integer permitNumber;
-	private Integer isCwp;
-	private Integer isHwp;
-	private Integer isCse;
+	private Integer isCWP;
+	private Integer isHWP;
+	private Integer isCSE;
 	private String preStartOrWorkTest;
 	private Float oxygenPercentage;
 	private String toxicType;

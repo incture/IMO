@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository("GetJsaDetailsDao")
 public class JsaDetailsDao extends BaseDao {
+	@SuppressWarnings("unchecked")
 	public List<Object[]> downloaadData() {
 		Query query = getSession().createNativeQuery(
 				"select J.*,L.FACILTYORSITE, R.CREATEDBY,R.APPROVEDBY,R.APPROVEDDATE,R.LASTUPDATEDBY,R.LASTUPDATEDDATE,R.CREATEDDATE"
