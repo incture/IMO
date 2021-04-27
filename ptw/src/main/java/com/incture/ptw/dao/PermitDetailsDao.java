@@ -18,7 +18,7 @@ import com.incture.ptw.dto.PtwRequiredDocumentDto;
 import com.incture.ptw.dto.PtwTestRecordDto;
 import com.incture.ptw.dto.PtwTestResultsDto;
 
-@Repository("GetPermitDetailsDao")
+@Repository("PermitDetailsDao")
 public class PermitDetailsDao extends BaseDao {
 	@Autowired
 	private PtwHeaderDao ptwHeaderDao;
