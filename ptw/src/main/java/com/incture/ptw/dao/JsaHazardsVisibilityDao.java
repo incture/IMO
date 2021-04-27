@@ -17,7 +17,7 @@ public class JsaHazardsVisibilityDao extends BaseDao {
 			query.setParameter(2, jsaHazardsVisibilityDto.getPoorLighting());
 			query.setParameter(3, jsaHazardsVisibilityDto.getProvideAlternateLighting());
 			query.setParameter(4, jsaHazardsVisibilityDto.getWaitUntilVisibilityImprove());
-			query.setParameter(5, jsaHazardsVisibilityDto.getDeferUntilVisibilityImporve());
+			query.setParameter(5, jsaHazardsVisibilityDto.getDeferUntilVisibilityImprove());
 			query.setParameter(6, jsaHazardsVisibilityDto.getKnowDistanceFromPoles());
 			query.executeUpdate();
 		}catch (Exception e) {

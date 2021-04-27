@@ -198,7 +198,7 @@ public class JsaByPermitNumDao extends BaseDao {
 				jsaHazardsVisibilityDto.setPoorLighting(Integer.parseInt(a[1].toString()));
 				jsaHazardsVisibilityDto.setProvideAlternateLighting(Integer.parseInt(a[2].toString()));
 				jsaHazardsVisibilityDto.setWaitUntilVisibilityImprove(Integer.parseInt(a[3].toString()));
-				jsaHazardsVisibilityDto.setDeferUntilVisibilityImporve(Integer.parseInt(a[4].toString()));
+				jsaHazardsVisibilityDto.setDeferUntilVisibilityImprove(Integer.parseInt(a[4].toString()));
 				jsaHazardsVisibilityDto.setKnowDistanceFromPoles(Integer.parseInt(a[5].toString()));
 			}
 			payload.setJsaHazardsVisibilityDto(jsaHazardsVisibilityDto);

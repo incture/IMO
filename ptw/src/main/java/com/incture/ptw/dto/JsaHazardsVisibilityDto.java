@@ -8,6 +8,6 @@ public class JsaHazardsVisibilityDto {
 	private Integer poorLighting;
 	private Integer provideAlternateLighting;
 	private Integer waitUntilVisibilityImprove;
-	private Integer deferUntilVisibilityImporve;
+	private Integer deferUntilVisibilityImprove;
 	private Integer knowDistanceFromPoles;
 }
