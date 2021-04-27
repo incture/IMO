@@ -1,6 +1,7 @@
 package com.incture.ptw.dao;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Query;
 
@@ -44,13 +45,30 @@ public class JsaReviewDao extends BaseDao {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	public JsaReviewDto getJsaReview(String permitNumber) {
+		JsaReviewDto jsaReviewDto = new JsaReviewDto();
+		List<Object[]> obj;
 		try {
-			
+			String sql = "select * from IOP.JSAREVIEW where PERMITNUMBER:=permitNumber";
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter("permitNumber",permitNumber );
+			logger.info("getJsaReview sql :" + sql);
+			obj = query.getResultList();
+			for (Object[] a : obj) {
+				jsaReviewDto.setPermitNumber((Integer) a[0]);
+				jsaReviewDto.setCreatedBy((String) a[1]);
+				jsaReviewDto.setApprovedBy((String) a[2]);
+				jsaReviewDto.setApprovedDate((Date) a[3]);
+				jsaReviewDto.setLastUpdatedBy((String) a[4]);
+				jsaReviewDto.setLastUpdatedDate( (Date) a[5]);
+				jsaReviewDto.setCreatedDate((Date) a[6]);
+			}
+			logger.info("JsaReviewDto: "+jsaReviewDto);
+			return jsaReviewDto;
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
 		return null;
 	}
-
 }

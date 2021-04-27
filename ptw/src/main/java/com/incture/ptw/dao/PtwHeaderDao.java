@@ -1,5 +1,7 @@
 package com.incture.ptw.dao;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -35,20 +37,20 @@ public class PtwHeaderDao extends BaseDao {
 		}
 	}
 
-	@SuppressWarnings({ "unchecked" })
 	public PtwHeaderDto getPermitNumber(String ptwPermitNumber) {
 		PtwHeaderDto ptwHeaderDto = new PtwHeaderDto();
 		try {
-			String sql = "select PERMITNUMBER,ISCWP,ISHWP,ISCSE from IOP.PTWHEADER where PTWPERMITNUMBER:=ptwPermitNumber";
+			String sql="select PERMITNUMBER,ISCWP,ISHWP,ISCSE from IOP.PTWHEADER where PTWPERMITNUMBER:=ptwPermitNumber";
 			Query query = getSession().createNativeQuery(sql);
 			query.setParameter("ptwPermitNumber", ptwPermitNumber);
-			logger.info("Sql: " + sql);
+			logger.info("Sql: "+sql);
+			@SuppressWarnings("unchecked")
 			List<Object[]> result = query.getResultList();
-			for (Object res[] : result) {
-				ptwHeaderDto.setPermitNumber(Integer.parseInt(res[0].toString()));
-				ptwHeaderDto.setIsCwp(Integer.parseInt(res[1].toString()));
-				ptwHeaderDto.setIsHwp(Integer.parseInt(res[1].toString()));
-				ptwHeaderDto.setIsCse(Integer.parseInt(res[2].toString()));
+			for(Object res[]: result){
+				 ptwHeaderDto.setPermitNumber(Integer.parseInt( res[0].toString()));
+				 ptwHeaderDto.setIsCwp(Integer.parseInt(res[1].toString()));
+				 ptwHeaderDto.setIsHwp(Integer.parseInt(res[1].toString()));
+				 ptwHeaderDto.setIsCse(Integer.parseInt(res[2].toString()));
 			}
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -57,9 +59,32 @@ public class PtwHeaderDao extends BaseDao {
 	}
 
 	public List<PtwHeaderDto> getPtwHeader(String ptwPermitNumber) {
-
+		List<PtwHeaderDto> ptwHeaderDtoList = new ArrayList<PtwHeaderDto>();
 		try {
-
+			String sql = "select * from IOP.PTWHEADER where PTWPERMITNUMBER:=ptwPermitNumber";
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter("ptwPermitNumber", ptwPermitNumber);
+			logger.info("GetPtwHeader Sql: " + sql);
+			@SuppressWarnings("unchecked")
+			List<Object[]> result = query.getResultList();
+			for (Object[] res : result) {
+				PtwHeaderDto ptwHeaderDto = new PtwHeaderDto();
+				ptwHeaderDto.setPermitNumber((Integer) res[0]);
+				ptwHeaderDto.setPtwPermitNumber((String) res[1]);
+				ptwHeaderDto.setIsCwp((Integer) res[2]);
+				ptwHeaderDto.setIsHwp((Integer) res[3]);
+				ptwHeaderDto.setIsCse((Integer) res[4]);
+				ptwHeaderDto.setPlannedDateTime( (Date) res[5]);
+				ptwHeaderDto.setLocation((String) res[6]);
+				ptwHeaderDto.setCreatedBy((String) res[7]);
+				ptwHeaderDto.setContractorPerformingWork((String) res[8]);
+				ptwHeaderDto.setEstimatedTimeOfCompletion( (Date) res[9]);
+				ptwHeaderDto.setEquipmentId((String) res[10]);
+				ptwHeaderDto.setWorkOrderNumber((String) res[11]);
+				ptwHeaderDto.setStatus((String) res[12]);
+				ptwHeaderDtoList.add(ptwHeaderDto);
+			}
+			return ptwHeaderDtoList;
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
@@ -67,3 +92,4 @@ public class PtwHeaderDao extends BaseDao {
 	}
 
 }
+
