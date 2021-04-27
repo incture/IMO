@@ -20,15 +20,15 @@ public class PtwHeaderDao extends BaseDao {
 			query.setParameter(1, permitNumber);
 			query.setParameter(2, ptwHeader);
 			// query.setParameter(2, ptwHeaderDto.getPtwPermitNumber());
-			query.setParameter(3, ptwHeaderDto.getIsCwp());
-			query.setParameter(4, ptwHeaderDto.getIsHwp());
-			query.setParameter(5, ptwHeaderDto.getIsCse());
+			query.setParameter(3, ptwHeaderDto.getIsCWP());
+			query.setParameter(4, ptwHeaderDto.getIsHWP());
+			query.setParameter(5, ptwHeaderDto.getIsCSE());
 			query.setParameter(6, ptwHeaderDto.getPlannedDateTime());
 			query.setParameter(7, ptwHeaderDto.getLocation());
 			query.setParameter(8, ptwHeaderDto.getCreatedBy());
 			query.setParameter(9, ptwHeaderDto.getContractorPerformingWork());
 			query.setParameter(10, ptwHeaderDto.getEstimatedTimeOfCompletion());
-			query.setParameter(11, ptwHeaderDto.getEquipmentId());
+			query.setParameter(11, ptwHeaderDto.getEquipmentID());
 			query.setParameter(12, ptwHeaderDto.getWorkOrderNumber());
 			query.setParameter(13, ptwHeaderDto.getStatus());
 			query.executeUpdate();
@@ -40,17 +40,17 @@ public class PtwHeaderDao extends BaseDao {
 	public PtwHeaderDto getPermitNumber(String ptwPermitNumber) {
 		PtwHeaderDto ptwHeaderDto = new PtwHeaderDto();
 		try {
-			String sql="select PERMITNUMBER,ISCWP,ISHWP,ISCSE from IOP.PTWHEADER where PTWPERMITNUMBER = ?";
+			String sql = "select PERMITNUMBER,ISCWP,ISHWP,ISCSE from IOP.PTWHEADER where PTWPERMITNUMBER = ?";
 			Query query = getSession().createNativeQuery(sql);
 			query.setParameter(1, ptwPermitNumber);
-			logger.info("Sql: "+sql);
+			logger.info("Sql: " + sql);
 			@SuppressWarnings("unchecked")
 			List<Object[]> result = query.getResultList();
-			for(Object[] res: result){
-				 ptwHeaderDto.setPermitNumber(Integer.parseInt( res[0].toString()));
-				 ptwHeaderDto.setIsCwp(Integer.parseInt(res[1].toString()));
-				 ptwHeaderDto.setIsHwp(Integer.parseInt(res[2].toString()));
-				 ptwHeaderDto.setIsCse(Integer.parseInt(res[3].toString()));
+			for (Object[] res : result) {
+				ptwHeaderDto.setPermitNumber(Integer.parseInt(res[0].toString()));
+				ptwHeaderDto.setIsCWP(Integer.parseInt(res[1].toString()));
+				ptwHeaderDto.setIsHWP(Integer.parseInt(res[2].toString()));
+				ptwHeaderDto.setIsCSE(Integer.parseInt(res[3].toString()));
 			}
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -69,17 +69,17 @@ public class PtwHeaderDao extends BaseDao {
 			List<Object[]> result = query.getResultList();
 			for (Object[] res : result) {
 				PtwHeaderDto ptwHeaderDto = new PtwHeaderDto();
-				ptwHeaderDto.setPermitNumber(Integer.parseInt( res[0].toString()));
+				ptwHeaderDto.setPermitNumber(Integer.parseInt(res[0].toString()));
 				ptwHeaderDto.setPtwPermitNumber((String) res[1]);
-				ptwHeaderDto.setIsCwp(Integer.parseInt(res[2].toString()));
-				ptwHeaderDto.setIsHwp(Integer.parseInt( res[3].toString()));
-				ptwHeaderDto.setIsCse(Integer.parseInt( res[4].toString()));
-				ptwHeaderDto.setPlannedDateTime( (Date) res[5]);
+				ptwHeaderDto.setIsCWP(Integer.parseInt(res[2].toString()));
+				ptwHeaderDto.setIsHWP(Integer.parseInt(res[3].toString()));
+				ptwHeaderDto.setIsCSE(Integer.parseInt(res[4].toString()));
+				ptwHeaderDto.setPlannedDateTime((Date) res[5]);
 				ptwHeaderDto.setLocation((String) res[6]);
 				ptwHeaderDto.setCreatedBy((String) res[7]);
 				ptwHeaderDto.setContractorPerformingWork((String) res[8]);
-				ptwHeaderDto.setEstimatedTimeOfCompletion( (Date) res[9]);
-				ptwHeaderDto.setEquipmentId((String) res[10]);
+				ptwHeaderDto.setEstimatedTimeOfCompletion((Date) res[9]);
+				ptwHeaderDto.setEquipmentID((String) res[10]);
 				ptwHeaderDto.setWorkOrderNumber((String) res[11]);
 				ptwHeaderDto.setStatus((String) res[12]);
 				ptwHeaderDtoList.add(ptwHeaderDto);
@@ -92,4 +92,3 @@ public class PtwHeaderDao extends BaseDao {
 	}
 
 }
-

@@ -22,39 +22,36 @@ import com.incture.ptw.dto.PtwTestResultsDto;
 public class PermitDetailsDao extends BaseDao {
 	@Autowired
 	private PtwHeaderDao ptwHeaderDao;
-	
+
 	@Autowired
 	private JsaReviewDao jsaReviewDao;
-	
+
 	@Autowired
 	private PtwRequiredDocumentDao ptwRequiredDocumentDao;
-	
+
 	@Autowired
 	private PtwApprovalDao ptwApprovalDao;
-	
+
 	@Autowired
 	private PtwTestRecordDao ptwTestRecordDao;
-	
+
 	@Autowired
 	private PtwTestResultsDao ptwTestResultsDao;
-	
+
 	@Autowired
 	private PtwCloseOutDao ptwCloseOutDao;
-	
+
 	@Autowired
 	private PtwCwpWorkTypeDao ptwCwpWorkTypeDao;
-	
+
 	@Autowired
 	private PtwHwpWorkTypeDao ptwHwpWorkTypeDao;
-	
+
 	@Autowired
 	private PtwCseWorkTypeDao ptwCseWorkTypeDao;
-	
+
 	@Autowired
 	private PtwPeopleDao ptwPeopleDao;
-	
-	
-	
 
 	public PtwDetailsDto getPermitDetails(String permitNumber, String permitType) {
 		PtwDetailsDto ptwDetailsDto = new PtwDetailsDto();
@@ -63,65 +60,62 @@ public class PermitDetailsDao extends BaseDao {
 		String isHwp;
 		String isCse;
 		String pmNumber;
-		try{
-			
-		
+		try {
+
 			if (permitType == "COLD") {
 				ptwPermitNumber = "CWP" + permitNumber;
-			}
-			else if (permitType == "HOT") {
+			} else if (permitType == "HOT") {
 				ptwPermitNumber = "HWP" + permitNumber;
-			}
-			else if (permitType == "CSE") {
+			} else if (permitType == "CSE") {
 				ptwPermitNumber = "CSE" + permitNumber;
-	
+
 			}
 			PtwHeaderDto ptwHeaderDto = ptwHeaderDao.getPermitNumber(ptwPermitNumber);
 			pmNumber = ptwHeaderDto.getPermitNumber().toString();
-			isCwp = ptwHeaderDto.getIsCwp().toString();
-			isHwp = ptwHeaderDto.getIsHwp().toString();
-			isCse = ptwHeaderDto.getIsCse().toString();
-			
+			isCwp = ptwHeaderDto.getIsCWP().toString();
+			isHwp = ptwHeaderDto.getIsHWP().toString();
+			isCse = ptwHeaderDto.getIsCSE().toString();
+
 			JsaReviewDto jsaReviewDto = jsaReviewDao.getJsaReview(pmNumber);
 			ptwDetailsDto.setJsaReviewDto(jsaReviewDto);
-		
+
 			List<PtwHeaderDto> ptwHeaderDtoList = ptwHeaderDao.getPtwHeader(ptwPermitNumber);
 			ptwDetailsDto.setPtwHeaderDtoList(ptwHeaderDtoList);
-			
-			List<PtwRequiredDocumentDto> ptwRequiredDocumentDtoList = ptwRequiredDocumentDao.getPtwReqDoc(pmNumber,isCwp,isHwp,isCse);
+
+			List<PtwRequiredDocumentDto> ptwRequiredDocumentDtoList = ptwRequiredDocumentDao.getPtwReqDoc(pmNumber,
+					isCwp, isHwp, isCse);
 			ptwDetailsDto.setPtwRequiredDocumentDtoList(ptwRequiredDocumentDtoList);
-			
-			List<PtwApprovalDto> ptwApprovalDtoList = ptwApprovalDao.getPtwApproval(pmNumber,isCwp,isHwp,isCse);
+
+			List<PtwApprovalDto> ptwApprovalDtoList = ptwApprovalDao.getPtwApproval(pmNumber, isCwp, isHwp, isCse);
 			ptwDetailsDto.setPtwApprovalDtoList(ptwApprovalDtoList);
-			
+
 			PtwTestRecordDto ptwTestRecordDto = ptwTestRecordDao.getPtwTestRec(pmNumber);
 			ptwDetailsDto.setPtwTestRecordDto(ptwTestRecordDto);
-			
-			List<PtwTestResultsDto> ptwTestResultsDtoList= ptwTestResultsDao.getPtwTestRes(pmNumber);
+
+			List<PtwTestResultsDto> ptwTestResultsDtoList = ptwTestResultsDao.getPtwTestRes(pmNumber);
 			ptwDetailsDto.setPtwTestResultsDtoList(ptwTestResultsDtoList);
-			
+
 			List<PtwCloseOutDto> ptwCloseOutDtolist = ptwCloseOutDao.getPtwCloseOut(pmNumber);
 			ptwDetailsDto.setPtwCloseOutDtolist(ptwCloseOutDtolist);
-			
+
 			PtwCwpWorkTypeDto ptwCwpWorkTypeDto = ptwCwpWorkTypeDao.getPtwCwpWork(pmNumber);
 			ptwDetailsDto.setPtwCwpWorkTypeDto(ptwCwpWorkTypeDto);
-			
+
 			PtwHwpWorkTypeDto ptwHwpWorkTypeDto = ptwHwpWorkTypeDao.getPtwHwpWork(pmNumber);
 			ptwDetailsDto.setPtwHwpWorkTypeDto(ptwHwpWorkTypeDto);
-			
+
 			PtwCseWorkTypeDto ptwCseWorkTypeDto = ptwCseWorkTypeDao.getPtwCseWork(pmNumber);
 			ptwDetailsDto.setPtwCseWorkTypeDto(ptwCseWorkTypeDto);
-			
+
 			List<PtwPeopleDto> ptwPeopleDtoList = ptwPeopleDao.getPtwPeople(pmNumber);
 			ptwDetailsDto.setPtwPeopleDtoList(ptwPeopleDtoList);
-			
-			return ptwDetailsDto;
-			} catch (Exception e) {
-				logger.error(e.getMessage());
-				e.printStackTrace();
-			}
-			return null;
-		}
 
+			return ptwDetailsDto;
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 }

@@ -264,17 +264,17 @@ public class CreateService {
 			if (createRequestDto.getPtwHeaderDtoList() != null || !createRequestDto.getPtwHeaderDtoList().isEmpty()) {
 				for (PtwHeaderDto i : createRequestDto.getPtwHeaderDtoList()) {
 					String ptwHeader = "";
-					if (i.getIsCwp() == 1) {
+					if (i.getIsCWP() == 1) {
 						ptwHeader = "CWP" + permitNumber;
 						isCwp = true;
 						ptwPermitNumberList.add(ptwHeader);
 
-					} else if (i.getIsHwp() == 1) {
+					} else if (i.getIsHWP() == 1) {
 						ptwHeader = "HWP" + permitNumber;
 
 						isHwp = true;
 						ptwPermitNumberList.add(ptwHeader);
-					} else if (i.getIsCse() == 1) {
+					} else if (i.getIsCSE() == 1) {
 						ptwHeader = "CSE" + permitNumber;
 						isCse = true;
 						ptwPermitNumberList.add(ptwHeader);
