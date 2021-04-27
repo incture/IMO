@@ -261,7 +261,7 @@ public class JsaByPermitNumDao extends BaseDao {
 			for (Object[] a : obj) {
 				jsaHazardsSimultaneousDto.setPermitNumber((Integer) a[0]);
 				jsaHazardsSimultaneousDto.setSimultaneousOperations(Integer.parseInt(a[1].toString()));
-				jsaHazardsSimultaneousDto.setFollowsImopsMatrix(Integer.parseInt(a[2].toString()));
+				jsaHazardsSimultaneousDto.setFollowSimopsMatrix(Integer.parseInt(a[2].toString()));
 				jsaHazardsSimultaneousDto.setMocRequiredFor(Integer.parseInt(a[3].toString()));
 				jsaHazardsSimultaneousDto.setInterfaceBetweenGroups(Integer.parseInt(a[4].toString()));
 				jsaHazardsSimultaneousDto.setUseBarriersAnd(Integer.parseInt(a[5].toString()));
@@ -635,7 +635,7 @@ public class JsaByPermitNumDao extends BaseDao {
 				JsaLocationDto jsaLocationDto = new JsaLocationDto();
 				jsaLocationDto.setSerialNo((Integer) a[0]);
 				jsaLocationDto.setPermitNumber((Integer) a[1]);
-				jsaLocationDto.setFaciltyOrSite((String) a[2]);
+				jsaLocationDto.setFacilityOrSite((String) a[2]);
 				jsaLocationDto.setHierachyLevel((String) a[3]);
 				jsaLocationDto.setFacility((String) a[4]);
 				jsaLocationDto.setMuwi((String) a[5]);

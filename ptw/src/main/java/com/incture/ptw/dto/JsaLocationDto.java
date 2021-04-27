@@ -6,7 +6,7 @@ import lombok.Data;
 public class JsaLocationDto {
 	private Integer serialNo;
 	private Integer permitNumber;
-	private String faciltyOrSite;
+	private String facilityOrSite;
 	private String hierachyLevel;
 	private String facility;
 	private String muwi;

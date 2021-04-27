@@ -15,7 +15,7 @@ public class PtwCwpWorkTypeDto {
 	private Integer erectingOrDismantlingScaffodling;
 	private Integer breakingContainmentOfClosedOperatingSystem;
 	private Integer workingInCloseToHazardousEnergy;
-	private Integer removalOfIdelEquipemntForRepair;
+	private Integer removalOfIdleEquipmentForRepair;
 	private Integer higherRiskElectricalWork;
 	private String otherTypeOfWork;
 	private String descriptionOfWorkToBePerformed;

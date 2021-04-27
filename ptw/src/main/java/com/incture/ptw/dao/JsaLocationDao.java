@@ -19,7 +19,7 @@ public class JsaLocationDao extends BaseDao {
 			Query query = getSession().createNativeQuery(sql);
 			query.setParameter(1, Integer.parseInt(keyGeneratorDao.getTOJSALOCATION()));
 			query.setParameter(2, Integer.parseInt(permitNumber));
-			query.setParameter(3, jsaLocationDto.getFaciltyOrSite());
+			query.setParameter(3, jsaLocationDto.getFacilityOrSite());
 			query.setParameter(4, jsaLocationDto.getHierachyLevel());
 			query.setParameter(5, jsaLocationDto.getFacility());
 			query.setParameter(6, jsaLocationDto.getMuwi());

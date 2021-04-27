@@ -16,7 +16,7 @@ public class JsaHazardsSimultaneousDao extends BaseDao {
 			Query query = getSession().createNativeQuery(sql);
 			query.setParameter(1, permitNumber);
 			query.setParameter(2, jsaHazardsSimultaneousDto.getSimultaneousOperations());
-			query.setParameter(3, jsaHazardsSimultaneousDto.getFollowsImopsMatrix());
+			query.setParameter(3, jsaHazardsSimultaneousDto.getFollowSimopsMatrix());
 			query.setParameter(4, jsaHazardsSimultaneousDto.getMocRequiredFor());
 			query.setParameter(5, jsaHazardsSimultaneousDto.getInterfaceBetweenGroups());
 			query.setParameter(6, jsaHazardsSimultaneousDto.getUseBarriersAnd());
