@@ -62,11 +62,11 @@ public class PermitDetailsDao extends BaseDao {
 		String pmNumber;
 		try {
 
-			if (permitType == "COLD") {
+			if (permitType.equals("COLD")) {
 				ptwPermitNumber = "CWP" + permitNumber;
-			} else if (permitType == "HOT") {
+			} else if (permitType.equals("HOT")){
 				ptwPermitNumber = "HWP" + permitNumber;
-			} else if (permitType == "CSE") {
+			} else if (permitType.equals("CSE")) {
 				ptwPermitNumber = "CSE" + permitNumber;
 
 			}
