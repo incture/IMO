@@ -46,11 +46,11 @@ public class PtwHeaderDao extends BaseDao {
 			logger.info("Sql: "+sql);
 			@SuppressWarnings("unchecked")
 			List<Object[]> result = query.getResultList();
-			for(Object res[]: result){
+			for(Object[] res: result){
 				 ptwHeaderDto.setPermitNumber(Integer.parseInt( res[0].toString()));
 				 ptwHeaderDto.setIsCwp(Integer.parseInt(res[1].toString()));
-				 ptwHeaderDto.setIsHwp(Integer.parseInt(res[1].toString()));
-				 ptwHeaderDto.setIsCse(Integer.parseInt(res[2].toString()));
+				 ptwHeaderDto.setIsHwp(Integer.parseInt(res[2].toString()));
+				 ptwHeaderDto.setIsCse(Integer.parseInt(res[3].toString()));
 			}
 		} catch (Exception e) {
 			logger.error(e.getMessage());

@@ -20,13 +20,14 @@ public class PtwApprovalDao extends BaseDao {
 			query.setParameter(2, isCwp);
 			query.setParameter(3, isHwp);
 			query.setParameter(4, isCse);
+			logger.info("getPtwApproval sql: " + sql);
 			@SuppressWarnings("unchecked")
 			List<Object[]> list = query.getResultList();
 			List<PtwApprovalDto> ptwRequiredDocumentDtoList = new ArrayList<PtwApprovalDto>();
 			for (Object[] o : list) {
 				PtwApprovalDto ptwApprovalDto = new PtwApprovalDto();
-				ptwApprovalDto.setSerialNo((Integer) o[0]);
-				ptwApprovalDto.setPermitNumber((Integer) o[1]);
+				ptwApprovalDto.setSerialNo(Integer.parseInt(o[0].toString()));
+				ptwApprovalDto.setPermitNumber(Integer.parseInt(o[1].toString()));
 				ptwApprovalDto.setIsCWP(Integer.parseInt(o[2].toString()));
 				ptwApprovalDto.setIsHWP(Integer.parseInt(o[3].toString()));
 				ptwApprovalDto.setIsCSE(Integer.parseInt(o[4].toString()));

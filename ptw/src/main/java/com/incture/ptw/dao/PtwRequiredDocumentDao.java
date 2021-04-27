@@ -52,13 +52,14 @@ public class PtwRequiredDocumentDao extends BaseDao {
 			query.setParameter(2, isCwp);
 			query.setParameter(3, isHwp);
 			query.setParameter(4, isCse);
+			logger.info("getPtwReqDoc sql: "+sql);
 			@SuppressWarnings("unchecked")
 			List<Object[]> list = query.getResultList();
 			List<PtwRequiredDocumentDto> ptwRequiredDocumentDtoList = new ArrayList<PtwRequiredDocumentDto>();
 			for (Object[] o : list) {
 				PtwRequiredDocumentDto ptwRequiredDocumentDto = new PtwRequiredDocumentDto();
-				ptwRequiredDocumentDto.setSerialNo((Integer) o[0]);
-				ptwRequiredDocumentDto.setPermitNumber((Integer) o[1]);
+				ptwRequiredDocumentDto.setSerialNo(Integer.parseInt(o[0].toString()));
+				ptwRequiredDocumentDto.setPermitNumber(Integer.parseInt( o[1].toString()));
 				ptwRequiredDocumentDto.setIsCwp(Integer.parseInt(o[2].toString()));
 				ptwRequiredDocumentDto.setIsHwp(Integer.parseInt(o[3].toString()));
 				ptwRequiredDocumentDto.setIsCse(Integer.parseInt(o[4].toString()));

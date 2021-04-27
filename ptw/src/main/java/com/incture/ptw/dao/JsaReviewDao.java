@@ -68,6 +68,7 @@ public class JsaReviewDao extends BaseDao {
 			return jsaReviewDto;
 		} catch (Exception e) {
 			logger.error(e.getMessage());
+			e.printStackTrace();
 		}
 		return null;
 	}
