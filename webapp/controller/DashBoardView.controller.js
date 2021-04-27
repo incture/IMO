@@ -37,7 +37,7 @@ sap.ui.define([
 		},
 
 		_handleRouteMatched: function (oEvent) {
-			//reading the Arguments from url
+			//reading the Arguments from url testing git
 			var oArgs = oEvent.getParameter("arguments");
 			this.getModel("dashBoardModel").setProperty("/arguments", oArgs);
 			ChangeSeatHelper._initializeLocalModelForChangeSeat(this, this.getModel("dashBoardModel")); //AN: #ChangeSeat
