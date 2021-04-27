@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.incture.ptw.services.GetJsaByPermitNumService;
+import com.incture.ptw.services.JsaByPermitNumService;
 import com.incture.ptw.util.ResponseDto;
 
 @RestController
 @RequestMapping("/getjsabypermitnumber")
-public class GetJsaByPermitNumController {
+public class JsaByPermitNumController {
 	@Autowired
-	private GetJsaByPermitNumService getJsaByPermitNumService;
+	private JsaByPermitNumService getJsaByPermitNumService;
 
 	@GetMapping()
 	public ResponseDto getDetails(@RequestParam String permitNumber) {

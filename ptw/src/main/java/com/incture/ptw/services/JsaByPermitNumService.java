@@ -7,14 +7,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.incture.ptw.dao.GetJsaByPermitNumDao;
+import com.incture.ptw.dao.JsaByPermitNumDao;
 import com.incture.ptw.util.ResponseDto;
 
 @Service
 @Transactional
-public class GetJsaByPermitNumService {
+public class JsaByPermitNumService {
 	@Autowired
-	private GetJsaByPermitNumDao getJsaByPermitNumDao;
+	private JsaByPermitNumDao getJsaByPermitNumDao;
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	public ResponseDto getJsaByPermitNum (String permitNumber){
 		logger.info("GetJsaByPermitNumServic || getJsaByPermitNum permitNumber " + permitNumber);

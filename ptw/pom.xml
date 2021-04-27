@@ -8,6 +8,7 @@
 	<name>ptw Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
+		<!-- lombok dependancy -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -70,25 +71,20 @@
 			<artifactId>spring-cloud-cloudfoundry-hana-service-connector</artifactId>
 			<version>1.0.4.RELEASE</version>
 		</dependency>
-		<!-- logger dependency -->
-		<!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-api</artifactId> 
-			<version>1.7.19</version> </dependency> -->
-		<!-- <dependency> <groupId>org.slf4j</groupId> <artifactId>slf4j-nop</artifactId> 
-			<version>1.7.25</version> </dependency> -->
-		<!-- hibernate dependency -->
+		<!-- hibernate dependancy -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>5.4.1.Final</version>
 		</dependency>
-		<!-- json dependency -->
+		<!-- jackson dependency -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.9.4</version>
 		</dependency>
 
-		<!-- swagger dependency -->
+		<!-- swagger-ui dependency -->
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger-ui</artifactId>
@@ -100,6 +96,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<!-- swagger2 dependancy -->
 		<dependency>
 			<groupId>io.springfox</groupId>
 			<artifactId>springfox-swagger2</artifactId>
