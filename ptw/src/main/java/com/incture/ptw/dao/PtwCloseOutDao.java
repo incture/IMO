@@ -8,6 +8,7 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
+import com.incture.ptw.dto.CloseOutReqDto;
 import com.incture.ptw.dto.PtwCloseOutDto;
 
 @Repository
@@ -41,5 +42,8 @@ public class PtwCloseOutDao extends BaseDao{
 			e.printStackTrace();
 		}
 		return null;
+	}
+	public int closeOutService(CloseOutReqDto closeOutReqDto){
+		return 0;
 	}
 }
