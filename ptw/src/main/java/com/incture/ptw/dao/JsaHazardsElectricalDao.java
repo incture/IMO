@@ -1,5 +1,7 @@
 package com.incture.ptw.dao;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -23,6 +25,33 @@ public class JsaHazardsElectricalDao extends BaseDao {
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public JsaHazardsElectricalDto getJsaHazardsElectricalDto(String permitNum){
+		JsaHazardsElectricalDto jsaHazardsElectricalDto = new JsaHazardsElectricalDto();
+		List<Object[]> obj;
+		try{
+			String sql = "select distinct PERMITNUMBER, PORTABLEELECTRICALEQUIPMENT,INSPECTTOOLSFORCONDITION, "
+					+ " IMPLEMENTGASTESTING,PROTECTELECTRICALLEADS,IDENTIFYEQUIPCLASSIFICATION "
+					+ " from IOP.JSAHAZARDSELECTRICAL where PERMITNUMBER = :permitNum";
+			Query q = getSession().createNativeQuery(sql);
+			q.setParameter("permitNum", permitNum);
+			obj = q.getResultList();
+			for (Object[] a : obj) {
+				jsaHazardsElectricalDto.setPermitNumber((Integer) a[0]);
+				jsaHazardsElectricalDto.setPortableElectricalEquipment(Integer.parseInt(a[1].toString()));
+				jsaHazardsElectricalDto.setInspectToolsForCondition(Integer.parseInt(a[2].toString()));
+				jsaHazardsElectricalDto.setImplementGasTesting(Integer.parseInt(a[3].toString()));
+				jsaHazardsElectricalDto.setProtectElectricalLeads(Integer.parseInt(a[4].toString()));
+				jsaHazardsElectricalDto.setIdentifyEquipClassification(Integer.parseInt(a[5].toString()));
+			}
+			return jsaHazardsElectricalDto;
+		}catch(Exception e){
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

@@ -160,150 +160,150 @@ public class JsaUpdateService {
 				jsaHazardsPressurizedDao.updateJsaHazardsPressurized(createRequestDto.getJsaHazardsPressurizedDto());
 			}
 
-			if (createRequestDto.getJsaHazardsVisibilityDto() != null) {
-				jsaHazardsVisibilityDao.updateJsaHazardsVisibility(createRequestDto.getJsaHazardsVisibilityDto());
-			}
-			if (createRequestDto.getJsaHazardsPersonnelDto() != null) {
-				jsaHazardsPersonnelDao.updateJsaHazardsPersonnel(createRequestDto.getJsaHazardsPersonnelDto());
-			}
-			if (createRequestDto.getJsaHazardscseDto() != null) {
-				jsaHazardsCseDao.updateJsaHazardsCse(createRequestDto.getJsaHazardscseDto());
-			}
-			if (createRequestDto.getJsaHazardsSimultaneousDto() != null) {
-				jsaHazardsSimultaneousDao.updateJsaHazardsSimultaneous(createRequestDto.getJsaHazardsSimultaneousDto());
-			}
-			if (createRequestDto.getJsaHazardsIgnitionDto() != null) {
-				jsaHazardsIgnitionDao.updateJsaHazardsIgnition(createRequestDto.getJsaHazardsIgnitionDto());
-			}
-			if (createRequestDto.getJsaHazardsSubstancesDto() != null) {
-				jsaHazardsSubstancesDao.updateJsaHazardsSubstances(createRequestDto.getJsaHazardsSubstancesDto());
-			}
-			if (createRequestDto.getJsaHazardsSpillsDto() != null) {
-				jsaHazardsSpillsDao.updateJsaHazardsSpills(createRequestDto.getJsaHazardsSpillsDto());
-			}
-			if (createRequestDto.getJsaHazardsWeatherDto() != null) {
-				jsaHazardsWeatherDao.updateJsaHazardsWeather(createRequestDto.getJsaHazardsWeatherDto());
-			}
-			if (createRequestDto.getJsaHazardsHighNoiseDto() != null) {
-				jsaHazardsHighNoiseDao.updateJsaHazardsHighNoise(createRequestDto.getJsaHazardsHighNoiseDto());
-			}
-			if (createRequestDto.getJsaHazardsDroppedDto() != null) {
-				jsaHazardsDroppedDao.updateJsaHazardsDropped(createRequestDto.getJsaHazardsDroppedDto());
-			}
-			if (createRequestDto.getJsaHazardsLiftingDto() != null) {
-				jsaHazardsLiftingDao.updateJsaHazardsLifting(createRequestDto.getJsaHazardsLiftingDto());
-			}
-			if (createRequestDto.getJsaHazardsHeightsDto() != null) {
-				jsaHazardsHeightsDao.updateJsaHazardsHeights(createRequestDto.getJsaHazardsHeightsDto());
-			}
-			if (createRequestDto.getJsaHazardsElectricalDto() != null) {
-				jsaHazardsElectricalDao.updateJsaHazardsElectrical(createRequestDto.getJsaHazardsElectricalDto());
-			}
-			if (createRequestDto.getJsaHazardsMovingDto() != null) {
-				jsaHazardsMovingDao.updateJsaHazardsMoving(createRequestDto.getJsaHazardsMovingDto());
-			}
-			if (createRequestDto.getJsaHazardsManualDto() != null) {
-				jsaHazardsManualDao.updateJsaHazardsManual(createRequestDto.getJsaHazardsManualDto());
-			}
-			if (createRequestDto.getJsaHazardsToolsDto() != null) {
-				jsaHazardsToolsDao.updateJsaHazardsTools(createRequestDto.getJsaHazardsToolsDto());
-			}
-			if (createRequestDto.getJsaHazardsFallsDto() != null) {
-				jsaHazardsFallsDao.updateJsaHazardsFalls(createRequestDto.getJsaHazardsFallsDto());
-			}
-			if (createRequestDto.getJsaHazardsVoltageDto() != null) {
-				jsaHazardsVoltageDao.updateJsaHazardsVoltage(createRequestDto.getJsaHazardsVoltageDto());
-			}
-			if (createRequestDto.getJsaHazardsExcavationdDto() != null) {
-				jsaHazardsExcavationdDao.updateJsaHazardsExcavation(createRequestDto.getJsaHazardsExcavationdDto());
-			}
-			if (createRequestDto.getJsaHazardsMobileDto() != null) {
-				jsaHazardsMobileDao.updateJsaHazardsMobile(createRequestDto.getJsaHazardsMobileDto());
-			}
-			// delete jsasteps
-			if (createRequestDto.getJsaStepsDtoList() != null || !createRequestDto.getJsaStepsDtoList().isEmpty()) {
-				for (JsaStepsDto i : createRequestDto.getJsaStepsDtoList()) {
-					jsaStepsDao.insertJsaSteps(permitNumber, i);
-				}
-
-			}
-			// delete jsastoptrigger
-			if (createRequestDto.getJsaStopTriggerDtoList() != null
-					|| !createRequestDto.getJsaStopTriggerDtoList().isEmpty()) {
-				for (JsaStopTriggerDto i : createRequestDto.getJsaStopTriggerDtoList()) {
-					jsaStopTriggerDao.insertJsaStopTrigger(permitNumber, i);
-				}
-
-			}
-			// delete jsa_location
-			if (createRequestDto.getJsaLocationDtoList() != null
-					|| !createRequestDto.getJsaLocationDtoList().isEmpty()) {
-				for (JsaLocationDto i : createRequestDto.getJsaLocationDtoList()) {
-					jsaLocationDao.insertJsaLocation(permitNumber, i);
-				}
-
-			}
-			// delete ptwpeople
-			if (createRequestDto.getPtwPeopleDtoList() != null || !createRequestDto.getPtwPeopleDtoList().isEmpty()) {
-				for (PtwPeopleDto i : createRequestDto.getPtwPeopleDtoList()) {
-					ptwPeopleDao.insertPtwPeople(permitNumber, i);
-				}
-
-			}
-			List<String> ptwPermitNumberList = new ArrayList<>();
-			if (createRequestDto.getPtwHeaderDtoList() != null || !createRequestDto.getPtwHeaderDtoList().isEmpty()) {
-				for (PtwHeaderDto i : createRequestDto.getPtwHeaderDtoList()) {
-					String ptwHeader = "";
-					if (i.getIsCWP() == 1) {
-						ptwHeader = "CWP" + permitNumber;
-						isCwp = true;
-						ptwPermitNumberList.add(ptwHeader);
-
-					} else if (i.getIsHWP() == 1) {
-						ptwHeader = "HWP" + permitNumber;
-
-						isHwp = true;
-						ptwPermitNumberList.add(ptwHeader);
-					} else if (i.getIsCSE() == 1) {
-						ptwHeader = "CSE" + permitNumber;
-						isCse = true;
-						ptwPermitNumberList.add(ptwHeader);
-					}
-					createServiceResponseDto.setPtwPermitNumber(ptwPermitNumberList);
-					ptwHeaderDao.insertPtwHeader(permitNumber, ptwHeader, i);
-				}
-
-			}
-			if (createRequestDto.getPtwRequiredDocumentDtoList() != null
-					|| !createRequestDto.getPtwRequiredDocumentDtoList().isEmpty()) {
-				for (PtwRequiredDocumentDto i : createRequestDto.getPtwRequiredDocumentDtoList()) {
-					ptwRequiredDocumentDao.insertPtwRequiredDocument(permitNumber, i);
-				}
-
-			}
-			// intert into ptwapproval
-			// delete ptwtestrecord
-			if (createRequestDto.getPtwTestRecordDto() != null) {
-				ptwTestRecordDao.insertPtwTestRecord(permitNumber, createRequestDto.getPtwTestRecordDto());
-			}
-			// delete ptwtestresult
-			if (createRequestDto.getPtwTestResultsDtoList() != null
-					|| !createRequestDto.getPtwTestResultsDtoList().isEmpty()) {
-				for (PtwTestResultsDto i : createRequestDto.getPtwTestResultsDtoList()) {
-					ptwTestResultsDao.insertPtwTestResults(permitNumber, i);
-				}
-
-			}
-			// insert ptwcloseout
-			if (createRequestDto.getPtwCwpWorkTypeDto() != null && isCwp == true) {
-				ptwCwpWorkTypeDao.insertPtwCwpWorkType(permitNumber, createRequestDto.getPtwCwpWorkTypeDto());
-			}
-			if (createRequestDto.getPtwHwpWorkTypeDto() != null && isHwp == true) {
-				ptwHwpWorkTypeDao.insertPtwHwpWorkType(permitNumber, createRequestDto.getPtwHwpWorkTypeDto());
-			}
-			if (createRequestDto.getPtwCseWorkTypeDto() != null && isCse == true) {
-				ptwCseWorkTypeDao.insertPtwCseWorkType(permitNumber, createRequestDto.getPtwCseWorkTypeDto());
-			}
+//			if (createRequestDto.getJsaHazardsVisibilityDto() != null) {
+//				jsaHazardsVisibilityDao.updateJsaHazardsVisibility(createRequestDto.getJsaHazardsVisibilityDto());
+//			}
+//			if (createRequestDto.getJsaHazardsPersonnelDto() != null) {
+//				jsaHazardsPersonnelDao.updateJsaHazardsPersonnel(createRequestDto.getJsaHazardsPersonnelDto());
+//			}
+//			if (createRequestDto.getJsaHazardscseDto() != null) {
+//				jsaHazardsCseDao.updateJsaHazardsCse(createRequestDto.getJsaHazardscseDto());
+//			}
+//			if (createRequestDto.getJsaHazardsSimultaneousDto() != null) {
+//				jsaHazardsSimultaneousDao.updateJsaHazardsSimultaneous(createRequestDto.getJsaHazardsSimultaneousDto());
+//			}
+//			if (createRequestDto.getJsaHazardsIgnitionDto() != null) {
+//				jsaHazardsIgnitionDao.updateJsaHazardsIgnition(createRequestDto.getJsaHazardsIgnitionDto());
+//			}
+//			if (createRequestDto.getJsaHazardsSubstancesDto() != null) {
+//				jsaHazardsSubstancesDao.updateJsaHazardsSubstances(createRequestDto.getJsaHazardsSubstancesDto());
+//			}
+//			if (createRequestDto.getJsaHazardsSpillsDto() != null) {
+//				jsaHazardsSpillsDao.updateJsaHazardsSpills(createRequestDto.getJsaHazardsSpillsDto());
+//			}
+//			if (createRequestDto.getJsaHazardsWeatherDto() != null) {
+//				jsaHazardsWeatherDao.updateJsaHazardsWeather(createRequestDto.getJsaHazardsWeatherDto());
+//			}
+//			if (createRequestDto.getJsaHazardsHighNoiseDto() != null) {
+//				jsaHazardsHighNoiseDao.updateJsaHazardsHighNoise(createRequestDto.getJsaHazardsHighNoiseDto());
+//			}
+//			if (createRequestDto.getJsaHazardsDroppedDto() != null) {
+//				jsaHazardsDroppedDao.updateJsaHazardsDropped(createRequestDto.getJsaHazardsDroppedDto());
+//			}
+//			if (createRequestDto.getJsaHazardsLiftingDto() != null) {
+//				jsaHazardsLiftingDao.updateJsaHazardsLifting(createRequestDto.getJsaHazardsLiftingDto());
+//			}
+//			if (createRequestDto.getJsaHazardsHeightsDto() != null) {
+//				jsaHazardsHeightsDao.updateJsaHazardsHeights(createRequestDto.getJsaHazardsHeightsDto());
+//			}
+//			if (createRequestDto.getJsaHazardsElectricalDto() != null) {
+//				jsaHazardsElectricalDao.updateJsaHazardsElectrical(createRequestDto.getJsaHazardsElectricalDto());
+//			}
+//			if (createRequestDto.getJsaHazardsMovingDto() != null) {
+//				jsaHazardsMovingDao.updateJsaHazardsMoving(createRequestDto.getJsaHazardsMovingDto());
+//			}
+//			if (createRequestDto.getJsaHazardsManualDto() != null) {
+//				jsaHazardsManualDao.updateJsaHazardsManual(createRequestDto.getJsaHazardsManualDto());
+//			}
+//			if (createRequestDto.getJsaHazardsToolsDto() != null) {
+//				jsaHazardsToolsDao.updateJsaHazardsTools(createRequestDto.getJsaHazardsToolsDto());
+//			}
+//			if (createRequestDto.getJsaHazardsFallsDto() != null) {
+//				jsaHazardsFallsDao.updateJsaHazardsFalls(createRequestDto.getJsaHazardsFallsDto());
+//			}
+//			if (createRequestDto.getJsaHazardsVoltageDto() != null) {
+//				jsaHazardsVoltageDao.updateJsaHazardsVoltage(createRequestDto.getJsaHazardsVoltageDto());
+//			}
+//			if (createRequestDto.getJsaHazardsExcavationdDto() != null) {
+//				jsaHazardsExcavationdDao.updateJsaHazardsExcavation(createRequestDto.getJsaHazardsExcavationdDto());
+//			}
+//			if (createRequestDto.getJsaHazardsMobileDto() != null) {
+//				jsaHazardsMobileDao.updateJsaHazardsMobile(createRequestDto.getJsaHazardsMobileDto());
+//			}
+//			// delete jsasteps
+//			if (createRequestDto.getJsaStepsDtoList() != null || !createRequestDto.getJsaStepsDtoList().isEmpty()) {
+//				for (JsaStepsDto i : createRequestDto.getJsaStepsDtoList()) {
+//					jsaStepsDao.insertJsaSteps(permitNumber, i);
+//				}
+//
+//			}
+//			// delete jsastoptrigger
+//			if (createRequestDto.getJsaStopTriggerDtoList() != null
+//					|| !createRequestDto.getJsaStopTriggerDtoList().isEmpty()) {
+//				for (JsaStopTriggerDto i : createRequestDto.getJsaStopTriggerDtoList()) {
+//					jsaStopTriggerDao.insertJsaStopTrigger(permitNumber, i);
+//				}
+//
+//			}
+//			// delete jsa_location
+//			if (createRequestDto.getJsaLocationDtoList() != null
+//					|| !createRequestDto.getJsaLocationDtoList().isEmpty()) {
+//				for (JsaLocationDto i : createRequestDto.getJsaLocationDtoList()) {
+//					jsaLocationDao.insertJsaLocation(permitNumber, i);
+//				}
+//
+//			}
+//			// delete ptwpeople
+//			if (createRequestDto.getPtwPeopleDtoList() != null || !createRequestDto.getPtwPeopleDtoList().isEmpty()) {
+//				for (PtwPeopleDto i : createRequestDto.getPtwPeopleDtoList()) {
+//					ptwPeopleDao.insertPtwPeople(permitNumber, i);
+//				}
+//
+//			}
+//			List<String> ptwPermitNumberList = new ArrayList<>();
+//			if (createRequestDto.getPtwHeaderDtoList() != null || !createRequestDto.getPtwHeaderDtoList().isEmpty()) {
+//				for (PtwHeaderDto i : createRequestDto.getPtwHeaderDtoList()) {
+//					String ptwHeader = "";
+//					if (i.getIsCWP() == 1) {
+//						ptwHeader = "CWP" + permitNumber;
+//						isCwp = true;
+//						ptwPermitNumberList.add(ptwHeader);
+//
+//					} else if (i.getIsHWP() == 1) {
+//						ptwHeader = "HWP" + permitNumber;
+//
+//						isHwp = true;
+//						ptwPermitNumberList.add(ptwHeader);
+//					} else if (i.getIsCSE() == 1) {
+//						ptwHeader = "CSE" + permitNumber;
+//						isCse = true;
+//						ptwPermitNumberList.add(ptwHeader);
+//					}
+//					createServiceResponseDto.setPtwPermitNumber(ptwPermitNumberList);
+//					ptwHeaderDao.insertPtwHeader(permitNumber, ptwHeader, i);
+//				}
+//
+//			}
+//			if (createRequestDto.getPtwRequiredDocumentDtoList() != null
+//					|| !createRequestDto.getPtwRequiredDocumentDtoList().isEmpty()) {
+//				for (PtwRequiredDocumentDto i : createRequestDto.getPtwRequiredDocumentDtoList()) {
+//					ptwRequiredDocumentDao.insertPtwRequiredDocument(permitNumber, i);
+//				}
+//
+//			}
+//			// intert into ptwapproval
+//			// delete ptwtestrecord
+//			if (createRequestDto.getPtwTestRecordDto() != null) {
+//				ptwTestRecordDao.insertPtwTestRecord(permitNumber, createRequestDto.getPtwTestRecordDto());
+//			}
+//			// delete ptwtestresult
+//			if (createRequestDto.getPtwTestResultsDtoList() != null
+//					|| !createRequestDto.getPtwTestResultsDtoList().isEmpty()) {
+//				for (PtwTestResultsDto i : createRequestDto.getPtwTestResultsDtoList()) {
+//					ptwTestResultsDao.insertPtwTestResults(permitNumber, i);
+//				}
+//
+//			}
+//			// insert ptwcloseout
+//			if (createRequestDto.getPtwCwpWorkTypeDto() != null && isCwp == true) {
+//				ptwCwpWorkTypeDao.insertPtwCwpWorkType(permitNumber, createRequestDto.getPtwCwpWorkTypeDto());
+//			}
+//			if (createRequestDto.getPtwHwpWorkTypeDto() != null && isHwp == true) {
+//				ptwHwpWorkTypeDao.insertPtwHwpWorkType(permitNumber, createRequestDto.getPtwHwpWorkTypeDto());
+//			}
+//			if (createRequestDto.getPtwCseWorkTypeDto() != null && isCse == true) {
+//				ptwCseWorkTypeDao.insertPtwCseWorkType(permitNumber, createRequestDto.getPtwCseWorkTypeDto());
+//			}
 			// update ptwheader
 
 		} catch (Exception e) {

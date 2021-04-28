@@ -1,5 +1,7 @@
 package com.incture.ptw.dao;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -62,6 +64,39 @@ public class JsaHeaderDao extends BaseDao {
 			e.printStackTrace();
 		}
 
+	}
+	
+	@SuppressWarnings("unchecked")
+	public JsaheaderDto getJsaHeader(String permitNumber){
+		JsaheaderDto jsaheaderDto = new JsaheaderDto();
+		List<Object[]> obj;
+		try{
+			String sql = "select distinct PERMITNUMBER, JSAPERMITNUMBER,HASCWP,HASHWP, "
+					+ " HASCSE,TASKDESCRIPTION,IDENTIFYMOSTSERIOUSPOTENTIALINJURY,ISACTIVE,STATUS from "
+					+ " IOP.JSAHEADER where PERMITNUMBER = :permitNumber";
+			logger.info("JSAHEADER sql " + sql);
+			Query q = getSession().createNativeQuery(sql);
+			q.setParameter("permitNumber", permitNumber);
+			obj = q.getResultList();
+			for (Object[] a : obj) {
+				jsaheaderDto.setPermitNumber((Integer) a[0]);
+				jsaheaderDto.setJsaPermitNumber((String) a[1]);
+				jsaheaderDto.setHasCWP(Integer.parseInt(a[2].toString()));
+				jsaheaderDto.setHasHWP(Integer.parseInt(a[2].toString()));
+				jsaheaderDto.setHasCSE(Integer.parseInt(a[2].toString()));
+				jsaheaderDto.setTaskDescription((String) a[5]);
+				jsaheaderDto.setIdentifyMostSeriousPotentialInjury((String) a[6]);
+				jsaheaderDto.setIsActive(Integer.parseInt(a[2].toString()));
+				jsaheaderDto.setStatus((String) a[8]);
+			}
+			logger.info(jsaheaderDto.toString());
+			return jsaheaderDto;
+		}
+		catch(Exception e){
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

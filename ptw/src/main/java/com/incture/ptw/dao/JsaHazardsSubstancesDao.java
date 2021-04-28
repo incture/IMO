@@ -1,5 +1,7 @@
 package com.incture.ptw.dao;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -25,6 +27,34 @@ public class JsaHazardsSubstancesDao extends BaseDao {
 			logger.error(e.getMessage());
 		}
 
+	}
+	
+	@SuppressWarnings("unchecked")
+	public JsaHazardsSubstancesDto getJsaHazardsSubstances(String permitNum){
+		List<Object[]> obj;
+		JsaHazardsSubstancesDto jsaHazardsSubstancesDto = new JsaHazardsSubstancesDto();
+		try{
+			String sql = "select distinct PERMITNUMBER, HAZARDOUSSUBSTANCES,DRAINEQUIPMENT,FOLLOWSDSCONTROLS, "
+					+ " IMPLEMENTHEALTHHAZARDCONTROLS,TESTMATERIAL from IOP.JSAHAZARDSSUBSTANCES "
+					+ " where PERMITNUMBER = :permitNum";
+			Query q = getSession().createNativeQuery(sql);
+			q.setParameter("permitNum", permitNum);
+			obj = q.getResultList();
+			
+			for (Object[] a : obj) {
+				jsaHazardsSubstancesDto.setPermitNumber((Integer) a[0]);
+				jsaHazardsSubstancesDto.setHazardousSubstances(Integer.parseInt(a[1].toString()));
+				jsaHazardsSubstancesDto.setDrainEquipment(Integer.parseInt(a[2].toString()));
+				jsaHazardsSubstancesDto.setFollowSdsControls(Integer.parseInt(a[3].toString()));
+				jsaHazardsSubstancesDto.setImplementHealthHazardControls(Integer.parseInt(a[4].toString()));
+				jsaHazardsSubstancesDto.setTestMaterial(Integer.parseInt(a[5].toString()));
+			}
+			return jsaHazardsSubstancesDto;
+		}catch(Exception e){
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

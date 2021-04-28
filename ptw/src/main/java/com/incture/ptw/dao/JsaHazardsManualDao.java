@@ -1,5 +1,7 @@
 package com.incture.ptw.dao;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -24,6 +26,36 @@ public class JsaHazardsManualDao extends BaseDao {
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public JsaHazardsManualDto getJsaHazardsManualDto(String permitNum){
+		List<Object[]> obj;
+		JsaHazardsManualDto jsaHazardsManualDto = new JsaHazardsManualDto();
+		try{
+			String sql = "select distinct PERMITNUMBER, MANUALHANDLING,ASSESSMANUALTASK,LIMITLOADSIZE, "
+					+ " PROPERLIFTINGTECHNIQUE,CONFIRMSTABILITYOFLOAD,GETASSISTANCEORAID "
+					+ " from IOP.JSAHAZARDSMANUAL where PERMITNUMBER = :permitNum";
+			Query q = getSession().createNativeQuery(sql);
+			q.setParameter("permitNum", permitNum);
+			obj = q.getResultList();
+			
+			for (Object[] a : obj) {
+				jsaHazardsManualDto.setPermitNumber((Integer) a[0]);
+				jsaHazardsManualDto.setManualHandling(Integer.parseInt(a[1].toString()));
+				jsaHazardsManualDto.setAssessManualTask(Integer.parseInt(a[2].toString()));
+				jsaHazardsManualDto.setLimitLoadSize(Integer.parseInt(a[3].toString()));
+				jsaHazardsManualDto.setProperLiftingTechnique(Integer.parseInt(a[4].toString()));
+				jsaHazardsManualDto.setConfirmStabilityOfLoad(Integer.parseInt(a[5].toString()));
+				jsaHazardsManualDto.setGetAssistanceOrAid(Integer.parseInt(a[6].toString()));
+
+			}
+			return jsaHazardsManualDto;
+		}catch(Exception e){
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

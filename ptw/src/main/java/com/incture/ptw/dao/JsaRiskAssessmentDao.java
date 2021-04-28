@@ -1,5 +1,7 @@
 package com.incture.ptw.dao;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -38,6 +40,29 @@ public class JsaRiskAssessmentDao extends BaseDao {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public JsaRiskAssesmentDto getJsaRiskAss(String permitNum){
+		JsaRiskAssesmentDto jsaRiskAssesmentDto = new JsaRiskAssesmentDto();
+		List<Object[]> obj;
+		try{
+			String sql = "select distinct PERMITNUMBER, MUSTMODIFYEXISTINGWORKPRACTICE,HASCONTINUEDRISK "
+					+ " from IOP.JSARISKASSESMENT where PERMITNUMBER = :permitNum";
+			logger.info("JSARISKASSESMENT sql " + sql);
+			Query q = getSession().createNativeQuery(sql);
+			q.setParameter("permitNum", permitNum);
+			obj = q.getResultList();
+			for (Object[] a : obj) {
+				jsaRiskAssesmentDto.setPermitNumber((Integer) a[0]);
+				jsaRiskAssesmentDto.setMustModifyExistingWorkPractice(Integer.parseInt(a[1].toString()));
+				jsaRiskAssesmentDto.setHasContinuedRisk(Integer.parseInt(a[2].toString()));
+			}
+			return jsaRiskAssesmentDto;
+		}catch(Exception e){
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

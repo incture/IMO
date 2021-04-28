@@ -1,5 +1,7 @@
 package com.incture.ptw.dao;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -48,6 +50,37 @@ public class JsaHazardsPressurizedDao extends BaseDao {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	@SuppressWarnings("unchecked")
+	public JsaHazardsPressurizedDto getjsaHazardsPress(String permitNum){
+		JsaHazardsPressurizedDto jsaHazardsPressurizedDto = new JsaHazardsPressurizedDto();
+		List<Object[]> obj;
+		try{
+			String sql = "select distinct PERMITNUMBER, PRESURIZEDEQUIPMENT,PERFORMISOLATION,DEPRESSURIZEDRAIN, "
+					+ " RELIEVETRAPPEDPRESSURE,DONOTWORKINLINEOFFIRE,ANTICIPATERESIDUAL,SECUREALLHOSES "
+					+ " from IOP.JSAHAZARDSPRESSURIZED where PERMITNUMBER = :permitNum";
+			logger.info("JSAHAZARDSPRESSURIZED sql " + sql);
+			Query q = getSession().createNativeQuery(sql);
+			q.setParameter("permitNum", permitNum);
+			obj = q.getResultList();
+			for (Object[] a : obj) {
+				jsaHazardsPressurizedDto.setPermitNumber((Integer) a[0]);
+				jsaHazardsPressurizedDto.setPresurizedEquipment(Integer.parseInt(a[1].toString()));
+				jsaHazardsPressurizedDto.setPerformIsolation(Integer.parseInt(a[2].toString()));
+				jsaHazardsPressurizedDto.setDepressurizeDrain(Integer.parseInt(a[3].toString()));
+				jsaHazardsPressurizedDto.setRelieveTrappedPressure(Integer.parseInt(a[4].toString()));
+				jsaHazardsPressurizedDto.setDoNotWorkInLineOfFire(Integer.parseInt(a[5].toString()));
+				jsaHazardsPressurizedDto.setAnticipateResidual(Integer.parseInt(a[6].toString()));
+				jsaHazardsPressurizedDto.setSecureAllHoses(Integer.parseInt(a[7].toString()));
+			}
+			
+			return jsaHazardsPressurizedDto;
+		}catch(Exception e){
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
