@@ -49,6 +49,7 @@ import com.incture.ptw.dao.PtwTestRecordDao;
 import com.incture.ptw.dao.PtwTestResultsDao;
 import com.incture.ptw.dto.CreateRequestDto;
 import com.incture.ptw.dto.JsaLocationDto;
+import com.incture.ptw.dto.JsaStepsDto;
 import com.incture.ptw.dto.JsaStopTriggerDto;
 import com.incture.ptw.dto.PtwHeaderDto;
 import com.incture.ptw.dto.PtwPeopleDto;
@@ -142,6 +143,7 @@ public class JsaUpdateService {
 		responseDto.setStatus(Boolean.TRUE);
 		responseDto.setStatusCode(200);
 		try {
+			Integer permitNumber = createRequestDto.getJsaheaderDto().getPermitNumber();
 			if (createRequestDto.getJsaheaderDto() != null) {
 				jsaHeaderDao.updateJsaHeader(createRequestDto.getJsaheaderDto());
 			}
@@ -207,20 +209,25 @@ public class JsaUpdateService {
 				jsaHazardsToolsDao.updateJsaHazardsTools(createRequestDto.getJsaHazardsToolsDto());
 			}
 			if (createRequestDto.getJsaHazardsFallsDto() != null) {
-				jsaHazardsFallsDao.updateJsaHazardsFalls(permitNumber, createRequestDto.getJsaHazardsFallsDto());
+				jsaHazardsFallsDao.updateJsaHazardsFalls(createRequestDto.getJsaHazardsFallsDto());
 			}
 			if (createRequestDto.getJsaHazardsVoltageDto() != null) {
-				jsaHazardsVoltageDao.insertJsaHazardsVoltage(permitNumber, createRequestDto.getJsaHazardsVoltageDto());
+				jsaHazardsVoltageDao.updateJsaHazardsVoltage(createRequestDto.getJsaHazardsVoltageDto());
 			}
 			if (createRequestDto.getJsaHazardsExcavationdDto() != null) {
-				jsaHazardsExcavationdDao.insertJsaHazardsExcavation(permitNumber,
-						createRequestDto.getJsaHazardsExcavationdDto());
+				jsaHazardsExcavationdDao.updateJsaHazardsExcavation(createRequestDto.getJsaHazardsExcavationdDto());
 			}
 			if (createRequestDto.getJsaHazardsMobileDto() != null) {
-				jsaHazardsMobileDao.insertJsaHazardsMobile(permitNumber, createRequestDto.getJsaHazardsMobileDto());
+				jsaHazardsMobileDao.updateJsaHazardsMobile(createRequestDto.getJsaHazardsMobileDto());
 			}
-			// jsasteps delete
-			// jsastoptrigger
+			// delete jsasteps
+			if (createRequestDto.getJsaStepsDtoList() != null || !createRequestDto.getJsaStepsDtoList().isEmpty()) {
+				for (JsaStepsDto i : createRequestDto.getJsaStepsDtoList()) {
+					jsaStepsDao.insertJsaSteps(permitNumber, i);
+				}
+
+			}
+			// delete jsastoptrigger
 			if (createRequestDto.getJsaStopTriggerDtoList() != null
 					|| !createRequestDto.getJsaStopTriggerDtoList().isEmpty()) {
 				for (JsaStopTriggerDto i : createRequestDto.getJsaStopTriggerDtoList()) {
@@ -274,7 +281,7 @@ public class JsaUpdateService {
 				}
 
 			}
-			// ptwapproval
+			// intert into ptwapproval
 			// delete ptwtestrecord
 			if (createRequestDto.getPtwTestRecordDto() != null) {
 				ptwTestRecordDao.insertPtwTestRecord(permitNumber, createRequestDto.getPtwTestRecordDto());
