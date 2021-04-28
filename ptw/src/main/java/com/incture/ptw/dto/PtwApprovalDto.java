@@ -21,6 +21,6 @@ public class PtwApprovalDto {
 	private String otherDistribution;
 	private String picName;
 	private Date picDate;
-	private String superItendentName;
-	private Date superItendentDate;
+	private String superitendentName;
+	private Date superitendentDate;
 }
