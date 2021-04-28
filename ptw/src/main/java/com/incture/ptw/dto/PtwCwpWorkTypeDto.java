@@ -12,7 +12,7 @@ public class PtwCwpWorkTypeDto {
 	private Integer workingAtHeight;
 	private Integer paintingOrBlasting;
 	private Integer workingOnPressurizedSystems;
-	private Integer erectingOrDismantlingScaffodling;
+	private Integer erectingOrDismantlingScaffolding;
 	private Integer breakingContainmentOfClosedOperatingSystem;
 	private Integer workingInCloseToHazardousEnergy;
 	private Integer removalOfIdleEquipmentForRepair;
