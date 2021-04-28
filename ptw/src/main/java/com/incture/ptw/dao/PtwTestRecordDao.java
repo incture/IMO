@@ -16,6 +16,7 @@ public class PtwTestRecordDao extends BaseDao {
 	private KeyGeneratorDao keyGeneratorDao;
 
 	public void insertPtwTestRecord(String permitNumber, PtwTestRecordDto ptwTestRecordDto) {
+		logger.info("ptwTestRecordDto"+ptwTestRecordDto);
 		try {
 			Query query = getSession().createNativeQuery(
 					"INSERT INTO \"IOP\".\"PTWTESTRECORD\"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");

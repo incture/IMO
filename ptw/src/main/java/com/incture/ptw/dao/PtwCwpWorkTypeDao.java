@@ -11,6 +11,7 @@ import com.incture.ptw.dto.PtwCwpWorkTypeDto;
 @Repository
 public class PtwCwpWorkTypeDao extends BaseDao {
 	public void insertPtwCwpWorkType(String permitNumber, PtwCwpWorkTypeDto ptwCwpWorkTypeDto) {
+      logger.info("ptwCwpWorkTypeDto"+ptwCwpWorkTypeDto);
 		try {
 			Query query = getSession().createNativeQuery(
 					"INSERT INTO \"IOP\".\"PTW_CWP_WORK_TYPE\"VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -22,7 +23,7 @@ public class PtwCwpWorkTypeDao extends BaseDao {
 			query.setParameter(6, ptwCwpWorkTypeDto.getWorkingAtHeight());
 			query.setParameter(7, ptwCwpWorkTypeDto.getPaintingOrBlasting());
 			query.setParameter(8, ptwCwpWorkTypeDto.getWorkingOnPressurizedSystems());
-			query.setParameter(9, ptwCwpWorkTypeDto.getErectingOrDismantlingScaffodling());
+			query.setParameter(9, ptwCwpWorkTypeDto.getErectingOrDismantlingScaffolding());
 			query.setParameter(10, ptwCwpWorkTypeDto.getBreakingContainmentOfClosedOperatingSystem());
 			query.setParameter(11, ptwCwpWorkTypeDto.getWorkingInCloseToHazardousEnergy());
 			query.setParameter(12, ptwCwpWorkTypeDto.getRemovalOfIdleEquipmentForRepair());
@@ -54,7 +55,7 @@ public class PtwCwpWorkTypeDao extends BaseDao {
 				ptwCwpWorkTypeDto.setWorkingAtHeight(Integer.parseInt(a[5].toString()));
 				ptwCwpWorkTypeDto.setPaintingOrBlasting(Integer.parseInt(a[6].toString()));
 				ptwCwpWorkTypeDto.setWorkingOnPressurizedSystems(Integer.parseInt(a[7].toString()));
-				ptwCwpWorkTypeDto.setErectingOrDismantlingScaffodling(Integer.parseInt(a[8].toString()));
+				ptwCwpWorkTypeDto.setErectingOrDismantlingScaffolding(Integer.parseInt(a[8].toString()));
 				ptwCwpWorkTypeDto.setBreakingContainmentOfClosedOperatingSystem(Integer.parseInt(a[9].toString()));
 				ptwCwpWorkTypeDto.setWorkingInCloseToHazardousEnergy(Integer.parseInt(a[10].toString()));
 				ptwCwpWorkTypeDto.setRemovalOfIdleEquipmentForRepair(Integer.parseInt(a[11].toString()));
@@ -62,6 +63,7 @@ public class PtwCwpWorkTypeDao extends BaseDao {
 				ptwCwpWorkTypeDto.setOtherTypeOfWork((String)a[13]);
 				ptwCwpWorkTypeDto.setDescriptionOfWorkToBePerformed((String)a[14]);
 			}
+			logger.info("ptwCwpWorkTypeDto"+ptwCwpWorkTypeDto);
 			return ptwCwpWorkTypeDto;
 		} catch (Exception e) {
 			logger.error(e.getMessage());
