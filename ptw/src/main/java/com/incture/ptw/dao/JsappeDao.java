@@ -45,4 +45,47 @@ public class JsappeDao extends BaseDao {
 			logger.error(e.getMessage());
 		}
 	}
+
+	public void updateJsappe(JsappeDto jsappeDto) {
+		try {
+			String sql = "UPDATE \"IOP\".\"JSA_PPE\" SET  \"HARDHAT\"=?,\"SAFETYBOOT\"=?,\"GOGGLES\"=?," +
+        "\"FACESHIELD\"=?,\"SAFETYGLASSES\"=?,\"SINGLEEAR\"=?,\"DOUBLEEARS\"=?,\"RESPIRATORTYPEDESCRIPTION\"=?," +
+        "\"NEEDSCBA\"=?,\"NEEDDUSTMASK\"=?,\"COTTONGLOVE\"=?,\"LEATHERGLOVE\"=?," +
+        "\"IMPACTPROTECTION\"=?,\"GLOVEDESCRIPTION\"=?,\"CHEMICALGLOVEDESCRIPTION\"=?,\"FALLPROTECTION\"=?," +
+        "\"FALLRESTRAINT\"=?,\"CHEMICALSUIT\"=?,\"APRON\"=?,\"FLAMERESISTANTCLOTHING\"=?,\"OTHERPPEDESCRIPTION\"=?," +
+        "\"NEEDFOULWEATHERGEAR\"=?,\"HAVECONSENTOFTASKLEADER\"=?,\"COMPANYOFTASKLEADER\"=? WHERE \"PERMITNUMBER\"=?";
+			logger.info("updateJsappe sql" + sql);
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, jsappeDto.getHardHat());
+			query.setParameter(2, jsappeDto.getSafetyBoot());
+			query.setParameter(3, jsappeDto.getGoggles());
+			query.setParameter(4, jsappeDto.getFaceShield());
+			query.setParameter(5, jsappeDto.getSafetyGlasses());
+			query.setParameter(6, jsappeDto.getSingleEar());
+			query.setParameter(7, jsappeDto.getDoubleEars());
+			query.setParameter(8, jsappeDto.getRespiratorTypeDescription());
+			query.setParameter(9, jsappeDto.getNeedSCBA());
+			query.setParameter(10, jsappeDto.getNeedDustMask());
+			query.setParameter(11, jsappeDto.getCottonGlove());
+			query.setParameter(12, jsappeDto.getLeatherGlove());
+			query.setParameter(13, jsappeDto.getImpactProtection());
+			query.setParameter(14, jsappeDto.getGloveDescription());
+			query.setParameter(15, jsappeDto.getChemicalGloveDescription());
+			query.setParameter(16, jsappeDto.getFallProtection());
+			query.setParameter(17, jsappeDto.getFallRestraint());
+			query.setParameter(18, jsappeDto.getChemicalSuit());
+			query.setParameter(19, jsappeDto.getApron());
+			query.setParameter(20, jsappeDto.getFlameResistantClothing());
+			query.setParameter(21, jsappeDto.getOtherPPEDescription());
+			query.setParameter(22, jsappeDto.getNeedFoulWeatherGear());
+			query.setParameter(23, jsappeDto.getHaveConsentOfTaskLeader());
+			query.setParameter(24, jsappeDto.getCompanyOfTaskLeader());
+			query.setParameter(25, jsappeDto.getPermitNumber());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
 }
