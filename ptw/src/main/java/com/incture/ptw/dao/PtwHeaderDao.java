@@ -13,6 +13,7 @@ import com.incture.ptw.dto.PtwHeaderDto;
 @Repository
 public class PtwHeaderDao extends BaseDao {
 	public void insertPtwHeader(String permitNumber, String ptwHeader, PtwHeaderDto ptwHeaderDto) {
+		logger.info("ptwHeaderDto"+ptwHeaderDto);
 		try {
 
 			Query query = getSession()

@@ -22,6 +22,7 @@ public class JsaHazardsToolsDao extends BaseDao {
 			query.setParameter(7, jsaHazardsToolsDto.getCheckForSharpEdges());
 			query.setParameter(8, jsaHazardsToolsDto.getApplyHandSafetyPrinciple());
 			query.executeUpdate();
+			logger.info("jsaHazardsToolsDto"+jsaHazardsToolsDto);
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}

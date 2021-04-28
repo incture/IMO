@@ -9,6 +9,7 @@ import com.incture.ptw.dto.JsappeDto;
 @Repository
 public class JsappeDao extends BaseDao {
 	public void insertJsappe(String permitNumber, JsappeDto jsappeDto) {
+		logger.info("jsappeDto"+jsappeDto);
 		try {
 			String sql ="INSERT INTO \"IOP\".\"JSA_PPE\" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 			Query query = getSession().createNativeQuery(sql);
@@ -39,6 +40,7 @@ public class JsappeDao extends BaseDao {
 			query.setParameter(24, jsappeDto.getHaveConsentOfTaskLeader());
 			query.setParameter(25, jsappeDto.getCompanyOfTaskLeader());
 			query.executeUpdate();
+			
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}

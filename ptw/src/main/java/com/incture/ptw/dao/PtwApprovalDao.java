@@ -13,6 +13,7 @@ import com.incture.ptw.dto.PtwApprovalDto;
 @Repository
 public class PtwApprovalDao extends BaseDao {
 	public List<PtwApprovalDto> getPtwApproval(String permitNumber, String isCwp, String isHwp, String isCse) {
+		
 		try {
 			String sql = "select * from IOP.PTWAPPROVAL where PERMITNUMBER= ? and ISCWP = ? and ISHWP = ? and ISCSE = ?";
 			Query query = getSession().createNativeQuery(sql);
@@ -41,8 +42,8 @@ public class PtwApprovalDao extends BaseDao {
 				ptwApprovalDto.setOtherDistribution((String) o[12]);
 				ptwApprovalDto.setPicName((String) o[13]);
 				ptwApprovalDto.setPicDate((Date) o[14]);
-				ptwApprovalDto.setSuperItendentName((String) o[15]);
-				ptwApprovalDto.setSuperItendentDate((Date) o[16]);
+				ptwApprovalDto.setSuperitendentDate((String) o[15]);
+				ptwApprovalDto.setSuperitendentName((Date) o[16]);
 				ptwRequiredDocumentDtoList.add(ptwApprovalDto);
 
 			}
