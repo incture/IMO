@@ -64,12 +64,12 @@ public class ApprovePermitDao extends BaseDao {
 				q3.setParameter("picDate", approvePermitDto.getPtwApprovalDto().getPicDate());
 			}
 
-			q3.setParameter("sName", approvePermitDto.getPtwApprovalDto().getSuperItendentName());
-			if (approvePermitDto.getPtwApprovalDto().getSuperItendentDate() == null) {
+			q3.setParameter("sName", approvePermitDto.getPtwApprovalDto().getSuperitendentName());
+			if (approvePermitDto.getPtwApprovalDto().getSuperitendentDate() == null) {
 				Date d3 = new Date();
 				q3.setParameter("sDate", d3);
 			} else {
-				q3.setParameter("sDate", approvePermitDto.getPtwApprovalDto().getSuperItendentDate());
+				q3.setParameter("sDate", approvePermitDto.getPtwApprovalDto().getSuperitendentDate());
 			}
 
 			logger.info("2nd sql : " + sql3);
