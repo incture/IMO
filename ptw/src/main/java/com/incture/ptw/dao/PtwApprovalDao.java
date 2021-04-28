@@ -42,8 +42,8 @@ public class PtwApprovalDao extends BaseDao {
 				ptwApprovalDto.setOtherDistribution((String) o[12]);
 				ptwApprovalDto.setPicName((String) o[13]);
 				ptwApprovalDto.setPicDate((Date) o[14]);
-				ptwApprovalDto.setSuperitendentDate((String) o[15]);
-				ptwApprovalDto.setSuperitendentName((Date) o[16]);
+				ptwApprovalDto.setSuperitendentDate((Date) o[15]);
+				ptwApprovalDto.setSuperitendentName((String) o[16]);
 				ptwRequiredDocumentDtoList.add(ptwApprovalDto);
 
 			}
