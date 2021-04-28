@@ -44,7 +44,7 @@ public class JsaReviewDao extends BaseDao {
 			logger.error(e.getMessage());
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public JsaReviewDto getJsaReview(String permitNumber) {
 		JsaReviewDto jsaReviewDto = new JsaReviewDto();
@@ -52,19 +52,19 @@ public class JsaReviewDao extends BaseDao {
 		try {
 			String sql = "select * from IOP.JSAREVIEW where PERMITNUMBER = ?";
 			Query query = getSession().createNativeQuery(sql);
-			query.setParameter(1,permitNumber );
+			query.setParameter(1, permitNumber);
 			logger.info("getJsaReview sql :" + sql);
 			obj = query.getResultList();
 			for (Object[] a : obj) {
-				jsaReviewDto.setPermitNumber(Integer.parseInt( a[0].toString()));
+				jsaReviewDto.setPermitNumber(Integer.parseInt(a[0].toString()));
 				jsaReviewDto.setCreatedBy((String) a[1]);
 				jsaReviewDto.setApprovedBy((String) a[2]);
 				jsaReviewDto.setApprovedDate((Date) a[3]);
 				jsaReviewDto.setLastUpdatedBy((String) a[4]);
-				jsaReviewDto.setLastUpdatedDate( (Date) a[5]);
+				jsaReviewDto.setLastUpdatedDate((Date) a[5]);
 				jsaReviewDto.setCreatedDate((Date) a[6]);
 			}
-			logger.info("JsaReviewDto: "+jsaReviewDto);
+			logger.info("JsaReviewDto: " + jsaReviewDto);
 			return jsaReviewDto;
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -72,4 +72,24 @@ public class JsaReviewDao extends BaseDao {
 		}
 		return null;
 	}
+
+	public void updateJsaReview(JsaReviewDto jsaReviewDto) {
+		try {
+			String sql = "UPDATE IOP.JSAREVIEW SET  CREATEDBY=?, APPROVEDBY=?, APPROVEDDATE=?,LASTUPDATEDBY=?,LASTUPDATEDDATE=?,CREATEDDATE=? WHERE PERMITNUMBER=? ";
+			logger.info("updateJsaReview sql" + sql);
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, jsaReviewDto.getCreatedBy());
+			query.setParameter(2, jsaReviewDto.getApprovedBy());
+			query.setParameter(3, jsaReviewDto.getApprovedDate());
+			query.setParameter(4, jsaReviewDto.getLastUpdatedBy());
+			query.setParameter(5, jsaReviewDto.getLastUpdatedDate());
+			query.setParameter(6, jsaReviewDto.getCreatedDate());
+			query.setParameter(7, jsaReviewDto.getPermitNumber());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+	}
+
 }

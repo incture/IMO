@@ -24,4 +24,20 @@ public class JsaRiskAssessmentDao extends BaseDao {
 		}
 	}
 
+	public void updateJsaRiskAssessment(JsaRiskAssesmentDto jsaRiskAssesmentDto) {
+		try {
+			String sql = "UPDATE IOP.JSARISKASSESMENT SET MUSTMODIFYEXISTINGWORKPRACTICE=?,HASCONTINUEDRISK=? WHERE PERMITNUMBER=?";
+			logger.info("updateJsaRiskAssessment sql" + sql);
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, jsaRiskAssesmentDto.getMustModifyExistingWorkPractice());
+			query.setParameter(2, jsaRiskAssesmentDto.getHasContinuedRisk());
+			query.setParameter(3, jsaRiskAssesmentDto.getPermitNumber());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
+
 }

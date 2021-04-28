@@ -145,7 +145,7 @@ public class JsaUpdateService {
 		try {
 			Integer permitNumber = createRequestDto.getJsaheaderDto().getPermitNumber();
 			if (createRequestDto.getJsaheaderDto() != null) {
-				jsaHeaderDao.updateJsaHeader(createRequestDto.getJsaheaderDto());
+				jsaHeaderDao.updateJsaHeaderByPermitNumber(createRequestDto.getJsaheaderDto());
 			}
 			if (createRequestDto.getJsaReviewDto() != null) {
 				jsaReviewDao.updateJsaReview(createRequestDto.getJsaReviewDto());

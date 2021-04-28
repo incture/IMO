@@ -43,4 +43,25 @@ public class JsaHeaderDao extends BaseDao {
 		}
 	}
 
+	public void updateJsaHeaderByPermitNumber(JsaheaderDto jsaheaderDto) {
+		try {
+			String sql = "UPDATE IOP.JSAHEADER SET HASCWP=?,HASHWP=?,HASCSE=?,TASKDESCRIPTION=?,IDENTIFYMOSTSERIOUSPOTENTIALINJURY=?,ISACTIVE=?,STATUS=? WHERE PERMITNUMBER=?";
+			logger.info("updateJsaHeaderByPermitNumber sql" + sql);
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, jsaheaderDto.getHasCWP());
+			query.setParameter(2, jsaheaderDto.getHasHWP());
+			query.setParameter(3, jsaheaderDto.getHasCSE());
+			query.setParameter(4, jsaheaderDto.getTaskDescription());
+			query.setParameter(5, jsaheaderDto.getIdentifyMostSeriousPotentialInjury());
+			query.setParameter(6, jsaheaderDto.getIsActive());
+			query.setParameter(7, jsaheaderDto.getStatus());
+			query.setParameter(8, jsaheaderDto.getPermitNumber());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+
+	}
+
 }
