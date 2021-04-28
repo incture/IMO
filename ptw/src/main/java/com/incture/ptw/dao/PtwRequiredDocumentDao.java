@@ -17,7 +17,7 @@ public class PtwRequiredDocumentDao extends BaseDao {
 
 	public void insertPtwRequiredDocument(String permitNumber, PtwRequiredDocumentDto ptwRequiredDocumentDto) {
 		try {
-			logger.info("ptwRequiredDocumentDto ": ptwRequiredDocumentDto);
+			logger.info("ptwRequiredDocumentDto :"+ ptwRequiredDocumentDto);
 			Query query = getSession().createNativeQuery(
 					"INSERT INTO \"IOP\".\"PTWREQUIREDDOCUMENT\"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			query.setParameter(1, Integer.parseInt(keyGeneratorDao.getPTWREQDOC()));
