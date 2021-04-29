@@ -56,4 +56,24 @@ public class JsaHazardsVisibilityDao extends BaseDao {
 		return null;
 	}
 
+	public void updateJsaHazardsVisibility(JsaHazardsVisibilityDto jsaHazardsVisibilityDto) {
+		try {
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSVISIBILITY\" SET  \"POORLIGHTING\"=?,\"PROVIDEALTERNATELIGHTING\"=?,\"WAITUNTILVISIBILITYIMPROVE\"=?," +
+        "\"DEFERUNTILVISIBILITYIMPROVE\"=?,\"KNOWDISTANCEFROMPOLES\"=? WHERE \"PERMITNUMBER\"=?";
+			logger.info("updateJsaHazardsVisibility sql" + sql);
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, jsaHazardsVisibilityDto.getPoorLighting());
+			query.setParameter(2, jsaHazardsVisibilityDto.getProvideAlternateLighting());
+			query.setParameter(3, jsaHazardsVisibilityDto.getWaitUntilVisibilityImprove());
+			query.setParameter(4, jsaHazardsVisibilityDto.getDeferUntilVisibilityImprove());
+			query.setParameter(5, jsaHazardsVisibilityDto.getKnowDistanceFromPoles());
+			query.setParameter(6, jsaHazardsVisibilityDto.getPermitNumber());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
+
 }

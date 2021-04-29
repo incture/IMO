@@ -160,9 +160,9 @@ public class JsaUpdateService {
 				jsaHazardsPressurizedDao.updateJsaHazardsPressurized(createRequestDto.getJsaHazardsPressurizedDto());
 			}
 
-//			if (createRequestDto.getJsaHazardsVisibilityDto() != null) {
-//				jsaHazardsVisibilityDao.updateJsaHazardsVisibility(createRequestDto.getJsaHazardsVisibilityDto());
-//			}
+			if (createRequestDto.getJsaHazardsVisibilityDto() != null) {
+				jsaHazardsVisibilityDao.updateJsaHazardsVisibility(createRequestDto.getJsaHazardsVisibilityDto());
+			}
 //			if (createRequestDto.getJsaHazardsPersonnelDto() != null) {
 //				jsaHazardsPersonnelDao.updateJsaHazardsPersonnel(createRequestDto.getJsaHazardsPersonnelDto());
 //			}

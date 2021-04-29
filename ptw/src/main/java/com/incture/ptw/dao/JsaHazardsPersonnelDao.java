@@ -60,4 +60,27 @@ public class JsaHazardsPersonnelDao extends BaseDao {
 		return null;
 	}
 
+	public void updateJsaHazardsPersonnel(JsaHazardsPersonnelDto jsaHazardsPersonnelDto) {
+		try {
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSPERSONNEL\" SET  \"PERSONNEL\"=?,\"PERFORMINDUCTION\"=?,\"MENTORCOACHSUPERVISE\"=?," +
+        "\"VERIFYCOMPETENCIES\"=?,\"ADDRESSLIMITATIONS\"=?,\"MANAGELANGUAGEBARRIERS\"=?,\"WEARSEATBELTS\"=? WHERE \"PERMITNUMBER\"=?";
+			logger.info("updateJsaHazardsPersonnel sql" + sql);
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, jsaHazardsPersonnelDto.getPersonnel());
+			query.setParameter(2, jsaHazardsPersonnelDto.getPerformInduction());
+			query.setParameter(3, jsaHazardsPersonnelDto.getMentorCoachSupervise());
+			query.setParameter(4, jsaHazardsPersonnelDto.getVerifyCompetencies());
+			query.setParameter(5, jsaHazardsPersonnelDto.getAddressLimitations());
+			query.setParameter(6, jsaHazardsPersonnelDto.getManageLanguageBarriers());
+			query.setParameter(7, jsaHazardsPersonnelDto.getWearSeatBelts());
+			query.setParameter(8,jsaHazardsPersonnelDto.getPermitNumber());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
+	}
+
 }
