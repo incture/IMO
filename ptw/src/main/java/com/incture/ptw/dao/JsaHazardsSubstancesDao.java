@@ -57,4 +57,24 @@ public class JsaHazardsSubstancesDao extends BaseDao {
 		return null;
 	}
 
+	public void updateJsaHazardsSubstances(JsaHazardsSubstancesDto jsaHazardsSubstancesDto) {
+		try {
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSSUBSTANCES\" SET  \"HAZARDOUSSUBSTANCES\"=?,\"DRAINEQUIPMENT\"=?,\"FOLLOWSDSCONTROLS\"=?," +
+        "\"IMPLEMENTHEALTHHAZARDCONTROLS\"=?,\"TESTMATERIAL\"=? WHERE \"PERMITNUMBER\"=?";
+			logger.info("updateJsaHazardsSubstances sql" + sql);
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, jsaHazardsSubstancesDto.getHazardousSubstances());
+			query.setParameter(2, jsaHazardsSubstancesDto.getDrainEquipment());
+			query.setParameter(3, jsaHazardsSubstancesDto.getFollowSdsControls());
+			query.setParameter(4, jsaHazardsSubstancesDto.getImplementHealthHazardControls());
+			query.setParameter(5, jsaHazardsSubstancesDto.getTestMaterial());
+			query.setParameter(6, jsaHazardsSubstancesDto.getPermitNumber());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
+
 }

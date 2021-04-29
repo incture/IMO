@@ -52,4 +52,24 @@ public class JsaHazardsWeatherDao extends BaseDao{
 		}
 		return null;
 	}
+
+	public void updateJsaHazardsWeather(JsaHazardsWeatherDto jsaHazardsWeatherDto) {
+		try {
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSWEATHER\" SET  \"WEATHER\"=?,\"CONTROLSFORSLIPPERYSURFACE\"=?,\"HEATBREAK\"=?," +
+        "\"COLDHEATERS\"=?,\"LIGHTNING\"=? WHERE \"PERMITNUMBER\"=?";
+			logger.info("updateJsaHazardsWeather sql" + sql);
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, jsaHazardsWeatherDto.getWeather());
+			query.setParameter(2, jsaHazardsWeatherDto.getControlsForSlipperySurface());
+			query.setParameter(3, jsaHazardsWeatherDto.getHeatBreak());
+			query.setParameter(4, jsaHazardsWeatherDto.getColdHeaters());
+			query.setParameter(5, jsaHazardsWeatherDto.getLightning());
+			query.setParameter(6, jsaHazardsWeatherDto.getPermitNumber());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
 }

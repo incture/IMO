@@ -59,4 +59,26 @@ public class JsaHazardsHighNoiseDao extends BaseDao{
 		return null;
 	}
 
+	public void updateJsaHazardsHighNoise(JsaHazardsHighNoiseDto jsaHazardsHighNoiseDto) {
+		try {
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSHIGHNOISE\" SET  \"HIGHNOISE\"=?,\"WEARCORRECTHEARING\"=?,\"MANAGEEXPOSURETIMES\"=?," +
+        "\"SHUTDOWNEQUIPMENT\"=?,\"USEQUIETTOOLS\"=?,\"SOUNDBARRIERS\"=?,\"PROVIDESUITABLECOMMS\"=?  WHERE \"PERMITNUMBER\"=?";
+			logger.info("updateJsaHazardsHighNoise sql" + sql);
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, jsaHazardsHighNoiseDto.getHighNoise());
+			query.setParameter(2, jsaHazardsHighNoiseDto.getWearCorrectHearing());
+			query.setParameter(3, jsaHazardsHighNoiseDto.getManageExposureTimes());
+			query.setParameter(4, jsaHazardsHighNoiseDto.getShutDownEquipment());
+			query.setParameter(5, jsaHazardsHighNoiseDto.getUseQuietTools());
+			query.setParameter(6, jsaHazardsHighNoiseDto.getSoundBarriers());
+			query.setParameter(7, jsaHazardsHighNoiseDto.getProvideSuitableComms());
+			query.setParameter(8, jsaHazardsHighNoiseDto.getPermitNumber());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
+
 }

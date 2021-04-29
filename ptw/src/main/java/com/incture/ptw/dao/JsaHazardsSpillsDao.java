@@ -58,4 +58,25 @@ public class JsaHazardsSpillsDao extends BaseDao{
 		return null;
 	}
 
+	public void updateJsaHazardsSpills(JsaHazardsSpillsDto jsaHazardsSpillsDto) {
+		try {
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSSPILLS\" SET  \"POTENTIALSPILLS\"=?,\"DRAINEQUIPMENT\"=?,\"CONNECTIONSINGOODCONDITION\"=?," +
+        "\"SPILLCONTAINMENTEQUIPMENT\"=?,\"HAVESPILLCLEANUPMATERIALS\"=?,\"RESTRAINHOSESWHENNOTINUSE\"=? WHERE \"PERMITNUMBER\"=?";
+			logger.info("updateJsaHazardsSpills sql" + sql);
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, jsaHazardsSpillsDto.getPotentialSpills());
+			query.setParameter(2, jsaHazardsSpillsDto.getDrainEquipment());
+			query.setParameter(3, jsaHazardsSpillsDto.getConnectionsInGoodCondition());
+			query.setParameter(4, jsaHazardsSpillsDto.getSpillContainmentEquipment());
+			query.setParameter(5, jsaHazardsSpillsDto.getHaveSpillCleanupMaterials());
+			query.setParameter(6, jsaHazardsSpillsDto.getRestrainHosesWhenNotInUse());
+			query.setParameter(7, jsaHazardsSpillsDto.getPermitNumber());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
+
 }

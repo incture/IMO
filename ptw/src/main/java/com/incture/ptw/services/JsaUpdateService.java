@@ -175,18 +175,18 @@ public class JsaUpdateService {
 			if (createRequestDto.getJsaHazardsIgnitionDto() != null) {
 				jsaHazardsIgnitionDao.updateJsaHazardsIgnition(createRequestDto.getJsaHazardsIgnitionDto());
 			}
-//			if (createRequestDto.getJsaHazardsSubstancesDto() != null) {
-//				jsaHazardsSubstancesDao.updateJsaHazardsSubstances(createRequestDto.getJsaHazardsSubstancesDto());
-//			}
-//			if (createRequestDto.getJsaHazardsSpillsDto() != null) {
-//				jsaHazardsSpillsDao.updateJsaHazardsSpills(createRequestDto.getJsaHazardsSpillsDto());
-//			}
-//			if (createRequestDto.getJsaHazardsWeatherDto() != null) {
-//				jsaHazardsWeatherDao.updateJsaHazardsWeather(createRequestDto.getJsaHazardsWeatherDto());
-//			}
-//			if (createRequestDto.getJsaHazardsHighNoiseDto() != null) {
-//				jsaHazardsHighNoiseDao.updateJsaHazardsHighNoise(createRequestDto.getJsaHazardsHighNoiseDto());
-//			}
+			if (createRequestDto.getJsaHazardsSubstancesDto() != null) {
+				jsaHazardsSubstancesDao.updateJsaHazardsSubstances(createRequestDto.getJsaHazardsSubstancesDto());
+			}
+			if (createRequestDto.getJsaHazardsSpillsDto() != null) {
+				jsaHazardsSpillsDao.updateJsaHazardsSpills(createRequestDto.getJsaHazardsSpillsDto());
+			}
+			if (createRequestDto.getJsaHazardsWeatherDto() != null) {
+				jsaHazardsWeatherDao.updateJsaHazardsWeather(createRequestDto.getJsaHazardsWeatherDto());
+			}
+			if (createRequestDto.getJsaHazardsHighNoiseDto() != null) {
+				jsaHazardsHighNoiseDao.updateJsaHazardsHighNoise(createRequestDto.getJsaHazardsHighNoiseDto());
+			}
 //			if (createRequestDto.getJsaHazardsDroppedDto() != null) {
 //				jsaHazardsDroppedDao.updateJsaHazardsDropped(createRequestDto.getJsaHazardsDroppedDto());
 //			}
