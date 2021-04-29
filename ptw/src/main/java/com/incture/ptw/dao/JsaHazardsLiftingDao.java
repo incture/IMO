@@ -49,6 +49,25 @@ public class JsaHazardsLiftingDao extends BaseDao {
 		}
 		return null;
 	}
+
+	public void updateJsaHazardsLifting(JsaHazardsLiftingDto jsaHazardsLiftingDto) {
+		try {
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSLIFTING\" SET  \"LIFTINGEQUIPMENT\"=?,\"CONFIRMEQUIPMENTCONDITION\"=?,\"OBTAINAPPROVALFORLIFTS\"=?," +
+        "\"HAVEDOCUMENTEDLIFTPLAN\"=? WHERE \"PERMITNUMBER\"=?";
+			logger.info("updateJsaHazardsLifting sql" + sql);
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, jsaHazardsLiftingDto.getLiftingEquipment());
+			query.setParameter(2, jsaHazardsLiftingDto.getConfirmEquipmentCondition());
+			query.setParameter(3, jsaHazardsLiftingDto.getObtainApprovalForLifts());
+			query.setParameter(4, jsaHazardsLiftingDto.getHaveDocumentedLiftPlan());
+			query.setParameter(5, jsaHazardsLiftingDto.getPermitNumber());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
 	
 
 }

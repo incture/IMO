@@ -51,4 +51,23 @@ public class JsaHazardsDroppedDao extends BaseDao {
 		return null;
 	}
 
+	public void updateJsaHazardsDropped(JsaHazardsDroppedDto jsaHazardsDroppedDto) {
+		try {
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSDROPPED\" SET  \"DROPPEDOBJECTS\"=?,\"MARKRESTRICTENTRY\"=?,\"USELIFTINGEQUIPMENTTORAISE\"=?," +
+        "\"SECURETOOLS\"=? WHERE \"PERMITNUMBER\"=?";
+			logger.info("updateJsaHazardsDropped sql" + sql);
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, jsaHazardsDroppedDto.getDroppedObjects());
+			query.setParameter(2, jsaHazardsDroppedDto.getMarkRestrictEntry());
+			query.setParameter(3, jsaHazardsDroppedDto.getUseLiftingEquipmentToRaise());
+			query.setParameter(4, jsaHazardsDroppedDto.getSecureTools());
+			query.setParameter(5, jsaHazardsDroppedDto.getPermitNumber());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
+
 }

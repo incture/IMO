@@ -187,12 +187,12 @@ public class JsaUpdateService {
 			if (createRequestDto.getJsaHazardsHighNoiseDto() != null) {
 				jsaHazardsHighNoiseDao.updateJsaHazardsHighNoise(createRequestDto.getJsaHazardsHighNoiseDto());
 			}
-//			if (createRequestDto.getJsaHazardsDroppedDto() != null) {
-//				jsaHazardsDroppedDao.updateJsaHazardsDropped(createRequestDto.getJsaHazardsDroppedDto());
-//			}
-//			if (createRequestDto.getJsaHazardsLiftingDto() != null) {
-//				jsaHazardsLiftingDao.updateJsaHazardsLifting(createRequestDto.getJsaHazardsLiftingDto());
-//			}
+			if (createRequestDto.getJsaHazardsDroppedDto() != null) {
+				jsaHazardsDroppedDao.updateJsaHazardsDropped(createRequestDto.getJsaHazardsDroppedDto());
+			}
+			if (createRequestDto.getJsaHazardsLiftingDto() != null) {
+				jsaHazardsLiftingDao.updateJsaHazardsLifting(createRequestDto.getJsaHazardsLiftingDto());
+			}
 //			if (createRequestDto.getJsaHazardsHeightsDto() != null) {
 //				jsaHazardsHeightsDao.updateJsaHazardsHeights(createRequestDto.getJsaHazardsHeightsDto());
 //			}
