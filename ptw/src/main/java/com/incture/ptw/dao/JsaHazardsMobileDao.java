@@ -9,7 +9,7 @@ import com.incture.ptw.dto.JsaHazardsMobileDto;
 @Repository
 public class JsaHazardsMobileDao extends BaseDao {
 
-	public void insertJsaHazardsMobile(String permitNumber,JsaHazardsMobileDto jsaHazardsMobileDto) {
+	public void insertJsaHazardsMobile(String permitNumber, JsaHazardsMobileDto jsaHazardsMobileDto) {
 		try {
 			logger.info("JsaHazardsMobileDto: " + jsaHazardsMobileDto);
 			String sql = "INSERT INTO \"IOP\".\"JSAHAZARDSMOBILE\" VALUES (?,?,?,?,?,?,?)";
@@ -28,6 +28,26 @@ public class JsaHazardsMobileDao extends BaseDao {
 
 		}
 
+	}
+
+	public void updateJsaHazardsMobile(JsaHazardsMobileDto jsaHazardsMobileDto) {
+		try {
+			String sql = "UPDATE IOP.JSAHAZARDSMOBILE SET  MOBILEEQUIPMENT=?,ASSESSEQUIPMENTCONDITION=?,CONTROLACCESS=?,"
+					+ " MONITORPROXIMITY=?,MANAGEOVERHEADHAZARDS=?,ADHERETORULES=? WHERE PERMITNUMBER=?";
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, jsaHazardsMobileDto.getMobileEquipment());
+			query.setParameter(2, jsaHazardsMobileDto.getAssessEquipmentCondition());
+			query.setParameter(3, jsaHazardsMobileDto.getControlAccess());
+			query.setParameter(4, jsaHazardsMobileDto.getMonitorProximity());
+			query.setParameter(5, jsaHazardsMobileDto.getManageOverheadHazards());
+			query.setParameter(6, jsaHazardsMobileDto.getAdhereToRules());
+			query.setParameter(7, jsaHazardsMobileDto.getPermitNumber());
+			logger.info("sql " + sql);
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+
+		}
 	}
 
 }
