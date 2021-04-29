@@ -28,7 +28,7 @@ public class PtwRequiredDocumentDao extends BaseDao {
 			query.setParameter(6, ptwRequiredDocumentDto.getAtmosphericTestRecord());
 			query.setParameter(7, ptwRequiredDocumentDto.getLoto());
 			query.setParameter(8, ptwRequiredDocumentDto.getProcedure());
-			query.setParameter(9, ptwRequiredDocumentDto.getPAndIdOrDrawing());
+			query.setParameter(9, ptwRequiredDocumentDto.getpAndIdOrDrawing());
 			query.setParameter(10, ptwRequiredDocumentDto.getCertificate());
 			query.setParameter(11, ptwRequiredDocumentDto.getTemporaryDefeat());
 			query.setParameter(12, ptwRequiredDocumentDto.getRescuePlan());
@@ -67,7 +67,7 @@ public class PtwRequiredDocumentDao extends BaseDao {
 				ptwRequiredDocumentDto.setAtmosphericTestRecord(Integer.parseInt(o[5].toString()));
 				ptwRequiredDocumentDto.setLoto(Integer.parseInt(o[6].toString()));
 				ptwRequiredDocumentDto.setProcedure(Integer.parseInt(o[7].toString()));
-				ptwRequiredDocumentDto.setPAndIdOrDrawing(Integer.parseInt(o[8].toString()));
+				ptwRequiredDocumentDto.setpAndIdOrDrawing(Integer.parseInt(o[8].toString()));
 				ptwRequiredDocumentDto.setCertificate((String) o[9]);
 				ptwRequiredDocumentDto.setTemporaryDefeat(Integer.parseInt(o[10].toString()));
 				ptwRequiredDocumentDto.setRescuePlan(Integer.parseInt(o[11].toString()));
