@@ -53,4 +53,24 @@ public class JsaHazardsHeightsDao extends BaseDao {
 		return null;
 	}
 
+	public void updateJsaHazardsHeights(JsaHazardsHeightsDto jsaHazardsHeightsDto) {
+		try {
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSHEIGHTS\" SET  \"WORKATHEIGHTS\"=?,\"DISCUSSWORKINGPRACTICE\"=?,\"VERIFYFALLRESTRAINT\"=?," +
+        "\"USEFULLBODYHARNESS\"=?,\"USELOCKTYPESNAPHOOOKS\"=? WHERE \"PERMITNUMBER\"=?";
+			logger.info("updateJsaHazardsHeights sql" + sql);
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, jsaHazardsHeightsDto.getWorkAtHeights());
+			query.setParameter(2, jsaHazardsHeightsDto.getDiscussWorkingPractice());
+			query.setParameter(3, jsaHazardsHeightsDto.getVerifyFallRestraint());
+			query.setParameter(4, jsaHazardsHeightsDto.getUseFullBodyHarness());
+			query.setParameter(5, jsaHazardsHeightsDto.getUseLockTypeSnaphoooks());
+			query.setParameter(6, jsaHazardsHeightsDto.getPermitNumber());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
+
 }

@@ -56,4 +56,25 @@ public class JsaHazardsMovingDao extends BaseDao {
 		return null;
 	}
 
+	public void updateJsaHazardsMoving(JsaHazardsMovingDto jsaHazardsMovingDto) {
+		try {
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSMOVING\" SET  \"MOVINGEQUIPMENT\"=?,\"CONFIRMMACHINERYINTEGRITY\"=?,\"PROVIDEPROTECTIVEBARRIERS\"=?," +
+        "\"OBSERVERTOMONITORPROXIMITYPEOPLEANDEQUIPMENT\"=?,\"LOCKOUTEQUIPMENT\"=?,\"DONOTWORKINLINEOFFIRE\"=? WHERE \"PERMITNUMBER\"=?";
+			logger.info("updateJsaHazardsMoving sql" + sql);
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, jsaHazardsMovingDto.getMovingEquipment());
+			query.setParameter(2, jsaHazardsMovingDto.getConfirmMachineryIntegrity());
+			query.setParameter(3, jsaHazardsMovingDto.getProvideProtectiveBarriers());
+			query.setParameter(4, jsaHazardsMovingDto.getObserverToMonitorProximityPeopleAndEquipment());
+			query.setParameter(5, jsaHazardsMovingDto.getLockOutEquipment());
+			query.setParameter(6, jsaHazardsMovingDto.getDoNotWorkInLineOfFire());
+			query.setParameter(7, jsaHazardsMovingDto.getPermitNumber());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
+
 }

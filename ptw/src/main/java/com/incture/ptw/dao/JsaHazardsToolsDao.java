@@ -59,4 +59,26 @@ public class JsaHazardsToolsDao extends BaseDao {
 		return null;
 	}
 
+	public void updateJsaHazardsTools(JsaHazardsToolsDto jsaHazardsToolsDto) {
+		try {
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSTOOLS\" SET  \"EQUIPMENTANDTOOLS\"=?,\"INSPECTEQUIPMENTTOOL\"=?,\"BRASSTOOLSNECESSARY\"=?," +
+        "\"USEPROTECTIVEGUARDS\"=?,\"USECORRECTTOOLS\"=?,\"CHECKFORSHARPEDGES\"=?,\"APPLYHANDSAFETYPRINCIPLE\"=? WHERE \"PERMITNUMBER\"=?";
+			logger.info("updateJsaHazardsTools sql" + sql);
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, jsaHazardsToolsDto.getEquipmentAndTools());
+			query.setParameter(2, jsaHazardsToolsDto.getInspectEquipmentTool());
+			query.setParameter(3, jsaHazardsToolsDto.getBrassToolsNecessary());
+			query.setParameter(4, jsaHazardsToolsDto.getUseProtectiveGuards());
+			query.setParameter(5, jsaHazardsToolsDto.getUseCorrectTools());
+			query.setParameter(6, jsaHazardsToolsDto.getCheckForSharpEdges());
+			query.setParameter(7, jsaHazardsToolsDto.getApplyHandSafetyPrinciple());
+			query.setParameter(8, jsaHazardsToolsDto.getPermitNumber());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
+
 }

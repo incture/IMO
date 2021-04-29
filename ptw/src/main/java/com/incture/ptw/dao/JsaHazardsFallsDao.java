@@ -58,4 +58,25 @@ public class JsaHazardsFallsDao extends BaseDao {
 		return null;
 	}
 
+	public void updateJsaHazardsFalls(JsaHazardsFallsDto jsaHazardsFallsDto) {
+		try {
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSFALLS\" SET  \"SLIPSTRIPSANDFALLS\"=?,\"IDENTIFYPROJECTIONS\"=?,\"FLAGHAZARDS\"=?," +
+        "\"SECURECABLES\"=?,\"CLEANUPLIQUIDS\"=?,\"BARRICADEHOLES\"=? WHERE \"PERMITNUMBER\"=?";
+			logger.info("updateJsaHazardsFalls sql" + sql);
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, jsaHazardsFallsDto.getSlipsTripsAndFalls());
+			query.setParameter(2, jsaHazardsFallsDto.getIdentifyProjections());
+			query.setParameter(3, jsaHazardsFallsDto.getFlagHazards());
+			query.setParameter(4, jsaHazardsFallsDto.getSecureCables());
+			query.setParameter(5, jsaHazardsFallsDto.getCleanUpLiquids());
+			query.setParameter(6, jsaHazardsFallsDto.getBarricadeHoles());
+			query.setParameter(7, jsaHazardsFallsDto.getPermitNumber());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
+
 }

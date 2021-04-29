@@ -54,4 +54,24 @@ public class JsaHazardsElectricalDao extends BaseDao {
 		return null;
 	}
 
+	public void updateJsaHazardsElectrical(JsaHazardsElectricalDto jsaHazardsElectricalDto) {
+		try {
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSELECTRICAL\" SET  \"PORTABLEELECTRICALEQUIPMENT\"=?,\"INSPECTTOOLSFORCONDITION\"=?,\"IMPLEMENTGASTESTING\"=?," +
+        "\"PROTECTELECTRICALLEADS\"=?,\"IDENTIFYEQUIPCLASSIFICATION\"=? WHERE \"PERMITNUMBER\"=?";
+			logger.info("updateJsaHazardsElectrical sql" + sql);
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, jsaHazardsElectricalDto.getPortableElectricalEquipment());
+			query.setParameter(2, jsaHazardsElectricalDto.getInspectToolsForCondition());
+			query.setParameter(3, jsaHazardsElectricalDto.getImplementGasTesting());
+			query.setParameter(4, jsaHazardsElectricalDto.getProtectElectricalLeads());
+			query.setParameter(5, jsaHazardsElectricalDto.getIdentifyEquipClassification());
+			query.setParameter(6, jsaHazardsElectricalDto.getPermitNumber());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
+
 }

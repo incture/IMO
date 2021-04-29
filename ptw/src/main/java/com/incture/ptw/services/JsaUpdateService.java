@@ -193,30 +193,30 @@ public class JsaUpdateService {
 			if (createRequestDto.getJsaHazardsLiftingDto() != null) {
 				jsaHazardsLiftingDao.updateJsaHazardsLifting(createRequestDto.getJsaHazardsLiftingDto());
 			}
-//			if (createRequestDto.getJsaHazardsHeightsDto() != null) {
-//				jsaHazardsHeightsDao.updateJsaHazardsHeights(createRequestDto.getJsaHazardsHeightsDto());
-//			}
-//			if (createRequestDto.getJsaHazardsElectricalDto() != null) {
-//				jsaHazardsElectricalDao.updateJsaHazardsElectrical(createRequestDto.getJsaHazardsElectricalDto());
-//			}
-//			if (createRequestDto.getJsaHazardsMovingDto() != null) {
-//				jsaHazardsMovingDao.updateJsaHazardsMoving(createRequestDto.getJsaHazardsMovingDto());
-//			}
-//			if (createRequestDto.getJsaHazardsManualDto() != null) {
-//				jsaHazardsManualDao.updateJsaHazardsManual(createRequestDto.getJsaHazardsManualDto());
-//			}
-//			if (createRequestDto.getJsaHazardsToolsDto() != null) {
-//				jsaHazardsToolsDao.updateJsaHazardsTools(createRequestDto.getJsaHazardsToolsDto());
-//			}
-//			if (createRequestDto.getJsaHazardsFallsDto() != null) {
-//				jsaHazardsFallsDao.updateJsaHazardsFalls(createRequestDto.getJsaHazardsFallsDto());
-//			}
-//			if (createRequestDto.getJsaHazardsVoltageDto() != null) {
-//				jsaHazardsVoltageDao.updateJsaHazardsVoltage(createRequestDto.getJsaHazardsVoltageDto());
-//			}
-//			if (createRequestDto.getJsaHazardsExcavationdDto() != null) {
-//				jsaHazardsExcavationdDao.updateJsaHazardsExcavation(createRequestDto.getJsaHazardsExcavationdDto());
-//			}
+			if (createRequestDto.getJsaHazardsHeightsDto() != null) {
+				jsaHazardsHeightsDao.updateJsaHazardsHeights(createRequestDto.getJsaHazardsHeightsDto());
+			}
+			if (createRequestDto.getJsaHazardsElectricalDto() != null) {
+				jsaHazardsElectricalDao.updateJsaHazardsElectrical(createRequestDto.getJsaHazardsElectricalDto());
+			}
+			if (createRequestDto.getJsaHazardsMovingDto() != null) {
+				jsaHazardsMovingDao.updateJsaHazardsMoving(createRequestDto.getJsaHazardsMovingDto());
+			}
+			if (createRequestDto.getJsaHazardsManualDto() != null) {
+				jsaHazardsManualDao.updateJsaHazardsManual(createRequestDto.getJsaHazardsManualDto());
+			}
+			if (createRequestDto.getJsaHazardsToolsDto() != null) {
+				jsaHazardsToolsDao.updateJsaHazardsTools(createRequestDto.getJsaHazardsToolsDto());
+			}
+			if (createRequestDto.getJsaHazardsFallsDto() != null) {
+				jsaHazardsFallsDao.updateJsaHazardsFalls(createRequestDto.getJsaHazardsFallsDto());
+			}
+			if (createRequestDto.getJsaHazardsVoltageDto() != null) {
+				jsaHazardsVoltageDao.updateJsaHazardsVoltage(createRequestDto.getJsaHazardsVoltageDto());
+			}
+			if (createRequestDto.getJsaHazardsExcavationdDto() != null) {
+				jsaHazardsExcavationdDao.updateJsaHazardsExcavation(createRequestDto.getJsaHazardsExcavationdDto());
+			}
 			if (createRequestDto.getJsaHazardsMobileDto() != null) {
 				jsaHazardsMobileDao.updateJsaHazardsMobile(createRequestDto.getJsaHazardsMobileDto());
 			}

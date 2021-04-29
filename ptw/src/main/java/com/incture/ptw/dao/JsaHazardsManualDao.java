@@ -58,4 +58,25 @@ public class JsaHazardsManualDao extends BaseDao {
 		return null;
 	}
 
+	public void updateJsaHazardsManual(JsaHazardsManualDto jsaHazardsManualDto) {
+		try {
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSMANUAL\" SET  \"MANUALHANDLING\"=?,\"ASSESSMANUALTASK\"=?,\"LIMITLOADSIZE\"=?," +
+        "\"PROPERLIFTINGTECHNIQUE\"=?,\"CONFIRMSTABILITYOFLOAD\"=?,\"GETASSISTANCEORAID\"=? WHERE \"PERMITNUMBER\"=?";
+			logger.info("updateJsaHazardsManual sql" + sql);
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, jsaHazardsManualDto.getManualHandling());
+			query.setParameter(2, jsaHazardsManualDto.getAssessManualTask());
+			query.setParameter(3, jsaHazardsManualDto.getLimitLoadSize());
+			query.setParameter(4, jsaHazardsManualDto.getProperLiftingTechnique());
+			query.setParameter(5, jsaHazardsManualDto.getConfirmStabilityOfLoad());
+			query.setParameter(6, jsaHazardsManualDto.getGetAssistanceOrAid());
+			query.setParameter(7, jsaHazardsManualDto.getPermitNumber());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
+
 }

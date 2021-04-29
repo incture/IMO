@@ -43,10 +43,11 @@ public class JsaHazardsExcavationdDao extends BaseDao {
 			query.setParameter(4, jsaHazardsExcavationdDto.getDeEnergizeUnderground());
 			query.setParameter(5, jsaHazardsExcavationdDto.getCseControls());
 			query.setParameter(6, jsaHazardsExcavationdDto.getPermitNumber());
-			logger.info("sql " + sql);
+			logger.info("updateJsaHazardsExcavation sql " + sql);
 			query.executeUpdate();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
+			e.printStackTrace();
 
 		}
 
