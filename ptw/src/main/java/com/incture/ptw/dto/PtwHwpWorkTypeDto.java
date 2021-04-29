@@ -3,7 +3,6 @@ package com.incture.ptw.dto;
 import lombok.Data;
 
 @Data
-
 public class PtwHwpWorkTypeDto {
 	private Integer permitNumber;
 	private Integer cutting;

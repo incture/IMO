@@ -11,6 +11,5 @@ public class JsaHazardsFallsDto {
 	private Integer secureCables;
 	private Integer cleanUpLiquids;
 	private Integer barricadeHoles;
-	
 
 }
