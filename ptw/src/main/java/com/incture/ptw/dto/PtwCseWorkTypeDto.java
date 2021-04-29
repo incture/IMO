@@ -10,6 +10,6 @@ public class PtwCseWorkTypeDto {
 	private Integer excavation;
 	private Integer pit;
 	private Integer tower;
-	private String Other;
+	private String other;
 	private String reasonForCSE;
 }
