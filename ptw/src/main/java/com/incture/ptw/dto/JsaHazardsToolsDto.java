@@ -19,7 +19,7 @@ public class JsaHazardsToolsDto {
 			Integer checkForSharpEdges, Integer applyHandSafetyPrinciple) {
 		super();
 		this.permitNumber = permitNumber;
-		EquipmentAndTools = equipmentAndTools;
+		this.EquipmentAndTools = equipmentAndTools;
 		this.inspectEquipmentTool = inspectEquipmentTool;
 		this.brassToolsNecessary = brassToolsNecessary;
 		this.useProtectiveGuards = useProtectiveGuards;
@@ -50,7 +50,7 @@ public class JsaHazardsToolsDto {
 	}
 
 	public void setEquipmentAndTools(Integer equipmentAndTools) {
-		EquipmentAndTools = equipmentAndTools;
+		this.EquipmentAndTools = equipmentAndTools;
 	}
 
 	public Integer getInspectEquipmentTool() {
