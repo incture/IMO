@@ -62,4 +62,27 @@ public class JsaHazardsCseDao extends BaseDao {
 		}
 		return null;
 	}
+
+	public void updateJsaHazardsCse(JsaHazardscseDto jsaHazardscseDto) {
+		try {
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSCSE\" SET  \"CONFINEDSPACEENTRY\"=?,\"DISCUSSWORKPRACTICE\"=?,\"CONDUCTATMOSPHERICTESTING\"=?," +
+        "\"MONITORACCESS\"=?,\"PROTECTSURFACES\"=?,\"PROHIBITMOBILEENGINE\"=?,\"PROVIDEOBSERVER\"=?,\"DEVELOPRESCUEPLAN\"=? WHERE \"PERMITNUMBER\"=?";
+			logger.info("updateJsaHazardsCse sql" + sql);
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, jsaHazardscseDto.getConfinedSpaceEntry());
+			query.setParameter(2, jsaHazardscseDto.getDiscussWorkPractice());
+			query.setParameter(3, jsaHazardscseDto.getConductAtmosphericTesting());
+			query.setParameter(4, jsaHazardscseDto.getMonitorAccess());
+			query.setParameter(5, jsaHazardscseDto.getProtectSurfaces());
+			query.setParameter(6, jsaHazardscseDto.getProhibitMobileEngine());
+			query.setParameter(7, jsaHazardscseDto.getProvideObserver());
+			query.setParameter(8, jsaHazardscseDto.getDevelopRescuePlan());
+			query.setParameter(9, jsaHazardscseDto.getPermitNumber());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
 }

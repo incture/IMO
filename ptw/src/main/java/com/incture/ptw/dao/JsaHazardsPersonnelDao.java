@@ -29,12 +29,12 @@ public class JsaHazardsPersonnelDao extends BaseDao {
 		}
 
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public JsaHazardsPersonnelDto getJsaPersonnel(String permitNum){
+	public JsaHazardsPersonnelDto getJsaPersonnel(String permitNum) {
 		List<Object[]> obj;
 		JsaHazardsPersonnelDto jsaHazardsPersonnelDto = new JsaHazardsPersonnelDto();
-		try{
+		try {
 			String sql = "select distinct PERMITNUMBER, PERSONNEL,PERFORMINDUCTION,MENTORCOACHSUPERVISE, "
 					+ " VERIFYCOMPETENCIES,ADDRESSLIMITATIONS,MANAGELANGUAGEBARRIERS,WEARSEATBELTS "
 					+ " from IOP.JSAHAZARDSPERSONNEL where PERMITNUMBER = :permitNum";
@@ -53,7 +53,7 @@ public class JsaHazardsPersonnelDao extends BaseDao {
 				jsaHazardsPersonnelDto.setWearSeatBelts(Integer.parseInt(a[7].toString()));
 			}
 			return jsaHazardsPersonnelDto;
-		}catch(Exception e){
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
@@ -62,8 +62,8 @@ public class JsaHazardsPersonnelDao extends BaseDao {
 
 	public void updateJsaHazardsPersonnel(JsaHazardsPersonnelDto jsaHazardsPersonnelDto) {
 		try {
-			String sql = "UPDATE \"IOP\".\"JSAHAZARDSPERSONNEL\" SET  \"PERSONNEL\"=?,\"PERFORMINDUCTION\"=?,\"MENTORCOACHSUPERVISE\"=?," +
-        "\"VERIFYCOMPETENCIES\"=?,\"ADDRESSLIMITATIONS\"=?,\"MANAGELANGUAGEBARRIERS\"=?,\"WEARSEATBELTS\"=? WHERE \"PERMITNUMBER\"=?";
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSPERSONNEL\" SET  \"PERSONNEL\"=?,\"PERFORMINDUCTION\"=?,\"MENTORCOACHSUPERVISE\"=?,"
+					+ "\"VERIFYCOMPETENCIES\"=?,\"ADDRESSLIMITATIONS\"=?,\"MANAGELANGUAGEBARRIERS\"=?,\"WEARSEATBELTS\"=? WHERE \"PERMITNUMBER\"=?";
 			logger.info("updateJsaHazardsPersonnel sql" + sql);
 			Query query = getSession().createNativeQuery(sql);
 			query.setParameter(1, jsaHazardsPersonnelDto.getPersonnel());
@@ -73,14 +73,12 @@ public class JsaHazardsPersonnelDao extends BaseDao {
 			query.setParameter(5, jsaHazardsPersonnelDto.getAddressLimitations());
 			query.setParameter(6, jsaHazardsPersonnelDto.getManageLanguageBarriers());
 			query.setParameter(7, jsaHazardsPersonnelDto.getWearSeatBelts());
-			query.setParameter(8,jsaHazardsPersonnelDto.getPermitNumber());
+			query.setParameter(8, jsaHazardsPersonnelDto.getPermitNumber());
 			query.executeUpdate();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
-		
-	}
-	}
 
+	}
 }

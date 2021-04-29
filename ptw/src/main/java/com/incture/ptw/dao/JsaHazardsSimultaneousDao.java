@@ -59,4 +59,25 @@ public class JsaHazardsSimultaneousDao extends BaseDao {
 		return null;
 	}
 
+	public void updateJsaHazardsSimultaneous(JsaHazardsSimultaneousDto jsaHazardsSimultaneousDto) {
+		try {
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSSIMULTANEOUS\" SET  \"SIMULTANEOUSOPERATIONS\"=?,\"FOLLOWSIMOPSMATRIX\"=?,\"MOCREQUIREDFOR\"=?," +
+        "\"INTERFACEBETWEENGROUPS\"=?,\"USEBARRIERSAND\"=?,\"HAVEPERMITSIGNED\"=? WHERE \"PERMITNUMBER\"=?";
+			logger.info("updateJsaHazardsSimultaneous sql" + sql);
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, jsaHazardsSimultaneousDto.getSimultaneousOperations());
+			query.setParameter(2, jsaHazardsSimultaneousDto.getFollowSimopsMatrix());
+			query.setParameter(3, jsaHazardsSimultaneousDto.getMocRequiredFor());
+			query.setParameter(4, jsaHazardsSimultaneousDto.getInterfaceBetweenGroups());
+			query.setParameter(5, jsaHazardsSimultaneousDto.getUseBarriersAnd());
+			query.setParameter(6, jsaHazardsSimultaneousDto.getHavePermitSigned());
+			query.setParameter(7, jsaHazardsSimultaneousDto.getPermitNumber());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
+
 }

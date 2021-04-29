@@ -163,15 +163,15 @@ public class JsaUpdateService {
 			if (createRequestDto.getJsaHazardsVisibilityDto() != null) {
 				jsaHazardsVisibilityDao.updateJsaHazardsVisibility(createRequestDto.getJsaHazardsVisibilityDto());
 			}
-//			if (createRequestDto.getJsaHazardsPersonnelDto() != null) {
-//				jsaHazardsPersonnelDao.updateJsaHazardsPersonnel(createRequestDto.getJsaHazardsPersonnelDto());
-//			}
-//			if (createRequestDto.getJsaHazardscseDto() != null) {
-//				jsaHazardsCseDao.updateJsaHazardsCse(createRequestDto.getJsaHazardscseDto());
-//			}
-//			if (createRequestDto.getJsaHazardsSimultaneousDto() != null) {
-//				jsaHazardsSimultaneousDao.updateJsaHazardsSimultaneous(createRequestDto.getJsaHazardsSimultaneousDto());
-//			}
+			if (createRequestDto.getJsaHazardsPersonnelDto() != null) {
+				jsaHazardsPersonnelDao.updateJsaHazardsPersonnel(createRequestDto.getJsaHazardsPersonnelDto());
+			}
+			if (createRequestDto.getJsaHazardscseDto() != null) {
+				jsaHazardsCseDao.updateJsaHazardsCse(createRequestDto.getJsaHazardscseDto());
+			}
+			if (createRequestDto.getJsaHazardsSimultaneousDto() != null) {
+				jsaHazardsSimultaneousDao.updateJsaHazardsSimultaneous(createRequestDto.getJsaHazardsSimultaneousDto());
+			}
 //			if (createRequestDto.getJsaHazardsIgnitionDto() != null) {
 //				jsaHazardsIgnitionDao.updateJsaHazardsIgnition(createRequestDto.getJsaHazardsIgnitionDto());
 //			}
