@@ -1,5 +1,8 @@
 package com.incture.ptw.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,4 +34,34 @@ public class JsaLocationDao extends BaseDao {
 		}
 
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<JsaLocationDto> getJsaLocationDto(String permitNum){
+		List<Object[]> obj;
+		List<JsaLocationDto> jsaLocationDtoList = new ArrayList<JsaLocationDto>();
+		try{
+			String sql = "select  SERIALNO,PERMITNUMBER, FACILTYORSITE,HIERARCHYLEVEL,FACILITY,MUWI from IOP.JSA_LOCATION "
+					+ " where PERMITNUMBER = :permitNum";
+			Query q = getSession().createNativeQuery(sql);
+			q.setParameter("permitNum", permitNum);
+			obj = q.getResultList();
+			
+			for (Object[] a : obj) {
+				JsaLocationDto jsaLocationDto = new JsaLocationDto();
+				jsaLocationDto.setSerialNo((Integer) a[0]);
+				jsaLocationDto.setPermitNumber((Integer) a[1]);
+				jsaLocationDto.setFacilityOrSite((String) a[2]);
+				jsaLocationDto.setHierachyLevel((String) a[3]);
+				jsaLocationDto.setFacility((String) a[4]);
+				jsaLocationDto.setMuwi((String) a[5]);
+				jsaLocationDtoList.add(jsaLocationDto);
+			}
+			return jsaLocationDtoList;
+		}catch(Exception e){
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 }

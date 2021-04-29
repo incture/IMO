@@ -1,5 +1,7 @@
 package com.incture.ptw.dao;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -48,6 +50,35 @@ public class JsaHazardsExcavationdDao extends BaseDao {
 
 		}
 
+	}
+	
+	@SuppressWarnings("unchecked")
+	public JsaHazardsExcavationdDto getJsaHazardsExcavationdDto(String permitNum){
+		List<Object[]> obj;
+		JsaHazardsExcavationdDto jsaHazardsExcavationdDto = new JsaHazardsExcavationdDto();
+		try{
+			String sql = "select distinct PERMITNUMBER, EXCAVATIONS,HAVEEXCAVATIONPLAN,LOCATEPIPESBYHANDDIGGING, "
+					+ " DEENERGIZEUNDERGROUND,CSECONTROLS from IOP.JSAHAZARDSEXCAVATION "
+					+ " where PERMITNUMBER = :permitNum";
+			Query q = getSession().createNativeQuery(sql);
+			q.setParameter("permitNum", permitNum);
+			obj = q.getResultList();
+			
+			for (Object[] a : obj) {
+				jsaHazardsExcavationdDto.setPermitNumber((Integer) a[0]);
+				jsaHazardsExcavationdDto.setExcavations(Integer.parseInt(a[1].toString()));
+				jsaHazardsExcavationdDto.setHaveExcavationPlan(Integer.parseInt(a[2].toString()));
+				jsaHazardsExcavationdDto.setLocatePipesByHandDigging(Integer.parseInt(a[3].toString()));
+				jsaHazardsExcavationdDto.setDeEnergizeUnderground(Integer.parseInt(a[4].toString()));
+				jsaHazardsExcavationdDto.setCseControls(Integer.parseInt(a[5].toString()));
+			}
+			return jsaHazardsExcavationdDto;
+			
+		}catch(Exception e){
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

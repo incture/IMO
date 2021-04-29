@@ -1,5 +1,7 @@
 package com.incture.ptw.dao;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -26,6 +28,35 @@ public class JsaHazardsVoltageDao extends BaseDao {
 			logger.error(e.getMessage());
 		}
 
+	}
+	
+	@SuppressWarnings("unchecked")
+	public JsaHazardsVoltageDto getJsaHazardsVoltageDto(String permitNum){
+		List<Object[]> obj;
+		JsaHazardsVoltageDto jsaHazardsVoltageDto = new JsaHazardsVoltageDto();
+		try{
+			String sql = "select distinct PERMITNUMBER, HIGHVOLTAGE,RESTRICTACCESS,DISCHARGEEQUIPMENT, "
+					+ " OBSERVESAFEWORKDISTANCE,USEFLASHBURN,USEINSULATEDGLOVES from IOP.JSAHAZARDSVOLTAGE "
+					+ " where PERMITNUMBER = :permitNum";
+			Query q = getSession().createNativeQuery(sql);
+			q.setParameter("permitNum", permitNum);
+			obj = q.getResultList();
+			
+			for (Object[] a : obj) {
+				jsaHazardsVoltageDto.setPermitNumber((Integer) a[0]);
+				jsaHazardsVoltageDto.setHighVoltage(Integer.parseInt(a[1].toString()));
+				jsaHazardsVoltageDto.setRestrictAccess(Integer.parseInt(a[2].toString()));
+				jsaHazardsVoltageDto.setDischargeEquipment(Integer.parseInt(a[3].toString()));
+				jsaHazardsVoltageDto.setObserveSafeWorkDistance(Integer.parseInt(a[4].toString()));
+				jsaHazardsVoltageDto.setUseFlashBurn(Integer.parseInt(a[5].toString()));
+				jsaHazardsVoltageDto.setUseInsulatedGloves(Integer.parseInt(a[6].toString()));
+			}
+			return jsaHazardsVoltageDto;
+		}catch(Exception e){
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

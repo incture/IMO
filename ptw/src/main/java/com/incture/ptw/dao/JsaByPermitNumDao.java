@@ -9,11 +9,14 @@ import com.incture.ptw.dto.CreateRequestDto;
 import com.incture.ptw.dto.GetJsaByPermitNumPayloadDto;
 import com.incture.ptw.dto.JsaHazardsDroppedDto;
 import com.incture.ptw.dto.JsaHazardsElectricalDto;
+import com.incture.ptw.dto.JsaHazardsExcavationdDto;
+import com.incture.ptw.dto.JsaHazardsFallsDto;
 import com.incture.ptw.dto.JsaHazardsHeightsDto;
 import com.incture.ptw.dto.JsaHazardsHighNoiseDto;
 import com.incture.ptw.dto.JsaHazardsIgnitionDto;
 import com.incture.ptw.dto.JsaHazardsLiftingDto;
 import com.incture.ptw.dto.JsaHazardsManualDto;
+import com.incture.ptw.dto.JsaHazardsMobileDto;
 import com.incture.ptw.dto.JsaHazardsMovingDto;
 import com.incture.ptw.dto.JsaHazardsPersonnelDto;
 import com.incture.ptw.dto.JsaHazardsPressurizedDto;
@@ -22,12 +25,17 @@ import com.incture.ptw.dto.JsaHazardsSpillsDto;
 import com.incture.ptw.dto.JsaHazardsSubstancesDto;
 import com.incture.ptw.dto.JsaHazardsToolsDto;
 import com.incture.ptw.dto.JsaHazardsVisibilityDto;
+import com.incture.ptw.dto.JsaHazardsVoltageDto;
 import com.incture.ptw.dto.JsaHazardsWeatherDto;
 import com.incture.ptw.dto.JsaHazardscseDto;
+import com.incture.ptw.dto.JsaLocationDto;
 import com.incture.ptw.dto.JsaReviewDto;
 import com.incture.ptw.dto.JsaRiskAssesmentDto;
+import com.incture.ptw.dto.JsaStepsDto;
+import com.incture.ptw.dto.JsaStopTriggerDto;
 import com.incture.ptw.dto.JsaheaderDto;
 import com.incture.ptw.dto.JsappeDto;
+import com.incture.ptw.dto.PtwPeopleDto;
 
 @Repository("JsaByPermitNumDao")
 public class JsaByPermitNumDao extends BaseDao {
@@ -94,6 +102,30 @@ public class JsaByPermitNumDao extends BaseDao {
 	
 	@Autowired
 	private JsaHazardsToolsDao jsaHazardsToolsDao;
+	
+	@Autowired
+	private JsaHazardsFallsDao jsaHazardsFallsDao;
+	
+	@Autowired
+	private JsaHazardsVoltageDao jsaHazardsVoltageDao;
+	
+	@Autowired
+	private JsaHazardsExcavationdDao jsaHazardsExcavationdDao;
+	
+	@Autowired
+	private JsaHazardsMobileDao jsaHazardsMobileDao;
+	
+	@Autowired
+	private JsaStepsDao jsaStepsDao;
+	
+	@Autowired
+	private JsaStopTriggerDao jsaStopTriggerDao;
+	
+	@Autowired
+	private JsaLocationDao jsaLocationDao;
+	
+	@Autowired
+	private PtwPeopleDao ptwPeopleDao;
 	
 	@SuppressWarnings("unchecked")
 	public GetJsaByPermitNumPayloadDto getJsaByPermitNum(String permitNumber) {
@@ -227,6 +259,54 @@ public class JsaByPermitNumDao extends BaseDao {
 			JsaHazardsToolsDto jsaHazardsToolsDto = jsaHazardsToolsDao.getJsaHazardsToolsDto(permitNumber);
 			logger.info("JsaByPermitNumDao | jsaHazardsToolsDto" + jsaHazardsToolsDto.toString());
 			getJsaByPermitNumPayloadDto.setJsaHazardsToolsDto(jsaHazardsToolsDto);
+			
+			/////////////////////////////////////////////////////////////
+			
+			JsaHazardsFallsDto jsaHazardsFallsDto = jsaHazardsFallsDao.getJsaHazardsFallsDto(permitNumber);
+			logger.info("JsaByPermitNumDao | jsaHazardsFallsDto" + jsaHazardsFallsDto.toString());
+			getJsaByPermitNumPayloadDto.setJsaHazardsFallsDto(jsaHazardsFallsDto);
+			
+			/////////////////////////////////////////////////////////////
+			
+			JsaHazardsVoltageDto jsaHazardsVoltageDto = jsaHazardsVoltageDao.getJsaHazardsVoltageDto(permitNumber);
+			logger.info("JsaByPermitNumDao | jsaHazardsVoltageDto" + jsaHazardsVoltageDto.toString());
+			getJsaByPermitNumPayloadDto.setJsaHazardsVoltageDto(jsaHazardsVoltageDto);
+			
+			/////////////////////////////////////////////////////////////
+			
+			JsaHazardsExcavationdDto jsaHazardsExcavationdDto = jsaHazardsExcavationdDao.getJsaHazardsExcavationdDto(permitNumber);
+			logger.info("JsaByPermitNumDao | jsaHazardsExcavationdDto" + jsaHazardsExcavationdDto.toString());
+			getJsaByPermitNumPayloadDto.setJsaHazardsExcavationdDto(jsaHazardsExcavationdDto);
+			
+			/////////////////////////////////////////////////////////////
+			
+			JsaHazardsMobileDto jsaHazardsMobileDto = jsaHazardsMobileDao.getJsaHazardsMobileDto(permitNumber);
+			logger.info("JsaByPermitNumDao | jsaHazardsMobileDto" + jsaHazardsMobileDto.toString());
+			getJsaByPermitNumPayloadDto.setJsaHazardsMobileDto(jsaHazardsMobileDto);
+			
+			/////////////////////////////////////////////////////////////
+			
+			List<JsaStepsDto> jsaStepsDtoList = jsaStepsDao.getJsaStepsDto(permitNumber);
+			logger.info("JsaByPermitNumDao | jsaStepsDtoList" + jsaStepsDtoList.toString());
+			getJsaByPermitNumPayloadDto.setJsaStepsDtoList(jsaStepsDtoList);
+			
+			/////////////////////////////////////////////////////////////
+			
+			List<JsaStopTriggerDto> jsaStopTriggerDtoList = jsaStopTriggerDao.getJsaStopTriggerDto(permitNumber);
+			logger.info("JsaByPermitNumDao | jsaStopTriggerDtoList" + jsaStopTriggerDtoList.toString());
+			getJsaByPermitNumPayloadDto.setJsaStopTriggerDtoList(jsaStopTriggerDtoList);
+			
+			/////////////////////////////////////////////////////////////
+			
+			List<JsaLocationDto> jsaLocationDtoList = jsaLocationDao.getJsaLocationDto(permitNumber);
+			logger.info("JsaByPermitNumDao | jsaLocationDtoList" + jsaLocationDtoList.toString());
+			getJsaByPermitNumPayloadDto.setJsaLocationDtoList(jsaLocationDtoList);
+			
+			/////////////////////////////////////////////////////////////
+			
+			List<PtwPeopleDto> ptwPeopleDtoList = ptwPeopleDao.getPtwPeople(permitNumber);
+			logger.info("JsaByPermitNumDao | ptwPeopleDtoList" + ptwPeopleDtoList.toString());
+			getJsaByPermitNumPayloadDto.setPtwPeopleDtoList(ptwPeopleDtoList);
 			
 			/////////////////////////////////////////////////////////////
 			return getJsaByPermitNumPayloadDto;

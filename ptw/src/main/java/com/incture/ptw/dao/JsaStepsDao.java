@@ -1,5 +1,8 @@
 package com.incture.ptw.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +34,34 @@ public class JsaStepsDao extends BaseDao{
 
 		}
 
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<JsaStepsDto> getJsaStepsDto(String permitNum){
+		List<Object[]> obj;
+		List<JsaStepsDto> jsaStepsDtoList = new ArrayList<JsaStepsDto>();
+		try{
+			String sql = "select  SERIALNO,PERMITNUMBER, TASKSTEPS,POTENTIALHAZARDS,HAZARDCONTROLS,PERSONRESPONSIBLE "
+					+ " from IOP.JSASTEPS where PERMITNUMBER = :permitNum";
+			Query q = getSession().createNativeQuery(sql);
+			q.setParameter("permitNum", permitNum);
+			obj = q.getResultList();
+			for (Object[] a : obj) {
+				JsaStepsDto jsaStepsDto = new JsaStepsDto();
+				jsaStepsDto.setSerialNo((Integer) a[0]);
+				jsaStepsDto.setPermitNumber((Integer) a[1]);
+				jsaStepsDto.setTaskSteps((String) a[2]);
+				jsaStepsDto.setPotentialHazards((String) a[3]);
+				jsaStepsDto.setHazardControls((String) a[4]);
+				jsaStepsDto.setPersonResponsible((String) a[5]);
+				jsaStepsDtoList.add(jsaStepsDto);
+			}
+			return jsaStepsDtoList;
+		}catch(Exception e){
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 

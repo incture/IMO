@@ -1,5 +1,7 @@
 package com.incture.ptw.dao;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -25,6 +27,35 @@ public class JsaHazardsFallsDao extends BaseDao {
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public JsaHazardsFallsDto getJsaHazardsFallsDto(String permitNum){
+		List<Object[]> obj;
+		JsaHazardsFallsDto jsaHazardsFallsDto = new JsaHazardsFallsDto();
+		try{
+			String sql = "select distinct PERMITNUMBER, SLIPSTRIPSANDFALLS,IDENTIFYPROJECTIONS,FLAGHAZARDS, "
+					+ " SECURECABLES,CLEANUPLIQUIDS,BARRICADEHOLES from IOP.JSAHAZARDSFALLS "
+					+ " where PERMITNUMBER = :permitNum";
+			Query q = getSession().createNativeQuery(sql);
+			q.setParameter("permitNum", permitNum);
+			obj = q.getResultList();
+			for (Object[] a : obj) {
+				jsaHazardsFallsDto.setPermitNumber((Integer) a[0]);
+				jsaHazardsFallsDto.setSlipsTripsAndFalls(Integer.parseInt(a[1].toString()));
+				jsaHazardsFallsDto.setIdentifyProjections(Integer.parseInt(a[2].toString()));
+				jsaHazardsFallsDto.setFlagHazards(Integer.parseInt(a[3].toString()));
+				jsaHazardsFallsDto.setSecureCables(Integer.parseInt(a[4].toString()));
+				jsaHazardsFallsDto.setCleanUpLiquids(Integer.parseInt(a[5].toString()));
+				jsaHazardsFallsDto.setBarricadeHoles(Integer.parseInt(a[6].toString()));
+
+			}
+			return jsaHazardsFallsDto;
+		}catch(Exception e){
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
