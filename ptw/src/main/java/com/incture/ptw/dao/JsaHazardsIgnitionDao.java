@@ -58,4 +58,25 @@ public class JsaHazardsIgnitionDao extends BaseDao {
 		return null;
 	}
 
+	public void updateJsaHazardsIgnition(JsaHazardsIgnitionDto jsaHazardsIgnitionDto) {
+		try {
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSIGNITION\" SET  \"IGNITIONSOURCES\"=?,\"REMOVECOMBUSTIBLEMATERIALS\"=?,\"PROVIDEFIREWATCH\"=?," +
+        "\"IMPLEMENTABRASIVEBLASTINGCONTROLS\"=?,\"CONDUCTCONTINUOUSGASTESTING\"=?,\"EARTHFORSTATICELECTRICITY\"=? WHERE \"PERMITNUMBER\"=?";
+			logger.info("updateJsaHazardsIgnition sql" + sql);
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, jsaHazardsIgnitionDto.getIgnitionSources());
+			query.setParameter(2, jsaHazardsIgnitionDto.getRemoveCombustibleMaterials());
+			query.setParameter(3, jsaHazardsIgnitionDto.getProvideFireWatch());
+			query.setParameter(4, jsaHazardsIgnitionDto.getImplementAbrasiveBlastingControls());
+			query.setParameter(5, jsaHazardsIgnitionDto.getConductContinuousGasTesting());
+			query.setParameter(6, jsaHazardsIgnitionDto.getEarthForStaticElectricity());
+			query.setParameter(7, jsaHazardsIgnitionDto.getPermitNumber());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		
+	}
+
 }
