@@ -15,9 +15,8 @@ public class ApproveJsaDao extends BaseDao {
 			Query q = getSession().createNativeQuery(sql1);
 			q.setParameter("jsaPermitNumber", jsaPermitNumber);
 			logger.info("1st sql1 : " + sql1);
-			permitNumber =  (Integer) q.getSingleResult();
+			permitNumber = (Integer) q.getSingleResult();
 			logger.info("permitNumber : " + permitNumber);
-			
 
 			String sql2 = "UPDATE IOP.JSAHEADER SET STATUS=:status , ISACTIVE=:isActive where JSAPERMITNUMBER=:jsaPermitNumber ";
 			Query q1 = getSession().createNativeQuery(sql2);
@@ -38,9 +37,8 @@ public class ApproveJsaDao extends BaseDao {
 			return permitNumber;
 		} catch (Exception e) {
 			logger.error(e.getMessage());
-			return null;
 		}
-
+		return null;
 	}
 
 }

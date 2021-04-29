@@ -1,5 +1,7 @@
 package com.incture.ptw.services;
 
+import java.util.ArrayList;
+
 import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.incture.ptw.dao.PermitDetailsDao;
+import com.incture.ptw.dto.PtwDetailsDto;
 import com.incture.ptw.util.ResponseDto;
 
 @Service
@@ -25,14 +28,20 @@ public class PermitDetailsService {
 		responseDto.setStatus(Boolean.TRUE);
 		responseDto.setStatusCode(200);
 		try {
-			responseDto.setData(permitDetailsDao.getPermitDetails(permitNumber, permitType));
-			responseDto.setMessage("Data displayed successfully");
-
+			PtwDetailsDto ptwDetailsDto = permitDetailsDao.getPermitDetails(permitNumber, permitType);
+			if (ptwDetailsDto != null) {
+				responseDto.setData(ptwDetailsDto);
+				responseDto.setMessage("Data displayed successfully");
+			} else {
+				responseDto.setData(new ArrayList<>());
+				responseDto.setMessage("Data not found!");
+			}
 		} catch (Exception e) {
 
 			logger.error("PermitDetailsService " + e.getMessage());
 			responseDto.setStatus(Boolean.FALSE);
 			responseDto.setStatusCode(500);
+			responseDto.setData(new ArrayList<>());
 			responseDto.setMessage(e.getMessage());
 
 		}

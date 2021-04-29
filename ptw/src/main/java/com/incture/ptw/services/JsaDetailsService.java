@@ -25,7 +25,7 @@ public class JsaDetailsService {
 		responseDto.setStatus(Boolean.TRUE);
 		responseDto.setStatusCode(200);
 		try {
-			responseDto.setData(getJsaDetailsDao.downloaadData());
+			responseDto.setData(getJsaDetailsDao.downloadData());
 			responseDto.setMessage("Data displayed successfully");
 
 		} catch (Exception e) {

@@ -26,8 +26,10 @@ public class ApproveJsaService {
 		responseDto.setStatusCode(200);
 		try {
 			Integer permitNumber = approveJsaDao.approveJsa(jsaPermitNumber, status, approvedBy);
-			responseDto.setMessage("Success: JSA " + permitNumber + " approved succesfully.");
-
+			if (permitNumber != null) {
+				responseDto.setMessage("Success: JSA " + permitNumber + " approved succesfully.");
+			} else
+				responseDto.setMessage("something wrong");
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error("ApproveJsa || approveJsa || Error" + e.getMessage());

@@ -1,5 +1,8 @@
 package com.incture.ptw.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
@@ -8,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.incture.ptw.dao.ActiveWorkersDao;
+import com.incture.ptw.dto.ActiveWorkersPayloadDto;
 import com.incture.ptw.util.ResponseDto;
 
 @Service
@@ -24,14 +28,20 @@ public class ActiveWorkersService {
 		responseDto.setStatus(Boolean.TRUE);
 		responseDto.setStatusCode(200);
 		try {
-			responseDto.setData(getActiveWorkersDao.getActiveWorkers(muwi, facility));
-			responseDto.setMessage("Data displayed successfully");
-
+			List<ActiveWorkersPayloadDto> list = getActiveWorkersDao.getActiveWorkers(muwi, facility);
+			if (list != null) {
+				responseDto.setData(list);
+				responseDto.setMessage("Data displayed successfully");
+			} else {
+				responseDto.setData(new ArrayList<>());
+				responseDto.setMessage("Data not found!");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error("GetActiveWorkersService || getActiveWorkers " + e.getMessage());
 			logger.error(e.getStackTrace().toString());
 			responseDto.setStatus(Boolean.FALSE);
+			responseDto.setData(new ArrayList<>());
 			responseDto.setStatusCode(500);
 			responseDto.setMessage(e.getMessage());
 
