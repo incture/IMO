@@ -46,20 +46,20 @@ public class PtwPeopleDao extends BaseDao {
 			logger.info("getPtwPeople Sql: " + sql);
 			@SuppressWarnings("unchecked")
 			List<Object[]> result = query.getResultList();
-			
-			for(Object[] a : result){
+
+			for (Object[] a : result) {
 				PtwPeopleDto ptwPeopleDto = new PtwPeopleDto();
 				ptwPeopleDto.setSerialNo(Integer.parseInt(a[0].toString()));
 				ptwPeopleDto.setPermitNumber(Integer.parseInt(a[1].toString()));
-				ptwPeopleDto.setFirstName((String)a[2]);
-				ptwPeopleDto.setLastName((String)a[3]);
-				ptwPeopleDto.setContactNumber((String)a[4]);
+				ptwPeopleDto.setFirstName((String) a[2]);
+				ptwPeopleDto.setLastName((String) a[3]);
+				ptwPeopleDto.setContactNumber((String) a[4]);
 				ptwPeopleDto.setHasSignedJSA(Integer.parseInt(a[5].toString()));
 				ptwPeopleDto.setHasSignedCWP(Integer.parseInt(a[6].toString()));
 				ptwPeopleDto.setHasSignedHWP(Integer.parseInt(a[7].toString()));
 				ptwPeopleDto.setHasSignedCSE(Integer.parseInt(a[8].toString()));
 				ptwPeopleDtoList.add(ptwPeopleDto);
-				
+
 			}
 			return ptwPeopleDtoList;
 		} catch (Exception e) {
@@ -67,6 +67,22 @@ public class PtwPeopleDao extends BaseDao {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public void deletePtwPeople(String permitNumber) {
+		try {
+			logger.info("permitNumber: " + permitNumber);
+			String sql = "DELETE FROM \"IOP\".\"PTWPEOPLE\" WHERE PERMITNUMBER =? ";
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, permitNumber);
+			logger.info("sql " + sql);
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+
+		}
+
 	}
 
 }

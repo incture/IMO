@@ -10,13 +10,12 @@ import org.springframework.stereotype.Repository;
 
 import com.incture.ptw.dto.JsaStepsDto;
 
-
 @Repository
-public class JsaStepsDao extends BaseDao{
+public class JsaStepsDao extends BaseDao {
 	@Autowired
 	private KeyGeneratorDao keyGeneratorDao;
 
-	public void insertJsaSteps(String permitNumber,JsaStepsDto jsaStepsDto) {
+	public void insertJsaSteps(String permitNumber, JsaStepsDto jsaStepsDto) {
 		try {
 			logger.info("JsaStepsDto: " + jsaStepsDto);
 			String sql = "INSERT INTO \"IOP\".\"JSASTEPS\" VALUES (?,?,?,?,?,?)";
@@ -35,12 +34,12 @@ public class JsaStepsDao extends BaseDao{
 		}
 
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public List<JsaStepsDto> getJsaStepsDto(String permitNum){
+	public List<JsaStepsDto> getJsaStepsDto(String permitNum) {
 		List<Object[]> obj;
 		List<JsaStepsDto> jsaStepsDtoList = new ArrayList<JsaStepsDto>();
-		try{
+		try {
 			String sql = "select  SERIALNO,PERMITNUMBER, TASKSTEPS,POTENTIALHAZARDS,HAZARDCONTROLS,PERSONRESPONSIBLE "
 					+ " from IOP.JSASTEPS where PERMITNUMBER = :permitNum";
 			Query q = getSession().createNativeQuery(sql);
@@ -57,12 +56,27 @@ public class JsaStepsDao extends BaseDao{
 				jsaStepsDtoList.add(jsaStepsDto);
 			}
 			return jsaStepsDtoList;
-		}catch(Exception e){
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
 		return null;
 	}
 
+	public void deleteJsaSteps(String permitNumber) {
+		try {
+			logger.info("permitNumber: " + permitNumber);
+			String sql = "DELETE FROM \"IOP\".\"JSASTEPS\" WHERE PERMITNUMBER =? ";
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, permitNumber);
+			logger.info("sql " + sql);
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+
+		}
+
+	}
 
 }

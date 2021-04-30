@@ -34,18 +34,18 @@ public class JsaLocationDao extends BaseDao {
 		}
 
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public List<JsaLocationDto> getJsaLocationDto(String permitNum){
+	public List<JsaLocationDto> getJsaLocationDto(String permitNum) {
 		List<Object[]> obj;
 		List<JsaLocationDto> jsaLocationDtoList = new ArrayList<JsaLocationDto>();
-		try{
+		try {
 			String sql = "select  SERIALNO,PERMITNUMBER, FACILTYORSITE,HIERARCHYLEVEL,FACILITY,MUWI from IOP.JSA_LOCATION "
 					+ " where PERMITNUMBER = :permitNum";
 			Query q = getSession().createNativeQuery(sql);
 			q.setParameter("permitNum", permitNum);
 			obj = q.getResultList();
-			
+
 			for (Object[] a : obj) {
 				JsaLocationDto jsaLocationDto = new JsaLocationDto();
 				jsaLocationDto.setSerialNo((Integer) a[0]);
@@ -57,11 +57,27 @@ public class JsaLocationDao extends BaseDao {
 				jsaLocationDtoList.add(jsaLocationDto);
 			}
 			return jsaLocationDtoList;
-		}catch(Exception e){
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
+
+	public void deleteJsaLocation(String permitNumber) {
+		try {
+			logger.info("permitNumber: " + permitNumber);
+			String sql = "DELETE FROM \"IOP\".\"JSA_LOCATION\" WHERE PERMITNUMBER =? ";
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, permitNumber);
+			logger.info("sql " + sql);
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+
+		}
+
+	}
+
 }

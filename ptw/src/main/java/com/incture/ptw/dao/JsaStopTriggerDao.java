@@ -10,11 +10,11 @@ import org.springframework.stereotype.Repository;
 import com.incture.ptw.dto.JsaStopTriggerDto;
 
 @Repository
-public class JsaStopTriggerDao extends BaseDao{
+public class JsaStopTriggerDao extends BaseDao {
 	@Autowired
 	private KeyGeneratorDao keyGeneratorDao;
 
-	public void insertJsaStopTrigger(String permitNumber,JsaStopTriggerDto JsaStopTriggerDto) {
+	public void insertJsaStopTrigger(String permitNumber, JsaStopTriggerDto JsaStopTriggerDto) {
 		try {
 			logger.info("JsaStopTriggerDto: " + JsaStopTriggerDto);
 			String sql = "INSERT INTO \"IOP\".\"JSASTOPTRIGGER\" VALUES (?,?,?)";
@@ -30,12 +30,12 @@ public class JsaStopTriggerDao extends BaseDao{
 		}
 
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public List<JsaStopTriggerDto> getJsaStopTriggerDto(String permitNum){
+	public List<JsaStopTriggerDto> getJsaStopTriggerDto(String permitNum) {
 		List<Object[]> obj;
 		List<JsaStopTriggerDto> jsaStopTriggerDtoList = new ArrayList<JsaStopTriggerDto>();
-		try{
+		try {
 			String sql = "select  SERIALNO,PERMITNUMBER, LINEDESCRIPTION from IOP.JSASTOPTRIGGER "
 					+ " where PERMITNUMBER = :permitNum";
 			Query q = getSession().createNativeQuery(sql);
@@ -49,11 +49,27 @@ public class JsaStopTriggerDao extends BaseDao{
 				jsaStopTriggerDtoList.add(jsaStopTriggerDto);
 			}
 			return jsaStopTriggerDtoList;
-		}catch(Exception e){
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public void deleteJsaStopTrigger(String permitNumber) {
+		try {
+			logger.info("permitNumber: " + permitNumber);
+			String sql = "DELETE FROM \"IOP\".\"JSASTOPTRIGGER\" WHERE PERMITNUMBER =? ";
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, permitNumber);
+			logger.info("sql " + sql);
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+
+		}
+
 	}
 
 }
