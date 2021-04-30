@@ -8,6 +8,7 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
+import com.incture.ptw.dto.PtwCloseOutDto;
 import com.incture.ptw.dto.PtwHeaderDto;
 
 @Repository
@@ -90,6 +91,22 @@ public class PtwHeaderDao extends BaseDao {
 			logger.error(e.getMessage());
 		}
 		return null;
+	}
+
+	public void updatePtwHeader(PtwCloseOutDto ptwCloseOutDto, String status) {
+		Integer permitNumber = ptwCloseOutDto.getPermitNumber();
+		Integer isCwp = ptwCloseOutDto.getIsCWP();
+		Integer isHwp = ptwCloseOutDto.getIsHWP();
+		Integer isCse = ptwCloseOutDto.getIsCSE();
+		try {
+
+			Query query = getSession()
+					.createNativeQuery("Update \"IOP\".\"PTWHEADER\" set \"STATUS\" = ?  where \"PERMITNUMBER\" = "+permitNumber +" and \"ISCWP\" = "+isCwp +" and \"ISHWP\" = "+isHwp +" and \"ISCSE\"="+isCse +"");
+			query.setParameter(1, status);
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
 	}
 
 }
