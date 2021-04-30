@@ -8,6 +8,7 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
+import com.incture.ptw.dto.PtwApprovalDto;
 import com.incture.ptw.dto.PtwCloseOutDto;
 import com.incture.ptw.dto.PtwHeaderDto;
 
@@ -107,6 +108,23 @@ public class PtwHeaderDao extends BaseDao {
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
+	}
+
+	public void updatePtwHeader(PtwApprovalDto ptwApprovalDto, PtwHeaderDto ptwHeaderDto) {
+		try {
+
+			Query query = getSession()
+					.createNativeQuery("Update \"IOP\".\"PTWHEADER\" set \"STATUS\" = ?  where \"PERMITNUMBER\" = ? and \"ISCWP\" = ? and \"ISHWP\" = ? and \"ISCSE\"= ? ");
+			query.setParameter(1, ptwHeaderDto.getStatus());
+			query.setParameter(2, ptwApprovalDto.getPermitNumber());
+			query.setParameter(3, ptwApprovalDto.getIsCWP());
+			query.setParameter(4, ptwApprovalDto.getIsHWP());
+			query.setParameter(5, ptwApprovalDto.getIsCSE());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		
 	}
 
 }
