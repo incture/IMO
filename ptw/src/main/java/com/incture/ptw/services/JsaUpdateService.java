@@ -143,6 +143,9 @@ public class JsaUpdateService {
 		responseDto.setStatus(Boolean.TRUE);
 		responseDto.setStatusCode(200);
 		try {
+			boolean isCwp = false;
+			boolean isCse = false;
+			boolean isHwp = false;
 			Integer permitNumber = createRequestDto.getJsaheaderDto().getPermitNumber();
 			if (createRequestDto.getJsaheaderDto() != null) {
 				jsaHeaderDao.updateJsaHeaderByPermitNumber(createRequestDto.getJsaheaderDto());
@@ -254,71 +257,63 @@ public class JsaUpdateService {
 				}
 
 			}
-			// List<String> ptwPermitNumberList = new ArrayList<>();
-			// if (createRequestDto.getPtwHeaderDtoList() != null ||
-			// !createRequestDto.getPtwHeaderDtoList().isEmpty()) {
-			// for (PtwHeaderDto i : createRequestDto.getPtwHeaderDtoList()) {
-			// String ptwHeader = "";
-			// if (i.getIsCWP() == 1) {
-			// ptwHeader = "CWP" + permitNumber;
-			// isCwp = true;
-			// ptwPermitNumberList.add(ptwHeader);
-			//
-			// } else if (i.getIsHWP() == 1) {
-			// ptwHeader = "HWP" + permitNumber;
-			//
-			// isHwp = true;
-			// ptwPermitNumberList.add(ptwHeader);
-			// } else if (i.getIsCSE() == 1) {
-			// ptwHeader = "CSE" + permitNumber;
-			// isCse = true;
-			// ptwPermitNumberList.add(ptwHeader);
-			// }
-			// createServiceResponseDto.setPtwPermitNumber(ptwPermitNumberList);
-			// ptwHeaderDao.insertPtwHeader(permitNumber, ptwHeader, i);
-			// }
-			//
-			// }
-			// if (createRequestDto.getPtwRequiredDocumentDtoList() != null
-			// || !createRequestDto.getPtwRequiredDocumentDtoList().isEmpty()) {
-			// for (PtwRequiredDocumentDto i :
-			// createRequestDto.getPtwRequiredDocumentDtoList()) {
-			// ptwRequiredDocumentDao.insertPtwRequiredDocument(permitNumber,
-			// i);
-			// }
-			//
-			// }
-			// // intert into ptwapproval
-			// // delete ptwtestrecord
-			// if (createRequestDto.getPtwTestRecordDto() != null) {
-			// ptwTestRecordDao.insertPtwTestRecord(permitNumber,
-			// createRequestDto.getPtwTestRecordDto());
-			// }
-			// // delete ptwtestresult
-			// if (createRequestDto.getPtwTestResultsDtoList() != null
-			// || !createRequestDto.getPtwTestResultsDtoList().isEmpty()) {
-			// for (PtwTestResultsDto i :
-			// createRequestDto.getPtwTestResultsDtoList()) {
-			// ptwTestResultsDao.insertPtwTestResults(permitNumber, i);
-			// }
-			//
-			// }
-			// // insert ptwcloseout
-			// if (createRequestDto.getPtwCwpWorkTypeDto() != null && isCwp ==
-			// true) {
-			// ptwCwpWorkTypeDao.insertPtwCwpWorkType(permitNumber,
-			// createRequestDto.getPtwCwpWorkTypeDto());
-			// }
-			// if (createRequestDto.getPtwHwpWorkTypeDto() != null && isHwp ==
-			// true) {
-			// ptwHwpWorkTypeDao.insertPtwHwpWorkType(permitNumber,
-			// createRequestDto.getPtwHwpWorkTypeDto());
-			// }
-			// if (createRequestDto.getPtwCseWorkTypeDto() != null && isCse ==
-			// true) {
-			// ptwCseWorkTypeDao.insertPtwCseWorkType(permitNumber,
-			// createRequestDto.getPtwCseWorkTypeDto());
-			// }
+			List<String> ptwPermitNumberList = new ArrayList<>();
+			if (createRequestDto.getPtwHeaderDtoList() != null || !createRequestDto.getPtwHeaderDtoList().isEmpty()) {
+				for (PtwHeaderDto i : createRequestDto.getPtwHeaderDtoList()) {
+					String ptwHeader = "";
+					if (i.getIsCWP() == 1) {
+						ptwHeader = "CWP" + permitNumber;
+						isCwp = true;
+						ptwPermitNumberList.add(ptwHeader);
+
+					} else if (i.getIsHWP() == 1) {
+						ptwHeader = "HWP" + permitNumber;
+
+						isHwp = true;
+						ptwPermitNumberList.add(ptwHeader);
+					} else if (i.getIsCSE() == 1) {
+						ptwHeader = "CSE" + permitNumber;
+						isCse = true;
+						ptwPermitNumberList.add(ptwHeader);
+					}
+					createServiceResponseDto.setPtwPermitNumber(ptwPermitNumberList);
+					ptwHeaderDao.insertPtwHeader(permitNumber, ptwHeader, i);
+				}
+
+			}
+			if (createRequestDto.getPtwRequiredDocumentDtoList() != null
+					|| !createRequestDto.getPtwRequiredDocumentDtoList().isEmpty()) {
+				for (PtwRequiredDocumentDto i : createRequestDto.getPtwRequiredDocumentDtoList()) {
+					ptwRequiredDocumentDao.insertPtwRequiredDocument(permitNumber.toString(), i);
+				}
+
+			}
+			// intert into ptwapproval
+			// delete ptwtestrecord
+			if (createRequestDto.getPtwTestRecordDto() != null) {
+				ptwTestRecordDao.insertPtwTestRecord(permitNumber.toString(), createRequestDto.getPtwTestRecordDto());
+			}
+			// delete ptwtestresult
+			if (createRequestDto.getPtwTestResultsDtoList() != null
+					|| !createRequestDto.getPtwTestResultsDtoList().isEmpty()) {
+				for (PtwTestResultsDto i : createRequestDto.getPtwTestResultsDtoList()) {
+					ptwTestResultsDao.insertPtwTestResults(permitNumber.toString(), i);
+				}
+
+			}
+			// insert ptwcloseout
+			if (createRequestDto.getPtwCwpWorkTypeDto() != null && isCwp == true) {
+				ptwCwpWorkTypeDao.insertPtwCwpWorkType(permitNumber.toString(),
+						createRequestDto.getPtwCwpWorkTypeDto());
+			}
+			if (createRequestDto.getPtwHwpWorkTypeDto() != null && isHwp == true) {
+				ptwHwpWorkTypeDao.insertPtwHwpWorkType(permitNumber.toString(),
+						createRequestDto.getPtwHwpWorkTypeDto());
+			}
+			if (createRequestDto.getPtwCseWorkTypeDto() != null && isCse == true) {
+				ptwCseWorkTypeDao.insertPtwCseWorkType(permitNumber.toString(),
+						createRequestDto.getPtwCseWorkTypeDto());
+			}
 			// update ptwheader
 
 		} catch (Exception e) {
