@@ -84,5 +84,21 @@ public class PtwTestRecordDao extends BaseDao {
 		}
 		return null;
 	}
+	
+	public void deletePtwTestRecord(String permitNumber) {
+		try {
+			logger.info("permitNumber: " + permitNumber);
+			String sql = "DELETE FROM \"IOP\".\"PTWTESTRECORD\" WHERE PERMITNUMBER =? ";
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1, permitNumber);
+			logger.info("sql " + sql);
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+
+		}
+
+	}
 
 }
