@@ -55,4 +55,8 @@ public class PtwApprovalDao extends BaseDao {
 		return null;
 	}
 
+	public void insertPtwApproval(String string, PtwApprovalDto i) {
+		
+	}
+
 }
