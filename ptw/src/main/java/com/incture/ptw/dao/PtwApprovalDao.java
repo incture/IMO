@@ -6,14 +6,19 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.ptw.dto.PtwApprovalDto;
 
 @Repository
 public class PtwApprovalDao extends BaseDao {
+
+	@Autowired
+	private KeyGeneratorDao keyGeneratorDao;
+
 	public List<PtwApprovalDto> getPtwApproval(String permitNumber, String isCwp, String isHwp, String isCse) {
-		
+
 		try {
 			String sql = "select * from IOP.PTWAPPROVAL where PERMITNUMBER= ? and ISCWP = ? and ISHWP = ? and ISCSE = ?";
 			Query query = getSession().createNativeQuery(sql);
@@ -55,8 +60,34 @@ public class PtwApprovalDao extends BaseDao {
 		return null;
 	}
 
-	public void insertPtwApproval(String string, PtwApprovalDto i) {
-		
+	public void insertPtwApproval(String permitNumber, PtwApprovalDto i) {
+		try {
+			String sql = "INSERT INTO \"IOP\".\"PTWAPPROVAL\" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+			Query query = getSession().createNativeQuery(sql);
+			logger.info("sql: " + sql);
+			query.setParameter(1, Integer.parseInt(keyGeneratorDao.getPTWAPPROVAL()));
+			query.setParameter(2, Integer.parseInt(permitNumber));
+			query.setParameter(3, i.getIsCWP());
+			query.setParameter(4, i.getIsHWP());
+			query.setParameter(5, i.getIsCSE());
+			query.setParameter(6, i.getIsWorkSafeToPerform());
+			query.setParameter(7, i.getPreJobWalkThroughBy());
+			query.setParameter(8, i.getApprovedBy());
+			query.setParameter(9, i.getApprovalDate());
+			query.setParameter(10, i.getControlBoardDistribution());
+			query.setParameter(11, i.getWorkSiteDistribution());
+			query.setParameter(12, i.getSimopsDistribution());
+			query.setParameter(13, i.getOtherDistribution());
+			query.setParameter(14, i.getPicName());
+			query.setParameter(15, i.getPicDate());
+			query.setParameter(16, i.getSuperitendentName());
+			query.setParameter(17, i.getSuperitendentDate());
+			query.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(e.getMessage());
+		}
+
 	}
 
 }

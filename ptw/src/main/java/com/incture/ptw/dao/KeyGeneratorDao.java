@@ -74,16 +74,16 @@ public class KeyGeneratorDao extends BaseDao {
 		return null;
 	}
 
-	// public String getPTWAPPROVAL() {
-	// try {
-	// String sql = "select IOP.PTWAPPROVAL_SEQ.NEXTVAL FROM DUMMY";
-	// Query q = getSession().createNativeQuery(sql);
-	// return q.getSingleResult().toString();
-	// } catch (Exception e) {
-	// logger.error(e.getMessage());
-	// }
-	// return null;
-	// }
+	 public String getPTWAPPROVAL() {
+	 try {
+	 String sql = "select IOP.PTWAPPROVAL_SEQ.NEXTVAL FROM DUMMY";
+	 Query q = getSession().createNativeQuery(sql);
+	 return q.getSingleResult().toString();
+	 } catch (Exception e) {
+	 logger.error(e.getMessage());
+	 }
+	 return null;
+	 }
 
 	public String getPTWTESTREC() {
 		try {

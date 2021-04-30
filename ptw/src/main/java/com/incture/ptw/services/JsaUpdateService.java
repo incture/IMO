@@ -264,6 +264,7 @@ public class JsaUpdateService {
 				int index = 0;
 				for (PtwHeaderDto i : createRequestDto.getPtwHeaderDtoList()) {
 					String ptwHeader = "";
+					ptwConditionChk = false;
 					if (i.getIsCWP() == 1) {
 						ptwHeader = "CWP" + permitNumber;
 						isCwp = true;
@@ -283,71 +284,79 @@ public class JsaUpdateService {
 						ptwPermitNumberList.add(ptwHeader);
 					}
 					index++;
-					ptwHeaderDao.insertPtwHeader(permitNumber.toString(), ptwHeader, i);
-				}
-
-			}
-			if (createRequestDto.getPtwRequiredDocumentDtoList() != null
-					|| !createRequestDto.getPtwRequiredDocumentDtoList().isEmpty()) {
-				for (PtwRequiredDocumentDto i : createRequestDto.getPtwRequiredDocumentDtoList()) {
-					ptwRequiredDocumentDao.insertPtwRequiredDocument(permitNumber.toString(), i);
-				}
-
-			}
-			if (createRequestDto.getPtwApprovalDtoList() != null
-					|| !createRequestDto.getPtwApprovalDtoList().isEmpty()) {
-				for (PtwApprovalDto i : createRequestDto.getPtwApprovalDtoList()) {
-					ptwApprovalDao.insertPtwApproval(permitNumber.toString(), i);
-				}
-
-			}
-			if (createRequestDto.getPtwApprovalDtoList() != null
-					&& !createRequestDto.getPtwApprovalDtoList().isEmpty()) {
-				int i = 0;
-				for (PtwApprovalDto ptwApprovalDto : createRequestDto.getPtwApprovalDtoList()) {
-					if (ptwApprovalDto.getIsCWP() == 1) {
-						indexCWP = i;
+					if (ptwConditionChk) {
+						ptwHeaderDao.insertPtwHeader(permitNumber.toString(), ptwHeader, i);
 					}
-					i++;
-					ptwApprovalDao.insertPtwApproval(permitNumber.toString(), ptwApprovalDto);
-				}
-			}
 
-			if (createRequestDto.getPtwTestRecordDto() != null) {
-				ptwTestRecordDao.deletePtwTestRecord(permitNumber.toString());
-				ptwTestRecordDao.insertPtwTestRecord(permitNumber.toString(), createRequestDto.getPtwTestRecordDto());
-			}
-
-			if (createRequestDto.getPtwTestResultsDtoList() != null
-					|| !createRequestDto.getPtwTestResultsDtoList().isEmpty()) {
-				ptwTestResultsDao.deletePtwTestResults(permitNumber.toString());
-				for (PtwTestResultsDto i : createRequestDto.getPtwTestResultsDtoList()) {
-					ptwTestResultsDao.insertPtwTestResults(permitNumber.toString(), i);
 				}
 
 			}
-			if (createRequestDto.getPtwCloseOutDtoList() != null
-					&& !createRequestDto.getPtwCloseOutDtoList().isEmpty()) {
-				for (PtwCloseOutDto ptwCloseOutDto : createRequestDto.getPtwCloseOutDtoList()) {
-					ptwCloseOutDao.insertPtwCloseOut(ptwCloseOutDto);
+			if (ptwConditionChk == true) {
+
+				if (createRequestDto.getPtwRequiredDocumentDtoList() != null
+						|| !createRequestDto.getPtwRequiredDocumentDtoList().isEmpty()) {
+					for (PtwRequiredDocumentDto i : createRequestDto.getPtwRequiredDocumentDtoList()) {
+						ptwRequiredDocumentDao.insertPtwRequiredDocument(permitNumber.toString(), i);
+					}
+
+				}
+				if (createRequestDto.getPtwApprovalDtoList() != null
+						|| !createRequestDto.getPtwApprovalDtoList().isEmpty()) {
+					for (PtwApprovalDto i : createRequestDto.getPtwApprovalDtoList()) {
+						ptwApprovalDao.insertPtwApproval(permitNumber.toString(), i);
+					}
+
+				}
+				if (createRequestDto.getPtwApprovalDtoList() != null
+						&& !createRequestDto.getPtwApprovalDtoList().isEmpty()) {
+					int i = 0;
+					for (PtwApprovalDto ptwApprovalDto : createRequestDto.getPtwApprovalDtoList()) {
+						if (ptwApprovalDto.getIsCWP() == 1) {
+							indexCWP = i;
+						}
+						i++;
+						ptwApprovalDao.insertPtwApproval(permitNumber.toString(), ptwApprovalDto);
+					}
+				}
+
+				if (createRequestDto.getPtwTestRecordDto() != null) {
+					ptwTestRecordDao.deletePtwTestRecord(permitNumber.toString());
+					ptwTestRecordDao.insertPtwTestRecord(permitNumber.toString(),
+							createRequestDto.getPtwTestRecordDto());
+				}
+
+				if (createRequestDto.getPtwTestResultsDtoList() != null
+						|| !createRequestDto.getPtwTestResultsDtoList().isEmpty()) {
+					ptwTestResultsDao.deletePtwTestResults(permitNumber.toString());
+					for (PtwTestResultsDto i : createRequestDto.getPtwTestResultsDtoList()) {
+						ptwTestResultsDao.insertPtwTestResults(permitNumber.toString(), i);
+					}
+
+				}
+				if (createRequestDto.getPtwCloseOutDtoList() != null
+						&& !createRequestDto.getPtwCloseOutDtoList().isEmpty()) {
+					for (PtwCloseOutDto ptwCloseOutDto : createRequestDto.getPtwCloseOutDtoList()) {
+						ptwCloseOutDao.insertPtwCloseOut(ptwCloseOutDto);
+					}
+				}
+				if (createRequestDto.getPtwCwpWorkTypeDto() != null && isCwp == true) {
+					ptwCwpWorkTypeDao.insertPtwCwpWorkType(permitNumber.toString(),
+							createRequestDto.getPtwCwpWorkTypeDto());
+				}
+				if (createRequestDto.getPtwHwpWorkTypeDto() != null && isHwp == true) {
+					ptwHwpWorkTypeDao.insertPtwHwpWorkType(permitNumber.toString(),
+							createRequestDto.getPtwHwpWorkTypeDto());
+				}
+				if (createRequestDto.getPtwCseWorkTypeDto() != null && isCse == true) {
+					ptwCseWorkTypeDao.insertPtwCseWorkType(permitNumber.toString(),
+							createRequestDto.getPtwCseWorkTypeDto());
+				}
+				if (isCwp == true) {
+					ptwHeaderDao.updatePtwHeader(createRequestDto.getPtwApprovalDtoList().get(indexCWP),
+							createRequestDto.getPtwHeaderDtoList().get(ptwCWP));
 				}
 			}
-			if (createRequestDto.getPtwCwpWorkTypeDto() != null && isCwp == true) {
-				ptwCwpWorkTypeDao.insertPtwCwpWorkType(permitNumber.toString(),
-						createRequestDto.getPtwCwpWorkTypeDto());
-			}
-			if (createRequestDto.getPtwHwpWorkTypeDto() != null && isHwp == true) {
-				ptwHwpWorkTypeDao.insertPtwHwpWorkType(permitNumber.toString(),
-						createRequestDto.getPtwHwpWorkTypeDto());
-			}
-			if (createRequestDto.getPtwCseWorkTypeDto() != null && isCse == true) {
-				ptwCseWorkTypeDao.insertPtwCseWorkType(permitNumber.toString(),
-						createRequestDto.getPtwCseWorkTypeDto());
-			}
-			if (ptwConditionChk == true && isCwp == true) {
-				ptwHeaderDao.updatePtwHeader(createRequestDto.getPtwApprovalDtoList().get(indexCWP),
-						createRequestDto.getPtwHeaderDtoList().get(ptwCWP));
-			}
+			responseDto.setData("JSA "+permitNumber+" updated successfully");
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -358,7 +367,7 @@ public class JsaUpdateService {
 			responseDto.setMessage("Update JSA Service Error :" + e.getMessage());
 
 		}
-
+		
 		logger.info("JsaUpdateService || jsaUpdateService: " + responseDto);
 
 		return responseDto;
