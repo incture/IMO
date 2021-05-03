@@ -9,7 +9,7 @@ import lombok.Data;
 public class PermitsByLocInnerDto {
 	private String createdBy;
 	private Date createdDate;
-	private List<String> facilityorsite;
+	private List<String> facilityOrSite;
 	private String jsaPermitNumber;
 	private Date lastUpdatedDate;
 	private String permitNumber;
