@@ -146,8 +146,11 @@ class LauncherController: UIViewController {
     
     @objc func update() {
         
-        print("********Timer*********")
-        let urlString = "\(BaseUrl.apiURL)/GetLoggedInUser_Dest/services/userapi/attributes"
+      
+    print("********Timer*********")
+       // let urlString = "\(BaseUrl.apiURL)/GetLoggedInUser_Dest/services/userapi/attributes"
+        let urlString = "\(BaseUrl.apiURL)/mobileservices/application/com.incture.imo/roleservice/application/com.incture.imo/v2/Me"
+        //let urlString = "\(BaseUrl.apiURL)/UserManagement_Dest/services/userapi/attributes"
         var urlRequest = URLRequest(url: URL(string: urlString)!)
         urlRequest.httpMethod = "get"
         let task = ImoPtwNetworkManager.shared.urlSession.dataTask(with: urlRequest) {[weak self] (data, response, error) in
@@ -387,7 +390,7 @@ extension LauncherController {
         //QA and Dev
         // "https://appdownloaddee8964f1.us2.hana.ondemand.com/AppDownload/qa/app/download?fileType=IPA"
         
-        
+        /*
         let header = [ "x-csrf-token" : "fetch"]
         
         print("\(BaseUrl.apiURL)/JavaAPI_Dest/TaskManagement_Rest/murphy/appFile/download?fileType=IPA&application=IOP")
@@ -417,7 +420,7 @@ extension LauncherController {
         }
         task.resume()
         
-        
+        */
     }
     
     func convertToJSON(json : NSDictionary){
@@ -460,7 +463,7 @@ extension LauncherController {
         //Get user Detail
         //self.loaderStart()
         
-        let urlString : String = "\(BaseUrl.apiURL)/com.cloudidp.dest/service/scim/Users?startIndex=" + String(self.oUserListStartIndex)
+        let urlString : String = "\(BaseUrl.apiURL)/UserManagement_Dest/service/scim/Users?startIndex=" + String(self.oUserListStartIndex)
         let url = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         var urlRequest = URLRequest(url: URL(string: url!)!)
         urlRequest.httpMethod = "get"
@@ -532,7 +535,7 @@ extension LauncherController {
                 self.progressHUD.show()
             }
         }
-        let urlString = "\(BaseUrl.apiURL)/GetLoggedInUser_Dest/services/userapi/attributes"
+        let urlString = "\(BaseUrl.apiURL)/mobileservices/application/com.incture.imo/roleservice/application/com.incture.imo/v2/Me"
         var urlRequest = URLRequest(url: URL(string: urlString)!)
         urlRequest.httpMethod = "get"
         let task = ImoPtwNetworkManager.shared.urlSession.dataTask(with: urlRequest) { (data, response, error) in
@@ -544,14 +547,17 @@ extension LauncherController {
                     let JSON = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
                         if let jsonDict = JSON as? NSDictionary{
                         
-                        let id = jsonDict.value(forKey: "userId") as? String
-                        let email = jsonDict.value(forKey: "email") as? String
-                        let firstName = jsonDict.value(forKey: "firstName") as? String
-                        let lastName = jsonDict.value(forKey: "lastName") as? String
-                        let loginName = jsonDict.value(forKey: "LoginName") as? String
-                        UserDefaults.standard.set(id, forKey: "id")
-                        UserDefaults.standard.set(email, forKey: "email")
-                        UserDefaults.standard.set(loginName, forKey : "LoginName")
+                            let emails = jsonDict.value(forKey: "emails") as? [NSDictionary]
+                            let email = emails?.first?.value(forKey: "value") as? String
+                            let id = jsonDict.value(forKey: "id") as? String
+                            let firstName = (jsonDict.value(forKey: "others") as? NSDictionary)?.value(forKey: "firstName") as? String
+                            let lastName = (jsonDict.value(forKey: "others") as? NSDictionary)?.value(forKey: "lastName") as? String
+                            let loginName = (jsonDict.value(forKey: "others") as? NSDictionary)?.value(forKey: "login_name") as? String
+                            
+                            
+                            UserDefaults.standard.set(id, forKey: "id")
+                            UserDefaults.standard.set(email, forKey: "email")
+                            UserDefaults.standard.set(loginName, forKey : "LoginName")
                         UserDefaults.standard.synchronize()
                         currentUser.email = email
                         currentUser.loginName = loginName
@@ -645,10 +651,15 @@ extension LauncherController {
 //                                            arr.append("FIELD")
 //                                        }
 //                                    }
-                                    if userRoles.contains("IOP_PTW_Field"){
+//                                    if userRoles.contains("IMO_PTW_Field"){
+//                                        roles.append("IMO_PTW_Field")
+//                                        arr.append("PTW")
+//                                    }
+                                    if userRoles.contains("IMO-MobileServices") || userRoles.contains("IMO_USER"){
                                         roles.append("IOP_PTW_Field")
                                         arr.append("PTW")
                                     }
+                                    
 //                                    if userRoles.contains("IOP_ALS_East") {
 //                                        roles.append("IOP_ALS_East")
 //                                        if !arr.contains("ALS")
@@ -795,7 +806,7 @@ extension LauncherController {
                                         currentUser.isCanadianUser = false
                                     }
                                     self.board.reloadData()
-                                    self.fetchTheRolesAPI(roles: currentUser.apps ?? [])
+                        
                                     //self.logFireBaseEvent()
                                 }
 
@@ -833,117 +844,4 @@ extension LauncherController {
 //            print("Location History Offline Load completed")
 //        }
     }
-}
-
-extension LauncherController {
-    
-//    func addAllanIntends() {
-//        
-//        let todaysTaskOperation = { [weak self] in
-//            DispatchQueue.main.async {
-//                
-//                guard let self = self else { return }
-//                guard let appType =  self.dataFromVoiceOver?["appType"] as? String else { return }
-//                self.presentViewFor(appType, isAlanEnabled: true)
-//            }
-//        }
-//        
-//       // self.allanIntends?[TaskListAlanOperations.navigate] = todaysTaskOperation
-//    }
-    
-    /*
-    @objc func touchLessAction(){
-        if TouhlessHandler.shared.authorization() == true{
-            TouhlessHandler.shared.authorizationVal  = true
-         //   marqueeHeight.constant = 40
-        }
-        if SpeechService.shared.busy{
-            self.touchLessButton.setImage(UIImage(named: "ic_chat_bot"), for: .normal)
-            TouhlessHandler.shared.buttonEnabled = false
-            self.touchLessButton.layer.removeAllAnimations()
-            marqueeHeight.constant = 0
-            SpeechService.shared.stopAudio()
-            print("stopeed")
-            return
-        }else if TouhlessHandler.shared.audioEngine.isRunning{
-            self.touchLessButton.setImage(UIImage(named: "ic_chat_bot"), for: .normal)
-            self.touchLessButton.layer.removeAllAnimations()
-            marqueeHeight.constant = 0
-            TouhlessHandler.shared.buttonEnabled = false
-            TouhlessHandler.shared.stop()
-            print("stopeed")
-            return
-        }
-        else{
-            TouhlessHandler.shared.buttonEnabled = true
-            if TouhlessHandler.shared.authorizationVal == true{
-                self.marqueLabel.attributedText = nil
-                TextSingleTon.shared.textToStore = "app list option trigger"
-                self.playLoadingText()
-            }else{
-                self.touchLessButton.layer.removeAllAnimations()
-                self.touchLessButton.setImage(UIImage(named: "ic_chat_bot"), for: .normal)
-                let alertController = UIAlertController.init(title: "", message:"Please enable speech recognization from settings." , preferredStyle: UIAlertController.Style.alert)
-                let okAction = UIAlertAction.init(title: "OK", style: UIAlertAction.Style.cancel, handler: {_ in
-                    if TouhlessHandler.shared.authorization() == false{
-                        self.getSpeechTotext()
-                    }
-                })
-                alertController.addAction(okAction)
-                self.present(alertController, animated: true, completion: nil)
-                
-            }
-        }
-    }
-    */
-//    func playLoadingText(){
-//     
-//        //  self.touchLessButton.setImage(UIImage.gifImageWithName("touchless"), for: .normal)
-//       // self.touchLessButton.addTarget(self, action: #selector(self.touchLessAction), for: .touchUpInside)
-//  
-//             self.sessionID = random9DigitString()
-//             self.getDialogueData(responseText: TextSingleTon.shared.textToStore)
-//           // self.getSpeechTotext()
-//         // }
-//      }
-    //To do
-    func fetchTheRolesAPI(roles:[String]){
-        let urlString = "https://taskmanagementrestd998e5467.us2.hana.ondemand.com/TaskManagement_Rest/murphy/optionsForTouchlessRest/fetchOptionIdAndOptionValue?entityId=E8"
-        var urlRequest = URLRequest(url: URL(string: urlString)!)
-        urlRequest.httpMethod = "get"
-        let task = ImoPtwNetworkManager.shared.urlSession.dataTask(with: urlRequest) {[weak self] (data, response, error) in
-            guard self != nil else { return }
-            guard error == nil else {
-                return
-            }
-            guard let data = data else {
-                return
-            }
-            do{
-                let JSON = try JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary
-                if  let apps =  (JSON?.value(forKey: "optionsDtoList") as? [NSDictionary])?.compactMap({$0["optionValue"] as? String}){
-                    if apps.count > 0{
-                        currentUser.apps?.removeAll()
-                        for app in apps as [String]{
-                            if roles.contains(app){
-                                currentUser.apps?.append(app)
-                            }
-//                            else {
-//                                currentUser.apps?.append(app)
-//                            }
-                        }
-                        DispatchQueue.main.async {
-                            self?.board.reloadData()
-                        }
-                    }
-                }
-            }
-            catch{
-                print(error.localizedDescription)
-            }
-        }
-        task.resume()
-        
-    }
-
 }

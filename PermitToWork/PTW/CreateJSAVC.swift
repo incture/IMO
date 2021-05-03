@@ -467,7 +467,9 @@ extension CreateJSAVC {
             self.loaderStart()
         }
         
-        let urlString : String = "\(BaseUrl.apiURL)/com.iop.ptw/JSA_Details_By_PermitNumber.xsjs?permitNumber=\(selectedJSA)"
+       // let urlString : String = "\(BaseUrl.apiURL)/com.iop.ptw/JSA_Details_By_PermitNumber.xsjs?permitNumber=\(selectedJSA)"
+        
+        let urlString : String = IMOEndpoints.getJSAByPermitNumber + "permitNumber=\(selectedJSA)"
         var urlRequest = URLRequest(url: URL(string: urlString)!)
         urlRequest.httpMethod = "get"
         
@@ -481,7 +483,7 @@ extension CreateJSAVC {
                     let JSON = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
                     DispatchQueue.main.async{
                     if let jsonDict = JSON as? NSDictionary {
-                        readJSAObject = ReadJSA(JSON:jsonDict)
+                        readJSAObject = ReadJSA(JSON:jsonDict.value(forKey: "data") as? NSDictionary ?? NSDictionary())
                         self.readModelToJSAModel()
                             self.loaderStop()
                     }
@@ -515,9 +517,15 @@ extension CreateJSAVC {
                 }
                 do{
                     let JSON = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
+                    print("**(JSON)**")
+                    print(JSON)
+                    print("**(JSON)**")
                     DispatchQueue.main.async{
                     if let jsonDict = JSON as? NSDictionary {
-                        let atmosphericObject = TOPTWTESTREC(JSON : jsonDict.value(forKey: "TOPTWTESTREC") as! NSDictionary)
+                        print("**(jsonDict)**")
+                        print(jsonDict)
+                        print("**(jsonDict)**")
+                        let atmosphericObject = TOPTWTESTREC(JSON : jsonDict.value(forKey: "ptwTestRecordDto") as! NSDictionary)
                         var testsObject = [TOPTWTESTRES]()
                         let testDictionary = jsonDict.value(forKey: "TOPTWTESTRES") as! [NSDictionary]
                         for each in testDictionary{

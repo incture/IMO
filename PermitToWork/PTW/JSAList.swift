@@ -56,7 +56,8 @@ class JSAList : NSObject ,NSCoding{
             self.createdDate = temp3.convertEpocToDatePTW()
         }
         
-        if let temp3 = JSON["facilityorsite"] as? [String] {
+        //rajat made it camel Case
+        if let temp3 = JSON["facilityOrSite"] as? [String] {
             self.fieldOrSite = temp3
         }
         if let temp3 = JSON["lastUpdatedDate"] as? Int64 {
@@ -165,7 +166,8 @@ class PermitList : NSObject ,NSCoding{
             self.createdDate = temp3.convertEpocToDatePTW()
         }
         
-        if let temp3 = JSON["facilityorsite"] as? [String] {
+        //rajat made camelCAse
+        if let temp3 = JSON["facilityOrSite"] as? [String] {
             self.fieldOrSite = temp3
         }
         if let temp3 = JSON["lastUpdatedDate"] as? Int64 {

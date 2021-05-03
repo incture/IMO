@@ -250,7 +250,7 @@ extension AppDelegate {
             self.sessionManager.onboardingSession?.sapURLSession.register(samlObserver)
         }
         if ConnectionCheck.isConnectedToNetwork(){
-        self.reachabilityChanged()
+            self.reachabilityChanged()
         }
     }
     /// Start onboarding a user
@@ -968,7 +968,7 @@ extension AppDelegate{
         
         
         //people list
-        var peopleDict : [String:Any] = ["TOPTWPEOPLE": [[String: Any]]()]
+        var peopleDict : [String:Any] = ["ptwPeopleDtoList": [[String: Any]]()]
         let jsaPeopleArray = JSAObject.peopleList
         var newArray = [[String: Any]]()
         for people in jsaPeopleArray
@@ -984,11 +984,11 @@ extension AppDelegate{
             ]
             newArray.append(dict)
         }
-        peopleDict["TOPTWPEOPLE"] = newArray
+        peopleDict["ptwPeopleDtoList"] = newArray
         
         
         //Potential hazard list
-        var hazardDict : [String:Any] = ["TOJSASTEPS": [[String: Any]]()]
+        var hazardDict : [String:Any] = ["jsaStepsDtoList": [[String: Any]]()]
         let potentialHazardArray = JSAObject.potentialHazards
         var newHazardArray = [[String: Any]]()
         for hazard in potentialHazardArray
@@ -1001,11 +1001,11 @@ extension AppDelegate{
             ]
             newHazardArray.append(dict)
         }
-        hazardDict["TOJSASTEPS"] = newHazardArray
+        hazardDict["jsaStepsDtoList"] = newHazardArray
         
         
         //Stop the job list
-        var stopDict : [String:Any] = ["TOJSASTOP": [[String: Any]]()]
+        var stopDict : [String:Any] = ["jsaStopTriggerDtoList": [[String: Any]]()]
         let stopArray = JSAObject.stopTheJob
         var newStopArray = [[String: Any]]()
         var newLocationArray = [[String: Any]]()
@@ -1027,7 +1027,7 @@ extension AppDelegate{
             newStopArray.append(dict)
         }
         
-        stopDict["TOJSASTOP"] = newStopArray
+        stopDict["jsaStopTriggerDtoList"] = newStopArray
         
         //location
         for each  in JSAObject.location{
@@ -1234,7 +1234,7 @@ extension AppDelegate{
         }
         
         let finalDict : [String:Any] = [
-            "TOJSAHEADER": [
+            "jsaheaderDto": [
                 "hasCWP": JSAObject.hasCWP,
                 "hasHWP": JSAObject.hasHWP,
                 "hasCSE": JSAObject.hasCSP,
@@ -1245,7 +1245,7 @@ extension AppDelegate{
                 
             ],
             
-            "TOJSAREVIEW":[
+            "jsaReviewDto":[
                 "createdBy":JSAObject.createdBy,
                 "createdDate":JSAObject.createdDate,
                 "approvedBy":JSAObject.approvedBy,
@@ -1254,12 +1254,12 @@ extension AppDelegate{
                 "lastUpdatedDate":JSAObject.updatedDate
             ],
             
-            "TOJSARISKASS":[
+            "jsaRiskAssesmentDto":[
                 "mustModifyExistingWorkPractice":JSAObject.riskAssesment.mustExistingWork,
                 "hasContinuedRisk":JSAObject.riskAssesment.afterMitigation
             ],
             
-            "TOJSE_PPE":[
+            "jsappeDto":[
                 "hardHat":JSAObject.riskAssesment.hardHat,
                 "safetyBoot":JSAObject.riskAssesment.safetyShoes,
                 "goggles":JSAObject.riskAssesment.goggles,
@@ -1286,8 +1286,8 @@ extension AppDelegate{
                 "companyOfTaskLeader":""
             ],
             
-            "TOPTWPEOPLE": newArray ,
-            "TOJSAHAZARDPRESS":[
+            "ptwPeopleDtoList": newArray ,
+            "jsaHazardsPressurizedDto":[
                 "presurizedEquipment": JSAObject.hazardCategories.categories[0][0] as Int,
                 "performIsolation":JSAObject.hazardCategories.categories[0][0] as Int,
                 "depressurizeDrain":JSAObject.hazardCategories.categories[0][1] as Int,
@@ -1296,7 +1296,7 @@ extension AppDelegate{
                 "anticipateResidual":JSAObject.hazardCategories.categories[0][4] as Int,
                 "secureAllHoses":JSAObject.hazardCategories.categories[0][5] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDVISIBLE":[
+            "jsaHazardsVisibilityDto":[
                 "poorLighting":JSAObject.hazardCategories.categories[1][0] as Int,
                 "provideAlternateLighting":JSAObject.hazardCategories.categories[1][0] as Int,
                 "waitUntilVisibilityImprove":JSAObject.hazardCategories.categories[1][1] as Int,
@@ -1304,7 +1304,7 @@ extension AppDelegate{
                 "knowDistanceFromPoles":JSAObject.hazardCategories.categories[1][3] as Int
                 ] as [String:Int],
             
-            "TOJSAHAZARDPERSON":[
+            "jsaHazardsPersonnelDto":[
                 "personnel":JSAObject.hazardCategories.categories[2][0] as Int,
                 "performInduction":JSAObject.hazardCategories.categories[2][0] as Int,
                 "mentorCoachSupervise":JSAObject.hazardCategories.categories[2][1] as Int,
@@ -1314,7 +1314,7 @@ extension AppDelegate{
                 "wearSeatBelts":JSAObject.hazardCategories.categories[2][5] as Int
                 ] as [String:Int],
             
-            "TOJSAHAZARDCSE":[
+            "jsaHazardscseDto":[
                 "confinedSpaceEntry":JSAObject.hazardCategories.categories[3][0] as Int,
                 "discussWorkPractice":JSAObject.hazardCategories.categories[3][0] as Int,
                 "conductAtmosphericTesting":JSAObject.hazardCategories.categories[3][1] as Int,
@@ -1324,7 +1324,7 @@ extension AppDelegate{
                 "provideObserver":JSAObject.hazardCategories.categories[3][5] as Int,
                 "developRescuePlan":JSAObject.hazardCategories.categories[3][6] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDSIMULTAN":
+            "jsaHazardsSimultaneousDto":
                 [
                     "simultaneousOperations":JSAObject.hazardCategories.categories[4][0] as Int,
                     "followSimopsMatrix":JSAObject.hazardCategories.categories[4][0] as Int,
@@ -1333,7 +1333,7 @@ extension AppDelegate{
                     "useBarriersAnd":JSAObject.hazardCategories.categories[4][3] as Int,
                     "havePermitSigned":JSAObject.hazardCategories.categories[4][4] as Int
                     ] as [String:Int],
-            "TOJSAHAZARDIGNITION":[
+            "jsaHazardsIgnitionDto":[
                 "ignitionSources":JSAObject.hazardCategories.categories[5][0] as Int,
                 "removeCombustibleMaterials":JSAObject.hazardCategories.categories[5][0] as Int,
                 "provideFireWatch":JSAObject.hazardCategories.categories[5][1] as Int,
@@ -1341,14 +1341,14 @@ extension AppDelegate{
                 "conductContinuousGasTesting":JSAObject.hazardCategories.categories[5][3] as Int,
                 "earthForStaticElectricity":JSAObject.hazardCategories.categories[5][4] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDSUBS":[
+            "jsaHazardsSubstancesDto":[
                 "hazardousSubstances":JSAObject.hazardCategories.categories[6][0] as Int,
                 "drainEquipment":JSAObject.hazardCategories.categories[6][0] as Int,
                 "followSdsControls":JSAObject.hazardCategories.categories[6][1] as Int,
                 "implementHealthHazardControls":JSAObject.hazardCategories.categories[6][2] as Int,
                 "testMaterial":JSAObject.hazardCategories.categories[6][3] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDSPILL":[
+            "jsaHazardsSpillsDto":[
                 "potentialSpills":JSAObject.hazardCategories.categories[7][0] as Int,
                 "drainEquipment":JSAObject.hazardCategories.categories[7][0] as Int,
                 "connectionsInGoodCondition":JSAObject.hazardCategories.categories[7][1] as Int,
@@ -1357,14 +1357,14 @@ extension AppDelegate{
                 "restrainHosesWhenNotInUse":JSAObject.hazardCategories.categories[7][4] as Int
                 ] as [String:Int],
             
-            "TOJSAHAZARDWEATHER":[
+            "jsaHazardsWeatherDto":[
                 "weather":JSAObject.hazardCategories.categories[8][0] as Int,
                 "controlsForSlipperySurface":JSAObject.hazardCategories.categories[8][0] as Int,
                 "heatBreak":JSAObject.hazardCategories.categories[8][1] as Int,
                 "coldHeaters":JSAObject.hazardCategories.categories[8][2] as Int,
                 "lightning":JSAObject.hazardCategories.categories[8][3] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDNOISE":[
+            "jsaHazardsHighNoiseDto":[
                 "highNoise":JSAObject.hazardCategories.categories[9][0] as Int,
                 "wearCorrectHearing":JSAObject.hazardCategories.categories[9][0] as Int,
                 "manageExposureTimes":JSAObject.hazardCategories.categories[9][1] as Int,
@@ -1373,33 +1373,33 @@ extension AppDelegate{
                 "soundBarriers":JSAObject.hazardCategories.categories[9][4] as Int,
                 "provideSuitableComms":JSAObject.hazardCategories.categories[9][5] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDDROPPED":[
+            "jsaHazardsDroppedDto":[
                 "droppedObjects":JSAObject.hazardCategories.categories[10][0] as Int,
                 "markRestrictEntry":JSAObject.hazardCategories.categories[10][0] as Int,
                 "useLiftingEquipmentToRaise":JSAObject.hazardCategories.categories[10][1] as Int,
                 "secureTools":JSAObject.hazardCategories.categories[10][2] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDLIFT":[
+            "jsaHazardsLiftingDto":[
                 "liftingEquipment":JSAObject.hazardCategories.categories[11][0] as Int,
                 "confirmEquipmentCondition":JSAObject.hazardCategories.categories[11][0] as Int,
                 "obtainApprovalForLifts":JSAObject.hazardCategories.categories[11][1] as Int,
                 "haveDocumentedLiftPlan":JSAObject.hazardCategories.categories[11][2] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDHEIGHT":[
+            "jsaHazardsHeightsDto":[
                 "workAtHeights":JSAObject.hazardCategories.categories[12][0] as Int,
                 "discussWorkingPractice":JSAObject.hazardCategories.categories[12][0] as Int,
                 "verifyFallRestraint":JSAObject.hazardCategories.categories[12][1] as Int,
                 "useFullBodyHarness":JSAObject.hazardCategories.categories[12][2] as Int,
                 "useLockTypeSnaphoooks":JSAObject.hazardCategories.categories[12][3] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDELECTRICAL":[
+            "jsaHazardsElectricalDto":[
                 "portableElectricalEquipment":JSAObject.hazardCategories.categories[13][0] as Int,
                 "inspectToolsForCondition":JSAObject.hazardCategories.categories[13][0] as Int,
                 "implementGasTesting":JSAObject.hazardCategories.categories[13][1] as Int,
                 "protectElectricalLeads":JSAObject.hazardCategories.categories[13][2] as Int,
                 "identifyEquipClassification":JSAObject.hazardCategories.categories[13][3] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDMOVING":[
+            "jsaHazardsMovingDto":[
                 "movingEquipment":JSAObject.hazardCategories.categories[14][0] as Int,
                 "confirmMachineryIntegrity":JSAObject.hazardCategories.categories[14][0] as Int,
                 "provideProtectiveBarriers":JSAObject.hazardCategories.categories[14][1] as Int,
@@ -1407,7 +1407,7 @@ extension AppDelegate{
                 "lockOutEquipment":JSAObject.hazardCategories.categories[14][3] as Int,
                 "doNotWorkInLineOfFire":JSAObject.hazardCategories.categories[14][4] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDMANUAL":[
+            "jsaHazardsManualDto":[
                 "manualHandling":JSAObject.hazardCategories.categories[15][0] as Int,
                 "assessManualTask":JSAObject.hazardCategories.categories[15][0] as Int,
                 "limitLoadSize":JSAObject.hazardCategories.categories[15][1] as Int,
@@ -1417,8 +1417,8 @@ extension AppDelegate{
                 ] as [String:Int],
             
             
-            "TOJSAHAZARDTOOLS":[
-                "EquipmentAndTools":JSAObject.hazardCategories.categories[16][0] as Int,
+            "jsaHazardsToolsDto":[
+                "equipmentAndTools":JSAObject.hazardCategories.categories[16][0] as Int,
                 "inspectEquipmentTool":JSAObject.hazardCategories.categories[16][0] as Int,
                 "brassToolsNecessary":JSAObject.hazardCategories.categories[16][1] as Int,
                 "useProtectiveGuards":JSAObject.hazardCategories.categories[16][2] as Int,
@@ -1426,7 +1426,7 @@ extension AppDelegate{
                 "checkForSharpEdges":JSAObject.hazardCategories.categories[16][4] as Int,
                 "applyHandSafetyPrinciple":JSAObject.hazardCategories.categories[16][5] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDFALLS":[
+            "jsaHazardsFallsDto":[
                 "slipsTripsAndFalls":JSAObject.hazardCategories.categories[17][0] as Int,
                 "identifyProjections":JSAObject.hazardCategories.categories[17][0] as Int,
                 "flagHazards":JSAObject.hazardCategories.categories[17][1] as Int,
@@ -1434,7 +1434,7 @@ extension AppDelegate{
                 "cleanUpLiquids":JSAObject.hazardCategories.categories[17][3] as Int,
                 "barricadeHoles":JSAObject.hazardCategories.categories[17][4] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDVOLTAGE":[
+            "jsaHazardsVoltageDto":[
                 "highVoltage":JSAObject.hazardCategories.categories[18][0] as Int,
                 "restrictAccess":JSAObject.hazardCategories.categories[18][0] as Int,
                 "dischargeEquipment":JSAObject.hazardCategories.categories[18][1] as Int,
@@ -1442,14 +1442,14 @@ extension AppDelegate{
                 "useFlashBurn":JSAObject.hazardCategories.categories[18][3] as Int,
                 "useInsulatedGloves":JSAObject.hazardCategories.categories[18][4] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDEXCAVATION":[
+            "jsaHazardsExcavationdDto":[
                 "excavations":JSAObject.hazardCategories.categories[19][0] as Int,
                 "haveExcavationPlan":JSAObject.hazardCategories.categories[19][0] as Int,
                 "locatePipesByHandDigging":JSAObject.hazardCategories.categories[19][1] as Int,
                 "deEnergizeUnderground":JSAObject.hazardCategories.categories[19][2] as Int,
                 "cseControls":JSAObject.hazardCategories.categories[19][3] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDMOBILE":[
+            "jsaHazardsMobileDto":[
                 "mobileEquipment":JSAObject.hazardCategories.categories[20][0] as Int,
                 "assessEquipmentCondition":JSAObject.hazardCategories.categories[20][0] as Int,
                 "controlAccess":JSAObject.hazardCategories.categories[20][1] as Int,
@@ -1458,24 +1458,24 @@ extension AppDelegate{
                 "adhereToRules":JSAObject.hazardCategories.categories[20][4] as Int
                 ] as [String:Int],
             
-            "TOJSASTEPS": newHazardArray ,
+            "jsaStepsDtoList": newHazardArray ,
             
-            "TOJSASTOP": newStopArray,
+            "jsaStopTriggerDtoList": newStopArray,
             
-            "TOPTWHEADER":permitHeaderArray,
+            "ptwHeaderDtoList":permitHeaderArray,
             
-            "TOPTWREQDOC":permitRequiredDocumentsArray,
+            "ptwRequiredDocumentDtoList":permitRequiredDocumentsArray,
             
-            "TOPTWAPPROVAL": [],
+            "ptwApprovalDtoList": [],
             
-            "TOPTWCLOSEOUT":[],
+            "ptwCloseOutDtoList":[],
             
-            "TOPTWTESTREC":[
+            "ptwTestRecordDto":[
                 "isCWP":0,
                 "isHWP":0,
                 "isCSE":0,
                 "detectorUsed":JSAObject.atmosphericTesting.detectorUsed.utf8EncodedString() as String,
-                "DateOfLastCalibration": JSAObject.atmosphericTesting.dateOfLastCallibration,
+                "dateOfLastCalibration": JSAObject.atmosphericTesting.dateOfLastCallibration,
                 "testingFrequency":JSAObject.atmosphericTesting.testFrequency.utf8EncodedString() as String,
                 "continuousGasMonitoring":JSAObject.atmosphericTesting.continuousMonitoringreqd as Int,
                 "priorToWorkCommencing":JSAObject.atmosphericTesting.priorToWorkCommencing as Int,
@@ -1488,12 +1488,12 @@ extension AppDelegate{
                 "isO2":JSAObject.atmosphericTesting.O2 as Int,
                 "isLELs":JSAObject.atmosphericTesting.Lels as Int,
                 "isH2S":JSAObject.atmosphericTesting.H2S as Int,
-                "Other":JSAObject.atmosphericTesting.Other.utf8EncodedString() as String
+                "other":JSAObject.atmosphericTesting.Other.utf8EncodedString() as String
                 ] as [String:Any],
             
-            "TOPTWATESTRES":permitTestResultsArray,
+            "ptwTestResultsDtoList":permitTestResultsArray,
             
-            "TOPTWCWPWORK":[
+            "ptwCwpWorkTypeDto":[
                 "criticalOrComplexLift":JSAObject.CWP.workTypeCW.criticalLift as Int,
                 "craneOrLiftingDevice":JSAObject.CWP.workTypeCW.Crane as Int,
                 "groundDisturbanceOrExcavation":JSAObject.CWP.workTypeCW.groundDist as Int,
@@ -1509,7 +1509,7 @@ extension AppDelegate{
                 "otherTypeOfWork":JSAObject.CWP.workTypeCW.otherText.utf8EncodedString() as String,
                 "descriptionOfWorkToBePerformed":JSAObject.CWP.workTypeCW.descriptionOfWork.utf8EncodedString() as String
                 ] as [String:Any],
-            "TOPTWHWPWORK":[
+            "ptwHwpWorkTypeDto":[
                 "cutting":JSAObject.HWP.workTypeHW.cutting as Int,
                 "wielding":JSAObject.HWP.workTypeHW.welding as Int,
                 "electricalPoweredEquipment":JSAObject.HWP.workTypeHW.electricalPoweredEquipment as Int,
@@ -1518,7 +1518,7 @@ extension AppDelegate{
                 "otherTypeOfWork":JSAObject.HWP.workTypeHW.otherText.utf8EncodedString() as String,
                 "descriptionOfWorkToBePerformed":JSAObject.HWP.workTypeHW.descriptionOfWork.utf8EncodedString() as String
                 ] as [String:Any],
-            "TOPTWCSEWORK":[
+            "ptwCseWorkTypeDto":[
                 "tank":JSAObject.CSEP.workTypeCSE.tank as Int,
                 "vessel":JSAObject.CSEP.workTypeCSE.vessel as Int,
                 "excavation": JSAObject.CSEP.workTypeCSE.excavation as Int,
@@ -1527,7 +1527,7 @@ extension AppDelegate{
                 "other":JSAObject.CSEP.workTypeCSE.other.utf8EncodedString() as String,
                 "reasonForCSE":JSAObject.CSEP.workTypeCSE.reasonForCSE.utf8EncodedString() as String
                 ] as [String:Any],
-            "TOJSALOCATION" : newLocationArray
+            "jsaLocationDtoList" : newLocationArray
         ]
         
         

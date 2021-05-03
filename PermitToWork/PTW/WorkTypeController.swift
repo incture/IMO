@@ -240,9 +240,7 @@ extension WorkTypeController: UITableViewDataSource, UITableViewDelegate {
         
         var cell = WorkTypeCell()
         var cellDesc = PermitCell()
-        
-        
-        
+
         // Configuring Cells
         if isWorkType{
             // cwp has 12,13 as text fields in work type

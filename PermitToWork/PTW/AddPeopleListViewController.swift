@@ -607,18 +607,18 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
         
         // final parameters
         let finalDict : [String:Any] = [
-            "TOPTWHEADER":permitHeaderArray,
+            "ptwHeaderDtoList":permitHeaderArray,
             
-            "TOPTWREQDOC":permitRequiredDocumentsArray,
+            "ptwRequiredDocumentDtoList":permitRequiredDocumentsArray,
             
-            "TOPTWAPPROVAL":[],
+            "ptwApprovalDtoList":[],
             
-            "TOPTWTESTREC":[
+            "ptwTestRecordDto":[
                 "isCWP":1,
                 "isHWP":0,
                 "isCSE":0,
                 "detectorUsed":JSAObject.atmosphericTesting.detectorUsed.utf8EncodedString() as String,
-                "DateOfLastCalibration":JSAObject.atmosphericTesting.dateOfLastCallibration.convertToDateToMilliseconds(),
+                "dateOfLastCalibration":JSAObject.atmosphericTesting.dateOfLastCallibration.convertToDateToMilliseconds(),
                 "testingFrequency":JSAObject.atmosphericTesting.testFrequency as String,
                 "continuousGasMonitoring":JSAObject.atmosphericTesting.continuousMonitoringreqd as Int,
                 "priorToWorkCommencing":JSAObject.atmosphericTesting.priorToWorkCommencing as Int,
@@ -631,14 +631,14 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "isO2":JSAObject.atmosphericTesting.O2 as Int,
                 "isLELs":JSAObject.atmosphericTesting.Lels as Int,
                 "isH2S":JSAObject.atmosphericTesting.H2S as Int,
-                "Other":JSAObject.atmosphericTesting.Other.utf8EncodedString() as String,
+                "other":JSAObject.atmosphericTesting.Other.utf8EncodedString() as String,
                 "serialNo" : JSAObject.atmosphericTesting.serialNo as Int
                 ] as [String:Any],
             
-            "TOPTWATESTRES":permitTestResultsArray,
-            "TOPTWPEOPLE": peopleArray,
+            "ptwTestResultsDtoList":permitTestResultsArray,
+            "ptwPeopleDtoList": peopleArray,
             
-            "TOPTWCWPWORK":[
+            "ptwCwpWorkTypeDto":[
                 "criticalOrComplexLift":JSAObject.CWP.workTypeCW.criticalLift as Int,
                 "craneOrLiftingDevice":JSAObject.CWP.workTypeCW.Crane as Int,
                 "groundDisturbanceOrExcavation":JSAObject.CWP.workTypeCW.groundDist as Int,
@@ -655,7 +655,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "descriptionOfWorkToBePerformed":JSAObject.CWP.workTypeCW.descriptionOfWork.utf8EncodedString() as String,
                 "permitNumber" : JSAObject.CWP.header.permitNo
                 ] as [String:Any],
-            "TOPTWHWPWORK":[
+            "ptwHwpWorkTypeDto":[
                 "cutting":0,
                 "wielding":0,
                 "electricalPoweredEquipment":0,
@@ -665,7 +665,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "descriptionOfWorkToBePerformed":"",
                 "permitNumber" : JSAObject.CWP.header.permitNo
             ],
-            "TOPTWCSEWORK":[
+            "ptwCseWorkTypeDto":[
                 "tank":0,
                 "vessel":0,
                 "excavation": 0,
@@ -827,18 +827,18 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
         
         // final parameters
         let finalDict : [String:Any] = [
-            "TOPTWHEADER":permitHeaderArray,
+            "ptwHeaderDtoList":permitHeaderArray,
             
-            "TOPTWREQDOC":permitRequiredDocumentsArray,
+            "ptwRequiredDocumentDtoList":permitRequiredDocumentsArray,
             
-            "TOPTWAPPROVAL":[],
+            "ptwApprovalDtoList":[],
             
-            "TOPTWTESTREC":[
+            "ptwTestRecordDto":[
                 "isCWP":1,
                 "isHWP":0,
                 "isCSE":0,
                 "detectorUsed":JSAObject.atmosphericTesting.detectorUsed.utf8EncodedString() as String,
-                "DateOfLastCalibration":JSAObject.atmosphericTesting.dateOfLastCallibration.convertToDateToMilliseconds(),
+                "dateOfLastCalibration":JSAObject.atmosphericTesting.dateOfLastCallibration.convertToDateToMilliseconds(),
                 "testingFrequency":JSAObject.atmosphericTesting.testFrequency as String,
                 "continuousGasMonitoring":JSAObject.atmosphericTesting.continuousMonitoringreqd as Int,
                 "priorToWorkCommencing":JSAObject.atmosphericTesting.priorToWorkCommencing as Int,
@@ -851,14 +851,14 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "isO2":JSAObject.atmosphericTesting.O2 as Int,
                 "isLELs":JSAObject.atmosphericTesting.Lels as Int,
                 "isH2S":JSAObject.atmosphericTesting.H2S as Int,
-                "Other":JSAObject.atmosphericTesting.Other.utf8EncodedString() as String,
+                "other":JSAObject.atmosphericTesting.Other.utf8EncodedString() as String,
                 "serialNo" : JSAObject.atmosphericTesting.serialNo as Int
                 ] as [String:Any],
             
-            "TOPTWATESTRES":permitTestResultsArray,
-            "TOPTWPEOPLE": peopleArray,
+            "ptwTestResultsDtoList":permitTestResultsArray,
+            "ptwPeopleDtoList": peopleArray,
             
-            "TOPTWCWPWORK":[
+            "ptwCwpWorkTypeDto":[
                 "criticalOrComplexLift":JSAObject.CWP.workTypeCW.criticalLift as Int,
                 "craneOrLiftingDevice":JSAObject.CWP.workTypeCW.Crane as Int,
                 "groundDisturbanceOrExcavation":JSAObject.CWP.workTypeCW.groundDist as Int,
@@ -875,7 +875,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "descriptionOfWorkToBePerformed":JSAObject.CWP.workTypeCW.descriptionOfWork.utf8EncodedString() as String,
                 "permitNumber" : JSAObject.CWP.header.permitNo
                 ] as [String:Any],
-            "TOPTWHWPWORK":[
+            "ptwHwpWorkTypeDto":[
                 "cutting":JSAObject.HWP.workTypeHW.cutting,
                 "wielding":JSAObject.HWP.workTypeHW.welding,
                 "electricalPoweredEquipment":JSAObject.HWP.workTypeHW.electricalPoweredEquipment,
@@ -885,7 +885,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "descriptionOfWorkToBePerformed":JSAObject.HWP.workTypeHW.descriptionOfWork.utf8EncodedString(),
                 "permitNumber" : JSAObject.permitNumber
                 ] as [String:Any],
-            "TOPTWCSEWORK":[
+            "ptwCseWorkTypeDto":[
                 "tank":0,
                 "vessel":0,
                 "excavation": 0,
@@ -1043,18 +1043,18 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
         
         // final parameters
         let finalDict : [String:Any] = [
-            "TOPTWHEADER":permitHeaderArray,
+            "ptwHeaderDtoList":permitHeaderArray,
             
-            "TOPTWREQDOC":permitRequiredDocumentsArray,
+            "ptwRequiredDocumentDtoList":permitRequiredDocumentsArray,
             
-            "TOPTWAPPROVAL":[],
+            "ptwApprovalDtoList":[],
             
-            "TOPTWTESTREC":[
+            "ptwTestRecordDto":[
                 "isCWP":1,
                 "isHWP":0,
                 "isCSE":0,
                 "detectorUsed":JSAObject.atmosphericTesting.detectorUsed.utf8EncodedString() as String,
-                "DateOfLastCalibration":JSAObject.atmosphericTesting.dateOfLastCallibration.convertToDateToMilliseconds(),
+                "dateOfLastCalibration":JSAObject.atmosphericTesting.dateOfLastCallibration.convertToDateToMilliseconds(),
                 "testingFrequency":JSAObject.atmosphericTesting.testFrequency as String,
                 "continuousGasMonitoring":JSAObject.atmosphericTesting.continuousMonitoringreqd as Int,
                 "priorToWorkCommencing":JSAObject.atmosphericTesting.priorToWorkCommencing as Int,
@@ -1067,14 +1067,14 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "isO2":JSAObject.atmosphericTesting.O2 as Int,
                 "isLELs":JSAObject.atmosphericTesting.Lels as Int,
                 "isH2S":JSAObject.atmosphericTesting.H2S as Int,
-                "Other":JSAObject.atmosphericTesting.Other.utf8EncodedString() as String,
+                "other":JSAObject.atmosphericTesting.Other.utf8EncodedString() as String,
                 "serialNo" : JSAObject.atmosphericTesting.serialNo as Int
                 ] as [String:Any],
             
-            "TOPTWATESTRES":permitTestResultsArray,
-            "TOPTWPEOPLE": peopleArray,
+            "ptwTestResultsDtoList":permitTestResultsArray,
+            "ptwPeopleDtoList": peopleArray,
             
-            "TOPTWCWPWORK":[
+            "ptwCwpWorkTypeDto":[
                 "criticalOrComplexLift":JSAObject.CWP.workTypeCW.criticalLift as Int,
                 "craneOrLiftingDevice":JSAObject.CWP.workTypeCW.Crane as Int,
                 "groundDisturbanceOrExcavation":JSAObject.CWP.workTypeCW.groundDist as Int,
@@ -1091,7 +1091,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "descriptionOfWorkToBePerformed":JSAObject.CWP.workTypeCW.descriptionOfWork.utf8EncodedString() as String,
                 "permitNumber" : JSAObject.CWP.header.permitNo
                 ] as [String:Any],
-            "TOPTWHWPWORK":[
+            "ptwHwpWorkTypeDto":[
                 "cutting":JSAObject.HWP.workTypeHW.cutting as Int,
                 "wielding":JSAObject.HWP.workTypeHW.welding as Int,
                 "electricalPoweredEquipment":JSAObject.HWP.workTypeHW.electricalPoweredEquipment as Int,
@@ -1101,7 +1101,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "descriptionOfWorkToBePerformed":JSAObject.HWP.workTypeHW.descriptionOfWork.utf8EncodedString() as String,
                 "permitNumber" : JSAObject.CWP.header.permitNo  as Int
                 ] as [String:Any],
-            "TOPTWCSEWORK":[
+            "ptwCseWorkTypeDto":[
                 "tank":JSAObject.CSEP.workTypeCSE.tank as Int,
                 "vessel":JSAObject.CSEP.workTypeCSE.vessel as Int,
                 "excavation": JSAObject.CSEP.workTypeCSE.excavation as Int,
@@ -1152,7 +1152,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
         JSAObject.updatedDate = currentDate.convertToDateToMilliseconds()
         
         //people list
-        var peopleDict : [String:Any] = ["TOPTWPEOPLE": [[String: Any]]()]
+        var peopleDict : [String:Any] = ["ptwPeopleDtoList": [[String: Any]]()]
         let jsaPeopleArray = JSAObject.peopleList
         var newArray = [[String: Any]]()
         for people in jsaPeopleArray
@@ -1168,11 +1168,11 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
             ]
             newArray.append(dict)
         }
-        peopleDict["TOPTWPEOPLE"] = newArray
+        peopleDict["ptwPeopleDtoList"] = newArray
         
         
         //Potential hazard list
-        var hazardDict : [String:Any] = ["TOJSASTEPS": [[String: Any]]()]
+        var hazardDict : [String:Any] = ["jsaStepsDtoList": [[String: Any]]()]
         let potentialHazardArray = JSAObject.potentialHazards
         var newHazardArray = [[String: Any]]()
         for hazard in potentialHazardArray
@@ -1185,11 +1185,11 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
             ]
             newHazardArray.append(dict)
         }
-        hazardDict["TOJSASTEPS"] = newHazardArray
+        hazardDict["jsaStepsDtoList"] = newHazardArray
         
         
         //Stop the job list
-        var stopDict : [String:Any] = ["TOJSASTOP": [[String: Any]]()]
+        var stopDict : [String:Any] = ["jsaStopTriggerDtoList": [[String: Any]]()]
         let stopArray = JSAObject.stopTheJob
         var newStopArray = [[String: Any]]()
         var newLocationArray = [[String: Any]]()
@@ -1200,7 +1200,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 ]
             newStopArray.append(dict)
         }
-        stopDict["TOJSASTOP"] = newStopArray
+        stopDict["jsaStopTriggerDtoList"] = newStopArray
         
         
         for each  in JSAObject.location{
@@ -1436,7 +1436,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
         }
         
         let finalDict : [String:Any] = [
-            "TOJSAHEADER": [
+            "jsaheaderDto": [
                 "hasCWP": JSAObject.hasCWP,
                 "hasHWP": JSAObject.hasHWP,
                 "hasCSE": JSAObject.hasCSP,
@@ -1448,7 +1448,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 
             ],
             
-            "TOJSAREVIEW":[
+            "jsaReviewDto":[
                 "createdBy":JSAObject.createdBy,
                 "createdDate":JSAObject.createdDate.convertToDateToMilliseconds(),
                 "approvedBy":JSAObject.approvedBy,
@@ -1458,13 +1458,13 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "permitNumber": JSAObject.permitNumber
             ],
             
-            "TOJSARISKASS":[
+            "jsaRiskAssesmentDto":[
                 "mustModifyExistingWorkPractice":JSAObject.riskAssesment.mustExistingWork,
                 "hasContinuedRisk":JSAObject.riskAssesment.afterMitigation,
                 "permitNumber": JSAObject.permitNumber
             ],
             
-            "TOJSE_PPE":[
+            "jsappeDto":[
                 "hardHat":JSAObject.riskAssesment.hardHat,
                 "safetyBoot":JSAObject.riskAssesment.safetyShoes,
                 "goggles":JSAObject.riskAssesment.goggles,
@@ -1492,8 +1492,8 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "permitNumber": JSAObject.permitNumber
             ],
             
-            "TOPTWPEOPLE": newArray ,
-            "TOJSAHAZARDPRESS":[
+            "ptwPeopleDtoList": newArray ,
+            "jsaHazardsPressurizedDto":[
                 "presurizedEquipment": JSAObject.hazardCategories.categories[0][0] as Int,
                 "performIsolation":JSAObject.hazardCategories.categories[0][0] as Int,
                 "depressurizeDrain":JSAObject.hazardCategories.categories[0][1] as Int,
@@ -1503,7 +1503,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "secureAllHoses":JSAObject.hazardCategories.categories[0][5] as Int,
                 "permitNumber": JSAObject.permitNumber
                 ] as [String:Int],
-            "TOJSAHAZARDVISIBLE":[
+            "jsaHazardsVisibilityDto":[
                 "poorLighting":JSAObject.hazardCategories.categories[1][0] as Int,
                 "provideAlternateLighting":JSAObject.hazardCategories.categories[1][0] as Int,
                 "waitUntilVisibilityImprove":JSAObject.hazardCategories.categories[1][1] as Int,
@@ -1512,7 +1512,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "permitNumber": JSAObject.permitNumber
                 ] as [String:Int],
             
-            "TOJSAHAZARDPERSON":[
+            "jsaHazardsPersonnelDto":[
                 "personnel":JSAObject.hazardCategories.categories[2][0] as Int,
                 "performInduction":JSAObject.hazardCategories.categories[2][0] as Int,
                 "mentorCoachSupervise":JSAObject.hazardCategories.categories[2][1] as Int,
@@ -1523,7 +1523,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "permitNumber": JSAObject.permitNumber
                 ] as [String:Int],
             
-            "TOJSAHAZARDCSE":[
+            "jsaHazardscseDto":[
                 "confinedSpaceEntry":JSAObject.hazardCategories.categories[3][0] as Int,
                 "discussWorkPractice":JSAObject.hazardCategories.categories[3][0] as Int,
                 "conductAtmosphericTesting":JSAObject.hazardCategories.categories[3][1] as Int,
@@ -1534,7 +1534,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "developRescuePlan":JSAObject.hazardCategories.categories[3][6] as Int,
                 "permitNumber": JSAObject.permitNumber
                 ] as [String:Int],
-            "TOJSAHAZARDSIMULTAN":
+            "jsaHazardsSimultaneousDto":
                 [
                     "simultaneousOperations":JSAObject.hazardCategories.categories[4][0] as Int,
                     "followSimopsMatrix":JSAObject.hazardCategories.categories[4][0] as Int,
@@ -1544,7 +1544,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                     "havePermitSigned":JSAObject.hazardCategories.categories[4][4] as Int,
                     "permitNumber": JSAObject.permitNumber
                     ] as [String:Int],
-            "TOJSAHAZARDIGNITION":[
+            "jsaHazardsIgnitionDto":[
                 "ignitionSources":JSAObject.hazardCategories.categories[5][0] as Int,
                 "removeCombustibleMaterials":JSAObject.hazardCategories.categories[5][0] as Int,
                 "provideFireWatch":JSAObject.hazardCategories.categories[5][1] as Int,
@@ -1553,7 +1553,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "earthForStaticElectricity":JSAObject.hazardCategories.categories[5][4] as Int,
                 "permitNumber": JSAObject.permitNumber
                 ] as [String:Int],
-            "TOJSAHAZARDSUBS":[
+            "jsaHazardsSubstancesDto":[
                 "hazardousSubstances":JSAObject.hazardCategories.categories[6][0] as Int,
                 "drainEquipment":JSAObject.hazardCategories.categories[6][0] as Int,
                 "followSdsControls":JSAObject.hazardCategories.categories[6][1] as Int,
@@ -1561,7 +1561,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "testMaterial":JSAObject.hazardCategories.categories[6][3] as Int,
                 "permitNumber": JSAObject.permitNumber
                 ] as [String:Int],
-            "TOJSAHAZARDSPILL":[
+            "jsaHazardsSpillsDto":[
                 "potentialSpills":JSAObject.hazardCategories.categories[7][0] as Int,
                 "drainEquipment":JSAObject.hazardCategories.categories[7][0] as Int,
                 "connectionsInGoodCondition":JSAObject.hazardCategories.categories[7][1] as Int,
@@ -1571,7 +1571,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "permitNumber": JSAObject.permitNumber
                 ] as [String:Int],
             
-            "TOJSAHAZARDWEATHER":[
+            "jsaHazardsWeatherDto":[
                 "weather":JSAObject.hazardCategories.categories[8][0] as Int,
                 "controlsForSlipperySurface":JSAObject.hazardCategories.categories[8][0] as Int,
                 "heatBreak":JSAObject.hazardCategories.categories[8][1] as Int,
@@ -1579,7 +1579,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "lightning":JSAObject.hazardCategories.categories[8][3] as Int,
                 "permitNumber": JSAObject.permitNumber
                 ] as [String:Int],
-            "TOJSAHAZARDNOISE":[
+            "jsaHazardsHighNoiseDto":[
                 "highNoise":JSAObject.hazardCategories.categories[9][0] as Int,
                 "wearCorrectHearing":JSAObject.hazardCategories.categories[9][0] as Int,
                 "manageExposureTimes":JSAObject.hazardCategories.categories[9][1] as Int,
@@ -1589,21 +1589,21 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "provideSuitableComms":JSAObject.hazardCategories.categories[9][5] as Int,
                 "permitNumber": JSAObject.permitNumber
                 ] as [String:Int],
-            "TOJSAHAZARDDROPPED":[
+            "jsaHazardsDroppedDto":[
                 "droppedObjects":JSAObject.hazardCategories.categories[10][0] as Int,
                 "markRestrictEntry":JSAObject.hazardCategories.categories[10][0] as Int,
                 "useLiftingEquipmentToRaise":JSAObject.hazardCategories.categories[10][1] as Int,
                 "secureTools":JSAObject.hazardCategories.categories[10][2] as Int,
                 "permitNumber": JSAObject.permitNumber
                 ] as [String:Int],
-            "TOJSAHAZARDLIFT":[
+            "jsaHazardsLiftingDto":[
                 "liftingEquipment":JSAObject.hazardCategories.categories[11][0] as Int,
                 "confirmEquipmentCondition":JSAObject.hazardCategories.categories[11][0] as Int,
                 "obtainApprovalForLifts":JSAObject.hazardCategories.categories[11][1] as Int,
                 "haveDocumentedLiftPlan":JSAObject.hazardCategories.categories[11][2] as Int,
                 "permitNumber": JSAObject.permitNumber
                 ] as [String:Int],
-            "TOJSAHAZARDHEIGHT":[
+            "jsaHazardsHeightsDto":[
                 "workAtHeights":JSAObject.hazardCategories.categories[12][0] as Int,
                 "discussWorkingPractice":JSAObject.hazardCategories.categories[12][0] as Int,
                 "verifyFallRestraint":JSAObject.hazardCategories.categories[12][1] as Int,
@@ -1611,7 +1611,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "useLockTypeSnaphoooks":JSAObject.hazardCategories.categories[12][3] as Int,
                 "permitNumber": JSAObject.permitNumber
                 ] as [String:Int],
-            "TOJSAHAZARDELECTRICAL":[
+            "jsaHazardsElectricalDto":[
                 "portableElectricalEquipment":JSAObject.hazardCategories.categories[13][0] as Int,
                 "inspectToolsForCondition":JSAObject.hazardCategories.categories[13][0] as Int,
                 "implementGasTesting":JSAObject.hazardCategories.categories[13][1] as Int,
@@ -1619,7 +1619,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "identifyEquipClassification":JSAObject.hazardCategories.categories[13][3] as Int,
                 "permitNumber": JSAObject.permitNumber
                 ] as [String:Int],
-            "TOJSAHAZARDMOVING":[
+            "jsaHazardsMovingDto":[
                 "movingEquipment":JSAObject.hazardCategories.categories[14][0] as Int,
                 "confirmMachineryIntegrity":JSAObject.hazardCategories.categories[14][0] as Int,
                 "provideProtectiveBarriers":JSAObject.hazardCategories.categories[14][1] as Int,
@@ -1628,7 +1628,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "doNotWorkInLineOfFire":JSAObject.hazardCategories.categories[14][4] as Int,
                 "permitNumber": JSAObject.permitNumber
                 ] as [String:Int],
-            "TOJSAHAZARDMANUAL":[
+            "jsaHazardsManualDto":[
                 "manualHandling":JSAObject.hazardCategories.categories[15][0] as Int,
                 "assessManualTask":JSAObject.hazardCategories.categories[15][0] as Int,
                 "limitLoadSize":JSAObject.hazardCategories.categories[15][1] as Int,
@@ -1639,8 +1639,8 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 ] as [String:Int],
             
             
-            "TOJSAHAZARDTOOLS":[
-                "EquipmentAndTools":JSAObject.hazardCategories.categories[16][0] as Int,
+            "jsaHazardsToolsDto":[
+                "equipmentAndTools":JSAObject.hazardCategories.categories[16][0] as Int,
                 "inspectEquipmentTool":JSAObject.hazardCategories.categories[16][0] as Int,
                 "brassToolsNecessary":JSAObject.hazardCategories.categories[16][1] as Int,
                 "useProtectiveGuards":JSAObject.hazardCategories.categories[16][2] as Int,
@@ -1649,7 +1649,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "applyHandSafetyPrinciple":JSAObject.hazardCategories.categories[16][5] as Int,
                 "permitNumber": JSAObject.permitNumber
                 ] as [String:Int],
-            "TOJSAHAZARDFALLS":[
+            "jsaHazardsFallsDto":[
                 "slipsTripsAndFalls":JSAObject.hazardCategories.categories[17][0] as Int,
                 "identifyProjections":JSAObject.hazardCategories.categories[17][0] as Int,
                 "flagHazards":JSAObject.hazardCategories.categories[17][1] as Int,
@@ -1658,7 +1658,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "barricadeHoles":JSAObject.hazardCategories.categories[17][4] as Int,
                 "permitNumber": JSAObject.permitNumber
                 ] as [String:Int],
-            "TOJSAHAZARDVOLTAGE":[
+            "jsaHazardsVoltageDto":[
                 "highVoltage":JSAObject.hazardCategories.categories[18][0] as Int,
                 "restrictAccess":JSAObject.hazardCategories.categories[18][0] as Int,
                 "dischargeEquipment":JSAObject.hazardCategories.categories[18][1] as Int,
@@ -1667,7 +1667,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "useInsulatedGloves":JSAObject.hazardCategories.categories[18][4] as Int,
                 "permitNumber": JSAObject.permitNumber
                 ] as [String:Int],
-            "TOJSAHAZARDEXCAVATION":[
+            "jsaHazardsExcavationdDto":[
                 "excavations":JSAObject.hazardCategories.categories[19][0] as Int,
                 "haveExcavationPlan":JSAObject.hazardCategories.categories[19][0] as Int,
                 "locatePipesByHandDigging":JSAObject.hazardCategories.categories[19][1] as Int,
@@ -1675,7 +1675,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "cseControls":JSAObject.hazardCategories.categories[19][3] as Int,
                 "permitNumber": JSAObject.permitNumber
                 ] as [String:Int],
-            "TOJSAHAZARDMOBILE":[
+            "jsaHazardsMobileDto":[
                 "mobileEquipment":JSAObject.hazardCategories.categories[20][0] as Int,
                 "assessEquipmentCondition":JSAObject.hazardCategories.categories[20][0] as Int,
                 "controlAccess":JSAObject.hazardCategories.categories[20][1] as Int,
@@ -1685,26 +1685,26 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "permitNumber": JSAObject.permitNumber
                 ] as [String:Int],
             
-            "TOJSASTEPS": newHazardArray ,
+            "jsaStepsDtoList": newHazardArray ,
             
-            "TOJSASTOP": newStopArray,
+            "jsaStopTriggerDtoList": newStopArray,
             
-            "TOPTWHEADER":permitHeaderArray,
+            "ptwHeaderDtoList":permitHeaderArray,
             
-            "TOPTWREQDOC":permitRequiredDocumentsArray,
-            "TOPTWAPPROVAL":permitApprovalArray,
-            "TOPTWCLOSEOUT":[],
+            "ptwRequiredDocumentDtoList":permitRequiredDocumentsArray,
+            "ptwApprovalDtoList":permitApprovalArray,
+            "ptwCloseOutDtoList":[],
             
-//            "TOPTWTESTREC":permitAtmosphericTestArray,
+//            "ptwTestRecordDto":permitAtmosphericTestArray,
 //
-//            "TOPTWATESTRES":permitTestResultsArray,
+//            "ptwTestResultsDtoList":permitTestResultsArray,
             
-            "TOPTWTESTREC":[
+            "ptwTestRecordDto":[
                 "isCWP":0,
                 "isHWP":0,
                 "isCSE":0,
                 "detectorUsed":JSAObject.atmosphericTesting.detectorUsed.utf8EncodedString() as String,
-                "DateOfLastCalibration": JSAObject.atmosphericTesting.dateOfLastCallibration.convertToDateToMilliseconds(),
+                "dateOfLastCalibration": JSAObject.atmosphericTesting.dateOfLastCallibration.convertToDateToMilliseconds(),
                 "testingFrequency":JSAObject.atmosphericTesting.testFrequency.utf8EncodedString() as String,
                 "continuousGasMonitoring":JSAObject.atmosphericTesting.continuousMonitoringreqd as Int,
                 "priorToWorkCommencing":JSAObject.atmosphericTesting.priorToWorkCommencing as Int,
@@ -1717,12 +1717,12 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "isO2":JSAObject.atmosphericTesting.O2 as Int,
                 "isLELs":JSAObject.atmosphericTesting.Lels as Int,
                 "isH2S":JSAObject.atmosphericTesting.H2S as Int,
-                "Other":JSAObject.atmosphericTesting.Other.utf8EncodedString() as String
+                "other":JSAObject.atmosphericTesting.Other.utf8EncodedString() as String
                 ] as [String:Any],
             
-            "TOPTWATESTRES":permitTestResultsArray,
+            "ptwTestResultsDtoList":permitTestResultsArray,
             
-            "TOPTWCWPWORK":[
+            "ptwCwpWorkTypeDto":[
                 "criticalOrComplexLift":JSAObject.CWP.workTypeCW.criticalLift as Int,
                 "craneOrLiftingDevice":JSAObject.CWP.workTypeCW.Crane as Int,
                 "groundDisturbanceOrExcavation":JSAObject.CWP.workTypeCW.groundDist as Int,
@@ -1738,7 +1738,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "otherTypeOfWork":JSAObject.CWP.workTypeCW.otherText.utf8EncodedString() as String,
                 "descriptionOfWorkToBePerformed":JSAObject.CWP.workTypeCW.descriptionOfWork.utf8EncodedString() as String
                 ] as [String:Any],
-            "TOPTWHWPWORK":[
+            "ptwHwpWorkTypeDto":[
                 "cutting":JSAObject.HWP.workTypeHW.cutting as Int,
                 "wielding":JSAObject.HWP.workTypeHW.welding as Int,
                 "electricalPoweredEquipment":JSAObject.HWP.workTypeHW.electricalPoweredEquipment as Int,
@@ -1747,7 +1747,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "otherTypeOfWork":JSAObject.HWP.workTypeHW.otherText.utf8EncodedString() as String,
                 "descriptionOfWorkToBePerformed":JSAObject.HWP.workTypeHW.descriptionOfWork.utf8EncodedString() as String
             ],
-            "TOPTWCSEWORK":[
+            "ptwCseWorkTypeDtor":[
                 "tank":JSAObject.CSEP.workTypeCSE.tank as Int,
                 "vessel":JSAObject.CSEP.workTypeCSE.vessel as Int,
                 "excavation": JSAObject.CSEP.workTypeCSE.excavation as Int,
@@ -1757,7 +1757,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "reasonForCSE":JSAObject.CSEP.workTypeCSE.reasonForCSE.utf8EncodedString() as String
                 ] as [String:Any],
             
-            "TOJSALOCATION" : newLocationArray
+            "jsaLocationDtoList" : newLocationArray
         ]
         
         
@@ -1782,7 +1782,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
 
         
         //people list
-        var peopleDict : [String:Any] = ["TOPTWPEOPLE": [[String: Any]]()]
+        var peopleDict : [String:Any] = ["ptwPeopleDtoList": [[String: Any]]()]
         let jsaPeopleArray = JSAObject.peopleList
         var newArray = [[String: Any]]()
         for people in jsaPeopleArray
@@ -1798,11 +1798,11 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
             ]
             newArray.append(dict)
         }
-        peopleDict["TOPTWPEOPLE"] = newArray
+        peopleDict["ptwPeopleDtoList"] = newArray
         
         
         //Potential hazard list
-        var hazardDict : [String:Any] = ["TOJSASTEPS": [[String: Any]]()]
+        var hazardDict : [String:Any] = ["jsaStepsDtoList": [[String: Any]]()]
         let potentialHazardArray = JSAObject.potentialHazards
         var newHazardArray = [[String: Any]]()
         for hazard in potentialHazardArray
@@ -1815,11 +1815,11 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
             ]
             newHazardArray.append(dict)
         }
-        hazardDict["TOJSASTEPS"] = newHazardArray
+        hazardDict["jsaStepsDtoList"] = newHazardArray
         
         
         //Stop the job list
-        var stopDict : [String:Any] = ["TOJSASTOP": [[String: Any]]()]
+        var stopDict : [String:Any] = ["jsaStopTriggerDtoList": [[String: Any]]()]
         let stopArray = JSAObject.stopTheJob
         var newStopArray = [[String: Any]]()
         var newLocationArray = [[String: Any]]()
@@ -1841,7 +1841,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
             newStopArray.append(dict)
         }
         
-        stopDict["TOJSASTOP"] = newStopArray
+        stopDict["jsaStopTriggerDtoList"] = newStopArray
         
         //location
         for each  in JSAObject.location{
@@ -2066,7 +2066,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
         }
         
         let finalDict : [String:Any] = [
-            "TOJSAHEADER": [
+            "jsaheaderDto": [
                 "hasCWP": JSAObject.hasCWP,
                 "hasHWP": JSAObject.hasHWP,
                 "hasCSE": JSAObject.hasCSP,
@@ -2077,7 +2077,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 
             ],
             
-            "TOJSAREVIEW":[
+            "jsaReviewDto":[
                 "createdBy":JSAObject.createdBy,
                 "createdDate":JSAObject.createdDate,
                 "approvedBy":JSAObject.createdBy,
@@ -2086,12 +2086,12 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "lastUpdatedDate":JSAObject.updatedDate
             ],
             
-            "TOJSARISKASS":[
+            "jsaRiskAssesmentDto":[
                 "mustModifyExistingWorkPractice":JSAObject.riskAssesment.mustExistingWork,
                 "hasContinuedRisk":JSAObject.riskAssesment.afterMitigation
             ],
             
-            "TOJSE_PPE":[
+            "jsappeDto":[
                 "hardHat":JSAObject.riskAssesment.hardHat,
                 "safetyBoot":JSAObject.riskAssesment.safetyShoes,
                 "goggles":JSAObject.riskAssesment.goggles,
@@ -2118,8 +2118,8 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "companyOfTaskLeader":""
             ],
             
-            "TOPTWPEOPLE": newArray ,
-            "TOJSAHAZARDPRESS":[
+            "ptwPeopleDtoList": newArray ,
+            "jsaHazardsPressurizedDto":[
                 "presurizedEquipment": JSAObject.hazardCategories.categories[0][0] as Int,
                 "performIsolation":JSAObject.hazardCategories.categories[0][0] as Int,
                 "depressurizeDrain":JSAObject.hazardCategories.categories[0][1] as Int,
@@ -2128,7 +2128,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "anticipateResidual":JSAObject.hazardCategories.categories[0][4] as Int,
                 "secureAllHoses":JSAObject.hazardCategories.categories[0][5] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDVISIBLE":[
+            "jsaHazardsVisibilityDto":[
                 "poorLighting":JSAObject.hazardCategories.categories[1][0] as Int,
                 "provideAlternateLighting":JSAObject.hazardCategories.categories[1][0] as Int,
                 "waitUntilVisibilityImprove":JSAObject.hazardCategories.categories[1][1] as Int,
@@ -2136,7 +2136,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "knowDistanceFromPoles":JSAObject.hazardCategories.categories[1][3] as Int
                 ] as [String:Int],
             
-            "TOJSAHAZARDPERSON":[
+            "jsaHazardsPersonnelDto":[
                 "personnel":JSAObject.hazardCategories.categories[2][0] as Int,
                 "performInduction":JSAObject.hazardCategories.categories[2][0] as Int,
                 "mentorCoachSupervise":JSAObject.hazardCategories.categories[2][1] as Int,
@@ -2146,7 +2146,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "wearSeatBelts":JSAObject.hazardCategories.categories[2][5] as Int
                 ] as [String:Int],
             
-            "TOJSAHAZARDCSE":[
+            "jsaHazardscseDto":[
                 "confinedSpaceEntry":JSAObject.hazardCategories.categories[3][0] as Int,
                 "discussWorkPractice":JSAObject.hazardCategories.categories[3][0] as Int,
                 "conductAtmosphericTesting":JSAObject.hazardCategories.categories[3][1] as Int,
@@ -2156,7 +2156,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "provideObserver":JSAObject.hazardCategories.categories[3][5] as Int,
                 "developRescuePlan":JSAObject.hazardCategories.categories[3][6] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDSIMULTAN":
+            "jsaHazardsSimultaneousDto":
                 [
                     "simultaneousOperations":JSAObject.hazardCategories.categories[4][0] as Int,
                     "followSimopsMatrix":JSAObject.hazardCategories.categories[4][0] as Int,
@@ -2165,7 +2165,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                     "useBarriersAnd":JSAObject.hazardCategories.categories[4][3] as Int,
                     "havePermitSigned":JSAObject.hazardCategories.categories[4][4] as Int
                     ] as [String:Int],
-            "TOJSAHAZARDIGNITION":[
+            "jsaHazardsIgnitionDto":[
                 "ignitionSources":JSAObject.hazardCategories.categories[5][0] as Int,
                 "removeCombustibleMaterials":JSAObject.hazardCategories.categories[5][0] as Int,
                 "provideFireWatch":JSAObject.hazardCategories.categories[5][1] as Int,
@@ -2173,14 +2173,14 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "conductContinuousGasTesting":JSAObject.hazardCategories.categories[5][3] as Int,
                 "earthForStaticElectricity":JSAObject.hazardCategories.categories[5][4] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDSUBS":[
+            "jsaHazardsSubstancesDto":[
                 "hazardousSubstances":JSAObject.hazardCategories.categories[6][0] as Int,
                 "drainEquipment":JSAObject.hazardCategories.categories[6][0] as Int,
                 "followSdsControls":JSAObject.hazardCategories.categories[6][1] as Int,
                 "implementHealthHazardControls":JSAObject.hazardCategories.categories[6][2] as Int,
                 "testMaterial":JSAObject.hazardCategories.categories[6][3] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDSPILL":[
+            "jsaHazardsSpillsDto":[
                 "potentialSpills":JSAObject.hazardCategories.categories[7][0] as Int,
                 "drainEquipment":JSAObject.hazardCategories.categories[7][0] as Int,
                 "connectionsInGoodCondition":JSAObject.hazardCategories.categories[7][1] as Int,
@@ -2189,14 +2189,14 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "restrainHosesWhenNotInUse":JSAObject.hazardCategories.categories[7][4] as Int
                 ] as [String:Int],
             
-            "TOJSAHAZARDWEATHER":[
+            "jsaHazardsWeatherDto":[
                 "weather":JSAObject.hazardCategories.categories[8][0] as Int,
                 "controlsForSlipperySurface":JSAObject.hazardCategories.categories[8][0] as Int,
                 "heatBreak":JSAObject.hazardCategories.categories[8][1] as Int,
                 "coldHeaters":JSAObject.hazardCategories.categories[8][2] as Int,
                 "lightning":JSAObject.hazardCategories.categories[8][3] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDNOISE":[
+            "jsaHazardsHighNoiseDto":[
                 "highNoise":JSAObject.hazardCategories.categories[9][0] as Int,
                 "wearCorrectHearing":JSAObject.hazardCategories.categories[9][0] as Int,
                 "manageExposureTimes":JSAObject.hazardCategories.categories[9][1] as Int,
@@ -2205,33 +2205,33 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "soundBarriers":JSAObject.hazardCategories.categories[9][4] as Int,
                 "provideSuitableComms":JSAObject.hazardCategories.categories[9][5] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDDROPPED":[
+            "jsaHazardsDroppedDto":[
                 "droppedObjects":JSAObject.hazardCategories.categories[10][0] as Int,
                 "markRestrictEntry":JSAObject.hazardCategories.categories[10][0] as Int,
                 "useLiftingEquipmentToRaise":JSAObject.hazardCategories.categories[10][1] as Int,
                 "secureTools":JSAObject.hazardCategories.categories[10][2] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDLIFT":[
+            "jsaHazardsLiftingDto":[
                 "liftingEquipment":JSAObject.hazardCategories.categories[11][0] as Int,
                 "confirmEquipmentCondition":JSAObject.hazardCategories.categories[11][0] as Int,
                 "obtainApprovalForLifts":JSAObject.hazardCategories.categories[11][1] as Int,
                 "haveDocumentedLiftPlan":JSAObject.hazardCategories.categories[11][2] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDHEIGHT":[
+            "jsaHazardsHeightsDto":[
                 "workAtHeights":JSAObject.hazardCategories.categories[12][0] as Int,
                 "discussWorkingPractice":JSAObject.hazardCategories.categories[12][0] as Int,
                 "verifyFallRestraint":JSAObject.hazardCategories.categories[12][1] as Int,
                 "useFullBodyHarness":JSAObject.hazardCategories.categories[12][2] as Int,
                 "useLockTypeSnaphoooks":JSAObject.hazardCategories.categories[12][3] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDELECTRICAL":[
+            "jsaHazardsElectricalDto":[
                 "portableElectricalEquipment":JSAObject.hazardCategories.categories[13][0] as Int,
                 "inspectToolsForCondition":JSAObject.hazardCategories.categories[13][0] as Int,
                 "implementGasTesting":JSAObject.hazardCategories.categories[13][1] as Int,
                 "protectElectricalLeads":JSAObject.hazardCategories.categories[13][2] as Int,
                 "identifyEquipClassification":JSAObject.hazardCategories.categories[13][3] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDMOVING":[
+            "jsaHazardsMovingDto":[
                 "movingEquipment":JSAObject.hazardCategories.categories[14][0] as Int,
                 "confirmMachineryIntegrity":JSAObject.hazardCategories.categories[14][0] as Int,
                 "provideProtectiveBarriers":JSAObject.hazardCategories.categories[14][1] as Int,
@@ -2239,7 +2239,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "lockOutEquipment":JSAObject.hazardCategories.categories[14][3] as Int,
                 "doNotWorkInLineOfFire":JSAObject.hazardCategories.categories[14][4] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDMANUAL":[
+            "jsaHazardsManualDto":[
                 "manualHandling":JSAObject.hazardCategories.categories[15][0] as Int,
                 "assessManualTask":JSAObject.hazardCategories.categories[15][0] as Int,
                 "limitLoadSize":JSAObject.hazardCategories.categories[15][1] as Int,
@@ -2249,8 +2249,8 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 ] as [String:Int],
             
             
-            "TOJSAHAZARDTOOLS":[
-                "EquipmentAndTools":JSAObject.hazardCategories.categories[16][0] as Int,
+            "jsaHazardsToolsDto":[
+                "equipmentAndTools":JSAObject.hazardCategories.categories[16][0] as Int,
                 "inspectEquipmentTool":JSAObject.hazardCategories.categories[16][0] as Int,
                 "brassToolsNecessary":JSAObject.hazardCategories.categories[16][1] as Int,
                 "useProtectiveGuards":JSAObject.hazardCategories.categories[16][2] as Int,
@@ -2258,7 +2258,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "checkForSharpEdges":JSAObject.hazardCategories.categories[16][4] as Int,
                 "applyHandSafetyPrinciple":JSAObject.hazardCategories.categories[16][5] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDFALLS":[
+            "jsaHazardsFallsDto":[
                 "slipsTripsAndFalls":JSAObject.hazardCategories.categories[17][0] as Int,
                 "identifyProjections":JSAObject.hazardCategories.categories[17][0] as Int,
                 "flagHazards":JSAObject.hazardCategories.categories[17][1] as Int,
@@ -2266,7 +2266,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "cleanUpLiquids":JSAObject.hazardCategories.categories[17][3] as Int,
                 "barricadeHoles":JSAObject.hazardCategories.categories[17][4] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDVOLTAGE":[
+            "jsaHazardsVoltageDto":[
                 "highVoltage":JSAObject.hazardCategories.categories[18][0] as Int,
                 "restrictAccess":JSAObject.hazardCategories.categories[18][0] as Int,
                 "dischargeEquipment":JSAObject.hazardCategories.categories[18][1] as Int,
@@ -2274,14 +2274,14 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "useFlashBurn":JSAObject.hazardCategories.categories[18][3] as Int,
                 "useInsulatedGloves":JSAObject.hazardCategories.categories[18][4] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDEXCAVATION":[
+            "jsaHazardsExcavationdDto":[
                 "excavations":JSAObject.hazardCategories.categories[19][0] as Int,
                 "haveExcavationPlan":JSAObject.hazardCategories.categories[19][0] as Int,
                 "locatePipesByHandDigging":JSAObject.hazardCategories.categories[19][1] as Int,
                 "deEnergizeUnderground":JSAObject.hazardCategories.categories[19][2] as Int,
                 "cseControls":JSAObject.hazardCategories.categories[19][3] as Int
                 ] as [String:Int],
-            "TOJSAHAZARDMOBILE":[
+            "jsaHazardsMobileDto":[
                 "mobileEquipment":JSAObject.hazardCategories.categories[20][0] as Int,
                 "assessEquipmentCondition":JSAObject.hazardCategories.categories[20][0] as Int,
                 "controlAccess":JSAObject.hazardCategories.categories[20][1] as Int,
@@ -2290,28 +2290,28 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "adhereToRules":JSAObject.hazardCategories.categories[20][4] as Int
                 ] as [String:Int],
             
-            "TOJSASTEPS": newHazardArray ,
+            "jsaStepsDtoList": newHazardArray ,
             
-            "TOJSASTOP": newStopArray,
+            "jsaStopTriggerDtoList": newStopArray,
             
-            "TOPTWHEADER":permitHeaderArray,
+            "ptwHeaderDtoList":permitHeaderArray,
             
-            "TOPTWREQDOC":permitRequiredDocumentsArray,
+            "ptwRequiredDocumentDtoList":permitRequiredDocumentsArray,
             
-            "TOPTWAPPROVAL": permitApprovalArray,
+            "ptwApprovalDtoList": permitApprovalArray,
             
-            "TOPTWCLOSEOUT":[],
+            "ptwCloseOutDtoList":[],
             
-//            "TOPTWTESTREC":permitAtmosphericTestArray,
+//            "ptwTestRecordDto":permitAtmosphericTestArray,
 //
-//            "TOPTWATESTRES":permitTestResultsArray,
+//            "ptwTestResultsDtoList":permitTestResultsArray,
             
-            "TOPTWTESTREC":[
+            "ptwTestRecordDto":[
                 "isCWP":0,
                 "isHWP":0,
                 "isCSE":0,
                 "detectorUsed":JSAObject.atmosphericTesting.detectorUsed.utf8EncodedString() as String,
-                "DateOfLastCalibration": JSAObject.atmosphericTesting.dateOfLastCallibration.convertToDateToMilliseconds(),
+                "dateOfLastCalibration": JSAObject.atmosphericTesting.dateOfLastCallibration.convertToDateToMilliseconds(),
                 "testingFrequency":JSAObject.atmosphericTesting.testFrequency.utf8EncodedString() as String,
                 "continuousGasMonitoring":JSAObject.atmosphericTesting.continuousMonitoringreqd as Int,
                 "priorToWorkCommencing":JSAObject.atmosphericTesting.priorToWorkCommencing as Int,
@@ -2324,12 +2324,12 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "isO2":JSAObject.atmosphericTesting.O2 as Int,
                 "isLELs":JSAObject.atmosphericTesting.Lels as Int,
                 "isH2S":JSAObject.atmosphericTesting.H2S as Int,
-                "Other":JSAObject.atmosphericTesting.Other.utf8EncodedString() as String
+                "other":JSAObject.atmosphericTesting.Other.utf8EncodedString() as String
                 ] as [String:Any],
             
-            "TOPTWATESTRES":permitTestResultsArray,
+            "ptwTestResultsDtoList":permitTestResultsArray,
             
-            "TOPTWCWPWORK":[
+            "ptwCwpWorkTypeDto":[
                 "criticalOrComplexLift":JSAObject.CWP.workTypeCW.criticalLift as Int,
                 "craneOrLiftingDevice":JSAObject.CWP.workTypeCW.Crane as Int,
                 "groundDisturbanceOrExcavation":JSAObject.CWP.workTypeCW.groundDist as Int,
@@ -2345,7 +2345,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "otherTypeOfWork":JSAObject.CWP.workTypeCW.otherText.utf8EncodedString() as String,
                 "descriptionOfWorkToBePerformed":JSAObject.CWP.workTypeCW.descriptionOfWork.utf8EncodedString() as String
                 ] as [String:Any],
-            "TOPTWHWPWORK":[
+            "ptwHwpWorkTypeDto":[
                 "cutting":JSAObject.HWP.workTypeHW.cutting as Int,
                 "wielding":JSAObject.HWP.workTypeHW.welding as Int,
                 "electricalPoweredEquipment":JSAObject.HWP.workTypeHW.electricalPoweredEquipment as Int,
@@ -2354,7 +2354,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "otherTypeOfWork":JSAObject.HWP.workTypeHW.otherText.utf8EncodedString() as String,
                 "descriptionOfWorkToBePerformed":JSAObject.HWP.workTypeHW.descriptionOfWork.utf8EncodedString() as String
                 ] as [String:Any],
-            "TOPTWCSEWORK":[
+            "ptwCseWorkTypeDto":[
                 "tank":JSAObject.CSEP.workTypeCSE.tank as Int,
                 "vessel":JSAObject.CSEP.workTypeCSE.vessel as Int,
                 "excavation": JSAObject.CSEP.workTypeCSE.excavation as Int,
@@ -2363,7 +2363,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "other":JSAObject.CSEP.workTypeCSE.other.utf8EncodedString() as String,
                 "reasonForCSE":JSAObject.CSEP.workTypeCSE.reasonForCSE.utf8EncodedString() as String
                 ] as [String:Any],
-            "TOJSALOCATION" : newLocationArray
+            "jsaLocationDtoList" : newLocationArray
         ]
         
         
@@ -2390,7 +2390,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
             DispatchQueue.main.async {
             self.loaderStart()
             }
-            let stringURL = "\(BaseUrl.apiURL)/com.iop.ptw/ApproveJSA.xsjs?jsaPermitNumber=\(JSAObject.jsaPermitNumber)&status=APPROVED&approvedBy=\(fullName)"
+            let stringURL = IMOEndpoints.approveJSA + "?jsaPermitNumber=\(JSAObject.jsaPermitNumber)&status=APPROVED&approvedBy=\(fullName)" //"\(BaseUrl.apiURL)/com.iop.ptw/ApproveJSA.xsjs?jsaPermitNumber=\(JSAObject.jsaPermitNumber)&status=APPROVED&approvedBy=\(fullName)"
             print(stringURL)
             let header = ["Content-Type" : "application/json"]
             let request = NSMutableURLRequest(url: NSURL(string: stringURL)! as URL, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 60.0)
@@ -2519,12 +2519,15 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
             self.loaderStart()
             }
             print(params)
-            
-            let urlString : String = "\(BaseUrl.apiURL)/com.iop.ptw/Create_Service.xsjs"
+            let urlString : String = IMOEndpoints.createService
+           //let urlString : String = "\(BaseUrl.apiURL)/com.iop.ptw/Create_Service.xsjs"
             var urlRequest = URLRequest(url: URL(string: urlString)!)
             urlRequest.httpMethod = "post"
             urlRequest.httpBody = self.getHttpBodayData(params: params)
             urlRequest.addValue("Application/json", forHTTPHeaderField: "Content-Type")
+            print("****urlRequest.httpBody***")
+            print(urlRequest.httpBody)
+            print("****urlRequest.httpBody***")
             ImoPtwNetworkManager.shared.urlSession.dataTask(with: urlRequest) { (data, response, error) in
                     
                 if error == nil{
@@ -2537,8 +2540,15 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                         
                         DispatchQueue.main.async {
 
-                        if let jsonDict = JSON as? NSDictionary {
-                            
+                        if let jsonDict2 = JSON as? NSDictionary {
+                            print("***jsonDict2***")
+                            print(jsonDict2)
+                            print("***jsonDict2***")
+                            var jsonDict = NSDictionary()
+                            jsonDict = ((jsonDict2["data"]  as? NSDictionary)!)
+                            print("***jsonDict***")
+                            print(jsonDict)
+                            print("***jsonDict***")
 //                            if JSAObject.permitNumber == 0 && JSAObject.hasCWP == 1
 //                            {
 //                                // call JSA & CWP combined Approve API
@@ -2554,7 +2564,8 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
 //                            }
 //                            else
 //                            {
-                                let msg = jsonDict.value(forKey: "Success") as! String
+                            //renamed Success to success
+                                let msg = jsonDict.value(forKey: "success") as! String
                                     self.loaderStop()
                                     let alertController = UIAlertController.init(title: "", message:msg , preferredStyle: UIAlertController.Style.alert)
                                     let okAction = UIAlertAction.init(title: "OK", style: UIAlertAction.Style.cancel, handler: { (action) in
@@ -2733,7 +2744,8 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 }
                 
                 for each in JSAObject.peopleList{
-                    each.permitNumber = String(describing: counter)
+                    //rajat stopped the string casting
+                    each.permitNumber = counter //(describing: counter)
                 }
                 newPeopleArray.append(contentsOf: JSAObject.peopleList)
                 peopleListValue.peopleArray[counter1!] = newPeopleArray
@@ -2753,7 +2765,8 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
             }
             else{
                 for each in JSAObject.peopleList{
-                    each.permitNumber = String(describing: counter)
+                    //rajat stopped the string casting
+                    each.permitNumber = counter //(describing: counter)
                 }
                 let peopleAddedList = PeopleAddedList()
                 peopleAddedList.locationArray.append(currentLocation.facilityOrSite)

@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,7 +10,7 @@
         <!--CreateJSAVC-->
         <scene sceneID="GH7-4g-GV3">
             <objects>
-                <viewController storyboardIdentifier="CreateJSAVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pbZ-m7-ra0" customClass="CreateJSAVC" customModule="Task_Management" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateJSAVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pbZ-m7-ra0" customClass="CreateJSAVC" customModule="PermitToWork" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hKd-A8-nfO"/>
                         <viewControllerLayoutGuide type="bottom" id="jGh-KT-RhT"/>
@@ -36,7 +35,7 @@
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateJSATableViewCell" rowHeight="62" id="jfM-kF-3OK" customClass="CreateJSATableViewCell" customModule="Task_Management" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreateJSATableViewCell" rowHeight="62" id="jfM-kF-3OK" customClass="CreateJSATableViewCell" customModule="PermitToWork" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="62"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="jfM-kF-3OK" id="XRl-kw-tvy">
@@ -247,7 +246,7 @@
         <!--HazardVC View Controller-->
         <scene sceneID="8D7-c5-dE5">
             <objects>
-                <viewController storyboardIdentifier="HazardVCViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ve5-e7-DpZ" customClass="HazardVCViewController" customModule="Task_Management" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HazardVCViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ve5-e7-DpZ" customClass="HazardVCViewController" customModule="PermitToWork" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zLc-so-gRh"/>
                         <viewControllerLayoutGuide type="bottom" id="sBV-71-Vbg"/>
@@ -266,14 +265,14 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <color key="sectionIndexColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HazardTableViewCell" id="Ok0-zV-ZGw" customClass="HazardTableViewCell" customModule="Task_Management" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HazardTableViewCell" id="Ok0-zV-ZGw" customClass="HazardTableViewCell" customModule="PermitToWork" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="288" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="Ok0-zV-ZGw" id="nBb-Ds-1J4">
                                             <rect key="frame" x="0.0" y="0.0" width="288" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l6i-Ss-xcA" customClass="MyButton" customModule="Task_Management" customModuleProvider="target">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l6i-Ss-xcA" customClass="MyButton" customModule="PermitToWork" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="10" width="24" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="24" id="1lL-B9-4Sg"/>
@@ -473,7 +472,7 @@
         <!--Hazard Category View Controller-->
         <scene sceneID="sAf-Vt-sSv">
             <objects>
-                <viewController storyboardIdentifier="HazardCategoryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vAp-MG-eAP" customClass="HazardCategoryViewController" customModule="Task_Management" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HazardCategoryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vAp-MG-eAP" customClass="HazardCategoryViewController" customModule="PermitToWork" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="42R-nV-qfS"/>
                         <viewControllerLayoutGuide type="bottom" id="6Jt-gP-KSe"/>
@@ -488,7 +487,7 @@
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HazardCetegoryTableViewCell" rowHeight="100" id="4M6-0d-Nei" customClass="HazardCetegoryTableViewCell" customModule="Task_Management" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HazardCetegoryTableViewCell" rowHeight="100" id="4M6-0d-Nei" customClass="HazardCetegoryTableViewCell" customModule="PermitToWork" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="4M6-0d-Nei" id="hpA-GZ-4Cw">
@@ -596,7 +595,7 @@
         <!--Risk Assesment View Controller-->
         <scene sceneID="qb8-G2-Xfj">
             <objects>
-                <viewController storyboardIdentifier="RiskAssesmentViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="f0f-gB-zxV" customClass="RiskAssesmentViewController" customModule="Task_Management" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RiskAssesmentViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="f0f-gB-zxV" customClass="RiskAssesmentViewController" customModule="PermitToWork" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6fu-Wz-9pv"/>
                         <viewControllerLayoutGuide type="bottom" id="E8K-Y8-0A3"/>
@@ -720,7 +719,7 @@
         <!--Potential Hazard View Controller-->
         <scene sceneID="bMu-1S-08J">
             <objects>
-                <viewController storyboardIdentifier="PotentialHazardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3Oe-Q9-Ie8" customClass="PotentialHazardViewController" customModule="Task_Management" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PotentialHazardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3Oe-Q9-Ie8" customClass="PotentialHazardViewController" customModule="PermitToWork" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pqW-i0-6ZL"/>
                         <viewControllerLayoutGuide type="bottom" id="rgy-fP-Nth"/>
@@ -790,7 +789,7 @@
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PotentialHazardTableViewCell" rowHeight="77" id="VUU-wL-xBA" customClass="PotentialHazardTableViewCell" customModule="Task_Management" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="PotentialHazardTableViewCell" rowHeight="77" id="VUU-wL-xBA" customClass="PotentialHazardTableViewCell" customModule="PermitToWork" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="77"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="VUU-wL-xBA" id="Rbu-l9-izx">
@@ -992,7 +991,7 @@
         <!--Stop JobVC View Controller-->
         <scene sceneID="V7Y-4C-qGH">
             <objects>
-                <viewController storyboardIdentifier="StopJobVCViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pqI-Fe-CEp" customClass="StopJobVCViewController" customModule="Task_Management" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StopJobVCViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pqI-Fe-CEp" customClass="StopJobVCViewController" customModule="PermitToWork" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VP2-Mq-HZN"/>
                         <viewControllerLayoutGuide type="bottom" id="Xae-yh-Cui"/>
@@ -1007,7 +1006,7 @@
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StopJobTableViewCell" rowHeight="58" id="VkK-H7-4lz" customClass="StopJobTableViewCell" customModule="Task_Management" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="StopJobTableViewCell" rowHeight="58" id="VkK-H7-4lz" customClass="StopJobTableViewCell" customModule="PermitToWork" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="VkK-H7-4lz" id="hZK-u8-Hlx">
@@ -1285,7 +1284,7 @@
         <!--Add New Hazard View Controller-->
         <scene sceneID="piL-Fp-oxC">
             <objects>
-                <viewController storyboardIdentifier="AddNewHazardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hHA-qh-Gkv" customClass="AddNewHazardViewController" customModule="Task_Management" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddNewHazardViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hHA-qh-Gkv" customClass="AddNewHazardViewController" customModule="PermitToWork" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ju3-hs-qAH"/>
                         <viewControllerLayoutGuide type="bottom" id="doJ-we-8hw"/>
@@ -1497,7 +1496,7 @@
         <!--Add New Job View Controller-->
         <scene sceneID="k1Q-lJ-HVv">
             <objects>
-                <viewController storyboardIdentifier="AddNewJobViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QKL-Xj-uFK" customClass="AddNewJobViewController" customModule="Task_Management" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddNewJobViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="QKL-Xj-uFK" customClass="AddNewJobViewController" customModule="PermitToWork" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="f1t-YR-yQl"/>
                         <viewControllerLayoutGuide type="bottom" id="58Z-uk-x5u"/>
@@ -1598,7 +1597,7 @@
         <!--Create Permit View Controller-->
         <scene sceneID="Bsi-23-jTA">
             <objects>
-                <viewController storyboardIdentifier="CreatePermitViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GSo-RV-dEf" customClass="CreatePermitViewController" customModule="Task_Management" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreatePermitViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GSo-RV-dEf" customClass="CreatePermitViewController" customModule="PermitToWork" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PqO-ne-siL"/>
                         <viewControllerLayoutGuide type="bottom" id="nos-GQ-jUY"/>
@@ -1699,7 +1698,7 @@
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreatePermitTableViewCell" rowHeight="67" id="1mj-TB-6th" customClass="CreatePermitTableViewCell" customModule="Task_Management" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CreatePermitTableViewCell" rowHeight="67" id="1mj-TB-6th" customClass="CreatePermitTableViewCell" customModule="PermitToWork" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="67"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="1mj-TB-6th" id="cPL-A6-76V">
@@ -1774,7 +1773,7 @@
         <!--Add People View Controller-->
         <scene sceneID="sPh-XE-91t">
             <objects>
-                <viewController storyboardIdentifier="AddPeopleViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Q97-tM-xdY" customClass="AddPeopleViewController" customModule="Task_Management" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddPeopleViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Q97-tM-xdY" customClass="AddPeopleViewController" customModule="PermitToWork" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iES-h2-Aqq"/>
                         <viewControllerLayoutGuide type="bottom" id="UCG-Oq-a46"/>
@@ -1909,7 +1908,7 @@
                                     <outlet property="delegate" destination="Q97-tM-xdY" id="zMf-ar-dKF"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="000-000-0000" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="39T-yf-32Z" customClass="VSTextField" customModule="Task_Management" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="000-000-0000" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="39T-yf-32Z" customClass="VSTextField" customModule="PermitToWork" customModuleProvider="target">
                                 <rect key="frame" x="174" y="130" width="130" height="22"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
@@ -2035,7 +2034,7 @@
         <!--Add People List View Controller-->
         <scene sceneID="0fY-G6-rPV">
             <objects>
-                <viewController storyboardIdentifier="AddPeopleListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4b9-mO-CxP" customClass="AddPeopleListViewController" customModule="Task_Management" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddPeopleListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="4b9-mO-CxP" customClass="AddPeopleListViewController" customModule="PermitToWork" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="D7I-Hu-Ul3"/>
                         <viewControllerLayoutGuide type="bottom" id="kuz-dU-a9A"/>
@@ -2074,7 +2073,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddPeopleListTableViewCell" rowHeight="60" id="SLB-Kp-zAR" customClass="AddPeopleListTableViewCell" customModule="Task_Management" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AddPeopleListTableViewCell" rowHeight="60" id="SLB-Kp-zAR" customClass="AddPeopleListTableViewCell" customModule="PermitToWork" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="SLB-Kp-zAR" id="Nrc-2u-UIQ">

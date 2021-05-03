@@ -26,7 +26,7 @@ class TOJSAHAZARDTOOLS : NSObject
         if let temp0 = JSON["permitNumber"] as? String {
             self.permitNumber = temp0
         }
-        if let temp1 = JSON["EquipmentAndTools"] as? Int {
+        if let temp1 = JSON["equipmentAndTools"] as? Int {
             self.EquipmentAndTools = temp1
         }
         if let temp5 = JSON["inspectEquipmentTool"] as? Int {

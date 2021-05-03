@@ -114,7 +114,7 @@ public class OnboardingFlowProvider: OnboardingFlowProviding {
     // MARK: – Step configuration
 
     private func configuredWelcomeScreenStep() -> WelcomeScreenStep {
-        let discoveryConfigurationTransformer = DiscoveryServiceConfigurationTransformer(applicationID: "com.incture.taskmanagement", authenticationPath: "com.staticmetadata.dest")
+        let discoveryConfigurationTransformer = DiscoveryServiceConfigurationTransformer(applicationID: "com.incture.imo", authenticationPath: "com.incture.imoPTW")
         let welcomeScreenStep = WelcomeScreenStep(transformer: discoveryConfigurationTransformer, providers:  [FileConfigurationProvider()])
 
         welcomeScreenStep.welcomeScreenCustomizationHandler = { welcomeScreen in

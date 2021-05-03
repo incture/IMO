@@ -115,6 +115,9 @@ final class ICTextField: UITextField {
     let datePicker: UIDatePicker = {
         let dateDropDown = UIDatePicker()
         dateDropDown.datePickerMode = .date
+        if #available(iOS 14.0, *) {
+            dateDropDown.preferredDatePickerStyle = .wheels
+        }
         dateDropDown.addTarget(self, action: #selector(ICTextField.datePickerValueChanged(sender:)), for: .valueChanged)
         return dateDropDown
     }()

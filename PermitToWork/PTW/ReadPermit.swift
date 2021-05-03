@@ -24,13 +24,13 @@ class ReadPermit : NSObject
     init(JSON : NSDictionary){
         
         let jsaObject = JSON
-        if let temp = jsaObject.value(forKey: "TOPTWHEADER") as? [NSDictionary]{
+        if let temp = jsaObject.value(forKey: "ptwHeaderDtoList") as? [NSDictionary]{
             for each in temp{
                 let temp00 = TOPTWHEADER(JSON : each) as TOPTWHEADER
                 self.TOPTWHEADERValue.append(temp00)
             }
         }
-        if let temp = jsaObject.value(forKey: "TOPTWREQDOC") as? [NSDictionary]{
+        if let temp = jsaObject.value(forKey: "ptwRequiredDocumentDtoList") as? [NSDictionary]{
             for each in temp{
                 let temp00 = TOPTWREQDOC(JSON : each) as TOPTWREQDOC
                 self.TOPTWREQDOCValue.append(temp00)
@@ -49,19 +49,19 @@ class ReadPermit : NSObject
             }
         }
         
-        if let temp = jsaObject.value(forKey: "TOPTWCWPWORK") as? NSDictionary{
+        if let temp = jsaObject.value(forKey: "ptwCwpWorkTypeDto") as? NSDictionary{
             self.TOPTWCWPWORKValue = TOPTWCWPWORK(JSON : temp)
         }
         
-        if let temp = jsaObject.value(forKey: "TOPTWHWPWORK") as? NSDictionary{
+        if let temp = jsaObject.value(forKey: "ptwHwpWorkTypeDto") as? NSDictionary{
             self.TOPTWHWPWORKValue = TOPTWHWPWORK(JSON : temp)
         }
         
-        if let temp = jsaObject.value(forKey: "TOPTWCSEWORK") as? NSDictionary{
+        if let temp = jsaObject.value(forKey: "ptwCseWorkTypeDto") as? NSDictionary{
             self.TOPTWCSEWORKValue = TOPTWCSPWORK(JSON : temp)
         }
         
-        if let temp = jsaObject.value(forKey: "TOPTWPEOPLE") as? [NSDictionary]{
+        if let temp = jsaObject.value(forKey: "ptwPeopleDtoList") as? [NSDictionary]{
             for each in temp{
                 let temp00 = TOPTWPEOPLE(JSON : each) as TOPTWPEOPLE
                 self.TOPTWPEOPLEArrayValue.append(temp00)

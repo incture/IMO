@@ -42,7 +42,7 @@ class AtmosphericTesting : NSObject, NSCoding{
         self.Lels = decoder.decodeInteger(forKey: "Lels")
         self.H2S = decoder.decodeInteger(forKey: "H2S")
         self.other = decoder.decodeInteger(forKey: "other")
-        self.Other = decoder.decodeObject(forKey: "Other") as? String ?? ""
+        self.Other = decoder.decodeObject(forKey: "other") as? String ?? ""
         self.priorToWorkCommencing = decoder.decodeInteger(forKey: "priorToWorkCommencing")
         self.eachWorkPeriod = decoder.decodeInteger(forKey: "eachWorkPeriod")
         self.noHours = decoder.decodeInteger(forKey: "noHours")
@@ -61,7 +61,7 @@ class AtmosphericTesting : NSObject, NSCoding{
         coder.encode(Lels, forKey: "Lels")
         coder.encode(H2S, forKey: "H2S")
         coder.encode(other, forKey: "other")
-        coder.encode(Other, forKey: "Other")
+        coder.encode(Other, forKey: "other")
         coder.encode(priorToWorkCommencing, forKey: "priorToWorkCommencing")
         coder.encode(eachWorkPeriod, forKey: "eachWorkPeriod")
         coder.encode(noHours, forKey: "noHours")

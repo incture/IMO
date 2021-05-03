@@ -527,7 +527,7 @@ extension ApprovalToAuthority{
             
             finalDict = [
                 "status" : "APPROVED",
-                "TOPTWAPPROVAL": [
+                "ptwApprovalDtoList": [
                     "permitNumber" : CWObject.header.permitNo,
                     "prejobWalkthroughBy": CWObject.signOff.walkthrough,
                     "isWorkSafeToPerform": CWObject.signOff.isSafeContinue,
@@ -552,7 +552,7 @@ extension ApprovalToAuthority{
             
             finalDict = [
                 "status" : "APPROVED",
-                "TOPTWAPPROVAL": [
+                "ptwApprovalDtoList": [
                     "permitNumber" : CWObject.header.permitNo,
                     "prejobWalkthroughBy": CWObject.signOff.walkthrough,
                     "isWorkSafeToPerform": CWObject.signOff.isSafeContinue,
@@ -597,6 +597,9 @@ extension ApprovalToAuthority{
                 do{
                     guard let data = data else { return }
                     let JSON = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
+                    print("*****")
+                    print(JSON)
+                    print("*****")
                     if let jsonDict = JSON as? NSDictionary {
                         let msg = jsonDict.value(forKey: "Success") as! String
                         let permitListService = PermitDetailModelService(context: self.context)

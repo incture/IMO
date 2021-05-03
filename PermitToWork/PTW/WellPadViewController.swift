@@ -100,7 +100,8 @@ class WellPadViewController: UIViewController , UITableViewDataSource,UITableVie
         
         print(postData)
         
-        let urlString : String = "\(BaseUrl.apiURL)/JavaAPI_Dest/TaskManagement_Rest/murphy/location/getLocation"
+        let urlString : String = IMOEndpoints.locationService
+            //"\(BaseUrl.apiURL)/JavaAPI_Dest/TaskManagement_Rest/murphy/location/getLocation"
         var urlRequest = URLRequest(url: URL(string: urlString)!)
         urlRequest.httpMethod = "post"
         urlRequest.httpBody = self.getHttpBodayData(params: postData)

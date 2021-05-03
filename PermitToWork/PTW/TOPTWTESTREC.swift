@@ -55,7 +55,7 @@ class TOPTWTESTREC : NSObject{
         if let temp1 = JSON["detectorUsed"] as? String {
             self.detectorUsed = temp1
         }
-        if let temp1 = JSON["DateOfLastCalibration"] as? Int64 {
+        if let temp1 = JSON["dateOfLastCalibration"] as? Int64 {
             self.DateOfLastCalibration = temp1.convertEpocToDatePTW()
         }
         if let temp1 = JSON["testingFrequency"] as? String {
@@ -73,7 +73,7 @@ class TOPTWTESTREC : NSObject{
         if let temp1 = JSON["deviceSerialNo"] as? String {
             self.deviceSerialNo = temp1
         }
-        if let temp1 = JSON["Other"] as? String {
+        if let temp1 = JSON["other"] as? String {
             self.Other = temp1
         }
         if let temp11 = JSON["continuousGasMonitoring"] as? Int {

@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="hFT-en-Uuw">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -12,7 +11,7 @@
         <!--User Detail-->
         <scene sceneID="uNG-6P-TQg">
             <objects>
-                <viewController storyboardIdentifier="UserDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8za-XW-v3P" customClass="UserDetail" customModule="IOP_QA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8za-XW-v3P" customClass="UserDetail" customModule="PermitToWork" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ryw-RL-vgz"/>
                         <viewControllerLayoutGuide type="bottom" id="c5F-D5-OQp"/>
@@ -97,7 +96,7 @@
         <!--Created Permit Controller View Controller-->
         <scene sceneID="p3P-HY-XwS">
             <objects>
-                <viewController storyboardIdentifier="CreatedPermitControllerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kjt-5T-Eei" customClass="CreatedPermitControllerViewController" customModule="IOP_QA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreatedPermitControllerViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kjt-5T-Eei" customClass="CreatedPermitControllerViewController" customModule="PermitToWork" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ZIx-jd-sRd"/>
                         <viewControllerLayoutGuide type="bottom" id="e58-6U-wxk"/>
@@ -275,7 +274,7 @@
         <!--Location View Controller-->
         <scene sceneID="rIY-UG-tTG">
             <objects>
-                <viewController storyboardIdentifier="LocationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Wzj-up-ffq" customClass="LocationViewController" customModule="IOP_QA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LocationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Wzj-up-ffq" customClass="LocationViewController" customModule="PermitToWork" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bLa-z1-ah2"/>
                         <viewControllerLayoutGuide type="bottom" id="ekN-U4-Xyd"/>
@@ -343,7 +342,7 @@
         <!--Well Pad View Controller-->
         <scene sceneID="Fkk-dS-N7v">
             <objects>
-                <viewController storyboardIdentifier="WellPadViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jpe-gQ-Uip" customClass="WellPadViewController" customModule="IOP_QA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WellPadViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jpe-gQ-Uip" customClass="WellPadViewController" customModule="PermitToWork" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="83R-QN-fAY"/>
                         <viewControllerLayoutGuide type="bottom" id="tgc-95-2Wi"/>
@@ -402,7 +401,7 @@
         <!--Well View Controller-->
         <scene sceneID="gkE-Av-roi">
             <objects>
-                <viewController storyboardIdentifier="WellViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tUq-aa-Ops" customClass="WellViewController" customModule="IOP_QA" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WellViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tUq-aa-Ops" customClass="WellViewController" customModule="PermitToWork" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ws3-EL-gj0"/>
                         <viewControllerLayoutGuide type="bottom" id="jMt-76-jXO"/>

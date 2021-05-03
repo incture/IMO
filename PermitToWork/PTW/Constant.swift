@@ -37,46 +37,14 @@ struct Storyboard {
 
 struct BaseUrl{
     
-    static var apiURL = ConstantServer.qaURL  //Change 1
-    static var docURL = ConstantServer.qaDocURL  //Chnage 2
-    static var alanUrl = ConstantServer.alanDev   //Chnage 3
-    static var socketURL = ConstantServer.socketUrldev
-    static var touchLessKey = ConstantServer.devtouchless
-    static var touchlessUrl = ConstantServer.devUrlTouch
+    static var apiURL = ConstantServer.imoUrl
 
 }
 
 struct ConstantServer {
-    
-    static var devURL = "https://mobile-d998e5467.us2.hana.ondemand.com"//MCD
-    static var qaURL = "https://mobile-d7e367960.us2.hana.ondemand.com"//MCQ
-    static var prodURL = "https://mobile-dee8964f1.us2.hana.ondemand.com"//MCP
-    static var iodURL = "https://mobile-dfe0918b2.us2.hana.ondemand.com"//IOD
-    
-    static var enchancementDevURL = "https://mobile-hi61zfjqlt.us2.hana.ondemand.com"//MED
-    static var enhancementQaURL = "https://mobile-zqc750d9c2.us2.hana.ondemand.com"//MEQ
-    
-    //Document Service URL's
-    static var qaDocURL = "https://dmsappd7e367960.us2.hana.ondemand.com/AppDownload/murphy/documents/"//MCD and MCQ
-    static var prodDocURL = "https://dmsappdee8964f1.us2.hana.ondemand.com/AppDownload/murphy/documents/"//MCD
-    
-    //Alan Config URL's
-    static let alanDev = "1cd32d2938ac4e3e8fb358883c9f3b3b2e956eca572e1d8b807a3e2338fdd0dc/stage"
-    static let alanProd = "1cd32d2938ac4e3e8fb358883c9f3b3b2e956eca572e1d8b807a3e2338fdd0dc/prod"
-    
-    static let socketUrldev = "wss://taskmanagementrestd998e5467.us2.hana.ondemand.com/TaskManagement_Rest/refreshAccessToken"
-    static let socketUrlmed = "wss://taskmanagementresthi61zfjqlt.us2.hana.ondemand.com/TaskManagement_Rest/refreshAccessToken"
-    static let socketUrlQa = "wss://taskmanagementrestd7e367960.us2.hana.ondemand.com/TaskManagement_Rest/refreshAccessToken"
-    
-    //Touchless API key
-    static let qaTouchless = "AIzaSyCrVOQJWxMSFlnXnXmgKA7o5Dp4FIIMM5M"
-    static let devtouchless = "AIzaSyCGL5svYm6kEOqB54AXB1PWOYGsKVA5AWw"
-    
-    //Touchless API Urls
-    
-    static let devUrlTouch = "https://dialogflow.googleapis.com/v2/projects/taskmanagement-dev-ogrc/agent/sessions/"
-    static let qaUrlTouch = "https://dialogflow.googleapis.com/v2/projects/taskmanagement-qa-lptb/agent/sessions/"
+  
 
+    static var imoUrl = "https://mobile-b0ot37y8l6.hana.ondemand.com"
     
 }
 

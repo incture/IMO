@@ -502,8 +502,8 @@ extension PermitCloseOutController{
         
         let finalDict = [
             "status" : "CLOSED",
-            "TOPTWCLOSEOUT": closeOutDict,
-            "TOPTWATESTRES": testResultDict
+            "ptwCloseOutDtoList": closeOutDict,
+            "ptwTestResultsDtoList": testResultDict
         ] as [String : Any]
         
         if ConnectionCheck.isConnectedToNetwork(){

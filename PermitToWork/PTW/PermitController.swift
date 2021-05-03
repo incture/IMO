@@ -711,7 +711,11 @@ extension PermitController{
         DispatchQueue.main.async {
             self.loaderStart()
         }
-        let urlString : String = "\(BaseUrl.apiURL)/com.iop.ptw/JSA_Details_By_PermitNumber.xsjs?permitNumber=\(selectedCWPermit)"
+        //let urlString : String = "\(BaseUrl.apiURL)/com.iop.ptw/JSA_Details_By_PermitNumber.xsjs?permitNumber=\(selectedCWPermit)"
+        
+        
+        let urlString : String = IMOEndpoints.getJSAByPermitNumber + "permitNumber=\(selectedCWPermit)"
+        
         var urlRequest = URLRequest(url: URL(string: urlString)!)
         urlRequest.httpMethod = "get"
         ImoPtwNetworkManager.shared.urlSession.dataTask(with: urlRequest) { (data, response, error) in
@@ -723,8 +727,17 @@ extension PermitController{
                 }
                 do{
                     let JSON = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
+                    
+                    
+                   /* if let jsonDict2 = JSON as? NSDictionary {
+                       
+                        var jsonDict = [NSDictionary]()
+                        jsonDict = (jsonDict2["data"]  as? [NSDictionary] ?? [])*/
+                    
+                    
                     if let jsonDict = JSON as? NSDictionary {
-                        readJSAObject = ReadJSA(JSON:jsonDict)
+                        
+                        readJSAObject = ReadJSA(JSON:jsonDict.value(forKey: "data") as? NSDictionary ?? NSDictionary())
                         self.readModelToJSAModel()
                         DispatchQueue.main.async {
                            // self.loaderStop()

@@ -274,7 +274,8 @@ class AddPeopleViewController: UIViewController, UITextFieldDelegate {
             JSAObject.addNewpeople.lastName = lastNameTF.text!
             JSAObject.addNewpeople.contactNumber = contactNOTF.text!
             if JSAObject.permitNumber != 0{
-                JSAObject.addNewpeople.permitNumber = String(JSAObject.permitNumber)
+                //rajat stopped the string casting
+                JSAObject.addNewpeople.permitNumber = JSAObject.permitNumber
             }
             else{
                 let value = UserDefaults.standard.string(forKey: "offlinenumber")
@@ -282,7 +283,8 @@ class AddPeopleViewController: UIViewController, UITextFieldDelegate {
                 if value != nil{
                     counter = Int(value!)! - 1
                 }
-                JSAObject.addNewpeople.permitNumber = String(counter)
+                //rajat stopped the string casting
+                JSAObject.addNewpeople.permitNumber = (counter)
             }
             if !ConnectionCheck.isConnectedToNetwork(){
                 if JSAObject.addPeopleIndex == 0 && index == nil{

@@ -69,7 +69,7 @@ class ProfileViewController: UIViewController, UIScrollViewDelegate {
         
         // Header - Image
         headerImageView = UIImageView(frame: header.bounds)
-        headerImageView?.image = UIImage(named: "backImage")
+        headerImageView?.image = UIImage(named: "launchImage")
         //  headerImageView.backgroundColor = UIColor.blue
         headerImageView?.contentMode = UIView.ContentMode.scaleAspectFill
         header.insertSubview(headerImageView, belowSubview: headerLabel)

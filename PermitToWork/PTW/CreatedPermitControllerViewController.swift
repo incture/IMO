@@ -176,11 +176,14 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
         
         if currentLocation.muwi != ""
         {
-            locationStr = "\(BaseUrl.apiURL)/com.iop.ptw/getListofActive_Worker.xsjs?muwi=\(currentLocation.muwi)&facility=\(currentLocation.facilityOrSite)"
+            
+           // locationStr = "\(BaseUrl.apiURL)/com.iop.ptw/getListofActive_Worker.xsjs?muwi=\(currentLocation.muwi)&facility=\(currentLocation.facilityOrSite)"
+            locationStr = IMOEndpoints.getListOfActiveWorkers+"muwi=\(currentLocation.muwi)&facility=\(currentLocation.facilityOrSite)"
         }
         else
         {
-            locationStr = "\(BaseUrl.apiURL)/com.iop.ptw/getListofActive_Worker.xsjs?facility=\(currentLocation.facilityOrSite)"
+            //locationStr = "\(BaseUrl.apiURL)/com.iop.ptw/getListofActive_Worker.xsjs?facility=\(currentLocation.facilityOrSite)"
+            locationStr = IMOEndpoints.getListOfActiveWorkers+"facility=\(currentLocation.facilityOrSite)"
         }
         if ConnectionCheck.isConnectedToNetwork(){
             getPeopleListData()
@@ -970,8 +973,11 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
         }
         
         print(finalArray)
-        
+        //rajat added in main thread
+        DispatchQueue.main.async {
             self.tableView.reloadData()
+        }
+
     }
     
     func parsePermitData()
@@ -1220,10 +1226,13 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
         
     }
     
+    //rajat
+    //getting response
     func getPeopleListData(){
 
         DispatchQueue.main.async {
-            self.loaderStart()
+            //rajat commented
+            //self.loaderStart()
         }
         let encodedUrl = locationStr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         var urlRequest = URLRequest(url: URL(string: encodedUrl ?? "")!)
@@ -1236,7 +1245,8 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
                 }
                 do{
                     let JSON = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
-                    if let jsonArr = JSON as? NSArray {
+                    if let jsonDict = JSON as? NSDictionary {
+                        let jsonArr = jsonDict.value(forKey: "data") as? NSArray ?? NSArray()
                         print("jsonArr",jsonArr)
                         self.peopleListArr.removeAll()
                         self.location.removeAll()
@@ -1265,7 +1275,8 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
                             for each in jsonArr{
                                 if let dtoDict = each as? NSDictionary{
                                     var peopleList = [People]()
-                                    if let tempArr = dtoDict["ptwPeople"] as? [NSDictionary] {
+                                    //rajat renamed ptwPeople to ptwPeopleList
+                                    if let tempArr = dtoDict["ptwPeopleList"] as? [NSDictionary] {
                                         for arr in tempArr {
                                             let people = People(JSON : arr as NSDictionary)
                                             let firstName = arr["firstName"] as? String ?? ""
@@ -1273,7 +1284,8 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
                                             people.fullName = firstName + " " + lastName
                                             peopleList.append(people)
                                         }
-                                        if let location = dtoDict["faciltyorsite"] as? String{
+                                        //rajat renamed faciltyorsite to faciltyOrSite
+                                        if let location = dtoDict["facilityOrSite"] as? String{
                                             for each in peopleList{
                                                 each.location = location
                                                 self.allPeople.append(each)
@@ -1796,7 +1808,7 @@ extension CreatedPermitControllerViewController: UITableViewDataSource, UITableV
             self.modalPresentationStyle = .overFullScreen
                 vc.selectedJSA = self.selectedJSA
             let jsaDetailService = JSADetailModelService(context: self.context)
-                let selectedPermitNumber = Int16(self.selectedJSA)!
+                let selectedPermitNumber = Int16(self.selectedJSA) ?? 0
             let searchPredicate = NSPredicate(format:"permitNumber == %@", NSNumber(value: Int(selectedPermitNumber)))
             let jsaDetail = jsaDetailService.get(withPredicate: searchPredicate)
             if ConnectionCheck.isConnectedToNetwork(){
@@ -2033,7 +2045,20 @@ extension CreatedPermitControllerViewController{
     
     func getJSAList(){
         
-       let url = "\(BaseUrl.apiURL)/com.iop.ptw/GetJSAbyLocation.xsjs?muwi='\(currentLocation.muwi)'&facility='\(currentLocation.facilityOrSite)'"
+      //let url = "\(BaseUrl.apiURL)/com.iop.ptw/GetJSAbyLocation.xsjs?muwi='\(currentLocation.muwi)'&facility='\(currentLocation.facilityOrSite)'"
+        
+        
+        var url = ""
+        if currentLocation.muwi != ""{
+             url = IMOEndpoints.getJSAByLocation+"muwi=\(currentLocation.muwi)&facility=\(currentLocation.facilityOrSite)"
+        }
+        else{
+            url = IMOEndpoints.getJSAByLocation+"facility=\(currentLocation.facilityOrSite)"
+        }
+       
+        
+        
+        
         let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         var urlRequest = URLRequest(url: URL(string: encodedUrl ?? "")!)
         urlRequest.httpMethod = "get"
@@ -2046,9 +2071,15 @@ extension CreatedPermitControllerViewController{
                 do{
                     let JSON = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
                   
+                    print("**************************")
+                    print(JSON)
+                    print("**************************")
                     DispatchQueue.main.async {
        
-                    if let jsonDict = JSON as? [NSDictionary] {
+                    if let jsonDict2 = JSON as? NSDictionary {
+                       
+                        var jsonDict = [NSDictionary]()
+                        jsonDict = (jsonDict2["data"]  as? [NSDictionary] ?? [])
                         self.listData.removeAll()
                         let jsaListService = JSAModelService(context: self.context)
                         var facilityOrSiteValue : String?
@@ -2066,7 +2097,8 @@ extension CreatedPermitControllerViewController{
                         }
                         for each in jsonDict{
                             let jsa = JSAList(JSON : each)
-                            _ = jsaListService.create(listData: jsa, permitNumber: Int(jsa.permitNumber)!, facilityOrSite: facilityOrSiteValue!)
+                            print(jsa)
+                            _ = jsaListService.create(listData: jsa, permitNumber: Int(jsa.permitNumber) ?? 0, facilityOrSite: facilityOrSiteValue!)
                             self.listData.append(jsa)
                         }
                             jsaListService.saveChanges()
@@ -2119,7 +2151,17 @@ extension CreatedPermitControllerViewController{
     
     func getPermitList(){
         
-        let url = "\(BaseUrl.apiURL)/com.iop.ptw/GetPermitsbyLocation.xsjs?muwi='\(currentLocation.muwi)'&facility='\(currentLocation.facilityOrSite)'"
+        var url = ""
+        if currentLocation.muwi != ""{
+            url = IMOEndpoints.getPermits + currentLocation.facilityOrSite + "&muwi='\(currentLocation.muwi)'"
+        }
+        else{
+            url = IMOEndpoints.getPermits + currentLocation.facilityOrSite
+        }
+       
+        
+        
+          //"\(BaseUrl.apiURL)/com.iop.ptw/GetPermitsbyLocation.xsjs?muwi='\(currentLocation.muwi)'&facility='\(currentLocation.facilityOrSite)'"
         let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         var urlRequest = URLRequest(url: URL(string: encodedUrl ?? "")!)
         urlRequest.httpMethod = "get"
@@ -2130,12 +2172,12 @@ extension CreatedPermitControllerViewController{
                     return
                 }
                 do{
-                    let JSON = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
+                    let JSON = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary
                     DispatchQueue.main.async {
                     self.HWList.removeAll()
                     self.CWList.removeAll()
                     self.CSEList.removeAll()
-                    if let jsonDict = JSON as? NSDictionary {
+                        if let jsonDict = JSON?.value(forKey: "data") as? NSDictionary {
                         let permitListService = PermitModelService(context: self.context)
                         var facilityOrSiteValue : String?
                         if currentLocation.hierarchyLevel == "facility"{
@@ -2149,7 +2191,7 @@ extension CreatedPermitControllerViewController{
                         for each in permitModelList{
                             permitListService.delete(id: each.objectID)
                         }
-                        if let val = jsonDict.value(forKey: "CWP") as? [NSDictionary]
+                        if let val = jsonDict.value(forKey: "cwp") as? [NSDictionary]
                         {
                             for each in val
                             {
@@ -2160,7 +2202,7 @@ extension CreatedPermitControllerViewController{
                                 self.CWList.append(value)
                             }
                         }
-                        if let val = jsonDict.value(forKey: "HWP") as? [NSDictionary]
+                        if let val = jsonDict.value(forKey: "hwp") as? [NSDictionary]
                         {
                             for each in val
                             {
@@ -2171,7 +2213,7 @@ extension CreatedPermitControllerViewController{
                                 self.HWList.append(value)
                             }
                         }
-                        if let val = jsonDict.value(forKey: "CSE") as? [NSDictionary]
+                        if let val = jsonDict.value(forKey: "cse") as? [NSDictionary]
                         {
                             for each in val
                             {

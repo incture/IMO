@@ -472,7 +472,7 @@ extension PicSignOffViewController: UITableViewDataSource, UITableViewDelegate {
     {
         let finalDict = [
             "status" : "APPROVED",
-            "TOPTWAPPROVAL": [
+            "ptwApprovalDtoList": [
                 "permitNumber" : CWObject.header.permitNo,
                 "prejobWalkthroughBy": CWObject.signOff.walkthrough,
                 "isWorkSafeToPerform": CWObject.signOff.isSafeContinue,

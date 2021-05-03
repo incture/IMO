@@ -97,7 +97,8 @@ class LocationViewController: UIViewController , UITableViewDataSource,UITableVi
         let header = ["Content-Type" : "Application/json"]
         
         //        Alamofire.request("https://taskmanagementrestdfe0918b2.us2.hana.ondemand.com/TaskManagement_Rest/murphy/location/getLocation"
-        let urlString : String = "\(BaseUrl.apiURL)/JavaAPI_Dest/TaskManagement_Rest/murphy/location/getLocation"
+        let urlString : String = IMOEndpoints.locationService
+            //"\(BaseUrl.apiURL)/JavaAPI_Dest/TaskManagement_Rest/murphy/location/getLocation"
         var urlRequest = URLRequest(url: URL(string: urlString)!)
         urlRequest.httpMethod = "post"
         urlRequest.httpBody = self.getHttpBodayData(params: postData)
