@@ -82,11 +82,11 @@ public class JsaHeaderDao extends BaseDao {
 				jsaheaderDto.setPermitNumber((Integer) a[0]);
 				jsaheaderDto.setJsaPermitNumber((String) a[1]);
 				jsaheaderDto.setHasCWP(Integer.parseInt(a[2].toString()));
-				jsaheaderDto.setHasHWP(Integer.parseInt(a[2].toString()));
-				jsaheaderDto.setHasCSE(Integer.parseInt(a[2].toString()));
+				jsaheaderDto.setHasHWP(Integer.parseInt(a[3].toString()));
+				jsaheaderDto.setHasCSE(Integer.parseInt(a[4].toString()));
 				jsaheaderDto.setTaskDescription((String) a[5]);
 				jsaheaderDto.setIdentifyMostSeriousPotentialInjury((String) a[6]);
-				jsaheaderDto.setIsActive(Integer.parseInt(a[2].toString()));
+				jsaheaderDto.setIsActive(Integer.parseInt(a[7].toString()));
 				jsaheaderDto.setStatus((String) a[8]);
 			}
 			logger.info(jsaheaderDto.toString());
