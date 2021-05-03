@@ -124,7 +124,7 @@ public class PermitsByLocDao extends BaseDao {
 					isCse = rawData.get(i).getIsCse();
 				}
 				permitRecord.setCreatedDate(rawData.get(i).getCreatedDate());
-				permitRecord.setFacilityorsite(rawData.get(i).getFacilityorsite());
+				permitRecord.setFacilityOrSite(rawData.get(i).getFacilityorsite());
 				permitRecord.setPermitNumber(rawData.get(i).getPermitNumber());
 				permitRecord.setLastUpdatedDate(rawData.get(i).getLastUpdatedDate());
 				permitRecord.setStatus(rawData.get(i).getStatus());

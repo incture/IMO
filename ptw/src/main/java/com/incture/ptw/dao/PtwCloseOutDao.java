@@ -9,14 +9,13 @@ import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.incture.ptw.dto.CloseOutReqDto;
 import com.incture.ptw.dto.PtwCloseOutDto;
 
 @Repository
-public class PtwCloseOutDao extends BaseDao{
+public class PtwCloseOutDao extends BaseDao {
 	@Autowired
 	private KeyGeneratorDao keyGeneratorDao;
-	
+
 	public List<PtwCloseOutDto> getPtwCloseOut(String permitNumber) {
 		try {
 			String sql = "select * from IOP.PTWCLOSEOUT where PERMITNUMBER= :permitNumber";
@@ -26,18 +25,18 @@ public class PtwCloseOutDao extends BaseDao{
 			@SuppressWarnings("unchecked")
 			List<Object[]> result = query.getResultList();
 			List<PtwCloseOutDto> ptwCloseOutDtoList = new ArrayList<PtwCloseOutDto>();
-			for(Object[] a : result){
+			for (Object[] a : result) {
 				PtwCloseOutDto ptwCloseOutDto = new PtwCloseOutDto();
 				ptwCloseOutDto.setSerialNo(Integer.parseInt(a[0].toString()));
 				ptwCloseOutDto.setPermitNumber(Integer.parseInt(a[1].toString()));
 				ptwCloseOutDto.setIsCWP(Integer.parseInt(a[2].toString()));
 				ptwCloseOutDto.setIsHWP(Integer.parseInt(a[3].toString()));
 				ptwCloseOutDto.setIsCSE(Integer.parseInt(a[4].toString()));
-				ptwCloseOutDto.setPicName((String)a[5]);
+				ptwCloseOutDto.setPicName((String) a[5]);
 				ptwCloseOutDto.setWorkCompleted(Integer.parseInt(a[6].toString()));
-				ptwCloseOutDto.setClosedBy((String)a[7]);
-				ptwCloseOutDto.setClosedDate((Date)a[8]);
-				ptwCloseOutDto.setWorkStatusComment((String)a[9]);
+				ptwCloseOutDto.setClosedBy((String) a[7]);
+				ptwCloseOutDto.setClosedDate((Date) a[8]);
+				ptwCloseOutDto.setWorkStatusComment((String) a[9]);
 				ptwCloseOutDtoList.add(ptwCloseOutDto);
 			}
 			return ptwCloseOutDtoList;
@@ -50,7 +49,7 @@ public class PtwCloseOutDao extends BaseDao{
 
 	public void insertPtwCloseOut(PtwCloseOutDto p) {
 		logger.info("PtwCloseOutDao | insertPtwCloseOut" + p);
-		try{
+		try {
 			Query query = getSession()
 					.createNativeQuery("INSERT INTO \"IOP\".\"PTWCLOSEOUT\" VALUES (?,?,?,?,?,?,?,?,?,?)");
 			query.setParameter(1, keyGeneratorDao.getTOPTWCLOSEOUT());
@@ -64,9 +63,9 @@ public class PtwCloseOutDao extends BaseDao{
 			query.setParameter(9, p.getClosedDate());
 			query.setParameter(10, p.getWorkStatusComment());
 			query.executeUpdate();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		
+
 	}
 }

@@ -42,6 +42,7 @@ public class JsaRiskAssessmentDao extends BaseDao {
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	public JsaRiskAssesmentDto getJsaRiskAss(String permitNum){
 		JsaRiskAssesmentDto jsaRiskAssesmentDto = new JsaRiskAssesmentDto();
 		List<Object[]> obj;
