@@ -487,7 +487,7 @@ extension AppDelegate{
         //checkVersion()
      //   if OnboardingManager.shared.state == OnboardingManager.State.running {
             //syncTaskManagementActions()
-            syncPTWActions()
+        //    syncPTWActions()
             self.didRequestForPushNotificationOperation?()
        // }
     }

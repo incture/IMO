@@ -506,7 +506,9 @@ extension CreateJSAVC {
     
     func getAtmosphericTest(){
         
-        let urlString : String = "\(BaseUrl.apiURL)/com.iop.ptw/getPTWRecord_Result.xsjs?permitNumber=\(selectedJSA)"
+        let urlString : String =  IMOEndpoints.getPtwRecordResult + selectedJSA
+            //"\(BaseUrl.apiURL)/com.iop.ptw/getPTWRecord_Result.xsjs?permitNumber=\(selectedJSA)"
+        //
         var urlRequest = URLRequest(url: URL(string: urlString)!)
         urlRequest.httpMethod = "get"
         ImoPtwNetworkManager.shared.urlSession.dataTask(with: urlRequest) { (data, response, error) in
@@ -521,13 +523,13 @@ extension CreateJSAVC {
                     print(JSON)
                     print("**(JSON)**")
                     DispatchQueue.main.async{
-                    if let jsonDict = JSON as? NSDictionary {
+                        if let jsonDict = (JSON as? NSDictionary)?.value(forKey: "data") as? NSDictionary {
                         print("**(jsonDict)**")
                         print(jsonDict)
                         print("**(jsonDict)**")
                         let atmosphericObject = TOPTWTESTREC(JSON : jsonDict.value(forKey: "ptwTestRecordDto") as! NSDictionary)
                         var testsObject = [TOPTWTESTRES]()
-                        let testDictionary = jsonDict.value(forKey: "TOPTWTESTRES") as! [NSDictionary]
+                        let testDictionary = jsonDict.value(forKey: "ptwTestResultsDtoList") as! [NSDictionary]
                         for each in testDictionary{
                             let testObject = TOPTWTESTRES(JSON : each)
                             testsObject.append(testObject)
