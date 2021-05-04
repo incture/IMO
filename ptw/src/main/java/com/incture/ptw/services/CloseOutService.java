@@ -11,6 +11,7 @@ import com.incture.ptw.dao.PtwCloseOutDao;
 import com.incture.ptw.dao.PtwHeaderDao;
 import com.incture.ptw.dao.PtwTestResultsDao;
 import com.incture.ptw.dto.CloseOutReqDto;
+import com.incture.ptw.dto.PtwCloseOut1Dto;
 import com.incture.ptw.dto.PtwCloseOutDto;
 import com.incture.ptw.dto.PtwTestResultsDto;
 import com.incture.ptw.util.ResponseDto;
@@ -36,10 +37,10 @@ public class CloseOutService {
 		responseDto.setStatusCode(200);
 		Integer permitNumber = 0;
 		try {
-			if (closeOutReqDto.getPtwCloseOutDtoList() != null && !closeOutReqDto.getPtwCloseOutDtoList().isEmpty()) {
-				permitNumber = closeOutReqDto.getPtwCloseOutDtoList().get(0).getPermitNumber();
-				ptwHeaderDao.updatePtwHeader(closeOutReqDto.getPtwCloseOutDtoList().get(0), closeOutReqDto.getStatus());
-				for(PtwCloseOutDto p : closeOutReqDto.getPtwCloseOutDtoList()){
+			if (closeOutReqDto.getPtwCloseOut1DtoList() != null && !closeOutReqDto.getPtwCloseOut1DtoList().isEmpty()) {
+				permitNumber = closeOutReqDto.getPtwCloseOut1DtoList().get(0).getPermitNumber();
+				ptwHeaderDao.updatePtwHeader(closeOutReqDto.getPtwCloseOut1DtoList().get(0), closeOutReqDto.getStatus());
+				for(PtwCloseOut1Dto p : closeOutReqDto.getPtwCloseOut1DtoList()){
 					ptwCloseOutDao.insertPtwCloseOut(p);
 				}
 			}

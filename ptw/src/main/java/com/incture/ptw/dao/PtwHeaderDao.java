@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import com.incture.ptw.dto.PtwApprovalDto;
+import com.incture.ptw.dto.PtwCloseOut1Dto;
 import com.incture.ptw.dto.PtwCloseOutDto;
 import com.incture.ptw.dto.PtwHeaderDto;
 
@@ -94,11 +95,11 @@ public class PtwHeaderDao extends BaseDao {
 		return null;
 	}
 
-	public void updatePtwHeader(PtwCloseOutDto ptwCloseOutDto, String status) {
-		Integer permitNumber = ptwCloseOutDto.getPermitNumber();
-		Integer isCwp = ptwCloseOutDto.getIsCWP();
-		Integer isHwp = ptwCloseOutDto.getIsHWP();
-		Integer isCse = ptwCloseOutDto.getIsCSE();
+	public void updatePtwHeader(PtwCloseOut1Dto ptwCloseOut1Dto, String status) {
+		Integer permitNumber = ptwCloseOut1Dto.getPermitNumber();
+		Integer isCwp = ptwCloseOut1Dto.getIsCWP();
+		Integer isHwp = ptwCloseOut1Dto.getIsHWP();
+		Integer isCse = ptwCloseOut1Dto.getIsCSE();
 		try {
 
 			Query query = getSession()

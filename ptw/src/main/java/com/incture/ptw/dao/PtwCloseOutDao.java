@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.incture.ptw.dto.PtwCloseOut1Dto;
 import com.incture.ptw.dto.PtwCloseOutDto;
 
 @Repository
@@ -47,6 +48,28 @@ public class PtwCloseOutDao extends BaseDao {
 		return null;
 	}
 
+	public void insertPtwCloseOut(PtwCloseOut1Dto p) {
+		logger.info("PtwCloseOutDao | insertPtwCloseOut" + p);
+		try {
+			Query query = getSession()
+					.createNativeQuery("INSERT INTO \"IOP\".\"PTWCLOSEOUT\" VALUES (?,?,?,?,?,?,?,?,?,?)");
+			query.setParameter(1, keyGeneratorDao.getTOPTWCLOSEOUT());
+			query.setParameter(2, p.getPermitNumber());
+			query.setParameter(3, p.getIsCWP());
+			query.setParameter(4, p.getIsHWP());
+			query.setParameter(5, p.getIsCSE());
+			query.setParameter(6, p.getPicName());
+			query.setParameter(7, p.getWorkCompleted());
+			query.setParameter(8, p.getClosedBy());
+			query.setParameter(9, p.getClosedDate());
+			query.setParameter(10, p.getWorkStatusComments());
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+
+	}
+	
 	public void insertPtwCloseOut(PtwCloseOutDto p) {
 		logger.info("PtwCloseOutDao | insertPtwCloseOut" + p);
 		try {
