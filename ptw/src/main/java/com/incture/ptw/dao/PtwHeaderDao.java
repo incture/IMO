@@ -16,7 +16,7 @@ import com.incture.ptw.dto.PtwHeaderDto;
 @Repository
 public class PtwHeaderDao extends BaseDao {
 	public void insertPtwHeader(String permitNumber, String ptwHeader, PtwHeaderDto ptwHeaderDto) {
-		logger.info("ptwHeaderDto"+ptwHeaderDto);
+		logger.info("ptwHeaderDto" + ptwHeaderDto);
 		try {
 
 			Query query = getSession()
@@ -100,22 +100,19 @@ public class PtwHeaderDao extends BaseDao {
 		Integer isCwp = ptwCloseOut1Dto.getIsCWP();
 		Integer isHwp = ptwCloseOut1Dto.getIsHWP();
 		Integer isCse = ptwCloseOut1Dto.getIsCSE();
-		try {
 
-			Query query = getSession()
-					.createNativeQuery("Update \"IOP\".\"PTWHEADER\" set \"STATUS\" = ?  where \"PERMITNUMBER\" = "+permitNumber +" and \"ISCWP\" = "+isCwp +" and \"ISHWP\" = "+isHwp +" and \"ISCSE\"="+isCse +"");
-			query.setParameter(1, status);
-			query.executeUpdate();
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-		}
+		Query query = getSession().createNativeQuery(
+				"Update \"IOP\".\"PTWHEADER\" set \"STATUS\" = ?  where \"PERMITNUMBER\" = " + permitNumber
+						+ " and \"ISCWP\" = " + isCwp + " and \"ISHWP\" = " + isHwp + " and \"ISCSE\"=" + isCse + "");
+		query.setParameter(1, status);
+		query.executeUpdate();
 	}
 
 	public void updatePtwHeader(PtwApprovalDto ptwApprovalDto, PtwHeaderDto ptwHeaderDto) {
 		try {
 
-			Query query = getSession()
-					.createNativeQuery("Update \"IOP\".\"PTWHEADER\" set \"STATUS\" = ?  where \"PERMITNUMBER\" = ? and \"ISCWP\" = ? and \"ISHWP\" = ? and \"ISCSE\"= ? ");
+			Query query = getSession().createNativeQuery(
+					"Update \"IOP\".\"PTWHEADER\" set \"STATUS\" = ?  where \"PERMITNUMBER\" = ? and \"ISCWP\" = ? and \"ISHWP\" = ? and \"ISCSE\"= ? ");
 			query.setParameter(1, ptwHeaderDto.getStatus());
 			query.setParameter(2, ptwApprovalDto.getPermitNumber());
 			query.setParameter(3, ptwApprovalDto.getIsCWP());
@@ -125,13 +122,13 @@ public class PtwHeaderDao extends BaseDao {
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		
+
 	}
 
 	public void updatePtwHeader(PtwHeaderDto ptwHeaderDto) {
-		try{			
-			Query query = getSession()
-					.createNativeQuery("UPDATE \"IOP\".\"PTWHEADER\" SET  \"PLANNEDDATETIME\" = ? \"STATUS\" = ? \"LOCATION\" = ? \"CREATEDBY\" = ? \"CONTRACTORPERFORMINGWORK\" = ? \"ESTIMATEDTIMEOFCOMPLETION\" = ? \"EQUIPMENTID\" = ? \"WORKORDERNUMBER\" = ? where \"PERMITNUMBER\" = ? AND \"ISCWP\" = ? AND \"ISHWP\" = ? AND \"ISCSE\" = ?");
+		try {
+			Query query = getSession().createNativeQuery(
+					"UPDATE \"IOP\".\"PTWHEADER\" SET  \"PLANNEDDATETIME\" = ? \"STATUS\" = ? \"LOCATION\" = ? \"CREATEDBY\" = ? \"CONTRACTORPERFORMINGWORK\" = ? \"ESTIMATEDTIMEOFCOMPLETION\" = ? \"EQUIPMENTID\" = ? \"WORKORDERNUMBER\" = ? where \"PERMITNUMBER\" = ? AND \"ISCWP\" = ? AND \"ISHWP\" = ? AND \"ISCSE\" = ?");
 			query.setParameter(1, ptwHeaderDto.getPlannedDateTime());
 			query.setParameter(2, ptwHeaderDto.getStatus());
 			query.setParameter(3, ptwHeaderDto.getLocation());
@@ -145,10 +142,10 @@ public class PtwHeaderDao extends BaseDao {
 			query.setParameter(11, ptwHeaderDto.getIsHWP());
 			query.setParameter(12, ptwHeaderDto.getIsCSE());
 			query.executeUpdate();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		
+
 	}
 
 }

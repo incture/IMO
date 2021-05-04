@@ -50,7 +50,6 @@ public class PtwCloseOutDao extends BaseDao {
 
 	public void insertPtwCloseOut(PtwCloseOut1Dto p) {
 		logger.info("PtwCloseOutDao | insertPtwCloseOut" + p);
-		try {
 			Query query = getSession()
 					.createNativeQuery("INSERT INTO \"IOP\".\"PTWCLOSEOUT\" VALUES (?,?,?,?,?,?,?,?,?,?)");
 			query.setParameter(1, keyGeneratorDao.getTOPTWCLOSEOUT());
@@ -64,9 +63,6 @@ public class PtwCloseOutDao extends BaseDao {
 			query.setParameter(9, p.getClosedDate());
 			query.setParameter(10, p.getWorkStatusComments());
 			query.executeUpdate();
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-		}
 
 	}
 	

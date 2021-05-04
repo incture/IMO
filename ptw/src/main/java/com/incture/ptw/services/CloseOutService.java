@@ -36,6 +36,7 @@ public class CloseOutService {
 		responseDto.setStatus(Boolean.TRUE);
 		responseDto.setStatusCode(200);
 		Integer permitNumber = 0;
+		Boolean flag = false;
 		try {
 			if (closeOutReqDto.getPtwCloseOutDtoList() != null && !closeOutReqDto.getPtwCloseOutDtoList().isEmpty()) {
 				permitNumber = closeOutReqDto.getPtwCloseOutDtoList().get(0).getPermitNumber();
@@ -43,6 +44,7 @@ public class CloseOutService {
 				for(PtwCloseOut1Dto p : closeOutReqDto.getPtwCloseOutDtoList()){
 					ptwCloseOutDao.insertPtwCloseOut(p);
 				}
+				flag = true;
 			}
 			if(closeOutReqDto.getPtwTestResultsDtoList() != null && ! closeOutReqDto.getPtwTestResultsDtoList().isEmpty()){
 				permitNumber = closeOutReqDto.getPtwTestResultsDtoList().get(0).getPermitNumber();
@@ -50,9 +52,16 @@ public class CloseOutService {
 				for(PtwTestResultsDto p : closeOutReqDto.getPtwTestResultsDtoList()){
 					ptwTestResultsDao.insertPtwTestResults(p.getPermitNumber().toString(), p);
 				}
+				flag = true;
 			}
-			responseDto.setData("Permit Number " + permitNumber + " closed");
-			responseDto.setMessage("Success");
+			if(flag){
+				responseDto.setData("Permit Number " + permitNumber + " closed");
+				responseDto.setMessage("Success");
+			}else{
+				responseDto.setData("Permit falied to close");
+				responseDto.setMessage("Failure");
+			}
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -61,6 +70,7 @@ public class CloseOutService {
 			responseDto.setStatus(Boolean.FALSE);
 			responseDto.setStatusCode(500);
 			responseDto.setMessage(e.getMessage());
+			responseDto.setData("Permit failed to close");
 		}
 		logger.info("CloseOutService | closeOutService" + responseDto);
 		return responseDto;

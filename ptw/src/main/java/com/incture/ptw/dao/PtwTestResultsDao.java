@@ -17,7 +17,6 @@ public class PtwTestResultsDao extends BaseDao {
 	private KeyGeneratorDao keyGeneratorDao;
 
 	public void insertPtwTestResults(String permitNumber, PtwTestResultsDto ptwTestResultsDto) {
-		try {
 			Query query = getSession()
 					.createNativeQuery("INSERT INTO \"IOP\".\"PTWTESTRESULTS\" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			query.setParameter(1, keyGeneratorDao.getPTWATESTRES());
@@ -35,9 +34,6 @@ public class PtwTestResultsDao extends BaseDao {
 			query.setParameter(13, ptwTestResultsDto.getDate());
 			query.setParameter(14, ptwTestResultsDto.getTime());
 			query.executeUpdate();
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-		}
 	}
 	
 	public List<PtwTestResultsDto> getPtwTestRes(String permitNumber) {
@@ -76,18 +72,13 @@ public class PtwTestResultsDao extends BaseDao {
 	}
 	
 	public void deletePtwTestResults(String permitNumber) {
-		try {
+		
 			logger.info("permitNumber: " + permitNumber);
 			String sql = "DELETE FROM \"IOP\".\"PTWTESTRESULTS\" WHERE PERMITNUMBER =? ";
 			Query query = getSession().createNativeQuery(sql);
 			query.setParameter(1, permitNumber);
 			logger.info("sql " + sql);
 			query.executeUpdate();
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-			e.printStackTrace();
-
-		}
 
 	}
 }
