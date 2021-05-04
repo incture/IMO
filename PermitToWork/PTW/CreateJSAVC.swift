@@ -507,12 +507,11 @@ extension CreateJSAVC {
     func getAtmosphericTest(){
         
         let urlString : String =  IMOEndpoints.getPtwRecordResult + selectedJSA
-<<<<<<< HEAD
         //let urlString : String = "\(BaseUrl.apiURL)/com.iop.ptw/getPTWRecord_Result.xsjs?permitNumber=\(selectedJSA)"
-=======
+
             //"\(BaseUrl.apiURL)/com.iop.ptw/getPTWRecord_Result.xsjs?permitNumber=\(selectedJSA)"
         //
->>>>>>> PTW_iOS
+
         var urlRequest = URLRequest(url: URL(string: urlString)!)
         urlRequest.httpMethod = "get"
         ImoPtwNetworkManager.shared.urlSession.dataTask(with: urlRequest) { (data, response, error) in
@@ -527,7 +526,6 @@ extension CreateJSAVC {
                     print(JSON)
                     print("**(JSON)**")
                     DispatchQueue.main.async{
-<<<<<<< HEAD
                     
                         if let jsonDict = (JSON as? NSDictionary)?.value(forKey: "data") as? NSDictionary {
                                                 print("**(jsonDict)**")
@@ -540,7 +538,7 @@ extension CreateJSAVC {
                                                     let testObject = TOPTWTESTRES(JSON : each)
                                                     testsObject.append(testObject)
                                                 }
-=======
+
                         if let jsonDict = (JSON as? NSDictionary)?.value(forKey: "data") as? NSDictionary {
                         print("**(jsonDict)**")
                         print(jsonDict)
@@ -552,7 +550,6 @@ extension CreateJSAVC {
                             let testObject = TOPTWTESTRES(JSON : each)
                             testsObject.append(testObject)
                         }
->>>>>>> PTW_iOS
                         
                         //atmospheric test
                         JSAObject.atmosphericTesting.serialNo = atmosphericObject.serialNo
@@ -607,6 +604,7 @@ extension CreateJSAVC {
                         jsaDetailService.saveChanges()
                     }
                     }
+                }
                 }catch {
                     print(error.localizedDescription, "StatusCode: \(response!)")
                 }
