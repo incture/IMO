@@ -73,7 +73,29 @@ public class PtwCwpWorkTypeDao extends BaseDao {
 	}
 
 	public void updatePtwCwpWorkType(PtwCwpWorkTypeDto ptwCwpWorkTypeDto) {
-		// TODO Auto-generated method stub
+		try{
+			String sql = "UPDATE \"IOP\".\"PTW_CWP_WORK_TYPE\" SET  \"CRITICALORCOMPLEXLIFT\"= ? \"CRANEORLIFTINGDEVICE\"= ? \"GROUNDDISTURBANCEOREXCAVATION\"= ? \"HANDLINGHAZARDOUSCHEMICALS\"= ? \"WORKINGATHEIGHT\"= ? \"PAINTINGORBLASTING\"= ? \"WORKINGONPRESSURIZEDSYSTEMS\"= ? \"ERECTINGORDISMANTLINGSCAFFOLDING\"= ? \"BREAKINGCONTAINMENTOFCLOSEDOPERATINGSYSTEM\"= ? \"WORKINGINCLOSETOHAZARDOUSENERGY\"= ? \"REMOVALOFIDLEEQUIPMENTFORREPAIR\"= ? \"HIGHERRISKELECTRICALWORK\"= ? \"OTHERTYPEOFWORK\"= ? \"DESCRIPTIONOFWORKTOBEPERFORMED\"= ? where \"PERMITNUMBER\"= ?";
+			Query query = getSession().createNativeQuery(sql);
+			logger.info("sql: " + sql);
+			query.setParameter(1, ptwCwpWorkTypeDto.getCriticalOrComplexLift());
+			query.setParameter(2, ptwCwpWorkTypeDto.getCraneOrLiftingDevice());
+			query.setParameter(3, ptwCwpWorkTypeDto.getGroundDisturbanceOrExcavation());
+			query.setParameter(4, ptwCwpWorkTypeDto.getHandlingHazardousChemicals());
+			query.setParameter(5, ptwCwpWorkTypeDto.getWorkingAtHeight());
+			query.setParameter(6, ptwCwpWorkTypeDto.getPaintingOrBlasting());
+			query.setParameter(7, ptwCwpWorkTypeDto.getWorkingOnPressurizedSystems());
+			query.setParameter(8, ptwCwpWorkTypeDto.getErectingOrDismantlingScaffolding());
+			query.setParameter(9, ptwCwpWorkTypeDto.getBreakingContainmentOfClosedOperatingSystem());
+			query.setParameter(10, ptwCwpWorkTypeDto.getWorkingInCloseToHazardousEnergy());
+			query.setParameter(11, ptwCwpWorkTypeDto.getRemovalOfIdleEquipmentForRepair());
+			query.setParameter(12, ptwCwpWorkTypeDto.getHigherRiskElectricalWork());
+			query.setParameter(13, ptwCwpWorkTypeDto.getOtherTypeOfWork());
+			query.setParameter(14, ptwCwpWorkTypeDto.getDescriptionOfWorkToBePerformed());
+			query.setParameter(15, ptwCwpWorkTypeDto.getPermitNumber());
+			query.executeUpdate();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
 		
 	}
 

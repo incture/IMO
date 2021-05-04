@@ -55,8 +55,23 @@ public class PtwHwpWorkTypeDao extends BaseDao {
 		return null;
 	}
 
-	public void insertPtwHwpWorkType(PtwHwpWorkTypeDto ptwHwpWorkTypeDto) {
-		// TODO Auto-generated method stub
+	public void updatePtwHwpWorkType(PtwHwpWorkTypeDto ptwHwpWorkTypeDto) {
+		try{
+			String sql = "UPDATE \"IOP\".\"PTW_HWP_WORK_TYPE\" SET  \"CUTTING\"= ? \"WIELDING\"= ? \"ELECTRICALPOWEREDEQUIPMENT\"= ? \"GRINDING\"= ? \"ABRASIVEBLASTING\"= ? \"OTHERTYPEOFWORK\"= ? \"DESCRIPTIONOFWORKTOBEPERFORMED\"= ? where \"PERMITNUMBER\"= ?";
+			Query query = getSession().createNativeQuery(sql);
+			logger.info("sql: " + sql);
+			query.setParameter(1, ptwHwpWorkTypeDto.getCutting());
+			query.setParameter(2, ptwHwpWorkTypeDto.getWielding());
+			query.setParameter(3, ptwHwpWorkTypeDto.getElectricalPoweredEquipment());
+			query.setParameter(4, ptwHwpWorkTypeDto.getGrinding());
+			query.setParameter(5, ptwHwpWorkTypeDto.getAbrasiveBlasting());
+			query.setParameter(6, ptwHwpWorkTypeDto.getOtherTypeOfWork());
+			query.setParameter(7, ptwHwpWorkTypeDto.getDescriptionOfWorkToBePerformed());
+			query.setParameter(8, ptwHwpWorkTypeDto.getPermitNumber());
+			query.executeUpdate();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
 		
 	}
 }

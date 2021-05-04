@@ -93,7 +93,23 @@ public class PtwCloseOutDao extends BaseDao {
 	}
 
 	public void updatePtwCloseOut(PtwCloseOutDto p) {
-		// TODO Auto-generated method stub
+		try{
+			String sql = "UPDATE \"IOP\".\"PTWCLOSEOUT\" SET  \"ISCWP\"= ? \"ISHWP\"= ? \"ISCSE\"=? \"PICNAME\"= ? \"WORKCOMPLETED\"= ? \"CLOSEDBY\"= ? \"CLOSEDDATE\"= ? \"WORKSTATUSCOMMENT\"= ? where \"SERIALNO\"= ?";
+			Query query = getSession().createNativeQuery(sql);
+			logger.info("sql: " + sql);
+			query.setParameter(1, p.getIsCWP());
+			query.setParameter(2, p.getIsHWP());
+			query.setParameter(3, p.getIsCSE());
+			query.setParameter(4, p.getPicName());
+			query.setParameter(5, p.getWorkCompleted());
+			query.setParameter(6, p.getClosedBy());
+			query.setParameter(7, p.getClosedDate());
+			query.setParameter(8, p.getWorkStatusComment());
+			query.setParameter(9, p.getSerialNo());
+			query.executeUpdate();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
 		
 	}
 }

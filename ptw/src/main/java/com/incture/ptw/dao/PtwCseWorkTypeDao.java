@@ -55,8 +55,23 @@ public class PtwCseWorkTypeDao extends BaseDao {
 		return null;
 	}
 
-	public void insertPtwCseWorkType(PtwCseWorkTypeDto ptwCseWorkTypeDto) {
-		// TODO Auto-generated method stub
+	public void updatePtwCseWorkType(PtwCseWorkTypeDto ptwCseWorkTypeDto) {
+		try{
+			String sql = "UPDATE \"IOP\".\"PTW_CSE_WORK_TYPE\" SET  \"TANK\"= ? \"VESSEL\"= ? \"EXCAVATION\"= ? \"PIT\"= ? \"TOWER\"= ? \"OTHER\"= ? \"REASONFORCSE\"= ? where \"PERMITNUMBER\"= ?";
+			Query query = getSession().createNativeQuery(sql);
+			logger.info("sql: " + sql);
+			query.setParameter(1, ptwCseWorkTypeDto.getTank());
+			query.setParameter(2, ptwCseWorkTypeDto.getVessel());
+			query.setParameter(3, ptwCseWorkTypeDto.getExcavation());
+			query.setParameter(4, ptwCseWorkTypeDto.getPit());
+			query.setParameter(5, ptwCseWorkTypeDto.getTower());
+			query.setParameter(6, ptwCseWorkTypeDto.getOther());
+			query.setParameter(7, ptwCseWorkTypeDto.getReasonForCSE());
+			query.setParameter(8, ptwCseWorkTypeDto.getPermitNumber());
+			query.executeUpdate();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
 		
 	}
 

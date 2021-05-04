@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 public class CloseOutReqDto {
-	List<PtwCloseOut1Dto> ptwCloseOut1DtoList;
+	List<PtwCloseOut1Dto> ptwCloseOutDtoList;
 	List<PtwTestResultsDto> ptwTestResultsDtoList;
 	String status;
 }

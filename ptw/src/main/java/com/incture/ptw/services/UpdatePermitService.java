@@ -139,10 +139,10 @@ public class UpdatePermitService {
                     ptwCwpWorkTypeDao.updatePtwCwpWorkType(updatePermitRequestDto.getPtwCwpWorkTypeDto());
                 }
                 if (updatePermitRequestDto.getPtwHwpWorkTypeDto() != null && isHwpFlag==true) {
-                    ptwHwpWorkTypeDao.insertPtwHwpWorkType(updatePermitRequestDto.getPtwHwpWorkTypeDto());
+                    ptwHwpWorkTypeDao.updatePtwHwpWorkType(updatePermitRequestDto.getPtwHwpWorkTypeDto());
                 }
                 if (updatePermitRequestDto.getPtwCseWorkTypeDto() != null && isCseFlag==true) {
-                    ptwCseWorkTypeDao.insertPtwCseWorkType(updatePermitRequestDto.getPtwCseWorkTypeDto());
+                    ptwCseWorkTypeDao.updatePtwCseWorkType(updatePermitRequestDto.getPtwCseWorkTypeDto());
                 }
                 responseDto.setData("Permit "+taskPermitNum+" updated succesfully.");
 			}

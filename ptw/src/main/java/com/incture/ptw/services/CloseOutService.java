@@ -37,10 +37,10 @@ public class CloseOutService {
 		responseDto.setStatusCode(200);
 		Integer permitNumber = 0;
 		try {
-			if (closeOutReqDto.getPtwCloseOut1DtoList() != null && !closeOutReqDto.getPtwCloseOut1DtoList().isEmpty()) {
-				permitNumber = closeOutReqDto.getPtwCloseOut1DtoList().get(0).getPermitNumber();
-				ptwHeaderDao.updatePtwHeader(closeOutReqDto.getPtwCloseOut1DtoList().get(0), closeOutReqDto.getStatus());
-				for(PtwCloseOut1Dto p : closeOutReqDto.getPtwCloseOut1DtoList()){
+			if (closeOutReqDto.getPtwCloseOutDtoList() != null && !closeOutReqDto.getPtwCloseOutDtoList().isEmpty()) {
+				permitNumber = closeOutReqDto.getPtwCloseOutDtoList().get(0).getPermitNumber();
+				ptwHeaderDao.updatePtwHeader(closeOutReqDto.getPtwCloseOutDtoList().get(0), closeOutReqDto.getStatus());
+				for(PtwCloseOut1Dto p : closeOutReqDto.getPtwCloseOutDtoList()){
 					ptwCloseOutDao.insertPtwCloseOut(p);
 				}
 			}
