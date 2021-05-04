@@ -487,10 +487,14 @@ extension AppDelegate{
         //checkVersion()
      //   if OnboardingManager.shared.state == OnboardingManager.State.running {
             //syncTaskManagementActions()
+<<<<<<< HEAD
         
         
         //rajat commented to avoid "other error"
             //syncPTWActions()
+=======
+        //    syncPTWActions()
+>>>>>>> PTW_iOS
             self.didRequestForPushNotificationOperation?()
        // }
     }
