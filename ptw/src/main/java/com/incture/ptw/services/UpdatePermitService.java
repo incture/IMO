@@ -19,6 +19,9 @@ import com.incture.ptw.dao.PtwPeopleDao;
 import com.incture.ptw.dao.PtwRequiredDocumentDao;
 import com.incture.ptw.dao.PtwTestRecordDao;
 import com.incture.ptw.dao.PtwTestResultsDao;
+import com.incture.ptw.dto.PtwApprovalDto;
+import com.incture.ptw.dto.PtwPeopleDto;
+import com.incture.ptw.dto.PtwRequiredDocumentDto;
 import com.incture.ptw.dto.UpdatePermitRequestDto;
 import com.incture.ptw.util.ResponseDto;
 
@@ -88,13 +91,31 @@ public class UpdatePermitService {
 			if (ptwConditionCheck) {
 				taskPermitNum = updatePermitRequestDto.getPtwHeaderDtoList().get(0).getPermitNumber();
 				if (updatePermitRequestDto.getPtwHeaderDtoList() != null
-						|| !updatePermitRequestDto.getPtwHeaderDtoList().isEmpty()) {
+						&& !updatePermitRequestDto.getPtwHeaderDtoList().isEmpty()) {
 					for(int i = 0; i < updatePermitRequestDto.getPtwHeaderDtoList().size(); i++){
-						ptwHeaderDao.updatePtwHeader(updatePermitRequestDto.getPtwHeaderDtoList().get(0));
+						ptwHeaderDao.updatePtwHeader(updatePermitRequestDto.getPtwHeaderDtoList().get(i));
 					}
 					
-
 				}
+				
+				if(!updatePermitRequestDto.getPtwPeopleDtoList().isEmpty()
+                        && updatePermitRequestDto.getPtwPeopleDtoList() != null){
+					ptwPeopleDao.deletePtwPeople(taskPermitNum.toString());
+					for (PtwPeopleDto p : updatePermitRequestDto.getPtwPeopleDtoList()) {
+                        ptwPeopleDao.insertPtwPeople(taskPermitNum.toString(), p);
+                    }
+				}
+				
+				if(!updatePermitRequestDto.getPtwRequiredDocumentDtoList().isEmpty()
+                        && updatePermitRequestDto.getPtwRequiredDocumentDtoList() != null){
+					 for (PtwRequiredDocumentDto p : updatePermitRequestDto.getPtwRequiredDocumentDtoList())
+	                        ptwRequiredDocumentDao.updatePtwRequiredDocument(taskPermitNum.toString(), p);
+				}
+				if (!updatePermitRequestDto.getPtwApprovalDtoList().isEmpty()
+                        && updatePermitRequestDto.getPtwApprovalDtoList() != null) {
+                    for (PtwApprovalDto p : updatePermitRequestDto.getPtwApprovalDtoList())
+                        ptwApprovalDao.updatePtwApproval(taskPermitNum.toString(), p);
+                }
 			}
 
 		} catch (Exception e) {

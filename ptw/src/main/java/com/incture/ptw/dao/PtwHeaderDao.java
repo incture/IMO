@@ -143,7 +143,7 @@ public class PtwHeaderDao extends BaseDao {
 			query.setParameter(10, ptwHeaderDto.getIsCWP());
 			query.setParameter(11, ptwHeaderDto.getIsHWP());
 			query.setParameter(12, ptwHeaderDto.getIsCSE());
-			
+			query.executeUpdate();
 		}catch (Exception e) {
 			logger.error(e.getMessage());
 		}

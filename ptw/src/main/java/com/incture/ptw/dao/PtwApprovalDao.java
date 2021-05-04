@@ -90,4 +90,32 @@ public class PtwApprovalDao extends BaseDao {
 
 	}
 
+	public void updatePtwApproval(String string, PtwApprovalDto p) {
+		try{
+			String sql = "UPDATE \"IOP\".\"PTWAPPROVAL\" SET  \"ISCWP\"= ? \"ISHWP\"= ? \"ISCSE\"= ? \"ISWORKSAFETOPERFORM\"= ? \"PREJOBWALKTHROUGHBY\"= ? \"APPROVEDBY\"= ? \"APPROVALDATE\"= ? \"CONTROLBOARDDISTRIBUTION\"= ? \"WORKSITEDISTRIBUTION\"= ? \"SIMOPSDISTRIBUTION\"= ? \"OTHERDISTRIBUTION\"= ? \"PICNAME\"= ? \"PICDATE\"= ? \"SUPERITENDENTNAME\"= ? \"SUPERITENDENTDATE\"= ? where \"SERIALNO\"= ?";
+			Query query = getSession().createNativeQuery(sql);
+			logger.info("sql: " + sql);
+			query.setParameter(1, p.getIsCWP());
+			query.setParameter(2, p.getIsHWP());
+			query.setParameter(3, p.getIsCSE());
+			query.setParameter(4, p.getIsWorkSafeToPerform());
+			query.setParameter(5, p.getPreJobWalkThroughBy());
+			query.setParameter(6, p.getApprovedBy());
+			query.setParameter(7, p.getApprovalDate());
+			query.setParameter(8, p.getControlBoardDistribution());
+			query.setParameter(9, p.getWorkSiteDistribution());
+			query.setParameter(10, p.getSimopsDistribution());
+			query.setParameter(11, p.getOtherDistribution());
+			query.setParameter(12, p.getPicName());
+			query.setParameter(13, p.getPicDate());
+			query.setParameter(14, p.getSuperitendentName());
+			query.setParameter(15, p.getSuperitendentDate());
+			query.setParameter(16, p.getSerialNo());
+			query.executeUpdate();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		
+	}
+
 }

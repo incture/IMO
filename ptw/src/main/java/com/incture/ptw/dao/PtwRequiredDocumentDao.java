@@ -87,4 +87,33 @@ public class PtwRequiredDocumentDao extends BaseDao {
 		return null;
 	}
 
+	public void updatePtwRequiredDocument(String permitNumber, PtwRequiredDocumentDto p) {
+		try{
+			String sql = "UPDATE \"IOP\".\"PTWREQUIREDDOCUMENT\" SET  \"ISCWP\"= ? \"ISHWP\"= ? \"ISCSE\"= ? \"ATMOSPHERICTESTRECORD\"= ? \"LOTO\"= ? \"PROCEDURE\"= ? \"PANDIDORDRAWING\"= ? \"CERTIFICATE\"= ? \"TEMPORARYDEFEAT\"= ? \"RESCUEPLAN\"= ? \"SDS\"= ? \"OTHERWORKPERMITDOCS\"= ? \"FIREWATCHCHECKLIST\"= ? \"LIFTPLAN\"= ? \"SIMOPDEVIATION\"= ? \"SAFEWORKPRACTICE\"= ? where \"SERIALNO\"= ?";
+			Query query = getSession().createNativeQuery(sql);
+			logger.info("sql: " + sql);
+			query.setParameter(1, p.getIsCWP());
+			query.setParameter(2, p.getIsHWP());
+			query.setParameter(3, p.getIsCSE());
+			query.setParameter(4, p.getAtmosphericTestRecord());
+			query.setParameter(5, p.getLoto());
+			query.setParameter(6, p.getProcedure());
+			query.setParameter(7, p.getpAndIdOrDrawing());
+			query.setParameter(8, p.getCertificate());
+			query.setParameter(9, p.getTemporaryDefeat());
+			query.setParameter(10, p.getRescuePlan());
+			query.setParameter(11, p.getSds());
+			query.setParameter(12, p.getOtherWorkPermitDocs());
+			query.setParameter(13, p.getFireWatchChecklist());
+			query.setParameter(14, p.getLiftPlan());
+			query.setParameter(15, p.getSimopDeviation());
+			query.setParameter(16, p.getSafeWorkPractice());
+			query.setParameter(17, p.getSerialNo());
+			query.executeUpdate();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		
+	}
+
 }
