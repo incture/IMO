@@ -699,7 +699,8 @@ extension AppDelegate{
             url = "\(BaseUrl.apiURL)/com.iop.ptw/ApprovePermit.xsjs"
         }
         else if type == ActionType.PermitCloseOut.rawValue{
-            url = "\(BaseUrl.apiURL)/com.iop.ptw/CloseOutService.xsjs"
+             url = IMOEndpoints.closeOut
+            //url = "\(BaseUrl.apiURL)/com.iop.ptw/CloseOutService.xsjs"
         }
         
         var urlRequest = URLRequest(url: URL(string: url)!)
