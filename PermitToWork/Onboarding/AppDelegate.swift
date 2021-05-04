@@ -487,6 +487,7 @@ extension AppDelegate{
         //checkVersion()
      //   if OnboardingManager.shared.state == OnboardingManager.State.running {
             //syncTaskManagementActions()
+
         //    syncPTWActions()
             self.didRequestForPushNotificationOperation?()
        // }
@@ -697,7 +698,8 @@ extension AppDelegate{
             url = "\(BaseUrl.apiURL)/com.iop.ptw/ApprovePermit.xsjs"
         }
         else if type == ActionType.PermitCloseOut.rawValue{
-            url = "\(BaseUrl.apiURL)/com.iop.ptw/CloseOutService.xsjs"
+             url = IMOEndpoints.closeOut
+            //url = "\(BaseUrl.apiURL)/com.iop.ptw/CloseOutService.xsjs"
         }
         
         var urlRequest = URLRequest(url: URL(string: url)!)

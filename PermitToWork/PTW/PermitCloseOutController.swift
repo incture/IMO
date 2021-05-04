@@ -508,7 +508,8 @@ extension PermitCloseOutController{
         
         if ConnectionCheck.isConnectedToNetwork(){
             self.loaderStart()
-            let urlString : String = "\(BaseUrl.apiURL)/com.iop.ptw/CloseOutService.xsjs"
+            let urlString : String = IMOEndpoints.closeOut
+            //let urlString : String = "\(BaseUrl.apiURL)/com.iop.ptw/CloseOutService.xsjs"
             var urlRequest = URLRequest(url: URL(string: urlString)!)
             urlRequest.httpMethod = "post"
             urlRequest.httpBody = self.getHttpBodayData(params: finalDict)
@@ -528,7 +529,7 @@ extension PermitCloseOutController{
                         
                         if let jsonDict = JSON as? NSDictionary {
                             DispatchQueue.main.async {
-                                let message = jsonDict.value(forKey: "Success") as? String
+                                let message = jsonDict.value(forKey: "data") as? String
                                 let alertController = UIAlertController.init(title: "", message:message , preferredStyle: UIAlertController.Style.alert)
                                 let okAction = UIAlertAction.init(title: "OK", style: UIAlertAction.Style.cancel, handler: {action in
                                     self.navigationController?.popToViewController((self.navigationController?.viewControllers[1]) as! CreatedPermitControllerViewController, animated: true)

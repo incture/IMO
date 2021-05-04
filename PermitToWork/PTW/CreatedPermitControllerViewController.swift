@@ -1931,7 +1931,7 @@ extension CreatedPermitControllerViewController: UITableViewDataSource, UITableV
                 }
                 else{
                     let permitDetailService = PermitDetailModelService(context: self.context)
-                    let searchPredicate = NSPredicate(format: "permitNumber == %@", NSNumber(value: Int(selectedPermit)!))
+                    let searchPredicate = NSPredicate(format: "permitNumber == %@", selectedPermit)
                     let permitDetail = permitDetailService.get(withPredicate: searchPredicate)
                     var flag : Bool = false
                     if permitDetail.count>0{

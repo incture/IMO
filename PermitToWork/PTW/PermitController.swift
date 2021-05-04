@@ -452,7 +452,10 @@ extension PermitController{
     func readPermit(permitType: String) {
         //loaderStart()
 
-        let urlString : String = "\(BaseUrl.apiURL)/com.iop.ptw/GetPermitDetails.xsjs?permitNumber=\(selectedCWPermit)&permitType=\(permitType)"
+        
+        //"https://ptwb0ot37y8l6.hana.ondemand.com/ptw/permitdetails/get?permitNumber=135&permitType=COLD"
+        let urlString : String =  IMOEndpoints.getPermitDetails + "permitNumber=\(selectedCWPermit)&permitType=\(permitType)"
+       // let urlString : String = "\(BaseUrl.apiURL)/com.iop.ptw/GetPermitDetails.xsjs?permitNumber=\(selectedCWPermit)&permitType=\(permitType)"
         var urlRequest = URLRequest(url: URL(string: urlString)!)
         urlRequest.httpMethod = "get"
         
@@ -466,7 +469,8 @@ extension PermitController{
                 do{
                     let JSON = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
                     if let val = JSON as? NSDictionary {
-                        if let jsonDict = val.object(forKey: "PTWDetails") as? NSDictionary
+                        //rajat renamed PTWDetails by data
+                        if let jsonDict = val.object(forKey: "data") as? NSDictionary
                         {
                             readCWObject = ReadPermit.init(JSON: jsonDict)
                             if self.permitType == "COLD"

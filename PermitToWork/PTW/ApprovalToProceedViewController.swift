@@ -525,14 +525,16 @@ extension ApprovalToAuthority{
         var finalDict = [String : Any]()
         if JSAObject.currentFlow == .HWP{
             
+ing"
+//            }
             finalDict = [
                 "status" : "APPROVED",
-                "ptwApprovalDtoList": [
+                "ptwApprovalDto": [
                     "permitNumber" : CWObject.header.permitNo,
-                    "prejobWalkthroughBy": CWObject.signOff.walkthrough,
+                    "preJobWalkThroughBy": CWObject.signOff.walkthrough,
                     "isWorkSafeToPerform": CWObject.signOff.isSafeContinue,
                     "controlBoardDistribution": CWObject.signOff.controlBoard,
-                    "worksiteDistribution": CWObject.signOff.worksite,
+                    "workSiteDistribution": CWObject.signOff.worksite,
                     "otherDistribution": CWObject.signOff.others,
                     "approvalDate": CWObject.signOff.dateTime.convertToDateToMilliseconds(),
                     "picName": CWObject.signOff.name,
@@ -552,12 +554,12 @@ extension ApprovalToAuthority{
             
             finalDict = [
                 "status" : "APPROVED",
-                "ptwApprovalDtoList": [
+                "ptwApprovalDto": [
                     "permitNumber" : CWObject.header.permitNo,
-                    "prejobWalkthroughBy": CWObject.signOff.walkthrough,
+                    "preJobWalkThroughBy": CWObject.signOff.walkthrough,
                     "isWorkSafeToPerform": CWObject.signOff.isSafeContinue,
                     "controlBoardDistribution": CWObject.signOff.controlBoard,
-                    "worksiteDistribution": CWObject.signOff.worksite,
+                    "workSiteDistribution": CWObject.signOff.worksite,
                     "otherDistribution": CWObject.signOff.others,
                     "approvalDate": CWObject.signOff.dateTime.convertToDateToMilliseconds(),
                     "picName": CWObject.signOff.name,
@@ -579,8 +581,8 @@ extension ApprovalToAuthority{
             }
             let header = ["Content-Type" : "Application/json"]
 
-            
-            let url =  "\(BaseUrl.apiURL)/com.iop.ptw/ApprovePermit.xsjs"
+            let url  = IMOEndpoints.approvePermit
+       //     let url =  "\(BaseUrl.apiURL)/com.iop.ptw/ApprovePermit.xsjs"
             let urlRequest = RequestURL.shared.urlRequest(for: url, method: "POST", body: finalDict)
             let task = ImoPtwNetworkManager.shared.urlSession.dataTask(with: urlRequest) {[weak self] (data, response, error) in
                 guard let self = self else { return }
@@ -601,7 +603,7 @@ extension ApprovalToAuthority{
                     print(JSON)
                     print("*****")
                     if let jsonDict = JSON as? NSDictionary {
-                        let msg = jsonDict.value(forKey: "Success") as! String
+                        let msg = jsonDict.value(forKey: "data") as! String
                         let permitListService = PermitDetailModelService(context: self.context)
                         let searchPredicate = NSPredicate(format: "permitNumber == %@", NSNumber(value: JSAObject.permitNumber))
                         let permitModelList = permitListService.get(withPredicate: searchPredicate)
