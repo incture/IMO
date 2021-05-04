@@ -72,4 +72,9 @@ public class PtwCwpWorkTypeDao extends BaseDao {
 		return null;
 	}
 
+	public void updatePtwCwpWorkType(PtwCwpWorkTypeDto ptwCwpWorkTypeDto) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

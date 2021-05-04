@@ -101,4 +101,40 @@ public class PtwTestRecordDao extends BaseDao {
 
 	}
 
+	public void updatePtwTestRecord(PtwTestRecordDto ptwTestRecordDto) {
+		try {
+			String sql = "UPDATE IOP.PTWTESTRECORD SET  ISCWP=?, ISHWP=?, ISCSE=?, DETECTORUSED=?, "
+					+ "DATEOFLASTCALIBRATION=?, TESTINGFREQUENCY=?, CONTINUOUSGASMONITORING=?,"
+					+ "PRIORTOWORKCOMMENCING=?,EACHWORKPERIOD=?, EVERYHOUR=?, GASTESTER=?,"
+					+ "GASTESTERCOMMENTS=?,AREATOBETESTSED=?,DEVICESERIALNO=?,ISO2=?,ISLELS=?,"
+					+ "ISH2S=?,OTHER=? where SERIALNO=?";
+			Query query = getSession().createNativeQuery(sql);
+			query.setParameter(1,ptwTestRecordDto.getIsCWP());
+			query.setParameter(2,ptwTestRecordDto.getIsHWP());
+			query.setParameter(3,ptwTestRecordDto.getIsCSE());
+			query.setParameter(4,ptwTestRecordDto.getDetectorUsed());
+			query.setParameter(5,ptwTestRecordDto.getDateOfLastCalibration());
+			query.setParameter(6,ptwTestRecordDto.getTestingFrequency());
+			query.setParameter(7,ptwTestRecordDto.getContinuousGasMonitoring());
+			query.setParameter(8,ptwTestRecordDto.getPriorToWorkCommencing());
+			query.setParameter(9,ptwTestRecordDto.getEachWorkPeriod());
+			query.setParameter(10,ptwTestRecordDto.getEveryHour());
+			query.setParameter(11,ptwTestRecordDto.getGasTester());
+			query.setParameter(12,ptwTestRecordDto.getGasTesterComments());
+			query.setParameter(13,ptwTestRecordDto.getAreaTobeTested());
+			query.setParameter(14,ptwTestRecordDto.getDeviceSerialNo());
+			query.setParameter(15,ptwTestRecordDto.getIsO2());
+			query.setParameter(16,ptwTestRecordDto.getIsLELs());
+			query.setParameter(17,ptwTestRecordDto.getIsH2S());
+			query.setParameter(18,ptwTestRecordDto.getOther());
+			query.setParameter(19,ptwTestRecordDto.getSerialNo());
+			logger.info("sql " + sql);
+			query.executeUpdate();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+
+		}
+	}
+
 }

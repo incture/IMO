@@ -91,4 +91,9 @@ public class PtwCloseOutDao extends BaseDao {
 		}
 
 	}
+
+	public void updatePtwCloseOut(PtwCloseOutDto p) {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -54,4 +54,9 @@ public class PtwHwpWorkTypeDao extends BaseDao {
 		}
 		return null;
 	}
+
+	public void insertPtwHwpWorkType(PtwHwpWorkTypeDto ptwHwpWorkTypeDto) {
+		// TODO Auto-generated method stub
+		
+	}
 }

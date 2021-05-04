@@ -55,4 +55,9 @@ public class PtwCseWorkTypeDao extends BaseDao {
 		return null;
 	}
 
+	public void insertPtwCseWorkType(PtwCseWorkTypeDto ptwCseWorkTypeDto) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
