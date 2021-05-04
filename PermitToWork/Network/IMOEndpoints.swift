@@ -16,5 +16,6 @@ struct IMOEndpoints {
     static let getPermits = "https://ptwb0ot37y8l6.hana.ondemand.com/ptw/getpermitsbylocation?facility="
     static let createService = "https://ptwb0ot37y8l6.hana.ondemand.com/ptw/createservice"
     static let getJSAByPermitNumber = "https://ptwb0ot37y8l6.hana.ondemand.com/ptw/getjsabypermitnumber?"
-    
+    static let getPermitDetails = "https://ptwb0ot37y8l6.hana.ondemand.com/ptw/permitdetails/get?"
+    static let getPtwRecordResult  = "https://ptwb0ot37y8l6.hana.ondemand.com/ptw/getPtwRecordResult?permitNumber="
 }

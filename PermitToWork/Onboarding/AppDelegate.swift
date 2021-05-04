@@ -487,7 +487,10 @@ extension AppDelegate{
         //checkVersion()
      //   if OnboardingManager.shared.state == OnboardingManager.State.running {
             //syncTaskManagementActions()
-            syncPTWActions()
+        
+        
+        //rajat commented to avoid "other error"
+            //syncPTWActions()
             self.didRequestForPushNotificationOperation?()
        // }
     }
