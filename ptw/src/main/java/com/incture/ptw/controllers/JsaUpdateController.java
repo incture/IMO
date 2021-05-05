@@ -11,12 +11,12 @@ import com.incture.ptw.services.JsaUpdateService;
 import com.incture.ptw.util.ResponseDto;
 
 @RestController
-@RequestMapping("/updatejsa")
+@RequestMapping
 public class JsaUpdateController {
 	@Autowired
 	private JsaUpdateService jsaUpdateService;
 	
-	@PostMapping()
+	@PostMapping("/updatejsa")
 	public ResponseDto updateJsa(@RequestBody CreateRequestDto createRequestDto) {
 		return jsaUpdateService.updateJsaService(createRequestDto);
 	}

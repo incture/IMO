@@ -43,7 +43,7 @@ public class ApprovePermitDao extends BaseDao {
 			q3.setParameter("hwp", approvePermitDto.getPtwApprovalDto().getIsHWP());
 			q3.setParameter("cse", approvePermitDto.getPtwApprovalDto().getIsCSE());
 			q3.setParameter("wsp", approvePermitDto.getPtwApprovalDto().getIsWorkSafeToPerform());
-			q3.setParameter("pjwt", approvePermitDto.getPtwApprovalDto().getPreJobWalkThroughBy());
+			q3.setParameter("pjwt", approvePermitDto.getPtwApprovalDto().getPreJobWalkthroughBy());
 			q3.setParameter("approvedBy", approvePermitDto.getPtwApprovalDto().getApprovedBy());
 			if (approvePermitDto.getPtwApprovalDto().getApprovalDate() == null) {
 				Date d1 = new Date();
@@ -53,7 +53,7 @@ public class ApprovePermitDao extends BaseDao {
 			}
 
 			q3.setParameter("cbd", approvePermitDto.getPtwApprovalDto().getControlBoardDistribution());
-			q3.setParameter("wsd", approvePermitDto.getPtwApprovalDto().getWorkSiteDistribution());
+			q3.setParameter("wsd", approvePermitDto.getPtwApprovalDto().getWorksiteDistribution());
 			q3.setParameter("sd", approvePermitDto.getPtwApprovalDto().getSimopsDistribution());
 			q3.setParameter("od", approvePermitDto.getPtwApprovalDto().getOtherDistribution());
 			q3.setParameter("picName", approvePermitDto.getPtwApprovalDto().getPicName());

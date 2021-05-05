@@ -12,11 +12,11 @@ public class PtwApprovalDto {
 	private int isHWP;
 	private int isCSE;
 	private int isWorkSafeToPerform;
-	private String preJobWalkThroughBy;
+	private String preJobWalkthroughBy;
 	private String approvedBy;
 	private Date approvalDate;
 	private int controlBoardDistribution;
-	private int workSiteDistribution;
+	private int worksiteDistribution;
 	private int simopsDistribution;
 	private String otherDistribution;
 	private String picName;
