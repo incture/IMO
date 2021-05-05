@@ -58,7 +58,7 @@ public class CloseOutService {
 				responseDto.setData("Permit Number " + permitNumber + " closed");
 				responseDto.setMessage("Success");
 			}else{
-				responseDto.setData("Permit falied to close");
+				responseDto.setData("Permit failed to close");
 				responseDto.setMessage("Failure");
 			}
 			
