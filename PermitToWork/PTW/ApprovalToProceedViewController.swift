@@ -525,8 +525,6 @@ extension ApprovalToAuthority{
         var finalDict = [String : Any]()
         if JSAObject.currentFlow == .HWP{
             
-ing"
-//            }
             finalDict = [
                 "status" : "APPROVED",
                 "ptwApprovalDto": [
