@@ -55,6 +55,8 @@ public class JsaReviewDao extends BaseDao {
 			query.setParameter(1, permitNumber);
 			logger.info("getJsaReview sql :" + sql);
 			obj = query.getResultList();
+			if (obj.isEmpty())
+				return null;
 			for (Object[] a : obj) {
 				jsaReviewDto.setPermitNumber(Integer.parseInt(a[0].toString()));
 				jsaReviewDto.setCreatedBy((String) a[1]);

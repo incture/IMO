@@ -25,6 +25,8 @@ public class PtwCloseOutDao extends BaseDao {
 			logger.info("getPtwHwpWork Sql: " + sql);
 			@SuppressWarnings("unchecked")
 			List<Object[]> result = query.getResultList();
+			if (result.isEmpty())
+				return null;
 			List<PtwCloseOutDto> ptwCloseOutDtoList = new ArrayList<PtwCloseOutDto>();
 			for (Object[] a : result) {
 				PtwCloseOutDto ptwCloseOutDto = new PtwCloseOutDto();

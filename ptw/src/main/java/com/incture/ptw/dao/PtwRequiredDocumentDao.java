@@ -56,6 +56,8 @@ public class PtwRequiredDocumentDao extends BaseDao {
 			logger.info("getPtwReqDoc sql: " + sql);
 			@SuppressWarnings("unchecked")
 			List<Object[]> list = query.getResultList();
+			if (list.isEmpty())
+				return null;
 			List<PtwRequiredDocumentDto> ptwRequiredDocumentDtoList = new ArrayList<PtwRequiredDocumentDto>();
 			for (Object[] o : list) {
 				PtwRequiredDocumentDto ptwRequiredDocumentDto = new PtwRequiredDocumentDto();

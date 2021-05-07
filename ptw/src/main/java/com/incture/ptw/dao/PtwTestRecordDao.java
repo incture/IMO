@@ -54,6 +54,8 @@ public class PtwTestRecordDao extends BaseDao {
 			PtwTestRecordDto ptwTestRecordDto = new PtwTestRecordDto();
 			@SuppressWarnings("unchecked")
 			List<Object[]> list = query.getResultList();
+			if (list.isEmpty())
+				return null;
 			for (Object[] o : list) {
 				ptwTestRecordDto.setSerialNo(Integer.parseInt( o[0].toString()));
 				ptwTestRecordDto.setPermitNumber(Integer.parseInt(o[1].toString()));

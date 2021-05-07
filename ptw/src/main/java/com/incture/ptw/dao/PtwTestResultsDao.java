@@ -45,6 +45,8 @@ public class PtwTestResultsDao extends BaseDao {
 			logger.info("getPtwPeople Sql: " + sql);
 			@SuppressWarnings("unchecked")
 			List<Object[]> result = query.getResultList();
+			if (result.isEmpty())
+				return null;
 			List<PtwTestResultsDto> ptwTestResultsDtoList = new ArrayList<PtwTestResultsDto>();
 			for (Object[] a : result) {
 				PtwTestResultsDto ptwTestResultsDto = new PtwTestResultsDto();

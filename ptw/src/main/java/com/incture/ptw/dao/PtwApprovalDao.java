@@ -29,6 +29,8 @@ public class PtwApprovalDao extends BaseDao {
 			logger.info("getPtwApproval sql: " + sql);
 			@SuppressWarnings("unchecked")
 			List<Object[]> list = query.getResultList();
+			if (list.isEmpty())
+				return null;
 			List<PtwApprovalDto> ptwRequiredDocumentDtoList = new ArrayList<PtwApprovalDto>();
 			for (Object[] o : list) {
 				PtwApprovalDto ptwApprovalDto = new PtwApprovalDto();
