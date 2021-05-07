@@ -45,6 +45,8 @@ public class PtwCwpWorkTypeDao extends BaseDao {
 			logger.info("getPtwHwpWork Sql: " + sql);
 			@SuppressWarnings("unchecked")
 			List<Object[]> result = query.getResultList();
+			if (result.isEmpty())
+				return null;
 			PtwCwpWorkTypeDto ptwCwpWorkTypeDto = new PtwCwpWorkTypeDto();
 			for (Object[] a : result) {
 				ptwCwpWorkTypeDto.setPermitNumber(Integer.parseInt(a[0].toString()));
@@ -62,6 +64,7 @@ public class PtwCwpWorkTypeDao extends BaseDao {
 				ptwCwpWorkTypeDto.setHigherRiskElectricalWork(Integer.parseInt(a[12].toString()));
 				ptwCwpWorkTypeDto.setOtherTypeOfWork((String) a[13]);
 				ptwCwpWorkTypeDto.setDescriptionOfWorkToBePerformed((String) a[14]);
+				break;
 			}
 			logger.info("ptwCwpWorkTypeDto" + ptwCwpWorkTypeDto);
 			return ptwCwpWorkTypeDto;

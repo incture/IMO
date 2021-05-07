@@ -36,6 +36,8 @@ public class PtwHwpWorkTypeDao extends BaseDao {
 			logger.info("getPtwHwpWork Sql: " + sql);
 			@SuppressWarnings("unchecked")
 			List<Object[]> result = query.getResultList();
+			if (result.isEmpty())
+				return null;
 			PtwHwpWorkTypeDto ptwHwpWorkTypeDto = new PtwHwpWorkTypeDto();
 			for (Object[] a : result) {
 				ptwHwpWorkTypeDto.setPermitNumber(Integer.parseInt(a[0].toString()));
@@ -46,6 +48,7 @@ public class PtwHwpWorkTypeDao extends BaseDao {
 				ptwHwpWorkTypeDto.setAbrasiveBlasting(Integer.parseInt(a[5].toString()));
 				ptwHwpWorkTypeDto.setOtherTypeOfWork((String) a[6]);
 				ptwHwpWorkTypeDto.setDescriptionOfWorkToBePerformed((String) a[7]);
+				break;
 			}
 			return ptwHwpWorkTypeDto;
 		} catch (Exception e) {

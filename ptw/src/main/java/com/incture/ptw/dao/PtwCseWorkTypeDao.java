@@ -38,6 +38,8 @@ public class PtwCseWorkTypeDao extends BaseDao {
 			@SuppressWarnings("unchecked")
 			List<Object[]> result = query.getResultList();
 			logger.info(result.toString());
+			if (result.isEmpty())
+				return null;
 			PtwCseWorkTypeDto ptwCseWorkTypeDto = new PtwCseWorkTypeDto();
 			for (Object[] res : result) {
 				ptwCseWorkTypeDto.setPermitNumber(Integer.parseInt(res[0].toString()));
