@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import com.incture.ptw.dto.PtwApprovalDto;
 import com.incture.ptw.dto.PtwCloseOut1Dto;
-import com.incture.ptw.dto.PtwCloseOutDto;
 import com.incture.ptw.dto.PtwHeaderDto;
 
 @Repository
@@ -128,7 +127,7 @@ public class PtwHeaderDao extends BaseDao {
 	public void updatePtwHeader(PtwHeaderDto ptwHeaderDto) {
 		try {
 			Query query = getSession().createNativeQuery(
-					"UPDATE \"IOP\".\"PTWHEADER\" SET  \"PLANNEDDATETIME\" = ? \"STATUS\" = ? \"LOCATION\" = ? \"CREATEDBY\" = ? \"CONTRACTORPERFORMINGWORK\" = ? \"ESTIMATEDTIMEOFCOMPLETION\" = ? \"EQUIPMENTID\" = ? \"WORKORDERNUMBER\" = ? where \"PERMITNUMBER\" = ? AND \"ISCWP\" = ? AND \"ISHWP\" = ? AND \"ISCSE\" = ?");
+					"UPDATE \"IOP\".\"PTWHEADER\" SET  \"PLANNEDDATETIME\" = ?, \"STATUS\" = ?, \"LOCATION\" = ?, \"CREATEDBY\" = ?, \"CONTRACTORPERFORMINGWORK\" = ?, \"ESTIMATEDTIMEOFCOMPLETION\" = ?, \"EQUIPMENTID\" = ?, \"WORKORDERNUMBER\" = ? where \"PERMITNUMBER\" = ? AND \"ISCWP\" = ? AND \"ISHWP\" = ? AND \"ISCSE\" = ?");
 			query.setParameter(1, ptwHeaderDto.getPlannedDateTime());
 			query.setParameter(2, ptwHeaderDto.getStatus());
 			query.setParameter(3, ptwHeaderDto.getLocation());

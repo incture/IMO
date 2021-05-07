@@ -91,8 +91,8 @@ public class PtwApprovalDao extends BaseDao {
 	}
 
 	public void updatePtwApproval(String string, PtwApprovalDto p) {
-		try{
-			String sql = "UPDATE \"IOP\".\"PTWAPPROVAL\" SET  \"ISCWP\"= ? \"ISHWP\"= ? \"ISCSE\"= ? \"ISWORKSAFETOPERFORM\"= ? \"PREJOBWALKTHROUGHBY\"= ? \"APPROVEDBY\"= ? \"APPROVALDATE\"= ? \"CONTROLBOARDDISTRIBUTION\"= ? \"WORKSITEDISTRIBUTION\"= ? \"SIMOPSDISTRIBUTION\"= ? \"OTHERDISTRIBUTION\"= ? \"PICNAME\"= ? \"PICDATE\"= ? \"SUPERITENDENTNAME\"= ? \"SUPERITENDENTDATE\"= ? where \"SERIALNO\"= ?";
+		try {
+			String sql = "UPDATE \"IOP\".\"PTWAPPROVAL\" SET  \"ISCWP\"= ?, \"ISHWP\"= ?, \"ISCSE\"= ?, \"ISWORKSAFETOPERFORM\"= ?, \"PREJOBWALKTHROUGHBY\"= ?, \"APPROVEDBY\"= ?, \"APPROVALDATE\"= ?, \"CONTROLBOARDDISTRIBUTION\"= ?, \"WORKSITEDISTRIBUTION\"= ?, \"SIMOPSDISTRIBUTION\"= ?, \"OTHERDISTRIBUTION\"= ?, \"PICNAME\"= ?, \"PICDATE\"= ?, \"SUPERITENDENTNAME\"= ?, \"SUPERITENDENTDATE\"= ? where \"SERIALNO\"= ?";
 			Query query = getSession().createNativeQuery(sql);
 			logger.info("sql: " + sql);
 			query.setParameter(1, p.getIsCWP());
@@ -112,10 +112,10 @@ public class PtwApprovalDao extends BaseDao {
 			query.setParameter(15, p.getSuperitendentDate());
 			query.setParameter(16, p.getSerialNo());
 			query.executeUpdate();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		
+
 	}
 
 }

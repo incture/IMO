@@ -27,7 +27,7 @@ public class PtwCseWorkTypeDao extends BaseDao {
 			logger.error(e.getMessage());
 		}
 	}
-	
+
 	public PtwCseWorkTypeDto getPtwCseWork(String permitNumber) {
 		try {
 			String sql = "select * from IOP.PTW_CSE_WORK_TYPE where PERMITNUMBER = :permitNumber";
@@ -37,15 +37,15 @@ public class PtwCseWorkTypeDao extends BaseDao {
 			@SuppressWarnings("unchecked")
 			List<Object[]> result = query.getResultList();
 			PtwCseWorkTypeDto ptwCseWorkTypeDto = new PtwCseWorkTypeDto();
-			for(Object[] res : result){
+			for (Object[] res : result) {
 				ptwCseWorkTypeDto.setPermitNumber(Integer.parseInt(res[0].toString()));
 				ptwCseWorkTypeDto.setTank(Integer.parseInt(res[1].toString()));
 				ptwCseWorkTypeDto.setVessel(Integer.parseInt(res[2].toString()));
 				ptwCseWorkTypeDto.setExcavation(Integer.parseInt(res[3].toString()));
 				ptwCseWorkTypeDto.setPit(Integer.parseInt(res[4].toString()));
 				ptwCseWorkTypeDto.setTower(Integer.parseInt(res[5].toString()));
-				ptwCseWorkTypeDto.setOther((String)res[6]);
-				ptwCseWorkTypeDto.setReasonForCSE((String)res[7]);
+				ptwCseWorkTypeDto.setOther((String) res[6]);
+				ptwCseWorkTypeDto.setReasonForCSE((String) res[7]);
 			}
 			return ptwCseWorkTypeDto;
 		} catch (Exception e) {
@@ -56,8 +56,8 @@ public class PtwCseWorkTypeDao extends BaseDao {
 	}
 
 	public void updatePtwCseWorkType(PtwCseWorkTypeDto ptwCseWorkTypeDto) {
-		try{
-			String sql = "UPDATE \"IOP\".\"PTW_CSE_WORK_TYPE\" SET  \"TANK\"= ? \"VESSEL\"= ? \"EXCAVATION\"= ? \"PIT\"= ? \"TOWER\"= ? \"OTHER\"= ? \"REASONFORCSE\"= ? where \"PERMITNUMBER\"= ?";
+		try {
+			String sql = "UPDATE \"IOP\".\"PTW_CSE_WORK_TYPE\" SET  \"TANK\"= ?, \"VESSEL\"= ?, \"EXCAVATION\"= ?, \"PIT\"= ?, \"TOWER\"= ?, \"OTHER\"= ?, \"REASONFORCSE\"= ? where \"PERMITNUMBER\"= ?";
 			Query query = getSession().createNativeQuery(sql);
 			logger.info("sql: " + sql);
 			query.setParameter(1, ptwCseWorkTypeDto.getTank());
@@ -69,10 +69,10 @@ public class PtwCseWorkTypeDao extends BaseDao {
 			query.setParameter(7, ptwCseWorkTypeDto.getReasonForCSE());
 			query.setParameter(8, ptwCseWorkTypeDto.getPermitNumber());
 			query.executeUpdate();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		
+
 	}
 
 }

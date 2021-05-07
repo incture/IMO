@@ -50,22 +50,22 @@ public class PtwCloseOutDao extends BaseDao {
 
 	public void insertPtwCloseOut(PtwCloseOut1Dto p) {
 		logger.info("PtwCloseOutDao | insertPtwCloseOut" + p);
-			Query query = getSession()
-					.createNativeQuery("INSERT INTO \"IOP\".\"PTWCLOSEOUT\" VALUES (?,?,?,?,?,?,?,?,?,?)");
-			query.setParameter(1, keyGeneratorDao.getTOPTWCLOSEOUT());
-			query.setParameter(2, p.getPermitNumber());
-			query.setParameter(3, p.getIsCWP());
-			query.setParameter(4, p.getIsHWP());
-			query.setParameter(5, p.getIsCSE());
-			query.setParameter(6, p.getPicName());
-			query.setParameter(7, p.getWorkCompleted());
-			query.setParameter(8, p.getClosedBy());
-			query.setParameter(9, p.getClosedDate());
-			query.setParameter(10, p.getWorkStatusComments());
-			query.executeUpdate();
+		Query query = getSession()
+				.createNativeQuery("INSERT INTO \"IOP\".\"PTWCLOSEOUT\" VALUES (?,?,?,?,?,?,?,?,?,?)");
+		query.setParameter(1, keyGeneratorDao.getTOPTWCLOSEOUT());
+		query.setParameter(2, p.getPermitNumber());
+		query.setParameter(3, p.getIsCWP());
+		query.setParameter(4, p.getIsHWP());
+		query.setParameter(5, p.getIsCSE());
+		query.setParameter(6, p.getPicName());
+		query.setParameter(7, p.getWorkCompleted());
+		query.setParameter(8, p.getClosedBy());
+		query.setParameter(9, p.getClosedDate());
+		query.setParameter(10, p.getWorkStatusComments());
+		query.executeUpdate();
 
 	}
-	
+
 	public void insertPtwCloseOut(PtwCloseOutDto p) {
 		logger.info("PtwCloseOutDao | insertPtwCloseOut" + p);
 		try {
@@ -89,8 +89,8 @@ public class PtwCloseOutDao extends BaseDao {
 	}
 
 	public void updatePtwCloseOut(PtwCloseOutDto p) {
-		try{
-			String sql = "UPDATE \"IOP\".\"PTWCLOSEOUT\" SET  \"ISCWP\"= ? \"ISHWP\"= ? \"ISCSE\"=? \"PICNAME\"= ? \"WORKCOMPLETED\"= ? \"CLOSEDBY\"= ? \"CLOSEDDATE\"= ? \"WORKSTATUSCOMMENT\"= ? where \"SERIALNO\"= ?";
+		try {
+			String sql = "UPDATE \"IOP\".\"PTWCLOSEOUT\" SET  \"ISCWP\"= ?, \"ISHWP\"= ?, \"ISCSE\"=?, \"PICNAME\"= ?, \"WORKCOMPLETED\"= ?, \"CLOSEDBY\"= ?, \"CLOSEDDATE\"= ?, \"WORKSTATUSCOMMENT\"= ? where \"SERIALNO\"= ?";
 			Query query = getSession().createNativeQuery(sql);
 			logger.info("sql: " + sql);
 			query.setParameter(1, p.getIsCWP());
@@ -103,9 +103,9 @@ public class PtwCloseOutDao extends BaseDao {
 			query.setParameter(8, p.getWorkStatusComment());
 			query.setParameter(9, p.getSerialNo());
 			query.executeUpdate();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		
+
 	}
 }

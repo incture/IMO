@@ -11,7 +11,7 @@ import com.incture.ptw.dto.PtwCwpWorkTypeDto;
 @Repository
 public class PtwCwpWorkTypeDao extends BaseDao {
 	public void insertPtwCwpWorkType(String permitNumber, PtwCwpWorkTypeDto ptwCwpWorkTypeDto) {
-      logger.info("ptwCwpWorkTypeDto"+ptwCwpWorkTypeDto);
+		logger.info("ptwCwpWorkTypeDto" + ptwCwpWorkTypeDto);
 		try {
 			Query query = getSession().createNativeQuery(
 					"INSERT INTO \"IOP\".\"PTW_CWP_WORK_TYPE\"VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -36,7 +36,7 @@ public class PtwCwpWorkTypeDao extends BaseDao {
 		}
 
 	}
-	
+
 	public PtwCwpWorkTypeDto getPtwCwpWork(String permitNumber) {
 		try {
 			String sql = "select * from IOP.PTW_CWP_WORK_TYPE where PERMITNUMBER= :permitNumber";
@@ -46,7 +46,7 @@ public class PtwCwpWorkTypeDao extends BaseDao {
 			@SuppressWarnings("unchecked")
 			List<Object[]> result = query.getResultList();
 			PtwCwpWorkTypeDto ptwCwpWorkTypeDto = new PtwCwpWorkTypeDto();
-			for(Object[] a : result){
+			for (Object[] a : result) {
 				ptwCwpWorkTypeDto.setPermitNumber(Integer.parseInt(a[0].toString()));
 				ptwCwpWorkTypeDto.setCriticalOrComplexLift(Integer.parseInt(a[1].toString()));
 				ptwCwpWorkTypeDto.setCraneOrLiftingDevice(Integer.parseInt(a[2].toString()));
@@ -60,10 +60,10 @@ public class PtwCwpWorkTypeDao extends BaseDao {
 				ptwCwpWorkTypeDto.setWorkingInCloseToHazardousEnergy(Integer.parseInt(a[10].toString()));
 				ptwCwpWorkTypeDto.setRemovalOfIdleEquipmentForRepair(Integer.parseInt(a[11].toString()));
 				ptwCwpWorkTypeDto.setHigherRiskElectricalWork(Integer.parseInt(a[12].toString()));
-				ptwCwpWorkTypeDto.setOtherTypeOfWork((String)a[13]);
-				ptwCwpWorkTypeDto.setDescriptionOfWorkToBePerformed((String)a[14]);
+				ptwCwpWorkTypeDto.setOtherTypeOfWork((String) a[13]);
+				ptwCwpWorkTypeDto.setDescriptionOfWorkToBePerformed((String) a[14]);
 			}
-			logger.info("ptwCwpWorkTypeDto"+ptwCwpWorkTypeDto);
+			logger.info("ptwCwpWorkTypeDto" + ptwCwpWorkTypeDto);
 			return ptwCwpWorkTypeDto;
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -73,8 +73,8 @@ public class PtwCwpWorkTypeDao extends BaseDao {
 	}
 
 	public void updatePtwCwpWorkType(PtwCwpWorkTypeDto ptwCwpWorkTypeDto) {
-		try{
-			String sql = "UPDATE \"IOP\".\"PTW_CWP_WORK_TYPE\" SET  \"CRITICALORCOMPLEXLIFT\"= ? \"CRANEORLIFTINGDEVICE\"= ? \"GROUNDDISTURBANCEOREXCAVATION\"= ? \"HANDLINGHAZARDOUSCHEMICALS\"= ? \"WORKINGATHEIGHT\"= ? \"PAINTINGORBLASTING\"= ? \"WORKINGONPRESSURIZEDSYSTEMS\"= ? \"ERECTINGORDISMANTLINGSCAFFOLDING\"= ? \"BREAKINGCONTAINMENTOFCLOSEDOPERATINGSYSTEM\"= ? \"WORKINGINCLOSETOHAZARDOUSENERGY\"= ? \"REMOVALOFIDLEEQUIPMENTFORREPAIR\"= ? \"HIGHERRISKELECTRICALWORK\"= ? \"OTHERTYPEOFWORK\"= ? \"DESCRIPTIONOFWORKTOBEPERFORMED\"= ? where \"PERMITNUMBER\"= ?";
+		try {
+			String sql = "UPDATE \"IOP\".\"PTW_CWP_WORK_TYPE\" SET  \"CRITICALORCOMPLEXLIFT\"= ?, \"CRANEORLIFTINGDEVICE\"= ?, \"GROUNDDISTURBANCEOREXCAVATION\"= ?, \"HANDLINGHAZARDOUSCHEMICALS\"= ?, \"WORKINGATHEIGHT\"= ?, \"PAINTINGORBLASTING\"= ?, \"WORKINGONPRESSURIZEDSYSTEMS\"= ?, \"ERECTINGORDISMANTLINGSCAFFOLDING\"= ?, \"BREAKINGCONTAINMENTOFCLOSEDOPERATINGSYSTEM\"= ?, \"WORKINGINCLOSETOHAZARDOUSENERGY\"= ?, \"REMOVALOFIDLEEQUIPMENTFORREPAIR\"= ?, \"HIGHERRISKELECTRICALWORK\"= ?, \"OTHERTYPEOFWORK\"= ?, \"DESCRIPTIONOFWORKTOBEPERFORMED\"= ? where \"PERMITNUMBER\"= ?";
 			Query query = getSession().createNativeQuery(sql);
 			logger.info("sql: " + sql);
 			query.setParameter(1, ptwCwpWorkTypeDto.getCriticalOrComplexLift());
@@ -93,10 +93,10 @@ public class PtwCwpWorkTypeDao extends BaseDao {
 			query.setParameter(14, ptwCwpWorkTypeDto.getDescriptionOfWorkToBePerformed());
 			query.setParameter(15, ptwCwpWorkTypeDto.getPermitNumber());
 			query.executeUpdate();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		
+
 	}
 
 }

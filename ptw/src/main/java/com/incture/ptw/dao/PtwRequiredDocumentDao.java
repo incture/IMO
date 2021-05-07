@@ -17,7 +17,7 @@ public class PtwRequiredDocumentDao extends BaseDao {
 
 	public void insertPtwRequiredDocument(String permitNumber, PtwRequiredDocumentDto ptwRequiredDocumentDto) {
 		try {
-			logger.info("ptwRequiredDocumentDto :"+ ptwRequiredDocumentDto);
+			logger.info("ptwRequiredDocumentDto :" + ptwRequiredDocumentDto);
 			Query query = getSession().createNativeQuery(
 					"INSERT INTO \"IOP\".\"PTWREQUIREDDOCUMENT\"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			query.setParameter(1, Integer.parseInt(keyGeneratorDao.getPTWREQDOC()));
@@ -88,8 +88,8 @@ public class PtwRequiredDocumentDao extends BaseDao {
 	}
 
 	public void updatePtwRequiredDocument(String permitNumber, PtwRequiredDocumentDto p) {
-		try{
-			String sql = "UPDATE \"IOP\".\"PTWREQUIREDDOCUMENT\" SET  \"ISCWP\"= ? \"ISHWP\"= ? \"ISCSE\"= ? \"ATMOSPHERICTESTRECORD\"= ? \"LOTO\"= ? \"PROCEDURE\"= ? \"PANDIDORDRAWING\"= ? \"CERTIFICATE\"= ? \"TEMPORARYDEFEAT\"= ? \"RESCUEPLAN\"= ? \"SDS\"= ? \"OTHERWORKPERMITDOCS\"= ? \"FIREWATCHCHECKLIST\"= ? \"LIFTPLAN\"= ? \"SIMOPDEVIATION\"= ? \"SAFEWORKPRACTICE\"= ? where \"SERIALNO\"= ?";
+		try {
+			String sql = "UPDATE \"IOP\".\"PTWREQUIREDDOCUMENT\" SET  \"ISCWP\"= ?, \"ISHWP\"= ?, \"ISCSE\"= ?, \"ATMOSPHERICTESTRECORD\"= ?, \"LOTO\"= ?, \"PROCEDURE\"= ?, \"PANDIDORDRAWING\"= ?, \"CERTIFICATE\"= ?, \"TEMPORARYDEFEAT\"= ?, \"RESCUEPLAN\"= ?, \"SDS\"= ?, \"OTHERWORKPERMITDOCS\"= ?, \"FIREWATCHCHECKLIST\"= ?, \"LIFTPLAN\"= ?, \"SIMOPDEVIATION\"= ?, \"SAFEWORKPRACTICE\"= ? where \"SERIALNO\"= ?";
 			Query query = getSession().createNativeQuery(sql);
 			logger.info("sql: " + sql);
 			query.setParameter(1, p.getIsCWP());
@@ -110,10 +110,10 @@ public class PtwRequiredDocumentDao extends BaseDao {
 			query.setParameter(16, p.getSafeWorkPractice());
 			query.setParameter(17, p.getSerialNo());
 			query.executeUpdate();
-		}catch (Exception e) {
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
-		
+
 	}
 
 }
