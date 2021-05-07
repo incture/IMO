@@ -23,7 +23,7 @@ public class CloseOutService {
 
 	@Autowired
 	private PtwHeaderDao ptwHeaderDao;
-	
+
 	@Autowired
 	private PtwTestResultsDao ptwTestResultsDao;
 
@@ -40,26 +40,26 @@ public class CloseOutService {
 			if (closeOutReqDto.getPtwCloseOutDtoList() != null && !closeOutReqDto.getPtwCloseOutDtoList().isEmpty()) {
 				permitNumber = closeOutReqDto.getPtwCloseOutDtoList().get(0).getPermitNumber();
 				ptwHeaderDao.updatePtwHeader(closeOutReqDto.getPtwCloseOutDtoList().get(0), closeOutReqDto.getStatus());
-				for(PtwCloseOut1Dto p : closeOutReqDto.getPtwCloseOutDtoList()){
+				for (PtwCloseOut1Dto p : closeOutReqDto.getPtwCloseOutDtoList()) {
 					ptwCloseOutDao.insertPtwCloseOut(p);
 				}
 				flag = true;
 			}
-			if(closeOutReqDto.getPtwTestResultsDtoList() != null && ! closeOutReqDto.getPtwTestResultsDtoList().isEmpty()){
+			if (closeOutReqDto.getPtwTestResultsDtoList() != null
+					&& !closeOutReqDto.getPtwTestResultsDtoList().isEmpty()) {
 				ptwTestResultsDao.deletePtwTestResults(permitNumber.toString());
-				for(PtwTestResultsDto p : closeOutReqDto.getPtwTestResultsDtoList()){
-					ptwTestResultsDao.insertPtwTestResults(p.getPermitNumber().toString(), p);
+				for (PtwTestResultsDto p : closeOutReqDto.getPtwTestResultsDtoList()) {
+					ptwTestResultsDao.insertPtwTestResults(permitNumber.toString(), p);
 				}
 				flag = true;
 			}
-			if(flag){
+			if (flag) {
 				responseDto.setData("Permit Number " + permitNumber + " closed");
 				responseDto.setMessage("Success");
-			}else{
+			} else {
 				responseDto.setData("Permit failed to close");
 				responseDto.setMessage("Failure");
 			}
-			
 
 		} catch (Exception e) {
 			e.printStackTrace();
