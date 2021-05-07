@@ -91,7 +91,7 @@ public class UpdatePermitService {
 			if (ptwConditionCheck) {
 				taskPermitNum = updatePermitRequestDto.getPtwHeaderDtoList().get(0).getPermitNumber();
 				if (updatePermitRequestDto.getPtwHeaderDtoList() != null
-						&& !updatePermitRequestDto.getPtwHeaderDtoList().isEmpty()) {
+						|| !updatePermitRequestDto.getPtwHeaderDtoList().isEmpty()) {
 					for (int i = 0; i < updatePermitRequestDto.getPtwHeaderDtoList().size(); i++) {
 						ptwHeaderDao.updatePtwHeader(updatePermitRequestDto.getPtwHeaderDtoList().get(i));
 					}
@@ -99,7 +99,7 @@ public class UpdatePermitService {
 				}
 
 				if (!updatePermitRequestDto.getPtwPeopleDtoList().isEmpty()
-						&& updatePermitRequestDto.getPtwPeopleDtoList() != null) {
+						|| updatePermitRequestDto.getPtwPeopleDtoList() != null) {
 					ptwPeopleDao.deletePtwPeople(taskPermitNum.toString());
 					for (PtwPeopleDto p : updatePermitRequestDto.getPtwPeopleDtoList()) {
 						ptwPeopleDao.insertPtwPeople(taskPermitNum.toString(), p);
@@ -107,12 +107,12 @@ public class UpdatePermitService {
 				}
 
 				if (!updatePermitRequestDto.getPtwRequiredDocumentDtoList().isEmpty()
-						&& updatePermitRequestDto.getPtwRequiredDocumentDtoList() != null) {
+						|| updatePermitRequestDto.getPtwRequiredDocumentDtoList() != null) {
 					for (PtwRequiredDocumentDto p : updatePermitRequestDto.getPtwRequiredDocumentDtoList())
 						ptwRequiredDocumentDao.updatePtwRequiredDocument(taskPermitNum.toString(), p);
 				}
 				if (!updatePermitRequestDto.getPtwApprovalDtoList().isEmpty()
-						&& updatePermitRequestDto.getPtwApprovalDtoList() != null) {
+						|| updatePermitRequestDto.getPtwApprovalDtoList() != null) {
 					for (PtwApprovalDto p : updatePermitRequestDto.getPtwApprovalDtoList())
 						ptwApprovalDao.updatePtwApproval(taskPermitNum.toString(), p);
 				}
@@ -120,16 +120,16 @@ public class UpdatePermitService {
 					ptwTestRecordDao.updatePtwTestRecord(updatePermitRequestDto.getPtwTestRecordDto());
 				}
 				if (!updatePermitRequestDto.getPtwTestResultsDtoList().isEmpty()
-						&& updatePermitRequestDto.getPtwTestResultsDtoList() != null) {
+						|| updatePermitRequestDto.getPtwTestResultsDtoList() != null) {
 					ptwTestResultsDao.deletePtwTestResults(taskPermitNum.toString());
 					for (PtwTestResultsDto p : updatePermitRequestDto.getPtwTestResultsDtoList()) {
 						ptwTestResultsDao.insertPtwTestResults(taskPermitNum.toString(), p);
 					}
 				}
 				// implementation are not done
-				if (!updatePermitRequestDto.getPtwCloseOutDtolist().isEmpty()
-						&& updatePermitRequestDto.getPtwCloseOutDtolist() != null) {
-					for (PtwCloseOutDto p : updatePermitRequestDto.getPtwCloseOutDtolist()) {
+				if (!updatePermitRequestDto.getPtwCloseOutDtoList().isEmpty()
+						|| updatePermitRequestDto.getPtwCloseOutDtoList() != null) {
+					for (PtwCloseOutDto p : updatePermitRequestDto.getPtwCloseOutDtoList()) {
 						ptwCloseOutDao.updatePtwCloseOut(p);
 					}
 				}

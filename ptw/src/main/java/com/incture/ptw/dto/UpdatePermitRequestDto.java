@@ -12,7 +12,7 @@ public class UpdatePermitRequestDto {
 	private List<PtwApprovalDto> ptwApprovalDtoList;
 	private PtwTestRecordDto ptwTestRecordDto;
 	private List<PtwTestResultsDto> ptwTestResultsDtoList;
-	private List<PtwCloseOutDto> ptwCloseOutDtolist;
+	private List<PtwCloseOutDto> ptwCloseOutDtoList;
 	private PtwCwpWorkTypeDto ptwCwpWorkTypeDto;
 	private PtwHwpWorkTypeDto ptwHwpWorkTypeDto;
 	private PtwCseWorkTypeDto ptwCseWorkTypeDto;
