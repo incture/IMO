@@ -46,7 +46,6 @@ public class CloseOutService {
 				flag = true;
 			}
 			if(closeOutReqDto.getPtwTestResultsDtoList() != null && ! closeOutReqDto.getPtwTestResultsDtoList().isEmpty()){
-				permitNumber = closeOutReqDto.getPtwTestResultsDtoList().get(0).getPermitNumber();
 				ptwTestResultsDao.deletePtwTestResults(permitNumber.toString());
 				for(PtwTestResultsDto p : closeOutReqDto.getPtwTestResultsDtoList()){
 					ptwTestResultsDao.insertPtwTestResults(p.getPermitNumber().toString(), p);
