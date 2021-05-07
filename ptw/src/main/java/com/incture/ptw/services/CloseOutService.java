@@ -12,7 +12,6 @@ import com.incture.ptw.dao.PtwHeaderDao;
 import com.incture.ptw.dao.PtwTestResultsDao;
 import com.incture.ptw.dto.CloseOutReqDto;
 import com.incture.ptw.dto.PtwCloseOut1Dto;
-import com.incture.ptw.dto.PtwCloseOutDto;
 import com.incture.ptw.dto.PtwTestResultsDto;
 import com.incture.ptw.util.ResponseDto;
 
