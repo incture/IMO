@@ -30,12 +30,14 @@ public class PtwCseWorkTypeDao extends BaseDao {
 
 	public PtwCseWorkTypeDto getPtwCseWork(String permitNumber) {
 		try {
-			String sql = "select * from IOP.PTW_CSE_WORK_TYPE where PERMITNUMBER = :permitNumber";
+			String sql = "select * from IOP.PTW_CSE_WORK_TYPE where PERMITNUMBER = ?";
 			Query query = getSession().createNativeQuery(sql);
-			query.setParameter("permitNumber", permitNumber);
+			query.setParameter(1, permitNumber);
+			logger.info(permitNumber);
 			logger.info("getPtwCseWork Sql: " + sql);
 			@SuppressWarnings("unchecked")
 			List<Object[]> result = query.getResultList();
+			logger.info(result.toString());
 			PtwCseWorkTypeDto ptwCseWorkTypeDto = new PtwCseWorkTypeDto();
 			for (Object[] res : result) {
 				ptwCseWorkTypeDto.setPermitNumber(Integer.parseInt(res[0].toString()));
@@ -46,7 +48,9 @@ public class PtwCseWorkTypeDao extends BaseDao {
 				ptwCseWorkTypeDto.setTower(Integer.parseInt(res[5].toString()));
 				ptwCseWorkTypeDto.setOther((String) res[6]);
 				ptwCseWorkTypeDto.setReasonForCSE((String) res[7]);
+				break;
 			}
+			logger.info(ptwCseWorkTypeDto.toString());
 			return ptwCseWorkTypeDto;
 		} catch (Exception e) {
 			logger.error(e.getMessage());

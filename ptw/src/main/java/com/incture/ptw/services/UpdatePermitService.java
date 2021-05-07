@@ -126,7 +126,6 @@ public class UpdatePermitService {
 						ptwTestResultsDao.insertPtwTestResults(taskPermitNum.toString(), p);
 					}
 				}
-				// implementation are not done
 				if (!updatePermitRequestDto.getPtwCloseOutDtoList().isEmpty()
 						|| updatePermitRequestDto.getPtwCloseOutDtoList() != null) {
 					for (PtwCloseOutDto p : updatePermitRequestDto.getPtwCloseOutDtoList()) {
