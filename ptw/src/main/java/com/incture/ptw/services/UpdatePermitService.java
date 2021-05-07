@@ -1,7 +1,5 @@
 package com.incture.ptw.services;
 
-import java.util.ArrayList;
-
 import javax.transaction.Transactional;
 
 import org.slf4j.Logger;
@@ -128,23 +126,23 @@ public class UpdatePermitService {
 						ptwTestResultsDao.insertPtwTestResults(taskPermitNum.toString(), p);
 					}
 				}
-				//implementation are not done
+				// implementation are not done
 				if (!updatePermitRequestDto.getPtwCloseOutDtolist().isEmpty()
-                        && updatePermitRequestDto.getPtwCloseOutDtolist() != null) {
-                    for (PtwCloseOutDto p : updatePermitRequestDto.getPtwCloseOutDtolist()) {
-                        ptwCloseOutDao.updatePtwCloseOut(p);
-                    }
-                }
-                if (updatePermitRequestDto.getPtwCwpWorkTypeDto() != null && isCwpFlag==true) {
-                    ptwCwpWorkTypeDao.updatePtwCwpWorkType(updatePermitRequestDto.getPtwCwpWorkTypeDto());
-                }
-                if (updatePermitRequestDto.getPtwHwpWorkTypeDto() != null && isHwpFlag==true) {
-                    ptwHwpWorkTypeDao.updatePtwHwpWorkType(updatePermitRequestDto.getPtwHwpWorkTypeDto());
-                }
-                if (updatePermitRequestDto.getPtwCseWorkTypeDto() != null && isCseFlag==true) {
-                    ptwCseWorkTypeDao.updatePtwCseWorkType(updatePermitRequestDto.getPtwCseWorkTypeDto());
-                }
-                responseDto.setData("Permit "+taskPermitNum+" updated succesfully.");
+						&& updatePermitRequestDto.getPtwCloseOutDtolist() != null) {
+					for (PtwCloseOutDto p : updatePermitRequestDto.getPtwCloseOutDtolist()) {
+						ptwCloseOutDao.updatePtwCloseOut(p);
+					}
+				}
+				if (updatePermitRequestDto.getPtwCwpWorkTypeDto() != null && isCwpFlag == true) {
+					ptwCwpWorkTypeDao.updatePtwCwpWorkType(updatePermitRequestDto.getPtwCwpWorkTypeDto());
+				}
+				if (updatePermitRequestDto.getPtwHwpWorkTypeDto() != null && isHwpFlag == true) {
+					ptwHwpWorkTypeDao.updatePtwHwpWorkType(updatePermitRequestDto.getPtwHwpWorkTypeDto());
+				}
+				if (updatePermitRequestDto.getPtwCseWorkTypeDto() != null && isCseFlag == true) {
+					ptwCseWorkTypeDao.updatePtwCseWorkType(updatePermitRequestDto.getPtwCseWorkTypeDto());
+				}
+				responseDto.setData("Permit " + taskPermitNum + " updated succesfully.");
 			}
 
 		} catch (Exception e) {
@@ -152,7 +150,7 @@ public class UpdatePermitService {
 			logger.error("UpdatePermitService || updatePermitDetails " + e.getMessage());
 			logger.error(e.getStackTrace().toString());
 			responseDto.setStatus(Boolean.FALSE);
-			responseDto.setData(new ArrayList<>());
+			responseDto.setData("Permit failed to update.");
 			responseDto.setStatusCode(500);
 			responseDto.setMessage(e.getMessage());
 		}

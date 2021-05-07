@@ -1,5 +1,6 @@
 package com.incture.ptw.dao;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -33,14 +34,14 @@ public class PtwRecordResultDao extends BaseDao {
 				ptwTestResultsDto.setIsHWP(Integer.parseInt(o[3].toString()));
 				ptwTestResultsDto.setIsCSE(Integer.parseInt(o[4].toString()));
 				ptwTestResultsDto.setPreStartOrWorkTest((String) o[5]);
-				ptwTestResultsDto.setOxygenPercentage(Float.parseFloat(o[6].toString()));
+				ptwTestResultsDto.setOxygenPercentage(((BigDecimal)o[6]).doubleValue());
 				ptwTestResultsDto.setToxicType((String) o[7]);
-				ptwTestResultsDto.setToxicResult(Float.parseFloat(o[8].toString()));
+				ptwTestResultsDto.setToxicResult(((BigDecimal) o[8]).doubleValue());
 				ptwTestResultsDto.setFlammableGas((String) o[9]);
 				ptwTestResultsDto.setOthersType((String) o[10]);
-				ptwTestResultsDto.setOthersResult(Float.parseFloat(o[11].toString()));
+				ptwTestResultsDto.setOthersResult(((BigDecimal) o[11]).doubleValue());
 				ptwTestResultsDto.setDate((Date) o[12]);
-				ptwTestResultsDto.setTime((Date) o[13]);
+				ptwTestResultsDto.setTime(o[13].toString());
 				ptwTestResultsDtoList.add(ptwTestResultsDto);
 			}
 			logger.info("ptwTestResultsDtoList :" + ptwTestResultsDtoList);

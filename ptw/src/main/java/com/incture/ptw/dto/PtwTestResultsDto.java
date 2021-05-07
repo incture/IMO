@@ -12,12 +12,12 @@ public class PtwTestResultsDto {
 	private Integer isHWP;
 	private Integer isCSE;
 	private String preStartOrWorkTest;
-	private Float oxygenPercentage;
+	private Double oxygenPercentage;
 	private String toxicType;
-	private Float toxicResult;
+	private Double toxicResult;
 	private String flammableGas;
 	private String othersType;
-	private Float othersResult;
+	private Double othersResult;
 	private Date date;
-	private Date time;
+	private String time;
 }
