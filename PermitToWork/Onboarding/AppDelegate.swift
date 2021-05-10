@@ -646,6 +646,7 @@ extension AppDelegate{
         jsaDetailService.saveChanges()
     }
     
+    //not being used
     func postJSAApproval(type : String, postData : [String : Any], action : ActionModel, isLast : Bool){
         
         var url : String?
@@ -686,16 +687,20 @@ extension AppDelegate{
     func ptwPostBody(type : String, postData : [String : Any], action : ActionModel, isLast : Bool){
         var url : String = ""
         if type == ActionType.JSACreate.rawValue{
-            url = "\(BaseUrl.apiURL)/com.iop.ptw/Create_Service.xsjs"
+            //url = "\(BaseUrl.apiURL)/com.iop.ptw/Create_Service.xsjs"
+            url = IMOEndpoints.createService
         }
         else if type == ActionType.JSAUpdate.rawValue{
-            url = "\(BaseUrl.apiURL)/com.iop.ptw/JSA_Update_Service.xsjs"
+            url = IMOEndpoints.updateJSA
+           // url = "\(BaseUrl.apiURL)/com.iop.ptw/JSA_Update_Service.xsjs"
         }
         else if type == ActionType.PermitUpdate.rawValue{
-            url = "\(BaseUrl.apiURL)/com.iop.ptw/UpdatePermit.xsjs"
+            url = IMOEndpoints.updatePermit
+            //url = "\(BaseUrl.apiURL)/com.iop.ptw/UpdatePermit.xsjs"
         }
         else if type == ActionType.PermitApprove.rawValue{
-            url = "\(BaseUrl.apiURL)/com.iop.ptw/ApprovePermit.xsjs"
+            url = IMOEndpoints.approvePermit
+            //url = "\(BaseUrl.apiURL)/com.iop.ptw/ApprovePermit.xsjs"
         }
         else if type == ActionType.PermitCloseOut.rawValue{
              url = IMOEndpoints.closeOut

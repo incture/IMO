@@ -111,7 +111,9 @@ class TOJSE_PPE : NSObject
         if let temp0 = JSON["otherPPEDescription"] as? String {
             self.otherPPEDescription = temp0
         }
-        if let temp0 = JSON["needFoulWeatherGear"] as? Int {
+        //rajat changed as it was string
+        //if let temp0 = JSON["needFoulWeatherGear"] as? Int {
+        if let temp0 = Int(JSON["needFoulWeatherGear"] as? String ?? "0") ?? 0 {
             self.needFoulWeatherGear = temp0
         }
         if let temp0 = JSON["companyOfTaskLeader"] as? String {

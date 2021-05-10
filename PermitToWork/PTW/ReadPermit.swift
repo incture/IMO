@@ -36,13 +36,13 @@ class ReadPermit : NSObject
                 self.TOPTWREQDOCValue.append(temp00)
             }
         }
-        if let temp = jsaObject.value(forKey: "TOPTWTESTREC") as? NSDictionary{
+        if let temp = jsaObject.value(forKey: "ptwTestRecordDto") as? NSDictionary{
             //for each in temp{
                 //let temp00 = TOPTWTESTREC(JSON : each) as TOPTWTESTREC
                 self.TOPTWTESTRECValue = TOPTWTESTREC(JSON : temp)
             //}
         }
-        if let temp = jsaObject.value(forKey: "TOPTWTESTRES") as? [NSDictionary]{
+        if let temp = jsaObject.value(forKey: "ptwTestResultsDtoList") as? [NSDictionary]{
             for each in temp{
                 let temp00 = TOPTWTESTRES(JSON : each) as TOPTWTESTRES
                 self.TOPTWTESTRESValue.append(temp00)

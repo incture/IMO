@@ -474,7 +474,7 @@ extension PicSignOffViewController: UITableViewDataSource, UITableViewDelegate {
             "status" : "APPROVED",
             "ptwApprovalDtoList": [
                 "permitNumber" : CWObject.header.permitNo,
-                "prejobWalkthroughBy": CWObject.signOff.walkthrough,
+                "preJobWalkthroughBy": CWObject.signOff.walkthrough,
                 "isWorkSafeToPerform": CWObject.signOff.isSafeContinue,
                 "controlBoardDistribution": CWObject.signOff.controlBoard,
                 "worksiteDistribution": CWObject.signOff.worksite,
@@ -498,7 +498,8 @@ extension PicSignOffViewController: UITableViewDataSource, UITableViewDelegate {
             }
         let postData = try? JSONSerialization.data(withJSONObject: finalDict, options: [])
         
-        let stringURL = "\(BaseUrl.apiURL)/com.iop.ptw/ApprovePermit.xsjs"
+            let stringURL = IMOEndpoints.approvePermit
+        //let stringURL = "\(BaseUrl.apiURL)/com.iop.ptw/ApprovePermit.xsjs"
         print(stringURL)
         
         let Username = "IOP"

@@ -1231,8 +1231,7 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
     func getPeopleListData(){
 
         DispatchQueue.main.async {
-            //rajat commented
-            //self.loaderStart()
+            self.loaderStart()
         }
         let encodedUrl = locationStr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         var urlRequest = URLRequest(url: URL(string: encodedUrl ?? "")!)
@@ -1275,7 +1274,6 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
                             for each in jsonArr{
                                 if let dtoDict = each as? NSDictionary{
                                     var peopleList = [People]()
-                                    //rajat renamed ptwPeople to ptwPeopleList
                                     if let tempArr = dtoDict["ptwPeopleList"] as? [NSDictionary] {
                                         for arr in tempArr {
                                             let people = People(JSON : arr as NSDictionary)

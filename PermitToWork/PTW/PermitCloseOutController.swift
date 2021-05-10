@@ -455,7 +455,7 @@ extension PermitCloseOutController{
                     "flammableGas": each.flammableGas as Any,
                     "othersType": each.othersType as Any,
                     "othersResult": each.othersResult as Any,
-                    "date": each.Date as Any,
+                    "date": each.Date.convertToDateToMilliseconds() as Any,
                     "time": each.Time as Any
                 ] as [String : Any]
             }
@@ -471,7 +471,7 @@ extension PermitCloseOutController{
                     "flammableGas": each.flammableGas as Any,
                     "othersType": each.othersType as Any,
                     "othersResult": each.othersResult as Any,
-                    "date": each.Date as Any,
+                    "date": each.Date.convertToDateToMilliseconds() as Any,
                     "time": each.Time as Any
                 ] as [String : Any]
             }
@@ -487,7 +487,7 @@ extension PermitCloseOutController{
                     "flammableGas": each.flammableGas as Any,
                     "othersType": each.othersType as Any,
                     "othersResult": each.othersResult as Any,
-                    "date": each.Date as Any,
+                    "date": each.Date.convertToDateToMilliseconds() as Any,
                     "time": each.Time as Any
                 ] as [String : Any]
             }

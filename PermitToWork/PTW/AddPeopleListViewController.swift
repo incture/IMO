@@ -498,7 +498,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "isHWP":0,
                 "isCSE":0,
                 "isWorkSafeToPerform":1,
-                "prejobWalkthroughBy":JSAObject.CWP.signOff.walkthrough.utf8EncodedString(),
+                "preJobWalkthroughBy":JSAObject.CWP.signOff.walkthrough.utf8EncodedString(),
                 "approvedBy":"",
                 "approvalDate":"",
                 "controlBoardDistribution":JSAObject.CWP.signOff.controlBoard,
@@ -578,7 +578,8 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "flammableGas":val.flammableGas.utf8EncodedString(),
                 "othersType":val.othersType.utf8EncodedString(),
                 "othersResult":val.othersResult,
-                "date":val.Date,
+                //rajat changed the format of date
+                "date":val.Date.convertToDateToMilliseconds(),
                 "time":val.Time
                 ] as [String:Any]
             permitTestResultsArray.append(testResults)
@@ -598,7 +599,8 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "flammableGas":val.flammableGas.utf8EncodedString(),
                 "othersType":val.othersType.utf8EncodedString(),
                 "othersResult":val.othersResult,
-                "date":val.Date,
+                //rajat changed the format of date
+                "date":val.Date.convertToDateToMilliseconds(),
                 "time":val.Time
                 ] as [String:Any]
             permitTestResultsArray.append(testResults)
@@ -674,7 +676,9 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "other":"",
                 "reasonForCSE":"",
                 "permitNumber" : JSAObject.CWP.header.permitNo
-            ]
+            ],
+            //rajat added empty list as it was missing
+            "ptwCloseOutDtoList":[]
         ]
         
         return finalDict
@@ -718,7 +722,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "isHWP":1,
                 "isCSE":0,
                 "isWorkSafeToPerform":1,
-                "prejobWalkthroughBy":JSAObject.CWP.signOff.walkthrough,
+                "preJobWalkthroughBy":JSAObject.CWP.signOff.walkthrough,
                 "approvedBy": "",
                 "approvalDate":"22/02/12",
                 "controlBoardDistribution":JSAObject.CWP.signOff.controlBoard,
@@ -798,7 +802,8 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "flammableGas":val.flammableGas.utf8EncodedString(),
                 "othersType":val.othersType.utf8EncodedString(),
                 "othersResult":val.othersResult,
-                "date":val.Date,
+                //rajat changed the format of date
+                "date":val.Date.convertToDateToMilliseconds(),
                 "time":val.Time
                 ] as [String:Any]
             permitTestResultsArray.append(testResults)
@@ -818,7 +823,8 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "flammableGas":val.flammableGas.utf8EncodedString(),
                 "othersType":val.othersType.utf8EncodedString(),
                 "othersResult":val.othersResult,
-                "date":val.Date,
+                //rajat changed the format of date
+                "date":val.Date.convertToDateToMilliseconds(),
                 "time":val.Time
                 ] as [String:Any]
             permitTestResultsArray.append(testResults)
@@ -895,6 +901,8 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "reasonForCSE":"",
                 "permitNumber" : JSAObject.CWP.header.permitNo
                 ] as [String:Any],
+            //rajat added empty list as it was missing
+            "ptwCloseOutDtoList":[]
             ]
         
         return finalDict
@@ -935,7 +943,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "isHWP":0,
                 "isCSE":1,
                 "isWorkSafeToPerform":1,
-                "prejobWalkthroughBy":JSAObject.CSEP.signOff.walkthrough,
+                "preJobWalkthroughBy":JSAObject.CSEP.signOff.walkthrough,
                 "approvedBy":"sumit",
                 "approvalDate":"22/02/12",
                 "controlBoardDistribution":JSAObject.CSEP.signOff.controlBoard,
@@ -1015,7 +1023,8 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "flammableGas":val.flammableGas.utf8EncodedString(),
                 "othersType":val.othersType.utf8EncodedString(),
                 "othersResult":val.othersResult,
-                "date":val.Date,
+                //rajat changed the format of date
+                "date":val.Date.convertToDateToMilliseconds(),
                 "time":val.Time
                 ] as [String:Any]
             permitTestResultsArray.append(testResults)
@@ -1035,7 +1044,8 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "flammableGas":val.flammableGas.utf8EncodedString(),
                 "othersType":val.othersType.utf8EncodedString(),
                 "othersResult":val.othersResult,
-                "date":val.Date,
+                //rajat changed the format of date
+                "date":val.Date.convertToDateToMilliseconds(),
                 "time":val.Time
                 ] as [String:Any]
             permitTestResultsArray.append(testResults)
@@ -1111,6 +1121,8 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "reasonForCSE":JSAObject.CSEP.workTypeCSE.reasonForCSE.utf8EncodedString() as String,
                 "permitNumber" : JSAObject.CSEP.header.permitNo as Int
                 ] as [String:Any],
+            //rajat added empty list as it was missing
+            "ptwCloseOutDtoList":[]
             ]
         
         return finalDict
@@ -1282,7 +1294,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
             //Approval
             let CWApproval = [
                 "permitNumber" : CWObject.header.permitNo,
-                "prejobWalkthroughBy": CWObject.signOff.walkthrough,
+                "preJobWalkthroughBy": CWObject.signOff.walkthrough,
                 "isWorkSafeToPerform": CWObject.signOff.isSafeContinue,
                 "controlBoardDistribution": CWObject.signOff.controlBoard,
                 "worksiteDistribution": CWObject.signOff.worksite,
@@ -1747,7 +1759,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "otherTypeOfWork":JSAObject.HWP.workTypeHW.otherText.utf8EncodedString() as String,
                 "descriptionOfWorkToBePerformed":JSAObject.HWP.workTypeHW.descriptionOfWork.utf8EncodedString() as String
             ],
-            "ptwCseWorkTypeDtor":[
+            "ptwCseWorkTypeDto":[
                 "tank":JSAObject.CSEP.workTypeCSE.tank as Int,
                 "vessel":JSAObject.CSEP.workTypeCSE.vessel as Int,
                 "excavation": JSAObject.CSEP.workTypeCSE.excavation as Int,
@@ -1918,7 +1930,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
             //Approval
             let CWApproval = [
                 "permitNumber" : CWObject.header.permitNo,
-                "prejobWalkthroughBy": CWObject.signOff.walkthrough,
+                "preJobWalkthroughBy": CWObject.signOff.walkthrough,
                 "isWorkSafeToPerform": CWObject.signOff.isSafeContinue,
                 "controlBoardDistribution": CWObject.signOff.controlBoard,
                 "worksiteDistribution": CWObject.signOff.worksite,
@@ -2518,16 +2530,16 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
             DispatchQueue.main.async {
             self.loaderStart()
             }
-            print(params)
+            //print(params)
             let urlString : String = IMOEndpoints.createService
            //let urlString : String = "\(BaseUrl.apiURL)/com.iop.ptw/Create_Service.xsjs"
             var urlRequest = URLRequest(url: URL(string: urlString)!)
             urlRequest.httpMethod = "post"
             urlRequest.httpBody = self.getHttpBodayData(params: params)
             urlRequest.addValue("Application/json", forHTTPHeaderField: "Content-Type")
-            print("****urlRequest.httpBody***")
-            print(urlRequest.httpBody)
-            print("****urlRequest.httpBody***")
+            print("****payload***")
+            print(self.getBodyInJSON(params: params))
+            print("****payload***")
             ImoPtwNetworkManager.shared.urlSession.dataTask(with: urlRequest) { (data, response, error) in
                     
                 if error == nil{
@@ -2809,9 +2821,10 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                     self.progressHUD.show()
                 }
             }
-            print(params)
+            print(self.getBodyInJSON(params: params))
             //print(finalDict)
-            let urlString : String = "\(BaseUrl.apiURL)/com.iop.ptw/JSA_Update_Service.xsjs"
+            let urlString : String = IMOEndpoints.updateJSA
+            //let urlString : String = "\(BaseUrl.apiURL)/com.iop.ptw/JSA_Update_Service.xsjs"
             var urlRequest = URLRequest(url: URL(string: urlString)!)
             urlRequest.httpMethod = "post"
             urlRequest.httpBody = self.getHttpBodayData(params: params)
@@ -2828,7 +2841,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                         DispatchQueue.main.async {
     
                         if let jsonDict = JSON as? NSDictionary {
-                            let msg = jsonDict.value(forKey: "Success") as! String
+                            let msg = jsonDict.value(forKey: "data") as! String
                             let jsaDetailService = JSADetailModelService(context: self.context)
                             let searchPredicate = NSPredicate(format: "permitNumber == %@", NSNumber(value: JSAObject.permitNumber))
                             let jsaDetail = jsaDetailService.get(withPredicate: searchPredicate)
@@ -3086,11 +3099,13 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
             DispatchQueue.main.async {
             self.loaderStart()
             }
-            print(params)
-            let urlString : String = "\(BaseUrl.apiURL)/com.iop.ptw/UpdatePermit.xsjs"
+            //print(params)
+            let urlString : String = IMOEndpoints.updatePermit
+            //let urlString : String = "\(BaseUrl.apiURL)/com.iop.ptw/UpdatePermit.xsjs"
             var urlRequest = URLRequest(url: URL(string: urlString)!)
             urlRequest.httpMethod = "post"
             urlRequest.httpBody = self.getHttpBodayData(params: params)
+            print(self.getBodyInJSON(params: params))
             urlRequest.addValue("Application/json", forHTTPHeaderField: "Content-Type")
             ImoPtwNetworkManager.shared.urlSession.dataTask(with: urlRequest) { (data, response, error) in
                     
@@ -3103,7 +3118,8 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                         DispatchQueue.main.async {
 
                         if let jsonDict = JSON as? NSDictionary {
-                            let msg = jsonDict.value(forKey: "Success") as! String
+                            print(jsonDict)
+                            let msg = jsonDict.value(forKey: "data") as! String
                                 self.loaderStop()
                                 let alertController = UIAlertController.init(title: "", message:msg , preferredStyle: UIAlertController.Style.alert)
                                 let okAction = UIAlertAction.init(title: "OK", style: UIAlertAction.Style.cancel, handler: { (action) in

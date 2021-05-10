@@ -67,7 +67,7 @@ class TOPTWTESTREC : NSObject{
         if let temp1 = JSON["gasTesterComments"] as? String {
             self.gasTesterComments = temp1
         }
-        if let temp1 = JSON["areaToBeTested"] as? String {
+        if let temp1 = JSON["areaTobeTested"] as? String {
             self.areaToBeTested = temp1
         }
         if let temp1 = JSON["deviceSerialNo"] as? String {
@@ -91,7 +91,7 @@ class TOPTWTESTREC : NSObject{
         if let temp11 = JSON["isO2"] as? Int {
             self.isO2 = temp11
         }
-        if let temp11 = JSON["isLELS"] as? Int {
+        if let temp11 = JSON["isLELs"] as? Int {
             self.isLELS = temp11
         }
         if let temp11 = JSON["isH2S"] as? Int {

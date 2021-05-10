@@ -366,4 +366,18 @@ extension UIViewController{
         
         return json!.data(using: String.Encoding.utf8.rawValue)
     }
+    
+    //created to print the payload in JSON format
+    //just for debugging purpose
+    func getBodyInJSON(params:[String:Any]) -> NSString?{
+        let data = try! JSONSerialization.data(withJSONObject: params, options: JSONSerialization.WritingOptions.prettyPrinted)
+        let json = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
+        if let json = json {
+            
+        }
+        
+        return json
+    }
+
+    
 }

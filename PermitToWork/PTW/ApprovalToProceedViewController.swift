@@ -529,7 +529,7 @@ extension ApprovalToAuthority{
                 "status" : "APPROVED",
                 "ptwApprovalDto": [
                     "permitNumber" : CWObject.header.permitNo,
-                    "preJobWalkThroughBy": CWObject.signOff.walkthrough,
+                    "preJobWalkthroughBy": CWObject.signOff.walkthrough,
                     "isWorkSafeToPerform": CWObject.signOff.isSafeContinue,
                     "controlBoardDistribution": CWObject.signOff.controlBoard,
                     "workSiteDistribution": CWObject.signOff.worksite,
@@ -554,7 +554,7 @@ extension ApprovalToAuthority{
                 "status" : "APPROVED",
                 "ptwApprovalDto": [
                     "permitNumber" : CWObject.header.permitNo,
-                    "preJobWalkThroughBy": CWObject.signOff.walkthrough,
+                    "preJobWalkthroughBy": CWObject.signOff.walkthrough,
                     "isWorkSafeToPerform": CWObject.signOff.isSafeContinue,
                     "controlBoardDistribution": CWObject.signOff.controlBoard,
                     "workSiteDistribution": CWObject.signOff.worksite,

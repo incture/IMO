@@ -529,28 +529,18 @@ extension CreateJSAVC {
                     DispatchQueue.main.async{
                     
                         if let jsonDict = (JSON as? NSDictionary)?.value(forKey: "data") as? NSDictionary {
-                                                print("**(jsonDict)**")
-                                                print(jsonDict)
-                                                print("**(jsonDict)**")
-                                                let atmosphericObject = TOPTWTESTREC(JSON : jsonDict.value(forKey: "ptwTestRecordDto") as! NSDictionary)
-                                                var testsObject = [TOPTWTESTRES]()
-                                                let testDictionary = jsonDict.value(forKey: "ptwTestResultsDtoList") as! [NSDictionary]
-                                                for each in testDictionary{
-                                                    let testObject = TOPTWTESTRES(JSON : each)
-                                                    testsObject.append(testObject)
-                                                }
+                            print("**(jsonDict)**")
+                            print(jsonDict)
+                            print("**(jsonDict)**")
+                            let atmosphericObject = TOPTWTESTREC(JSON : jsonDict.value(forKey: "ptwTestRecordDto") as! NSDictionary)
+                            var testsObject = [TOPTWTESTRES]()
+                            let testDictionary = jsonDict.value(forKey: "ptwTestResultsDtoList") as! [NSDictionary]
+                            for each in testDictionary{
+                                let testObject = TOPTWTESTRES(JSON : each)
+                                testsObject.append(testObject)
+                                }
 
-                        if let jsonDict = (JSON as? NSDictionary)?.value(forKey: "data") as? NSDictionary {
-                        print("**(jsonDict)**")
-                        print(jsonDict)
-                        print("**(jsonDict)**")
-                        let atmosphericObject = TOPTWTESTREC(JSON : jsonDict.value(forKey: "ptwTestRecordDto") as! NSDictionary)
-                        var testsObject = [TOPTWTESTRES]()
-                        let testDictionary = jsonDict.value(forKey: "ptwTestResultsDtoList") as! [NSDictionary]
-                        for each in testDictionary{
-                            let testObject = TOPTWTESTRES(JSON : each)
-                            testsObject.append(testObject)
-                        }
+
                         
                         //atmospheric test
                         JSAObject.atmosphericTesting.serialNo = atmosphericObject.serialNo
@@ -604,7 +594,7 @@ extension CreateJSAVC {
                         _ = jsaDetailService.create(jsa: JSAObject)
                         jsaDetailService.saveChanges()
                     }
-                    }
+                    
                 }
                 }catch {
                     print(error.localizedDescription, "StatusCode: \(response!)")

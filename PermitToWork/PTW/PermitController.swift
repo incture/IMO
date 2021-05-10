@@ -469,7 +469,6 @@ extension PermitController{
                 do{
                     let JSON = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
                     if let val = JSON as? NSDictionary {
-                        //rajat renamed PTWDetails by data
                         if let jsonDict = val.object(forKey: "data") as? NSDictionary
                         {
                             readCWObject = ReadPermit.init(JSON: jsonDict)
