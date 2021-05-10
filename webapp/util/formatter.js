@@ -2957,11 +2957,12 @@ com.sap.incture.Incture_IOP.util.formatter = {
 		if (isReadOnly && country === "CA") {
 			return false;
 		}
-		if (!isModReadOnly) {
-			return true;
-		} else {
-			return false;
-		}
+		// if (!isModReadOnly) {
+		// 	return true;
+		// } else {
+		// 	return false;
+		// }
+		return true;
 	},
 	manageTMPanelWidthForModReadOnly: function (isReadOnly, moduleReadOnly, currentSelectTab, country) {
 		var isModReadOnly;

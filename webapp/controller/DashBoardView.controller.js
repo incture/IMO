@@ -2091,7 +2091,7 @@ sap.ui.define([
 				if (oEvent.getParameter("success")) {
 					var resultData = oEvent.getSource().getData();
 					if (resultData) {
-						that.getLoggedUserDetails(resultData.userId);
+						that.getLoggedUserDetails(resultData.UserId);
 					}
 				} else {
 					sap.m.MessageToast.show("Error in Retrieving User Details");
@@ -2135,7 +2135,7 @@ sap.ui.define([
 						var reRole = "";
 						var wwRole = "";
 						var resGroup;
-						var resGroupRead = "IMO_USER";
+						var resGroupRead = "";
 						var potRole = "";
 						var engRole = ""; //AN: #inquire
 						var foremanRole = "";
@@ -2164,47 +2164,48 @@ sap.ui.define([
 						};
 						for (var i = 0; i < groups.length; i++) {
 							if (groups[i].value === "IOP_WEB_READONLY") { //SH: WebReadOnly
-								dashBoardModel.setProperty("/isWebReadOnlyRole", true);
-								if (resultData.addresses[0].country === "US") {
-									hasUSRole = true;
-								} else {
-									hasCanadaRole = true;
-								}
+								dashBoardModel.setProperty("/isWebReadOnlyRole", false);
+								// if (resultData.addresses[0].country === "US") {
+								// 	hasUSRole = true;
+								// } else {
+								// 	hasCanadaRole = true;
+								// }
 							}
 							//SH: Modules readonly
-							if (groups[i].value === "IOP_WEB_ALARMS_READONLY") {
-								moduleReadOnly.isAlarmReadOnly = true;
-							}
-							if (groups[i].value === "IOP_WEB_TASKSCHEDULER_READONLY") {
-								moduleReadOnly.isTaskSchedulerReadOnly = true;
-							}
-							if (groups[i].value === "IOP_WEB_DOP_READONLY") {
-								moduleReadOnly.isDOPReadOnly = true;
-							}
-							if (groups[i].value === "IOP_WEB_FRAC_READONLY") {
-								moduleReadOnly.isFracReadOnly = true;
-							}
-							if (groups[i].value === "IOP_WEB_PROVE_READONLY") {
-								moduleReadOnly.isProveReadOnly = true;
-							}
-							if (groups[i].value === "IOP_WEB_DOWNTIME_READONLY") {
-								moduleReadOnly.isDowntimeReadOnly = true;
-							}
-							if (groups[i].value === "IOP_WEB_ANALYTICS_READONLY") {
-								moduleReadOnly.isAnalyticsReadOnly = true;
-							}
-							if (groups[i].value === "IOP_WEB_LOCATIONHISTORY_READONLY") {
-								moduleReadOnly.isLocationHistoryReadOnly = true;
-							}
-							if (groups[i].value === "IOP_WEB_PWHOPPER_READONLY") {
-								moduleReadOnly.isPWHopperReadOnly = true;
-							}
-							if (groups[i].value === "IOP_WEB_OBX_READONLY") {
-								moduleReadOnly.isOBXReadOnly = true;
-							}
-							if (groups[i].value === "IOP_WEB_WORKBENCH_READONLY") {
-								moduleReadOnly.isWorkbenchReadOnly = true;
-							}
+							//ST: Remove read only condition for test
+							// if (groups[i].value === "IOP_WEB_ALARMS_READONLY") {
+							// 	moduleReadOnly.isAlarmReadOnly = true;
+							// }
+							// if (groups[i].value === "IOP_WEB_TASKSCHEDULER_READONLY") {
+							// 	moduleReadOnly.isTaskSchedulerReadOnly = true;
+							// }
+							// if (groups[i].value === "IOP_WEB_DOP_READONLY") {
+							// 	moduleReadOnly.isDOPReadOnly = true;
+							// }
+							// if (groups[i].value === "IOP_WEB_FRAC_READONLY") {
+							// 	moduleReadOnly.isFracReadOnly = true;
+							// }
+							// if (groups[i].value === "IOP_WEB_PROVE_READONLY") {
+							// 	moduleReadOnly.isProveReadOnly = true;
+							// }
+							// if (groups[i].value === "IOP_WEB_DOWNTIME_READONLY") {
+							// 	moduleReadOnly.isDowntimeReadOnly = true;
+							// }
+							// if (groups[i].value === "IOP_WEB_ANALYTICS_READONLY") {
+							// 	moduleReadOnly.isAnalyticsReadOnly = true;
+							// }
+							// if (groups[i].value === "IOP_WEB_LOCATIONHISTORY_READONLY") {
+							// 	moduleReadOnly.isLocationHistoryReadOnly = true;
+							// }
+							// if (groups[i].value === "IOP_WEB_PWHOPPER_READONLY") {
+							// 	moduleReadOnly.isPWHopperReadOnly = true;
+							// }
+							// if (groups[i].value === "IOP_WEB_OBX_READONLY") {
+							// 	moduleReadOnly.isOBXReadOnly = true;
+							// }
+							// if (groups[i].value === "IOP_WEB_WORKBENCH_READONLY") {
+							// 	moduleReadOnly.isWorkbenchReadOnly = true;
+							// }
 
 							if (groups[i].value === "IOP_ADMIN"||groups[i].value==="IMO_USER") { //check if IOPAdmin-OBXEngine
 								isIOPAdmin = true;
@@ -5821,7 +5822,7 @@ sap.ui.define([
 			if (oData.taskEventDto.owners.length == 0 || (!oData.taskEventDto.owners)) {
 				this._showToastMessage("Select the Assignee to the task");
 				dashBoardModel.setProperty("/busyIndicators/taskPanelBusy", false);
-				return;
+				//return; // ST: overwritten for testing
 			}
 			if (dashBoardModel.getProperty("/startDateTime") !== null) {
 				var startDateVale = this.getModel("dashBoardModel").getProperty("/newDispatchDateValue");

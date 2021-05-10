@@ -82,9 +82,9 @@
 											<Button icon="sap-icon://tree" text="Close Hierarchy Panel" iconFirst="true" press="handleHierarchyPaneOpen"/>
 										</VBox>
 										<HBox alignItems="Center" class="sapUiTinyMarginEnd">
-											<ObjectStatus visible="true" text="Logged in as" state="None" class="sapUiTinyMarginEnd"/>
+											<!--<ObjectStatus visible="true" text="Logged in as" state="None" class="sapUiTinyMarginEnd"/>
 											<ObjectStatus text="{dashBoardModel>/changeSeatData/changeSeatIOPUserDisplayRoles}" class="iopChangeSeatDisplayRoles"></ObjectStatus>
-												<!--Start of AN: #TimeZone -->
+											-->	<!--Start of AN: #TimeZone -->
 											<ObjectStatus visible="{dashBoardModel>/userData/isROC}" text="Time zone:" state="None" class="sapUiTinyMarginBegin sapUiTinyMarginEnd"/>
 											<Select visible="{dashBoardModel>/userData/isROC}" class="sapUiSizeCompact iopSelectClass iopwbTaskBoderLightClass" selectedKey="{dashBoardModel>/sSelectedTimeZone}" change="onTimeZoneChange">
 												<c:Item text="User" key="SYSTEM"></c:Item>
