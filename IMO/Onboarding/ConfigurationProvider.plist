@@ -1,35 +1,61 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">-->
+<!--<plist version="1.0">-->
+<!--<dict>-->
+<!--	<key>auth</key>-->
+<!--	<array>-->
+<!--		<dict>-->
+<!--			<key>config</key>-->
+<!--			<dict>-->
+<!--				<key>oauth2.authorizationEndpoint</key>-->
+<!--				<string>https://hrapps-imo-dft-com-incture-imodft.cfapps.eu10.hana.ondemand.com/oauth2/api/v1/authorize</string>-->
+<!--				<key>oauth2.clients</key>-->
+<!--				<array>-->
+<!--					<dict>-->
+<!--						<key>clientID</key>-->
+<!--						<string>d2f6024f-59ab-4548-993e-dfbea72d49d1</string>-->
+<!--						<key>grantType</key>-->
+<!--						<string>authorization_code</string>-->
+<!--						<key>redirectURL</key>-->
+<!--						<string>com.incture.IMO-DFTDev://hrapps-imo-dft-com-incture-imodft.cfapps.eu10.hana.ondemand.com</string>-->
+<!--					</dict>-->
+<!--				</array>-->
+<!--				<key>oauth2.tokenEndpoint</key>-->
+<!--				<string>https://hrapps-imo-dft-com-incture-imodft.cfapps.eu10.hana.ondemand.com/oauth2/api/v1/token</string>-->
+<!--			</dict>-->
+<!--			<key>type</key>-->
+<!--			<string>oauth2</string>-->
+<!--		</dict>-->
+<!--	</array>-->
+<!--	<key>host</key>-->
+<!--	<string>hrapps-imo-dft-com-incture-imodft.cfapps.eu10.hana.ondemand.com</string>-->
+<!--	<key>protocol</key>-->
+<!--	<string>https</string>-->
+<!--</dict>-->
+<!--</plist>-->
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>auth</key>
-	<array>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>oauth2.authorizationEndpoint</key>
-				<string>https://hrapps-imo-dft-com-incture-imodft.cfapps.eu10.hana.ondemand.com/oauth2/api/v1/authorize</string>
-				<key>oauth2.clients</key>
-				<array>
-					<dict>
-						<key>clientID</key>
-						<string>d2f6024f-59ab-4548-993e-dfbea72d49d1</string>
-						<key>grantType</key>
-						<string>authorization_code</string>
-						<key>redirectURL</key>
-						<string>com.incture.IMO-DFT://hrapps-imo-dft-com-incture-imodft.cfapps.eu10.hana.ondemand.com</string>
-					</dict>
-				</array>
-				<key>oauth2.tokenEndpoint</key>
-				<string>https://hrapps-imo-dft-com-incture-imodft.cfapps.eu10.hana.ondemand.com</string>
-			</dict>
-			<key>type</key>
-			<string>oauth2</string>
-		</dict>
-	</array>
-	<key>host</key>
-	<string>hrapps-imo-dft-com-incture-imodft.cfapps.eu10.hana.ondemand.com</string>
-	<key>protocol</key>
-	<string>https</string>
+    <key>auth</key>
+    <array>
+        <dict>
+            <key>config</key>
+            <dict>
+                <key>saml2.web.post.authchallengeheader.name</key>
+                <string>com.sap.cloud.security.login</string>
+                <key>saml2.web.post.finish.endpoint.redirectparam</key>
+                <string>finishEndpointParam</string>
+                <key>saml2.web.post.finish.endpoint.uri</key>
+                <string>/SAMLAuthLauncher</string>
+            </dict>
+            <key>type</key>
+            <string>saml2.web.post</string>
+        </dict>
+    </array>
+    <key>host</key>
+    <string>hrapps-imo-dft-com-incture-imodft.cfapps.eu10.hana.ondemand.com</string>
+    <key>protocol</key>
+    <string>https</string>
 </dict>
 </plist>
