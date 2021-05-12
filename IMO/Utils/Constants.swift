@@ -25,9 +25,9 @@ struct BaseUrl{
 
 struct ConstantServer {
     
-    static var devURL = "https://mobile-d998e5467.us2.hana.ondemand.com"
-    static var qaURL = "https://mobile-d7e367960.us2.hana.ondemand.com"
-    static var prodURL = "https://mobile-dee8964f1.us2.hana.ondemand.com"
+   
+    static var qaURL = "https://hrapps-imo-dft-com-incture-imodft.cfapps.eu10.hana.ondemand.com"
+    
     
 }
 //com.incture.MurphyDFT.Dev // dev instance
