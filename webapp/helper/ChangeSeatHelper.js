@@ -92,6 +92,9 @@ sap.ui.define([
 						keyIopUserRole: "IOP_TM_ROC_Kaybob",
 						valueIopUserRole: "ROC_Kaybob"       //ST:Adding IMO_USER for test
 					}, {
+						keyIopUserRole: "IOP_TM_ROC_Field1",
+						valueIopUserRole: "ROC_Field1"       //ST:Adding IMO_USER for test
+					}, {
 						keyIopUserRole: "IMO_USER",
 						valueIopUserRole: "IMO_USER"
 					}];

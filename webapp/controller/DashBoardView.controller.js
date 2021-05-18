@@ -2226,7 +2226,7 @@ sap.ui.define([
 							}
 							if (groups[i].value === "IOP_TM_ROC_Catarina" || groups[i].value === "IOP_TM_ROC_WestTilden" || groups[i].value ===
 								"IOP_TM_ROC_CentralTilden" || groups[i].value === "IOP_TM_ROC_Karnes" || groups[i].value === "IOP_TM_ROC_Montney" || groups[
-									i].value === "IOP_TM_ROC_Kaybob"||groups[i].value==="IMO_USER") { //SH: Canada Roles changes //ST:Adding IMO role
+									i].value === "IOP_TM_ROC_Kaybob"||groups[i].value==="IMO_USER" ||groups[i].value === "IOP_TM_ROC_Field1") { //SH: Canada Roles changes //ST:Adding IMO role //ST: Adding testing Hierarchy role
 								resGroup = groups[i].value;
 								sGroup = resGroup; //AN: #pw
 								isROC = true;
