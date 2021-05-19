@@ -47,12 +47,8 @@
 			<version>2.0.7.RELEASE</version>
 		</dependency>
 		<!-- neo web api dependency -->
-		<dependency>
-			<groupId>com.sap.cloud</groupId>
-			<artifactId>neo-java-web-api</artifactId>
-			<version>3.108.15.1</version>
-			<scope>provided</scope>
-		</dependency>
+		<!-- <dependency> <groupId>com.sap.cloud</groupId> <artifactId>neo-java-web-api</artifactId> 
+			<version>3.108.15.1</version> <scope>provided</scope> </dependency> -->
 		<!-- sap hana db dependency -->
 		<dependency>
 			<groupId>com.sap.cloud.db.jdbc</groupId>
@@ -83,6 +79,13 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.9.4</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.30</version>
+		</dependency>
+
 
 		<!-- swagger-ui dependency -->
 		<dependency>

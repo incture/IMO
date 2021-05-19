@@ -1,9 +1,9 @@
 ---
 applications:
-- name: PTW
-  memory: 200M
-  host: PTW
-  path: /target/ptw.war
+- name: ptw
+  memory: 250M
+  random-route: false
+  path: target/ptw.war
   buildpack: sap_java_buildpack
   services:
   - PTW
