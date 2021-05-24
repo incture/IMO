@@ -1,0 +1,13 @@
+package com.incture.iopptw.dtos;
+
+import lombok.Data;
+
+@Data
+public class JsaStepsDto {
+	private Integer serialNo;
+	private Integer permitNumber;
+	private String taskSteps;
+	private String potentialHazards;
+	private String hazardControls;
+	private String personResponsible;
+}

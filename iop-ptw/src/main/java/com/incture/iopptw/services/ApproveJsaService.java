@@ -1,0 +1,48 @@
+package com.incture.iopptw.services;
+
+import javax.transaction.Transactional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.incture.iopptw.repositories.ApproveJsaDao;
+import com.incture.iopptw.utils.ResponseDto;
+
+@Service
+@Transactional
+public class ApproveJsaService {
+	@Autowired
+	private ApproveJsaDao approveJsaDao;
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+	public ResponseDto approveJsa(String jsaPermitNumber, String status, String approvedBy) {
+		logger.info("ApproveJsa || approveJsa || jsaPermitNumber: " + jsaPermitNumber + " status: " + status
+				+ " approvedBy: " + approvedBy);
+
+		ResponseDto responseDto = new ResponseDto();
+		responseDto.setStatus(Boolean.TRUE);
+		responseDto.setStatusCode(200);
+		try {
+			Integer permitNumber = approveJsaDao.approveJsa(jsaPermitNumber, status, approvedBy);
+			if (permitNumber != null) {
+				responseDto.setMessage("Success: JSA " + permitNumber + " approved succesfully.");
+			} else
+				responseDto.setMessage("something wrong");
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error("ApproveJsa || approveJsa || Error" + e.getMessage());
+			logger.error(e.getStackTrace().toString());
+			responseDto.setStatus(Boolean.FALSE);
+			responseDto.setStatusCode(500);
+			responseDto.setMessage(e.getMessage());
+
+		}
+
+		logger.info("ApproveJsa " + responseDto);
+
+		return responseDto;
+	}
+
+}
