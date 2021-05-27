@@ -4,11 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.incture.iopptw.entities.TestDo;
 import com.incture.iopptw.services.TestService;
+import com.incture.iopptw.utils.ResponseDto;
 
 @RestController
 @RequestMapping("/test")
@@ -24,5 +27,10 @@ public class TestController {
 	public List<TestDo> get()
 	{
 		return testService.getAllData();
+	}
+	
+	@PostMapping()
+	public String saveData(@RequestParam int id){
+		return testService.saveData(id);
 	}
 }
