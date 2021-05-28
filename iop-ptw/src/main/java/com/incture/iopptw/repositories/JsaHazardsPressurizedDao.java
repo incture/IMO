@@ -4,16 +4,25 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.iopptw.dtos.JsaHazardsPressurizedDto;
 
 @Repository
 public class JsaHazardsPressurizedDao extends BaseDao {
+	@Autowired
+	private SessionFactory sessionFactory;
+
 	public void insertJsaHazardsPressurized(String permitNumber, JsaHazardsPressurizedDto jsaHazardsPressurizedDto) {
 		try {
 			String sql = "INSERT INTO \"IOP\".\"JSAHAZARDSPRESSURIZED\" VALUES (?,?,?,?,?,?,?,?)";
-			Query query = getSession().createNativeQuery(sql);
+			Session session = sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			logger.info("sql: " + sql);
 			query.setParameter(1, permitNumber);
 			query.setParameter(2, jsaHazardsPressurizedDto.getPresurizedEquipment());
@@ -23,8 +32,9 @@ public class JsaHazardsPressurizedDao extends BaseDao {
 			query.setParameter(6, jsaHazardsPressurizedDto.getDoNotWorkInLineOfFire());
 			query.setParameter(7, jsaHazardsPressurizedDto.getAnticipateResidual());
 			query.setParameter(8, jsaHazardsPressurizedDto.getSecureAllHoses());
-
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
@@ -32,10 +42,12 @@ public class JsaHazardsPressurizedDao extends BaseDao {
 
 	public void updateJsaHazardsPressurized(JsaHazardsPressurizedDto jsaHazardsPressurizedDto) {
 		try {
-			String sql = "UPDATE \"IOP\".\"JSAHAZARDSPRESSURIZED\" SET  \"PRESURIZEDEQUIPMENT\"=?,\"PERFORMISOLATION\"=?,\"DEPRESSURIZEDRAIN\"=?," +
-        "\"RELIEVETRAPPEDPRESSURE\"=?,\"DONOTWORKINLINEOFFIRE\"=?,\"ANTICIPATERESIDUAL\"=?,\"SECUREALLHOSES\"=? WHERE \"PERMITNUMBER\"=?";
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSPRESSURIZED\" SET  \"PRESURIZEDEQUIPMENT\"=?,\"PERFORMISOLATION\"=?,\"DEPRESSURIZEDRAIN\"=?,"
+					+ "\"RELIEVETRAPPEDPRESSURE\"=?,\"DONOTWORKINLINEOFFIRE\"=?,\"ANTICIPATERESIDUAL\"=?,\"SECUREALLHOSES\"=? WHERE \"PERMITNUMBER\"=?";
 			logger.info("updateJsaHazardsPressurized sql" + sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session = sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, jsaHazardsPressurizedDto.getPresurizedEquipment());
 			query.setParameter(2, jsaHazardsPressurizedDto.getPerformIsolation());
 			query.setParameter(3, jsaHazardsPressurizedDto.getDepressurizeDrain());
@@ -45,18 +57,20 @@ public class JsaHazardsPressurizedDao extends BaseDao {
 			query.setParameter(7, jsaHazardsPressurizedDto.getSecureAllHoses());
 			query.setParameter(8, jsaHazardsPressurizedDto.getPermitNumber());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public JsaHazardsPressurizedDto getjsaHazardsPress(String permitNum){
+	public JsaHazardsPressurizedDto getjsaHazardsPress(String permitNum) {
 		JsaHazardsPressurizedDto jsaHazardsPressurizedDto = new JsaHazardsPressurizedDto();
 		List<Object[]> obj;
-		try{
+		try {
 			String sql = "select distinct PERMITNUMBER, PRESURIZEDEQUIPMENT,PERFORMISOLATION,DEPRESSURIZEDRAIN, "
 					+ " RELIEVETRAPPEDPRESSURE,DONOTWORKINLINEOFFIRE,ANTICIPATERESIDUAL,SECUREALLHOSES "
 					+ " from IOP.JSAHAZARDSPRESSURIZED where PERMITNUMBER = :permitNum";
@@ -74,9 +88,9 @@ public class JsaHazardsPressurizedDao extends BaseDao {
 				jsaHazardsPressurizedDto.setAnticipateResidual(Integer.parseInt(a[6].toString()));
 				jsaHazardsPressurizedDto.setSecureAllHoses(Integer.parseInt(a[7].toString()));
 			}
-			
+
 			return jsaHazardsPressurizedDto;
-		}catch(Exception e){
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
 		}

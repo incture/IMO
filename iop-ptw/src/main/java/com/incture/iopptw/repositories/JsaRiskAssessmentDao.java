@@ -4,22 +4,31 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.iopptw.dtos.JsaRiskAssesmentDto;
 
 @Repository
 public class JsaRiskAssessmentDao extends BaseDao {
-
+	@Autowired
+	private SessionFactory sessionFactory;
 	public void insertJsaRiskAssessment(String permitNumber, JsaRiskAssesmentDto jsaRiskAssesmentDto) {
 		try {
 			String sql = "INSERT INTO IOP.JSARISKASSESMENT VALUES (?,?,?)";
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			logger.info("sql: " + sql);
 			query.setParameter(1, permitNumber);
 			query.setParameter(2, jsaRiskAssesmentDto.getMustModifyExistingWorkPractice());
 			query.setParameter(3, jsaRiskAssesmentDto.getHasContinuedRisk());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error(e.getMessage());
@@ -30,11 +39,15 @@ public class JsaRiskAssessmentDao extends BaseDao {
 		try {
 			String sql = "UPDATE IOP.JSARISKASSESMENT SET MUSTMODIFYEXISTINGWORKPRACTICE=?,HASCONTINUEDRISK=? WHERE PERMITNUMBER=?";
 			logger.info("updateJsaRiskAssessment sql" + sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, jsaRiskAssesmentDto.getMustModifyExistingWorkPractice());
 			query.setParameter(2, jsaRiskAssesmentDto.getHasContinuedRisk());
 			query.setParameter(3, jsaRiskAssesmentDto.getPermitNumber());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();

@@ -5,6 +5,9 @@ import java.util.Date;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,11 +18,16 @@ public class ApprovePermitDao extends BaseDao {
 	@Autowired
 	private KeyGeneratorDao keyGeneratorDao;
 
+	@Autowired
+	private SessionFactory sessionFactory;
+
 	public Integer approvePermit(ApprovePermitDto approvePermitDto) {
 		try {
 			logger.info("ApprovePermitDto: " + approvePermitDto);
 			String sql1 = " UPDATE IOP.PTWHEADER SET STATUS=:status where PERMITNUMBER=:permitNumber AND ISCWP=:iscwp AND ISHWP=:ishwp AND ISCSE=:iscse ";
-			Query q1 = getSession().createNativeQuery(sql1);
+			Session session = sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query q1 = session.createNativeQuery(sql1);
 			q1.setParameter("status", approvePermitDto.getStatus());
 			q1.setParameter("permitNumber", approvePermitDto.getPtwApprovalDto().getPermitNumber());
 			q1.setParameter("iscwp", approvePermitDto.getPtwApprovalDto().getIsCWP());
@@ -27,6 +35,7 @@ public class ApprovePermitDao extends BaseDao {
 			q1.setParameter("iscse", approvePermitDto.getPtwApprovalDto().getIsCSE());
 			logger.info("1st sql : " + sql1);
 			q1.executeUpdate();
+
 			BigInteger serialNumber = keyGeneratorDao.getPtwApprovalSerialNo();
 			logger.info("serialNumber: " + serialNumber);
 
@@ -35,7 +44,8 @@ public class ApprovePermitDao extends BaseDao {
 					+ "WORKSITEDISTRIBUTION,SIMOPSDISTRIBUTION,OTHERDISTRIBUTION,PICNAME,PICDATE,SUPERITENDENTNAME,"
 					+ "SUPERITENDENTDATE) VALUES"
 					+ " (:sNo,:pNo,:cwp,:hwp,:cse,:wsp,:pjwt,:approvedBy,:approvalDate,:cbd,:wsd,:sd,:od,:picName,:picDate,:sName,:sDate)";
-			Query q3 = getSession().createNativeQuery(sql3);
+
+			Query q3 = session.createNativeQuery(sql3);
 
 			q3.setParameter("sNo", serialNumber);
 			q3.setParameter("pNo", approvePermitDto.getPtwApprovalDto().getPermitNumber());
@@ -74,7 +84,8 @@ public class ApprovePermitDao extends BaseDao {
 
 			logger.info("2nd sql : " + sql3);
 			q3.executeUpdate();
-
+			tx.commit();
+			session.close();
 			return approvePermitDto.getPtwApprovalDto().getPermitNumber();
 
 		} catch (Exception e) {

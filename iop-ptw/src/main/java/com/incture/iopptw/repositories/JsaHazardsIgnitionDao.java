@@ -4,18 +4,26 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.iopptw.dtos.JsaHazardsIgnitionDto;
 
 @Repository
 public class JsaHazardsIgnitionDao extends BaseDao {
+	@Autowired
+	private SessionFactory sessionFactory;
 
-	public void insertJsaHazardsIgnition(String permitNumber,JsaHazardsIgnitionDto jsaHazardsIgnitionDto) {
+	public void insertJsaHazardsIgnition(String permitNumber, JsaHazardsIgnitionDto jsaHazardsIgnitionDto) {
 		try {
+			Session session = sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
 			String sql = "INSERT INTO IOP.JSAHAZARDSIGNITION VALUES (?,?,?,?,?,?,?)";
 			logger.info(sql);
-			Query query = getSession().createNativeQuery(sql);
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, permitNumber);
 			query.setParameter(2, jsaHazardsIgnitionDto.getIgnitionSources());
 			query.setParameter(3, jsaHazardsIgnitionDto.getRemoveCombustibleMaterials());
@@ -24,16 +32,18 @@ public class JsaHazardsIgnitionDao extends BaseDao {
 			query.setParameter(6, jsaHazardsIgnitionDto.getConductContinuousGasTesting());
 			query.setParameter(7, jsaHazardsIgnitionDto.getEarthForStaticElectricity());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public JsaHazardsIgnitionDto getJsaHazardsIgnition(String permitNum){
+	public JsaHazardsIgnitionDto getJsaHazardsIgnition(String permitNum) {
 		List<Object[]> obj;
 		JsaHazardsIgnitionDto jsaHazardsIgnitionDto = new JsaHazardsIgnitionDto();
-		try{
+		try {
 			String sql = "select distinct PERMITNUMBER,IGNITIONSOURCES,REMOVECOMBUSTIBLEMATERIALS,PROVIDEFIREWATCH, "
 					+ " IMPLEMENTABRASIVEBLASTINGCONTROLS,CONDUCTCONTINUOUSGASTESTING,EARTHFORSTATICELECTRICITY "
 					+ " from IOP.JSAHAZARDSIGNITION where PERMITNUMBER = :permitNum";
@@ -51,7 +61,7 @@ public class JsaHazardsIgnitionDao extends BaseDao {
 				jsaHazardsIgnitionDto.setEarthForStaticElectricity(Integer.parseInt(a[6].toString()));
 			}
 			return jsaHazardsIgnitionDto;
-		}catch(Exception e){
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
@@ -60,10 +70,12 @@ public class JsaHazardsIgnitionDao extends BaseDao {
 
 	public void updateJsaHazardsIgnition(JsaHazardsIgnitionDto jsaHazardsIgnitionDto) {
 		try {
-			String sql = "UPDATE \"IOP\".\"JSAHAZARDSIGNITION\" SET  \"IGNITIONSOURCES\"=?,\"REMOVECOMBUSTIBLEMATERIALS\"=?,\"PROVIDEFIREWATCH\"=?," +
-        "\"IMPLEMENTABRASIVEBLASTINGCONTROLS\"=?,\"CONDUCTCONTINUOUSGASTESTING\"=?,\"EARTHFORSTATICELECTRICITY\"=? WHERE \"PERMITNUMBER\"=?";
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSIGNITION\" SET  \"IGNITIONSOURCES\"=?,\"REMOVECOMBUSTIBLEMATERIALS\"=?,\"PROVIDEFIREWATCH\"=?,"
+					+ "\"IMPLEMENTABRASIVEBLASTINGCONTROLS\"=?,\"CONDUCTCONTINUOUSGASTESTING\"=?,\"EARTHFORSTATICELECTRICITY\"=? WHERE \"PERMITNUMBER\"=?";
 			logger.info("updateJsaHazardsIgnition sql" + sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session = sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, jsaHazardsIgnitionDto.getIgnitionSources());
 			query.setParameter(2, jsaHazardsIgnitionDto.getRemoveCombustibleMaterials());
 			query.setParameter(3, jsaHazardsIgnitionDto.getProvideFireWatch());
@@ -72,11 +84,13 @@ public class JsaHazardsIgnitionDao extends BaseDao {
 			query.setParameter(6, jsaHazardsIgnitionDto.getEarthForStaticElectricity());
 			query.setParameter(7, jsaHazardsIgnitionDto.getPermitNumber());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

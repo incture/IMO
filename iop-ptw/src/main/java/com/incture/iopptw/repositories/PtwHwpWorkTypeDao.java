@@ -4,15 +4,23 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.iopptw.dtos.PtwHwpWorkTypeDto;
 
 @Repository
 public class PtwHwpWorkTypeDao extends BaseDao {
+	@Autowired
+	private SessionFactory sessionFactory;
 	public void insertPtwHwpWorkType(String permitNumber, PtwHwpWorkTypeDto ptwHwpWorkTypeDto) {
 		try {
-			Query query = getSession()
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session
 					.createNativeQuery("INSERT INTO \"IOP\".\"PTW_HWP_WORK_TYPE\" VALUES (?,?,?,?,?,?,?,?)");
 			query.setParameter(1, permitNumber);
 			query.setParameter(2, ptwHwpWorkTypeDto.getCutting());
@@ -23,6 +31,8 @@ public class PtwHwpWorkTypeDao extends BaseDao {
 			query.setParameter(7, ptwHwpWorkTypeDto.getOtherTypeOfWork());
 			query.setParameter(8, ptwHwpWorkTypeDto.getDescriptionOfWorkToBePerformed());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
@@ -62,7 +72,9 @@ public class PtwHwpWorkTypeDao extends BaseDao {
 	public void updatePtwHwpWorkType(PtwHwpWorkTypeDto ptwHwpWorkTypeDto) {
 		try {
 			String sql = "UPDATE \"IOP\".\"PTW_HWP_WORK_TYPE\" SET  \"CUTTING\"= ?, \"WIELDING\"= ?, \"ELECTRICALPOWEREDEQUIPMENT\"= ?, \"GRINDING\"= ?, \"ABRASIVEBLASTING\"= ?, \"OTHERTYPEOFWORK\"= ?, \"DESCRIPTIONOFWORKTOBEPERFORMED\"= ? where \"PERMITNUMBER\"= ?";
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			logger.info("sql: " + sql);
 			query.setParameter(1, ptwHwpWorkTypeDto.getCutting());
 			query.setParameter(2, ptwHwpWorkTypeDto.getWielding());
@@ -73,6 +85,8 @@ public class PtwHwpWorkTypeDao extends BaseDao {
 			query.setParameter(7, ptwHwpWorkTypeDto.getDescriptionOfWorkToBePerformed());
 			query.setParameter(8, ptwHwpWorkTypeDto.getPermitNumber());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}

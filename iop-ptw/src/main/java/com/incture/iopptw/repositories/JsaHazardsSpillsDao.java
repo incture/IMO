@@ -4,17 +4,25 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.iopptw.dtos.JsaHazardsSpillsDto;
 
 @Repository
 public class JsaHazardsSpillsDao extends BaseDao{
+	@Autowired
+	private SessionFactory sessionFactory;
 	public void insertJsaHazardsSpills(String permitNumber,JsaHazardsSpillsDto jsaHazardsSpillsDto){
 		try{
 			String sql = "INSERT INTO IOP.JSAHAZARDSSPILLS VALUES (?,?,?,?,?,?,?)";
 			logger.info(sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, permitNumber);
 			query.setParameter(2, jsaHazardsSpillsDto.getPotentialSpills());
 			query.setParameter(3, jsaHazardsSpillsDto.getDrainEquipment());
@@ -23,6 +31,8 @@ public class JsaHazardsSpillsDao extends BaseDao{
 			query.setParameter(6, jsaHazardsSpillsDto.getHaveSpillCleanupMaterials());
 			query.setParameter(7, jsaHazardsSpillsDto.getRestrainHosesWhenNotInUse());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		}catch(Exception e){
 			logger.error(e.getMessage());
 		}
@@ -63,7 +73,9 @@ public class JsaHazardsSpillsDao extends BaseDao{
 			String sql = "UPDATE \"IOP\".\"JSAHAZARDSSPILLS\" SET  \"POTENTIALSPILLS\"=?,\"DRAINEQUIPMENT\"=?,\"CONNECTIONSINGOODCONDITION\"=?," +
         "\"SPILLCONTAINMENTEQUIPMENT\"=?,\"HAVESPILLCLEANUPMATERIALS\"=?,\"RESTRAINHOSESWHENNOTINUSE\"=? WHERE \"PERMITNUMBER\"=?";
 			logger.info("updateJsaHazardsSpills sql" + sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, jsaHazardsSpillsDto.getPotentialSpills());
 			query.setParameter(2, jsaHazardsSpillsDto.getDrainEquipment());
 			query.setParameter(3, jsaHazardsSpillsDto.getConnectionsInGoodCondition());
@@ -72,6 +84,8 @@ public class JsaHazardsSpillsDao extends BaseDao{
 			query.setParameter(6, jsaHazardsSpillsDto.getRestrainHosesWhenNotInUse());
 			query.setParameter(7, jsaHazardsSpillsDto.getPermitNumber());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();

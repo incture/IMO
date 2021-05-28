@@ -4,17 +4,26 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.iopptw.dtos.JsaHazardsElectricalDto;
 
 @Repository
 public class JsaHazardsElectricalDao extends BaseDao {
+	@Autowired
+	private SessionFactory sessionFactory;
+
 	public void insertJsaHazardsElectrical(String permitNumber, JsaHazardsElectricalDto jsaHazardsElectricalDto) {
 		try {
 			String sql = "INSERT INTO \"IOP\".\"JSAHAZARDSELECTRICAL\" VALUES (?,?,?,?,?,?)";
 			logger.info(sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session = sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, permitNumber);
 			query.setParameter(2, jsaHazardsElectricalDto.getPortableElectricalEquipment());
 			query.setParameter(3, jsaHazardsElectricalDto.getInspectToolsForCondition());
@@ -22,16 +31,18 @@ public class JsaHazardsElectricalDao extends BaseDao {
 			query.setParameter(5, jsaHazardsElectricalDto.getProtectElectricalLeads());
 			query.setParameter(6, jsaHazardsElectricalDto.getIdentifyEquipClassification());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public JsaHazardsElectricalDto getJsaHazardsElectricalDto(String permitNum){
+	public JsaHazardsElectricalDto getJsaHazardsElectricalDto(String permitNum) {
 		JsaHazardsElectricalDto jsaHazardsElectricalDto = new JsaHazardsElectricalDto();
 		List<Object[]> obj;
-		try{
+		try {
 			String sql = "select distinct PERMITNUMBER, PORTABLEELECTRICALEQUIPMENT,INSPECTTOOLSFORCONDITION, "
 					+ " IMPLEMENTGASTESTING,PROTECTELECTRICALLEADS,IDENTIFYEQUIPCLASSIFICATION "
 					+ " from IOP.JSAHAZARDSELECTRICAL where PERMITNUMBER = :permitNum";
@@ -47,7 +58,7 @@ public class JsaHazardsElectricalDao extends BaseDao {
 				jsaHazardsElectricalDto.setIdentifyEquipClassification(Integer.parseInt(a[5].toString()));
 			}
 			return jsaHazardsElectricalDto;
-		}catch(Exception e){
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
@@ -56,10 +67,12 @@ public class JsaHazardsElectricalDao extends BaseDao {
 
 	public void updateJsaHazardsElectrical(JsaHazardsElectricalDto jsaHazardsElectricalDto) {
 		try {
-			String sql = "UPDATE \"IOP\".\"JSAHAZARDSELECTRICAL\" SET  \"PORTABLEELECTRICALEQUIPMENT\"=?,\"INSPECTTOOLSFORCONDITION\"=?,\"IMPLEMENTGASTESTING\"=?," +
-        "\"PROTECTELECTRICALLEADS\"=?,\"IDENTIFYEQUIPCLASSIFICATION\"=? WHERE \"PERMITNUMBER\"=?";
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSELECTRICAL\" SET  \"PORTABLEELECTRICALEQUIPMENT\"=?,\"INSPECTTOOLSFORCONDITION\"=?,\"IMPLEMENTGASTESTING\"=?,"
+					+ "\"PROTECTELECTRICALLEADS\"=?,\"IDENTIFYEQUIPCLASSIFICATION\"=? WHERE \"PERMITNUMBER\"=?";
 			logger.info("updateJsaHazardsElectrical sql" + sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session = sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, jsaHazardsElectricalDto.getPortableElectricalEquipment());
 			query.setParameter(2, jsaHazardsElectricalDto.getInspectToolsForCondition());
 			query.setParameter(3, jsaHazardsElectricalDto.getImplementGasTesting());
@@ -67,11 +80,13 @@ public class JsaHazardsElectricalDao extends BaseDao {
 			query.setParameter(5, jsaHazardsElectricalDto.getIdentifyEquipClassification());
 			query.setParameter(6, jsaHazardsElectricalDto.getPermitNumber());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

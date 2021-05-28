@@ -4,19 +4,26 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.iopptw.dtos.JsaHazardscseDto;
 
 @Repository
 public class JsaHazardsCseDao extends BaseDao {
-	
+	@Autowired
+	private SessionFactory sessionFactory;
 
-	public void insertJsaHazardsCse(String permitNumber,JsaHazardscseDto jsaHazardscseDto){
-		try{
+	public void insertJsaHazardsCse(String permitNumber, JsaHazardscseDto jsaHazardscseDto) {
+		try {
 			String sql = "INSERT INTO IOP.JSAHAZARDSCSE VALUES (?,?,?,?,?,?,?,?,?)";
 			logger.info(sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session = sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, permitNumber);
 			query.setParameter(2, jsaHazardscseDto.getConfinedSpaceEntry());
 			query.setParameter(3, jsaHazardscseDto.getDiscussWorkPractice());
@@ -27,17 +34,18 @@ public class JsaHazardsCseDao extends BaseDao {
 			query.setParameter(8, jsaHazardscseDto.getProvideObserver());
 			query.setParameter(9, jsaHazardscseDto.getDevelopRescuePlan());
 			query.executeUpdate();
-		}
-		catch(Exception e){
+			tx.commit();
+			session.close();
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public JsaHazardscseDto getJsaHazardsCse(String permitNum){
+	public JsaHazardscseDto getJsaHazardsCse(String permitNum) {
 		List<Object[]> obj;
 		JsaHazardscseDto jsaHazardscseDto = new JsaHazardscseDto();
-		try{
+		try {
 			String sql = "select distinct PERMITNUMBER, CONFINEDSPACEENTRY,DISCUSSWORKPRACTICE, "
 					+ " CONDUCTATMOSPHERICTESTING,MONITORACCESS,PROTECTSURFACES,PROHIBITMOBILEENGINE, "
 					+ " PROVIDEOBSERVER,DEVELOPRESCUEPLAN from IOP.JSAHAZARDSCSE where PERMITNUMBER = :permitNum";
@@ -57,7 +65,7 @@ public class JsaHazardsCseDao extends BaseDao {
 				jsaHazardscseDto.setDevelopRescuePlan(Integer.parseInt(a[8].toString()));
 			}
 			return jsaHazardscseDto;
-		}catch(Exception e){
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
@@ -66,10 +74,12 @@ public class JsaHazardsCseDao extends BaseDao {
 
 	public void updateJsaHazardsCse(JsaHazardscseDto jsaHazardscseDto) {
 		try {
-			String sql = "UPDATE \"IOP\".\"JSAHAZARDSCSE\" SET  \"CONFINEDSPACEENTRY\"=?,\"DISCUSSWORKPRACTICE\"=?,\"CONDUCTATMOSPHERICTESTING\"=?," +
-        "\"MONITORACCESS\"=?,\"PROTECTSURFACES\"=?,\"PROHIBITMOBILEENGINE\"=?,\"PROVIDEOBSERVER\"=?,\"DEVELOPRESCUEPLAN\"=? WHERE \"PERMITNUMBER\"=?";
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSCSE\" SET  \"CONFINEDSPACEENTRY\"=?,\"DISCUSSWORKPRACTICE\"=?,\"CONDUCTATMOSPHERICTESTING\"=?,"
+					+ "\"MONITORACCESS\"=?,\"PROTECTSURFACES\"=?,\"PROHIBITMOBILEENGINE\"=?,\"PROVIDEOBSERVER\"=?,\"DEVELOPRESCUEPLAN\"=? WHERE \"PERMITNUMBER\"=?";
 			logger.info("updateJsaHazardsCse sql" + sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session = sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, jsaHazardscseDto.getConfinedSpaceEntry());
 			query.setParameter(2, jsaHazardscseDto.getDiscussWorkPractice());
 			query.setParameter(3, jsaHazardscseDto.getConductAtmosphericTesting());
@@ -80,10 +90,12 @@ public class JsaHazardsCseDao extends BaseDao {
 			query.setParameter(8, jsaHazardscseDto.getDevelopRescuePlan());
 			query.setParameter(9, jsaHazardscseDto.getPermitNumber());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
-		
+
 	}
 }

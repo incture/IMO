@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -14,12 +17,16 @@ import com.incture.iopptw.dtos.JsaStepsDto;
 public class JsaStepsDao extends BaseDao {
 	@Autowired
 	private KeyGeneratorDao keyGeneratorDao;
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	public void insertJsaSteps(String permitNumber, JsaStepsDto jsaStepsDto) {
 		try {
 			logger.info("JsaStepsDto: " + jsaStepsDto);
 			String sql = "INSERT INTO \"IOP\".\"JSASTEPS\" VALUES (?,?,?,?,?,?)";
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, keyGeneratorDao.getJSASTEPSSerialNo());
 			query.setParameter(2, permitNumber);
 			query.setParameter(3, jsaStepsDto.getTaskSteps());
@@ -28,6 +35,8 @@ public class JsaStepsDao extends BaseDao {
 			query.setParameter(6, jsaStepsDto.getPersonResponsible());
 			logger.info("sql " + sql);
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 
@@ -67,10 +76,14 @@ public class JsaStepsDao extends BaseDao {
 		try {
 			logger.info("permitNumber: " + permitNumber);
 			String sql = "DELETE FROM \"IOP\".\"JSASTEPS\" WHERE PERMITNUMBER =? ";
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, permitNumber);
 			logger.info("sql " + sql);
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();

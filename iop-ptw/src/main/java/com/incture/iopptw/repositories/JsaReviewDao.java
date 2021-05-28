@@ -5,16 +5,24 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.iopptw.dtos.JsaReviewDto;
 
 @Repository
 public class JsaReviewDao extends BaseDao {
+	@Autowired
+	private SessionFactory sessionFactory;
 	public void insertJsaReview(String permitNumber, JsaReviewDto jsaReviewDto) {
 		try {
 			String sql = "INSERT INTO IOP.JSAREVIEW VALUES (?,?,?,?,?,?,?)";
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			logger.info("sql: " + sql);
 			query.setParameter(1, Integer.parseInt(permitNumber));
 			query.setParameter(2, jsaReviewDto.getCreatedBy());
@@ -24,6 +32,8 @@ public class JsaReviewDao extends BaseDao {
 			query.setParameter(6, jsaReviewDto.getCreatedDate());
 			query.setParameter(7, jsaReviewDto.getCreatedDate());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error(e.getMessage());
@@ -34,12 +44,16 @@ public class JsaReviewDao extends BaseDao {
 		try {
 			String sql = "UPDATE IOP.JSAREVIEW SET APPROVEDDATE = ? , LASTUPDATEDDATE = ? , APPROVEDBY= ? where PERMITNUMBER=?";
 			logger.info("updateJsaReview sql :" + sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, new Date());
 			query.setParameter(2, new Date());
 			query.setParameter(3, jsaReviewDto.getApprovedBy());
 			query.setParameter(4, permitNumber);
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
@@ -79,7 +93,9 @@ public class JsaReviewDao extends BaseDao {
 		try {
 			String sql = "UPDATE IOP.JSAREVIEW SET  CREATEDBY=?, APPROVEDBY=?, APPROVEDDATE=?,LASTUPDATEDBY=?,LASTUPDATEDDATE=?,CREATEDDATE=? WHERE PERMITNUMBER=? ";
 			logger.info("updateJsaReview sql" + sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, jsaReviewDto.getCreatedBy());
 			query.setParameter(2, jsaReviewDto.getApprovedBy());
 			query.setParameter(3, jsaReviewDto.getApprovedDate());
@@ -88,6 +104,8 @@ public class JsaReviewDao extends BaseDao {
 			query.setParameter(6, jsaReviewDto.getCreatedDate());
 			query.setParameter(7, jsaReviewDto.getPermitNumber());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();

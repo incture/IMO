@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -14,17 +17,23 @@ import com.incture.iopptw.dtos.JsaStopTriggerDto;
 public class JsaStopTriggerDao extends BaseDao {
 	@Autowired
 	private KeyGeneratorDao keyGeneratorDao;
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	public void insertJsaStopTrigger(String permitNumber, JsaStopTriggerDto JsaStopTriggerDto) {
 		try {
 			logger.info("JsaStopTriggerDto: " + JsaStopTriggerDto);
 			String sql = "INSERT INTO \"IOP\".\"JSASTOPTRIGGER\" VALUES (?,?,?)";
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, keyGeneratorDao.getJSASTOPSerialNo());
 			query.setParameter(2, permitNumber);
 			query.setParameter(3, JsaStopTriggerDto.getLineDescription());
 			logger.info("sql " + sql);
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 
@@ -61,10 +70,14 @@ public class JsaStopTriggerDao extends BaseDao {
 		try {
 			logger.info("permitNumber: " + permitNumber);
 			String sql = "DELETE FROM \"IOP\".\"JSASTOPTRIGGER\" WHERE PERMITNUMBER =? ";
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, permitNumber);
 			logger.info("sql " + sql);
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();

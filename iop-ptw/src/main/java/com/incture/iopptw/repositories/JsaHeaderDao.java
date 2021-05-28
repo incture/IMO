@@ -4,16 +4,24 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.iopptw.dtos.JsaheaderDto;
 
 @Repository
 public class JsaHeaderDao extends BaseDao {
+	@Autowired
+	private SessionFactory sessionFactory;
 	public void insertJsaHeader(String permitNumber, JsaheaderDto jsaheaderDto) {
 		try {
 			String sql = "INSERT INTO IOP.JSAHEADER VALUES (?,?,?,?,?,?,?,?,?)";
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query =session.createNativeQuery(sql);
 			logger.info("insertJsaHeader sql " + sql);
 			query.setParameter(1, Integer.parseInt(permitNumber));
 			query.setParameter(2, "JSA" + permitNumber);
@@ -25,6 +33,8 @@ public class JsaHeaderDao extends BaseDao {
 			query.setParameter(8, jsaheaderDto.getIsActive());
 			query.setParameter(9, jsaheaderDto.getStatus());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error(e.getMessage());
@@ -35,11 +45,15 @@ public class JsaHeaderDao extends BaseDao {
 		try {
 			String sql = "UPDATE IOP.JSAHEADER SET STATUS =?, ISACTIVE=? where JSAPERMITNUMBER=? ";
 			logger.info("updateJsaHeader sql" + sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, jsaheaderDto.getStatus());
 			query.setParameter(2, jsaheaderDto.getIsActive());
 			query.setParameter(3, "JSA" + permitNumber);
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
@@ -49,7 +63,9 @@ public class JsaHeaderDao extends BaseDao {
 		try {
 			String sql = "UPDATE IOP.JSAHEADER SET HASCWP=?,HASHWP=?,HASCSE=?,TASKDESCRIPTION=?,IDENTIFYMOSTSERIOUSPOTENTIALINJURY=?,ISACTIVE=?,STATUS=? WHERE PERMITNUMBER=?";
 			logger.info("updateJsaHeaderByPermitNumber sql" + sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, jsaheaderDto.getHasCWP());
 			query.setParameter(2, jsaheaderDto.getHasHWP());
 			query.setParameter(3, jsaheaderDto.getHasCSE());
@@ -59,6 +75,8 @@ public class JsaHeaderDao extends BaseDao {
 			query.setParameter(7, jsaheaderDto.getStatus());
 			query.setParameter(8, jsaheaderDto.getPermitNumber());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();

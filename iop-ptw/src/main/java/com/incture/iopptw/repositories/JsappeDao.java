@@ -4,17 +4,25 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.iopptw.dtos.JsappeDto;
 
 @Repository
 public class JsappeDao extends BaseDao {
+	@Autowired
+	private SessionFactory sessionFactory;
 	public void insertJsappe(String permitNumber, JsappeDto jsappeDto) {
 		logger.info("jsappeDto"+jsappeDto);
 		try {
 			String sql ="INSERT INTO \"IOP\".\"JSA_PPE\" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			logger.info("sql: " + sql);
 			query.setParameter(1, permitNumber);
 			query.setParameter(2, jsappeDto.getHardHat());
@@ -42,6 +50,8 @@ public class JsappeDao extends BaseDao {
 			query.setParameter(24, jsappeDto.getHaveConsentOfTaskLeader());
 			query.setParameter(25, jsappeDto.getCompanyOfTaskLeader());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 			
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -57,7 +67,9 @@ public class JsappeDao extends BaseDao {
         "\"FALLRESTRAINT\"=?,\"CHEMICALSUIT\"=?,\"APRON\"=?,\"FLAMERESISTANTCLOTHING\"=?,\"OTHERPPEDESCRIPTION\"=?," +
         "\"NEEDFOULWEATHERGEAR\"=?,\"HAVECONSENTOFTASKLEADER\"=?,\"COMPANYOFTASKLEADER\"=? WHERE \"PERMITNUMBER\"=?";
 			logger.info("updateJsappe sql" + sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, jsappeDto.getHardHat());
 			query.setParameter(2, jsappeDto.getSafetyBoot());
 			query.setParameter(3, jsappeDto.getGoggles());
@@ -84,6 +96,8 @@ public class JsappeDao extends BaseDao {
 			query.setParameter(24, jsappeDto.getCompanyOfTaskLeader());
 			query.setParameter(25, jsappeDto.getPermitNumber());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
@@ -129,12 +143,7 @@ public class JsappeDao extends BaseDao {
 				jsappeDto.setApron(Integer.parseInt(a[19].toString()));
 				jsappeDto.setFlameResistantClothing(Integer.parseInt(a[20].toString()));
 				jsappeDto.setOtherPPEDescription((String) a[21]);
-				jsappeDto.setNeedFoulWeatherGear((String) a[22]); // need to
-																	// convert
-																	// this into
-																	// string as
-																	// per xsjs
-																	// payload
+				jsappeDto.setNeedFoulWeatherGear((String) a[22]); 
 				jsappeDto.setHaveConsentOfTaskLeader(Integer.parseInt(a[23].toString()));
 				jsappeDto.setCompanyOfTaskLeader((String) a[24]);
 			}

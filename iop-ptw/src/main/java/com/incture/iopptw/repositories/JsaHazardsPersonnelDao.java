@@ -4,17 +4,25 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.iopptw.dtos.JsaHazardsPersonnelDto;
 
 @Repository
 public class JsaHazardsPersonnelDao extends BaseDao {
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	public void insertJsaHazardsPersonnel(String permitNumber, JsaHazardsPersonnelDto jsaHazardsPersonnelDto) {
 		try {
 			String sql = "INSERT INTO IOP.JSAHAZARDSPERSONNEL VALUES (?,?,?,?,?,?,?,?)";
-			Query query = getSession().createNativeQuery(sql);
+			Session session = sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			logger.info(sql);
 			query.setParameter(1, permitNumber);
 			query.setParameter(2, jsaHazardsPersonnelDto.getPersonnel());
@@ -25,6 +33,8 @@ public class JsaHazardsPersonnelDao extends BaseDao {
 			query.setParameter(7, jsaHazardsPersonnelDto.getManageLanguageBarriers());
 			query.setParameter(8, jsaHazardsPersonnelDto.getWearSeatBelts());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
@@ -66,7 +76,9 @@ public class JsaHazardsPersonnelDao extends BaseDao {
 			String sql = "UPDATE \"IOP\".\"JSAHAZARDSPERSONNEL\" SET  \"PERSONNEL\"=?,\"PERFORMINDUCTION\"=?,\"MENTORCOACHSUPERVISE\"=?,"
 					+ "\"VERIFYCOMPETENCIES\"=?,\"ADDRESSLIMITATIONS\"=?,\"MANAGELANGUAGEBARRIERS\"=?,\"WEARSEATBELTS\"=? WHERE \"PERMITNUMBER\"=?";
 			logger.info("updateJsaHazardsPersonnel sql" + sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session = sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, jsaHazardsPersonnelDto.getPersonnel());
 			query.setParameter(2, jsaHazardsPersonnelDto.getPerformInduction());
 			query.setParameter(3, jsaHazardsPersonnelDto.getMentorCoachSupervise());
@@ -76,6 +88,8 @@ public class JsaHazardsPersonnelDao extends BaseDao {
 			query.setParameter(7, jsaHazardsPersonnelDto.getWearSeatBelts());
 			query.setParameter(8, jsaHazardsPersonnelDto.getPermitNumber());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();

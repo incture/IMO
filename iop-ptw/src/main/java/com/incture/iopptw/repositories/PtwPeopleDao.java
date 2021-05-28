@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -14,11 +17,15 @@ import com.incture.iopptw.dtos.PtwPeopleDto;
 public class PtwPeopleDao extends BaseDao {
 	@Autowired
 	private KeyGeneratorDao keyGeneratorDao;
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	public void insertPtwPeople(String permitNumber, PtwPeopleDto ptwPeopleDto) {
 		try {
 			String sql = "INSERT INTO \"IOP\".\"PTWPEOPLE\" VALUES (?,?,?,?,?,?,?,?,?)";
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			logger.info("sql: " + sql);
 			query.setParameter(1, Integer.parseInt(keyGeneratorDao.getSerialNo()));
 			query.setParameter(2, Integer.parseInt(permitNumber));
@@ -30,6 +37,8 @@ public class PtwPeopleDao extends BaseDao {
 			query.setParameter(8, ptwPeopleDto.getHasSignedHWP());
 			query.setParameter(9, ptwPeopleDto.getHasSignedCSE());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error(e.getMessage());
@@ -73,10 +82,14 @@ public class PtwPeopleDao extends BaseDao {
 		try {
 			logger.info("permitNumber: " + permitNumber);
 			String sql = "DELETE FROM \"IOP\".\"PTWPEOPLE\" WHERE PERMITNUMBER =? ";
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, permitNumber);
 			logger.info("sql " + sql);
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();

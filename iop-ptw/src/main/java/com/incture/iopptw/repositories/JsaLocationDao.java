@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -14,12 +17,15 @@ import com.incture.iopptw.dtos.JsaLocationDto;
 public class JsaLocationDao extends BaseDao {
 	@Autowired
 	private KeyGeneratorDao keyGeneratorDao;
-
+	@Autowired
+	private SessionFactory sessionFactory;
 	public void insertJsaLocation(String permitNumber, JsaLocationDto jsaLocationDto) {
 		try {
 			logger.info("JsaLocationDto: " + jsaLocationDto);
 			String sql = "INSERT INTO \"IOP\".\"JSA_LOCATION\" VALUES (?,?,?,?,?,?)";
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, Integer.parseInt(keyGeneratorDao.getTOJSALOCATION()));
 			query.setParameter(2, Integer.parseInt(permitNumber));
 			query.setParameter(3, jsaLocationDto.getFacilityOrSite());
@@ -28,6 +34,8 @@ public class JsaLocationDao extends BaseDao {
 			query.setParameter(6, jsaLocationDto.getMuwi());
 			logger.info("sql " + sql);
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 
@@ -68,10 +76,14 @@ public class JsaLocationDao extends BaseDao {
 		try {
 			logger.info("permitNumber: " + permitNumber);
 			String sql = "DELETE FROM \"IOP\".\"JSA_LOCATION\" WHERE PERMITNUMBER =? ";
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, permitNumber);
 			logger.info("sql " + sql);
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();

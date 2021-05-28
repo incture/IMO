@@ -4,15 +4,23 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.iopptw.dtos.PtwCseWorkTypeDto;
 
 @Repository
 public class PtwCseWorkTypeDao extends BaseDao {
+	@Autowired
+	private SessionFactory sessionFactory;
 	public void insertPtwCseWorkType(String permitNumber, PtwCseWorkTypeDto ptwCseWorkTypeDto) {
 		try {
-			Query query = getSession()
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session
 					.createNativeQuery("INSERT INTO \"IOP\".\"PTW_CSE_WORK_TYPE\" VALUES (?,?,?,?,?,?,?,?)");
 			query.setParameter(1, permitNumber);
 			query.setParameter(2, ptwCseWorkTypeDto.getTank());
@@ -23,6 +31,8 @@ public class PtwCseWorkTypeDao extends BaseDao {
 			query.setParameter(7, ptwCseWorkTypeDto.getOther());
 			query.setParameter(8, ptwCseWorkTypeDto.getReasonForCSE());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
@@ -64,7 +74,9 @@ public class PtwCseWorkTypeDao extends BaseDao {
 	public void updatePtwCseWorkType(PtwCseWorkTypeDto ptwCseWorkTypeDto) {
 		try {
 			String sql = "UPDATE \"IOP\".\"PTW_CSE_WORK_TYPE\" SET  \"TANK\"= ?, \"VESSEL\"= ?, \"EXCAVATION\"= ?, \"PIT\"= ?, \"TOWER\"= ?, \"OTHER\"= ?, \"REASONFORCSE\"= ? where \"PERMITNUMBER\"= ?";
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			logger.info("sql: " + sql);
 			query.setParameter(1, ptwCseWorkTypeDto.getTank());
 			query.setParameter(2, ptwCseWorkTypeDto.getVessel());
@@ -75,6 +87,8 @@ public class PtwCseWorkTypeDao extends BaseDao {
 			query.setParameter(7, ptwCseWorkTypeDto.getReasonForCSE());
 			query.setParameter(8, ptwCseWorkTypeDto.getPermitNumber());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}

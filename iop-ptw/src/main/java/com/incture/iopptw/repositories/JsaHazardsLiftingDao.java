@@ -4,33 +4,44 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.iopptw.dtos.JsaHazardsLiftingDto;
 
 @Repository
 public class JsaHazardsLiftingDao extends BaseDao {
+	@Autowired
+	private SessionFactory sessionFactory;
+
 	public void insertJsaHazardsLifting(String permitNumber, JsaHazardsLiftingDto jsaHazardsLiftingDto) {
 		try {
 			String sql = "INSERT INTO \"IOP\".\"JSAHAZARDSLIFTING\" VALUES (?,?,?,?,?)";
 			logger.info(sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session = sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, permitNumber);
 			query.setParameter(2, jsaHazardsLiftingDto.getLiftingEquipment());
 			query.setParameter(3, jsaHazardsLiftingDto.getConfirmEquipmentCondition());
 			query.setParameter(4, jsaHazardsLiftingDto.getObtainApprovalForLifts());
 			query.setParameter(5, jsaHazardsLiftingDto.getHaveDocumentedLiftPlan());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public JsaHazardsLiftingDto getJsaHazardsLiftingDto(String permitNum){
+	public JsaHazardsLiftingDto getJsaHazardsLiftingDto(String permitNum) {
 		List<Object[]> obj;
 		JsaHazardsLiftingDto jsaHazardsLiftingDto = new JsaHazardsLiftingDto();
-		try{
+		try {
 			String sql = "select distinct PERMITNUMBER, LIFTINGEQUIPMENT,CONFIRMEQUIPMENTCONDITION, "
 					+ " OBTAINAPPROVALFORLIFTS,HAVEDOCUMENTEDLIFTPLAN from IOP.JSAHAZARDSLIFTING "
 					+ " where PERMITNUMBER = :permitNum";
@@ -45,7 +56,7 @@ public class JsaHazardsLiftingDao extends BaseDao {
 				jsaHazardsLiftingDto.setHaveDocumentedLiftPlan(Integer.parseInt(a[4].toString()));
 			}
 			return jsaHazardsLiftingDto;
-		}catch(Exception e){
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
@@ -54,22 +65,25 @@ public class JsaHazardsLiftingDao extends BaseDao {
 
 	public void updateJsaHazardsLifting(JsaHazardsLiftingDto jsaHazardsLiftingDto) {
 		try {
-			String sql = "UPDATE \"IOP\".\"JSAHAZARDSLIFTING\" SET  \"LIFTINGEQUIPMENT\"=?,\"CONFIRMEQUIPMENTCONDITION\"=?,\"OBTAINAPPROVALFORLIFTS\"=?," +
-        "\"HAVEDOCUMENTEDLIFTPLAN\"=? WHERE \"PERMITNUMBER\"=?";
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSLIFTING\" SET  \"LIFTINGEQUIPMENT\"=?,\"CONFIRMEQUIPMENTCONDITION\"=?,\"OBTAINAPPROVALFORLIFTS\"=?,"
+					+ "\"HAVEDOCUMENTEDLIFTPLAN\"=? WHERE \"PERMITNUMBER\"=?";
 			logger.info("updateJsaHazardsLifting sql" + sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session = sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, jsaHazardsLiftingDto.getLiftingEquipment());
 			query.setParameter(2, jsaHazardsLiftingDto.getConfirmEquipmentCondition());
 			query.setParameter(3, jsaHazardsLiftingDto.getObtainApprovalForLifts());
 			query.setParameter(4, jsaHazardsLiftingDto.getHaveDocumentedLiftPlan());
 			query.setParameter(5, jsaHazardsLiftingDto.getPermitNumber());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
-		
+
 	}
-	
 
 }

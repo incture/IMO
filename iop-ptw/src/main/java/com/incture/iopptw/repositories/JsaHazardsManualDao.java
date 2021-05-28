@@ -4,17 +4,26 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.iopptw.dtos.JsaHazardsManualDto;
 
 @Repository
 public class JsaHazardsManualDao extends BaseDao {
+	@Autowired
+	private SessionFactory sessionFactory;
+
 	public void insertJsaHazardsManual(String permitNumber, JsaHazardsManualDto jsaHazardsManualDto) {
 		try {
 			String sql = "INSERT INTO \"IOP\".\"JSAHAZARDSMANUAL\" VALUES (?,?,?,?,?,?,?)";
 			logger.info(sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session = sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, permitNumber);
 			query.setParameter(2, jsaHazardsManualDto.getManualHandling());
 			query.setParameter(3, jsaHazardsManualDto.getAssessManualTask());
@@ -23,23 +32,25 @@ public class JsaHazardsManualDao extends BaseDao {
 			query.setParameter(6, jsaHazardsManualDto.getConfirmStabilityOfLoad());
 			query.setParameter(7, jsaHazardsManualDto.getGetAssistanceOrAid());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	public JsaHazardsManualDto getJsaHazardsManualDto(String permitNum){
+	public JsaHazardsManualDto getJsaHazardsManualDto(String permitNum) {
 		List<Object[]> obj;
 		JsaHazardsManualDto jsaHazardsManualDto = new JsaHazardsManualDto();
-		try{
+		try {
 			String sql = "select distinct PERMITNUMBER, MANUALHANDLING,ASSESSMANUALTASK,LIMITLOADSIZE, "
 					+ " PROPERLIFTINGTECHNIQUE,CONFIRMSTABILITYOFLOAD,GETASSISTANCEORAID "
 					+ " from IOP.JSAHAZARDSMANUAL where PERMITNUMBER = :permitNum";
 			Query q = getSession().createNativeQuery(sql);
 			q.setParameter("permitNum", permitNum);
 			obj = q.getResultList();
-			
+
 			for (Object[] a : obj) {
 				jsaHazardsManualDto.setPermitNumber((Integer) a[0]);
 				jsaHazardsManualDto.setManualHandling(Integer.parseInt(a[1].toString()));
@@ -51,7 +62,7 @@ public class JsaHazardsManualDao extends BaseDao {
 
 			}
 			return jsaHazardsManualDto;
-		}catch(Exception e){
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
@@ -60,10 +71,12 @@ public class JsaHazardsManualDao extends BaseDao {
 
 	public void updateJsaHazardsManual(JsaHazardsManualDto jsaHazardsManualDto) {
 		try {
-			String sql = "UPDATE \"IOP\".\"JSAHAZARDSMANUAL\" SET  \"MANUALHANDLING\"=?,\"ASSESSMANUALTASK\"=?,\"LIMITLOADSIZE\"=?," +
-        "\"PROPERLIFTINGTECHNIQUE\"=?,\"CONFIRMSTABILITYOFLOAD\"=?,\"GETASSISTANCEORAID\"=? WHERE \"PERMITNUMBER\"=?";
+			String sql = "UPDATE \"IOP\".\"JSAHAZARDSMANUAL\" SET  \"MANUALHANDLING\"=?,\"ASSESSMANUALTASK\"=?,\"LIMITLOADSIZE\"=?,"
+					+ "\"PROPERLIFTINGTECHNIQUE\"=?,\"CONFIRMSTABILITYOFLOAD\"=?,\"GETASSISTANCEORAID\"=? WHERE \"PERMITNUMBER\"=?";
 			logger.info("updateJsaHazardsManual sql" + sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session = sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, jsaHazardsManualDto.getManualHandling());
 			query.setParameter(2, jsaHazardsManualDto.getAssessManualTask());
 			query.setParameter(3, jsaHazardsManualDto.getLimitLoadSize());
@@ -72,11 +85,13 @@ public class JsaHazardsManualDao extends BaseDao {
 			query.setParameter(6, jsaHazardsManualDto.getGetAssistanceOrAid());
 			query.setParameter(7, jsaHazardsManualDto.getPermitNumber());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

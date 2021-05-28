@@ -4,18 +4,25 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.iopptw.dtos.JsaHazardsVoltageDto;
 
 @Repository
 public class JsaHazardsVoltageDao extends BaseDao {
-
+	@Autowired
+	private SessionFactory sessionFactory;
 	public void insertJsaHazardsVoltage(String permitNumber, JsaHazardsVoltageDto jsaHazardsVoltageDto) {
 		try {
 			String sql = "INSERT INTO \"IOP\".\"JSAHAZARDSVOLTAGE\" VALUES (?,?,?,?,?,?,?)";
 			logger.info(sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, permitNumber);
 			query.setParameter(2, jsaHazardsVoltageDto.getHighVoltage());
 			query.setParameter(3, jsaHazardsVoltageDto.getRestrictAccess());
@@ -24,6 +31,8 @@ public class JsaHazardsVoltageDao extends BaseDao {
 			query.setParameter(6, jsaHazardsVoltageDto.getUseFlashBurn());
 			query.setParameter(7, jsaHazardsVoltageDto.getUseInsulatedGloves());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
@@ -64,7 +73,9 @@ public class JsaHazardsVoltageDao extends BaseDao {
 			String sql = "UPDATE \"IOP\".\"JSAHAZARDSVOLTAGE\" SET  \"HIGHVOLTAGE\"=?,\"RESTRICTACCESS\"=?,\"DISCHARGEEQUIPMENT\"=?," +
         "\"OBSERVESAFEWORKDISTANCE\"=?,\"USEFLASHBURN\"=?,\"USEINSULATEDGLOVES\"=? WHERE \"PERMITNUMBER\"=?";
 			logger.info("updateJsaHazardsVoltage sql" + sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, jsaHazardsVoltageDto.getHighVoltage());
 			query.setParameter(2, jsaHazardsVoltageDto.getRestrictAccess());
 			query.setParameter(3, jsaHazardsVoltageDto.getDischargeEquipment());
@@ -73,6 +84,8 @@ public class JsaHazardsVoltageDao extends BaseDao {
 			query.setParameter(6, jsaHazardsVoltageDto.getUseInsulatedGloves());
 			query.setParameter(7, jsaHazardsVoltageDto.getPermitNumber());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();

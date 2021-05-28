@@ -4,17 +4,25 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.iopptw.dtos.JsaHazardsToolsDto;
 
 @Repository
 public class JsaHazardsToolsDao extends BaseDao {
+	@Autowired
+	private SessionFactory sessionFactory;
 	public void insertJsaHazardsTools(String permitNumber, JsaHazardsToolsDto jsaHazardsToolsDto) {
 		try {
 			String sql = "INSERT INTO \"IOP\".\"JSAHAZARDSTOOLS\" VALUES (?,?,?,?,?,?,?,?)";
 			logger.info(sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, permitNumber);
 			query.setParameter(2, jsaHazardsToolsDto.getEquipmentAndTools());
 			query.setParameter(3, jsaHazardsToolsDto.getInspectEquipmentTool());
@@ -24,6 +32,8 @@ public class JsaHazardsToolsDao extends BaseDao {
 			query.setParameter(7, jsaHazardsToolsDto.getCheckForSharpEdges());
 			query.setParameter(8, jsaHazardsToolsDto.getApplyHandSafetyPrinciple());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 			logger.info("jsaHazardsToolsDto"+jsaHazardsToolsDto);
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -64,7 +74,9 @@ public class JsaHazardsToolsDao extends BaseDao {
 			String sql = "UPDATE \"IOP\".\"JSAHAZARDSTOOLS\" SET  \"EQUIPMENTANDTOOLS\"=?,\"INSPECTEQUIPMENTTOOL\"=?,\"BRASSTOOLSNECESSARY\"=?," +
         "\"USEPROTECTIVEGUARDS\"=?,\"USECORRECTTOOLS\"=?,\"CHECKFORSHARPEDGES\"=?,\"APPLYHANDSAFETYPRINCIPLE\"=? WHERE \"PERMITNUMBER\"=?";
 			logger.info("updateJsaHazardsTools sql" + sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, jsaHazardsToolsDto.getEquipmentAndTools());
 			query.setParameter(2, jsaHazardsToolsDto.getInspectEquipmentTool());
 			query.setParameter(3, jsaHazardsToolsDto.getBrassToolsNecessary());
@@ -74,6 +86,8 @@ public class JsaHazardsToolsDao extends BaseDao {
 			query.setParameter(7, jsaHazardsToolsDto.getApplyHandSafetyPrinciple());
 			query.setParameter(8, jsaHazardsToolsDto.getPermitNumber());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();

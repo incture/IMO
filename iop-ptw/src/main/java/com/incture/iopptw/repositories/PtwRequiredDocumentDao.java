@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -14,11 +17,15 @@ import com.incture.iopptw.dtos.PtwRequiredDocumentDto;
 public class PtwRequiredDocumentDao extends BaseDao {
 	@Autowired
 	private KeyGeneratorDao keyGeneratorDao;
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	public void insertPtwRequiredDocument(String permitNumber, PtwRequiredDocumentDto ptwRequiredDocumentDto) {
 		try {
 			logger.info("ptwRequiredDocumentDto :" + ptwRequiredDocumentDto);
-			Query query = getSession().createNativeQuery(
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(
 					"INSERT INTO \"IOP\".\"PTWREQUIREDDOCUMENT\"VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			query.setParameter(1, Integer.parseInt(keyGeneratorDao.getPTWREQDOC()));
 			query.setParameter(2, Integer.parseInt(permitNumber));
@@ -39,6 +46,8 @@ public class PtwRequiredDocumentDao extends BaseDao {
 			query.setParameter(17, ptwRequiredDocumentDto.getSimopDeviation());
 			query.setParameter(18, ptwRequiredDocumentDto.getSafeWorkPractice());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
@@ -92,7 +101,9 @@ public class PtwRequiredDocumentDao extends BaseDao {
 	public void updatePtwRequiredDocument(String permitNumber, PtwRequiredDocumentDto p) {
 		try {
 			String sql = "UPDATE \"IOP\".\"PTWREQUIREDDOCUMENT\" SET  \"ISCWP\"= ?, \"ISHWP\"= ?, \"ISCSE\"= ?, \"ATMOSPHERICTESTRECORD\"= ?, \"LOTO\"= ?, \"PROCEDURE\"= ?, \"PANDIDORDRAWING\"= ?, \"CERTIFICATE\"= ?, \"TEMPORARYDEFEAT\"= ?, \"RESCUEPLAN\"= ?, \"SDS\"= ?, \"OTHERWORKPERMITDOCS\"= ?, \"FIREWATCHCHECKLIST\"= ?, \"LIFTPLAN\"= ?, \"SIMOPDEVIATION\"= ?, \"SAFEWORKPRACTICE\"= ? where \"SERIALNO\"= ?";
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			logger.info("sql: " + sql);
 			query.setParameter(1, p.getIsCWP());
 			query.setParameter(2, p.getIsHWP());
@@ -112,6 +123,8 @@ public class PtwRequiredDocumentDao extends BaseDao {
 			query.setParameter(16, p.getSafeWorkPractice());
 			query.setParameter(17, p.getSerialNo());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}

@@ -4,18 +4,25 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.iopptw.dtos.JsaHazardsSubstancesDto;
 
 @Repository
 public class JsaHazardsSubstancesDao extends BaseDao {
-
+	@Autowired
+	private SessionFactory sessionFactory;
 	public void insertJsaHazardsSubstances(String permitNumber, JsaHazardsSubstancesDto jsaHazardsSubstancesDto) {
 		try {
 			String sql = "INSERT INTO IOP.JSAHAZARDSSUBSTANCES VALUES (?,?,?,?,?,?)";
 			logger.info(sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, permitNumber);
 			query.setParameter(2, jsaHazardsSubstancesDto.getHazardousSubstances());
 			query.setParameter(3, jsaHazardsSubstancesDto.getDrainEquipment());
@@ -23,6 +30,8 @@ public class JsaHazardsSubstancesDao extends BaseDao {
 			query.setParameter(5, jsaHazardsSubstancesDto.getImplementHealthHazardControls());
 			query.setParameter(6, jsaHazardsSubstancesDto.getTestMaterial());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
@@ -62,7 +71,9 @@ public class JsaHazardsSubstancesDao extends BaseDao {
 			String sql = "UPDATE \"IOP\".\"JSAHAZARDSSUBSTANCES\" SET  \"HAZARDOUSSUBSTANCES\"=?,\"DRAINEQUIPMENT\"=?,\"FOLLOWSDSCONTROLS\"=?," +
         "\"IMPLEMENTHEALTHHAZARDCONTROLS\"=?,\"TESTMATERIAL\"=? WHERE \"PERMITNUMBER\"=?";
 			logger.info("updateJsaHazardsSubstances sql" + sql);
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			query.setParameter(1, jsaHazardsSubstancesDto.getHazardousSubstances());
 			query.setParameter(2, jsaHazardsSubstancesDto.getDrainEquipment());
 			query.setParameter(3, jsaHazardsSubstancesDto.getFollowSdsControls());
@@ -70,6 +81,8 @@ public class JsaHazardsSubstancesDao extends BaseDao {
 			query.setParameter(5, jsaHazardsSubstancesDto.getTestMaterial());
 			query.setParameter(6, jsaHazardsSubstancesDto.getPermitNumber());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();

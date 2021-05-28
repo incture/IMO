@@ -7,6 +7,9 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,9 +19,13 @@ import com.incture.iopptw.dtos.PtwTestResultsDto;
 public class PtwTestResultsDao extends BaseDao {
 	@Autowired
 	private KeyGeneratorDao keyGeneratorDao;
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	public void insertPtwTestResults(String permitNumber, PtwTestResultsDto ptwTestResultsDto) {
-		Query query = getSession()
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		Query query = session
 				.createNativeQuery("INSERT INTO \"IOP\".\"PTWTESTRESULTS\" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 		query.setParameter(1, keyGeneratorDao.getPTWATESTRES());
 		query.setParameter(2, permitNumber);
@@ -35,6 +42,8 @@ public class PtwTestResultsDao extends BaseDao {
 		query.setParameter(13, ptwTestResultsDto.getDate());
 		query.setParameter(14, ptwTestResultsDto.getTime());
 		query.executeUpdate();
+		tx.commit();
+		session.close();
 	}
 
 	public List<PtwTestResultsDto> getPtwTestRes(String permitNumber) {
@@ -78,10 +87,14 @@ public class PtwTestResultsDao extends BaseDao {
 
 		logger.info("permitNumber: " + permitNumber);
 		String sql = "DELETE FROM \"IOP\".\"PTWTESTRESULTS\" WHERE PERMITNUMBER =? ";
-		Query query = getSession().createNativeQuery(sql);
+		Session session = sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		Query query = session.createNativeQuery(sql);
 		query.setParameter(1, permitNumber);
 		logger.info("sql " + sql);
 		query.executeUpdate();
+		tx.commit();
+		session.close();
 
 	}
 }

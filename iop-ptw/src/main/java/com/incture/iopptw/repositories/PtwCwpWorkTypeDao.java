@@ -4,16 +4,25 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.incture.iopptw.dtos.PtwCwpWorkTypeDto;
 
 @Repository
 public class PtwCwpWorkTypeDao extends BaseDao {
+	@Autowired
+	private SessionFactory sessionFactory;
+
 	public void insertPtwCwpWorkType(String permitNumber, PtwCwpWorkTypeDto ptwCwpWorkTypeDto) {
 		logger.info("ptwCwpWorkTypeDto" + ptwCwpWorkTypeDto);
 		try {
-			Query query = getSession().createNativeQuery(
+			Session session = sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(
 					"INSERT INTO \"IOP\".\"PTW_CWP_WORK_TYPE\"VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			query.setParameter(1, permitNumber);
 			query.setParameter(2, ptwCwpWorkTypeDto.getCriticalOrComplexLift());
@@ -31,6 +40,8 @@ public class PtwCwpWorkTypeDao extends BaseDao {
 			query.setParameter(14, ptwCwpWorkTypeDto.getOtherTypeOfWork());
 			query.setParameter(15, ptwCwpWorkTypeDto.getDescriptionOfWorkToBePerformed());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
@@ -78,7 +89,9 @@ public class PtwCwpWorkTypeDao extends BaseDao {
 	public void updatePtwCwpWorkType(PtwCwpWorkTypeDto ptwCwpWorkTypeDto) {
 		try {
 			String sql = "UPDATE \"IOP\".\"PTW_CWP_WORK_TYPE\" SET  \"CRITICALORCOMPLEXLIFT\"= ?, \"CRANEORLIFTINGDEVICE\"= ?, \"GROUNDDISTURBANCEOREXCAVATION\"= ?, \"HANDLINGHAZARDOUSCHEMICALS\"= ?, \"WORKINGATHEIGHT\"= ?, \"PAINTINGORBLASTING\"= ?, \"WORKINGONPRESSURIZEDSYSTEMS\"= ?, \"ERECTINGORDISMANTLINGSCAFFOLDING\"= ?, \"BREAKINGCONTAINMENTOFCLOSEDOPERATINGSYSTEM\"= ?, \"WORKINGINCLOSETOHAZARDOUSENERGY\"= ?, \"REMOVALOFIDLEEQUIPMENTFORREPAIR\"= ?, \"HIGHERRISKELECTRICALWORK\"= ?, \"OTHERTYPEOFWORK\"= ?, \"DESCRIPTIONOFWORKTOBEPERFORMED\"= ? where \"PERMITNUMBER\"= ?";
-			Query query = getSession().createNativeQuery(sql);
+			Session session = sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			logger.info("sql: " + sql);
 			query.setParameter(1, ptwCwpWorkTypeDto.getCriticalOrComplexLift());
 			query.setParameter(2, ptwCwpWorkTypeDto.getCraneOrLiftingDevice());
@@ -96,6 +109,8 @@ public class PtwCwpWorkTypeDao extends BaseDao {
 			query.setParameter(14, ptwCwpWorkTypeDto.getDescriptionOfWorkToBePerformed());
 			query.setParameter(15, ptwCwpWorkTypeDto.getPermitNumber());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}

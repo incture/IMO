@@ -6,6 +6,9 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +19,8 @@ import com.incture.iopptw.dtos.PtwCloseOutDto;
 public class PtwCloseOutDao extends BaseDao {
 	@Autowired
 	private KeyGeneratorDao keyGeneratorDao;
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	public List<PtwCloseOutDto> getPtwCloseOut(String permitNumber) {
 		try {
@@ -52,7 +57,9 @@ public class PtwCloseOutDao extends BaseDao {
 
 	public void insertPtwCloseOut(PtwCloseOut1Dto p) {
 		logger.info("PtwCloseOutDao | insertPtwCloseOut" + p);
-		Query query = getSession()
+		Session session= sessionFactory.openSession();
+		Transaction tx = session.beginTransaction();
+		Query query = session
 				.createNativeQuery("INSERT INTO \"IOP\".\"PTWCLOSEOUT\" VALUES (?,?,?,?,?,?,?,?,?,?)");
 		query.setParameter(1, keyGeneratorDao.getTOPTWCLOSEOUT());
 		query.setParameter(2, p.getPermitNumber());
@@ -65,13 +72,17 @@ public class PtwCloseOutDao extends BaseDao {
 		query.setParameter(9, p.getClosedDate());
 		query.setParameter(10, p.getWorkStatusComments());
 		query.executeUpdate();
+		tx.commit();
+		session.close();
 
 	}
 
 	public void insertPtwCloseOut(PtwCloseOutDto p) {
 		logger.info("PtwCloseOutDao | insertPtwCloseOut" + p);
 		try {
-			Query query = getSession()
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session
 					.createNativeQuery("INSERT INTO \"IOP\".\"PTWCLOSEOUT\" VALUES (?,?,?,?,?,?,?,?,?,?)");
 			query.setParameter(1, keyGeneratorDao.getTOPTWCLOSEOUT());
 			query.setParameter(2, p.getPermitNumber());
@@ -84,6 +95,8 @@ public class PtwCloseOutDao extends BaseDao {
 			query.setParameter(9, p.getClosedDate());
 			query.setParameter(10, p.getWorkStatusComment());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
@@ -93,7 +106,9 @@ public class PtwCloseOutDao extends BaseDao {
 	public void updatePtwCloseOut(PtwCloseOutDto p) {
 		try {
 			String sql = "UPDATE \"IOP\".\"PTWCLOSEOUT\" SET  \"ISCWP\"= ?, \"ISHWP\"= ?, \"ISCSE\"=?, \"PICNAME\"= ?, \"WORKCOMPLETED\"= ?, \"CLOSEDBY\"= ?, \"CLOSEDDATE\"= ?, \"WORKSTATUSCOMMENT\"= ? where \"SERIALNO\"= ?";
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			logger.info("sql: " + sql);
 			query.setParameter(1, p.getIsCWP());
 			query.setParameter(2, p.getIsHWP());
@@ -105,6 +120,8 @@ public class PtwCloseOutDao extends BaseDao {
 			query.setParameter(8, p.getWorkStatusComment());
 			query.setParameter(9, p.getSerialNo());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}

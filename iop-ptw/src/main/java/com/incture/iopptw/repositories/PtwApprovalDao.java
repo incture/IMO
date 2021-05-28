@@ -6,6 +6,9 @@ import java.util.List;
 
 import javax.persistence.Query;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -16,6 +19,8 @@ public class PtwApprovalDao extends BaseDao {
 
 	@Autowired
 	private KeyGeneratorDao keyGeneratorDao;
+	@Autowired
+	private SessionFactory sessionFactory;
 
 	public List<PtwApprovalDto> getPtwApproval(String permitNumber, String isCwp, String isHwp, String isCse) {
 
@@ -65,7 +70,9 @@ public class PtwApprovalDao extends BaseDao {
 	public void insertPtwApproval(String permitNumber, PtwApprovalDto i) {
 		try {
 			String sql = "INSERT INTO \"IOP\".\"PTWAPPROVAL\" VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			logger.info("sql: " + sql);
 			query.setParameter(1, Integer.parseInt(keyGeneratorDao.getPTWAPPROVAL()));
 			query.setParameter(2, Integer.parseInt(permitNumber));
@@ -85,6 +92,8 @@ public class PtwApprovalDao extends BaseDao {
 			query.setParameter(16, i.getSuperitendentName());
 			query.setParameter(17, i.getSuperitendentDate());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error(e.getMessage());
@@ -95,7 +104,9 @@ public class PtwApprovalDao extends BaseDao {
 	public void updatePtwApproval(String string, PtwApprovalDto p) {
 		try {
 			String sql = "UPDATE \"IOP\".\"PTWAPPROVAL\" SET  \"ISCWP\"= ?, \"ISHWP\"= ?, \"ISCSE\"= ?, \"ISWORKSAFETOPERFORM\"= ?, \"PREJOBWALKTHROUGHBY\"= ?, \"APPROVEDBY\"= ?, \"APPROVALDATE\"= ?, \"CONTROLBOARDDISTRIBUTION\"= ?, \"WORKSITEDISTRIBUTION\"= ?, \"SIMOPSDISTRIBUTION\"= ?, \"OTHERDISTRIBUTION\"= ?, \"PICNAME\"= ?, \"PICDATE\"= ?, \"SUPERITENDENTNAME\"= ?, \"SUPERITENDENTDATE\"= ? where \"SERIALNO\"= ?";
-			Query query = getSession().createNativeQuery(sql);
+			Session session= sessionFactory.openSession();
+			Transaction tx = session.beginTransaction();
+			Query query = session.createNativeQuery(sql);
 			logger.info("sql: " + sql);
 			query.setParameter(1, p.getIsCWP());
 			query.setParameter(2, p.getIsHWP());
@@ -114,6 +125,8 @@ public class PtwApprovalDao extends BaseDao {
 			query.setParameter(15, p.getSuperitendentDate());
 			query.setParameter(16, p.getSerialNo());
 			query.executeUpdate();
+			tx.commit();
+			session.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
