@@ -70,6 +70,7 @@ public class DftGetReviewerByLocDao extends BaseDao{
 				System.out.println("finalquery : 4 " + finalquery);
 			}
 			Query q = getSession().createNativeQuery(finalquery);
+			@SuppressWarnings("unchecked")
 			List<Object[]> obj = q.getResultList();
 			for(Object[] a : obj){
 				DftGetReviewerResponseDto temp = new DftGetReviewerResponseDto();
