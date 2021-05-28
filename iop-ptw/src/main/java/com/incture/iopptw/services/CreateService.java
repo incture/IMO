@@ -3,8 +3,6 @@ package com.incture.iopptw.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -137,7 +135,6 @@ public class CreateService {
 	@Autowired
 	private KeyGeneratorDao keyGeneratorDao;
 
-	@Transactional
 	public ResponseDto createService(CreateRequestDto createRequestDto) {
 		logger.info("CreateService || createService || createDto: " + createRequestDto);
 		CreateServiceResponseDto createServiceResponseDto = new CreateServiceResponseDto();

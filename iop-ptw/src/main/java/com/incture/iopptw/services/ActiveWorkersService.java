@@ -3,8 +3,6 @@ package com.incture.iopptw.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,6 @@ import com.incture.iopptw.repositories.ActiveWorkersDao;
 import com.incture.iopptw.utils.ResponseDto;
 
 @Service
-@Transactional
 public class ActiveWorkersService {
 	@Autowired
 	private ActiveWorkersDao getActiveWorkersDao;
