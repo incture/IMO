@@ -13,7 +13,6 @@ import com.incture.iopptw.repositories.DftDepartmentsRepository;
 import com.incture.iopptw.utils.ResponseDto;
 
 @Service
-@Transactional
 public class DftDepartmentsService{
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired

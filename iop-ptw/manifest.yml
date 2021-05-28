@@ -2,8 +2,6 @@
 applications:
 - name: ptw
   memory: 750M
-  random-route: true
+  random-route: false
   path: /target/iop-ptw-0.0.1-SNAPSHOT.jar
   buildpack: sap_java_buildpack
-  services:
-  - IOP
