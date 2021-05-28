@@ -16,5 +16,5 @@ public class DftDepartmentsDo {
 	private Integer id;
 	
 	@Column(name = "DEPARTMENTS")
-	private String departments;
+	private String department;
 }
