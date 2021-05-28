@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.incture.iopptw.entities.TestDo;
 import com.incture.iopptw.services.TestService;
-import com.incture.iopptw.utils.ResponseDto;
 
 @RestController
 @RequestMapping("/test")

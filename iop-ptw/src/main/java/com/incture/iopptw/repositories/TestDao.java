@@ -16,6 +16,7 @@ public class TestDao extends BaseDao{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
+	@SuppressWarnings("unchecked")
 	public List<TestDo> getAllData() {
 		String sql="select * from Test";
 		Query q=getSession().createNativeQuery(sql);
