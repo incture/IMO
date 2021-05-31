@@ -14,42 +14,42 @@
 		<servlet-name>spring</servlet-name>
 		<url-pattern>/imo/*</url-pattern>
 	</servlet-mapping>
-	
-	<!-- <login-config>
+
+	<login-config>
 		<auth-method>FORM</auth-method>
 	</login-config>
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>Protected Area</web-resource-name>
-			<url-pattern>/murphy/*</url-pattern>
+			<url-pattern>/imo/*</url-pattern>
 
 		</web-resource-collection>
 		<auth-constraint>
 
 			<role-name>Everyone</role-name>
 		</auth-constraint>
-	</security-constraint> 
-	 <security-constraint>
+	</security-constraint>
+	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>Public Area</web-resource-name>
-			<url-pattern>/murphy/frachit/*</url-pattern>
-			<url-pattern>/murphy/EmpDetails/*</url-pattern>
-			<url-pattern>/murphy/ita/*</url-pattern>
-			<url-pattern>/murphy/tasks/getTasksByUser/*</url-pattern>
-			<url-pattern>/murphy/tasks/updateStatus/*</url-pattern>
-			<url-pattern>/murphy/collaboration/*</url-pattern>
-			<url-pattern>/murphy/rootCause/*</url-pattern>
-			<url-pattern>/murphy/piggingWO/*</url-pattern>
-			<url-pattern>/murphy/ShiftRegister/*</url-pattern>
+			<url-pattern>/imo/frachit/*</url-pattern>
+			<url-pattern>/imo/EmpDetails/*</url-pattern>
+			<url-pattern>/imo/ita/*</url-pattern>
+			<url-pattern>/imo/tasks/getTasksByUser/*</url-pattern>
+			<url-pattern>/imo/tasks/updateStatus/*</url-pattern>
+			<url-pattern>/imo/collaboration/*</url-pattern>
+			<url-pattern>/imo/rootCause/*</url-pattern>
+			<url-pattern>/imo/piggingWO/*</url-pattern>
+			<url-pattern>/imo/ShiftRegister/*</url-pattern>
 		</web-resource-collection>
-	</security-constraint>   -->
- 	<resource-ref>
+	</security-constraint>
+	<resource-ref>
 		<res-ref-name>connectivityConfiguration</res-ref-name>
 		<res-type>com.sap.core.connectivity.api.configuration.ConnectivityConfiguration</res-type>
-	</resource-ref> 
-	
+	</resource-ref>
+
 	<resource-ref>
-	    <res-ref-name>tenantContext</res-ref-name>
-	    <res-type>com.sap.cloud.account.TenantContext</res-type>
-  </resource-ref> 
+		<res-ref-name>tenantContext</res-ref-name>
+		<res-type>com.sap.cloud.account.TenantContext</res-type>
+	</resource-ref>
 </web-app>
