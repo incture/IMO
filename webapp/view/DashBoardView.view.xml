@@ -27,28 +27,28 @@
 									<myCustom:standardListItemNew text="Tasks" icon="sap-icon://activity-2" enabled="true" key="tasks" visible="false"></myCustom:standardListItemNew>
 									<myCustom:standardListItemNew text="Alarms" icon="sap-icon://InctureIopv2/alarms" enabled="true" key="alarms"
 										pCount="{dashBoardModel>/webSocketProperty/data/alarmNotificationDto/alarmCount}" pIcon="sap-icon://circle-task-2"
-										visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isAlarmReadOnly} === true}"></myCustom:standardListItemNew>
+										visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPortalAdmin} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isAlarmReadOnly} === true}"></myCustom:standardListItemNew>
 									<myCustom:standardListItemNew text="Task Scheduler" icon="sap-icon://InctureIopv2/taskscheduler" enabled="true" key="scheduler"
-										visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isTaskSchedulerReadOnly} === true}"></myCustom:standardListItemNew>
+										visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPortalAdmin} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isTaskSchedulerReadOnly} === true}"></myCustom:standardListItemNew>
 									<myCustom:standardListItemNew text="DOP / DGP" icon="sap-icon://InctureIopv2/dop" enabled="true" key="DOP"
-										visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/userData/isENG} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isDOPReadOnly} === true}"></myCustom:standardListItemNew>
+										visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPortalAdmin} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/userData/isENG} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isDOPReadOnly} === true}"></myCustom:standardListItemNew>
 									<myCustom:standardListItemNew text="PROVE" icon="sap-icon://InctureIopv2/ndtpv" enabled="true" key="ndtpv"
-										visible="{= ${dashBoardModel>/userData/isENG} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isProveReadOnly} === true}"></myCustom:standardListItemNew>
+										visible="{= ${dashBoardModel>/userData/isENG} === true || ${dashBoardModel>/userData/isPortalAdmin} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isProveReadOnly} === true}"></myCustom:standardListItemNew>
 									<myCustom:standardListItemNew text="Frac Monitoring" pCount="{dashBoardModel>/webSocketProperty/data/fracNotificationDto/fracCount}"
 										pIcon="sap-icon://circle-task-2" icon="sap-icon://InctureIopv2/createfrac" enabled="true" key="fracMonitoring" class="FracIconSize"
-										visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isENG} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isFracReadOnly} === true) &amp;&amp; ${dashBoardModel>/userData/hasUSRole} === true}"></myCustom:standardListItemNew>
+										visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPortalAdmin} === true || ${dashBoardModel>/userData/isENG} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isFracReadOnly} === true) &amp;&amp; ${dashBoardModel>/userData/hasUSRole} === true}"></myCustom:standardListItemNew>
 									<myCustom:standardListItemNew text="Downtime Capture" icon="sap-icon://InctureIopv2/downtime" enabled="true" key="downtime"
-										visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isDowntimeReadOnly} === true}"></myCustom:standardListItemNew>
+										visible="{= ${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPortalAdmin} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isDowntimeReadOnly} === true}"></myCustom:standardListItemNew>
 									<myCustom:standardListItemNew text="Permit To Work" icon="sap-icon://InctureIopv2/permitTowork" enabled="true" key="permit"
-										visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/isWebReadOnlyRole} === true) &amp;&amp; ${dashBoardModel>/userData/hasUSRole} === true}"></myCustom:standardListItemNew>
+										visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPortalAdmin} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/isWebReadOnlyRole} === true) &amp;&amp; ${dashBoardModel>/userData/hasUSRole} === true}"></myCustom:standardListItemNew>
 									<myCustom:standardListItemNew text="Analytics" icon="sap-icon://InctureIopv2/analytics" enabled="true" key="analytics"
-										visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/userData/isENG} === true || ${dashBoardModel>/isWebReadOnlyRole} === true) &amp;&amp; ${dashBoardModel>/userData/hasUSRole} === true}"></myCustom:standardListItemNew>
+										visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPortalAdmin} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/userData/isENG} === true || ${dashBoardModel>/isWebReadOnlyRole} === true) &amp;&amp; ${dashBoardModel>/userData/hasUSRole} === true}"></myCustom:standardListItemNew>
 									<myCustom:standardListItemNew text="PW Hopper" key="pwhopper" enabled="true"
 										pCount="{dashBoardModel>/webSocketProperty/data/pwHopperNotificationDto/hopperCount}" pIcon="sap-icon://circle-task-2"
-										visible="{= ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/userData/isWW} === true || ${dashBoardModel>/userData/isRE} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isPWHopperReadOnly} === true}"
+										visible="{= ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/userData/isPortalAdmin} === true || ${dashBoardModel>/userData/isWW} === true || ${dashBoardModel>/userData/isRE} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isPWHopperReadOnly} === true}"
 										icon="sap-icon://InctureIopv2/hopper"></myCustom:standardListItemNew>
 									<myCustom:standardListItemNew text="OBX" key="obx" enabled="true"
-										visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isOBXReadOnly} === true) &amp;&amp; ${dashBoardModel>/userData/hasUSRole} === true}"
+										visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPortalAdmin} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isOBXReadOnly} === true) &amp;&amp; ${dashBoardModel>/userData/hasUSRole} === true}"
 										icon="sap-icon://InctureIopv2/OBX1"></myCustom:standardListItemNew>
 									<myCustom:standardListItemNew text="Location History" key="locHistory" enabled="true" icon="sap-icon://functional-location"></myCustom:standardListItemNew>
 									
@@ -56,8 +56,9 @@
 									<!--<myCustom:standardListItemNew text="Workbench" key="workbench" enabled="true" icon="sap-icon://manager-insight"
 										visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPOT} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === true) &amp;&amp; ${dashBoardModel>/userData/hasUSRole} === true}"></myCustom:standardListItemNew>-->
 									<myCustom:standardListItemNew text="Workbench" key="workbench" enabled="true" icon="sap-icon://manager-insight"
-										visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === true) &amp;&amp; ${dashBoardModel>/userData/hasUSRole} === true}"></myCustom:standardListItemNew>
+										visible="{= (${dashBoardModel>/userData/isROC} === true || ${dashBoardModel>/userData/isPortalAdmin} === true || ${dashBoardModel>/isWebReadOnlyRole} === true || ${dashBoardModel>/moduleReadOnly/isWorkbenchReadOnly} === true) &amp;&amp; ${dashBoardModel>/userData/hasUSRole} === true}"></myCustom:standardListItemNew>
 									<!--AN: End of #prod-msgToROC 17-11-2020-->
+									<!-- ST:Added Admin role to show all the navigation tab-->
 									
 								</tnt:NavigationList>
 								<tnt:footer >

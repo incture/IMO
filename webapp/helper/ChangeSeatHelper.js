@@ -95,8 +95,8 @@ sap.ui.define([
 						keyIopUserRole: "IOP_TM_ROC_Field1",
 						valueIopUserRole: "ROC_Field1"       //ST:Adding IMO_USER for test
 					}, {
-						keyIopUserRole: "IMO_USER",
-						valueIopUserRole: "IMO_USER"
+						keyIopUserRole: "IOP_ADMIN_CF",
+						valueIopUserRole: "IOP_ADMIN_CF"
 					}];
 				}
 				if (oUserData.isPOT) {

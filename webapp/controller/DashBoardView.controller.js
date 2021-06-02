@@ -2131,6 +2131,7 @@ sap.ui.define([
 					var resultData = oEvent.getSource().getData();
 					dashBoardModel.setProperty("/oUserDetail", resultData); //AN: #ChangeSeat
 					if (resultData) {
+						resultData.groups=that.formatter.fnConvertCFRole(resultData.groups);
 						var groups = resultData.groups;
 						var reRole = "";
 						var wwRole = "";
@@ -2148,6 +2149,8 @@ sap.ui.define([
 							hasUSRole = false;
 						//SH: Location hierarchy changes	
 						var isIOPAdmin = false;
+						//ST: Portal admin role
+						var isPortalAdmin=false;
 						dashBoardModel.setProperty("/isWebReadOnlyRole", false); //SH: WebReadOnly
 						var moduleReadOnly = { //SH: Modules readonly
 							"isAlarmReadOnly": false,
@@ -2207,8 +2210,12 @@ sap.ui.define([
 							// 	moduleReadOnly.isWorkbenchReadOnly = true;
 							// }
 
-							if (groups[i].value === "IOP_ADMIN"||groups[i].value==="IMO_USER") { //check if IOPAdmin-OBXEngine
+							if (groups[i].value === "IOP_ADMIN_CF"||groups[i].value==="IMO_USER") { //check if IOPAdmin-OBXEngine
 								isIOPAdmin = true;
+								isPortalAdmin = true;
+							}
+							if (groups[i].value === "IOP_ADMIN_CF"||groups[i].value==="IMO_USER") { //ST:Portal Admin role
+								isPortalAdmin = true;
 							}
 							if (groups[i].value === "IOP_FOREMAN") { //check if Foreman
 								isForeman = true;
@@ -2345,7 +2352,8 @@ sap.ui.define([
 								"isIOPAdmin": isIOPAdmin,
 								"foremanRole": foremanRole,
 								"hasUSRole": hasUSRole, //SH: Location hierarchy changes
-								"hasCanadaRole": hasCanadaRole //SH: Location hierarchy changes
+								"hasCanadaRole": hasCanadaRole, //SH: Location hierarchy changes
+								"isPortalAdmin":isPortalAdmin //ST:Portal Admin role
 							};
 							if (oRolesStr === "") {
 								oData.singleRole = false;
@@ -2373,7 +2381,8 @@ sap.ui.define([
 								"isIOPAdmin": isIOPAdmin,
 								"foremanRole": foremanRole,
 								"hasUSRole": hasUSRole, //SH: Location hierarchy changes
-								"hasCanadaRole": hasCanadaRole //SH: Location hierarchy changes
+								"hasCanadaRole": hasCanadaRole, //SH: Location hierarchy changes
+								"isPortalAdmin":isPortalAdmin //ST:Portal Admin role
 							};
 						}
 						dashBoardModel.setProperty("/userData", oData);

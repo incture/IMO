@@ -3394,4 +3394,20 @@ com.sap.incture.Incture_IOP.util.formatter = {
 		}
 
 	},
+	fnConvertCFRole:function(groups){
+		var aGrpName;
+		for(var i=0;i<groups.length;i++){
+			aGrpName=groups[i].value.split("_");
+			if(aGrpName[aGrpName.length-1]==="CF"){
+				groups[i].value="";
+				for(var j=0;j<aGrpName.length-1;j++){
+					if(groups[i].value){
+						groups[i].value=groups[i].value+"_";
+					}
+					groups[i].value+=aGrpName[j];
+				}
+			}
+		}
+		return groups;
+	}
 };
