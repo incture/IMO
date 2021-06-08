@@ -23,6 +23,7 @@ public class TemplateService {
 		responseDto.setStatus(true);
 		responseDto.setStatusCode(200);
 		try {
+			templateDto.setId(Integer.parseInt(keyGeneratorDao.getTEMPLATE()));
 			templateDao.createTemplate(templateDto);
 			responseDto.setMessage("Template Created Successfully");
 		} catch (Exception e) {

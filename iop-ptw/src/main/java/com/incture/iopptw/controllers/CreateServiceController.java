@@ -15,9 +15,9 @@ import com.incture.iopptw.utils.ResponseDto;
 public class CreateServiceController {
 	@Autowired
 	private CreateService createService;
+
 	@PostMapping("/createservice")
-	public ResponseDto get(@RequestBody CreateRequestDto createRequestDto)
-	{
+	public ResponseDto get(@RequestBody CreateRequestDto createRequestDto) {
 		return createService.createService(createRequestDto);
 	}
 }

@@ -35,7 +35,7 @@ public class TemplateController {
 	}
 
 	@GetMapping("/get")
-	public ResponseDto getById(@RequestParam int id) {
+	public ResponseDto getById(@RequestParam int tmpId) {
 		return null;
 	}
 
