@@ -1,5 +1,7 @@
 package com.incture.iopptw.template.services;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,21 @@ public class TemplateService {
 			templateDao.createTemplate(templateDto);
 			responseDto.setMessage("Template Created Successfully");
 		} catch (Exception e) {
+			responseDto.setStatus(false);
+			responseDto.setStatusCode(500);
+			responseDto.setMessage(e.getMessage());
+		}
+		return responseDto;
+	}
+
+	public ResponseDto getAllTemplateList() {
+		ResponseDto responseDto = new ResponseDto();
+		responseDto.setStatus(true);
+		responseDto.setStatusCode(200);
+		try{
+			responseDto.setData(templateDao.getAllTemplateList());
+			responseDto.setMessage("Success");
+		}catch (Exception e) {
 			responseDto.setStatus(false);
 			responseDto.setStatusCode(500);
 			responseDto.setMessage(e.getMessage());

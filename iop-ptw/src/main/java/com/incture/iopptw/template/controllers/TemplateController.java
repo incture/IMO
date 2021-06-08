@@ -30,7 +30,7 @@ public class TemplateController {
 
 	@GetMapping("/get-all")
 	public ResponseDto getTemplateList() {
-		return null;
+		return templateService.getAllTemplateList();
 
 	}
 
