@@ -2,6 +2,7 @@ package com.incture.iopptw.template.repositories;
 
 import javax.persistence.Query;
 
+
 import org.springframework.stereotype.Repository;
 
 import com.incture.iopptw.repositories.BaseDao;
