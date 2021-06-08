@@ -128,4 +128,15 @@ public class KeyGeneratorDao extends BaseDao {
 		}
 		return null;
 	}
+	
+	public String getTEMPLATE() {
+		try {
+			String sql = "select IOP.TEMPLATE_SEQ.NEXTVAL FROM DUMMY";
+			Query q = getSession().createNativeQuery(sql);
+			return q.getSingleResult().toString();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return null;
+	}
 }
