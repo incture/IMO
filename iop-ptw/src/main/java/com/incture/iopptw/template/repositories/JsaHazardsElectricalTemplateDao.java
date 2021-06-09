@@ -41,15 +41,15 @@ public class JsaHazardsElectricalTemplateDao extends BaseDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public JsaHazardsElectricalDto getJsaHazardsElectricalDto(String permitNum) {
+	public JsaHazardsElectricalDto getJsaHazardsElectricalDto(Integer id) {
 		JsaHazardsElectricalDto jsaHazardsElectricalDto = new JsaHazardsElectricalDto();
 		List<Object[]> obj;
 		try {
 			String sql = "select distinct PERMITNUMBER, PORTABLEELECTRICALEQUIPMENT,INSPECTTOOLSFORCONDITION, "
 					+ " IMPLEMENTGASTESTING,PROTECTELECTRICALLEADS,IDENTIFYEQUIPCLASSIFICATION "
-					+ " from IOP.JSAHAZARDSELECTRICAL where PERMITNUMBER = :permitNum";
+					+ " from IOP.TMPJSAHAZARDSELECTRICAL where TMPID = :id";
 			Query q = getSession().createNativeQuery(sql);
-			q.setParameter("permitNum", permitNum);
+			q.setParameter("id", id);
 			obj = q.getResultList();
 			for (Object[] a : obj) {
 				jsaHazardsElectricalDto.setPermitNumber((Integer) a[0]);

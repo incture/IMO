@@ -41,15 +41,15 @@ public class JsaHazardsHeightsTemplateDao extends BaseDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public JsaHazardsHeightsDto getJsaHazardsHeightsDto(String permitNum) {
+	public JsaHazardsHeightsDto getJsaHazardsHeightsDto(Integer id) {
 		List<Object[]> obj;
 		JsaHazardsHeightsDto jsaHazardsHeightsDto = new JsaHazardsHeightsDto();
 		try {
 			String sql = "select distinct PERMITNUMBER, WORKATHEIGHTS,DISCUSSWORKINGPRACTICE,VERIFYFALLRESTRAINT, "
-					+ " USEFULLBODYHARNESS,USELOCKTYPESNAPHOOOKS from IOP.JSAHAZARDSHEIGHTS "
-					+ " where PERMITNUMBER = :permitNum";
+					+ " USEFULLBODYHARNESS,USELOCKTYPESNAPHOOOKS from IOP.TMPJSAHAZARDSHEIGHTS "
+					+ " where TMPID = :id";
 			Query q = getSession().createNativeQuery(sql);
-			q.setParameter("permitNum", permitNum);
+			q.setParameter("id", id);
 			obj = q.getResultList();
 
 			for (Object[] a : obj) {

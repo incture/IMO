@@ -42,15 +42,15 @@ public class JsaHazardsManualTemplateDao extends BaseDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public JsaHazardsManualDto getJsaHazardsManualDto(String permitNum) {
+	public JsaHazardsManualDto getJsaHazardsManualDto(Integer id) {
 		List<Object[]> obj;
 		JsaHazardsManualDto jsaHazardsManualDto = new JsaHazardsManualDto();
 		try {
 			String sql = "select distinct PERMITNUMBER, MANUALHANDLING,ASSESSMANUALTASK,LIMITLOADSIZE, "
 					+ " PROPERLIFTINGTECHNIQUE,CONFIRMSTABILITYOFLOAD,GETASSISTANCEORAID "
-					+ " from IOP.JSAHAZARDSMANUAL where PERMITNUMBER = :permitNum";
+					+ " from IOP.TMPJSAHAZARDSMANUAL where TMPID = :id";
 			Query q = getSession().createNativeQuery(sql);
-			q.setParameter("permitNum", permitNum);
+			q.setParameter("id", id);
 			obj = q.getResultList();
 
 			for (Object[] a : obj) {

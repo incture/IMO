@@ -43,15 +43,15 @@ public class JsaHazardsHighNoiseTemplateDao extends BaseDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public JsaHazardsHighNoiseDto getJsaHazardsHighNoiseDto(String permitNum) {
+	public JsaHazardsHighNoiseDto getJsaHazardsHighNoiseDto(Integer id) {
 		List<Object[]> obj;
 		JsaHazardsHighNoiseDto jsaHazardsHighNoiseDto = new JsaHazardsHighNoiseDto();
 		try {
 			String sql = "select distinct PERMITNUMBER, HIGHNOISE,WEARCORRECTHEARING,MANAGEEXPOSURETIMES, "
 					+ " SHUTDOWNEQUIPMENT,USEQUIETTOOLS,SOUNDBARRIERS,PROVIDESUITABLECOMMS "
-					+ " from IOP.JSAHAZARDSHIGHNOISE where PERMITNUMBER = :permitNum";
+					+ " from IOP.TMPJSAHAZARDSHIGHNOISE where TMPID = :id";
 			Query q = getSession().createNativeQuery(sql);
-			q.setParameter("permitNum", permitNum);
+			q.setParameter("id", id);
 			obj = q.getResultList();
 			for (Object[] a : obj) {
 				jsaHazardsHighNoiseDto.setPermitNumber((Integer) a[0]);

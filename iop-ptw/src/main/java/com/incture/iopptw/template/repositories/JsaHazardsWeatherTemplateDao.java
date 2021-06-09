@@ -40,12 +40,12 @@ public class JsaHazardsWeatherTemplateDao extends BaseDao{
 	}
 	
 	@SuppressWarnings("unchecked")
-	public JsaHazardsWeatherDto getJsaHazardsWeatherTemplate(String id){
+	public JsaHazardsWeatherDto getJsaHazardsWeatherTemplate(Integer id){
 		List<Object[]> obj;
 		JsaHazardsWeatherDto jsaHazardsWeatherDto = new JsaHazardsWeatherDto();
 		try{
 			String sql = "select distinct PERMITNUMBER, WEATHER,CONTROLSFORSLIPPERYSURFACE,HEATBREAK, "
-					+ " COLDHEATERS,LIGHTNING from IOP.TMPJSAHAZARDSWEATHER where ID = :id";
+					+ " COLDHEATERS,LIGHTNING from IOP.TMPJSAHAZARDSWEATHER where TMPID = :id";
 			Query q = getSession().createNativeQuery(sql);
 			q.setParameter("id", id);
 			obj = q.getResultList();

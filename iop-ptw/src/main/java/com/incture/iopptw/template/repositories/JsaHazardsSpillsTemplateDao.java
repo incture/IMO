@@ -1,5 +1,7 @@
 package com.incture.iopptw.template.repositories;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.hibernate.Session;
@@ -37,6 +39,36 @@ public class JsaHazardsSpillsTemplateDao extends BaseDao {
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public JsaHazardsSpillsDto getJsaHazardsSpillsDto(Integer id){
+		JsaHazardsSpillsDto jsaHazardsSpillsDto = new JsaHazardsSpillsDto();
+		List<Object[]> obj;
+		try{
+			String sql = "select distinct PERMITNUMBER, POTENTIALSPILLS,DRAINEQUIPMENT,CONNECTIONSINGOODCONDITION, "
+					+ " SPILLCONTAINMENTEQUIPMENT,HAVESPILLCLEANUPMATERIALS,RESTRAINHOSESWHENNOTINUSE "
+					+ " from IOP.TMPJSAHAZARDSSPILLS where TMPID = :id";
+
+			Query q = getSession().createNativeQuery(sql);
+			q.setParameter("id", id);
+			obj = q.getResultList();
+			for (Object[] a : obj) {
+				jsaHazardsSpillsDto.setPermitNumber((Integer) a[0]);
+				jsaHazardsSpillsDto.setPotentialSpills(Integer.parseInt(a[1].toString()));
+				jsaHazardsSpillsDto.setDrainEquipment(Integer.parseInt(a[2].toString()));
+				jsaHazardsSpillsDto.setConnectionsInGoodCondition(Integer.parseInt(a[3].toString()));
+				jsaHazardsSpillsDto.setSpillContainmentEquipment(Integer.parseInt(a[4].toString()));
+				jsaHazardsSpillsDto.setHaveSpillCleanupMaterials(Integer.parseInt(a[5].toString()));
+				jsaHazardsSpillsDto.setRestrainHosesWhenNotInUse(Integer.parseInt(a[6].toString()));
+
+			}
+			return jsaHazardsSpillsDto;
+		}catch(Exception e){
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
