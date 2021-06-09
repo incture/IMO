@@ -18,20 +18,21 @@ public class JsaHazardsMovingTemplateDao extends BaseDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void insertJsaHazardsMoving(String permitNumber, JsaHazardsMovingDto jsaHazardsMovingDto) {
+	public void insertJsaHazardsMoving(String id, JsaHazardsMovingDto jsaHazardsMovingDto) {
 		try {
-			String sql = "INSERT INTO \"IOP\".\"JSAHAZARDSMOVING\" VALUES (?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO \"IOP\".\"TMPJSAHAZARDSMOVING\" VALUES (?,?,?,?,?,?,?,?)";
 			logger.info(sql);
 			Session session = sessionFactory.openSession();
 			Transaction tx = session.beginTransaction();
 			Query query = session.createNativeQuery(sql);
-			query.setParameter(1, permitNumber);
+			query.setParameter(1, null);
 			query.setParameter(2, jsaHazardsMovingDto.getMovingEquipment());
 			query.setParameter(3, jsaHazardsMovingDto.getConfirmMachineryIntegrity());
 			query.setParameter(4, jsaHazardsMovingDto.getProvideProtectiveBarriers());
 			query.setParameter(5, jsaHazardsMovingDto.getObserverToMonitorProximityPeopleAndEquipment());
 			query.setParameter(6, jsaHazardsMovingDto.getLockOutEquipment());
 			query.setParameter(7, jsaHazardsMovingDto.getDoNotWorkInLineOfFire());
+			query.setParameter(8, id);
 			query.executeUpdate();
 			tx.commit();
 			session.close();

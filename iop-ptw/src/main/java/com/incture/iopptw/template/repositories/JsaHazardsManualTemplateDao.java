@@ -18,20 +18,21 @@ public class JsaHazardsManualTemplateDao extends BaseDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void insertJsaHazardsManual(String permitNumber, JsaHazardsManualDto jsaHazardsManualDto) {
+	public void insertJsaHazardsManual(String id, JsaHazardsManualDto jsaHazardsManualDto) {
 		try {
-			String sql = "INSERT INTO \"IOP\".\"JSAHAZARDSMANUAL\" VALUES (?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO \"IOP\".\"TMPJSAHAZARDSMANUAL\" VALUES (?,?,?,?,?,?,?,?)";
 			logger.info(sql);
 			Session session = sessionFactory.openSession();
 			Transaction tx = session.beginTransaction();
 			Query query = session.createNativeQuery(sql);
-			query.setParameter(1, permitNumber);
+			query.setParameter(1, null);
 			query.setParameter(2, jsaHazardsManualDto.getManualHandling());
 			query.setParameter(3, jsaHazardsManualDto.getAssessManualTask());
 			query.setParameter(4, jsaHazardsManualDto.getLimitLoadSize());
 			query.setParameter(5, jsaHazardsManualDto.getProperLiftingTechnique());
 			query.setParameter(6, jsaHazardsManualDto.getConfirmStabilityOfLoad());
 			query.setParameter(7, jsaHazardsManualDto.getGetAssistanceOrAid());
+			query.setParameter(8, id);
 			query.executeUpdate();
 			tx.commit();
 			session.close();

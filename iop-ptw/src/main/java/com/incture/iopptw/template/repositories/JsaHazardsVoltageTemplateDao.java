@@ -18,20 +18,21 @@ public class JsaHazardsVoltageTemplateDao extends BaseDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void insertJsaHazardsVoltage(String permitNumber, JsaHazardsVoltageDto jsaHazardsVoltageDto) {
+	public void insertJsaHazardsVoltage(String tmpId, JsaHazardsVoltageDto jsaHazardsVoltageDto) {
 		try {
-			String sql = "INSERT INTO \"IOP\".\"JSAHAZARDSVOLTAGE\" VALUES (?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO \"IOP\".\"TMPJSAHAZARDSVOLTAGE\" VALUES (?,?,?,?,?,?,?,?)";
 			logger.info(sql);
 			Session session = sessionFactory.openSession();
 			Transaction tx = session.beginTransaction();
 			Query query = session.createNativeQuery(sql);
-			query.setParameter(1, permitNumber);
+			query.setParameter(1, null);
 			query.setParameter(2, jsaHazardsVoltageDto.getHighVoltage());
 			query.setParameter(3, jsaHazardsVoltageDto.getRestrictAccess());
 			query.setParameter(4, jsaHazardsVoltageDto.getDischargeEquipment());
 			query.setParameter(5, jsaHazardsVoltageDto.getObserveSafeWorkDistance());
 			query.setParameter(6, jsaHazardsVoltageDto.getUseFlashBurn());
 			query.setParameter(7, jsaHazardsVoltageDto.getUseInsulatedGloves());
+			query.setParameter(8, tmpId);
 			query.executeUpdate();
 			tx.commit();
 			session.close();

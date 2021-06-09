@@ -18,14 +18,14 @@ public class JsaHazardsToolsTemplateDao extends BaseDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void insertJsaHazardsTools(String permitNumber, JsaHazardsToolsDto jsaHazardsToolsDto) {
+	public void insertJsaHazardsTools(String id, JsaHazardsToolsDto jsaHazardsToolsDto) {
 		try {
-			String sql = "INSERT INTO \"IOP\".\"JSAHAZARDSTOOLS\" VALUES (?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO \"IOP\".\"TMPJSAHAZARDSTOOLS\" VALUES (?,?,?,?,?,?,?,?,?)";
 			logger.info(sql);
 			Session session = sessionFactory.openSession();
 			Transaction tx = session.beginTransaction();
 			Query query = session.createNativeQuery(sql);
-			query.setParameter(1, permitNumber);
+			query.setParameter(1, null);
 			query.setParameter(2, jsaHazardsToolsDto.getEquipmentAndTools());
 			query.setParameter(3, jsaHazardsToolsDto.getInspectEquipmentTool());
 			query.setParameter(4, jsaHazardsToolsDto.getBrassToolsNecessary());
@@ -33,6 +33,7 @@ public class JsaHazardsToolsTemplateDao extends BaseDao {
 			query.setParameter(6, jsaHazardsToolsDto.getUseCorrectTools());
 			query.setParameter(7, jsaHazardsToolsDto.getCheckForSharpEdges());
 			query.setParameter(8, jsaHazardsToolsDto.getApplyHandSafetyPrinciple());
+			query.setParameter(9, id);
 			query.executeUpdate();
 			tx.commit();
 			session.close();

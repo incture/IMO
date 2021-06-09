@@ -18,19 +18,20 @@ public class JsaHazardsExcavationTemplateDao extends BaseDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void insertJsaHazardsExcavation(String permitNumber, JsaHazardsExcavationdDto jsaHazardsExcavationdDto) {
+	public void insertJsaHazardsExcavation(String tmpId, JsaHazardsExcavationdDto jsaHazardsExcavationdDto) {
 		try {
 			logger.info("JsaHazardsExcavationdDto: " + jsaHazardsExcavationdDto);
-			String sql = "INSERT INTO \"IOP\".\"JSAHAZARDSEXCAVATION\" VALUES (?,?,?,?,?,?)";
+			String sql = "INSERT INTO \"IOP\".\"TMPJSAHAZARDSEXCAVATION\" VALUES (?,?,?,?,?,?,?)";
 			Session session = sessionFactory.openSession();
 			Transaction tx = session.beginTransaction();
 			Query query = session.createNativeQuery(sql);
-			query.setParameter(1, permitNumber);
+			query.setParameter(1, null);
 			query.setParameter(2, jsaHazardsExcavationdDto.getExcavations());
 			query.setParameter(3, jsaHazardsExcavationdDto.getHaveExcavationPlan());
 			query.setParameter(4, jsaHazardsExcavationdDto.getLocatePipesByHandDigging());
 			query.setParameter(5, jsaHazardsExcavationdDto.getDeEnergizeUnderground());
 			query.setParameter(6, jsaHazardsExcavationdDto.getCseControls());
+			query.setParameter(7, tmpId);
 			logger.info("sql " + sql);
 			query.executeUpdate();
 			tx.commit();

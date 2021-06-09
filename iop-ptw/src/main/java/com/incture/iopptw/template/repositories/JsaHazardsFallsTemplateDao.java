@@ -18,20 +18,21 @@ public class JsaHazardsFallsTemplateDao extends BaseDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void insertJsaHazardsFalls(String permitNumber, JsaHazardsFallsDto jsaHazardsFallsDto) {
+	public void insertJsaHazardsFalls(String id, JsaHazardsFallsDto jsaHazardsFallsDto) {
 		try {
-			String sql = "INSERT INTO \"IOP\".\"JSAHAZARDSFALLS\" VALUES (?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO \"IOP\".\"TMPJSAHAZARDSFALLS\" VALUES (?,?,?,?,?,?,?,?)";
 			logger.info(sql);
 			Session session = sessionFactory.openSession();
 			Transaction tx = session.beginTransaction();
 			Query query = session.createNativeQuery(sql);
-			query.setParameter(1, permitNumber);
+			query.setParameter(1, id);
 			query.setParameter(2, jsaHazardsFallsDto.getSlipsTripsAndFalls());
 			query.setParameter(3, jsaHazardsFallsDto.getIdentifyProjections());
 			query.setParameter(4, jsaHazardsFallsDto.getFlagHazards());
 			query.setParameter(5, jsaHazardsFallsDto.getSecureCables());
 			query.setParameter(6, jsaHazardsFallsDto.getCleanUpLiquids());
 			query.setParameter(7, jsaHazardsFallsDto.getBarricadeHoles());
+			query.setParameter(8, id);
 			query.executeUpdate();
 			tx.commit();
 			session.close();

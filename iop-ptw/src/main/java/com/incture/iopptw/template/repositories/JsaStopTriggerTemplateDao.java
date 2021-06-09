@@ -13,25 +13,23 @@ import org.springframework.stereotype.Repository;
 
 import com.incture.iopptw.dtos.JsaStopTriggerDto;
 import com.incture.iopptw.repositories.BaseDao;
-import com.incture.iopptw.repositories.KeyGeneratorDao;
 
 @Repository
 public class JsaStopTriggerTemplateDao extends BaseDao {
 	@Autowired
-	private KeyGeneratorDao keyGeneratorDao;
-	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void insertJsaStopTrigger(String permitNumber, JsaStopTriggerDto JsaStopTriggerDto) {
+	public void insertJsaStopTrigger(String tmpId, JsaStopTriggerDto JsaStopTriggerDto) {
 		try {
 			logger.info("JsaStopTriggerDto: " + JsaStopTriggerDto);
-			String sql = "INSERT INTO \"IOP\".\"JSASTOPTRIGGER\" VALUES (?,?,?)";
-			Session session= sessionFactory.openSession();
+			String sql = "INSERT INTO \"IOP\".\"TMPJSASTOPTRIGGER\" VALUES (?,?,?,?)";
+			Session session = sessionFactory.openSession();
 			Transaction tx = session.beginTransaction();
 			Query query = session.createNativeQuery(sql);
-			query.setParameter(1, keyGeneratorDao.getJSASTOPSerialNo());
-			query.setParameter(2, permitNumber);
+			query.setParameter(1, null);
+			query.setParameter(2, null);
 			query.setParameter(3, JsaStopTriggerDto.getLineDescription());
+			query.setParameter(4, tmpId);
 			logger.info("sql " + sql);
 			query.executeUpdate();
 			tx.commit();
