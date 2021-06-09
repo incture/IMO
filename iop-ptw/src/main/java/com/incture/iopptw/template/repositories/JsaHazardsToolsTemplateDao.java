@@ -44,15 +44,15 @@ public class JsaHazardsToolsTemplateDao extends BaseDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public JsaHazardsToolsDto getJsaHazardsToolsDto(String permitNum) {
+	public JsaHazardsToolsDto getJsaHazardsToolsDto(Integer id) {
 		JsaHazardsToolsDto jsaHazardsToolsDto = new JsaHazardsToolsDto();
 		List<Object[]> obj;
 		try {
 			String sql = "select distinct PERMITNUMBER, EQUIPMENTANDTOOLS,INSPECTEQUIPMENTTOOL, "
 					+ " BRASSTOOLSNECESSARY,USEPROTECTIVEGUARDS,USECORRECTTOOLS,CHECKFORSHARPEDGES, "
-					+ " APPLYHANDSAFETYPRINCIPLE from IOP.JSAHAZARDSTOOLS where PERMITNUMBER = :permitNum";
+					+ " APPLYHANDSAFETYPRINCIPLE from IOP.TMPJSAHAZARDSTOOLS where TMPID = :id";
 			Query q = getSession().createNativeQuery(sql);
-			q.setParameter("permitNum", permitNum);
+			q.setParameter("id", id);
 			obj = q.getResultList();
 			for (Object[] a : obj) {
 				jsaHazardsToolsDto.setPermitNumber((Integer) a[0]);

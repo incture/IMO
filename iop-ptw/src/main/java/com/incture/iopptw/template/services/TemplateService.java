@@ -18,6 +18,7 @@ import com.incture.iopptw.dtos.JsaHazardsPressurizedDto;
 import com.incture.iopptw.dtos.JsaHazardsSimultaneousDto;
 import com.incture.iopptw.dtos.JsaHazardsSpillsDto;
 import com.incture.iopptw.dtos.JsaHazardsSubstancesDto;
+import com.incture.iopptw.dtos.JsaHazardsToolsDto;
 import com.incture.iopptw.dtos.JsaHazardsVisibilityDto;
 import com.incture.iopptw.dtos.JsaHazardsWeatherDto;
 import com.incture.iopptw.dtos.JsaHazardscseDto;
@@ -41,6 +42,7 @@ import com.incture.iopptw.template.repositories.JsaHazardsPressurizedTemplateDao
 import com.incture.iopptw.template.repositories.JsaHazardsSimultaneousTemplateDao;
 import com.incture.iopptw.template.repositories.JsaHazardsSpillsTemplateDao;
 import com.incture.iopptw.template.repositories.JsaHazardsSubstancesTemplateDao;
+import com.incture.iopptw.template.repositories.JsaHazardsToolsTemplateDao;
 import com.incture.iopptw.template.repositories.JsaHazardsVisibilityTemplateDao;
 import com.incture.iopptw.template.repositories.JsaHazardsWeatherTemplateDao;
 import com.incture.iopptw.template.repositories.JsaHeaderTemplateDao;
@@ -94,7 +96,8 @@ public class TemplateService {
 	private JsaHazardsMovingTemplateDao jsaHazardsMovingTemplateDao;
 	@Autowired
 	private JsaHazardsManualTemplateDao jsaHazardsManualTemplateDao;
-
+	@Autowired
+	private JsaHazardsToolsTemplateDao jsaHazardsToolsTemplateDao;
 	public ResponseDto createTemplateService(TemplateDto templateDto) {
 		ResponseDto responseDto = new ResponseDto();
 		responseDto.setStatus(true);
@@ -196,6 +199,9 @@ public class TemplateService {
 
 			JsaHazardsManualDto jsaHazardsManualDto = jsaHazardsManualTemplateDao.getJsaHazardsManualDto(tmpId);
 			createTemplateDto.setJsaHazardsManualDto(jsaHazardsManualDto);
+			
+			JsaHazardsToolsDto jsaHazardsToolsDto = jsaHazardsToolsTemplateDao.getJsaHazardsToolsDto(tmpId);
+			createTemplateDto.setJsaHazardsToolsDto(jsaHazardsToolsDto);
 			
 			responseDto.setData(createTemplateDto);
 			responseDto.setMessage("Success");
