@@ -18,19 +18,20 @@ public class JsaHazardsElectricalTemplateDao extends BaseDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void insertJsaHazardsElectrical(String permitNumber, JsaHazardsElectricalDto jsaHazardsElectricalDto) {
+	public void insertJsaHazardsElectrical(String id, JsaHazardsElectricalDto jsaHazardsElectricalDto) {
 		try {
-			String sql = "INSERT INTO \"IOP\".\"JSAHAZARDSELECTRICAL\" VALUES (?,?,?,?,?,?)";
+			String sql = "INSERT INTO \"IOP\".\"TMPJSAHAZARDSELECTRICAL\" VALUES (?,?,?,?,?,?,?)";
 			logger.info(sql);
 			Session session = sessionFactory.openSession();
 			Transaction tx = session.beginTransaction();
 			Query query = session.createNativeQuery(sql);
-			query.setParameter(1, permitNumber);
+			query.setParameter(1, null);
 			query.setParameter(2, jsaHazardsElectricalDto.getPortableElectricalEquipment());
 			query.setParameter(3, jsaHazardsElectricalDto.getInspectToolsForCondition());
 			query.setParameter(4, jsaHazardsElectricalDto.getImplementGasTesting());
 			query.setParameter(5, jsaHazardsElectricalDto.getProtectElectricalLeads());
 			query.setParameter(6, jsaHazardsElectricalDto.getIdentifyEquipClassification());
+			query.setParameter(7, id);
 			query.executeUpdate();
 			tx.commit();
 			session.close();
