@@ -18,19 +18,20 @@ public class JsaHazardsHeightsTemplateDao extends BaseDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void insertJsaHazardsHeights(String permitNumber, JsaHazardsHeightsDto jsaHazardsHeightsDto) {
+	public void insertJsaHazardsHeights(String id, JsaHazardsHeightsDto jsaHazardsHeightsDto) {
 		try {
-			String sql = "INSERT INTO \"IOP\".\"JSAHAZARDSHEIGHTS\" VALUES (?,?,?,?,?,?)";
+			String sql = "INSERT INTO \"IOP\".\"TMPJSAHAZARDSHEIGHTS\" VALUES (?,?,?,?,?,?,?)";
 			logger.info(sql);
 			Session session = sessionFactory.openSession();
 			Transaction tx = session.beginTransaction();
 			Query query = session.createNativeQuery(sql);
-			query.setParameter(1, permitNumber);
+			query.setParameter(1, null);
 			query.setParameter(2, jsaHazardsHeightsDto.getWorkAtHeights());
 			query.setParameter(3, jsaHazardsHeightsDto.getDiscussWorkingPractice());
 			query.setParameter(4, jsaHazardsHeightsDto.getVerifyFallRestraint());
 			query.setParameter(5, jsaHazardsHeightsDto.getUseFullBodyHarness());
 			query.setParameter(6, jsaHazardsHeightsDto.getUseLockTypeSnaphoooks());
+			query.setParameter(7, id);
 			query.executeUpdate();
 			tx.commit();
 			session.close();
