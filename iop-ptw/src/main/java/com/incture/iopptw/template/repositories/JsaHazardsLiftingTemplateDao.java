@@ -18,18 +18,19 @@ public class JsaHazardsLiftingTemplateDao extends BaseDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void insertJsaHazardsLifting(String permitNumber, JsaHazardsLiftingDto jsaHazardsLiftingDto) {
+	public void insertJsaHazardsLiftingTemplate(String id, JsaHazardsLiftingDto jsaHazardsLiftingDto) {
 		try {
-			String sql = "INSERT INTO \"IOP\".\"JSAHAZARDSLIFTING\" VALUES (?,?,?,?,?)";
+			String sql = "INSERT INTO \"IOP\".\"TMPJSAHAZARDSLIFTING\" VALUES (?,?,?,?,?,?)";
 			logger.info(sql);
 			Session session = sessionFactory.openSession();
 			Transaction tx = session.beginTransaction();
 			Query query = session.createNativeQuery(sql);
-			query.setParameter(1, permitNumber);
+			query.setParameter(1, null);
 			query.setParameter(2, jsaHazardsLiftingDto.getLiftingEquipment());
 			query.setParameter(3, jsaHazardsLiftingDto.getConfirmEquipmentCondition());
 			query.setParameter(4, jsaHazardsLiftingDto.getObtainApprovalForLifts());
 			query.setParameter(5, jsaHazardsLiftingDto.getHaveDocumentedLiftPlan());
+			query.setParameter(6, id);
 			query.executeUpdate();
 			tx.commit();
 			session.close();

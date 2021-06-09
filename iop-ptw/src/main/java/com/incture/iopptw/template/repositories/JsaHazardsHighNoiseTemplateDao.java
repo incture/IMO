@@ -18,14 +18,14 @@ public class JsaHazardsHighNoiseTemplateDao extends BaseDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	public void insertJsaHazardsHighNoise(String permitNumber, JsaHazardsHighNoiseDto jsaHazardsHighNoiseDto) {
+	public void insertJsaHazardsHighNoiseTemplate(String id, JsaHazardsHighNoiseDto jsaHazardsHighNoiseDto) {
 		try {
-			String sql = "INSERT INTO IOP.JSAHAZARDSHIGHNOISE VALUES (?,?,?,?,?,?,?,?)";
+			String sql = "INSERT INTO IOP.TMPJSAHAZARDSHIGHNOISE VALUES (?,?,?,?,?,?,?,?,?)";
 			logger.info(sql);
 			Session session = sessionFactory.openSession();
 			Transaction tx = session.beginTransaction();
 			Query query = session.createNativeQuery(sql);
-			query.setParameter(1, permitNumber);
+			query.setParameter(1, null);
 			query.setParameter(2, jsaHazardsHighNoiseDto.getHighNoise());
 			query.setParameter(3, jsaHazardsHighNoiseDto.getWearCorrectHearing());
 			query.setParameter(4, jsaHazardsHighNoiseDto.getManageExposureTimes());
@@ -33,6 +33,7 @@ public class JsaHazardsHighNoiseTemplateDao extends BaseDao {
 			query.setParameter(6, jsaHazardsHighNoiseDto.getUseQuietTools());
 			query.setParameter(7, jsaHazardsHighNoiseDto.getSoundBarriers());
 			query.setParameter(8, jsaHazardsHighNoiseDto.getProvideSuitableComms());
+			query.setParameter(9, id);
 			query.executeUpdate();
 			tx.commit();
 			session.close();
