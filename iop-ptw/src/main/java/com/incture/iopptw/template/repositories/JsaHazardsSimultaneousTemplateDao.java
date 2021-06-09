@@ -1,5 +1,7 @@
 package com.incture.iopptw.template.repositories;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.hibernate.Session;
@@ -38,6 +40,35 @@ public class JsaHazardsSimultaneousTemplateDao extends BaseDao {
 			logger.error(e.getMessage());
 		}
 
+	}
+	
+	@SuppressWarnings("unchecked")
+	public JsaHazardsSimultaneousDto getJsaHazardsSimultan(Integer id) {
+		List<Object[]> obj;
+		JsaHazardsSimultaneousDto jsaHazardsSimultaneousDto = new JsaHazardsSimultaneousDto();
+		try {
+			String sql = "select distinct PERMITNUMBER, SIMULTANEOUSOPERATIONS,FOLLOWSIMOPSMATRIX, "
+					+ " MOCREQUIREDFOR,INTERFACEBETWEENGROUPS,USEBARRIERSAND,HAVEPERMITSIGNED "
+					+ " from IOP.TMPJSAHAZARDSSIMULTANEOUS where TMPID = :id";
+			logger.info("JSAHAZARDSSIMULTANEOUS sql " + sql);
+			Query q = getSession().createNativeQuery(sql);
+			q.setParameter("id", id);
+			obj = q.getResultList();
+			for (Object[] a : obj) {
+				jsaHazardsSimultaneousDto.setPermitNumber((Integer) a[0]);
+				jsaHazardsSimultaneousDto.setSimultaneousOperations(Integer.parseInt(a[1].toString()));
+				jsaHazardsSimultaneousDto.setFollowSimopsMatrix(Integer.parseInt(a[2].toString()));
+				jsaHazardsSimultaneousDto.setMocRequiredFor(Integer.parseInt(a[3].toString()));
+				jsaHazardsSimultaneousDto.setInterfaceBetweenGroups(Integer.parseInt(a[4].toString()));
+				jsaHazardsSimultaneousDto.setUseBarriersAnd(Integer.parseInt(a[5].toString()));
+				jsaHazardsSimultaneousDto.setHavePermitSigned(Integer.parseInt(a[6].toString()));
+			}
+			return jsaHazardsSimultaneousDto;
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
