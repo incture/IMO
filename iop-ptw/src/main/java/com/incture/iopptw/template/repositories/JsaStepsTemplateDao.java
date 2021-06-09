@@ -1,5 +1,8 @@
 package com.incture.iopptw.template.repositories;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.hibernate.Session;
@@ -39,6 +42,35 @@ public class JsaStepsTemplateDao extends BaseDao {
 
 		}
 
+	}
+	
+	@SuppressWarnings("unchecked")
+	public JsaStepsDto getJsaStepsDto(Integer id) {
+		List<Object[]> obj;
+//		List<JsaStepsDto> jsaStepsDtoList = new ArrayList<JsaStepsDto>();
+		JsaStepsDto jsaStepsDto = new JsaStepsDto();
+		try {
+			String sql = "select  SERIALNO,PERMITNUMBER, TASKSTEPS,POTENTIALHAZARDS,HAZARDCONTROLS,PERSONRESPONSIBLE "
+					+ " from IOP.TMPJSASTEPS where TMPID = :id";
+			Query q = getSession().createNativeQuery(sql);
+			q.setParameter("id", id);
+			obj = q.getResultList();
+			for (Object[] a : obj) {
+				jsaStepsDto.setSerialNo((Integer) a[0]);
+				jsaStepsDto.setPermitNumber((Integer) a[1]);
+				jsaStepsDto.setTaskSteps((String) a[2]);
+				jsaStepsDto.setPotentialHazards((String) a[3]);
+				jsaStepsDto.setHazardControls((String) a[4]);
+				jsaStepsDto.setPersonResponsible((String) a[5]);
+//				jsaStepsDtoList.add(jsaStepsDto);
+			}
+//			System.out.println(jsaStepsDto);
+			return jsaStepsDto;
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

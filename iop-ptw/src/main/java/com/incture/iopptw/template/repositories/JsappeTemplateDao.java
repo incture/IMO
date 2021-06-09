@@ -1,5 +1,7 @@
 package com.incture.iopptw.template.repositories;
 
+import java.util.List;
+
 import javax.persistence.Query;
 
 import org.hibernate.Session;
@@ -57,6 +59,57 @@ public class JsappeTemplateDao extends BaseDao {
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public JsappeDto getJsappe(Integer id){
+		JsappeDto jsappeDto = new JsappeDto();
+		List<Object[]> obj;
+		try{
+			String sql = "select distinct PERMITNUMBER, HARDHAT,SAFETYBOOT,GOGGLES,FACESHIELD,SAFETYGLASSES, "
+					+ " SINGLEEAR,DOUBLEEARS,RESPIRATORTYPEDESCRIPTION,NEEDSCBA,NEEDDUSTMASK,COTTONGLOVE, "
+					+ " LEATHERGLOVE,IMPACTPROTECTION,GLOVEDESCRIPTION,CHEMICALGLOVEDESCRIPTION,FALLPROTECTION, "
+					+ " FALLRESTRAINT,CHEMICALSUIT,APRON,FLAMERESISTANTCLOTHING,OTHERPPEDESCRIPTION, "
+					+ " NEEDFOULWEATHERGEAR,HAVECONSENTOFTASKLEADER,COMPANYOFTASKLEADER from IOP.TMPJSA_PPE "
+					+ " where TMPID =:id";
+			logger.info("JSA_PPE sql " + sql);
+			Query q = getSession().createNativeQuery(sql);
+			q.setParameter("id", id);
+			obj = q.getResultList();
+			for (Object[] a : obj) {
+				jsappeDto.setPermitNumber((Integer) a[0]);
+				jsappeDto.setHardHat(Integer.parseInt(a[1].toString()));
+				jsappeDto.setSafetyBoot(Integer.parseInt(a[2].toString()));
+				jsappeDto.setGoggles(Integer.parseInt(a[3].toString()));
+				jsappeDto.setFaceShield(Integer.parseInt(a[4].toString()));
+				jsappeDto.setSafetyGlasses(Integer.parseInt(a[5].toString()));
+				jsappeDto.setSingleEar(Integer.parseInt(a[6].toString()));
+				jsappeDto.setDoubleEars(Integer.parseInt(a[7].toString()));
+				jsappeDto.setRespiratorTypeDescription((String) a[8]);
+				jsappeDto.setNeedSCBA(Integer.parseInt(a[9].toString()));
+				jsappeDto.setNeedDustMask(Integer.parseInt(a[10].toString()));
+				jsappeDto.setCottonGlove(Integer.parseInt(a[11].toString()));
+				jsappeDto.setLeatherGlove(Integer.parseInt(a[12].toString()));
+				jsappeDto.setImpactProtection(Integer.parseInt(a[13].toString()));
+				jsappeDto.setGloveDescription((String) a[14]);
+				jsappeDto.setChemicalGloveDescription((String) a[15]);
+				jsappeDto.setFallProtection(Integer.parseInt(a[16].toString()));
+				jsappeDto.setFallRestraint(Integer.parseInt(a[17].toString()));
+				jsappeDto.setChemicalSuit(Integer.parseInt(a[18].toString()));
+				jsappeDto.setApron(Integer.parseInt(a[19].toString()));
+				jsappeDto.setFlameResistantClothing(Integer.parseInt(a[20].toString()));
+				jsappeDto.setOtherPPEDescription((String) a[21]);
+				jsappeDto.setNeedFoulWeatherGear((String) a[22]); 
+				jsappeDto.setHaveConsentOfTaskLeader(Integer.parseInt(a[23].toString()));
+				jsappeDto.setCompanyOfTaskLeader((String) a[24]);
+			}
+			System.out.println(jsappeDto);
+			return jsappeDto;
+		}catch(Exception e){
+			logger.error(e.getMessage());
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
