@@ -43,15 +43,15 @@ public class JsaHazardsVoltageTemplateDao extends BaseDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public JsaHazardsVoltageDto getJsaHazardsVoltageDto(String permitNum) {
+	public JsaHazardsVoltageDto getJsaHazardsVoltageDto(Integer id) {
 		List<Object[]> obj;
 		JsaHazardsVoltageDto jsaHazardsVoltageDto = new JsaHazardsVoltageDto();
 		try {
 			String sql = "select distinct PERMITNUMBER, HIGHVOLTAGE,RESTRICTACCESS,DISCHARGEEQUIPMENT, "
-					+ " OBSERVESAFEWORKDISTANCE,USEFLASHBURN,USEINSULATEDGLOVES from IOP.JSAHAZARDSVOLTAGE "
-					+ " where PERMITNUMBER = :permitNum";
+					+ " OBSERVESAFEWORKDISTANCE,USEFLASHBURN,USEINSULATEDGLOVES from IOP.TMPJSAHAZARDSVOLTAGE "
+					+ " where TMPID = :id";
 			Query q = getSession().createNativeQuery(sql);
-			q.setParameter("permitNum", permitNum);
+			q.setParameter("id", id);
 			obj = q.getResultList();
 
 			for (Object[] a : obj) {

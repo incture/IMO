@@ -45,16 +45,16 @@ public class JsaHazardsMobileTemplateDao extends BaseDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public JsaHazardsMobileDto getJsaHazardsMobileDto(String permitNum) {
+	public JsaHazardsMobileDto getJsaHazardsMobileDto(Integer id) {
 		List<Object[]> obj;
 		JsaHazardsMobileDto jsaHazardsMobileDto = new JsaHazardsMobileDto();
 		try {
 
 			String sql = "select distinct PERMITNUMBER, MOBILEEQUIPMENT,ASSESSEQUIPMENTCONDITION,CONTROLACCESS, "
-					+ " MONITORPROXIMITY,MANAGEOVERHEADHAZARDS,ADHERETORULES from IOP.JSAHAZARDSMOBILE "
-					+ " where PERMITNUMBER = :permitNum";
+					+ " MONITORPROXIMITY,MANAGEOVERHEADHAZARDS,ADHERETORULES from IOP.TMPJSAHAZARDSMOBILE "
+					+ " where TMPID = :id";
 			Query q = getSession().createNativeQuery(sql);
-			q.setParameter("permitNum", permitNum);
+			q.setParameter("id", id);
 			obj = q.getResultList();
 
 			for (Object[] a : obj) {

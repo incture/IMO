@@ -7,11 +7,14 @@ import org.springframework.stereotype.Service;
 
 import com.incture.iopptw.dtos.JsaHazardsDroppedDto;
 import com.incture.iopptw.dtos.JsaHazardsElectricalDto;
+import com.incture.iopptw.dtos.JsaHazardsExcavationdDto;
+import com.incture.iopptw.dtos.JsaHazardsFallsDto;
 import com.incture.iopptw.dtos.JsaHazardsHeightsDto;
 import com.incture.iopptw.dtos.JsaHazardsHighNoiseDto;
 import com.incture.iopptw.dtos.JsaHazardsIgnitionDto;
 import com.incture.iopptw.dtos.JsaHazardsLiftingDto;
 import com.incture.iopptw.dtos.JsaHazardsManualDto;
+import com.incture.iopptw.dtos.JsaHazardsMobileDto;
 import com.incture.iopptw.dtos.JsaHazardsMovingDto;
 import com.incture.iopptw.dtos.JsaHazardsPersonnelDto;
 import com.incture.iopptw.dtos.JsaHazardsPressurizedDto;
@@ -20,9 +23,11 @@ import com.incture.iopptw.dtos.JsaHazardsSpillsDto;
 import com.incture.iopptw.dtos.JsaHazardsSubstancesDto;
 import com.incture.iopptw.dtos.JsaHazardsToolsDto;
 import com.incture.iopptw.dtos.JsaHazardsVisibilityDto;
+import com.incture.iopptw.dtos.JsaHazardsVoltageDto;
 import com.incture.iopptw.dtos.JsaHazardsWeatherDto;
 import com.incture.iopptw.dtos.JsaHazardscseDto;
 import com.incture.iopptw.dtos.JsaStepsDto;
+import com.incture.iopptw.dtos.JsaStopTriggerDto;
 import com.incture.iopptw.dtos.JsaheaderDto;
 import com.incture.iopptw.dtos.JsappeDto;
 import com.incture.iopptw.repositories.KeyGeneratorDao;
@@ -31,11 +36,14 @@ import com.incture.iopptw.template.dtos.TemplateDto;
 import com.incture.iopptw.template.repositories.JsaHazardsCseTemplateDao;
 import com.incture.iopptw.template.repositories.JsaHazardsDroppedTemplateDao;
 import com.incture.iopptw.template.repositories.JsaHazardsElectricalTemplateDao;
+import com.incture.iopptw.template.repositories.JsaHazardsExcavationTemplateDao;
+import com.incture.iopptw.template.repositories.JsaHazardsFallsTemplateDao;
 import com.incture.iopptw.template.repositories.JsaHazardsHeightsTemplateDao;
 import com.incture.iopptw.template.repositories.JsaHazardsHighNoiseTemplateDao;
 import com.incture.iopptw.template.repositories.JsaHazardsIgnitionTemplateDao;
 import com.incture.iopptw.template.repositories.JsaHazardsLiftingTemplateDao;
 import com.incture.iopptw.template.repositories.JsaHazardsManualTemplateDao;
+import com.incture.iopptw.template.repositories.JsaHazardsMobileTemplateDao;
 import com.incture.iopptw.template.repositories.JsaHazardsMovingTemplateDao;
 import com.incture.iopptw.template.repositories.JsaHazardsPersonnelTemplateDao;
 import com.incture.iopptw.template.repositories.JsaHazardsPressurizedTemplateDao;
@@ -44,9 +52,11 @@ import com.incture.iopptw.template.repositories.JsaHazardsSpillsTemplateDao;
 import com.incture.iopptw.template.repositories.JsaHazardsSubstancesTemplateDao;
 import com.incture.iopptw.template.repositories.JsaHazardsToolsTemplateDao;
 import com.incture.iopptw.template.repositories.JsaHazardsVisibilityTemplateDao;
+import com.incture.iopptw.template.repositories.JsaHazardsVoltageTemplateDao;
 import com.incture.iopptw.template.repositories.JsaHazardsWeatherTemplateDao;
 import com.incture.iopptw.template.repositories.JsaHeaderTemplateDao;
 import com.incture.iopptw.template.repositories.JsaStepsTemplateDao;
+import com.incture.iopptw.template.repositories.JsaStopTriggerTemplateDao;
 import com.incture.iopptw.template.repositories.JsappeTemplateDao;
 import com.incture.iopptw.template.repositories.TemplateDao;
 import com.incture.iopptw.utils.ResponseDto;
@@ -98,6 +108,16 @@ public class TemplateService {
 	private JsaHazardsManualTemplateDao jsaHazardsManualTemplateDao;
 	@Autowired
 	private JsaHazardsToolsTemplateDao jsaHazardsToolsTemplateDao;
+	@Autowired
+	private JsaHazardsFallsTemplateDao jsaHazardsFallsTemplateDao;
+	@Autowired
+	private JsaHazardsVoltageTemplateDao jsaHazardsVoltageTemplateDao;
+	@Autowired
+	private JsaHazardsExcavationTemplateDao jsaHazardsExcavationTemplateDao;
+	@Autowired
+	private JsaHazardsMobileTemplateDao jsaHazardsMobileTemplateDao;
+	@Autowired
+	private JsaStopTriggerTemplateDao jsaStopTriggerTemplateDao;
 	public ResponseDto createTemplateService(TemplateDto templateDto) {
 		ResponseDto responseDto = new ResponseDto();
 		responseDto.setStatus(true);
@@ -202,6 +222,21 @@ public class TemplateService {
 			
 			JsaHazardsToolsDto jsaHazardsToolsDto = jsaHazardsToolsTemplateDao.getJsaHazardsToolsDto(tmpId);
 			createTemplateDto.setJsaHazardsToolsDto(jsaHazardsToolsDto);
+			
+			JsaHazardsFallsDto jsaHazardsFallsDto = jsaHazardsFallsTemplateDao.getJsaHazardsFallsDto(tmpId);
+			createTemplateDto.setJsaHazardsFallsDto(jsaHazardsFallsDto);
+			
+			JsaHazardsVoltageDto jsaHazardsVoltageDto = jsaHazardsVoltageTemplateDao.getJsaHazardsVoltageDto(tmpId);
+			createTemplateDto.setJsaHazardsVoltageDto(jsaHazardsVoltageDto);
+			
+			JsaHazardsExcavationdDto jsaHazardsExcavationdDto = jsaHazardsExcavationTemplateDao.getJsaHazardsExcavationdDto(tmpId);
+			createTemplateDto.setJsaHazardsExcavationdDto(jsaHazardsExcavationdDto);
+			
+			JsaHazardsMobileDto jsaHazardsMobileDto = jsaHazardsMobileTemplateDao.getJsaHazardsMobileDto(tmpId);
+			createTemplateDto.setJsaHazardsMobileDto(jsaHazardsMobileDto);
+			
+			JsaStopTriggerDto jsaStopTriggerDto = jsaStopTriggerTemplateDao.getJsaStopTriggerDto(tmpId);
+			createTemplateDto.setJsaStopTriggerDto(jsaStopTriggerDto);
 			
 			responseDto.setData(createTemplateDto);
 			responseDto.setMessage("Success");

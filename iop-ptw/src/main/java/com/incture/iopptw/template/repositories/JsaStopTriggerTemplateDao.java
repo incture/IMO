@@ -1,6 +1,5 @@
 package com.incture.iopptw.template.repositories;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -42,23 +41,23 @@ public class JsaStopTriggerTemplateDao extends BaseDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<JsaStopTriggerDto> getJsaStopTriggerDto(String permitNum) {
+	public JsaStopTriggerDto getJsaStopTriggerDto(Integer id) {
 		List<Object[]> obj;
-		List<JsaStopTriggerDto> jsaStopTriggerDtoList = new ArrayList<JsaStopTriggerDto>();
+		JsaStopTriggerDto jsaStopTriggerDto = new JsaStopTriggerDto();
+//		List<JsaStopTriggerDto> jsaStopTriggerDtoList = new ArrayList<JsaStopTriggerDto>();
 		try {
-			String sql = "select  SERIALNO,PERMITNUMBER, LINEDESCRIPTION from IOP.JSASTOPTRIGGER "
-					+ " where PERMITNUMBER = :permitNum";
+			String sql = "select  SERIALNO,PERMITNUMBER, LINEDESCRIPTION from IOP.TMPJSASTOPTRIGGER"
+					+ " where TMPID = :id";
 			Query q = getSession().createNativeQuery(sql);
-			q.setParameter("permitNum", permitNum);
+			q.setParameter("id", id);
 			obj = q.getResultList();
 			for (Object[] a : obj) {
-				JsaStopTriggerDto jsaStopTriggerDto = new JsaStopTriggerDto();
 				jsaStopTriggerDto.setSerialNo((Integer) a[0]);
 				jsaStopTriggerDto.setPermitNumber((Integer) a[1]);
 				jsaStopTriggerDto.setLineDescription((String) a[2]);
-				jsaStopTriggerDtoList.add(jsaStopTriggerDto);
+//				jsaStopTriggerDtoList.add(jsaStopTriggerDto);
 			}
-			return jsaStopTriggerDtoList;
+			return jsaStopTriggerDto;
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();
