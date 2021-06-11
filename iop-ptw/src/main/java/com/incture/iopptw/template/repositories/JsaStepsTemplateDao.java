@@ -1,6 +1,5 @@
 package com.incture.iopptw.template.repositories;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;

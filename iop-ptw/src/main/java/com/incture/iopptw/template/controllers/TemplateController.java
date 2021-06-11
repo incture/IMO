@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.incture.iopptw.template.dtos.CreateTemplateDto;
 import com.incture.iopptw.template.dtos.TemplateDto;
 import com.incture.iopptw.template.services.TemplateService;
 import com.incture.iopptw.utils.ResponseDto;
@@ -19,13 +20,10 @@ public class TemplateController {
 	private TemplateService templateService;
 
 	@PostMapping("/create")
-	public ResponseDto createTemplate(@RequestBody TemplateDto templateDto) {
-		return templateService.createTemplateService(templateDto);
-	}
-
-	@PostMapping("/save")
-	public ResponseDto saveTemplate() {
-		return null;
+	public ResponseDto createTemplate(@RequestBody CreateTemplateDto createTemplateDto) {
+		TemplateDto templateDto = new TemplateDto();
+		templateDto.setName(createTemplateDto.getName());
+		return templateService.saveTemplate(templateDto, createTemplateDto);
 	}
 
 	@GetMapping("/get-all")

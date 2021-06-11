@@ -30,6 +30,7 @@ import lombok.Data;
 
 @Data
 public class CreateTemplateDto {
+	private String name;
 	private JsaheaderDto jsaheaderDto;
 	private JsappeDto jsappeDto;
 	private JsaStepsDto jsaStepsDto;

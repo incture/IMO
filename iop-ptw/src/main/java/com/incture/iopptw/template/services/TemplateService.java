@@ -118,12 +118,13 @@ public class TemplateService {
 	private JsaHazardsMobileTemplateDao jsaHazardsMobileTemplateDao;
 	@Autowired
 	private JsaStopTriggerTemplateDao jsaStopTriggerTemplateDao;
+
 	public ResponseDto createTemplateService(TemplateDto templateDto) {
 		ResponseDto responseDto = new ResponseDto();
 		responseDto.setStatus(true);
 		responseDto.setStatusCode(200);
 		try {
-			templateDto.setId(Integer.parseInt(keyGeneratorDao.getTEMPLATE()));
+			templateDto.setId(templateDto.getId());
 			templateDao.createTemplate(templateDto);
 			responseDto.setMessage("Template Created Successfully");
 		} catch (Exception e) {
@@ -219,27 +220,108 @@ public class TemplateService {
 
 			JsaHazardsManualDto jsaHazardsManualDto = jsaHazardsManualTemplateDao.getJsaHazardsManualDto(tmpId);
 			createTemplateDto.setJsaHazardsManualDto(jsaHazardsManualDto);
-			
+
 			JsaHazardsToolsDto jsaHazardsToolsDto = jsaHazardsToolsTemplateDao.getJsaHazardsToolsDto(tmpId);
 			createTemplateDto.setJsaHazardsToolsDto(jsaHazardsToolsDto);
-			
+
 			JsaHazardsFallsDto jsaHazardsFallsDto = jsaHazardsFallsTemplateDao.getJsaHazardsFallsDto(tmpId);
 			createTemplateDto.setJsaHazardsFallsDto(jsaHazardsFallsDto);
-			
+
 			JsaHazardsVoltageDto jsaHazardsVoltageDto = jsaHazardsVoltageTemplateDao.getJsaHazardsVoltageDto(tmpId);
 			createTemplateDto.setJsaHazardsVoltageDto(jsaHazardsVoltageDto);
-			
-			JsaHazardsExcavationdDto jsaHazardsExcavationdDto = jsaHazardsExcavationTemplateDao.getJsaHazardsExcavationdDto(tmpId);
+
+			JsaHazardsExcavationdDto jsaHazardsExcavationdDto = jsaHazardsExcavationTemplateDao
+					.getJsaHazardsExcavationdDto(tmpId);
 			createTemplateDto.setJsaHazardsExcavationdDto(jsaHazardsExcavationdDto);
-			
+
 			JsaHazardsMobileDto jsaHazardsMobileDto = jsaHazardsMobileTemplateDao.getJsaHazardsMobileDto(tmpId);
 			createTemplateDto.setJsaHazardsMobileDto(jsaHazardsMobileDto);
-			
+
 			JsaStopTriggerDto jsaStopTriggerDto = jsaStopTriggerTemplateDao.getJsaStopTriggerDto(tmpId);
 			createTemplateDto.setJsaStopTriggerDto(jsaStopTriggerDto);
-			
+
 			responseDto.setData(createTemplateDto);
 			responseDto.setMessage("Success");
+		} catch (Exception e) {
+			responseDto.setStatus(false);
+			responseDto.setStatusCode(500);
+			responseDto.setMessage(e.getMessage());
+		}
+		return responseDto;
+	}
+
+	public ResponseDto saveTemplate(TemplateDto templateDto, CreateTemplateDto createTemplateDto) {
+		ResponseDto responseDto = new ResponseDto();
+		responseDto.setStatus(true);
+		responseDto.setStatusCode(200);
+		try {
+			String id = keyGeneratorDao.getTEMPLATE();
+			templateDto.setId(id);
+			createTemplateService(templateDto);
+			if (createTemplateDto.getJsaheaderDto() != null)
+				jsaHeaderTemplateDao.insertJsaHeaderTemplate(id, createTemplateDto.getJsaheaderDto());
+			if (createTemplateDto.getJsappeDto() != null)
+				jsappeTemplateDao.insertJsappeTemplate(id, createTemplateDto.getJsappeDto());
+			if (createTemplateDto.getJsaStepsDto() != null)
+				jsaStepsTemplateDao.insertJsaStepsTemplate(id, createTemplateDto.getJsaStepsDto());
+			if (createTemplateDto.getJsaHazardsPressurizedDto() != null)
+				jsaHazardsPressurizedTemplateDao.insertJsaHazardsPressurizedTemplate(id,
+						createTemplateDto.getJsaHazardsPressurizedDto());
+			if (createTemplateDto.getJsaHazardsVisibilityDto() != null)
+				jsaHazardsVisibilityTemplateDao.insertJsaHazardsVisibilityTemplate(id,
+						createTemplateDto.getJsaHazardsVisibilityDto());
+			if (createTemplateDto.getJsaHazardsPersonnelDto() != null)
+				jsaHazardsPersonnelTemplateDao.insertJsaHazardsPersonnelTemplate(id,
+						createTemplateDto.getJsaHazardsPersonnelDto());
+			if (createTemplateDto.getJsaHazardscseDto() != null)
+				jsaHazardsCseTemplateDao.insertJsaHazardsCseTemplate(id, createTemplateDto.getJsaHazardscseDto());
+			if (createTemplateDto.getJsaHazardsSimultaneousDto() != null)
+				jsaHazardsSimultaneousTemplateDao.insertJsaHazardsSimultaneousTemplate(id,
+						createTemplateDto.getJsaHazardsSimultaneousDto());
+			if (createTemplateDto.getJsaHazardsIgnitionDto() != null)
+				jsaHazardsIgnitionTemplateDao.insertJsaHazardsIgnitionTemplate(id,
+						createTemplateDto.getJsaHazardsIgnitionDto());
+			if (createTemplateDto.getJsaHazardsSubstancesDto() != null)
+				jsaHazardsSubstancesTemplateDao.insertJsaHazardsSubstancesTemplate(id,
+						createTemplateDto.getJsaHazardsSubstancesDto());
+			if (createTemplateDto.getJsaHazardsSpillsDto() != null)
+				jsaHazardsSpillsTemplateDao.insertJsaHazardsSpillsTemplate(id,
+						createTemplateDto.getJsaHazardsSpillsDto());
+			if (createTemplateDto.getJsaHazardsWeatherDto() != null)
+				jsaHazardsWeatherTemplateDao.insertJsaHazardsWeatherTemplate(id,
+						createTemplateDto.getJsaHazardsWeatherDto());
+			if (createTemplateDto.getJsaHazardsHighNoiseDto() != null)
+				jsaHazardsHighNoiseTemplateDao.insertJsaHazardsHighNoiseTemplate(id,
+						createTemplateDto.getJsaHazardsHighNoiseDto());
+			if (createTemplateDto.getJsaHazardsDroppedDto() != null)
+				jsaHazardsDroppedTemplateDao.insertJsaHazardsDroppedTemplate(id,
+						createTemplateDto.getJsaHazardsDroppedDto());
+			if (createTemplateDto.getJsaHazardsLiftingDto() != null)
+				jsaHazardsLiftingTemplateDao.insertJsaHazardsLiftingTemplate(id,
+						createTemplateDto.getJsaHazardsLiftingDto());
+			if (createTemplateDto.getJsaHazardsHeightsDto() != null)
+				jsaHazardsHeightsTemplateDao.insertJsaHazardsHeights(id, createTemplateDto.getJsaHazardsHeightsDto());
+			if (createTemplateDto.getJsaHazardsElectricalDto() != null)
+				jsaHazardsElectricalTemplateDao.insertJsaHazardsElectrical(id,
+						createTemplateDto.getJsaHazardsElectricalDto());
+			if (createTemplateDto.getJsaHazardsMovingDto() != null)
+				jsaHazardsMovingTemplateDao.insertJsaHazardsMoving(id, createTemplateDto.getJsaHazardsMovingDto());
+			if (createTemplateDto.getJsaHazardsManualDto() != null)
+				jsaHazardsManualTemplateDao.insertJsaHazardsManual(id, createTemplateDto.getJsaHazardsManualDto());
+			if (createTemplateDto.getJsaHazardsToolsDto() != null)
+				jsaHazardsToolsTemplateDao.insertJsaHazardsTools(id, createTemplateDto.getJsaHazardsToolsDto());
+			if (createTemplateDto.getJsaHazardsFallsDto() != null)
+				jsaHazardsFallsTemplateDao.insertJsaHazardsFalls(id, createTemplateDto.getJsaHazardsFallsDto());
+			if (createTemplateDto.getJsaHazardsVoltageDto() != null)
+				jsaHazardsVoltageTemplateDao.insertJsaHazardsVoltage(id, createTemplateDto.getJsaHazardsVoltageDto());
+			if (createTemplateDto.getJsaHazardsExcavationdDto() != null)
+				jsaHazardsExcavationTemplateDao.insertJsaHazardsExcavation(id,
+						createTemplateDto.getJsaHazardsExcavationdDto());
+			if (createTemplateDto.getJsaHazardsMobileDto() != null)
+				jsaHazardsMobileTemplateDao.insertJsaHazardsMobile(id, createTemplateDto.getJsaHazardsMobileDto());
+			if (createTemplateDto.getJsaStopTriggerDto() != null)
+				jsaStopTriggerTemplateDao.insertJsaStopTrigger(id, createTemplateDto.getJsaStopTriggerDto());
+			responseDto.setMessage("Template Created Successfully");
 		} catch (Exception e) {
 			responseDto.setStatus(false);
 			responseDto.setStatusCode(500);

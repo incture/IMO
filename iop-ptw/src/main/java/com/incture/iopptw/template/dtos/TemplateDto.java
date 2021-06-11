@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class TemplateDto {
-	private int id;
+	private String id;
 	private String name;
 }
