@@ -31,7 +31,7 @@ public class TemplateDao extends BaseDao {
 			obj = q.getResultList();
 			for (Object[] a : obj) {
 				TemplateDto temp = new TemplateDto();
-				temp.setId((String) a[0]);
+				temp.setId(a[0].toString());
 				temp.setName((String) a[1]);
 				data.add(temp);
 			}
