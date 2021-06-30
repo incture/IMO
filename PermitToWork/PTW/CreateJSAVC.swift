@@ -302,20 +302,43 @@ class CreateJSAVC: UIViewController , UITableViewDelegate,UITableViewDataSource,
     {
         
         if indexPath.row == 0 {
-            if isJsaPreview || isJsaApproved
-            {
-                let facilityCell = self.configureFacilityCell(for: indexPath)
-                facilityCell.isUserInteractionEnabled = false
-                facilityCell.selectionStyle = .none
-                return facilityCell
+            if creatingTemplate{
+                let cell:CreateJSATableViewCell = (createJSATableView.dequeueReusableCell(withIdentifier: "CreateJSATableViewCell") as! CreateJSATableViewCell?)!
+                cell.selectionStyle = UITableViewCell.SelectionStyle.none
+                cell.nameLabel?.text = "Template name" + "*"
+                cell.statusLabel.tag = indexPath.row
+                cell.statusLabel.delegate = self
+                
+                if isJsaPreview || isJsaApproved
+                {
+                    cell.isUserInteractionEnabled = false
+                    cell.statusLabel.text = JSAObject.createJSA.taskDescription
+                }
+                else
+                {
+                    cell.isUserInteractionEnabled = true
+                    cell.statusLabel.text = JSAObject.createJSA.taskDescription
+                }
+                
+                
+                return cell
             }
             else{
-                let facilityCell = self.configureFacilityCell(for: indexPath)
-                facilityCell.isUserInteractionEnabled = true
-                facilityCell.selectionStyle = .none
-                return facilityCell
+                if isJsaPreview || isJsaApproved
+                {
+                    let facilityCell = self.configureFacilityCell(for: indexPath)
+                    facilityCell.isUserInteractionEnabled = false
+                    facilityCell.selectionStyle = .none
+                    return facilityCell
+                }
+                else{
+                    let facilityCell = self.configureFacilityCell(for: indexPath)
+                    facilityCell.isUserInteractionEnabled = true
+                    facilityCell.selectionStyle = .none
+                    return facilityCell
+                }
             }
-            
+        
             
         } else if indexPath.row == 1{
             
@@ -381,12 +404,18 @@ class CreateJSAVC: UIViewController , UITableViewDelegate,UITableViewDataSource,
     
     @IBAction func onHomePress(_ sender: Any)
     {
+        creatingTemplate = false
+        creatingFromTemplate = false
         self.navigationController?.popViewController(animated: true)
         JSAObject = JSA()
+        
     }
     @IBAction func previousBtn(_ sender: UIButton)
     {
+        creatingTemplate = false
+        creatingFromTemplate = false
         self.navigationController?.popViewController(animated: true)
+       
     }
     @IBAction func nextBtn(_ sender: UIButton)
     {

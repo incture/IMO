@@ -1273,6 +1273,7 @@
                         <outlet property="btnCreatePeople" destination="RK0-Wl-gDI" id="yaR-sb-q4n"/>
                         <outlet property="confirmPeopleBottonView" destination="lxG-Vl-9qZ" id="F9H-uQ-qHY"/>
                         <outlet property="navigationTitle" destination="wNq-5T-gmP" id="Kvo-Qf-62r"/>
+                        <outlet property="nextButton" destination="Cwe-6h-qAp" id="yNT-5D-IZL"/>
                         <outlet property="noteLabel" destination="D7W-Wg-zX5" id="X0o-zP-Oha"/>
                         <outlet property="potentialHazardTableView" destination="NJm-nX-rZt" id="4mG-hE-Tgt"/>
                     </connections>

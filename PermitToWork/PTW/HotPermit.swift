@@ -1,8 +1,6 @@
 //
 //  HotPermit.swift
-//  Murphy_PWT_iOS
-//
-//  Created by Soumya Singh on 12/04/18.
+////  Created by Soumya Singh on 12/04/18.
 //  Copyright © 2018 Parul Thakur77. All rights reserved.
 //
 

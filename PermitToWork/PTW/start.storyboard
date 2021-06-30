@@ -486,10 +486,129 @@
             </objects>
             <point key="canvasLocation" x="-60" y="-573"/>
         </scene>
+        <!--Template List View Controller-->
+        <scene sceneID="XUy-rJ-92S">
+            <objects>
+                <viewController storyboardIdentifier="JSATemplateListViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="j4p-2g-B2f" customClass="JSATemplateListViewController" customModule="PermitToWork" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9ez-vK-qbM"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ob1-Eu-tI8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aYX-Yg-Ugb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YBc-Ua-hby">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7z-3v-vvU">
+                                        <rect key="frame" x="0.0" y="0.0" width="187" height="50"/>
+                                        <color key="backgroundColor" red="0.0039215686269999999" green="0.14901960780000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="coe-EX-JCC"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <state key="normal" title="PREVIOUS">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="previousBtn:" destination="j4p-2g-B2f" eventType="touchUpInside" id="tjt-LX-Xcn"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YgD-Bl-QRC">
+                                        <rect key="frame" x="188" y="0.0" width="187" height="50"/>
+                                        <color key="backgroundColor" red="0.0039215686269999999" green="0.14901960780000001" blue="0.35294117650000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="nkf-jT-rZA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                        <state key="normal" title="NEXT">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="nextBtn:" destination="j4p-2g-B2f" eventType="touchUpInside" id="DXy-Qx-XiG"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Q7z-3v-vvU" firstAttribute="top" secondItem="YBc-Ua-hby" secondAttribute="top" id="8HB-VF-oTc"/>
+                                    <constraint firstItem="YgD-Bl-QRC" firstAttribute="top" secondItem="YBc-Ua-hby" secondAttribute="top" id="Lra-iT-eyu"/>
+                                    <constraint firstItem="YgD-Bl-QRC" firstAttribute="leading" secondItem="Q7z-3v-vvU" secondAttribute="trailing" constant="1" id="Pv9-KB-hlG"/>
+                                    <constraint firstAttribute="height" constant="50" id="Q0E-Nu-vrC"/>
+                                    <constraint firstItem="Q7z-3v-vvU" firstAttribute="leading" secondItem="YBc-Ua-hby" secondAttribute="leading" id="T5J-g2-xrr"/>
+                                    <constraint firstItem="YgD-Bl-QRC" firstAttribute="width" secondItem="Q7z-3v-vvU" secondAttribute="width" id="fdh-4f-pBU"/>
+                                    <constraint firstAttribute="trailing" secondItem="YgD-Bl-QRC" secondAttribute="trailing" id="pAz-rk-1D8"/>
+                                </constraints>
+                            </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4T1-JT-5f9">
+                                <rect key="frame" x="0.0" y="617" width="375" height="0.0"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="g1T-fI-rnd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nyr-YF-dHy">
+                                <rect key="frame" x="0.0" y="88" width="375" height="529"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableView>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PLu-rQ-Bla">
+                                <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Ph2-mz-zce"/>
+                                </constraints>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="Risk Assessment" id="bqs-kK-wgW">
+                                        <barButtonItem key="leftBarButtonItem" image="house.fill" catalog="system" style="plain" id="0zj-L9-Goc">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <connections>
+                                                <action selector="homeButton:" destination="j4p-2g-B2f" id="Oyy-hn-vje"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" name="BlackColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="PLu-rQ-Bla" secondAttribute="trailing" id="4kN-bD-Fh6"/>
+                            <constraint firstItem="YBc-Ua-hby" firstAttribute="top" secondItem="4T1-JT-5f9" secondAttribute="bottom" id="6ol-z7-sxX"/>
+                            <constraint firstItem="Ob1-Eu-tI8" firstAttribute="top" secondItem="YBc-Ua-hby" secondAttribute="bottom" id="8lY-1u-cHj"/>
+                            <constraint firstItem="nyr-YF-dHy" firstAttribute="leading" secondItem="aYX-Yg-Ugb" secondAttribute="leading" id="J7Z-1m-Cb0"/>
+                            <constraint firstItem="PLu-rQ-Bla" firstAttribute="leading" secondItem="aYX-Yg-Ugb" secondAttribute="leading" id="NQO-sD-PEO"/>
+                            <constraint firstAttribute="trailing" secondItem="YBc-Ua-hby" secondAttribute="trailing" id="P8M-TE-l43"/>
+                            <constraint firstItem="PLu-rQ-Bla" firstAttribute="top" secondItem="9ez-vK-qbM" secondAttribute="bottom" id="RiV-VD-ymE"/>
+                            <constraint firstItem="YBc-Ua-hby" firstAttribute="leading" secondItem="aYX-Yg-Ugb" secondAttribute="leading" id="Xx8-ks-zg1"/>
+                            <constraint firstItem="nyr-YF-dHy" firstAttribute="top" secondItem="PLu-rQ-Bla" secondAttribute="bottom" id="ZhA-Ha-tcR"/>
+                            <constraint firstAttribute="trailing" secondItem="nyr-YF-dHy" secondAttribute="trailing" id="ejd-T0-BIx"/>
+                            <constraint firstAttribute="trailing" secondItem="4T1-JT-5f9" secondAttribute="trailing" id="iUW-M7-O0L"/>
+                            <constraint firstItem="4T1-JT-5f9" firstAttribute="leading" secondItem="aYX-Yg-Ugb" secondAttribute="leading" id="uni-mS-hZI"/>
+                            <constraint firstItem="4T1-JT-5f9" firstAttribute="top" secondItem="nyr-YF-dHy" secondAttribute="bottom" id="wqZ-9i-TcT"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="navigationTitle" destination="bqs-kK-wgW" id="cNL-Qq-hcR"/>
+                        <outlet property="tableView" destination="nyr-YF-dHy" id="vDj-hd-yJO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Cyy-Fw-nGV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1999" y="235"/>
+        </scene>
     </scenes>
     <resources>
         <image name="back" width="25" height="25"/>
         <image name="checkmark" catalog="system" width="128" height="114"/>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="location" width="30" height="30"/>
         <image name="plus" width="16.666666030883789" height="16.666666030883789"/>
         <namedColor name="BgColor">

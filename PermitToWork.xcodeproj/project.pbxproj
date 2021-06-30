@@ -8,19 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		5B311009262D37C80051661B /* IMOEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B311008262D37C80051661B /* IMOEndpoints.swift */; };
+		5B9BBA9B2668A6D5004F0C12 /* JSATemplateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9BBA9A2668A6D5004F0C12 /* JSATemplateListViewController.swift */; };
+		5BD06DBF265F5FCC0029AA13 /* SAPCommon.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DB9265F5FCC0029AA13 /* SAPCommon.xcframework */; };
+		5BD06DC0265F5FCC0029AA13 /* SAPCommon.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DB9265F5FCC0029AA13 /* SAPCommon.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5BD06DC1265F5FCC0029AA13 /* SAPFoundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DBA265F5FCC0029AA13 /* SAPFoundation.xcframework */; };
+		5BD06DC2265F5FCC0029AA13 /* SAPFoundation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DBA265F5FCC0029AA13 /* SAPFoundation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5BD06DC3265F5FCD0029AA13 /* SAPFiori.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DBB265F5FCC0029AA13 /* SAPFiori.xcframework */; };
+		5BD06DC4265F5FCD0029AA13 /* SAPFiori.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DBB265F5FCC0029AA13 /* SAPFiori.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5BD06DC5265F5FCD0029AA13 /* SAPOData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DBC265F5FCC0029AA13 /* SAPOData.xcframework */; };
+		5BD06DC6265F5FCD0029AA13 /* SAPOData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DBC265F5FCC0029AA13 /* SAPOData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5BD06DC7265F5FCD0029AA13 /* SAPOfflineOData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DBD265F5FCC0029AA13 /* SAPOfflineOData.xcframework */; };
+		5BD06DC8265F5FCD0029AA13 /* SAPOfflineOData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DBD265F5FCC0029AA13 /* SAPOfflineOData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5BD06DC9265F5FCD0029AA13 /* SAPFioriFlows.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DBE265F5FCC0029AA13 /* SAPFioriFlows.xcframework */; };
+		5BD06DCA265F5FCD0029AA13 /* SAPFioriFlows.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DBE265F5FCC0029AA13 /* SAPFioriFlows.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5BD06DD72660C2130029AA13 /* AppParameters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BD06DD62660C2130029AA13 /* AppParameters.plist */; };
+		5BD06DD92660C21B0029AA13 /* ConfigurationProvider.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BD06DD82660C21B0029AA13 /* ConfigurationProvider.plist */; };
+		5BD06DDB2660C2250029AA13 /* OnboardingFlowProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD06DDA2660C2250029AA13 /* OnboardingFlowProvider.swift */; };
+		5BD213322689D23B00E8F2E2 /* TemplateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD213302689D23B00E8F2E2 /* TemplateTableViewCell.swift */; };
+		5BD213332689D23B00E8F2E2 /* TemplateTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD213312689D23B00E8F2E2 /* TemplateTableViewCell.xib */; };
 		C1C018E8B4B223BAE35D4192 /* Pods_PermitToWork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 604EFBF2814BE8CD40B6A87F /* Pods_PermitToWork.framework */; };
-		CD40196F2641665700F9A357 /* SAPCommon.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE97262D89A90031758D /* SAPCommon.xcframework */; };
-		CD4019702641665700F9A357 /* SAPCommon.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE97262D89A90031758D /* SAPCommon.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CD4019712641665700F9A357 /* SAPFiori.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE95262D89A90031758D /* SAPFiori.xcframework */; };
-		CD4019722641665700F9A357 /* SAPFiori.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE95262D89A90031758D /* SAPFiori.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CD4019732641665700F9A357 /* SAPFioriFlows.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE93262D89A90031758D /* SAPFioriFlows.xcframework */; };
-		CD4019742641665700F9A357 /* SAPFioriFlows.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE93262D89A90031758D /* SAPFioriFlows.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CD4019752641665700F9A357 /* SAPFoundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE96262D89A90031758D /* SAPFoundation.xcframework */; };
-		CD4019762641665700F9A357 /* SAPFoundation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE96262D89A90031758D /* SAPFoundation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CD4019772641665700F9A357 /* SAPOData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE94262D89A90031758D /* SAPOData.xcframework */; };
-		CD4019782641665700F9A357 /* SAPOData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE94262D89A90031758D /* SAPOData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CD4019792641665700F9A357 /* SAPOfflineOData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE92262D89A90031758D /* SAPOfflineOData.xcframework */; };
-		CD40197A2641665800F9A357 /* SAPOfflineOData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE92262D89A90031758D /* SAPOfflineOData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D1B46D6B25E51CFA00467B8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B46D6825E51CFA00467B8A /* Main.storyboard */; };
 		D1B46D6C25E51CFA00467B8A /* SAPLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1B46D6925E51CFA00467B8A /* SAPLogo@2x.png */; };
 		D1B46D6D25E51CFA00467B8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B46D6A25E51CFA00467B8A /* LaunchScreen.storyboard */; };
@@ -198,25 +204,23 @@
 		D1D2B72D25E5189E009D8C76 /* OnboardingErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D2B72725E5189E009D8C76 /* OnboardingErrorHandler.swift */; };
 		D1D2B72E25E5189E009D8C76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D2B72825E5189E009D8C76 /* AppDelegate.swift */; };
 		D1D2B72F25E5189E009D8C76 /* ApplicationUIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D2B72925E5189E009D8C76 /* ApplicationUIManager.swift */; };
-		D1D2B73025E5189E009D8C76 /* ConfigurationProvider.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1D2B72A25E5189E009D8C76 /* ConfigurationProvider.plist */; };
-		D1D2B73125E5189E009D8C76 /* OnboardingFlowProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D2B72B25E5189E009D8C76 /* OnboardingFlowProvider.swift */; };
 		D1D2B73225E5189E009D8C76 /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D2B72C25E5189E009D8C76 /* LocalizedStrings.swift */; };
 		D1D2B73525E5191B009D8C76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1D2B73425E5191A009D8C76 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		CD40197B2641665800F9A357 /* Embed Frameworks */ = {
+		5BD06DCB265F5FCD0029AA13 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CD4019742641665700F9A357 /* SAPFioriFlows.xcframework in Embed Frameworks */,
-				CD4019722641665700F9A357 /* SAPFiori.xcframework in Embed Frameworks */,
-				CD40197A2641665800F9A357 /* SAPOfflineOData.xcframework in Embed Frameworks */,
-				CD4019702641665700F9A357 /* SAPCommon.xcframework in Embed Frameworks */,
-				CD4019762641665700F9A357 /* SAPFoundation.xcframework in Embed Frameworks */,
-				CD4019782641665700F9A357 /* SAPOData.xcframework in Embed Frameworks */,
+				5BD06DCA265F5FCD0029AA13 /* SAPFioriFlows.xcframework in Embed Frameworks */,
+				5BD06DC8265F5FCD0029AA13 /* SAPOfflineOData.xcframework in Embed Frameworks */,
+				5BD06DC6265F5FCD0029AA13 /* SAPOData.xcframework in Embed Frameworks */,
+				5BD06DC4265F5FCD0029AA13 /* SAPFiori.xcframework in Embed Frameworks */,
+				5BD06DC0265F5FCC0029AA13 /* SAPCommon.xcframework in Embed Frameworks */,
+				5BD06DC2265F5FCC0029AA13 /* SAPFoundation.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,6 +241,18 @@
 		5B5406FF26305B340085552D /* SAPCommon.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPCommon.xcframework; path = "../../../Documents/SAP 5 frameworks/SAPCommon.xcframework"; sourceTree = "<group>"; };
 		5B54070026305B350085552D /* SAPFiori.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFiori.xcframework; path = "../../../Documents/SAP 5 frameworks/SAPFiori.xcframework"; sourceTree = "<group>"; };
 		5B54070126305B350085552D /* SAPOData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPOData.xcframework; path = "../../../Documents/SAP 5 frameworks/SAPOData.xcframework"; sourceTree = "<group>"; };
+		5B9BBA9A2668A6D5004F0C12 /* JSATemplateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSATemplateListViewController.swift; sourceTree = "<group>"; };
+		5BD06DB9265F5FCC0029AA13 /* SAPCommon.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPCommon.xcframework; path = "../../../../../SAP 5 frameworks/SAPCommon.xcframework"; sourceTree = "<group>"; };
+		5BD06DBA265F5FCC0029AA13 /* SAPFoundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFoundation.xcframework; path = "../../../../../SAP 5 frameworks/SAPFoundation.xcframework"; sourceTree = "<group>"; };
+		5BD06DBB265F5FCC0029AA13 /* SAPFiori.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFiori.xcframework; path = "../../../../../SAP 5 frameworks/SAPFiori.xcframework"; sourceTree = "<group>"; };
+		5BD06DBC265F5FCC0029AA13 /* SAPOData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPOData.xcframework; path = "../../../../../SAP 5 frameworks/SAPOData.xcframework"; sourceTree = "<group>"; };
+		5BD06DBD265F5FCC0029AA13 /* SAPOfflineOData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPOfflineOData.xcframework; path = "../../../../../SAP 5 frameworks/SAPOfflineOData.xcframework"; sourceTree = "<group>"; };
+		5BD06DBE265F5FCC0029AA13 /* SAPFioriFlows.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFioriFlows.xcframework; path = "../../../../../SAP 5 frameworks/SAPFioriFlows.xcframework"; sourceTree = "<group>"; };
+		5BD06DD62660C2130029AA13 /* AppParameters.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppParameters.plist; sourceTree = "<group>"; };
+		5BD06DD82660C21B0029AA13 /* ConfigurationProvider.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigurationProvider.plist; sourceTree = "<group>"; };
+		5BD06DDA2660C2250029AA13 /* OnboardingFlowProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingFlowProvider.swift; sourceTree = "<group>"; };
+		5BD213302689D23B00E8F2E2 /* TemplateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateTableViewCell.swift; sourceTree = "<group>"; };
+		5BD213312689D23B00E8F2E2 /* TemplateTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TemplateTableViewCell.xib; sourceTree = "<group>"; };
 		604EFBF2814BE8CD40B6A87F /* Pods_PermitToWork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PermitToWork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C614ABB65C50823AAEEDA4C2 /* Pods-PermitToWork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PermitToWork.release.xcconfig"; path = "Target Support Files/Pods-PermitToWork/Pods-PermitToWork.release.xcconfig"; sourceTree = "<group>"; };
 		CDFADE92262D89A90031758D /* SAPOfflineOData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPOfflineOData.xcframework; path = "../../../Desktop/SAP Codes/SAP5/SAPOfflineOData.xcframework"; sourceTree = "<group>"; };
@@ -436,8 +452,6 @@
 		D1D2B72725E5189E009D8C76 /* OnboardingErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingErrorHandler.swift; sourceTree = "<group>"; };
 		D1D2B72825E5189E009D8C76 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1D2B72925E5189E009D8C76 /* ApplicationUIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationUIManager.swift; sourceTree = "<group>"; };
-		D1D2B72A25E5189E009D8C76 /* ConfigurationProvider.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigurationProvider.plist; sourceTree = "<group>"; };
-		D1D2B72B25E5189E009D8C76 /* OnboardingFlowProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingFlowProvider.swift; sourceTree = "<group>"; };
 		D1D2B72C25E5189E009D8C76 /* LocalizedStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
 		D1D2B73425E5191A009D8C76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA09723929D83BF21BAFECD7 /* Pods-PermitToWork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PermitToWork.debug.xcconfig"; path = "Target Support Files/Pods-PermitToWork/Pods-PermitToWork.debug.xcconfig"; sourceTree = "<group>"; };
@@ -448,13 +462,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD4019732641665700F9A357 /* SAPFioriFlows.xcframework in Frameworks */,
-				CD4019712641665700F9A357 /* SAPFiori.xcframework in Frameworks */,
-				CD4019772641665700F9A357 /* SAPOData.xcframework in Frameworks */,
-				CD4019752641665700F9A357 /* SAPFoundation.xcframework in Frameworks */,
-				CD4019792641665700F9A357 /* SAPOfflineOData.xcframework in Frameworks */,
+				5BD06DC9265F5FCD0029AA13 /* SAPFioriFlows.xcframework in Frameworks */,
+				5BD06DC3265F5FCD0029AA13 /* SAPFiori.xcframework in Frameworks */,
+				5BD06DC1265F5FCC0029AA13 /* SAPFoundation.xcframework in Frameworks */,
+				5BD06DC7265F5FCD0029AA13 /* SAPOfflineOData.xcframework in Frameworks */,
 				C1C018E8B4B223BAE35D4192 /* Pods_PermitToWork.framework in Frameworks */,
-				CD40196F2641665700F9A357 /* SAPCommon.xcframework in Frameworks */,
+				5BD06DBF265F5FCC0029AA13 /* SAPCommon.xcframework in Frameworks */,
+				5BD06DC5265F5FCD0029AA13 /* SAPOData.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,6 +551,8 @@
 				5B4E2312261CA3F100ED0B1B /* SAPCommon.xcframework */,
 				5B4E2313261CA3F100ED0B1B /* SAPFioriFlows.xcframework */,
 				5B5406FE26305B340085552D /* SAPFioriFlows.xcframework */,
+				5BD06DBB265F5FCC0029AA13 /* SAPFiori.xcframework */,
+				5BD06DBE265F5FCC0029AA13 /* SAPFioriFlows.xcframework */,
 				D1B46D7525E51D6300467B8A /* SAPFoundation.xcframework */,
 				5B4E2311261CA3F000ED0B1B /* SAPFoundation.xcframework */,
 				CDFADE96262D89A90031758D /* SAPFoundation.xcframework */,
@@ -553,6 +569,10 @@
 				5B4E2310261CA3F000ED0B1B /* SAPOfflineOData.xcframework */,
 				CDFADE92262D89A90031758D /* SAPOfflineOData.xcframework */,
 				5B5406FC26305B340085552D /* SAPOfflineOData.xcframework */,
+				5BD06DB9265F5FCC0029AA13 /* SAPCommon.xcframework */,
+				5BD06DBA265F5FCC0029AA13 /* SAPFoundation.xcframework */,
+				5BD06DBC265F5FCC0029AA13 /* SAPOData.xcframework */,
+				5BD06DBD265F5FCC0029AA13 /* SAPOfflineOData.xcframework */,
 				604EFBF2814BE8CD40B6A87F /* Pods_PermitToWork.framework */,
 			);
 			name = Frameworks;
@@ -617,6 +637,8 @@
 				D1B46E4325E5202A00467B8A /* RiskAssessmentCell.xib */,
 				D1B46E4525E5202A00467B8A /* SelectionCell.swift */,
 				D1B46E4225E5202A00467B8A /* SelectionCell.xib */,
+				5BD213302689D23B00E8F2E2 /* TemplateTableViewCell.swift */,
+				5BD213312689D23B00E8F2E2 /* TemplateTableViewCell.xib */,
 			);
 			name = TableViewCellsSet;
 			sourceTree = "<group>";
@@ -826,6 +848,7 @@
 				D1B46EA525E521B800467B8A /* WellCell.xib */,
 				D1B46EA625E521B800467B8A /* WellPadViewController.swift */,
 				D1B46EA825E521B800467B8A /* WellViewController.swift */,
+				5B9BBA9A2668A6D5004F0C12 /* JSATemplateListViewController.swift */,
 			);
 			name = MainFlowVC;
 			sourceTree = "<group>";
@@ -987,10 +1010,11 @@
 			children = (
 				D1D2B72825E5189E009D8C76 /* AppDelegate.swift */,
 				D1D2B72925E5189E009D8C76 /* ApplicationUIManager.swift */,
-				D1D2B72A25E5189E009D8C76 /* ConfigurationProvider.plist */,
+				5BD06DD82660C21B0029AA13 /* ConfigurationProvider.plist */,
+				5BD06DD62660C2130029AA13 /* AppParameters.plist */,
 				D1D2B72C25E5189E009D8C76 /* LocalizedStrings.swift */,
+				5BD06DDA2660C2250029AA13 /* OnboardingFlowProvider.swift */,
 				D1D2B72725E5189E009D8C76 /* OnboardingErrorHandler.swift */,
-				D1D2B72B25E5189E009D8C76 /* OnboardingFlowProvider.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -1023,8 +1047,8 @@
 				D1D2B6FC25E512D0009D8C76 /* Sources */,
 				D1D2B6FD25E512D0009D8C76 /* Frameworks */,
 				D1D2B6FE25E512D0009D8C76 /* Resources */,
-				A2ED617F6E481B6C489C4072 /* [CP] Embed Pods Frameworks */,
-				CD40197B2641665800F9A357 /* Embed Frameworks */,
+				5BD06DCB265F5FCD0029AA13 /* Embed Frameworks */,
+				457A599B620385071DF853E2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1075,6 +1099,7 @@
 				D1B46E9C25E5219300467B8A /* SignNowTableViewCell.xib in Resources */,
 				D1B46E9825E5219300467B8A /* ApprovalToproceedTableViewCell.xib in Resources */,
 				D1B46E9F25E5219300467B8A /* WorkTypeCell.xib in Resources */,
+				5BD213332689D23B00E8F2E2 /* TemplateTableViewCell.xib in Resources */,
 				D1B46ECB25E521F800467B8A /* JSAFacilityTableViewCell.xib in Resources */,
 				D1B46E4B25E5202A00467B8A /* PermitCardCell.xib in Resources */,
 				D1B46D6C25E51CFA00467B8A /* SAPLogo@2x.png in Resources */,
@@ -1083,10 +1108,11 @@
 				D1B46E3C25E5200E00467B8A /* start.storyboard in Resources */,
 				D1B46E5225E5202B00467B8A /* CommonHeaderCell.xib in Resources */,
 				D1B46E9E25E5219300467B8A /* TestResultCell.xib in Resources */,
+				5BD06DD92660C21B0029AA13 /* ConfigurationProvider.plist in Resources */,
 				D1B46F3325E5276500467B8A /* DashBoardCell.xib in Resources */,
 				D1B46E3B25E5200E00467B8A /* Permit.storyboard in Resources */,
 				D1B46D6B25E51CFA00467B8A /* Main.storyboard in Resources */,
-				D1D2B73025E5189E009D8C76 /* ConfigurationProvider.plist in Resources */,
+				5BD06DD72660C2130029AA13 /* AppParameters.plist in Resources */,
 				D1B46E5325E5202B00467B8A /* IdentifyCell.xib in Resources */,
 				D1B46F3525E5276500467B8A /* launcher.storyboard in Resources */,
 				D1B46F3625E5276500467B8A /* ProfileCell.xib in Resources */,
@@ -1106,6 +1132,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		457A599B620385071DF853E2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PermitToWork/Pods-PermitToWork-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PermitToWork/Pods-PermitToWork-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PermitToWork/Pods-PermitToWork-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8ECFFE8C10940851FC853F46 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1126,23 +1169,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A2ED617F6E481B6C489C4072 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PermitToWork/Pods-PermitToWork-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-PermitToWork/Pods-PermitToWork-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PermitToWork/Pods-PermitToWork-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1167,6 +1193,7 @@
 				D1B46F3725E5276500467B8A /* DashBoardCell.swift in Sources */,
 				D1B46EC825E521F800467B8A /* JSALocationCollectionViewCell.swift in Sources */,
 				D1B46E0B25E51FD600467B8A /* TOJSAHAZARDDROPPED.swift in Sources */,
+				5BD06DDB2660C2250029AA13 /* OnboardingFlowProvider.swift in Sources */,
 				D1B46E1725E51FD600467B8A /* TOJSAHAZARDSPILL.swift in Sources */,
 				D1B46E9A25E5219300467B8A /* PermitCell.swift in Sources */,
 				D1B46E2F25E51FEF00467B8A /* HotPermit.swift in Sources */,
@@ -1197,6 +1224,7 @@
 				D1B46E6D25E5215800467B8A /* StopJobVCViewController.swift in Sources */,
 				D1B46DB925E51F9800467B8A /* JSADetailModel+CoreDataProperties.swift in Sources */,
 				D1B46DBA25E51F9800467B8A /* WellListService.swift in Sources */,
+				5B9BBA9B2668A6D5004F0C12 /* JSATemplateListViewController.swift in Sources */,
 				D1B46E8E25E5219300467B8A /* ApprovalToproceedTableViewCell.swift in Sources */,
 				D1B46DD325E51F9900467B8A /* FacilityList+CoreDataProperties.swift in Sources */,
 				D1B46EAB25E521B800467B8A /* LocationCell.swift in Sources */,
@@ -1229,7 +1257,6 @@
 				D1B46E6C25E5215800467B8A /* StopJobTableViewCell.swift in Sources */,
 				D1B46DBD25E51F9800467B8A /* JSAModel+CoreDataClass.swift in Sources */,
 				D1B46E1A25E51FD600467B8A /* TOJSAHAZARDVOLTAGE.swift in Sources */,
-				D1D2B73125E5189E009D8C76 /* OnboardingFlowProvider.swift in Sources */,
 				D1B46E7125E5217300467B8A /* RiskAssesmentTableViewCell.swift in Sources */,
 				D1B46E4C25E5202A00467B8A /* RiskAssessmentCell.swift in Sources */,
 				D1B46E0625E51FD600467B8A /* TOPTWPEOPLE.swift in Sources */,
@@ -1285,6 +1312,7 @@
 				D1B46E3525E51FEF00467B8A /* JSAList.swift in Sources */,
 				D1B46E7425E5217F00467B8A /* PotentialHazardViewController.swift in Sources */,
 				D1B46E5B25E5204600467B8A /* Constant.swift in Sources */,
+				5BD213322689D23B00E8F2E2 /* TemplateTableViewCell.swift in Sources */,
 				D1B732A825E616CB0056320B /* PMHierarchyViewController.swift in Sources */,
 				D1B46ED525E5221600467B8A /* AddPeopleListViewController.swift in Sources */,
 				D1B46E0C25E51FD600467B8A /* TOJSAHEADER.swift in Sources */,

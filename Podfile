@@ -8,12 +8,12 @@ target 'PermitToWork' do
 
   
   #pod 'NohanaImagePicker'
-  pod 'Letters'
+  #pod 'Letters'
   #pod 'ALTextInputBar'
   #pod 'Fabric', '1.7.13'
   #pod 'Crashlytics', '3.10.1'
-  pod 'ReachabilitySwift'
-  pod 'NotificationBannerSwift'
+  #pod 'ReachabilitySwift'
+  #pod 'NotificationBannerSwift'
  
 
 

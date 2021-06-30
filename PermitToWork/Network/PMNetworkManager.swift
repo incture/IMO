@@ -3,7 +3,7 @@
 //  pm
 //
 //  Created by Mohan on 11/04/19.
-//  Copyright © 2019 Murphy. All rights reserved.
+//  
 //
 
 import Foundation

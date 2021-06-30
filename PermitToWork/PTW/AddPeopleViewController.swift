@@ -1,6 +1,5 @@
 //
 //  AddPeopleViewController.swift
-//  Murphy_PWT_iOS
 //
 //  Created by Parul Thakur77 on 04/04/18.
 //  Copyright © 2018 Parul Thakur77. All rights reserved.
@@ -274,7 +273,7 @@ class AddPeopleViewController: UIViewController, UITextFieldDelegate {
             JSAObject.addNewpeople.lastName = lastNameTF.text!
             JSAObject.addNewpeople.contactNumber = contactNOTF.text!
             if JSAObject.permitNumber != 0{
-                //rajat stopped the string casting
+                
                 JSAObject.addNewpeople.permitNumber = JSAObject.permitNumber
             }
             else{
@@ -283,7 +282,7 @@ class AddPeopleViewController: UIViewController, UITextFieldDelegate {
                 if value != nil{
                     counter = Int(value!)! - 1
                 }
-                //rajat stopped the string casting
+               
                 JSAObject.addNewpeople.permitNumber = (counter)
             }
             if !ConnectionCheck.isConnectedToNetwork(){

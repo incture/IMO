@@ -1,6 +1,6 @@
 //
 //  LocationViewController.swift
-//  Murphy_PWT_iOS
+//
 //
 //  Created by Parul Thakur77 on 13/04/18.
 //  Copyright © 2018 Parul Thakur77. All rights reserved.
@@ -95,10 +95,9 @@ class LocationViewController: UIViewController , UITableViewDataSource,UITableVi
                                          "navigate":"",
                                          "location":""]
         let header = ["Content-Type" : "Application/json"]
-        
-        //        Alamofire.request("https://taskmanagementrestdfe0918b2.us2.hana.ondemand.com/TaskManagement_Rest/murphy/location/getLocation"
+    
         let urlString : String = IMOEndpoints.locationService
-            //"\(BaseUrl.apiURL)/JavaAPI_Dest/TaskManagement_Rest/murphy/location/getLocation"
+           
         var urlRequest = URLRequest(url: URL(string: urlString)!)
         urlRequest.httpMethod = "post"
         urlRequest.httpBody = self.getHttpBodayData(params: postData)

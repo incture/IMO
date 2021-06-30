@@ -13,10 +13,6 @@ import SAPFoundation
 import SAPCommon
 import Speech
 import Combine
-//import AlanSDK
-//import Firebase
-//import FirebaseDatabase
-
 
 typealias JSON = [String: Any]
 
@@ -25,10 +21,6 @@ class LauncherController: UIViewController {
     @IBOutlet weak var marqueLabel: MarqueeLabel!
     @IBOutlet weak var marqueeHeight: NSLayoutConstraint!
     @IBOutlet var board: UITableView!
-    
-  //  var allanButton: AlanButton?
-    //var allanIntends: [TaskListAlanOperations : (() -> Void)]? = [:]
-    var dataFromVoiceOver: NSDictionary?
     
     var indicator: UIActivityIndicatorView = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.whiteLarge)
     var hasTMrole : Bool?
@@ -39,20 +31,12 @@ class LauncherController: UIViewController {
     var oCountFlag = 0
     var oCallCountFlag = 0
     
-    //Core DataControler
-    //lazy var bypassDataController = BypassDataController(modelName: "BypassLog")
-    //let energyIsoController = EnergyIsolationCoredata(modelName: "EnergyIsolationOffline")
-//    lazy var locationHistorySafteyApps = LocationHistorySafetyApps(modelName:"LoctionHistorySafetyApps")
-  //  var touchLessButton = TouchLessButton()
     var prevCommand = ""
-   // lazy var dialogueManger = APIManager.shared
     var sessionID:String?
-    //let ref = Database.database().reference(withPath: "Murphy_User_Data")
     var location:String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadOfflineStores()
-       // marqueLabel.setUp()
         marqueeHeight.constant = 0
         print("Ios Version========\n\(self.getOSInfo())\n=========")
         self.navigationController?.navigationBar.isHidden = false
@@ -85,63 +69,19 @@ class LauncherController: UIViewController {
         _ = Timer.scheduledTimer(timeInterval: 100, target: self, selector: #selector(self.update), userInfo: nil, repeats: true)
     }
     
-    
-//    @objc func handleTouchLessEvent(_ notification: Notification) {
-//        //self.allanButton?.setVisual(["currentPage": self.description, "userApps": currentUser.apps ?? []])
-//        guard let responseDictionary = self.getDatafromNotification(notification: notification) else { return }
-//        self.dataFromVoiceOver = responseDictionary
-//        //self.executeOperationOnIntend(intend: TaskListAlanOperations.navigate)
-//    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-       // self.removeAllanVoiceObserver()
-       // TouhlessHandler.shared.stopViewWillAppear()
         marqueeHeight.constant = 0
-        
     }
     
     
     func getOSInfo()->String {
         let os = ProcessInfo().operatingSystemVersion
-        //  return String(os.majorVersion) + "." + String(os.minorVersion) + "." + String(os.patchVersion)
         return String(os.majorVersion) + "." + String(os.minorVersion)
     }
     
-    /*
-    func logFireBaseEvent(){
-    
-        let bundleId = Bundle.main.bundleIdentifier ?? ""
-        if bundleId == "com.incture.iop.prod"{
-            Analytics.setDefaultEventParameters([
-                "login_time" : "\(Date())",
-                "user_email" : currentUser.email ?? "",
-                "version": Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "",
-                "os_version": self.getOSInfo(),
-                "device_model": UIDevice.modelName,
-                "country":currentUser.country,
-                "location":location
-            ])
-            let userItem = UserData(name:currentUser.fullName ?? "", email: currentUser.email ?? "", appV: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "", osV: self.getOSInfo(),iPHModel: UIDevice.modelName, logDate:"\(Date())", bundleId: bundleId,location:location,country: currentUser.country)
-            let userRef = self.ref.child(UserDefaults.standard.string(forKey: "id") ?? "")
-            //To do  : Need to add the country
-            
-           userRef.setValue(userItem.toAnyObject())
-        }
-    }*/
-    
     override func viewWillAppear(_ animated: Bool) {
-        checkVersion()
-        //self.addAllanButtonToView()
-        self.dataFromVoiceOver = nil
         self.sessionID = nil
-//        if TouhlessHandler.shared.buttonEnabled{
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//                TextSingleTon.shared.textToStore = "app list option trigger"
-//                self.playLoadingText()
-//            }
-//        }
-        //self.addAllanVoiceObserver(observingFucntion: #selector(handleTouchLessEvent(_ :)))
     }
     
     @objc func update() {
@@ -149,7 +89,7 @@ class LauncherController: UIViewController {
       
     print("********Timer*********")
        // let urlString = "\(BaseUrl.apiURL)/GetLoggedInUser_Dest/services/userapi/attributes"
-        let urlString = "\(BaseUrl.apiURL)/mobileservices/application/com.incture.imo/roleservice/application/com.incture.imo/v2/Me"
+        let urlString = "\(BaseUrl.apiURL)/mobileservices/application/com.incture.ptw/roleservice/application/com.incture.ptw/v2/Me"
         //let urlString = "\(BaseUrl.apiURL)/UserManagement_Dest/services/userapi/attributes"
         var urlRequest = URLRequest(url: URL(string: urlString)!)
         urlRequest.httpMethod = "get"
@@ -196,41 +136,12 @@ class LauncherController: UIViewController {
     
     func presentViewFor(_ role: String, isAlanEnabled: Bool = false) {
         
-      //  if role == "FIELD"
-       // {
-//            let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "TaskListController") as! TaskListController
-//            vc.currentRole = "FIELD"
-//            vc.allanButton = self.allanButton
-//            vc.locationHistoryPersistance = self.locationHistorySafteyApps
-//            vc.dataFromVoiceOver = (TouhlessHandler.shared.buttonEnabled || isAlanEnabled) ? self.dataFromVoiceOver : nil
-//            vc.sessionID = self.sessionID
-//            vc.prevCommand = "workflow"
-//
-//            let navController = UINavigationController(rootViewController : vc)
-//            navController.modalPresentationStyle = .fullScreen
-//            self.present(navController, animated: false, completion: nil)
-       // }
-       // else
         if role == "PTW"
         {
             let vc = UIStoryboard(name: "start", bundle: Bundle.main).instantiateViewController(withIdentifier: "CreatedPermitControllerViewController") as! CreatedPermitControllerViewController
             vc.modalPresentationStyle = .fullScreen
             self.navigationController?.pushViewController(vc, animated: true)
         }
-//        else if role == "Notification"{
-//
-//            var vc = UIViewController()
-//            vc = UIStoryboard(name: "SearchNotificationFlow", bundle: Bundle.main).instantiateViewController(withIdentifier: "SearchNotificationFlow")
-//            vc.modalPresentationStyle = .fullScreen
-//            self.present(vc, animated: true, completion: nil)
-//        }
-//        else if role == "Work Order"{
-//            var vc = UIViewController()
-//            vc = UIStoryboard(name: "WorkorderFlow", bundle: nil).instantiateViewController(withIdentifier: "PMSearchWorkOrderViewController")
-//            vc.modalPresentationStyle = .fullScreen
-//            self.present(vc, animated: true, completion: nil)
-//
-//        }
     }
 }
 
@@ -350,10 +261,6 @@ extension LauncherController {
                 })
             }
         })
-        
-        
-        //self.dismissScreen()
-        
     }
     public func removeSession() {
         
@@ -371,56 +278,7 @@ extension LauncherController {
     @objc func openProfile(){
         let splitViewController = UIStoryboard(name: "launcher", bundle: Bundle.main).instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
         splitViewController.senderController = self
-        // splitViewController.modalPresentationStyle = .currentContext
-        // splitViewController.preferredDisplayMode = .allVisible
-        //   let navController = UINavigationController(rootViewController: splitViewController)
         self.present(splitViewController, animated: true, completion: nil)
-    }
-    
-    
-    func checkVersion(){
-        //Prod
-        // "https://appdownloaddee8964f1.us2.hana.ondemand.com/AppDownload/app/download?fileType=APK"
-        
-        //        https://mobile-dee8964f1.us2.hana.ondemand.com/JavaAPI_Dest/TaskManagement_Rest/murphy/appFile/download?fileType=IPA&application=IOP
-        
-        // \(BaseUrl.apiURL)/appUpdate/AppDownload/iop/app/download?fileType=ipa
-        // \(BaseUrl.apiURL)/JavaAPI_Dest/TaskManagement_Rest/murphy/appFile/download?fileType=IPA&application=IOP
-        
-        //QA and Dev
-        // "https://appdownloaddee8964f1.us2.hana.ondemand.com/AppDownload/qa/app/download?fileType=IPA"
-        
-        /*
-        let header = [ "x-csrf-token" : "fetch"]
-        
-        print("\(BaseUrl.apiURL)/JavaAPI_Dest/TaskManagement_Rest/murphy/appFile/download?fileType=IPA&application=IOP")
-        
-        let urlString = "\(BaseUrl.apiURL)/JavaAPI_Dest/TaskManagement_Rest/murphy/appFile/download?fileType=IPA&application=IOP&osVersion=" + self.getOSInfo()
-        var urlRequest = URLRequest(url: URL(string: urlString)!)
-        urlRequest.httpMethod = "get"
-        urlRequest.allHTTPHeaderFields  = header
-        let task = ImoPtwNetworkManager.shared.urlSession.dataTask(with: urlRequest) {[weak self] (data, response, error) in
-            guard let self = self else { return }
-            guard error == nil else {
-                return
-            }
-            guard let data = data else {
-                return
-            }
-            do{
-                let JSON = try JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary
-                let value =  JSON
-                if value != nil{
-                    self.convertToJSON(json:JSON!)
-                }
-            }
-            catch{
-                print(error.localizedDescription)
-            }
-        }
-        task.resume()
-        
-        */
     }
     
     func convertToJSON(json : NSDictionary){
@@ -526,8 +384,7 @@ extension LauncherController {
         
         
     }
-    //com.getloggeduser.dest
-    //GetLoggedInUser_Dest
+    
     func gettingUser(){
         if UserDefaults.standard.value(forKey: "notifcation") != nil{
         }else{
@@ -535,7 +392,8 @@ extension LauncherController {
                 self.progressHUD.show()
             }
         }
-        let urlString = "\(BaseUrl.apiURL)/mobileservices/application/com.incture.imo/roleservice/application/com.incture.imo/v2/Me"
+        
+        let urlString = "\(BaseUrl.apiURL)/mobileservices/application/com.incture.ptw/roleservice/application/com.incture.ptw/v2/Me"
         var urlRequest = URLRequest(url: URL(string: urlString)!)
         urlRequest.httpMethod = "get"
         let task = ImoPtwNetworkManager.shared.urlSession.dataTask(with: urlRequest) { (data, response, error) in
@@ -644,152 +502,18 @@ extension LauncherController {
                                     for each in groupValues{
                                         userRoles.append(each.value(forKey: "value") as? String ?? "")
                                     }
-                                    
-                                    
-//                                    if userRoles.contains("IOP_TM_Field") {
-//                                        if !arr.contains("FIELD"){
-//                                            arr.append("FIELD")
-//                                        }
-//                                    }
-//                                    if userRoles.contains("IMO_PTW_Field"){
-//                                        roles.append("IMO_PTW_Field")
-//                                        arr.append("PTW")
-//                                    }
-                                    if userRoles.contains("IMO-MobileServices") || userRoles.contains("IMO_USER"){
+                            
+                                    if userRoles.contains("IOP_PTW_Field_CF"){
                                         roles.append("IOP_PTW_Field")
                                         arr.append("PTW")
                                     }
-                                    
-//                                    if userRoles.contains("IOP_ALS_East") {
-//                                        roles.append("IOP_ALS_East")
-//                                        if !arr.contains("ALS")
-//                                        {
-//                                            arr.append("ALS")
-//                                        }
+                                    //commented for now
+//                                    if userRoles.contains("IOP_MobileReadOnly"){
+//                                        arr.removeAll()
+//                                        arr.append("PTW")
+//                                        currentUser.isReadOnly = true
 //                                    }
-                                    //TODO:- Make it one statement
-//                                    if userRoles.contains("IOP_ALS_West") {
-//                                        roles.append("IOP_ALS_West")
-//                                        if !arr.contains("ALS")
-//                                        {
-//                                            arr.append("ALS")
-//                                        }
-//                                    }
-                                    
-//                                    if userRoles.contains("IOP_ALS_Montney") || userRoles.contains("IOP_ALS_Kaybob"){
-//                                        if !arr.contains("ALS"){
-//                                            arr.append("ALS")
-//                                        }
-//                                    }
-                                    
-//                                    if userRoles.contains("IOP_PM_Field_Gatekeeper"){
-//                                        roles.append("IOP_PM_Field_Gatekeeper")
-//                                        if !arr.contains(""){
-//                                            arr.append("Notification")
-//                                            arr.append("Work Order")
-//                                        }
-//                                    }
-//                                    else if userRoles.contains("IOP_PM_Field_Operator"){
-//                                        roles.append("IOP_PM_Field_Operator")
-//                                        if !arr.contains(""){
-//                                            arr.append("Notification")
-//                                            arr.append("Work Order")
-//                                        }
-//                                    }
-//                                    else if userRoles.contains("IOP_PM_Field_Planner"){
-//                                        roles.append("IOP_PM_Field_Planner")
-//                                        if !arr.contains(""){
-//                                            arr.append("Notification")
-//                                            arr.append("Work Order")
-//                                        }
-//                                    }
-//                                    else if userRoles.contains("IOP_PM_Field_Technician"){
-//                                        roles.append("IOP_PM_Field_Technician")
-//                                        if !arr.contains(""){
-//                                            arr.append("Notification")
-//                                            arr.append("Work Order")
-//                                        }
-//                                    }
-//
-//                                    if userRoles.contains("IOP_TOUCHLESS"),!userRoles.contains("IOP_MobileReadOnly")
-//                                    {
-//                                        //                                    if currentUser.country != "CA"{
-//                                        DispatchQueue.main.async() {
-//                                          //  self.configureAllanButton()
-//                                            self.addAllanIntends()
-//                                            //self.addAllanButtonToView()
-//
-//                                        }
-//                                        //                                    }
-//                                    }
-//                                    if userRoles.contains("IOP_TOUCHLESS_GOOGLE"),!userRoles.contains("IOP_MobileReadOnly"){
-//
-//                                        //   if currentUser.country != "CA"{
-//                                        DispatchQueue.main.async {
-//                                           // TouhlessHandler.shared.sockeSetup()
-//                                        }
-//                                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//                                           // self.view.addSubview(self.touchLessButton)
-//                                          //  TextSingleTon.shared.textToStore = "IOP"
-//                                           // self.playLoadingText()
-//                                           // TouhlessHandler.shared.showTouchLess = true
-//                                        }
-//                                        // }
-//                                    }
-//                                    if userRoles.contains("IOP_Mobile_BypassLog"){
-//                                        arr.append("Bypass Log")
-//                                    }
-//
-//                                    if userRoles.contains("IOP_Mobile_EnergyIsolation"){
-//                                        arr.append("Energy Isolation")
-//                                    }
-                                    
-//                                    if userRoles.contains("IOP_AR_TECH"){
-//                                        arr.append("ARVideo Calling")
-//                                    }
-//
-//                                    if userRoles.contains("IOP_Mobile_LocationHistory"){
-//                                        arr.append("Location History")
-//                                    }
-//
-//                                    if userRoles.contains("IOP_Mobile_HSEFieldGuide"){
-//                                        arr.append("HSE Field Guide")
-//                                    }
-//
-//                                    if !userRoles.contains("IOP_TRAINER") && (userRoles.contains("IOP_FOREMAN") || userRoles.contains("IOP_Superintendent")){
-//                                        arr.removeAll{ $0 == "ARVideo Calling"}
-//                                    }
-//
-                                    if userRoles.contains("IOP_MobileReadOnly"){
-                                        arr.removeAll()
-                                        arr.append("PTW")
-//                                        arr.append("Notification")
-//                                        arr.append("Work Order")
-//                                        arr.append("Bypass Log")
-//                                        arr.append("Energy Isolation")
-//                                        arr.append("Location History")
-//                                        arr.append("HSE Field Guide")
-                                        currentUser.isReadOnly = true
-                                    }
-                                    
-                                    if currentUser.country == "CA"{
-                                        if arr.contains("PTW") == true{
-                                            // remove PTW
-                                            arr.removeAll{ $0 == "PTW"}
-                                        }
-                                        if arr.contains("Energy Isolation") == true{
-                                            //remove energy
-                                            arr.removeAll{ $0 == "Energy Isolation"}
-                                        }
-                                        if arr.contains("HSE Field Guide") == true{
-                                            //remove HSE Huide
-                                            arr.removeAll{ $0 == "HSE Field Guide"}
-                                        }
-                                        if arr.contains("ARVideo Calling") == true{
-                                            //remove Remote Assitence
-                                            arr.removeAll{ $0 == "ARVideo Calling"}
-                                        }
-                                    }
+                                
                                     print(userRoles)
                                 }
                                 currentUser.apps = arr
@@ -806,8 +530,6 @@ extension LauncherController {
                                         currentUser.isCanadianUser = false
                                     }
                                     self.board.reloadData()
-                        
-                                    //self.logFireBaseEvent()
                                 }
 
                             }
@@ -834,14 +556,5 @@ extension LauncherController {
 
 extension LauncherController {
     func loadOfflineStores() {
-//        self.bypassDataController.load { [weak self] in
-//            self?.bypassDataController.syncPendingData()
-//        }
-//        self.energyIsoController.load{
-//            print("EnergyIsolation Offline Load completed")
-//        }
-//        self.locationHistorySafteyApps.load{ [weak self] in
-//            print("Location History Offline Load completed")
-//        }
     }
 }

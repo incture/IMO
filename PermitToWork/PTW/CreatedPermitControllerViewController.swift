@@ -1,6 +1,6 @@
 //
 //  CreatedPermitControllerViewController.swift
-//  Murphy_PWT_iOS
+//  
 //
 //  Created by Soumya Singh on 10/04/18.
 //  Copyright © 2018 Parul Thakur77. All rights reserved.
@@ -103,7 +103,7 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
     
     var selectedJSA = ""
     var selectedPermit = ""
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let Pnib = UINib(nibName: "PermitCardCell", bundle: nil)
@@ -159,7 +159,7 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
         if #available(iOS 13.0, *) {
             if let searchTextField = self.searchBar.value(forKey: "searchField") as? UITextField {
                 //searchTextField.textColor = .black
-               // searchTextField.backgroundColor = .white
+                // searchTextField.backgroundColor = .white
             }
         }
         locationBtn.tintColor = UIColor.white.withAlphaComponent(1.0)
@@ -177,7 +177,7 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
         if currentLocation.muwi != ""
         {
             
-           // locationStr = "\(BaseUrl.apiURL)/com.iop.ptw/getListofActive_Worker.xsjs?muwi=\(currentLocation.muwi)&facility=\(currentLocation.facilityOrSite)"
+            // locationStr = "\(BaseUrl.apiURL)/com.iop.ptw/getListofActive_Worker.xsjs?muwi=\(currentLocation.muwi)&facility=\(currentLocation.facilityOrSite)"
             locationStr = IMOEndpoints.getListOfActiveWorkers+"muwi=\(currentLocation.muwi)&facility=\(currentLocation.facilityOrSite)"
         }
         else
@@ -218,8 +218,8 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
     
     @IBAction func onJSAPress(_ sender: UIButton) {
         self.navigationTitle.title = "Job Safety Analysis"
-//        getJSAList()
-//        getPermitList()
+        //        getJSAList()
+        //        getPermitList()
         status = 1
         flowStart.isHidden = false
         locationBtn.image = UIImage(named : "filter")
@@ -399,15 +399,62 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
         UserDefaults.standard.removeObject(forKey: "AddedPeopleJSA")
         UserDefaults.standard.synchronize()
         
-        if #available(iOS 10.0, *) {
-            let dashBoardVC = Storyboard.DashBoard.instantiateViewController(withIdentifier: "CreateJSAVC") as! CreateJSAVC
+        
+        
+        
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Create template", style: .default , handler:{ (UIAlertAction)in
+            creatingTemplate = true
+            if #available(iOS 10.0, *) {
+                let dashBoardVC = Storyboard.DashBoard.instantiateViewController(withIdentifier: "CreateJSAVC") as! CreateJSAVC
+                self.modalPresentationStyle = .overFullScreen
+                self.navigationController?.pushViewController(dashBoardVC, animated: true)
+                //            let navigationController = UINavigationController(rootViewController : dashBoardVC)
+                //            self.present(navigationController, animated: false, completion: nil)
+            } else {
+                // Fallback on earlier versions
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Create JSA from template", style: .default , handler:{ (UIAlertAction)in
+            let dashBoardVC = Storyboard.initialBoard.instantiateViewController(withIdentifier: "JSATemplateListViewController") as! JSATemplateListViewController
             self.modalPresentationStyle = .overFullScreen
             self.navigationController?.pushViewController(dashBoardVC, animated: true)
-            //            let navigationController = UINavigationController(rootViewController : dashBoardVC)
-            //            self.present(navigationController, animated: false, completion: nil)
-        } else {
-            // Fallback on earlier versions
-        }
+        }))
+        alert.addAction(UIAlertAction(title: "Create new JSA", style: .default , handler:{ (UIAlertAction)in
+            if #available(iOS 10.0, *) {
+                let dashBoardVC = Storyboard.DashBoard.instantiateViewController(withIdentifier: "CreateJSAVC") as! CreateJSAVC
+                self.modalPresentationStyle = .overFullScreen
+                self.navigationController?.pushViewController(dashBoardVC, animated: true)
+                //            let navigationController = UINavigationController(rootViewController : dashBoardVC)
+                //            self.present(navigationController, animated: false, completion: nil)
+            } else {
+                // Fallback on earlier versions
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler:{ (UIAlertAction)in
+            
+            print("User click Dismiss button")
+        }))
+        
+        self.present(alert, animated: true, completion: {
+            print("completion block")
+        })
+        
+        
+        
+        
+        /*
+         if #available(iOS 10.0, *) {
+         let dashBoardVC = Storyboard.initialBoard.instantiateViewController(withIdentifier: "JSACreateOptionsViewController") as! JSACreateOptionsViewController
+         self.modalPresentationStyle = .overFullScreen
+         self.navigationController?.pushViewController(dashBoardVC, animated: true)
+         //            let navigationController = UINavigationController(rootViewController : dashBoardVC)
+         //            self.present(navigationController, animated: false, completion: nil)
+         } else {
+         // Fallback on earlier versions
+         }*/
     }
     
     
@@ -417,7 +464,7 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
         HWbutton.setTitleColor(UIColor.darkGray, for: .normal)
         CWButton.setTitleColor(UIColor.darkGray, for: .normal)
         CSEButton.setTitleColor(UIColor.darkGray, for: .normal)
-       // button.setTitleColor(UIColor(red: 1/255.0, green: 38/255.0, blue: 90/255.0, alpha: 1.0), for: .normal)
+        // button.setTitleColor(UIColor(red: 1/255.0, green: 38/255.0, blue: 90/255.0, alpha: 1.0), for: .normal)
         button.setTitleColor(UIColor(named: "PlusBtnColor"), for: .normal)
         
     }
@@ -430,7 +477,7 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
         indicator.bounds = UIScreen.main.bounds
         UIApplication.shared.keyWindow!.addSubview(indicator)
         indicator.bringSubviewToFront(view)
-     //   UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        //   UIApplication.shared.isNetworkActivityIndicatorVisible = true
         indicator.startAnimating()
     }
     
@@ -973,11 +1020,11 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
         }
         
         print(finalArray)
-        //rajat added in main thread
+       
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-
+        
     }
     
     func parsePermitData()
@@ -1197,7 +1244,7 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
         }
         print(cseFinalArray)
         
-            self.tableView.reloadData()
+        self.tableView.reloadData()
     }
     
     // MARK: - People List API
@@ -1226,10 +1273,10 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
         
     }
     
-    //rajat
+    
     //getting response
     func getPeopleListData(){
-
+        
         DispatchQueue.main.async {
             self.loaderStart()
         }
@@ -1237,7 +1284,7 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
         var urlRequest = URLRequest(url: URL(string: encodedUrl ?? "")!)
         urlRequest.httpMethod = "get"
         ImoPtwNetworkManager.shared.urlSession.dataTask(with: urlRequest) { (data, response, error) in
-                
+            
             if error == nil{
                 guard let data = data else {
                     return
@@ -1256,62 +1303,62 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
                             self.loaderStop()
                         }else{
                             DispatchQueue.main.async {
-                            let peopleListService = PeopleListService(context: self.context)
-                            var facilityOrSiteValue : String?
-                            if currentLocation.hierarchyLevel == "facility"{
-                                facilityOrSiteValue = currentLocation.facilityOrSite
-                            }
-                            else{
-                                facilityOrSiteValue = currentLocation.muwi
-                            }
-                            let searchPredicate = NSPredicate(format: "facilityOrSite == %@", facilityOrSiteValue!)
-                            let peopleList = peopleListService.get(withPredicate: searchPredicate)
-                            if peopleList.count > 0{
-                                for each in peopleList{
-                                    peopleListService.delete(id: each.objectID)
+                                let peopleListService = PeopleListService(context: self.context)
+                                var facilityOrSiteValue : String?
+                                if currentLocation.hierarchyLevel == "facility"{
+                                    facilityOrSiteValue = currentLocation.facilityOrSite
                                 }
-                            }
-                            for each in jsonArr{
-                                if let dtoDict = each as? NSDictionary{
-                                    var peopleList = [People]()
-                                    if let tempArr = dtoDict["ptwPeopleList"] as? [NSDictionary] {
-                                        for arr in tempArr {
-                                            let people = People(JSON : arr as NSDictionary)
-                                            let firstName = arr["firstName"] as? String ?? ""
-                                            let lastName = arr["lastName"]! as? String ?? ""
-                                            people.fullName = firstName + " " + lastName
-                                            peopleList.append(people)
-                                        }
-                                        //rajat renamed faciltyorsite to faciltyOrSite
-                                        if let location = dtoDict["facilityOrSite"] as? String{
-                                            for each in peopleList{
-                                                each.location = location
-                                                self.allPeople.append(each)
-                                            }
-                                            self.peopleListArr.append(peopleList)
-                                            self.location.append(location)
-                                        }
+                                else{
+                                    facilityOrSiteValue = currentLocation.muwi
+                                }
+                                let searchPredicate = NSPredicate(format: "facilityOrSite == %@", facilityOrSiteValue!)
+                                let peopleList = peopleListService.get(withPredicate: searchPredicate)
+                                if peopleList.count > 0{
+                                    for each in peopleList{
+                                        peopleListService.delete(id: each.objectID)
                                     }
-                                    
                                 }
-                            }
-                            let peopleAddedList = PeopleAddedList()
-                            peopleAddedList.locationArray = self.location
-                            peopleAddedList.peopleArray = self.peopleListArr
-                            if currentLocation.hierarchyLevel == "facility"{
-                                facilityOrSiteValue = currentLocation.facilityOrSite
-                            }
-                            else{
-                                facilityOrSiteValue = currentLocation.muwi
-                            }
-                         
-                            print("locationCentralArr",self.peopleListArr)
+                                for each in jsonArr{
+                                    if let dtoDict = each as? NSDictionary{
+                                        var peopleList = [People]()
+                                        if let tempArr = dtoDict["ptwPeopleList"] as? [NSDictionary] {
+                                            for arr in tempArr {
+                                                let people = People(JSON : arr as NSDictionary)
+                                                let firstName = arr["firstName"] as? String ?? ""
+                                                let lastName = arr["lastName"]! as? String ?? ""
+                                                people.fullName = firstName + " " + lastName
+                                                peopleList.append(people)
+                                            }
+                                           
+                                            if let location = dtoDict["facilityOrSite"] as? String{
+                                                for each in peopleList{
+                                                    each.location = location
+                                                    self.allPeople.append(each)
+                                                }
+                                                self.peopleListArr.append(peopleList)
+                                                self.location.append(location)
+                                            }
+                                        }
+                                        
+                                    }
+                                }
+                                let peopleAddedList = PeopleAddedList()
+                                peopleAddedList.locationArray = self.location
+                                peopleAddedList.peopleArray = self.peopleListArr
+                                if currentLocation.hierarchyLevel == "facility"{
+                                    facilityOrSiteValue = currentLocation.facilityOrSite
+                                }
+                                else{
+                                    facilityOrSiteValue = currentLocation.muwi
+                                }
+                                
+                                print("locationCentralArr",self.peopleListArr)
                                 _ = peopleListService.create(peopleList: peopleAddedList, facilityOrSite: facilityOrSiteValue!)
                                 peopleListService.saveChanges()
                                 self.tableView.reloadData()
                                 self.loaderStop()
+                            }
                         }
-                    }
                     }
                     
                 }catch {
@@ -1319,10 +1366,10 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
                 }}else{
                     self.loaderStop()
                     DispatchQueue.main.async {
-                    let message = error!.localizedDescription
-                    let alertController = UIAlertController.init(title: "", message:message , preferredStyle: UIAlertController.Style.alert)
-                    let okAction = UIAlertAction.init(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
-                    alertController.addAction(okAction)
+                        let message = error!.localizedDescription
+                        let alertController = UIAlertController.init(title: "", message:message , preferredStyle: UIAlertController.Style.alert)
+                        let okAction = UIAlertAction.init(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
+                        alertController.addAction(okAction)
                     }
                     
                 }
@@ -1468,18 +1515,18 @@ extension CreatedPermitControllerViewController: UITableViewDataSource, UITableV
                     
                 }
                 else{
-                
-                if cwpSectionData.count == 0{
-                    self.emptyLabel.text = "No Data"
-                    self.emptyLabel.textColor = UIColor.gray
-                    self.emptyLabel.textAlignment = NSTextAlignment.center
-                    self.tableView.backgroundView = self.emptyLabel
-                }
-                else{
-                    self.emptyLabel.text = ""
-                }
-                
-                return cwpSectionData.count
+                    
+                    if cwpSectionData.count == 0{
+                        self.emptyLabel.text = "No Data"
+                        self.emptyLabel.textColor = UIColor.gray
+                        self.emptyLabel.textAlignment = NSTextAlignment.center
+                        self.tableView.backgroundView = self.emptyLabel
+                    }
+                    else{
+                        self.emptyLabel.text = ""
+                    }
+                    
+                    return cwpSectionData.count
                 }
             }
             else{
@@ -1515,17 +1562,17 @@ extension CreatedPermitControllerViewController: UITableViewDataSource, UITableV
                     
                 }
                 else{
-                
-                if cseSectionData.count == 0{
-                    self.emptyLabel.text = "No Data"
-                    self.emptyLabel.textColor = UIColor.gray
-                    self.emptyLabel.textAlignment = NSTextAlignment.center
-                    self.tableView.backgroundView = self.emptyLabel
-                }
-                else{
-                    self.emptyLabel.text = ""
-                }
-                return cseSectionData.count
+                    
+                    if cseSectionData.count == 0{
+                        self.emptyLabel.text = "No Data"
+                        self.emptyLabel.textColor = UIColor.gray
+                        self.emptyLabel.textAlignment = NSTextAlignment.center
+                        self.tableView.backgroundView = self.emptyLabel
+                    }
+                    else{
+                        self.emptyLabel.text = ""
+                    }
+                    return cseSectionData.count
                 }
             }
             else{
@@ -1610,8 +1657,8 @@ extension CreatedPermitControllerViewController: UITableViewDataSource, UITableV
             cell.selectionStyle = .none
             if searchBar.text == ""{
                 if peopleListArr.count > 0{
-                cell.setLabel(data: peopleListArr[indexPath.section][indexPath.row])
-            }
+                    cell.setLabel(data: peopleListArr[indexPath.section][indexPath.row])
+                }
             }
             else{
                 cell.setLabel(data: searchPeopleList[indexPath.section][indexPath.row])
@@ -1662,7 +1709,7 @@ extension CreatedPermitControllerViewController: UITableViewDataSource, UITableV
                     cell.setCWPData(jsa: filterCWSegregatedData[indexPath.section][indexPath.row])
                 }
                 else{
-                     cell.setCWPData(jsa: cwpFinalArray[indexPath.section][indexPath.row])
+                    cell.setCWPData(jsa: cwpFinalArray[indexPath.section][indexPath.row])
                 }
                 
             }
@@ -1677,10 +1724,10 @@ extension CreatedPermitControllerViewController: UITableViewDataSource, UITableV
             cell.clipsToBounds = true
             if searchBar.text == ""{
                 if isFilteringCSE{
-                     cell.setCWPData(jsa: filterCSESegregatedData[indexPath.section][indexPath.row])
+                    cell.setCWPData(jsa: filterCSESegregatedData[indexPath.section][indexPath.row])
                 }
                 else{
-                   cell.setCWPData(jsa: cseFinalArray[indexPath.section][indexPath.row])
+                    cell.setCWPData(jsa: cseFinalArray[indexPath.section][indexPath.row])
                 }
                 
             }
@@ -1801,31 +1848,31 @@ extension CreatedPermitControllerViewController: UITableViewDataSource, UITableV
             JSAObject = JSA()
             JSAObject.currentFlow = .JSA
             DispatchQueue.main.async {
-              
-            let vc = Storyboard.DashBoard.instantiateViewController(withIdentifier: "CreateJSAVC") as! CreateJSAVC
-            self.modalPresentationStyle = .overFullScreen
+                
+                let vc = Storyboard.DashBoard.instantiateViewController(withIdentifier: "CreateJSAVC") as! CreateJSAVC
+                self.modalPresentationStyle = .overFullScreen
                 vc.selectedJSA = self.selectedJSA
-            let jsaDetailService = JSADetailModelService(context: self.context)
+                let jsaDetailService = JSADetailModelService(context: self.context)
                 let selectedPermitNumber = Int16(self.selectedJSA) ?? 0
-            let searchPredicate = NSPredicate(format:"permitNumber == %@", NSNumber(value: Int(selectedPermitNumber)))
-            let jsaDetail = jsaDetailService.get(withPredicate: searchPredicate)
-            if ConnectionCheck.isConnectedToNetwork(){
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-            else{
-                if jsaDetail.count > 0{
+                let searchPredicate = NSPredicate(format:"permitNumber == %@", NSNumber(value: Int(selectedPermitNumber)))
+                let jsaDetail = jsaDetailService.get(withPredicate: searchPredicate)
+                if ConnectionCheck.isConnectedToNetwork(){
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
                 else{
-                    let alert = UIAlertController(title: "", message: "Detail not available", preferredStyle: .alert)
-                    
-                    alert.addAction(UIAlertAction(title: "OK", style: .default , handler: nil))
-                    
-                    self.present(alert, animated: true, completion: {
-                        print("completion block")
-                    })
+                    if jsaDetail.count > 0{
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }
+                    else{
+                        let alert = UIAlertController(title: "", message: "Detail not available", preferredStyle: .alert)
+                        
+                        alert.addAction(UIAlertAction(title: "OK", style: .default , handler: nil))
+                        
+                        self.present(alert, animated: true, completion: {
+                            print("completion block")
+                        })
+                    }
                 }
-            }
             }
             
         }
@@ -1854,7 +1901,7 @@ extension CreatedPermitControllerViewController: UITableViewDataSource, UITableV
             }
             else{
                 selectedPermit = searchSegregatedHWData[indexPath.section][indexPath.row].permitNumber
-                 status = searchSegregatedHWData[indexPath.section][indexPath.row].status
+                status = searchSegregatedHWData[indexPath.section][indexPath.row].status
             }
             if status.lowercased() != "closed"
             {
@@ -2043,17 +2090,17 @@ extension CreatedPermitControllerViewController{
     
     func getJSAList(){
         
-      //let url = "\(BaseUrl.apiURL)/com.iop.ptw/GetJSAbyLocation.xsjs?muwi='\(currentLocation.muwi)'&facility='\(currentLocation.facilityOrSite)'"
+        //let url = "\(BaseUrl.apiURL)/com.iop.ptw/GetJSAbyLocation.xsjs?muwi='\(currentLocation.muwi)'&facility='\(currentLocation.facilityOrSite)'"
         
         
         var url = ""
         if currentLocation.muwi != ""{
-             url = IMOEndpoints.getJSAByLocation+"muwi=\(currentLocation.muwi)&facility=\(currentLocation.facilityOrSite)"
+            url = IMOEndpoints.getJSAByLocation+"muwi=\(currentLocation.muwi)&facility=\(currentLocation.facilityOrSite)"
         }
         else{
             url = IMOEndpoints.getJSAByLocation+"facility=\(currentLocation.facilityOrSite)"
         }
-       
+        
         
         
         
@@ -2061,58 +2108,58 @@ extension CreatedPermitControllerViewController{
         var urlRequest = URLRequest(url: URL(string: encodedUrl ?? "")!)
         urlRequest.httpMethod = "get"
         ImoPtwNetworkManager.shared.urlSession.dataTask(with: urlRequest) { (data, response, error) in
-                
+            
             if error == nil{
                 guard let data = data else {
                     return
                 }
                 do{
                     let JSON = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
-                  
+                    
                     print("**************************")
                     print(JSON)
                     print("**************************")
                     DispatchQueue.main.async {
-       
-                    if let jsonDict2 = JSON as? NSDictionary {
-                       
-                        var jsonDict = [NSDictionary]()
-                        jsonDict = (jsonDict2["data"]  as? [NSDictionary] ?? [])
-                        self.listData.removeAll()
-                        let jsaListService = JSAModelService(context: self.context)
-                        var facilityOrSiteValue : String?
-                        if currentLocation.hierarchyLevel == "facility"{
-                            facilityOrSiteValue = currentLocation.facilityOrSite
-                        }
-                        else{
-                            facilityOrSiteValue = currentLocation.muwi
-                        }
-                        let searchPredicate = NSPredicate(format: "facilityOrSite == %@", facilityOrSiteValue!)
-                        let jsaValue = jsaListService.get(withPredicate: searchPredicate)
                         
-                        for each in jsaValue{
-                            jsaListService.delete(id: each.objectID)
-                        }
-                        for each in jsonDict{
-                            let jsa = JSAList(JSON : each)
-                            print(jsa)
-                            _ = jsaListService.create(listData: jsa, permitNumber: Int(jsa.permitNumber) ?? 0, facilityOrSite: facilityOrSiteValue!)
-                            self.listData.append(jsa)
-                        }
+                        if let jsonDict2 = JSON as? NSDictionary {
+                            
+                            var jsonDict = [NSDictionary]()
+                            jsonDict = (jsonDict2["data"]  as? [NSDictionary] ?? [])
+                            self.listData.removeAll()
+                            let jsaListService = JSAModelService(context: self.context)
+                            var facilityOrSiteValue : String?
+                            if currentLocation.hierarchyLevel == "facility"{
+                                facilityOrSiteValue = currentLocation.facilityOrSite
+                            }
+                            else{
+                                facilityOrSiteValue = currentLocation.muwi
+                            }
+                            let searchPredicate = NSPredicate(format: "facilityOrSite == %@", facilityOrSiteValue!)
+                            let jsaValue = jsaListService.get(withPredicate: searchPredicate)
+                            
+                            for each in jsaValue{
+                                jsaListService.delete(id: each.objectID)
+                            }
+                            for each in jsonDict{
+                                let jsa = JSAList(JSON : each)
+                                print(jsa)
+                                _ = jsaListService.create(listData: jsa, permitNumber: Int(jsa.permitNumber) ?? 0, facilityOrSite: facilityOrSiteValue!)
+                                self.listData.append(jsa)
+                            }
                             jsaListService.saveChanges()
                             self.parseJSAdata()
+                        }
                     }
-                }
                     
                 }catch {
                     print(error.localizedDescription, "StatusCode: \(response!)")
                 }}else{
                     DispatchQueue.main.async {
-                    let message = error!.localizedDescription
-                    let alertController = UIAlertController.init(title: "", message:message , preferredStyle: UIAlertController.Style.alert)
-                    let okAction = UIAlertAction.init(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
-                    alertController.addAction(okAction)
-                    self.present(alertController, animated: true, completion: nil)
+                        let message = error!.localizedDescription
+                        let alertController = UIAlertController.init(title: "", message:message , preferredStyle: UIAlertController.Style.alert)
+                        let okAction = UIAlertAction.init(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
+                        alertController.addAction(okAction)
+                        self.present(alertController, animated: true, completion: nil)
                     }
                     
                 }
@@ -2156,15 +2203,15 @@ extension CreatedPermitControllerViewController{
         else{
             url = IMOEndpoints.getPermits + currentLocation.facilityOrSite
         }
-       
         
         
-          //"\(BaseUrl.apiURL)/com.iop.ptw/GetPermitsbyLocation.xsjs?muwi='\(currentLocation.muwi)'&facility='\(currentLocation.facilityOrSite)'"
+        
+        //"\(BaseUrl.apiURL)/com.iop.ptw/GetPermitsbyLocation.xsjs?muwi='\(currentLocation.muwi)'&facility='\(currentLocation.facilityOrSite)'"
         let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
         var urlRequest = URLRequest(url: URL(string: encodedUrl ?? "")!)
         urlRequest.httpMethod = "get"
         ImoPtwNetworkManager.shared.urlSession.dataTask(with: urlRequest) { (data, response, error) in
-                
+            
             if error == nil{
                 guard let data = data else {
                     return
@@ -2172,75 +2219,75 @@ extension CreatedPermitControllerViewController{
                 do{
                     let JSON = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? NSDictionary
                     DispatchQueue.main.async {
-                    self.HWList.removeAll()
-                    self.CWList.removeAll()
-                    self.CSEList.removeAll()
+                        self.HWList.removeAll()
+                        self.CWList.removeAll()
+                        self.CSEList.removeAll()
                         if let jsonDict = JSON?.value(forKey: "data") as? NSDictionary {
-                        let permitListService = PermitModelService(context: self.context)
-                        var facilityOrSiteValue : String?
-                        if currentLocation.hierarchyLevel == "facility"{
-                            facilityOrSiteValue = currentLocation.facilityOrSite
-                        }
-                        else{
-                            facilityOrSiteValue = currentLocation.muwi
-                        }
-                        let searchPredicate = NSPredicate(format: "facilityOrSite == %@", facilityOrSiteValue!)
-                        let permitModelList = permitListService.get(withPredicate: searchPredicate)
-                        for each in permitModelList{
-                            permitListService.delete(id: each.objectID)
-                        }
-                        if let val = jsonDict.value(forKey: "cwp") as? [NSDictionary]
-                        {
-                            for each in val
-                            {
-                                let value = PermitList.init(JSON: each)
-                                DispatchQueue.main.async {
-                                    _ = permitListService.create(detailData: value, permitNumber: Int(value.permitNumber)!, permitType: PermitType.CWP.rawValue, facilityOrSite: facilityOrSiteValue!)
-                                }
-                                self.CWList.append(value)
+                            let permitListService = PermitModelService(context: self.context)
+                            var facilityOrSiteValue : String?
+                            if currentLocation.hierarchyLevel == "facility"{
+                                facilityOrSiteValue = currentLocation.facilityOrSite
                             }
-                        }
-                        if let val = jsonDict.value(forKey: "hwp") as? [NSDictionary]
-                        {
-                            for each in val
-                            {
-                                let value = PermitList.init(JSON: each)
-                                DispatchQueue.main.async {
-                                _ = permitListService.create(detailData: value, permitNumber: Int(value.permitNumber)!, permitType: PermitType.HWP.rawValue, facilityOrSite: facilityOrSiteValue!)
-                                }
-                                self.HWList.append(value)
+                            else{
+                                facilityOrSiteValue = currentLocation.muwi
                             }
-                        }
-                        if let val = jsonDict.value(forKey: "cse") as? [NSDictionary]
-                        {
-                            for each in val
-                            {
-                                let value = PermitList.init(JSON: each)
-                                DispatchQueue.main.async {
-                                _ = permitListService.create(detailData: value, permitNumber: Int(value.permitNumber)!, permitType: PermitType.CSEP.rawValue, facilityOrSite: facilityOrSiteValue!)
-                                }
-                                self.CSEList.append(value)
+                            let searchPredicate = NSPredicate(format: "facilityOrSite == %@", facilityOrSiteValue!)
+                            let permitModelList = permitListService.get(withPredicate: searchPredicate)
+                            for each in permitModelList{
+                                permitListService.delete(id: each.objectID)
                             }
+                            if let val = jsonDict.value(forKey: "cwp") as? [NSDictionary]
+                            {
+                                for each in val
+                                {
+                                    let value = PermitList.init(JSON: each)
+                                    DispatchQueue.main.async {
+                                        _ = permitListService.create(detailData: value, permitNumber: Int(value.permitNumber)!, permitType: PermitType.CWP.rawValue, facilityOrSite: facilityOrSiteValue!)
+                                    }
+                                    self.CWList.append(value)
+                                }
+                            }
+                            if let val = jsonDict.value(forKey: "hwp") as? [NSDictionary]
+                            {
+                                for each in val
+                                {
+                                    let value = PermitList.init(JSON: each)
+                                    DispatchQueue.main.async {
+                                        _ = permitListService.create(detailData: value, permitNumber: Int(value.permitNumber)!, permitType: PermitType.HWP.rawValue, facilityOrSite: facilityOrSiteValue!)
+                                    }
+                                    self.HWList.append(value)
+                                }
+                            }
+                            if let val = jsonDict.value(forKey: "cse") as? [NSDictionary]
+                            {
+                                for each in val
+                                {
+                                    let value = PermitList.init(JSON: each)
+                                    DispatchQueue.main.async {
+                                        _ = permitListService.create(detailData: value, permitNumber: Int(value.permitNumber)!, permitType: PermitType.CSEP.rawValue, facilityOrSite: facilityOrSiteValue!)
+                                    }
+                                    self.CSEList.append(value)
+                                }
+                            }
+                            permitListService.saveChanges()
+                            self.parsePermitData()
                         }
-                        permitListService.saveChanges()
-                        self.parsePermitData()
-                    }
                     }
                     
                 }catch{
                     print(error.localizedDescription, "StatusCode: \(response!)")
                 }}else{
                     DispatchQueue.main.async {
-                    let message = error!.localizedDescription
-
-                    let alertController = UIAlertController.init(title: "", message:message , preferredStyle: UIAlertController.Style.alert)
-                    let okAction = UIAlertAction.init(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
-                    alertController.addAction(okAction)
-                    self.present(alertController, animated: true, completion: nil)
+                        let message = error!.localizedDescription
+                        
+                        let alertController = UIAlertController.init(title: "", message:message , preferredStyle: UIAlertController.Style.alert)
+                        let okAction = UIAlertAction.init(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
+                        alertController.addAction(okAction)
+                        self.present(alertController, animated: true, completion: nil)
                     }
                     
                 }
         }.resume()
     }
-
+    
 }
