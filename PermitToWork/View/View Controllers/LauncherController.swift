@@ -47,7 +47,6 @@ class LauncherController: UIViewController {
     var prevCommand = ""
    // lazy var dialogueManger = APIManager.shared
     var sessionID:String?
-    //let ref = Database.database().reference(withPath: "Murphy_User_Data")
     var location:String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,17 +130,9 @@ class LauncherController: UIViewController {
     }*/
     
     override func viewWillAppear(_ animated: Bool) {
-        checkVersion()
-        //self.addAllanButtonToView()
+       
         self.dataFromVoiceOver = nil
         self.sessionID = nil
-//        if TouhlessHandler.shared.buttonEnabled{
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//                TextSingleTon.shared.textToStore = "app list option trigger"
-//                self.playLoadingText()
-//            }
-//        }
-        //self.addAllanVoiceObserver(observingFucntion: #selector(handleTouchLessEvent(_ :)))
     }
     
     @objc func update() {
@@ -376,52 +367,7 @@ extension LauncherController {
         //   let navController = UINavigationController(rootViewController: splitViewController)
         self.present(splitViewController, animated: true, completion: nil)
     }
-    
-    
-    func checkVersion(){
-        //Prod
-        // "https://appdownloaddee8964f1.us2.hana.ondemand.com/AppDownload/app/download?fileType=APK"
-        
-        //        https://mobile-dee8964f1.us2.hana.ondemand.com/JavaAPI_Dest/TaskManagement_Rest/murphy/appFile/download?fileType=IPA&application=IOP
-        
-        // \(BaseUrl.apiURL)/appUpdate/AppDownload/iop/app/download?fileType=ipa
-        // \(BaseUrl.apiURL)/JavaAPI_Dest/TaskManagement_Rest/murphy/appFile/download?fileType=IPA&application=IOP
-        
-        //QA and Dev
-        // "https://appdownloaddee8964f1.us2.hana.ondemand.com/AppDownload/qa/app/download?fileType=IPA"
-        
-        /*
-        let header = [ "x-csrf-token" : "fetch"]
-        
-        print("\(BaseUrl.apiURL)/JavaAPI_Dest/TaskManagement_Rest/murphy/appFile/download?fileType=IPA&application=IOP")
-        
-        let urlString = "\(BaseUrl.apiURL)/JavaAPI_Dest/TaskManagement_Rest/murphy/appFile/download?fileType=IPA&application=IOP&osVersion=" + self.getOSInfo()
-        var urlRequest = URLRequest(url: URL(string: urlString)!)
-        urlRequest.httpMethod = "get"
-        urlRequest.allHTTPHeaderFields  = header
-        let task = ImoPtwNetworkManager.shared.urlSession.dataTask(with: urlRequest) {[weak self] (data, response, error) in
-            guard let self = self else { return }
-            guard error == nil else {
-                return
-            }
-            guard let data = data else {
-                return
-            }
-            do{
-                let JSON = try JSONSerialization.jsonObject(with: data, options:[]) as? NSDictionary
-                let value =  JSON
-                if value != nil{
-                    self.convertToJSON(json:JSON!)
-                }
-            }
-            catch{
-                print(error.localizedDescription)
-            }
-        }
-        task.resume()
-        
-        */
-    }
+
     
     func convertToJSON(json : NSDictionary){
         
@@ -760,17 +706,17 @@ extension LauncherController {
 //                                        arr.removeAll{ $0 == "ARVideo Calling"}
 //                                    }
 //
-                                    if userRoles.contains("IOP_MobileReadOnly"){
-                                        arr.removeAll()
-                                        arr.append("PTW")
-//                                        arr.append("Notification")
-//                                        arr.append("Work Order")
-//                                        arr.append("Bypass Log")
-//                                        arr.append("Energy Isolation")
-//                                        arr.append("Location History")
-//                                        arr.append("HSE Field Guide")
-                                        currentUser.isReadOnly = true
-                                    }
+//                                    if userRoles.contains("IOP_MobileReadOnly"){
+//                                        arr.removeAll()
+//                                        arr.append("PTW")
+////                                        arr.append("Notification")
+////                                        arr.append("Work Order")
+////                                        arr.append("Bypass Log")
+////                                        arr.append("Energy Isolation")
+////                                        arr.append("Location History")
+////                                        arr.append("HSE Field Guide")
+//                                        currentUser.isReadOnly = true
+//                                    }
                                     
                                     if currentUser.country == "CA"{
                                         if arr.contains("PTW") == true{

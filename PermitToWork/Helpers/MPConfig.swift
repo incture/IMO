@@ -3,7 +3,7 @@
 //  DORT
 //
 //  Created by Mahabaleshwar Hegde on 09/05/18.
-//  Copyright © 2018 Murphy. All rights reserved.
+//  
 //
 
 import Foundation
