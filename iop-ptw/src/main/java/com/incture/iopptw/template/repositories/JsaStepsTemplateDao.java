@@ -1,5 +1,6 @@
 package com.incture.iopptw.template.repositories;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
@@ -25,8 +26,8 @@ public class JsaStepsTemplateDao extends BaseDao {
 			Session session = sessionFactory.openSession();
 			Transaction tx = session.beginTransaction();
 			Query query = session.createNativeQuery(sql);
-			query.setParameter(1, null);
-			query.setParameter(2, null);
+			query.setParameter(1, id);
+			query.setParameter(2, id);
 			query.setParameter(3, jsaStepsDto.getTaskSteps());
 			query.setParameter(4, jsaStepsDto.getPotentialHazards());
 			query.setParameter(5, jsaStepsDto.getHazardControls());
@@ -44,10 +45,10 @@ public class JsaStepsTemplateDao extends BaseDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public JsaStepsDto getJsaStepsDto(Integer id) {
+	public List<JsaStepsDto> getJsaStepsDto(Integer id) {
 		List<Object[]> obj;
-//		List<JsaStepsDto> jsaStepsDtoList = new ArrayList<JsaStepsDto>();
-		JsaStepsDto jsaStepsDto = new JsaStepsDto();
+		List<JsaStepsDto> jsaStepsDtoList = new ArrayList<JsaStepsDto>();
+		
 		try {
 			String sql = "select  SERIALNO,PERMITNUMBER, TASKSTEPS,POTENTIALHAZARDS,HAZARDCONTROLS,PERSONRESPONSIBLE "
 					+ " from IOP.TMPJSASTEPS where TMPID = :id";
@@ -55,16 +56,17 @@ public class JsaStepsTemplateDao extends BaseDao {
 			q.setParameter("id", id);
 			obj = q.getResultList();
 			for (Object[] a : obj) {
+				JsaStepsDto jsaStepsDto = new JsaStepsDto();
 				jsaStepsDto.setSerialNo((Integer) a[0]);
 				jsaStepsDto.setPermitNumber((Integer) a[1]);
 				jsaStepsDto.setTaskSteps((String) a[2]);
 				jsaStepsDto.setPotentialHazards((String) a[3]);
 				jsaStepsDto.setHazardControls((String) a[4]);
 				jsaStepsDto.setPersonResponsible((String) a[5]);
-//				jsaStepsDtoList.add(jsaStepsDto);
+				jsaStepsDtoList.add(jsaStepsDto);
 			}
 //			System.out.println(jsaStepsDto);
-			return jsaStepsDto;
+			return jsaStepsDtoList;
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			e.printStackTrace();

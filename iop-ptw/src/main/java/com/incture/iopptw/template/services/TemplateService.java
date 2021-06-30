@@ -1,5 +1,7 @@
 package com.incture.iopptw.template.services;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,7 @@ import com.incture.iopptw.dtos.JsaHazardsVisibilityDto;
 import com.incture.iopptw.dtos.JsaHazardsVoltageDto;
 import com.incture.iopptw.dtos.JsaHazardsWeatherDto;
 import com.incture.iopptw.dtos.JsaHazardscseDto;
+import com.incture.iopptw.dtos.JsaRiskAssesmentDto;
 import com.incture.iopptw.dtos.JsaStepsDto;
 import com.incture.iopptw.dtos.JsaStopTriggerDto;
 import com.incture.iopptw.dtos.JsaheaderDto;
@@ -55,6 +58,7 @@ import com.incture.iopptw.template.repositories.JsaHazardsVisibilityTemplateDao;
 import com.incture.iopptw.template.repositories.JsaHazardsVoltageTemplateDao;
 import com.incture.iopptw.template.repositories.JsaHazardsWeatherTemplateDao;
 import com.incture.iopptw.template.repositories.JsaHeaderTemplateDao;
+import com.incture.iopptw.template.repositories.JsaRiskAssesmentTemplateDao;
 import com.incture.iopptw.template.repositories.JsaStepsTemplateDao;
 import com.incture.iopptw.template.repositories.JsaStopTriggerTemplateDao;
 import com.incture.iopptw.template.repositories.JsappeTemplateDao;
@@ -118,7 +122,9 @@ public class TemplateService {
 	private JsaHazardsMobileTemplateDao jsaHazardsMobileTemplateDao;
 	@Autowired
 	private JsaStopTriggerTemplateDao jsaStopTriggerTemplateDao;
-
+	@Autowired
+	private JsaRiskAssesmentTemplateDao jsaRiskAssesmentTemplateDao;
+	
 	public ResponseDto createTemplateService(TemplateDto templateDto) {
 		ResponseDto responseDto = new ResponseDto();
 		responseDto.setStatus(true);
@@ -157,13 +163,16 @@ public class TemplateService {
 		responseDto.setStatus(true);
 		responseDto.setStatusCode(200);
 		try {
+			String name = templateDao.getTemplateNameById(tmpId);
+			createTemplateDto.setName(name);
+			
 			JsaheaderDto jsaheaderDto = jsaHeaderTemplateDao.getJsaHeader(tmpId);
 			createTemplateDto.setJsaheaderDto(jsaheaderDto);
 
 			JsappeDto jsappeDto = jsappeTemplateDao.getJsappe(tmpId);
 			createTemplateDto.setJsappeDto(jsappeDto);
 
-			JsaStepsDto jsaStepsDto = jsaStepsTemplateDao.getJsaStepsDto(tmpId);
+			List<JsaStepsDto> jsaStepsDto = jsaStepsTemplateDao.getJsaStepsDto(tmpId);
 			createTemplateDto.setJsaStepsDto(jsaStepsDto);
 
 			JsaHazardsPressurizedDto jsaHazardsPressurizedDto = jsaHazardsPressurizedTemplateDao
@@ -237,9 +246,12 @@ public class TemplateService {
 			JsaHazardsMobileDto jsaHazardsMobileDto = jsaHazardsMobileTemplateDao.getJsaHazardsMobileDto(tmpId);
 			createTemplateDto.setJsaHazardsMobileDto(jsaHazardsMobileDto);
 
-			JsaStopTriggerDto jsaStopTriggerDto = jsaStopTriggerTemplateDao.getJsaStopTriggerDto(tmpId);
+			List<JsaStopTriggerDto> jsaStopTriggerDto = jsaStopTriggerTemplateDao.getJsaStopTriggerDto(tmpId);
 			createTemplateDto.setJsaStopTriggerDto(jsaStopTriggerDto);
-
+			
+			JsaRiskAssesmentDto jsaRiskAssesmentDto = jsaRiskAssesmentTemplateDao.getJsaRiskAss(tmpId);
+			createTemplateDto.setJsaRiskAssesmentDto(jsaRiskAssesmentDto);
+			
 			responseDto.setData(createTemplateDto);
 			responseDto.setMessage("Success");
 		} catch (Exception e) {
@@ -262,8 +274,10 @@ public class TemplateService {
 				jsaHeaderTemplateDao.insertJsaHeaderTemplate(id, createTemplateDto.getJsaheaderDto());
 			if (createTemplateDto.getJsappeDto() != null)
 				jsappeTemplateDao.insertJsappeTemplate(id, createTemplateDto.getJsappeDto());
-			if (createTemplateDto.getJsaStepsDto() != null)
-				jsaStepsTemplateDao.insertJsaStepsTemplate(id, createTemplateDto.getJsaStepsDto());
+			if (createTemplateDto.getJsaStepsDto() != null){
+				for(JsaStepsDto b : createTemplateDto.getJsaStepsDto())
+					jsaStepsTemplateDao.insertJsaStepsTemplate(id, b);
+			}
 			if (createTemplateDto.getJsaHazardsPressurizedDto() != null)
 				jsaHazardsPressurizedTemplateDao.insertJsaHazardsPressurizedTemplate(id,
 						createTemplateDto.getJsaHazardsPressurizedDto());
@@ -319,8 +333,12 @@ public class TemplateService {
 						createTemplateDto.getJsaHazardsExcavationdDto());
 			if (createTemplateDto.getJsaHazardsMobileDto() != null)
 				jsaHazardsMobileTemplateDao.insertJsaHazardsMobile(id, createTemplateDto.getJsaHazardsMobileDto());
-			if (createTemplateDto.getJsaStopTriggerDto() != null)
-				jsaStopTriggerTemplateDao.insertJsaStopTrigger(id, createTemplateDto.getJsaStopTriggerDto());
+			if (createTemplateDto.getJsaStopTriggerDto() != null){
+				for(JsaStopTriggerDto a :createTemplateDto.getJsaStopTriggerDto())
+					jsaStopTriggerTemplateDao.insertJsaStopTrigger(id, a);
+			}
+			if(createTemplateDto.getJsaRiskAssesmentDto() != null)
+				jsaRiskAssesmentTemplateDao.insertJsaRiskAssesment(id, createTemplateDto.getJsaRiskAssesmentDto());
 			responseDto.setMessage("Template Created Successfully");
 		} catch (Exception e) {
 			responseDto.setStatus(false);

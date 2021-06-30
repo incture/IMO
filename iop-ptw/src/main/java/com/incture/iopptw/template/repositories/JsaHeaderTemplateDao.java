@@ -25,8 +25,8 @@ public class JsaHeaderTemplateDao extends BaseDao {
 			Transaction tx = session.beginTransaction();
 			Query query = session.createNativeQuery(sql);
 			logger.info("insertJsaHeader sql " + sql);
-			query.setParameter(1, null);
-			query.setParameter(2, null);
+			query.setParameter(1, id);
+			query.setParameter(2, id);
 			query.setParameter(3, jsaheaderDto.getHasCWP());
 			query.setParameter(4, jsaheaderDto.getHasHWP());
 			query.setParameter(5, jsaheaderDto.getHasCSE());

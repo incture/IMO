@@ -25,7 +25,7 @@ public class JsaHazardsDroppedTemplateDao extends BaseDao {
 			Session session = sessionFactory.openSession();
 			Transaction tx = session.beginTransaction();
 			Query query = session.createNativeQuery(sql);
-			query.setParameter(1, null);
+			query.setParameter(1, id);
 			query.setParameter(2, jsaHazardsDroppedDto.getDroppedObjects());
 			query.setParameter(3, jsaHazardsDroppedDto.getMarkRestrictEntry());
 			query.setParameter(4, jsaHazardsDroppedDto.getUseLiftingEquipmentToRaise());

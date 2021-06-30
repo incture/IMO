@@ -42,4 +42,17 @@ public class TemplateDao extends BaseDao {
 		System.out.println(data);
 		return data;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public String getTemplateNameById(int id){
+		try{
+			String sql = "select distinct NAME from IOP.TEMPLATE where TMPID = :id";
+			Query q = getSession().createNativeQuery(sql);
+			q.setParameter("id", id);
+			return (String) q.getSingleResult();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

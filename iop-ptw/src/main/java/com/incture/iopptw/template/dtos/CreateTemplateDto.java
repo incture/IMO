@@ -1,5 +1,7 @@
 package com.incture.iopptw.template.dtos;
 
+import java.util.List;
+
 import com.incture.iopptw.dtos.JsaHazardsDroppedDto;
 import com.incture.iopptw.dtos.JsaHazardsElectricalDto;
 import com.incture.iopptw.dtos.JsaHazardsExcavationdDto;
@@ -21,6 +23,7 @@ import com.incture.iopptw.dtos.JsaHazardsVisibilityDto;
 import com.incture.iopptw.dtos.JsaHazardsVoltageDto;
 import com.incture.iopptw.dtos.JsaHazardsWeatherDto;
 import com.incture.iopptw.dtos.JsaHazardscseDto;
+import com.incture.iopptw.dtos.JsaRiskAssesmentDto;
 import com.incture.iopptw.dtos.JsaStepsDto;
 import com.incture.iopptw.dtos.JsaStopTriggerDto;
 import com.incture.iopptw.dtos.JsaheaderDto;
@@ -33,7 +36,7 @@ public class CreateTemplateDto {
 	private String name;
 	private JsaheaderDto jsaheaderDto;
 	private JsappeDto jsappeDto;
-	private JsaStepsDto jsaStepsDto;
+	private List<JsaStepsDto> jsaStepsDto;
 	private JsaHazardsPressurizedDto jsaHazardsPressurizedDto;
 	private JsaHazardsVisibilityDto jsaHazardsVisibilityDto;
 	private JsaHazardsPersonnelDto jsaHazardsPersonnelDto;
@@ -55,5 +58,6 @@ public class CreateTemplateDto {
 	private JsaHazardsVoltageDto jsaHazardsVoltageDto;
 	private JsaHazardsExcavationdDto jsaHazardsExcavationdDto;
 	private JsaHazardsMobileDto jsaHazardsMobileDto;
-	private JsaStopTriggerDto jsaStopTriggerDto;
+	private List<JsaStopTriggerDto> jsaStopTriggerDto;
+	private JsaRiskAssesmentDto jsaRiskAssesmentDto;
 }

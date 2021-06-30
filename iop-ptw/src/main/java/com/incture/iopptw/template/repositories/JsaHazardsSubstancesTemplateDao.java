@@ -25,7 +25,7 @@ public class JsaHazardsSubstancesTemplateDao extends BaseDao {
 			Session session = sessionFactory.openSession();
 			Transaction tx = session.beginTransaction();
 			Query query = session.createNativeQuery(sql);
-			query.setParameter(1, null);
+			query.setParameter(1, id);
 			query.setParameter(2, jsaHazardsSubstancesDto.getHazardousSubstances());
 			query.setParameter(3, jsaHazardsSubstancesDto.getDrainEquipment());
 			query.setParameter(4, jsaHazardsSubstancesDto.getFollowSdsControls());
