@@ -337,6 +337,7 @@ public class TemplateService {
 				for(JsaStopTriggerDto a :createTemplateDto.getJsaStopTriggerDto())
 					jsaStopTriggerTemplateDao.insertJsaStopTrigger(id, a);
 			}
+			//new dto added
 			if(createTemplateDto.getJsaRiskAssesmentDto() != null)
 				jsaRiskAssesmentTemplateDao.insertJsaRiskAssesment(id, createTemplateDto.getJsaRiskAssesmentDto());
 			responseDto.setMessage("Template Created Successfully");
