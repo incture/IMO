@@ -16,7 +16,7 @@ class UserDetail: UIViewController, UITableViewDataSource, UITableViewDelegate{
     @IBOutlet weak var userView: UITableView!
     var user : People?
     var contact : String?
-    //rajat chnaged to Int
+    
     var permitNumber : Int?
     
     override func viewDidLoad() {

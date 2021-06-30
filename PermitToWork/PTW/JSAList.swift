@@ -56,7 +56,7 @@ class JSAList : NSObject ,NSCoding{
             self.createdDate = temp3.convertEpocToDatePTW()
         }
         
-        //rajat made it camel Case
+       
         if let temp3 = JSON["facilityOrSite"] as? [String] {
             self.fieldOrSite = temp3
         }
@@ -166,7 +166,7 @@ class PermitList : NSObject ,NSCoding{
             self.createdDate = temp3.convertEpocToDatePTW()
         }
         
-        //rajat made camelCAse
+       
         if let temp3 = JSON["facilityOrSite"] as? [String] {
             self.fieldOrSite = temp3
         }

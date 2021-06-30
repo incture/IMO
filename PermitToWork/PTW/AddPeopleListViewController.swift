@@ -1,6 +1,6 @@
 //
 //  AddPeopleListViewController.swift
-//  Murphy_PWT_iOS
+//  
 //
 //  Created by Parul Thakur77 on 11/04/18.
 //  Copyright © 2018 Parul Thakur77. All rights reserved.
@@ -578,7 +578,6 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "flammableGas":val.flammableGas.utf8EncodedString(),
                 "othersType":val.othersType.utf8EncodedString(),
                 "othersResult":val.othersResult,
-                //rajat changed the format of date
                 "date":val.Date.convertToDateToMilliseconds(),
                 "time":val.Time
                 ] as [String:Any]
@@ -599,7 +598,6 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "flammableGas":val.flammableGas.utf8EncodedString(),
                 "othersType":val.othersType.utf8EncodedString(),
                 "othersResult":val.othersResult,
-                //rajat changed the format of date
                 "date":val.Date.convertToDateToMilliseconds(),
                 "time":val.Time
                 ] as [String:Any]
@@ -677,7 +675,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "reasonForCSE":"",
                 "permitNumber" : JSAObject.CWP.header.permitNo
             ],
-            //rajat added empty list as it was missing
+            
             "ptwCloseOutDtoList":[]
         ]
         
@@ -802,7 +800,7 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "flammableGas":val.flammableGas.utf8EncodedString(),
                 "othersType":val.othersType.utf8EncodedString(),
                 "othersResult":val.othersResult,
-                //rajat changed the format of date
+                
                 "date":val.Date.convertToDateToMilliseconds(),
                 "time":val.Time
                 ] as [String:Any]
@@ -823,7 +821,6 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "flammableGas":val.flammableGas.utf8EncodedString(),
                 "othersType":val.othersType.utf8EncodedString(),
                 "othersResult":val.othersResult,
-                //rajat changed the format of date
                 "date":val.Date.convertToDateToMilliseconds(),
                 "time":val.Time
                 ] as [String:Any]
@@ -901,7 +898,6 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "reasonForCSE":"",
                 "permitNumber" : JSAObject.CWP.header.permitNo
                 ] as [String:Any],
-            //rajat added empty list as it was missing
             "ptwCloseOutDtoList":[]
             ]
         
@@ -1023,7 +1019,6 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "flammableGas":val.flammableGas.utf8EncodedString(),
                 "othersType":val.othersType.utf8EncodedString(),
                 "othersResult":val.othersResult,
-                //rajat changed the format of date
                 "date":val.Date.convertToDateToMilliseconds(),
                 "time":val.Time
                 ] as [String:Any]
@@ -1044,7 +1039,6 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "flammableGas":val.flammableGas.utf8EncodedString(),
                 "othersType":val.othersType.utf8EncodedString(),
                 "othersResult":val.othersResult,
-                //rajat changed the format of date
                 "date":val.Date.convertToDateToMilliseconds(),
                 "time":val.Time
                 ] as [String:Any]
@@ -1121,7 +1115,6 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 "reasonForCSE":JSAObject.CSEP.workTypeCSE.reasonForCSE.utf8EncodedString() as String,
                 "permitNumber" : JSAObject.CSEP.header.permitNo as Int
                 ] as [String:Any],
-            //rajat added empty list as it was missing
             "ptwCloseOutDtoList":[]
             ]
         
@@ -2756,7 +2749,6 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
                 }
                 
                 for each in JSAObject.peopleList{
-                    //rajat stopped the string casting
                     each.permitNumber = counter //(describing: counter)
                 }
                 newPeopleArray.append(contentsOf: JSAObject.peopleList)
@@ -2777,7 +2769,6 @@ class AddPeopleListViewController: UIViewController ,UITableViewDataSource,UITab
             }
             else{
                 for each in JSAObject.peopleList{
-                    //rajat stopped the string casting
                     each.permitNumber = counter //(describing: counter)
                 }
                 let peopleAddedList = PeopleAddedList()

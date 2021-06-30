@@ -1,6 +1,6 @@
 //
 //  JSA.swift
-//  Murphy_PWT_iOS
+//  
 //
 //  Created by Parul Thakur77 on 13/04/18.
 //  Copyright © 2018 Parul Thakur77. All rights reserved.
@@ -209,7 +209,6 @@ class People : NSObject, NSCoding
     var isCheckedCSE = 0
     var isCheckedJSA = 0
     var location = ""
-    //rajat changed from String to Int
     var permitNumber : Int = 0
     var logIn = ""
     var logout = ""
@@ -219,7 +218,6 @@ class People : NSObject, NSCoding
     
     init(JSON : NSDictionary){
         
-        //rajat changed String to int
         if let temp0 = JSON["permitNumber"] as? Int {
             self.permitNumber = temp0
         }
@@ -229,7 +227,6 @@ class People : NSObject, NSCoding
         if let temp5 = JSON["lastName"] as? String {
             self.lastName = temp5
         }
-        //rajat renamed contactNumer to contactNumber
         if let temp6 = JSON["contactNumber"] as? String {
             self.contactNumber = temp6
             print(self.contactNumber)
@@ -238,7 +235,6 @@ class People : NSObject, NSCoding
     }
     
     required init(coder decoder: NSCoder) {
-        //rajat changed from string to Int
         self.permitNumber = decoder.decodeObject(forKey: "permitNumber") as? Int ?? 0
         self.fullName = decoder.decodeObject(forKey: "fullName") as? String ?? ""
         self.firstName = decoder.decodeObject(forKey: "firstName") as? String ?? ""

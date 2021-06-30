@@ -1,6 +1,6 @@
 //
 //  CreatedPermitControllerViewController.swift
-//  Murphy_PWT_iOS
+// 
 //
 //  Created by Soumya Singh on 10/04/18.
 //  Copyright © 2018 Parul Thakur77. All rights reserved.
@@ -973,7 +973,7 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
         }
         
         print(finalArray)
-        //rajat added in main thread
+       
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
@@ -1226,7 +1226,6 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
         
     }
     
-    //rajat
     //getting response
     func getPeopleListData(){
 
@@ -1282,7 +1281,7 @@ class CreatedPermitControllerViewController: UIViewController, UISearchBarDelega
                                             people.fullName = firstName + " " + lastName
                                             peopleList.append(people)
                                         }
-                                        //rajat renamed faciltyorsite to faciltyOrSite
+                                        
                                         if let location = dtoDict["facilityOrSite"] as? String{
                                             for each in peopleList{
                                                 each.location = location

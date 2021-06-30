@@ -8,19 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		5B311009262D37C80051661B /* IMOEndpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B311008262D37C80051661B /* IMOEndpoints.swift */; };
+		5BD06DBF265F5FCC0029AA13 /* SAPCommon.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DB9265F5FCC0029AA13 /* SAPCommon.xcframework */; };
+		5BD06DC0265F5FCC0029AA13 /* SAPCommon.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DB9265F5FCC0029AA13 /* SAPCommon.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5BD06DC1265F5FCC0029AA13 /* SAPFoundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DBA265F5FCC0029AA13 /* SAPFoundation.xcframework */; };
+		5BD06DC2265F5FCC0029AA13 /* SAPFoundation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DBA265F5FCC0029AA13 /* SAPFoundation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5BD06DC3265F5FCD0029AA13 /* SAPFiori.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DBB265F5FCC0029AA13 /* SAPFiori.xcframework */; };
+		5BD06DC4265F5FCD0029AA13 /* SAPFiori.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DBB265F5FCC0029AA13 /* SAPFiori.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5BD06DC5265F5FCD0029AA13 /* SAPOData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DBC265F5FCC0029AA13 /* SAPOData.xcframework */; };
+		5BD06DC6265F5FCD0029AA13 /* SAPOData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DBC265F5FCC0029AA13 /* SAPOData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5BD06DC7265F5FCD0029AA13 /* SAPOfflineOData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DBD265F5FCC0029AA13 /* SAPOfflineOData.xcframework */; };
+		5BD06DC8265F5FCD0029AA13 /* SAPOfflineOData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DBD265F5FCC0029AA13 /* SAPOfflineOData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5BD06DC9265F5FCD0029AA13 /* SAPFioriFlows.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DBE265F5FCC0029AA13 /* SAPFioriFlows.xcframework */; };
+		5BD06DCA265F5FCD0029AA13 /* SAPFioriFlows.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5BD06DBE265F5FCC0029AA13 /* SAPFioriFlows.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5BD06DD72660C2130029AA13 /* AppParameters.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BD06DD62660C2130029AA13 /* AppParameters.plist */; };
+		5BD06DD92660C21B0029AA13 /* ConfigurationProvider.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5BD06DD82660C21B0029AA13 /* ConfigurationProvider.plist */; };
+		5BD06DDB2660C2250029AA13 /* OnboardingFlowProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD06DDA2660C2250029AA13 /* OnboardingFlowProvider.swift */; };
 		C1C018E8B4B223BAE35D4192 /* Pods_PermitToWork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 604EFBF2814BE8CD40B6A87F /* Pods_PermitToWork.framework */; };
-		CD40196F2641665700F9A357 /* SAPCommon.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE97262D89A90031758D /* SAPCommon.xcframework */; };
-		CD4019702641665700F9A357 /* SAPCommon.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE97262D89A90031758D /* SAPCommon.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CD4019712641665700F9A357 /* SAPFiori.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE95262D89A90031758D /* SAPFiori.xcframework */; };
-		CD4019722641665700F9A357 /* SAPFiori.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE95262D89A90031758D /* SAPFiori.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CD4019732641665700F9A357 /* SAPFioriFlows.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE93262D89A90031758D /* SAPFioriFlows.xcframework */; };
-		CD4019742641665700F9A357 /* SAPFioriFlows.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE93262D89A90031758D /* SAPFioriFlows.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CD4019752641665700F9A357 /* SAPFoundation.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE96262D89A90031758D /* SAPFoundation.xcframework */; };
-		CD4019762641665700F9A357 /* SAPFoundation.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE96262D89A90031758D /* SAPFoundation.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CD4019772641665700F9A357 /* SAPOData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE94262D89A90031758D /* SAPOData.xcframework */; };
-		CD4019782641665700F9A357 /* SAPOData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE94262D89A90031758D /* SAPOData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		CD4019792641665700F9A357 /* SAPOfflineOData.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE92262D89A90031758D /* SAPOfflineOData.xcframework */; };
-		CD40197A2641665800F9A357 /* SAPOfflineOData.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CDFADE92262D89A90031758D /* SAPOfflineOData.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D1B46D6B25E51CFA00467B8A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B46D6825E51CFA00467B8A /* Main.storyboard */; };
 		D1B46D6C25E51CFA00467B8A /* SAPLogo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D1B46D6925E51CFA00467B8A /* SAPLogo@2x.png */; };
 		D1B46D6D25E51CFA00467B8A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1B46D6A25E51CFA00467B8A /* LaunchScreen.storyboard */; };
@@ -198,25 +201,23 @@
 		D1D2B72D25E5189E009D8C76 /* OnboardingErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D2B72725E5189E009D8C76 /* OnboardingErrorHandler.swift */; };
 		D1D2B72E25E5189E009D8C76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D2B72825E5189E009D8C76 /* AppDelegate.swift */; };
 		D1D2B72F25E5189E009D8C76 /* ApplicationUIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D2B72925E5189E009D8C76 /* ApplicationUIManager.swift */; };
-		D1D2B73025E5189E009D8C76 /* ConfigurationProvider.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1D2B72A25E5189E009D8C76 /* ConfigurationProvider.plist */; };
-		D1D2B73125E5189E009D8C76 /* OnboardingFlowProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D2B72B25E5189E009D8C76 /* OnboardingFlowProvider.swift */; };
 		D1D2B73225E5189E009D8C76 /* LocalizedStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D2B72C25E5189E009D8C76 /* LocalizedStrings.swift */; };
 		D1D2B73525E5191B009D8C76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1D2B73425E5191A009D8C76 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		CD40197B2641665800F9A357 /* Embed Frameworks */ = {
+		5BD06DCB265F5FCD0029AA13 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				CD4019742641665700F9A357 /* SAPFioriFlows.xcframework in Embed Frameworks */,
-				CD4019722641665700F9A357 /* SAPFiori.xcframework in Embed Frameworks */,
-				CD40197A2641665800F9A357 /* SAPOfflineOData.xcframework in Embed Frameworks */,
-				CD4019702641665700F9A357 /* SAPCommon.xcframework in Embed Frameworks */,
-				CD4019762641665700F9A357 /* SAPFoundation.xcframework in Embed Frameworks */,
-				CD4019782641665700F9A357 /* SAPOData.xcframework in Embed Frameworks */,
+				5BD06DCA265F5FCD0029AA13 /* SAPFioriFlows.xcframework in Embed Frameworks */,
+				5BD06DC8265F5FCD0029AA13 /* SAPOfflineOData.xcframework in Embed Frameworks */,
+				5BD06DC6265F5FCD0029AA13 /* SAPOData.xcframework in Embed Frameworks */,
+				5BD06DC4265F5FCD0029AA13 /* SAPFiori.xcframework in Embed Frameworks */,
+				5BD06DC0265F5FCC0029AA13 /* SAPCommon.xcframework in Embed Frameworks */,
+				5BD06DC2265F5FCC0029AA13 /* SAPFoundation.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -225,41 +226,20 @@
 
 /* Begin PBXFileReference section */
 		5B311008262D37C80051661B /* IMOEndpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMOEndpoints.swift; sourceTree = "<group>"; };
-		5B4E230F261CA3F000ED0B1B /* SAPOData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPOData.xcframework; path = "../../../../SAP 5 frameworks/SAPOData.xcframework"; sourceTree = "<group>"; };
-		5B4E2310261CA3F000ED0B1B /* SAPOfflineOData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPOfflineOData.xcframework; path = "../../../../SAP 5 frameworks/SAPOfflineOData.xcframework"; sourceTree = "<group>"; };
-		5B4E2311261CA3F000ED0B1B /* SAPFoundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFoundation.xcframework; path = "../../../../SAP 5 frameworks/SAPFoundation.xcframework"; sourceTree = "<group>"; };
-		5B4E2312261CA3F100ED0B1B /* SAPCommon.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPCommon.xcframework; path = "../../../../SAP 5 frameworks/SAPCommon.xcframework"; sourceTree = "<group>"; };
-		5B4E2313261CA3F100ED0B1B /* SAPFioriFlows.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFioriFlows.xcframework; path = "../../../../SAP 5 frameworks/SAPFioriFlows.xcframework"; sourceTree = "<group>"; };
-		5B4E2314261CA3F100ED0B1B /* SAPFiori.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFiori.xcframework; path = "../../../../SAP 5 frameworks/SAPFiori.xcframework"; sourceTree = "<group>"; };
-		5B5406FC26305B340085552D /* SAPOfflineOData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPOfflineOData.xcframework; path = "../../../Documents/SAP 5 frameworks/SAPOfflineOData.xcframework"; sourceTree = "<group>"; };
-		5B5406FD26305B340085552D /* SAPFoundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFoundation.xcframework; path = "../../../Documents/SAP 5 frameworks/SAPFoundation.xcframework"; sourceTree = "<group>"; };
-		5B5406FE26305B340085552D /* SAPFioriFlows.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFioriFlows.xcframework; path = "../../../Documents/SAP 5 frameworks/SAPFioriFlows.xcframework"; sourceTree = "<group>"; };
-		5B5406FF26305B340085552D /* SAPCommon.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPCommon.xcframework; path = "../../../Documents/SAP 5 frameworks/SAPCommon.xcframework"; sourceTree = "<group>"; };
-		5B54070026305B350085552D /* SAPFiori.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFiori.xcframework; path = "../../../Documents/SAP 5 frameworks/SAPFiori.xcframework"; sourceTree = "<group>"; };
-		5B54070126305B350085552D /* SAPOData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPOData.xcframework; path = "../../../Documents/SAP 5 frameworks/SAPOData.xcframework"; sourceTree = "<group>"; };
+		5BD06DB9265F5FCC0029AA13 /* SAPCommon.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPCommon.xcframework; path = "../../../../../SAP 5 frameworks/SAPCommon.xcframework"; sourceTree = "<group>"; };
+		5BD06DBA265F5FCC0029AA13 /* SAPFoundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFoundation.xcframework; path = "../../../../../SAP 5 frameworks/SAPFoundation.xcframework"; sourceTree = "<group>"; };
+		5BD06DBB265F5FCC0029AA13 /* SAPFiori.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFiori.xcframework; path = "../../../../../SAP 5 frameworks/SAPFiori.xcframework"; sourceTree = "<group>"; };
+		5BD06DBC265F5FCC0029AA13 /* SAPOData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPOData.xcframework; path = "../../../../../SAP 5 frameworks/SAPOData.xcframework"; sourceTree = "<group>"; };
+		5BD06DBD265F5FCC0029AA13 /* SAPOfflineOData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPOfflineOData.xcframework; path = "../../../../../SAP 5 frameworks/SAPOfflineOData.xcframework"; sourceTree = "<group>"; };
+		5BD06DBE265F5FCC0029AA13 /* SAPFioriFlows.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFioriFlows.xcframework; path = "../../../../../SAP 5 frameworks/SAPFioriFlows.xcframework"; sourceTree = "<group>"; };
+		5BD06DD62660C2130029AA13 /* AppParameters.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppParameters.plist; sourceTree = "<group>"; };
+		5BD06DD82660C21B0029AA13 /* ConfigurationProvider.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigurationProvider.plist; sourceTree = "<group>"; };
+		5BD06DDA2660C2250029AA13 /* OnboardingFlowProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingFlowProvider.swift; sourceTree = "<group>"; };
 		604EFBF2814BE8CD40B6A87F /* Pods_PermitToWork.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PermitToWork.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C614ABB65C50823AAEEDA4C2 /* Pods-PermitToWork.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PermitToWork.release.xcconfig"; path = "Target Support Files/Pods-PermitToWork/Pods-PermitToWork.release.xcconfig"; sourceTree = "<group>"; };
-		CDFADE92262D89A90031758D /* SAPOfflineOData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPOfflineOData.xcframework; path = "../../../Desktop/SAP Codes/SAP5/SAPOfflineOData.xcframework"; sourceTree = "<group>"; };
-		CDFADE93262D89A90031758D /* SAPFioriFlows.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFioriFlows.xcframework; path = "../../../Desktop/SAP Codes/SAP5/SAPFioriFlows.xcframework"; sourceTree = "<group>"; };
-		CDFADE94262D89A90031758D /* SAPOData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPOData.xcframework; path = "../../../Desktop/SAP Codes/SAP5/SAPOData.xcframework"; sourceTree = "<group>"; };
-		CDFADE95262D89A90031758D /* SAPFiori.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFiori.xcframework; path = "../../../Desktop/SAP Codes/SAP5/SAPFiori.xcframework"; sourceTree = "<group>"; };
-		CDFADE96262D89A90031758D /* SAPFoundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFoundation.xcframework; path = "../../../Desktop/SAP Codes/SAP5/SAPFoundation.xcframework"; sourceTree = "<group>"; };
-		CDFADE97262D89A90031758D /* SAPCommon.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPCommon.xcframework; path = "../../../Desktop/SAP Codes/SAP5/SAPCommon.xcframework"; sourceTree = "<group>"; };
-		D15767AD25E64C6B00646160 /* SAPFoundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFoundation.xcframework; path = "../../../SAP 5 frameworks/SAPFoundation.xcframework"; sourceTree = "<group>"; };
-		D15767AE25E64C6B00646160 /* SAPOData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPOData.xcframework; path = "../../../SAP 5 frameworks/SAPOData.xcframework"; sourceTree = "<group>"; };
-		D15767AF25E64C6B00646160 /* SAPFiori.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFiori.xcframework; path = "../../../SAP 5 frameworks/SAPFiori.xcframework"; sourceTree = "<group>"; };
-		D15767B025E64C6B00646160 /* SAPCommon.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPCommon.xcframework; path = "../../../SAP 5 frameworks/SAPCommon.xcframework"; sourceTree = "<group>"; };
-		D15767B125E64C6B00646160 /* SAPOfflineOData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPOfflineOData.xcframework; path = "../../../SAP 5 frameworks/SAPOfflineOData.xcframework"; sourceTree = "<group>"; };
-		D15767B225E64C6B00646160 /* SAPFioriFlows.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFioriFlows.xcframework; path = "../../../SAP 5 frameworks/SAPFioriFlows.xcframework"; sourceTree = "<group>"; };
 		D1B46D6825E51CFA00467B8A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D1B46D6925E51CFA00467B8A /* SAPLogo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SAPLogo@2x.png"; sourceTree = "<group>"; };
 		D1B46D6A25E51CFA00467B8A /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D1B46D7125E51D6200467B8A /* SAPFioriFlows.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFioriFlows.xcframework; path = "../../SAP 5 frameworks/SAPFioriFlows.xcframework"; sourceTree = "<group>"; };
-		D1B46D7225E51D6200467B8A /* SAPOfflineOData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPOfflineOData.xcframework; path = "../../SAP 5 frameworks/SAPOfflineOData.xcframework"; sourceTree = "<group>"; };
-		D1B46D7325E51D6300467B8A /* SAPCommon.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPCommon.xcframework; path = "../../SAP 5 frameworks/SAPCommon.xcframework"; sourceTree = "<group>"; };
-		D1B46D7425E51D6300467B8A /* SAPFiori.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFiori.xcframework; path = "../../SAP 5 frameworks/SAPFiori.xcframework"; sourceTree = "<group>"; };
-		D1B46D7525E51D6300467B8A /* SAPFoundation.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPFoundation.xcframework; path = "../../SAP 5 frameworks/SAPFoundation.xcframework"; sourceTree = "<group>"; };
-		D1B46D7625E51D6300467B8A /* SAPOData.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = SAPOData.xcframework; path = "../../SAP 5 frameworks/SAPOData.xcframework"; sourceTree = "<group>"; };
 		D1B46D9B25E51F9600467B8A /* JSADetailModel+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSADetailModel+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		D1B46D9C25E51F9600467B8A /* WellListService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WellListService.swift; sourceTree = "<group>"; };
 		D1B46D9D25E51F9600467B8A /* WellPadList+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "WellPadList+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -436,8 +416,6 @@
 		D1D2B72725E5189E009D8C76 /* OnboardingErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingErrorHandler.swift; sourceTree = "<group>"; };
 		D1D2B72825E5189E009D8C76 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1D2B72925E5189E009D8C76 /* ApplicationUIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationUIManager.swift; sourceTree = "<group>"; };
-		D1D2B72A25E5189E009D8C76 /* ConfigurationProvider.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ConfigurationProvider.plist; sourceTree = "<group>"; };
-		D1D2B72B25E5189E009D8C76 /* OnboardingFlowProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingFlowProvider.swift; sourceTree = "<group>"; };
 		D1D2B72C25E5189E009D8C76 /* LocalizedStrings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizedStrings.swift; sourceTree = "<group>"; };
 		D1D2B73425E5191A009D8C76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EA09723929D83BF21BAFECD7 /* Pods-PermitToWork.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PermitToWork.debug.xcconfig"; path = "Target Support Files/Pods-PermitToWork/Pods-PermitToWork.debug.xcconfig"; sourceTree = "<group>"; };
@@ -448,13 +426,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CD4019732641665700F9A357 /* SAPFioriFlows.xcframework in Frameworks */,
-				CD4019712641665700F9A357 /* SAPFiori.xcframework in Frameworks */,
-				CD4019772641665700F9A357 /* SAPOData.xcframework in Frameworks */,
-				CD4019752641665700F9A357 /* SAPFoundation.xcframework in Frameworks */,
-				CD4019792641665700F9A357 /* SAPOfflineOData.xcframework in Frameworks */,
+				5BD06DC9265F5FCD0029AA13 /* SAPFioriFlows.xcframework in Frameworks */,
+				5BD06DC3265F5FCD0029AA13 /* SAPFiori.xcframework in Frameworks */,
+				5BD06DC1265F5FCC0029AA13 /* SAPFoundation.xcframework in Frameworks */,
+				5BD06DC7265F5FCD0029AA13 /* SAPOfflineOData.xcframework in Frameworks */,
 				C1C018E8B4B223BAE35D4192 /* Pods_PermitToWork.framework in Frameworks */,
-				CD40196F2641665700F9A357 /* SAPCommon.xcframework in Frameworks */,
+				5BD06DBF265F5FCC0029AA13 /* SAPCommon.xcframework in Frameworks */,
+				5BD06DC5265F5FCD0029AA13 /* SAPOData.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,36 +501,12 @@
 		D1B46D7025E51D6200467B8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D1B46D7325E51D6300467B8A /* SAPCommon.xcframework */,
-				D15767B025E64C6B00646160 /* SAPCommon.xcframework */,
-				CDFADE97262D89A90031758D /* SAPCommon.xcframework */,
-				D1B46D7425E51D6300467B8A /* SAPFiori.xcframework */,
-				5B4E2314261CA3F100ED0B1B /* SAPFiori.xcframework */,
-				CDFADE95262D89A90031758D /* SAPFiori.xcframework */,
-				5B5406FF26305B340085552D /* SAPCommon.xcframework */,
-				5B54070026305B350085552D /* SAPFiori.xcframework */,
-				D1B46D7125E51D6200467B8A /* SAPFioriFlows.xcframework */,
-				D15767AF25E64C6B00646160 /* SAPFiori.xcframework */,
-				D15767B225E64C6B00646160 /* SAPFioriFlows.xcframework */,
-				5B4E2312261CA3F100ED0B1B /* SAPCommon.xcframework */,
-				5B4E2313261CA3F100ED0B1B /* SAPFioriFlows.xcframework */,
-				5B5406FE26305B340085552D /* SAPFioriFlows.xcframework */,
-				D1B46D7525E51D6300467B8A /* SAPFoundation.xcframework */,
-				5B4E2311261CA3F000ED0B1B /* SAPFoundation.xcframework */,
-				CDFADE96262D89A90031758D /* SAPFoundation.xcframework */,
-				D1B46D7625E51D6300467B8A /* SAPOData.xcframework */,
-				CDFADE93262D89A90031758D /* SAPFioriFlows.xcframework */,
-				CDFADE94262D89A90031758D /* SAPOData.xcframework */,
-				5B5406FD26305B340085552D /* SAPFoundation.xcframework */,
-				5B54070126305B350085552D /* SAPOData.xcframework */,
-				D1B46D7225E51D6200467B8A /* SAPOfflineOData.xcframework */,
-				D15767AD25E64C6B00646160 /* SAPFoundation.xcframework */,
-				D15767AE25E64C6B00646160 /* SAPOData.xcframework */,
-				D15767B125E64C6B00646160 /* SAPOfflineOData.xcframework */,
-				5B4E230F261CA3F000ED0B1B /* SAPOData.xcframework */,
-				5B4E2310261CA3F000ED0B1B /* SAPOfflineOData.xcframework */,
-				CDFADE92262D89A90031758D /* SAPOfflineOData.xcframework */,
-				5B5406FC26305B340085552D /* SAPOfflineOData.xcframework */,
+				5BD06DBB265F5FCC0029AA13 /* SAPFiori.xcframework */,
+				5BD06DBE265F5FCC0029AA13 /* SAPFioriFlows.xcframework */,
+				5BD06DB9265F5FCC0029AA13 /* SAPCommon.xcframework */,
+				5BD06DBA265F5FCC0029AA13 /* SAPFoundation.xcframework */,
+				5BD06DBC265F5FCC0029AA13 /* SAPOData.xcframework */,
+				5BD06DBD265F5FCC0029AA13 /* SAPOfflineOData.xcframework */,
 				604EFBF2814BE8CD40B6A87F /* Pods_PermitToWork.framework */,
 			);
 			name = Frameworks;
@@ -987,10 +941,11 @@
 			children = (
 				D1D2B72825E5189E009D8C76 /* AppDelegate.swift */,
 				D1D2B72925E5189E009D8C76 /* ApplicationUIManager.swift */,
-				D1D2B72A25E5189E009D8C76 /* ConfigurationProvider.plist */,
+				5BD06DD82660C21B0029AA13 /* ConfigurationProvider.plist */,
+				5BD06DD62660C2130029AA13 /* AppParameters.plist */,
 				D1D2B72C25E5189E009D8C76 /* LocalizedStrings.swift */,
+				5BD06DDA2660C2250029AA13 /* OnboardingFlowProvider.swift */,
 				D1D2B72725E5189E009D8C76 /* OnboardingErrorHandler.swift */,
-				D1D2B72B25E5189E009D8C76 /* OnboardingFlowProvider.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -1024,7 +979,7 @@
 				D1D2B6FD25E512D0009D8C76 /* Frameworks */,
 				D1D2B6FE25E512D0009D8C76 /* Resources */,
 				A2ED617F6E481B6C489C4072 /* [CP] Embed Pods Frameworks */,
-				CD40197B2641665800F9A357 /* Embed Frameworks */,
+				5BD06DCB265F5FCD0029AA13 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1083,10 +1038,11 @@
 				D1B46E3C25E5200E00467B8A /* start.storyboard in Resources */,
 				D1B46E5225E5202B00467B8A /* CommonHeaderCell.xib in Resources */,
 				D1B46E9E25E5219300467B8A /* TestResultCell.xib in Resources */,
+				5BD06DD92660C21B0029AA13 /* ConfigurationProvider.plist in Resources */,
 				D1B46F3325E5276500467B8A /* DashBoardCell.xib in Resources */,
 				D1B46E3B25E5200E00467B8A /* Permit.storyboard in Resources */,
 				D1B46D6B25E51CFA00467B8A /* Main.storyboard in Resources */,
-				D1D2B73025E5189E009D8C76 /* ConfigurationProvider.plist in Resources */,
+				5BD06DD72660C2130029AA13 /* AppParameters.plist in Resources */,
 				D1B46E5325E5202B00467B8A /* IdentifyCell.xib in Resources */,
 				D1B46F3525E5276500467B8A /* launcher.storyboard in Resources */,
 				D1B46F3625E5276500467B8A /* ProfileCell.xib in Resources */,
@@ -1167,6 +1123,7 @@
 				D1B46F3725E5276500467B8A /* DashBoardCell.swift in Sources */,
 				D1B46EC825E521F800467B8A /* JSALocationCollectionViewCell.swift in Sources */,
 				D1B46E0B25E51FD600467B8A /* TOJSAHAZARDDROPPED.swift in Sources */,
+				5BD06DDB2660C2250029AA13 /* OnboardingFlowProvider.swift in Sources */,
 				D1B46E1725E51FD600467B8A /* TOJSAHAZARDSPILL.swift in Sources */,
 				D1B46E9A25E5219300467B8A /* PermitCell.swift in Sources */,
 				D1B46E2F25E51FEF00467B8A /* HotPermit.swift in Sources */,
@@ -1229,7 +1186,6 @@
 				D1B46E6C25E5215800467B8A /* StopJobTableViewCell.swift in Sources */,
 				D1B46DBD25E51F9800467B8A /* JSAModel+CoreDataClass.swift in Sources */,
 				D1B46E1A25E51FD600467B8A /* TOJSAHAZARDVOLTAGE.swift in Sources */,
-				D1D2B73125E5189E009D8C76 /* OnboardingFlowProvider.swift in Sources */,
 				D1B46E7125E5217300467B8A /* RiskAssesmentTableViewCell.swift in Sources */,
 				D1B46E4C25E5202A00467B8A /* RiskAssessmentCell.swift in Sources */,
 				D1B46E0625E51FD600467B8A /* TOPTWPEOPLE.swift in Sources */,

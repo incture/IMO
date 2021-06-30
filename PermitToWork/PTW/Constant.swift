@@ -44,7 +44,7 @@ struct BaseUrl{
 struct ConstantServer {
   
 
-    static var imoUrl = "https://mobile-b0ot37y8l6.hana.ondemand.com"
+    static var imoUrl = "https://hrapps-imo-dft-com-incture-ptw.cfapps.eu10.hana.ondemand.com"
     
 }
 
@@ -133,82 +133,3 @@ enum ActionType : String {
     case PermitCloseOut = "PermitCloseOut"
     
 }
-// MARK: - Downloader
-//class Downloader : NSObject, URLSessionDownloadDelegate {
-//    
-//    var url : URL?
-//    var destinationUrl: String?
-//    var serverVersion : Int?
-//    // will be used to do whatever is needed once download is complete
-////    var yourOwnObject : FieldGuideHomeController?
-////
-////    init(_ yourOwnObject : FieldGuideHomeController)
-////    {
-////        self.yourOwnObject = yourOwnObject
-////    }
-////
-////    //is called once the download is complete
-////    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL)
-////    {
-////        //copy downloaded data to your documents directory with same names as source file
-////        let documentsUrl =  FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-////        let destinationUrl = documentsUrl!.appendingPathComponent(self.destinationUrl ?? (url?.lastPathComponent)!)
-////        let dataFromURL = NSData(contentsOf: location)
-////        dataFromURL?.write(to: destinationUrl, atomically: true)
-////        UserDefaults.standard.set(serverVersion, forKey: "PDFVersion")
-////        UserDefaults.standard.synchronize()
-////        //now it is time to do what is needed to be done after the download
-////        yourOwnObject!.downloadCompleted()
-////    }
-//    
-//    //this is to track progress
-//    private func URLSession(session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64)
-//    {
-//        print("totalsize: \(totalBytesExpectedToWrite) \n bytes downloaded: \(totalBytesWritten)")
-//    }
-//    
-////    // if there is an error during download this will be called
-////    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?)
-////    {
-////        if(error != nil)
-////        {
-////            //handle the error
-////            print("Download completed with error: \(error!.localizedDescription)");
-////            yourOwnObject!.downloadCompleted()
-////        }
-////    }
-//    
-//    //method to be called to download
-//    func download(url: URL, destination: String, serverVer:Int)
-//    {
-//        self.url = url
-//        self.destinationUrl = destination
-//        self.serverVersion = serverVer
-//        
-//        //download identifier can be customized. I used the "ulr.absoluteString"
-//        let sessionConfig = URLSessionConfiguration.background(withIdentifier: url.absoluteString)
-//        let session = Foundation.URLSession(configuration: sessionConfig, delegate: self, delegateQueue: nil)
-//        let task = session.downloadTask(with: url)
-//        task.resume()
-//    }
-//    
-//}
-
-//Bundle ids
-// Dev - com.incture.dev.Task-Management
-// QA - com.incture.iop.qa
-//Prod - com.incture.iop.prod
-
-
-//GetLoggedInUser_Dest
-//JavaAPI_Dest
-//ODataProvisioning_Dest
-//UserManagement_Dest
-
-// URL Identifier :-
-//  com.murphy.iop
-//  com.murphy.iopqa
-
-// URL Schemes :-
-// iop
-// iopqa

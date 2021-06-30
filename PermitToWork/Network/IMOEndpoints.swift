@@ -12,7 +12,9 @@ struct IMOEndpoints {
     static let getListOfActiveWorkers = BaseUrl.apiURL + "/JAVA_API_DEST/getListOfActiveWorker?"
     static let getJSAByLocation =  BaseUrl.apiURL + "/JAVA_API_DEST/getjsabylocation?"
     static let approveJSA = BaseUrl.apiURL + "/JAVA_API_DEST/approvejsa"
-    static let locationService = "https://imob0ot37y8l6.hana.ondemand.com/TaskManagement_Rest/imo/location/getLocation"
+
+    static let locationService = "https://iop.cfapps.eu10.hana.ondemand.com/imo/location/getLocation"
+
     static let getPermits =  BaseUrl.apiURL + "/JAVA_API_DEST/getpermitsbylocation?facility="
     static let createService =  BaseUrl.apiURL + "/JAVA_API_DEST/createservice"
     static let getJSAByPermitNumber = BaseUrl.apiURL + "/JAVA_API_DEST/getjsabypermitnumber?"

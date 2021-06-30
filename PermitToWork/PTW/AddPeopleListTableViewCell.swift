@@ -1,6 +1,6 @@
 //
 //  AddPeopleListTableViewCell.swift
-//  Murphy_PWT_iOS
+// 
 //
 //  Created by Parul Thakur77 on 11/04/18.
 //  Copyright © 2018 Parul Thakur77. All rights reserved.

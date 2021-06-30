@@ -114,8 +114,12 @@ public class OnboardingFlowProvider: OnboardingFlowProviding {
     // MARK: – Step configuration
 
     private func configuredWelcomeScreenStep() -> WelcomeScreenStep {
-        let discoveryConfigurationTransformer = DiscoveryServiceConfigurationTransformer(applicationID: "com.incture.imo", authenticationPath: "com.incture.imoPTW")
-        let welcomeScreenStep = WelcomeScreenStep(transformer: discoveryConfigurationTransformer, providers:  [FileConfigurationProvider()])
+        
+        let appParameters = FileConfigurationProvider("AppParameters").provideConfiguration().configuration
+        let destinations = appParameters["Destinations"] as! NSDictionary
+        let discoveryConfigurationTransformer = DiscoveryServiceConfigurationTransformer(applicationID: appParameters["Application Identifier"] as? String, authenticationPath: destinations["com.sap.edm.sampleservice.v2"] as? String)
+        let welcomeScreenStep = WelcomeScreenStep(transformer: discoveryConfigurationTransformer, providers: [FileConfigurationProvider()])
+
 
         welcomeScreenStep.welcomeScreenCustomizationHandler = { welcomeScreen in
             welcomeScreen.headlineLabel.text = "IMO-PTW"

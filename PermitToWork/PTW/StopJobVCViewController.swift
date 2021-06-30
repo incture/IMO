@@ -219,7 +219,7 @@ class StopJobVCViewController: UIViewController ,UITableViewDataSource,UITableVi
                     people.hasSignedJSA = 1
                 }
                 if JSAObject.permitNumber != 0{
-                    //rajat stopped the string casting
+                   
                     people.permitNumber = (JSAObject.permitNumber)
                 }
                 else{
@@ -228,7 +228,7 @@ class StopJobVCViewController: UIViewController ,UITableViewDataSource,UITableVi
                     if value != nil{
                         counter = Int(value!)! - 1
                     }
-                    //rajat stopped the casting
+
                     people.permitNumber = (counter)
                 }
                 

@@ -3,7 +3,7 @@
 //  TokenView
 //
 //  Created by Mahabaleshwar Hegde on 20/04/18.
-//  Copyright © 2018 Murphy. All rights reserved.
+//  
 //
 
 import UIKit

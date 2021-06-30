@@ -1,6 +1,6 @@
 //
 //  AtmosphericTestingController.swift
-//  Murphy IOP
+//  
 //
 //  Created by Soumya Singh on 26/03/18.
 //  Copyright © 2018 soumyaIncture Technologies. All rights reserved.
