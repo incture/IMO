@@ -424,22 +424,18 @@ class StopJobVCViewController: UIViewController ,UITableViewDataSource,UITableVi
                             
                             DispatchQueue.main.async {
 
-                            if let jsonDict2 = JSON as? NSDictionary {
-                                print("***jsonDict2***")
-                                print(jsonDict2)
-                                print("***jsonDict2***")
-                                var jsonDict = NSDictionary()
-                                jsonDict = ((jsonDict2["data"]  as? NSDictionary)!)
-                                print("***jsonDict***")
-                                print(jsonDict)
-                                print("***jsonDict***")
+                            if let jsonDict = JSON as? NSDictionary {
+
+                               // var jsonDict = NSDictionary()
+                               // jsonDict = ((jsonDict2["data"]  as? NSDictionary ?? NSDictionary()))
                                 //renamed Success to success
-                                    let msg = jsonDict.value(forKey: "success") as! String
+                                    let msg = jsonDict.value(forKey: "message") as! String
                                         self.loaderStop()
                                         let alertController = UIAlertController.init(title: "", message:msg , preferredStyle: UIAlertController.Style.alert)
                                         let okAction = UIAlertAction.init(title: "OK", style: UIAlertAction.Style.cancel, handler: { (action) in
                                             self.navigationController?.popToViewController((self.navigationController?.viewControllers[1]) as! CreatedPermitControllerViewController, animated: true)
                                             JSAObject = JSA()
+                                            creatingTemplate = false
                                         })
                                         alertController.addAction(okAction)
                                         self.present(alertController, animated: true, completion: nil)
@@ -785,10 +781,10 @@ class StopJobVCViewController: UIViewController ,UITableViewDataSource,UITableVi
 //                "lastUpdatedDate":JSAObject.updatedDate
 //            ],
             
-//            "jsaRiskAssesmentDto":[
-//                "mustModifyExistingWorkPractice":JSAObject.riskAssesment.mustExistingWork,
-//                "hasContinuedRisk":JSAObject.riskAssesment.afterMitigation
-//            ],
+            "jsaRiskAssesmentDto":[
+                "mustModifyExistingWorkPractice":JSAObject.riskAssesment.mustExistingWork,
+                "hasContinuedRisk":JSAObject.riskAssesment.afterMitigation
+            ],
             
             "jsappeDto":[
                 "hardHat":JSAObject.riskAssesment.hardHat,
@@ -1082,7 +1078,7 @@ class StopJobVCViewController: UIViewController ,UITableViewDataSource,UITableVi
 //                "reasonForCSE":JSAObject.CSEP.workTypeCSE.reasonForCSE.utf8EncodedString() as String
 //                ] as [String:Any],
             //"jsaLocationDtoList" : newLocationArray,
-            "name" : "Temp_name1"
+            "name" : JSAObject.templateName
         ]
         
         

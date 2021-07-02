@@ -11,6 +11,7 @@ import Foundation
 
 class JSA : NSObject, NSCoding {
     
+    var templateName = String()
     var createJSA = CreateJSA()
     var riskAssesment = RiskAsssesment()
     var hazardControls = HazardCategories()

@@ -180,7 +180,24 @@ class CreateJSAVC: UIViewController , UITableViewDelegate,UITableViewDataSource,
         
         switch textField.tag
         {
-        
+        case 0:
+            if creatingTemplate == true{
+                if let str = textField.text {
+                    if str.count > 100{
+                        let alertController = UIAlertController.init(title: "", message:"Template name cannot have more than 100 chracters" , preferredStyle: UIAlertController.Style.alert)
+                        let okAction = UIAlertAction.init(title: "OK", style: UIAlertAction.Style.cancel, handler: nil)
+                        alertController.addAction(okAction)
+                        self.present(alertController, animated: true, completion: nil)
+                        textField.text = ""
+                    }
+                    else{
+                        
+                        JSAObject.templateName = textField.text!
+                    }
+                }
+                
+                break
+            }
         case 1:
             if let str = textField.text {
                 if str.count > 100{
@@ -234,51 +251,14 @@ class CreateJSAVC: UIViewController , UITableViewDelegate,UITableViewDataSource,
     
     func textViewDidChange(_ textView: UITextView) {
         
-        //        if jsatextView.textColor == UIColor.lightGray {
-        //            jsatextView.text = ""
-        //            jsatextView.textColor = UIColor.black
-        //        }
-        //        if textView.text.contains("Add Tex")
-        //        {
-        //            let str = textView.text.replacingOccurrences(of: "Add Tex", with: "")
-        //            textView.text = str
-        //            textView.textColor = UIColor.black
-        //        }
-        //        else if textView.text.contains("Add Text")
-        //        {
-        //            let str = textView.text.replacingOccurrences(of: "Add Tex", with: "")
-        //            textView.text = str
-        //            textView.textColor = UIColor.black
-        //        }
-        //        else
-        //        {
-        //            textView.textColor = UIColor.black
-        //        }
-        //
-        //        if textView.text.isEmpty
-        //        {
-        //            textView.text = "Add Text"
-        //            textView.textColor = UIColor.lightGray
-        //        }
-        
-        
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        
-        //        if textView.textColor == UIColor.lightGray {
-        //            textView.text = ""
-        //            textView.textColor = UIColor.black
-        //        }
+
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        
-        //        if textView.text.isEmpty {
-        //            textView.text = "Identify the most serious potential injury for the task being performed"
-        //            textView.textColor = UIColor.lightGray
-        //        }
-        
+      
         JSAObject.createJSA.injuryDescription = textView.text!
     }
     
@@ -312,12 +292,12 @@ class CreateJSAVC: UIViewController , UITableViewDelegate,UITableViewDataSource,
                 if isJsaPreview || isJsaApproved
                 {
                     cell.isUserInteractionEnabled = false
-                    cell.statusLabel.text = JSAObject.createJSA.taskDescription
+                    cell.statusLabel.text = JSAObject.templateName
                 }
                 else
                 {
                     cell.isUserInteractionEnabled = true
-                    cell.statusLabel.text = JSAObject.createJSA.taskDescription
+                    cell.statusLabel.text = JSAObject.templateName
                 }
                 
                 
@@ -405,7 +385,6 @@ class CreateJSAVC: UIViewController , UITableViewDelegate,UITableViewDataSource,
     @IBAction func onHomePress(_ sender: Any)
     {
         creatingTemplate = false
-        creatingFromTemplate = false
         self.navigationController?.popViewController(animated: true)
         JSAObject = JSA()
         
@@ -413,17 +392,33 @@ class CreateJSAVC: UIViewController , UITableViewDelegate,UITableViewDataSource,
     @IBAction func previousBtn(_ sender: UIButton)
     {
         creatingTemplate = false
-        creatingFromTemplate = false
         self.navigationController?.popViewController(animated: true)
        
     }
     @IBAction func nextBtn(_ sender: UIButton)
     {
         self.view.endEditing(true)
+        if creatingTemplate == true{
+            if JSAObject.templateName == ""
+            {
+                let alert = UIAlertController(title: "", message: "Please Enter Template Name", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .default , handler: nil))
+                
+                self.present(alert, animated: true, completion: {
+                    print("completion block")
+                })
+            }
+
+        }
         if JSAObject.createJSA.injuryDescription == "Add Text"
         {
             JSAObject.createJSA.injuryDescription = ""
         }
+        
+        
+       
+        
         if JSAObject.createJSA.taskDescription == ""
         {
             let alert = UIAlertController(title: "", message: "Please Enter Task Description", preferredStyle: .alert)
@@ -456,6 +451,18 @@ class CreateJSAVC: UIViewController , UITableViewDelegate,UITableViewDataSource,
             self.present(alert, animated: true, completion: {
                 print("completion block")
             })
+        }
+        else  if creatingTemplate == true && JSAObject.templateName.trimmingCharacters(in: .whitespacesAndNewlines) == ""{
+        
+                let alert = UIAlertController(title: "", message: "Please Enter Template Name", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .default , handler: nil))
+                
+                self.present(alert, animated: true, completion: {
+                    print("completion block")
+                })
+            
+
         }
         else
         {

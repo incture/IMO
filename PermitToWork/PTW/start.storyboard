@@ -557,6 +557,12 @@
                                 <color key="separatorColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No templates available" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mcv-MN-epg">
+                                <rect key="frame" x="89" y="321.5" width="197.5" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PLu-rQ-Bla">
                                 <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                                 <constraints>
@@ -579,6 +585,7 @@
                         </subviews>
                         <color key="backgroundColor" name="BlackColor"/>
                         <constraints>
+                            <constraint firstItem="Mcv-MN-epg" firstAttribute="centerX" secondItem="aYX-Yg-Ugb" secondAttribute="centerX" id="39a-qT-3Ez"/>
                             <constraint firstAttribute="trailing" secondItem="PLu-rQ-Bla" secondAttribute="trailing" id="4kN-bD-Fh6"/>
                             <constraint firstItem="YBc-Ua-hby" firstAttribute="top" secondItem="4T1-JT-5f9" secondAttribute="bottom" id="6ol-z7-sxX"/>
                             <constraint firstItem="Ob1-Eu-tI8" firstAttribute="top" secondItem="YBc-Ua-hby" secondAttribute="bottom" id="8lY-1u-cHj"/>
@@ -588,6 +595,7 @@
                             <constraint firstItem="PLu-rQ-Bla" firstAttribute="top" secondItem="9ez-vK-qbM" secondAttribute="bottom" id="RiV-VD-ymE"/>
                             <constraint firstItem="YBc-Ua-hby" firstAttribute="leading" secondItem="aYX-Yg-Ugb" secondAttribute="leading" id="Xx8-ks-zg1"/>
                             <constraint firstItem="nyr-YF-dHy" firstAttribute="top" secondItem="PLu-rQ-Bla" secondAttribute="bottom" id="ZhA-Ha-tcR"/>
+                            <constraint firstItem="Mcv-MN-epg" firstAttribute="centerY" secondItem="aYX-Yg-Ugb" secondAttribute="centerY" id="cJV-hl-niH"/>
                             <constraint firstAttribute="trailing" secondItem="nyr-YF-dHy" secondAttribute="trailing" id="ejd-T0-BIx"/>
                             <constraint firstAttribute="trailing" secondItem="4T1-JT-5f9" secondAttribute="trailing" id="iUW-M7-O0L"/>
                             <constraint firstItem="4T1-JT-5f9" firstAttribute="leading" secondItem="aYX-Yg-Ugb" secondAttribute="leading" id="uni-mS-hZI"/>
@@ -597,6 +605,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="navigationTitle" destination="bqs-kK-wgW" id="cNL-Qq-hcR"/>
+                        <outlet property="noTempLabel" destination="Mcv-MN-epg" id="Z9D-HX-dts"/>
                         <outlet property="tableView" destination="nyr-YF-dHy" id="vDj-hd-yJO"/>
                     </connections>
                 </viewController>

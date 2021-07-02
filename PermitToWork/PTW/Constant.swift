@@ -16,7 +16,6 @@ var currentLocation = Location()
 var CWObject = ColdPermit()
 
 var creatingTemplate = false
-var creatingFromTemplate = false
 
 
 var pushToPeopleListController = false

@@ -134,7 +134,19 @@ class ReadJSA : NSObject
                 self.TOJSASTEPSArrayValue.append(temp00)
             }
         }
+        if let temp = jsaObject.value(forKey: "jsaStepsDto") as? [NSDictionary]{
+            for each in temp{
+                let temp00 = TOJSASTEPS(JSON : each)
+                self.TOJSASTEPSArrayValue.append(temp00)
+            }
+        }
         if let temp = jsaObject.value(forKey: "jsaStopTriggerDtoList") as? [NSDictionary]{
+            for each in temp{
+                let temp00 = TOJSASTOP(JSON : each)
+                self.TOJSASTOPArrayValue.append(temp00)
+            }
+        }
+        if let temp = jsaObject.value(forKey: "jsaStopTriggerDto") as? [NSDictionary]{
             for each in temp{
                 let temp00 = TOJSASTOP(JSON : each)
                 self.TOJSASTOPArrayValue.append(temp00)
