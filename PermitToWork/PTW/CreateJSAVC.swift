@@ -384,9 +384,12 @@ class CreateJSAVC: UIViewController , UITableViewDelegate,UITableViewDataSource,
     
     @IBAction func onHomePress(_ sender: Any)
     {
-        creatingTemplate = false
+        
         self.navigationController?.popViewController(animated: true)
+        
+        
         JSAObject = JSA()
+        creatingTemplate = false
         
     }
     @IBAction func previousBtn(_ sender: UIButton)

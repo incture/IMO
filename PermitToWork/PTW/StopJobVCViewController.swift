@@ -178,7 +178,8 @@ class StopJobVCViewController: UIViewController ,UITableViewDataSource,UITableVi
     @IBAction func homeButton(_ sender: Any)
     {
         self.navigationController?.popToViewController((self.navigationController?.viewControllers[1]) as! CreatedPermitControllerViewController, animated: true)
-            JSAObject = JSA()
+        JSAObject = JSA()
+        creatingTemplate = false
         //self.navigationController?.popToRootViewController(animated: true)
     }
     @IBAction func addNewJob(_ sender: Any)

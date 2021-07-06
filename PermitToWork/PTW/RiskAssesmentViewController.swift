@@ -440,6 +440,7 @@ class RiskAssesmentViewController: UIViewController ,UITableViewDataSource,UITab
     {
         self.navigationController?.popToViewController((self.navigationController?.viewControllers[1]) as! CreatedPermitControllerViewController, animated: true)
         JSAObject = JSA()
+        creatingTemplate = false
         //self.navigationController?.popToRootViewController(animated: true)
     }
     @IBAction func previousBtn(_ sender: UIButton)

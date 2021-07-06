@@ -139,6 +139,7 @@ class PotentialHazardViewController: UIViewController ,UITableViewDataSource,UIT
     {
         self.navigationController?.popToViewController((self.navigationController?.viewControllers[1]) as! CreatedPermitControllerViewController, animated: true)
         JSAObject = JSA()
+        creatingTemplate = false
         //self.navigationController?.popToRootViewController(animated: true)
     }
     @IBAction func addNewHazard(_ sender: Any)

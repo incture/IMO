@@ -457,6 +457,7 @@ class HazardVCViewController: UIViewController, UITableViewDataSource,UITableVie
     {
         self.navigationController?.popToViewController((self.navigationController?.viewControllers[1]) as! CreatedPermitControllerViewController, animated: true)
         JSAObject = JSA()//self.navigationController?.popToRootViewController(animated: true)
+        creatingTemplate = false
     }
     @IBAction func addHazardCat(_ sender: Any)
     {

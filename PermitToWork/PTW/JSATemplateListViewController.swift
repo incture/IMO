@@ -436,6 +436,7 @@ class JSATemplateListViewController: UIViewController {
 
     func getTemplates()
     {
+        tempDict = []
         var url = ""
         url = IMOEndpoints.getAllTemplates
         let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
